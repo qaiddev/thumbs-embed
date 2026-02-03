@@ -1,5 +1,5 @@
 {
-  "name": "@babylonjsmarket/qaid",
+  "name": "@qaiddev/thumbs-embed",
   "version": "1.0.0",
   "description": "Standalone feedback embed with element targeting",
   "type": "module",
@@ -16,6 +16,14 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qaiddev/thumbs-embed.git"
+  },
+  "homepage": "https://github.com/qaiddev/thumbs-embed#readme",
+  "bugs": {
+    "url": "https://github.com/qaiddev/thumbs-embed/issues"
+  },
   "scripts": {
     "dev": "vite build --watch",
     "build": "vite build",

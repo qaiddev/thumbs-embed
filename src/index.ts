@@ -1,11 +1,11 @@
 /**
- * @babylonjsmarket/qaid - Standalone Feedback Embed
+ * @qaiddev/thumbs-embed - Standalone Feedback Embed
  *
  * A zero-dependency feedback embed with element targeting.
  *
  * Usage via ES module:
  * ```typescript
- * import { FeedbackEmbed } from '@babylonjsmarket/qaid';
+ * import { FeedbackEmbed } from '@qaiddev/thumbs-embed';
  *
  * const embed = new FeedbackEmbed({
  *   endpoint: '/api/feedback'
