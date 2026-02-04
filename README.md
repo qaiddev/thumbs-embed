@@ -384,13 +384,10 @@ Your server needs to handle:
 
 ## Project Badges
 
-[![npm version](https://img.shields.io/npm/v/@qaiddev/thumbs-embed)](https://www.npmjs.
-com/package/@qaiddev/thumbs-embed)                                                     
-[![license](https://img.shields.io/npm/l/@qaiddev/thumbs-embed)](./LICENSE)            
-[![bundle size](https://img.shields.io/bundlephobia/minzip/@qaiddev/thumbs-embed)](http
-s://bundlephobia.com/package/@qaiddev/thumbs-embed)  
+<a href="https://www.npmjs.com/package/@qaiddev/thumbs-embed">
+<img alt="npm version" src="https://img.shields.io/npm/v/@qaiddev/thumbs-embed" />
+</a> 
 
-
-## License
-
-MIT
+<a href="https://github.com/qaiddev/thumbs-embed/blob/prod/LICENSE">
+  <img alt="license" src="https://img.shields.io/npm/l/@qaiddev/thumbs-embed"/>
+</a>
