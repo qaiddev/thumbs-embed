@@ -51,14 +51,14 @@ describe("styles", () => {
       expect(style?.textContent).toContain("rgb(200, 50, 100)");
     });
 
-    it("should skip button styles when skipButtonStyles is true", () => {
+    it("should still include button styles when skipButtonStyles is true (deprecated option)", () => {
       injectStyles({ skipButtonStyles: true });
 
       const style = document.getElementById("qaid-styles");
       // Should have structural styles
       expect(style?.textContent).toContain(".qaid-btn-structural");
-      // Should NOT have default button styles (uses CSS variable for width)
-      expect(style?.textContent).not.toContain("width:var(--qaid-btn-size)");
+      // skipButtonStyles is deprecated and no longer removes button styles
+      expect(style?.textContent).toContain("width:var(--qaid-btn-size)");
     });
 
     it("should include button styles when skipButtonStyles is false", () => {
