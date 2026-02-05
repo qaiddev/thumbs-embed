@@ -106,9 +106,21 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
   const skipButton = script.getAttribute("data-skip-button");
   const positiveIcon = script.getAttribute("data-positive-icon");
   const negativeIcon = script.getAttribute("data-negative-icon");
+  const apiKey = script.getAttribute("data-api-key");
+  const captureScreenshot = script.getAttribute("data-capture-screenshot");
+  const screenshotQuality = script.getAttribute("data-screenshot-quality");
+  const screenshotMaxWidth = script.getAttribute("data-screenshot-max-width");
+  const screenshotMaxHeight = script.getAttribute("data-screenshot-max-height");
 
   return {
     endpoint,
+    apiKey: apiKey ?? undefined,
+    captureScreenshot: captureScreenshot === "true" ? true : undefined,
+    screenshotOptions: (screenshotQuality || screenshotMaxWidth || screenshotMaxHeight) ? {
+      quality: screenshotQuality ? parseFloat(screenshotQuality) : undefined,
+      maxWidth: screenshotMaxWidth ? parseInt(screenshotMaxWidth, 10) : undefined,
+      maxHeight: screenshotMaxHeight ? parseInt(screenshotMaxHeight, 10) : undefined,
+    } : undefined,
     container: container ?? undefined,
     buttonClass: buttonClass ?? undefined,
     position: position ?? undefined,
