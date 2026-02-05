@@ -35,12 +35,19 @@ export type {
   FeedbackConfig,
   ResolvedFeedbackConfig,
   ConsoleError,
+  NetworkError,
   FeedbackData,
   SelectedBounds,
   FeedbackPayload,
   FeedbackResponse,
   FeedbackMessagePayload,
 } from "./types";
+export { captureNetworkErrors } from "./network-capture";
+export type { NetworkCapture } from "./network-capture";
+export { createVideoRecorder, isVideoRecordingSupported, getSupportedMimeType } from "./video-capture";
+export type { VideoRecorder, VideoRecorderOptions } from "./video-capture";
+export { captureDomScreenshot, isDomScreenshotSupported } from "./screenshot-dom";
+export type { DomScreenshotOptions } from "./screenshot-dom";
 
 import type { FeedbackConfig } from "./types";
 
@@ -111,6 +118,10 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
   const screenshotQuality = script.getAttribute("data-screenshot-quality");
   const screenshotMaxWidth = script.getAttribute("data-screenshot-max-width");
   const screenshotMaxHeight = script.getAttribute("data-screenshot-max-height");
+  const captureVideo = script.getAttribute("data-capture-video");
+  const hideThumbs = script.getAttribute("data-hide-thumbs");
+  const videoMaxDuration = script.getAttribute("data-video-max-duration");
+  const screenshotMethod = script.getAttribute("data-screenshot-method") as "dom" | "permission" | null;
 
   return {
     endpoint,
@@ -153,6 +164,12 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
     } : undefined,
     positiveIcon: positiveIcon ?? undefined,
     negativeIcon: negativeIcon ?? undefined,
+    screenshotMethod: screenshotMethod ?? undefined,
+    captureVideo: captureVideo === "true" ? true : undefined,
+    hideThumbs: hideThumbs === "true" ? true : undefined,
+    videoOptions: videoMaxDuration ? {
+      maxDuration: parseInt(videoMaxDuration, 10),
+    } : undefined,
   };
 }
 

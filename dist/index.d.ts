@@ -1,10 +1,39 @@
 /**
+ * Capture a screenshot of the current page using html2canvas
+ * Returns a base64-encoded WebP data URL, or null on failure
+ */
+export declare function captureDomScreenshot(options?: DomScreenshotOptions): Promise<string | null>;
+
+/**
+ * Intercept fetch() and XMLHttpRequest to capture network errors (4xx/5xx)
+ */
+export declare function captureNetworkErrors(): NetworkCapture;
+
+/**
  * Console message captured during the session
  */
 export declare interface ConsoleError {
     message: string;
     timestamp: number;
     level: "error" | "warn" | "log";
+}
+
+/**
+ * Create a video recorder that captures the screen
+ */
+export declare function createVideoRecorder(options?: VideoRecorderOptions): VideoRecorder;
+
+/**
+ * DOM-based screenshot capture using html2canvas
+ * No browser permission dialog required - reconstructs the page from the DOM
+ */
+export declare interface DomScreenshotOptions {
+    /** Quality of WebP compression (0-1). Default: 0.8 */
+    quality?: number;
+    /** Max width of the screenshot. Default: 1280 */
+    maxWidth?: number;
+    /** Max height of the screenshot. Default: 800 */
+    maxHeight?: number;
 }
 
 /**
@@ -80,12 +109,25 @@ export declare interface FeedbackConfig {
     fontSize?: number;
     /** Enable screenshot capture with feedback. Default: false */
     captureScreenshot?: boolean;
+    /** Enable video recording button. Default: false */
+    captureVideo?: boolean;
+    /** Video recording options */
+    videoOptions?: {
+        /** Max recording duration in seconds. Default: 15 */
+        maxDuration?: number;
+    };
+    /** Custom SVG string for record button icon */
+    recordIcon?: string;
     /** When true, buttons are hidden until hovered. Default: false */
     incognito?: boolean;
     /** Custom SVG string for positive feedback button icon */
     positiveIcon?: string;
     /** Custom SVG string for negative feedback button icon */
     negativeIcon?: string;
+    /** When true, hide thumbs up/down buttons (only show video button if enabled). Default: false */
+    hideThumbs?: boolean;
+    /** Screenshot capture method. "dom" uses html2canvas (no permission), "permission" uses Screen Capture API. Default: "permission" */
+    screenshotMethod?: "dom" | "permission";
     /** Screenshot options */
     screenshotOptions?: {
         /** Quality of WebP compression (0-1). Default: 1.0 */
@@ -121,7 +163,13 @@ export declare class FeedbackEmbed {
     private isMobile;
     private visitorId;
     private consoleCapture;
-    private allowedFeatures;
+    private videoRecorder;
+    private networkCapture;
+    private recordedBlob;
+    private recordingIndicator;
+    private videoPreview;
+    private isRecording;
+    private isSendingVideo;
     private container;
     private isUserProvidedContainer;
     private overlayContainer;
@@ -138,7 +186,6 @@ export declare class FeedbackEmbed {
     private boundResize;
     constructor(config: FeedbackConfig);
     private init;
-    private fetchAllowedFeatures;
     private checkMobile;
     private handleResize;
     private createEmbed;
@@ -164,6 +211,18 @@ export declare class FeedbackEmbed {
     private setupModalInteractions;
     private submitMessage;
     private closeModal;
+    private startRecording;
+    private stopRecording;
+    private showRecordingIndicator;
+    private updateRecordingTimer;
+    private formatTime;
+    private removeRecordingIndicator;
+    private showRecordingPreview;
+    private cancelRecordingPreview;
+    private removeVideoPreview;
+    private submitVideoFeedback;
+    private cleanupRecording;
+    private setButtonsDisabled;
     /**
      * Destroy the embed and clean up all resources
      */
@@ -212,6 +271,40 @@ export declare interface FeedbackResponse {
 }
 
 /**
+ * Detect the best supported MIME type for recording
+ */
+export declare function getSupportedMimeType(): string;
+
+/**
+ * Check if DOM screenshot capture is supported
+ * Requires canvas and basic DOM APIs
+ */
+export declare function isDomScreenshotSupported(): boolean;
+
+/**
+ * Check if video recording is supported in this browser
+ */
+export declare function isVideoRecordingSupported(): boolean;
+
+export declare interface NetworkCapture {
+    errors: NetworkError[];
+    restore: () => void;
+}
+
+/**
+ * Network error captured during the session
+ */
+export declare interface NetworkError {
+    url: string;
+    method: string;
+    status: number;
+    statusText: string;
+    requestBody?: string;
+    responseBody?: string;
+    timestamp: number;
+}
+
+/**
  * Fully resolved configuration with all defaults applied
  * Used internally by the embed after processing user config
  */
@@ -248,6 +341,7 @@ export declare interface ResolvedFeedbackConfig {
     fontFamily: string;
     fontSize: number;
     captureScreenshot: boolean;
+    screenshotMethod: "dom" | "permission";
     screenshotOptions: {
         quality: number;
         maxWidth: number;
@@ -256,6 +350,12 @@ export declare interface ResolvedFeedbackConfig {
     incognito: boolean;
     positiveIcon: string;
     negativeIcon: string;
+    hideThumbs: boolean;
+    captureVideo: boolean;
+    videoOptions: {
+        maxDuration: number;
+    };
+    recordIcon: string;
 }
 
 /**
@@ -271,4 +371,36 @@ export declare interface SelectedBounds {
     visible: boolean;
 }
 
+export declare interface VideoRecorder {
+    /** Start recording. Requests getDisplayMedia if not already started. */
+    start(): Promise<void>;
+    /** Stop recording and return the video blob. */
+    stop(): Promise<Blob>;
+    /** Register a callback for each second tick (receives seconds elapsed). */
+    onTick(callback: (elapsed: number) => void): void;
+    /** Register a callback for when recording stops (e.g., browser stop button, max duration). */
+    onStop(callback: (blob: Blob | null) => void): void;
+    /** Clean up all resources. */
+    destroy(): void;
+}
+
+/**
+ * Video capture utilities
+ * Uses getDisplayMedia + MediaRecorder for screen recording
+ */
+export declare interface VideoRecorderOptions {
+    /** Max recording duration in seconds. Default: 15 */
+    maxDuration?: number;
+    /** Video bitrate in bps. Default: 800000 (800kbps) */
+    videoBitsPerSecond?: number;
+}
+
 export { }
+
+
+declare global {
+    interface Window {
+        html2canvas?: (element: HTMLElement, options?: Record<string, unknown>) => Promise<HTMLCanvasElement>;
+    }
+}
+

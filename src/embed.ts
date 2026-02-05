@@ -7,11 +7,17 @@ import type {
   FeedbackPayload,
   FeedbackResponse,
 } from "./types";
-import { THUMBS_UP_ICON, THUMBS_DOWN_ICON } from "./icons";
+import { THUMBS_UP_ICON, THUMBS_DOWN_ICON, RECORD_ICON } from "./icons";
 import { injectStyles, removeStyles } from "./styles";
 import { generateElementInfo } from "./element-selector";
 import { calculateModalAndArrowPosition } from "./modal-positioning";
 import { captureConsoleErrors, type ConsoleCapture } from "./console-capture";
+import { captureNetworkErrors, type NetworkCapture } from "./network-capture";
+import {
+  createVideoRecorder,
+  isVideoRecordingSupported,
+  type VideoRecorder,
+} from "./video-capture";
 import {
   getElementAtPointUnderOverlay,
   isEmbedElement,
@@ -20,6 +26,7 @@ import {
   isMobileViewport,
 } from "./dom-utils";
 import { captureScreenshot } from "./screenshot";
+import { captureDomScreenshot } from "./screenshot-dom";
 
 const VISITOR_ID_KEY = "qaid_visitor_id";
 
@@ -70,8 +77,14 @@ export class FeedbackEmbed {
   // Console capture
   private consoleCapture: ConsoleCapture | null = null;
 
-  // Server-side feature flags
-  private allowedFeatures: { screenshots: boolean; consoleCapture: boolean } | null = null;
+  // Video recording
+  private videoRecorder: VideoRecorder | null = null;
+  private networkCapture: NetworkCapture | null = null;
+  private recordedBlob: Blob | null = null;
+  private recordingIndicator: HTMLDivElement | null = null;
+  private videoPreview: HTMLDivElement | null = null;
+  private isRecording = false;
+  private isSendingVideo = false;
 
   // DOM elements
   private container: HTMLDivElement | null = null;
@@ -125,6 +138,7 @@ export class FeedbackEmbed {
       fontFamily: config.fontFamily ?? "system-ui, -apple-system, sans-serif",
       fontSize: config.fontSize ?? 16,
       captureScreenshot: config.captureScreenshot ?? false,
+      screenshotMethod: config.screenshotMethod ?? "permission",
       screenshotOptions: {
         quality: config.screenshotOptions?.quality ?? 0.8,
         maxWidth: config.screenshotOptions?.maxWidth ?? 1280,
@@ -133,6 +147,12 @@ export class FeedbackEmbed {
       incognito: config.incognito ?? false,
       positiveIcon: config.positiveIcon ?? "",
       negativeIcon: config.negativeIcon ?? "",
+      hideThumbs: config.hideThumbs ?? false,
+      captureVideo: config.captureVideo ?? false,
+      videoOptions: {
+        maxDuration: config.videoOptions?.maxDuration ?? 15,
+      },
+      recordIcon: config.recordIcon ?? "",
     };
 
     // Bind event handlers
@@ -168,31 +188,11 @@ export class FeedbackEmbed {
     // Create main embed container
     this.createEmbed();
 
-    // Fetch allowed features from server
-    this.fetchAllowedFeatures();
-
     // Capture console errors
     this.consoleCapture = captureConsoleErrors((error) => {
       this.feedbackData.consoleErrors = this.consoleCapture?.errors ?? [];
     });
     this.feedbackData.consoleErrors = this.consoleCapture.errors;
-  }
-
-  private async fetchAllowedFeatures(): Promise<void> {
-    if (!this.config.apiKey) return;
-
-    try {
-      // Derive features endpoint from feedback endpoint
-      const baseUrl = this.config.endpoint.replace(/\/feedback\/?$/, '');
-      const featuresUrl = `${baseUrl}/features?apiKey=${encodeURIComponent(this.config.apiKey)}`;
-
-      const response = await fetch(featuresUrl);
-      if (response.ok) {
-        this.allowedFeatures = await response.json();
-      }
-    } catch {
-      // Silently fail - features will be determined server-side anyway
-    }
   }
 
   private checkMobile(): void {
@@ -253,8 +253,8 @@ export class FeedbackEmbed {
 
     // Determine tooltip text
     const defaultTooltip = this.config.skipTargeting
-      ? "Send feedback"
-      : "Any feedback? Click to start, Esc to cancel";
+      ? "Feedback for us?"
+      : "Feedback for us?";
     const tooltipText = this.config.text.tooltip || defaultTooltip;
 
     // Create shared tooltip element
@@ -267,34 +267,54 @@ export class FeedbackEmbed {
     document.body.appendChild(tooltip);
     this.tooltipElement = tooltip;
 
-    // Thumbs up button
-    const upWrapper = document.createElement("div");
-    upWrapper.className = "qaid-tooltip-wrapper";
+    // Thumbs up/down buttons (unless hidden)
+    if (!this.config.hideThumbs) {
+      // Thumbs up button
+      const upWrapper = document.createElement("div");
+      upWrapper.className = "qaid-tooltip-wrapper";
 
-    const upBtn = document.createElement("button");
-    upBtn.type = "button";
-    upBtn.className = useCustomClass ? `${btnBaseClass} qaid-btn-up` : "qaid-btn qaid-btn-up";
-    upBtn.innerHTML = this.config.positiveIcon || THUMBS_UP_ICON;
-    upBtn.addEventListener("click", (e) => this.handleThumbClick("up", e.currentTarget as HTMLElement));
-    upBtn.addEventListener("mouseenter", () => this.showTooltip(upBtn));
-    upBtn.addEventListener("mouseleave", () => this.hideTooltip());
-    upWrapper.appendChild(upBtn);
+      const upBtn = document.createElement("button");
+      upBtn.type = "button";
+      upBtn.className = useCustomClass ? `${btnBaseClass} qaid-btn-up` : "qaid-btn qaid-btn-up";
+      upBtn.innerHTML = this.config.positiveIcon || THUMBS_UP_ICON;
+      upBtn.addEventListener("click", (e) => this.handleThumbClick("up", e.currentTarget as HTMLElement));
+      upBtn.addEventListener("mouseenter", () => this.showTooltip(upBtn));
+      upBtn.addEventListener("mouseleave", () => this.hideTooltip());
+      upWrapper.appendChild(upBtn);
 
-    // Thumbs down button
-    const downWrapper = document.createElement("div");
-    downWrapper.className = "qaid-tooltip-wrapper";
+      // Thumbs down button
+      const downWrapper = document.createElement("div");
+      downWrapper.className = "qaid-tooltip-wrapper";
 
-    const downBtn = document.createElement("button");
-    downBtn.type = "button";
-    downBtn.className = useCustomClass ? `${btnBaseClass} qaid-btn-down` : "qaid-btn qaid-btn-down";
-    downBtn.innerHTML = this.config.negativeIcon || THUMBS_DOWN_ICON;
-    downBtn.addEventListener("click", (e) => this.handleThumbClick("down", e.currentTarget as HTMLElement));
-    downBtn.addEventListener("mouseenter", () => this.showTooltip(downBtn));
-    downBtn.addEventListener("mouseleave", () => this.hideTooltip());
-    downWrapper.appendChild(downBtn);
+      const downBtn = document.createElement("button");
+      downBtn.type = "button";
+      downBtn.className = useCustomClass ? `${btnBaseClass} qaid-btn-down` : "qaid-btn qaid-btn-down";
+      downBtn.innerHTML = this.config.negativeIcon || THUMBS_DOWN_ICON;
+      downBtn.addEventListener("click", (e) => this.handleThumbClick("down", e.currentTarget as HTMLElement));
+      downBtn.addEventListener("mouseenter", () => this.showTooltip(downBtn));
+      downBtn.addEventListener("mouseleave", () => this.hideTooltip());
+      downWrapper.appendChild(downBtn);
 
-    this.container.appendChild(upWrapper);
-    this.container.appendChild(downWrapper);
+      this.container.appendChild(upWrapper);
+      this.container.appendChild(downWrapper);
+    }
+
+    // Record button (only when captureVideo is true and browser supports it)
+    if (this.config.captureVideo && isVideoRecordingSupported()) {
+      const recordWrapper = document.createElement("div");
+      recordWrapper.className = "qaid-tooltip-wrapper";
+
+      const recordBtn = document.createElement("button");
+      recordBtn.type = "button";
+      recordBtn.className = useCustomClass ? `${btnBaseClass} qaid-btn-record` : "qaid-btn qaid-btn-record";
+      recordBtn.innerHTML = this.config.recordIcon || RECORD_ICON;
+      recordBtn.addEventListener("click", () => this.startRecording());
+      recordBtn.addEventListener("mouseenter", () => this.showTooltip(recordBtn));
+      recordBtn.addEventListener("mouseleave", () => this.hideTooltip());
+      recordWrapper.appendChild(recordBtn);
+
+      this.container.appendChild(recordWrapper);
+    }
   }
 
   private tooltipElement: HTMLElement | null = null;
@@ -457,7 +477,11 @@ export class FeedbackEmbed {
 
   private handleKeyDown(e: KeyboardEvent): void {
     if (e.key === "Escape") {
-      if (this.state === "TARGETING") {
+      if (this.isRecording) {
+        this.stopRecording();
+      } else if (this.videoPreview) {
+        this.cancelRecordingPreview();
+      } else if (this.state === "TARGETING") {
         this.cancelTargeting();
       } else if (this.state === "MODAL_OPEN") {
         this.closeModal();
@@ -597,11 +621,14 @@ export class FeedbackEmbed {
   private async submitFeedback(): Promise<void> {
     if (!this.feedbackData.feedbackType) return;
 
-    // Capture screenshot if enabled and allowed by server
+    // Capture screenshot if enabled (server will gate by plan)
     let screenshot: string | null = null;
-    const screenshotAllowed = this.allowedFeatures?.screenshots !== false;
-    if (this.config.captureScreenshot && screenshotAllowed) {
-      screenshot = await captureScreenshot(this.config.screenshotOptions);
+    if (this.config.captureScreenshot) {
+      if (this.config.screenshotMethod === "dom") {
+        screenshot = await captureDomScreenshot(this.config.screenshotOptions);
+      } else {
+        screenshot = await captureScreenshot(this.config.screenshotOptions);
+      }
     }
 
     // Include element bounds for server-side screenshot fallback
@@ -865,10 +892,299 @@ export class FeedbackEmbed {
     this.selectedBounds.visible = false;
   }
 
+  // ==================== Video Recording ====================
+
+  private async startRecording(): Promise<void> {
+    // Don't start if already recording or in targeting/modal flow
+    if (this.isRecording || this.state !== "IDLE") return;
+
+    try {
+      // Start network capture
+      this.networkCapture = captureNetworkErrors();
+
+      // Create video recorder
+      this.videoRecorder = createVideoRecorder({
+        maxDuration: this.config.videoOptions.maxDuration,
+      });
+
+      this.videoRecorder.onTick((elapsed) => {
+        this.updateRecordingTimer(elapsed);
+      });
+
+      // Handle unexpected stops (browser stop button, max duration)
+      this.videoRecorder.onStop((blob) => {
+        if (this.isRecording) {
+          this.recordedBlob = blob;
+          this.isRecording = false;
+          this.removeRecordingIndicator();
+          document.removeEventListener("keydown", this.boundKeyDown);
+          this.setButtonsDisabled(false);
+
+          if (blob && blob.size > 0) {
+            this.showRecordingPreview();
+          } else {
+            this.cleanupRecording();
+          }
+        }
+      });
+
+      await this.videoRecorder.start();
+      this.isRecording = true;
+
+      // Disable thumb buttons while recording
+      this.setButtonsDisabled(true);
+
+      // Show recording indicator
+      this.showRecordingIndicator();
+
+      // Listen for escape key
+      document.addEventListener("keydown", this.boundKeyDown);
+    } catch (error) {
+      // User denied screen share or error occurred
+      this.cleanupRecording();
+    }
+  }
+
+  private async stopRecording(): Promise<void> {
+    if (!this.isRecording || !this.videoRecorder) return;
+
+    try {
+      this.recordedBlob = await this.videoRecorder.stop();
+    } catch {
+      this.recordedBlob = null;
+    }
+
+    this.isRecording = false;
+    this.removeRecordingIndicator();
+    document.removeEventListener("keydown", this.boundKeyDown);
+
+    if (this.recordedBlob && this.recordedBlob.size > 0) {
+      this.showRecordingPreview();
+    } else {
+      this.cleanupRecording();
+    }
+  }
+
+  private showRecordingIndicator(): void {
+    this.recordingIndicator = document.createElement("div");
+    this.recordingIndicator.className = "qaid-recording-indicator";
+    this.recordingIndicator.style.zIndex = String(this.config.zIndex + 100);
+
+    const dot = document.createElement("div");
+    dot.className = "qaid-recording-dot";
+
+    const timer = document.createElement("span");
+    timer.className = "qaid-recording-time";
+    timer.textContent = this.formatTime(this.config.videoOptions.maxDuration);
+
+    const stopBtn = document.createElement("button");
+    stopBtn.type = "button";
+    stopBtn.className = "qaid-recording-stop";
+    stopBtn.textContent = "Stop";
+    stopBtn.addEventListener("click", () => this.stopRecording());
+
+    this.recordingIndicator.appendChild(dot);
+    this.recordingIndicator.appendChild(timer);
+    this.recordingIndicator.appendChild(stopBtn);
+
+    document.body.appendChild(this.recordingIndicator);
+  }
+
+  private updateRecordingTimer(elapsed: number): void {
+    if (!this.recordingIndicator) return;
+    const timer = this.recordingIndicator.querySelector<HTMLSpanElement>(".qaid-recording-time");
+    if (timer) {
+      const remaining = Math.max(0, this.config.videoOptions.maxDuration - elapsed);
+      timer.textContent = this.formatTime(remaining);
+    }
+  }
+
+  private formatTime(seconds: number): string {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${m}:${s.toString().padStart(2, "0")}`;
+  }
+
+  private removeRecordingIndicator(): void {
+    if (this.recordingIndicator) {
+      this.recordingIndicator.remove();
+      this.recordingIndicator = null;
+    }
+  }
+
+  private showRecordingPreview(): void {
+    if (!this.recordedBlob) return;
+
+    const videoUrl = URL.createObjectURL(this.recordedBlob);
+
+    this.videoPreview = document.createElement("div");
+    this.videoPreview.className = "qaid-video-preview";
+    this.videoPreview.style.zIndex = String(this.config.zIndex + 100);
+
+    const box = document.createElement("div");
+    box.className = "qaid-video-preview-box";
+
+    const title = document.createElement("h3");
+    title.textContent = "Review your recording";
+
+    const videoEl = document.createElement("video");
+    videoEl.src = videoUrl;
+    videoEl.controls = true;
+    videoEl.autoplay = true;
+    videoEl.muted = true;
+
+    const textarea = document.createElement("textarea");
+    textarea.placeholder = "Optional: Describe the issue you recorded...";
+
+    const actions = document.createElement("div");
+    actions.className = "qaid-video-preview-actions";
+
+    const cancelBtn = document.createElement("button");
+    cancelBtn.type = "button";
+    cancelBtn.className = "qaid-video-btn qaid-video-btn-cancel";
+    cancelBtn.textContent = "Cancel";
+    cancelBtn.addEventListener("click", () => this.cancelRecordingPreview());
+
+    const rerecordBtn = document.createElement("button");
+    rerecordBtn.type = "button";
+    rerecordBtn.className = "qaid-video-btn qaid-video-btn-rerecord";
+    rerecordBtn.textContent = "Re-record";
+    rerecordBtn.addEventListener("click", () => {
+      this.cancelRecordingPreview();
+      this.startRecording();
+    });
+
+    const sendBtn = document.createElement("button");
+    sendBtn.type = "button";
+    sendBtn.className = "qaid-video-btn qaid-video-btn-send";
+    sendBtn.textContent = "Send";
+    sendBtn.addEventListener("click", () => {
+      const message = textarea.value.trim() || null;
+      this.submitVideoFeedback(message, sendBtn);
+    });
+
+    actions.appendChild(cancelBtn);
+    actions.appendChild(rerecordBtn);
+    actions.appendChild(sendBtn);
+
+    box.appendChild(title);
+    box.appendChild(videoEl);
+    box.appendChild(textarea);
+    box.appendChild(actions);
+
+    this.videoPreview.appendChild(box);
+    document.body.appendChild(this.videoPreview);
+
+    // Listen for escape key
+    document.addEventListener("keydown", this.boundKeyDown);
+  }
+
+  private cancelRecordingPreview(): void {
+    this.removeVideoPreview();
+    this.cleanupRecording();
+  }
+
+  private removeVideoPreview(): void {
+    if (this.videoPreview) {
+      // Revoke object URLs
+      const videoEl = this.videoPreview.querySelector<HTMLVideoElement>("video");
+      if (videoEl?.src) {
+        URL.revokeObjectURL(videoEl.src);
+      }
+      this.videoPreview.remove();
+      this.videoPreview = null;
+    }
+    document.removeEventListener("keydown", this.boundKeyDown);
+  }
+
+  private async submitVideoFeedback(message: string | null, sendBtn: HTMLButtonElement): Promise<void> {
+    if (!this.recordedBlob || this.isSendingVideo) return;
+
+    this.isSendingVideo = true;
+    sendBtn.disabled = true;
+    sendBtn.textContent = "Sending...";
+
+    const formData = new FormData();
+    formData.append("video", this.recordedBlob, `recording.${this.recordedBlob.type.includes("mp4") ? "mp4" : "webm"}`);
+    formData.append("pageUrl", window.location.href);
+    formData.append("visitorId", this.visitorId);
+
+    if (this.config.apiKey) {
+      formData.append("apiKey", this.config.apiKey);
+    }
+    if (message) {
+      formData.append("message", message);
+    }
+    if (this.consoleCapture) {
+      formData.append("consoleErrors", JSON.stringify(this.consoleCapture.errors));
+    }
+    if (this.networkCapture) {
+      formData.append("networkErrors", JSON.stringify(this.networkCapture.errors));
+    }
+
+    try {
+      const response = await fetch(`${this.config.endpoint}/video`, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        console.error("Failed to submit video feedback:", await response.text());
+      }
+    } catch (error) {
+      console.error("Failed to submit video feedback:", error);
+    }
+
+    this.isSendingVideo = false;
+    this.removeVideoPreview();
+    this.cleanupRecording();
+  }
+
+  private cleanupRecording(): void {
+    this.isRecording = false;
+    this.removeRecordingIndicator();
+
+    if (this.videoRecorder) {
+      this.videoRecorder.destroy();
+      this.videoRecorder = null;
+    }
+    if (this.networkCapture) {
+      this.networkCapture.restore();
+      this.networkCapture = null;
+    }
+    if (this.recordedBlob) {
+      this.recordedBlob = null;
+    }
+
+    // Re-enable buttons
+    this.setButtonsDisabled(false);
+  }
+
+  private setButtonsDisabled(disabled: boolean): void {
+    if (!this.container) return;
+    const buttons = this.container.querySelectorAll<HTMLButtonElement>("button.qaid-btn, button.qaid-btn-structural");
+    buttons.forEach((btn) => {
+      if (disabled) {
+        // Don't disable the record button itself (it has its own state)
+        if (!btn.classList.contains("qaid-btn-record")) {
+          btn.disabled = true;
+          btn.style.opacity = "0.5";
+        }
+      } else {
+        btn.disabled = false;
+        btn.style.opacity = "";
+      }
+    });
+  }
+
   /**
    * Destroy the embed and clean up all resources
    */
   public destroy(): void {
+    // Clean up video recording
+    this.cleanupRecording();
+    this.removeVideoPreview();
+
     // Restore console.error
     if (this.consoleCapture) {
       this.consoleCapture.restore();
@@ -888,7 +1204,7 @@ export class FeedbackEmbed {
       if (this.isUserProvidedContainer) {
         // Just clear the contents and remove our classes
         this.container.innerHTML = "";
-        this.container.classList.remove("qaid-widget", `qaid-${this.config.position}`);
+        this.container.classList.remove("qaid-widget", `qaid-${this.config.position}`, "qaid-incognito");
       } else {
         this.container.remove();
       }

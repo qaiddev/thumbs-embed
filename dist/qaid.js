@@ -1,26 +1,28 @@
-var O = Object.defineProperty;
-var N = (i, t, e) => t in i ? O(i, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : i[t] = e;
-var d = (i, t, e) => N(i, typeof t != "symbol" ? t + "" : t, e);
-const y = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+var Z = Object.defineProperty;
+var Q = (i, t, e) => t in i ? Z(i, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : i[t] = e;
+var h = (i, t, e) => Q(i, typeof t != "symbol" ? t + "" : t, e);
+const T = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/>
-</svg>`, q = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, S = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.737 3h4.018a2 2 0 01.485.06l3.76.94m-7 10v5a2 2 0 002 2h.095c.5 0 .905-.405.905-.905 0-.714.211-1.412.608-2.006L17 13V4m-7 10h2m5-10h2a2 2 0 012 2v6a2 2 0 01-2 2h-2.5"/>
-</svg>`, P = "body.qaid-targeting,body.qaid-targeting *{cursor:none!important}.qaid-widget,.qaid-widget *,.qaid-modal-container,.qaid-modal-container *{cursor:pointer!important}.qaid-widget.qaid-auto-container{position:fixed;z-index:50;display:flex;gap:.5rem}.qaid-widget.qaid-auto-container.qaid-bottom-right{bottom:1rem;right:1rem}.qaid-widget.qaid-auto-container.qaid-bottom-left{bottom:1rem;left:1rem}.qaid-widget.qaid-auto-container.qaid-top-right{top:1rem;right:1rem}.qaid-widget.qaid-auto-container.qaid-top-left{top:1rem;left:1rem}.qaid-widget.qaid-incognito{opacity:0;transition:opacity .2s ease-in-out}.qaid-widget.qaid-incognito:hover{opacity:1}button.qaid-btn-structural{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none}.qaid-icon{width:24px;height:24px}.qaid-btn-structural:not(:has(svg)),.qaid-btn:not(:has(svg)){font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-emoji-icon{font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-tooltip-wrapper{position:relative}.qaid-tooltip-text{position:fixed;padding:.5rem .75rem;background:#1f2937;color:#fff;font-size:1rem;font-weight:600;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:99999}.qaid-tooltip-text.qaid-tooltip-visible{opacity:1}.qaid-targeting-overlay{position:fixed;top:0;right:0;bottom:0;left:0;z-index:40;pointer-events:none}.qaid-capture-layer{position:fixed;top:0;right:0;bottom:0;left:0;cursor:crosshair;pointer-events:auto;z-index:9999}.qaid-banner{position:fixed;top:0;left:0;right:0;padding:.75rem 1rem;text-align:center;z-index:10000;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px);animation:qaid-slideDown .2s ease-out}.qaid-banner-up{background:color-mix(in srgb,var(--qaid-positive) 90%,transparent);color:#fff}.qaid-banner-down{background:color-mix(in srgb,var(--qaid-negative) 90%,transparent);color:#fff}.qaid-banner-text{font-weight:500}.qaid-banner-hint{margin-left:.5rem;opacity:.75}@keyframes qaid-slideDown{0%{transform:translateY(-100%)}to{transform:translateY(0)}}.qaid-vignette{position:fixed;top:0;right:0;bottom:0;left:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.3) 70%,rgba(0,0,0,.6) 100%);z-index:41}.qaid-crosshair-h,.qaid-crosshair-v{position:fixed;pointer-events:none;z-index:42}.qaid-crosshair-h{left:0;right:0;height:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-crosshair-v{top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-type-up .qaid-crosshair-h,.qaid-type-up .qaid-crosshair-v{background:color-mix(in srgb,var(--qaid-positive) 60%,transparent)}.qaid-scope{position:fixed;width:80px;height:80px;pointer-events:none;z-index:43;transform:translate(-50%,-50%)}.qaid-scope-ring{position:absolute;top:10px;right:10px;bottom:10px;left:10px;border:2px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent)}.qaid-scope-ring-inner{position:absolute;top:20px;right:20px;bottom:20px;left:20px;border:1px solid color-mix(in srgb,var(--qaid-negative) 50%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring-inner{border-color:color-mix(in srgb,var(--qaid-positive) 50%,transparent)}.qaid-scope-dot{position:absolute;top:50%;left:50%;width:4px;height:4px;background:var(--qaid-negative);border-radius:50%;transform:translate(-50%,-50%)}.qaid-type-up .qaid-scope-dot{background:var(--qaid-positive)}.qaid-highlight{outline:3px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent)!important;outline-offset:2px!important;background-color:color-mix(in srgb,var(--qaid-negative) 10%,transparent)!important;transition:outline .1s ease,background-color .1s ease}body.qaid-targeting.qaid-type-up .qaid-highlight{outline-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent)!important;background-color:color-mix(in srgb,var(--qaid-positive) 10%,transparent)!important}.qaid-selected-marker{position:fixed;border:3px solid var(--qaid-marker, #6366f1);border-radius:50%;pointer-events:none;z-index:44;animation:qaid-markerPulse 1.5s ease-in-out infinite}@keyframes qaid-markerPulse{0%,to{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}.qaid-backdrop{position:fixed;top:0;right:0;bottom:0;left:0;z-index:45;background:#0000004d}.qaid-modal-container{position:fixed;z-index:50;display:flex;flex-direction:column;align-items:flex-start;max-height:calc(100vh - 32px);font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-modal-container.qaid-above{flex-direction:column-reverse}.qaid-modal-arrow{width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;position:relative;align-self:flex-start}.qaid-modal-container.qaid-below .qaid-modal-arrow{border-bottom:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-container.qaid-above .qaid-modal-arrow{border-top:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5));width:var(--qaid-modal-width, 400px);max-width:calc(100vw - 32px);max-height:calc(100vh - 60px);overflow-y:auto}.qaid-modal-header{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1rem}button.qaid-type-toggle{border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;-webkit-appearance:none;-moz-appearance:none;appearance:none}button.qaid-type-toggle:hover{transform:scale(1.1)}button.qaid-type-toggle:not(.qaid-type-toggle-custom){width:2.5rem;height:2.5rem;border-radius:50%}button.qaid-type-toggle:not(.qaid-type-toggle-custom) svg{width:1.25rem;height:1.25rem}button.qaid-type-toggle.qaid-type-up{background:var(--qaid-positive);color:#fff}button.qaid-type-toggle.qaid-type-down{background:var(--qaid-negative);color:#fff}.qaid-modal-header-text{flex:1;min-width:0}.qaid-modal-title{font-size:1.125rem;font-weight:700;margin:0 0 .25rem;color:light-dark(#1f2937,#f9fafb)}.qaid-modal-subtitle{color:light-dark(#6b7280,#9ca3af);margin:0;font-size:.875rem}.qaid-textarea{width:100%;height:6rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:1rem;resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-btn-row{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-btn-submit{padding:.5rem 1rem;background:var(--qaid-marker);color:var(--qaid-marker-text, white);border:none;border-radius:.5rem;font-size:.875rem;font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;-moz-appearance:none;appearance:none}button.qaid-btn-submit:hover{filter:brightness(.85)}button.qaid-btn-submit:focus{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 30%,transparent)}.qaid-bottom-sheet{position:fixed;bottom:0;left:0;right:0;z-index:50;animation:qaid-slideUpSheet .3s ease-out;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-bottom-sheet-content{background:light-dark(#ffffff,#1f2937);border-radius:1rem 1rem 0 0;padding:1.5rem;padding-bottom:max(1.5rem,env(safe-area-inset-bottom))}.qaid-bottom-sheet-handle{width:36px;height:4px;background:light-dark(rgba(0,0,0,.2),rgba(255,255,255,.2));border-radius:2px;margin:0 auto 1rem}@keyframes qaid-slideUpSheet{0%{transform:translateY(100%)}to{transform:translateY(0)}}";
-let k = !1;
-const U = {
+</svg>`, tt = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/>
+</svg>`, et = "body.qaid-targeting,body.qaid-targeting *{cursor:none!important}.qaid-widget,.qaid-widget *,.qaid-modal-container,.qaid-modal-container *{cursor:pointer!important}.qaid-widget.qaid-auto-container{position:fixed;z-index:50;display:flex;gap:.5rem}.qaid-widget.qaid-auto-container.qaid-bottom-right{bottom:1rem;right:1rem}.qaid-widget.qaid-auto-container.qaid-bottom-left{bottom:1rem;left:1rem}.qaid-widget.qaid-auto-container.qaid-top-right{top:1rem;right:1rem}.qaid-widget.qaid-auto-container.qaid-top-left{top:1rem;left:1rem}.qaid-widget.qaid-incognito{opacity:0;transition:opacity .2s ease-in-out}.qaid-widget.qaid-incognito:hover{opacity:1}button.qaid-btn-structural{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none}.qaid-icon{width:24px;height:24px}.qaid-btn-structural:not(:has(svg)),.qaid-btn:not(:has(svg)){font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-emoji-icon{font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-tooltip-wrapper{position:relative}.qaid-tooltip-text{position:fixed;padding:.5rem .75rem;background:#1f2937;color:#fff;font-size:1rem;font-weight:600;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:99999}.qaid-tooltip-text.qaid-tooltip-visible{opacity:1}.qaid-targeting-overlay{position:fixed;top:0;right:0;bottom:0;left:0;z-index:40;pointer-events:none}.qaid-capture-layer{position:fixed;top:0;right:0;bottom:0;left:0;cursor:crosshair;pointer-events:auto;z-index:9999}.qaid-banner{position:fixed;top:0;left:0;right:0;padding:.75rem 1rem;text-align:center;z-index:10000;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px);animation:qaid-slideDown .2s ease-out}.qaid-banner-up{background:color-mix(in srgb,var(--qaid-positive) 90%,transparent);color:#fff}.qaid-banner-down{background:color-mix(in srgb,var(--qaid-negative) 90%,transparent);color:#fff}.qaid-banner-text{font-weight:500}.qaid-banner-hint{margin-left:.5rem;opacity:.75}@keyframes qaid-slideDown{0%{transform:translateY(-100%)}to{transform:translateY(0)}}.qaid-vignette{position:fixed;top:0;right:0;bottom:0;left:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.3) 70%,rgba(0,0,0,.6) 100%);z-index:41}.qaid-crosshair-h,.qaid-crosshair-v{position:fixed;pointer-events:none;z-index:42}.qaid-crosshair-h{left:0;right:0;height:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-crosshair-v{top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-type-up .qaid-crosshair-h,.qaid-type-up .qaid-crosshair-v{background:color-mix(in srgb,var(--qaid-positive) 60%,transparent)}.qaid-scope{position:fixed;width:80px;height:80px;pointer-events:none;z-index:43;transform:translate(-50%,-50%)}.qaid-scope-ring{position:absolute;top:10px;right:10px;bottom:10px;left:10px;border:2px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent)}.qaid-scope-ring-inner{position:absolute;top:20px;right:20px;bottom:20px;left:20px;border:1px solid color-mix(in srgb,var(--qaid-negative) 50%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring-inner{border-color:color-mix(in srgb,var(--qaid-positive) 50%,transparent)}.qaid-scope-dot{position:absolute;top:50%;left:50%;width:4px;height:4px;background:var(--qaid-negative);border-radius:50%;transform:translate(-50%,-50%)}.qaid-type-up .qaid-scope-dot{background:var(--qaid-positive)}.qaid-highlight{outline:3px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent)!important;outline-offset:2px!important;background-color:color-mix(in srgb,var(--qaid-negative) 10%,transparent)!important;transition:outline .1s ease,background-color .1s ease}body.qaid-targeting.qaid-type-up .qaid-highlight{outline-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent)!important;background-color:color-mix(in srgb,var(--qaid-positive) 10%,transparent)!important}.qaid-selected-marker{position:fixed;border:3px solid var(--qaid-marker, #6366f1);border-radius:50%;pointer-events:none;z-index:44;animation:qaid-markerPulse 1.5s ease-in-out infinite}@keyframes qaid-markerPulse{0%,to{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}.qaid-backdrop{position:fixed;top:0;right:0;bottom:0;left:0;z-index:45;background:#0000004d}.qaid-modal-container{position:fixed;z-index:50;display:flex;flex-direction:column;align-items:flex-start;max-height:calc(100vh - 32px);font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-modal-container.qaid-above{flex-direction:column-reverse}.qaid-modal-arrow{width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;position:relative;align-self:flex-start}.qaid-modal-container.qaid-below .qaid-modal-arrow{border-bottom:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-container.qaid-above .qaid-modal-arrow{border-top:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5));width:var(--qaid-modal-width, 400px);max-width:calc(100vw - 32px);max-height:calc(100vh - 60px);overflow-y:auto}.qaid-modal-header{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1rem}button.qaid-type-toggle{border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;-webkit-appearance:none;-moz-appearance:none;appearance:none}button.qaid-type-toggle:hover{transform:scale(1.1)}button.qaid-type-toggle:not(.qaid-type-toggle-custom){width:2.5rem;height:2.5rem;border-radius:50%}button.qaid-type-toggle:not(.qaid-type-toggle-custom) svg{width:1.25rem;height:1.25rem}button.qaid-type-toggle.qaid-type-up{background:var(--qaid-positive);color:#fff}button.qaid-type-toggle.qaid-type-down{background:var(--qaid-negative);color:#fff}.qaid-modal-header-text{flex:1;min-width:0}.qaid-modal-title{font-size:1.125rem;font-weight:700;margin:0 0 .25rem;color:light-dark(#1f2937,#f9fafb)}.qaid-modal-subtitle{color:light-dark(#6b7280,#9ca3af);margin:0;font-size:.875rem}.qaid-textarea{width:100%;height:6rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:1rem;resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-btn-row{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-btn-submit{padding:.5rem 1rem;background:var(--qaid-marker);color:var(--qaid-marker-text, white);border:none;border-radius:.5rem;font-size:.875rem;font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;-moz-appearance:none;appearance:none}button.qaid-btn-submit:hover{filter:brightness(.85)}button.qaid-btn-submit:focus{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 30%,transparent)}.qaid-bottom-sheet{position:fixed;bottom:0;left:0;right:0;z-index:50;animation:qaid-slideUpSheet .3s ease-out;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-bottom-sheet-content{background:light-dark(#ffffff,#1f2937);border-radius:1rem 1rem 0 0;padding:1.5rem;padding-bottom:max(1.5rem,env(safe-area-inset-bottom))}.qaid-bottom-sheet-handle{width:36px;height:4px;background:light-dark(rgba(0,0,0,.2),rgba(255,255,255,.2));border-radius:2px;margin:0 auto 1rem}@keyframes qaid-slideUpSheet{0%{transform:translateY(100%)}to{transform:translateY(0)}}button.qaid-btn-record:hover{background:#dc2626;color:#fff}.qaid-recording-indicator{position:fixed;top:12px;left:50%;transform:translate(-50%);display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:light-dark(#1f2937,#374151);color:#fff;border-radius:9999px;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:.875rem;font-weight:500;box-shadow:0 4px 12px #0000004d;z-index:99999;animation:qaid-slideDown .2s ease-out}.qaid-recording-dot{width:10px;height:10px;background:#dc2626;border-radius:50%;animation:qaid-dotPulse 1.5s ease-in-out infinite}@keyframes qaid-dotPulse{0%,to{opacity:1}50%{opacity:.3}}.qaid-recording-time{font-variant-numeric:tabular-nums;min-width:2.5rem;text-align:center}button.qaid-recording-stop{padding:.25rem .75rem;background:#dc2626;color:#fff;border:none;border-radius:9999px;font-size:.75rem;font-weight:600;cursor:pointer;transition:background-color .2s;-webkit-appearance:none;-moz-appearance:none;appearance:none}button.qaid-recording-stop:hover{background:#b91c1c}.qaid-video-preview{position:fixed;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;background:#0009;z-index:99998;animation:qaid-fadeIn .2s ease-out}@keyframes qaid-fadeIn{0%{opacity:0}to{opacity:1}}.qaid-video-preview-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px #00000080;width:560px;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);overflow-y:auto;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-video-preview-box h3{font-size:1.125rem;font-weight:700;margin:0 0 1rem;color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box video{width:100%;border-radius:.5rem;background:#000;margin-bottom:1rem}.qaid-video-preview-box textarea{width:100%;height:4rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:.875rem;resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-video-preview-actions{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-video-btn{padding:.5rem 1rem;border:none;border-radius:.5rem;font-size:.875rem;font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;-moz-appearance:none;appearance:none}button.qaid-video-btn-cancel{background:light-dark(#f3f4f6,#374151);color:light-dark(#374151,#d1d5db)}button.qaid-video-btn-cancel:hover{background:light-dark(#e5e7eb,#4b5563)}button.qaid-video-btn-rerecord{background:light-dark(#fef3c7,#78350f);color:light-dark(#92400e,#fde68a)}button.qaid-video-btn-rerecord:hover{filter:brightness(.9)}button.qaid-video-btn-send{background:var(--qaid-marker);color:var(--qaid-marker-text, white)}button.qaid-video-btn-send:hover{filter:brightness(.85)}button.qaid-video-btn-send:disabled{opacity:.5;cursor:not-allowed}.qaid-video-sending{display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:light-dark(#6b7280,#9ca3af)}";
+let L = !1;
+const it = {
   small: 36,
   medium: 48,
   large: 64
-}, W = {
+}, ot = {
   small: 18,
   medium: 24,
   large: 32
 };
-function j(i, t, e) {
-  const [o, n, a] = [i, t, e].map((s) => (s = s / 255, s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4)));
+function nt(i, t, e) {
+  const [o, n, a] = [i, t, e].map((r) => (r = r / 255, r <= 0.03928 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4)));
   return 0.2126 * o + 0.7152 * n + 0.0722 * a;
 }
-function X(i) {
+function at(i) {
   if (i.startsWith("#")) {
     const e = i.slice(1), o = e.length === 3 ? e.split("").map((a) => a + a).join("") : e, n = parseInt(o, 16);
     return {
@@ -36,13 +38,13 @@ function X(i) {
     b: parseInt(t[3])
   } : null;
 }
-function Y(i) {
-  const t = X(i);
-  return t && j(t.r, t.g, t.b) > 0.4 ? "black" : "white";
+function rt(i) {
+  const t = at(i);
+  return t && nt(t.r, t.g, t.b) > 0.4 ? "black" : "white";
 }
-function R(i = {}) {
-  if (k) return;
-  k = !0;
+function st(i = {}) {
+  if (L) return;
+  L = !0;
   const {
     positiveColor: t = "rgb(0, 200, 83)",
     negativeColor: e = "rgb(255, 0, 0)",
@@ -50,21 +52,21 @@ function R(i = {}) {
     // skipButtonStyles kept for backwards compatibility but no longer used
     buttonSize: n = "medium",
     modalWidth: a = 400,
-    backdropOpacity: s = 0.3,
+    backdropOpacity: r = 0.3,
     fontFamily: l = "system-ui, -apple-system, sans-serif",
-    fontSize: r = 16
-  } = i, c = U[n], p = W[n], f = Y(o), h = `:root{--qaid-positive:${t};--qaid-negative:${e};--qaid-marker:${o};--qaid-marker-text:${f};--qaid-btn-size:${c}px;--qaid-icon-size:${p}px;--qaid-modal-width:${a}px;--qaid-backdrop-opacity:${s};--qaid-font-family:${l};--qaid-font-size:${r}px}`, u = "button.qaid-btn{width:var(--qaid-btn-size);height:var(--qaid-btn-size);border-radius:50%;border:none;background:#f3f4f6;color:#374151;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);transition:background-color .2s,color .2s,transform .2s;-webkit-appearance:none;appearance:none}button.qaid-btn:hover{transform:scale(1.05)}button.qaid-btn-up:hover{background:var(--qaid-positive);color:#fff}button.qaid-btn-down:hover{background:var(--qaid-negative);color:#fff}button.qaid-btn svg{width:var(--qaid-icon-size);height:var(--qaid-icon-size)}", m = document.createElement("style");
-  m.id = "qaid-styles", m.textContent = h + P + u, document.head.appendChild(m);
+    fontSize: d = 16
+  } = i, s = it[n], c = ot[n], p = rt(o), u = `:root{--qaid-positive:${t};--qaid-negative:${e};--qaid-marker:${o};--qaid-marker-text:${p};--qaid-btn-size:${s}px;--qaid-icon-size:${c}px;--qaid-modal-width:${a}px;--qaid-backdrop-opacity:${r};--qaid-font-family:${l};--qaid-font-size:${d}px}`, f = "button.qaid-btn{width:var(--qaid-btn-size);height:var(--qaid-btn-size);border-radius:50%;border:none;background:#f3f4f6;color:#374151;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);transition:background-color .2s,color .2s,transform .2s;-webkit-appearance:none;appearance:none}button.qaid-btn:hover{transform:scale(1.05)}button.qaid-btn-up:hover{background:var(--qaid-positive);color:#fff}button.qaid-btn-down:hover{background:var(--qaid-negative);color:#fff}button.qaid-btn svg{width:var(--qaid-icon-size);height:var(--qaid-icon-size)}", g = document.createElement("style");
+  g.id = "qaid-styles", g.textContent = u + et + f, document.head.appendChild(g);
 }
-function K() {
+function dt() {
   const i = document.getElementById("qaid-styles");
-  i && (i.remove(), k = !1);
+  i && (i.remove(), L = !1);
 }
-const _ = ["data-comp", "data-qa", "data-testid", "data-id"];
-function A(i, t = document.body) {
+const ct = ["data-comp", "data-qa", "data-testid", "data-id"];
+function W(i, t = document.body) {
   let e = i;
   for (; e && e !== t; ) {
-    for (const o of _) {
+    for (const o of ct) {
       const n = e.getAttribute(o);
       if (n)
         return `${o}="${n}"`;
@@ -73,47 +75,47 @@ function A(i, t = document.body) {
   }
   return null;
 }
-function V(i, t = 100) {
+function lt(i, t = 100) {
   var o;
   const e = ((o = i.textContent) == null ? void 0 : o.trim().slice(0, t)) || "";
   return e.length === t ? e + "..." : e;
 }
-function J(i) {
+function ht(i) {
   let t = 1, e = i.previousElementSibling;
   for (; e; )
     t++, e = e.previousElementSibling;
   return t;
 }
-function G(i) {
+function ut(i) {
   const t = [];
   let e = i;
   for (; e && e !== document.body && e !== document.documentElement; ) {
-    const o = e.tagName.toLowerCase(), n = J(e);
+    const o = e.tagName.toLowerCase(), n = ht(e);
     t.unshift(`${o}:nth-child(${n})`), e = e.parentElement;
   }
   return t.length > 0 ? `body > ${t.join(" > ")}` : "body";
 }
-function Z(i) {
+function pt(i) {
   return i.replace(/([!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, "\\$1");
 }
-function Q(i) {
-  const t = A(i);
-  return t ? `[${t}]` : i.id ? `#${Z(i.id)}` : G(i);
+function mt(i) {
+  const t = W(i);
+  return t ? `[${t}]` : i.id ? `#${pt(i.id)}` : ut(i);
 }
-function tt(i) {
-  const t = V(i), e = A(i);
-  return { selector: Q(i), text: t, dataAttr: e };
+function ft(i) {
+  const t = lt(i), e = W(i);
+  return { selector: mt(i), text: t, dataAttr: e };
 }
-const B = {
+const U = {
   width: 400,
   height: 280,
   arrowHeight: 12,
   gap: 8,
   viewportPadding: 16
 };
-function et(i, t, e, o, n) {
-  const a = i.y, s = t - (i.y + i.height);
-  if (s >= e + o)
+function gt(i, t, e, o, n) {
+  const a = i.y, r = t - (i.y + i.height);
+  if (r >= e + o)
     return {
       top: i.y + i.height + o,
       position: "below"
@@ -123,29 +125,29 @@ function et(i, t, e, o, n) {
       top: i.y - e - o,
       position: "above"
     };
-  const l = s > a ? "below" : "above";
-  let r;
-  return l === "below" ? r = Math.min(
+  const l = r > a ? "below" : "above";
+  let d;
+  return l === "below" ? d = Math.min(
     i.y + i.height + o,
     t - e - n
-  ) : r = Math.max(n, i.y - e - o), { top: r, position: l };
+  ) : d = Math.max(n, i.y - e - o), { top: d, position: l };
 }
-function it(i, t, e, o) {
+function bt(i, t, e, o) {
   let a = i.x + i.width / 2 - e / 2;
   return a = Math.max(o, Math.min(a, t - e - o)), a;
 }
-function ot(i, t, e, o = 24, n = 24) {
-  const s = i.clickX - t - n / 2;
-  return Math.max(o, Math.min(s, e - o - n / 2));
+function vt(i, t, e, o = 24, n = 24) {
+  const r = i.clickX - t - n / 2;
+  return Math.max(o, Math.min(r, e - o - n / 2));
 }
-function nt(i, t, e, o = B) {
-  const n = o.height + o.arrowHeight, a = et(
+function yt(i, t, e, o = U) {
+  const n = o.height + o.arrowHeight, a = gt(
     i,
     e,
     n,
     o.gap,
     o.viewportPadding
-  ), s = it(
+  ), r = bt(
     i,
     t,
     o.width,
@@ -153,12 +155,12 @@ function nt(i, t, e, o = B) {
   );
   return {
     top: a.top,
-    left: s,
+    left: r,
     position: a.position
   };
 }
-function at(i, t, e, o = B) {
-  const n = nt(i, t, e, o), a = ot(
+function wt(i, t, e, o = U) {
+  const n = yt(i, t, e, o), a = vt(
     i,
     n.left,
     o.width
@@ -168,22 +170,22 @@ function at(i, t, e, o = B) {
     arrow: { left: a }
   };
 }
-const st = 20;
-function rt(i) {
-  const t = [], e = console.error, o = console.warn, n = console.log, a = (s, l) => {
-    const r = {
-      message: l.map((c) => String(c)).join(" "),
+const qt = 20;
+function xt(i) {
+  const t = [], e = console.error, o = console.warn, n = console.log, a = (r, l) => {
+    const d = {
+      message: l.map((s) => String(s)).join(" "),
       timestamp: Date.now(),
-      level: s
+      level: r
     };
-    t.length >= st && t.shift(), t.push(r), i && i(r);
+    t.length >= qt && t.shift(), t.push(d), i && i(d);
   };
-  return console.error = function(...s) {
-    a("error", s), e.apply(console, s);
-  }, console.warn = function(...s) {
-    a("warn", s), o.apply(console, s);
-  }, console.log = function(...s) {
-    a("log", s), n.apply(console, s);
+  return console.error = function(...r) {
+    a("error", r), e.apply(console, r);
+  }, console.warn = function(...r) {
+    a("warn", r), o.apply(console, r);
+  }, console.log = function(...r) {
+    a("log", r), n.apply(console, r);
   }, {
     errors: t,
     restore: () => {
@@ -191,19 +193,155 @@ function rt(i) {
     }
   };
 }
-function dt(i = 640) {
+const kt = 20, P = 4096;
+function x(i) {
+  if (i == null) return;
+  const t = typeof i == "string" ? i : JSON.stringify(i);
+  return t.length > P ? t.slice(0, P) + "…[truncated]" : t;
+}
+function H(i, t) {
+  i.length >= kt && i.shift(), i.push(t);
+}
+async function Ct(i) {
+  try {
+    const t = await i.clone().text();
+    return x(t);
+  } catch {
+    return;
+  }
+}
+function Et() {
+  const i = [], t = window.fetch;
+  window.fetch = async function(n, a) {
+    const r = typeof n == "string" ? n : n instanceof URL ? n.toString() : n.url, l = (a == null ? void 0 : a.method) ?? (typeof n == "object" && "method" in n ? n.method : "GET");
+    let d;
+    a != null && a.body && (d = x(a.body));
+    const s = await t.apply(window, [n, a]);
+    if (s.status >= 400) {
+      const c = await Ct(s);
+      H(i, {
+        url: r,
+        method: l.toUpperCase(),
+        status: s.status,
+        statusText: s.statusText,
+        requestBody: d,
+        responseBody: c,
+        timestamp: Date.now()
+      });
+    }
+    return s;
+  };
+  const e = XMLHttpRequest.prototype.open, o = XMLHttpRequest.prototype.send;
+  return XMLHttpRequest.prototype.open = function(n, a, ...r) {
+    return this._qaid_method = n, this._qaid_url = typeof a == "string" ? a : a.toString(), e.apply(this, [n, a, ...r]);
+  }, XMLHttpRequest.prototype.send = function(n) {
+    const a = this, r = n ? x(n) : void 0;
+    return a.addEventListener("load", function() {
+      a.status >= 400 && H(i, {
+        url: a._qaid_url,
+        method: a._qaid_method.toUpperCase(),
+        status: a.status,
+        statusText: a.statusText,
+        requestBody: r,
+        responseBody: x(a.responseText),
+        timestamp: Date.now()
+      });
+    }), o.apply(this, [n]);
+  }, {
+    errors: i,
+    restore: () => {
+      window.fetch = t, XMLHttpRequest.prototype.open = e, XMLHttpRequest.prototype.send = o;
+    }
+  };
+}
+function Tt() {
+  return typeof navigator < "u" && !!navigator.mediaDevices && typeof navigator.mediaDevices.getDisplayMedia == "function" && typeof MediaRecorder < "u";
+}
+function St() {
+  if (typeof MediaRecorder > "u") return "";
+  const i = [
+    "video/webm;codecs=vp9",
+    "video/webm;codecs=vp8",
+    "video/webm",
+    "video/mp4"
+  ];
+  for (const t of i)
+    if (MediaRecorder.isTypeSupported(t))
+      return t;
+  return "";
+}
+function It(i = {}) {
+  const t = i.maxDuration ?? 15, e = i.videoBitsPerSecond ?? 8e5;
+  let o = null, n = null, a = [], r = null, l = null, d = null, s = 0, c = null, p = null, u = !1, f = null;
+  function g() {
+    d !== null && (clearInterval(d), d = null), f !== null && (clearTimeout(f), f = null), o && (o.getTracks().forEach((m) => m.stop()), o = null), n = null, a = [], r = null, l = null, c = null, p = null;
+  }
+  function b() {
+    u || (u = !0, n && n.state !== "inactive" && n.stop());
+  }
+  return {
+    async start() {
+      u = !1, a = [];
+      const m = St();
+      if (!m)
+        throw new Error("No supported video MIME type found");
+      o = await navigator.mediaDevices.getDisplayMedia({
+        video: {
+          frameRate: 15
+        },
+        audio: !1,
+        // @ts-expect-error preferCurrentTab is not in the TS types yet
+        preferCurrentTab: !0
+      });
+      const v = o.getVideoTracks()[0];
+      v && v.addEventListener("ended", () => {
+        b();
+      }), n = new MediaRecorder(o, {
+        mimeType: m,
+        videoBitsPerSecond: e
+      }), n.ondataavailable = (y) => {
+        y.data.size > 0 && a.push(y.data);
+      }, n.onstop = () => {
+        const y = new Blob(a, { type: m });
+        c && c(y), l && l(y), o && o.getTracks().forEach((q) => q.stop());
+      }, n.onerror = () => {
+        p && p(new Error("MediaRecorder error"));
+      }, n.start(1e3), s = Date.now(), d = setInterval(() => {
+        const y = Math.floor((Date.now() - s) / 1e3);
+        r && r(y);
+      }, 1e3), f = setTimeout(() => {
+        b();
+      }, t * 1e3);
+    },
+    stop() {
+      return new Promise((m, v) => {
+        c = m, p = v, b();
+      });
+    },
+    onTick(m) {
+      r = m;
+    },
+    onStop(m) {
+      l = m;
+    },
+    destroy() {
+      b(), g();
+    }
+  };
+}
+function Lt(i = 640) {
   return typeof window < "u" && window.innerWidth < i;
 }
-function M(i, t, e) {
+function O(i, t, e) {
   const o = e.style.pointerEvents;
   e.style.pointerEvents = "none";
   const n = document.elementFromPoint(i, t);
   return e.style.pointerEvents = o, n;
 }
-function $(i) {
+function N(i) {
   return i ? !!(i.closest(".qaid-widget") || i.closest(".qaid-targeting-overlay") || i.closest(".qaid-modal-container") || i.closest(".qaid-bottom-sheet")) : !1;
 }
-function lt(i, t = 0) {
+function Mt(i, t = 0) {
   const e = i.getBoundingClientRect();
   return {
     x: e.left - t,
@@ -212,12 +350,12 @@ function lt(i, t = 0) {
     height: e.height + t * 2
   };
 }
-function x(i) {
+function I(i) {
   document.querySelectorAll(`.${i}`).forEach((t) => {
     t.classList.remove(i);
   });
 }
-async function ct(i = {}) {
+async function Dt(i = {}) {
   var n;
   const { quality: t = 1, maxWidth: e = 1280, maxHeight: o = 800 } = i;
   try {
@@ -228,45 +366,106 @@ async function ct(i = {}) {
       video: {
         displaySurface: "browser"
       }
-    }), s = a.getVideoTracks()[0], l = s.getSettings(), r = document.createElement("video");
-    r.srcObject = a, r.muted = !0, await new Promise((g) => {
-      r.onloadedmetadata = () => {
-        r.play(), g();
+    }), r = a.getVideoTracks()[0], l = r.getSettings(), d = document.createElement("video");
+    d.srcObject = a, d.muted = !0, await new Promise((m) => {
+      d.onloadedmetadata = () => {
+        d.play(), m();
       };
-    }), await new Promise((g) => {
+    }), await new Promise((m) => {
       const v = () => {
-        r.readyState >= 2 ? g() : requestAnimationFrame(v);
+        d.readyState >= 2 ? m() : requestAnimationFrame(v);
       };
       v();
-    }), await new Promise((g) => setTimeout(g, 100));
-    const c = l.width || r.videoWidth, p = l.height || r.videoHeight, f = Math.min(e / c, o / p, 1), h = Math.round(c * f), u = Math.round(p * f), m = document.createElement("canvas");
-    m.width = h, m.height = u;
-    const b = m.getContext("2d");
-    return b ? (b.drawImage(r, 0, 0, h, u), s.stop(), m.toDataURL("image/webp", t)) : (s.stop(), null);
+    }), await new Promise((m) => setTimeout(m, 100));
+    const s = l.width || d.videoWidth, c = l.height || d.videoHeight, p = Math.min(e / s, o / c, 1), u = Math.round(s * p), f = Math.round(c * p), g = document.createElement("canvas");
+    g.width = u, g.height = f;
+    const b = g.getContext("2d");
+    return b ? (b.drawImage(d, 0, 0, u, f), r.stop(), g.toDataURL("image/webp", t)) : (r.stop(), null);
   } catch (a) {
     return console.warn("Screenshot capture failed:", a), null;
   }
 }
-const D = "qaid_visitor_id";
-function ht() {
+const F = "https://qaid.dev/lib/html2canvas.min.js", zt = 1e4, Rt = 50;
+let w = null;
+function Ft() {
+  if (typeof document > "u" || typeof window > "u")
+    return !1;
+  const i = document.createElement("canvas");
+  return typeof i.getContext == "function" && !!i.getContext("2d");
+}
+function Bt() {
+  return window.html2canvas ? Promise.resolve(!0) : w || (w = new Promise((i) => {
+    if (!document.querySelector(
+      `script[src="${F}"]`
+    )) {
+      const n = document.createElement("script");
+      n.src = F, n.async = !0, document.head.appendChild(n);
+    }
+    const e = Date.now(), o = () => {
+      if (window.html2canvas) {
+        i(!0);
+        return;
+      }
+      if (Date.now() - e > zt) {
+        w = null, i(!1);
+        return;
+      }
+      setTimeout(o, Rt);
+    };
+    o();
+  }), w);
+}
+async function At(i = {}) {
+  const { quality: t = 0.8, maxWidth: e = 1280, maxHeight: o = 800 } = i;
   try {
-    let i = localStorage.getItem(D);
-    return i || (i = crypto.randomUUID(), localStorage.setItem(D, i)), i;
+    if (!await Bt() || !window.html2canvas)
+      return console.warn("html2canvas failed to load"), null;
+    const a = await window.html2canvas(document.body, {
+      useCORS: !0,
+      allowTaint: !1,
+      logging: !1,
+      windowWidth: document.documentElement.clientWidth,
+      windowHeight: document.documentElement.clientHeight,
+      width: document.documentElement.clientWidth,
+      height: document.documentElement.clientHeight,
+      x: window.scrollX,
+      y: window.scrollY,
+      ignoreElements: (s) => {
+        var c, p, u;
+        return s instanceof HTMLElement ? s.classList.contains("qaid-widget") || s.classList.contains("qaid-targeting-overlay") || s.classList.contains("qaid-modal-container") || s.classList.contains("qaid-bottom-sheet") || s.classList.contains("qaid-backdrop") || s.classList.contains("qaid-selected-marker") || s.classList.contains("qaid-tooltip-text") || s.classList.contains("qaid-recording-indicator") || s.classList.contains("qaid-video-preview") || ((u = (c = s.className) == null ? void 0 : (p = c.toString()).startsWith) == null ? void 0 : u.call(p, "qaid-")) : !1;
+      }
+    }), r = a.width, l = a.height, d = Math.min(e / r, o / l, 1);
+    if (d < 1) {
+      const s = Math.round(r * d), c = Math.round(l * d), p = document.createElement("canvas");
+      p.width = s, p.height = c;
+      const u = p.getContext("2d");
+      return u ? (u.drawImage(a, 0, 0, s, c), p.toDataURL("image/webp", t)) : null;
+    }
+    return a.toDataURL("image/webp", t);
+  } catch (n) {
+    return console.warn("DOM screenshot capture failed:", n), null;
+  }
+}
+const V = "qaid_visitor_id";
+function $t() {
+  try {
+    let i = localStorage.getItem(V);
+    return i || (i = crypto.randomUUID(), localStorage.setItem(V, i)), i;
   } catch {
     return crypto.randomUUID();
   }
 }
-class pt {
+class Pt {
   constructor(t) {
-    d(this, "config");
-    d(this, "state", "IDLE");
-    d(this, "feedbackData", {
+    h(this, "config");
+    h(this, "state", "IDLE");
+    h(this, "feedbackData", {
       feedbackType: null,
       elementSelector: null,
       elementText: null,
       consoleErrors: []
     });
-    d(this, "selectedBounds", {
+    h(this, "selectedBounds", {
       x: 0,
       y: 0,
       width: 0,
@@ -275,33 +474,39 @@ class pt {
       clickY: 0,
       visible: !1
     });
-    d(this, "feedbackId", null);
-    d(this, "mousePos", { x: 0, y: 0 });
-    d(this, "lastHighlighted", null);
-    d(this, "isMobile", !1);
-    d(this, "visitorId");
+    h(this, "feedbackId", null);
+    h(this, "mousePos", { x: 0, y: 0 });
+    h(this, "lastHighlighted", null);
+    h(this, "isMobile", !1);
+    h(this, "visitorId");
     // Console capture
-    d(this, "consoleCapture", null);
-    // Server-side feature flags
-    d(this, "allowedFeatures", null);
+    h(this, "consoleCapture", null);
+    // Video recording
+    h(this, "videoRecorder", null);
+    h(this, "networkCapture", null);
+    h(this, "recordedBlob", null);
+    h(this, "recordingIndicator", null);
+    h(this, "videoPreview", null);
+    h(this, "isRecording", !1);
+    h(this, "isSendingVideo", !1);
     // DOM elements
-    d(this, "container", null);
-    d(this, "isUserProvidedContainer", !1);
-    d(this, "overlayContainer", null);
-    d(this, "captureLayer", null);
-    d(this, "crosshairH", null);
-    d(this, "crosshairV", null);
-    d(this, "scope", null);
-    d(this, "marker", null);
-    d(this, "modalContainer", null);
-    d(this, "backdrop", null);
+    h(this, "container", null);
+    h(this, "isUserProvidedContainer", !1);
+    h(this, "overlayContainer", null);
+    h(this, "captureLayer", null);
+    h(this, "crosshairH", null);
+    h(this, "crosshairV", null);
+    h(this, "scope", null);
+    h(this, "marker", null);
+    h(this, "modalContainer", null);
+    h(this, "backdrop", null);
     // Bound event handlers
-    d(this, "boundKeyDown");
-    d(this, "boundMouseMove");
-    d(this, "boundClick");
-    d(this, "boundResize");
-    d(this, "tooltipElement", null);
-    var e, o, n, a, s, l, r, c, p, f, h, u, m, b, g, v;
+    h(this, "boundKeyDown");
+    h(this, "boundMouseMove");
+    h(this, "boundClick");
+    h(this, "boundResize");
+    h(this, "tooltipElement", null);
+    var e, o, n, a, r, l, d, s, c, p, u, f, g, b, m, v, y;
     this.config = {
       endpoint: t.endpoint,
       apiKey: t.apiKey ?? "",
@@ -317,36 +522,43 @@ class pt {
       colors: {
         positive: ((n = t.colors) == null ? void 0 : n.positive) ?? "rgb(0, 200, 83)",
         negative: ((a = t.colors) == null ? void 0 : a.negative) ?? "rgb(255, 0, 0)",
-        marker: ((s = t.colors) == null ? void 0 : s.marker) ?? "#6366f1"
+        marker: ((r = t.colors) == null ? void 0 : r.marker) ?? "#6366f1"
       },
       buttonSize: t.buttonSize ?? "medium",
       text: {
         tooltip: ((l = t.text) == null ? void 0 : l.tooltip) ?? "",
-        bannerText: ((r = t.text) == null ? void 0 : r.bannerText) ?? "Click on any element to target it with your feedback",
-        bannerHint: ((c = t.text) == null ? void 0 : c.bannerHint) ?? "(Press Escape to cancel)",
-        modalTitle: ((p = t.text) == null ? void 0 : p.modalTitle) ?? "Thank you for your feedback!",
-        modalSubtitle: ((f = t.text) == null ? void 0 : f.modalSubtitle) ?? "Would you like to add a message to help us understand your feedback better?",
-        placeholder: ((h = t.text) == null ? void 0 : h.placeholder) ?? "Optional: Tell us more about your experience...",
-        submitButton: ((u = t.text) == null ? void 0 : u.submitButton) ?? "Submit",
-        skipButton: ((m = t.text) == null ? void 0 : m.skipButton) ?? "Skip"
+        bannerText: ((d = t.text) == null ? void 0 : d.bannerText) ?? "Click on any element to target it with your feedback",
+        bannerHint: ((s = t.text) == null ? void 0 : s.bannerHint) ?? "(Press Escape to cancel)",
+        modalTitle: ((c = t.text) == null ? void 0 : c.modalTitle) ?? "Thank you for your feedback!",
+        modalSubtitle: ((p = t.text) == null ? void 0 : p.modalSubtitle) ?? "Would you like to add a message to help us understand your feedback better?",
+        placeholder: ((u = t.text) == null ? void 0 : u.placeholder) ?? "Optional: Tell us more about your experience...",
+        submitButton: ((f = t.text) == null ? void 0 : f.submitButton) ?? "Submit",
+        skipButton: ((g = t.text) == null ? void 0 : g.skipButton) ?? "Skip"
       },
       modalWidth: t.modalWidth ?? 400,
       backdropOpacity: t.backdropOpacity ?? 0.3,
       fontFamily: t.fontFamily ?? "system-ui, -apple-system, sans-serif",
       fontSize: t.fontSize ?? 16,
       captureScreenshot: t.captureScreenshot ?? !1,
+      screenshotMethod: t.screenshotMethod ?? "permission",
       screenshotOptions: {
         quality: ((b = t.screenshotOptions) == null ? void 0 : b.quality) ?? 0.8,
-        maxWidth: ((g = t.screenshotOptions) == null ? void 0 : g.maxWidth) ?? 1280,
+        maxWidth: ((m = t.screenshotOptions) == null ? void 0 : m.maxWidth) ?? 1280,
         maxHeight: ((v = t.screenshotOptions) == null ? void 0 : v.maxHeight) ?? 800
       },
       incognito: t.incognito ?? !1,
       positiveIcon: t.positiveIcon ?? "",
-      negativeIcon: t.negativeIcon ?? ""
-    }, this.boundKeyDown = this.handleKeyDown.bind(this), this.boundMouseMove = this.handleMouseMove.bind(this), this.boundClick = this.handleClick.bind(this), this.boundResize = this.handleResize.bind(this), this.visitorId = ht(), this.init();
+      negativeIcon: t.negativeIcon ?? "",
+      hideThumbs: t.hideThumbs ?? !1,
+      captureVideo: t.captureVideo ?? !1,
+      videoOptions: {
+        maxDuration: ((y = t.videoOptions) == null ? void 0 : y.maxDuration) ?? 15
+      },
+      recordIcon: t.recordIcon ?? ""
+    }, this.boundKeyDown = this.handleKeyDown.bind(this), this.boundMouseMove = this.handleMouseMove.bind(this), this.boundClick = this.handleClick.bind(this), this.boundResize = this.handleResize.bind(this), this.visitorId = $t(), this.init();
   }
   init() {
-    R({
+    st({
       positiveColor: this.config.colors.positive,
       negativeColor: this.config.colors.negative,
       markerColor: this.config.colors.marker,
@@ -356,21 +568,13 @@ class pt {
       backdropOpacity: this.config.backdropOpacity,
       fontFamily: this.config.fontFamily,
       fontSize: this.config.fontSize
-    }), this.checkMobile(), window.addEventListener("resize", this.boundResize), this.createEmbed(), this.fetchAllowedFeatures(), this.consoleCapture = rt((t) => {
+    }), this.checkMobile(), window.addEventListener("resize", this.boundResize), this.createEmbed(), this.consoleCapture = xt((t) => {
       var e;
       this.feedbackData.consoleErrors = ((e = this.consoleCapture) == null ? void 0 : e.errors) ?? [];
     }), this.feedbackData.consoleErrors = this.consoleCapture.errors;
   }
-  async fetchAllowedFeatures() {
-    if (this.config.apiKey)
-      try {
-        const e = `${this.config.endpoint.replace(/\/feedback\/?$/, "")}/features?apiKey=${encodeURIComponent(this.config.apiKey)}`, o = await fetch(e);
-        o.ok && (this.allowedFeatures = await o.json());
-      } catch {
-      }
-  }
   checkMobile() {
-    this.isMobile = dt();
+    this.isMobile = Lt();
   }
   handleResize() {
     this.checkMobile();
@@ -381,29 +585,36 @@ class pt {
       this.container = t, this.container.classList.add("qaid-widget", `qaid-${this.config.position}`), this.config.incognito && this.container.classList.add("qaid-incognito"), this.isUserProvidedContainer = !0;
     else {
       this.container = document.createElement("div"), this.container.className = `qaid-widget qaid-auto-container qaid-${this.config.position}${this.config.incognito ? " qaid-incognito" : ""}`, this.container.style.zIndex = String(this.config.zIndex);
-      const { x: u, y: m } = this.config.offset;
-      this.config.position.includes("right") ? this.container.style.right = `${u}px` : this.container.style.left = `${u}px`, this.config.position.includes("bottom") ? this.container.style.bottom = `${m}px` : this.container.style.top = `${m}px`, document.body.appendChild(this.container);
+      const { x: s, y: c } = this.config.offset;
+      this.config.position.includes("right") ? this.container.style.right = `${s}px` : this.container.style.left = `${s}px`, this.config.position.includes("bottom") ? this.container.style.bottom = `${c}px` : this.container.style.top = `${c}px`, document.body.appendChild(this.container);
     }
     const e = this.config.fontFamily, o = e && e !== "system-ui, -apple-system, sans-serif";
     o && (this.container.style.fontFamily = e);
-    const n = !!this.config.buttonClass, a = n ? `qaid-btn-structural ${this.config.buttonClass}` : "qaid-btn", s = this.config.skipTargeting ? "Send feedback" : "Any feedback? Click to start, Esc to cancel", l = this.config.text.tooltip || s, r = document.createElement("div");
-    r.className = "qaid-tooltip-text", r.textContent = l, o && (r.style.fontFamily = e), document.body.appendChild(r), this.tooltipElement = r;
-    const c = document.createElement("div");
-    c.className = "qaid-tooltip-wrapper";
-    const p = document.createElement("button");
-    p.type = "button", p.className = n ? `${a} qaid-btn-up` : "qaid-btn qaid-btn-up", p.innerHTML = this.config.positiveIcon || y, p.addEventListener("click", (u) => this.handleThumbClick("up", u.currentTarget)), p.addEventListener("mouseenter", () => this.showTooltip(p)), p.addEventListener("mouseleave", () => this.hideTooltip()), c.appendChild(p);
-    const f = document.createElement("div");
-    f.className = "qaid-tooltip-wrapper";
-    const h = document.createElement("button");
-    h.type = "button", h.className = n ? `${a} qaid-btn-down` : "qaid-btn qaid-btn-down", h.innerHTML = this.config.negativeIcon || q, h.addEventListener("click", (u) => this.handleThumbClick("down", u.currentTarget)), h.addEventListener("mouseenter", () => this.showTooltip(h)), h.addEventListener("mouseleave", () => this.hideTooltip()), f.appendChild(h), this.container.appendChild(c), this.container.appendChild(f);
+    const n = !!this.config.buttonClass, a = n ? `qaid-btn-structural ${this.config.buttonClass}` : "qaid-btn", r = (this.config.skipTargeting, "Feedback for us?"), l = this.config.text.tooltip || r, d = document.createElement("div");
+    if (d.className = "qaid-tooltip-text", d.textContent = l, o && (d.style.fontFamily = e), document.body.appendChild(d), this.tooltipElement = d, !this.config.hideThumbs) {
+      const s = document.createElement("div");
+      s.className = "qaid-tooltip-wrapper";
+      const c = document.createElement("button");
+      c.type = "button", c.className = n ? `${a} qaid-btn-up` : "qaid-btn qaid-btn-up", c.innerHTML = this.config.positiveIcon || T, c.addEventListener("click", (f) => this.handleThumbClick("up", f.currentTarget)), c.addEventListener("mouseenter", () => this.showTooltip(c)), c.addEventListener("mouseleave", () => this.hideTooltip()), s.appendChild(c);
+      const p = document.createElement("div");
+      p.className = "qaid-tooltip-wrapper";
+      const u = document.createElement("button");
+      u.type = "button", u.className = n ? `${a} qaid-btn-down` : "qaid-btn qaid-btn-down", u.innerHTML = this.config.negativeIcon || S, u.addEventListener("click", (f) => this.handleThumbClick("down", f.currentTarget)), u.addEventListener("mouseenter", () => this.showTooltip(u)), u.addEventListener("mouseleave", () => this.hideTooltip()), p.appendChild(u), this.container.appendChild(s), this.container.appendChild(p);
+    }
+    if (this.config.captureVideo && Tt()) {
+      const s = document.createElement("div");
+      s.className = "qaid-tooltip-wrapper";
+      const c = document.createElement("button");
+      c.type = "button", c.className = n ? `${a} qaid-btn-record` : "qaid-btn qaid-btn-record", c.innerHTML = this.config.recordIcon || tt, c.addEventListener("click", () => this.startRecording()), c.addEventListener("mouseenter", () => this.showTooltip(c)), c.addEventListener("mouseleave", () => this.hideTooltip()), s.appendChild(c), this.container.appendChild(s);
+    }
   }
   showTooltip(t) {
     if (!this.tooltipElement) return;
     const e = this.tooltipElement, o = 8;
     e.style.visibility = "hidden", e.classList.add("qaid-tooltip-visible");
-    const n = t.getBoundingClientRect(), a = e.getBoundingClientRect(), s = window.innerWidth, l = window.innerHeight;
-    let r, c;
-    r = n.bottom + o, r + a.height > l - o && (r = n.top - a.height - o), c = n.left, c < o ? c = o : c + a.width > s - o && (c = s - a.width - o), r < o ? r = o : r + a.height > l - o && (r = l - a.height - o), e.style.top = `${r}px`, e.style.left = `${c}px`, e.style.visibility = "visible";
+    const n = t.getBoundingClientRect(), a = e.getBoundingClientRect(), r = window.innerWidth, l = window.innerHeight;
+    let d, s;
+    d = n.bottom + o, d + a.height > l - o && (d = n.top - a.height - o), s = n.left, s < o ? s = o : s + a.width > r - o && (s = r - a.width - o), d < o ? d = o : d + a.height > l - o && (d = l - a.height - o), e.style.top = `${d}px`, e.style.left = `${s}px`, e.style.visibility = "visible";
   }
   hideTooltip() {
     this.tooltipElement && this.tooltipElement.classList.remove("qaid-tooltip-visible");
@@ -444,40 +655,40 @@ class pt {
     `, this.overlayContainer.appendChild(this.captureLayer), this.overlayContainer.appendChild(t), this.overlayContainer.appendChild(o), this.overlayContainer.appendChild(this.crosshairH), this.overlayContainer.appendChild(this.crosshairV), this.overlayContainer.appendChild(this.scope), document.body.appendChild(this.overlayContainer);
   }
   handleKeyDown(t) {
-    t.key === "Escape" && (this.state === "TARGETING" ? this.cancelTargeting() : this.state === "MODAL_OPEN" && this.closeModal());
+    t.key === "Escape" && (this.isRecording ? this.stopRecording() : this.videoPreview ? this.cancelRecordingPreview() : this.state === "TARGETING" ? this.cancelTargeting() : this.state === "MODAL_OPEN" && this.closeModal());
   }
   handleMouseMove(t) {
     if (this.mousePos.x = t.clientX, this.mousePos.y = t.clientY, this.crosshairH && (this.crosshairH.style.top = `${t.clientY}px`), this.crosshairV && (this.crosshairV.style.left = `${t.clientX}px`), this.scope && (this.scope.style.left = `${t.clientX}px`, this.scope.style.top = `${t.clientY}px`), this.captureLayer) {
-      const e = M(
+      const e = O(
         t.clientX,
         t.clientY,
         this.captureLayer
       );
-      e && !$(e) ? (this.lastHighlighted && this.lastHighlighted !== e && this.lastHighlighted.classList.remove("qaid-highlight"), e.classList.add("qaid-highlight"), this.lastHighlighted = e) : this.lastHighlighted && (this.lastHighlighted.classList.remove("qaid-highlight"), this.lastHighlighted = null);
+      e && !N(e) ? (this.lastHighlighted && this.lastHighlighted !== e && this.lastHighlighted.classList.remove("qaid-highlight"), e.classList.add("qaid-highlight"), this.lastHighlighted = e) : this.lastHighlighted && (this.lastHighlighted.classList.remove("qaid-highlight"), this.lastHighlighted = null);
     }
   }
   handleClick(t) {
     if (!this.captureLayer) return;
-    const e = M(
+    const e = O(
       t.clientX,
       t.clientY,
       this.captureLayer
     );
-    if (!e || $(e))
+    if (!e || N(e))
       return;
     e.classList.remove("qaid-highlight");
-    const o = lt(e, 8);
+    const o = Mt(e, 8);
     this.selectedBounds = {
       ...o,
       clickX: t.clientX,
       clickY: t.clientY,
       visible: !0
     };
-    const { selector: n, text: a } = tt(e);
-    this.feedbackData.elementSelector = n, this.feedbackData.elementText = a, x("qaid-highlight"), this.removeTargetingOverlay(), document.body.classList.remove("qaid-targeting", "qaid-type-up"), this.state = "SELECTED", this.showSelectedMarker(), this.submitFeedback();
+    const { selector: n, text: a } = ft(e);
+    this.feedbackData.elementSelector = n, this.feedbackData.elementText = a, I("qaid-highlight"), this.removeTargetingOverlay(), document.body.classList.remove("qaid-targeting", "qaid-type-up"), this.state = "SELECTED", this.showSelectedMarker(), this.submitFeedback();
   }
   cancelTargeting() {
-    x("qaid-highlight"), this.removeTargetingOverlay(), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.removeEventListener("keydown", this.boundKeyDown), this.state = "IDLE", this.feedbackData.feedbackType = null, this.feedbackData.elementSelector = null, this.feedbackData.elementText = null, this.selectedBounds.visible = !1, this.lastHighlighted = null;
+    I("qaid-highlight"), this.removeTargetingOverlay(), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.removeEventListener("keydown", this.boundKeyDown), this.state = "IDLE", this.feedbackData.feedbackType = null, this.feedbackData.elementSelector = null, this.feedbackData.elementText = null, this.selectedBounds.visible = !1, this.lastHighlighted = null;
   }
   removeTargetingOverlay() {
     this.overlayContainer && (this.overlayContainer.remove(), this.overlayContainer = null), this.captureLayer = null, this.crosshairH = null, this.crosshairV = null, this.scope = null;
@@ -489,17 +700,15 @@ class pt {
     this.marker && (this.marker.remove(), this.marker = null);
   }
   async submitFeedback() {
-    var a;
     if (!this.feedbackData.feedbackType) return;
     let t = null;
-    const e = ((a = this.allowedFeatures) == null ? void 0 : a.screenshots) !== !1;
-    this.config.captureScreenshot && e && (t = await ct(this.config.screenshotOptions));
-    const o = this.feedbackData.elementSelector ? {
+    this.config.captureScreenshot && (this.config.screenshotMethod === "dom" ? t = await At(this.config.screenshotOptions) : t = await Dt(this.config.screenshotOptions));
+    const e = this.feedbackData.elementSelector ? {
       x: this.selectedBounds.x,
       y: this.selectedBounds.y,
       width: this.selectedBounds.width,
       height: this.selectedBounds.height
-    } : null, n = {
+    } : null, o = {
       feedbackType: this.feedbackData.feedbackType,
       pageUrl: window.location.href,
       apiKey: this.config.apiKey || void 0,
@@ -515,21 +724,21 @@ class pt {
       screenshot: t,
       visitorId: this.visitorId,
       // Include element bounds and user agent for server-side screenshot fallback
-      elementBounds: o,
+      elementBounds: e,
       userAgent: navigator.userAgent
     };
     try {
-      const s = await fetch(this.config.endpoint, {
+      const n = await fetch(this.config.endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(n)
+        body: JSON.stringify(o)
       });
-      if (s.ok) {
-        const l = await s.json();
-        this.feedbackId = l.id;
+      if (n.ok) {
+        const a = await n.json();
+        this.feedbackId = a.id;
       }
-    } catch (s) {
-      console.error("Failed to submit feedback:", s);
+    } catch (n) {
+      console.error("Failed to submit feedback:", n);
     }
     this.state = "MODAL_OPEN", this.showModal();
   }
@@ -548,7 +757,7 @@ class pt {
     `, document.body.appendChild(t), this.modalContainer = t, this.setupModalInteractions();
   }
   showPositionedModal() {
-    const { modal: t, arrow: e } = at(
+    const { modal: t, arrow: e } = wt(
       this.selectedBounds,
       window.innerWidth,
       window.innerHeight,
@@ -569,7 +778,7 @@ class pt {
     a.className = "qaid-modal-box", a.innerHTML = this.getModalContent(), this.modalContainer.appendChild(n), this.modalContainer.appendChild(a), document.body.appendChild(this.modalContainer), this.setupModalInteractions();
   }
   getModalContent() {
-    const t = this.feedbackData.feedbackType === "up", e = this.config.positiveIcon || y, o = this.config.negativeIcon || q;
+    const t = this.feedbackData.feedbackType === "up", e = this.config.positiveIcon || T, o = this.config.negativeIcon || S;
     return `
       <div class="qaid-modal-header">
         <button type="button" class="${this.config.buttonClass ? `qaid-type-toggle qaid-type-toggle-custom ${this.config.buttonClass} ${t ? "qaid-btn-up" : "qaid-btn-down"}` : `qaid-type-toggle ${t ? "qaid-type-up" : "qaid-type-down"}`}" title="Click to switch">
@@ -599,8 +808,8 @@ class pt {
     o && o.addEventListener("click", () => {
       const n = this.feedbackData.feedbackType === "up" ? "down" : "up";
       this.feedbackData.feedbackType = n, this.config.buttonClass ? (o.classList.toggle("qaid-btn-up", n === "up"), o.classList.toggle("qaid-btn-down", n === "down")) : (o.classList.toggle("qaid-type-up", n === "up"), o.classList.toggle("qaid-type-down", n === "down"));
-      const a = this.config.positiveIcon || y, s = this.config.negativeIcon || q;
-      o.innerHTML = n === "up" ? a : s, this.feedbackId && fetch(`${this.config.endpoint}/${this.feedbackId}`, {
+      const a = this.config.positiveIcon || T, r = this.config.negativeIcon || S;
+      o.innerHTML = n === "up" ? a : r, this.feedbackId && fetch(`${this.config.endpoint}/${this.feedbackId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ feedbackType: n })
@@ -629,14 +838,124 @@ class pt {
       body: JSON.stringify({ message: null })
     }).catch((t) => console.error("Failed to finalize feedback:", t)), this.modalContainer && (this.modalContainer.remove(), this.modalContainer = null), this.backdrop && (this.backdrop.remove(), this.backdrop = null), document.removeEventListener("keydown", this.boundKeyDown), this.hideSelectedMarker(), this.state = "IDLE", this.feedbackId = null, this.feedbackData.feedbackType = null, this.feedbackData.elementSelector = null, this.feedbackData.elementText = null, this.selectedBounds.visible = !1;
   }
+  // ==================== Video Recording ====================
+  async startRecording() {
+    if (!(this.isRecording || this.state !== "IDLE"))
+      try {
+        this.networkCapture = Et(), this.videoRecorder = It({
+          maxDuration: this.config.videoOptions.maxDuration
+        }), this.videoRecorder.onTick((t) => {
+          this.updateRecordingTimer(t);
+        }), this.videoRecorder.onStop((t) => {
+          this.isRecording && (this.recordedBlob = t, this.isRecording = !1, this.removeRecordingIndicator(), document.removeEventListener("keydown", this.boundKeyDown), this.setButtonsDisabled(!1), t && t.size > 0 ? this.showRecordingPreview() : this.cleanupRecording());
+        }), await this.videoRecorder.start(), this.isRecording = !0, this.setButtonsDisabled(!0), this.showRecordingIndicator(), document.addEventListener("keydown", this.boundKeyDown);
+      } catch {
+        this.cleanupRecording();
+      }
+  }
+  async stopRecording() {
+    if (!(!this.isRecording || !this.videoRecorder)) {
+      try {
+        this.recordedBlob = await this.videoRecorder.stop();
+      } catch {
+        this.recordedBlob = null;
+      }
+      this.isRecording = !1, this.removeRecordingIndicator(), document.removeEventListener("keydown", this.boundKeyDown), this.recordedBlob && this.recordedBlob.size > 0 ? this.showRecordingPreview() : this.cleanupRecording();
+    }
+  }
+  showRecordingIndicator() {
+    this.recordingIndicator = document.createElement("div"), this.recordingIndicator.className = "qaid-recording-indicator", this.recordingIndicator.style.zIndex = String(this.config.zIndex + 100);
+    const t = document.createElement("div");
+    t.className = "qaid-recording-dot";
+    const e = document.createElement("span");
+    e.className = "qaid-recording-time", e.textContent = this.formatTime(this.config.videoOptions.maxDuration);
+    const o = document.createElement("button");
+    o.type = "button", o.className = "qaid-recording-stop", o.textContent = "Stop", o.addEventListener("click", () => this.stopRecording()), this.recordingIndicator.appendChild(t), this.recordingIndicator.appendChild(e), this.recordingIndicator.appendChild(o), document.body.appendChild(this.recordingIndicator);
+  }
+  updateRecordingTimer(t) {
+    if (!this.recordingIndicator) return;
+    const e = this.recordingIndicator.querySelector(".qaid-recording-time");
+    if (e) {
+      const o = Math.max(0, this.config.videoOptions.maxDuration - t);
+      e.textContent = this.formatTime(o);
+    }
+  }
+  formatTime(t) {
+    const e = Math.floor(t / 60), o = t % 60;
+    return `${e}:${o.toString().padStart(2, "0")}`;
+  }
+  removeRecordingIndicator() {
+    this.recordingIndicator && (this.recordingIndicator.remove(), this.recordingIndicator = null);
+  }
+  showRecordingPreview() {
+    if (!this.recordedBlob) return;
+    const t = URL.createObjectURL(this.recordedBlob);
+    this.videoPreview = document.createElement("div"), this.videoPreview.className = "qaid-video-preview", this.videoPreview.style.zIndex = String(this.config.zIndex + 100);
+    const e = document.createElement("div");
+    e.className = "qaid-video-preview-box";
+    const o = document.createElement("h3");
+    o.textContent = "Review your recording";
+    const n = document.createElement("video");
+    n.src = t, n.controls = !0, n.autoplay = !0, n.muted = !0;
+    const a = document.createElement("textarea");
+    a.placeholder = "Optional: Describe the issue you recorded...";
+    const r = document.createElement("div");
+    r.className = "qaid-video-preview-actions";
+    const l = document.createElement("button");
+    l.type = "button", l.className = "qaid-video-btn qaid-video-btn-cancel", l.textContent = "Cancel", l.addEventListener("click", () => this.cancelRecordingPreview());
+    const d = document.createElement("button");
+    d.type = "button", d.className = "qaid-video-btn qaid-video-btn-rerecord", d.textContent = "Re-record", d.addEventListener("click", () => {
+      this.cancelRecordingPreview(), this.startRecording();
+    });
+    const s = document.createElement("button");
+    s.type = "button", s.className = "qaid-video-btn qaid-video-btn-send", s.textContent = "Send", s.addEventListener("click", () => {
+      const c = a.value.trim() || null;
+      this.submitVideoFeedback(c, s);
+    }), r.appendChild(l), r.appendChild(d), r.appendChild(s), e.appendChild(o), e.appendChild(n), e.appendChild(a), e.appendChild(r), this.videoPreview.appendChild(e), document.body.appendChild(this.videoPreview), document.addEventListener("keydown", this.boundKeyDown);
+  }
+  cancelRecordingPreview() {
+    this.removeVideoPreview(), this.cleanupRecording();
+  }
+  removeVideoPreview() {
+    if (this.videoPreview) {
+      const t = this.videoPreview.querySelector("video");
+      t != null && t.src && URL.revokeObjectURL(t.src), this.videoPreview.remove(), this.videoPreview = null;
+    }
+    document.removeEventListener("keydown", this.boundKeyDown);
+  }
+  async submitVideoFeedback(t, e) {
+    if (!this.recordedBlob || this.isSendingVideo) return;
+    this.isSendingVideo = !0, e.disabled = !0, e.textContent = "Sending...";
+    const o = new FormData();
+    o.append("video", this.recordedBlob, `recording.${this.recordedBlob.type.includes("mp4") ? "mp4" : "webm"}`), o.append("pageUrl", window.location.href), o.append("visitorId", this.visitorId), this.config.apiKey && o.append("apiKey", this.config.apiKey), t && o.append("message", t), this.consoleCapture && o.append("consoleErrors", JSON.stringify(this.consoleCapture.errors)), this.networkCapture && o.append("networkErrors", JSON.stringify(this.networkCapture.errors));
+    try {
+      const n = await fetch(`${this.config.endpoint}/video`, {
+        method: "POST",
+        body: o
+      });
+      n.ok || console.error("Failed to submit video feedback:", await n.text());
+    } catch (n) {
+      console.error("Failed to submit video feedback:", n);
+    }
+    this.isSendingVideo = !1, this.removeVideoPreview(), this.cleanupRecording();
+  }
+  cleanupRecording() {
+    this.isRecording = !1, this.removeRecordingIndicator(), this.videoRecorder && (this.videoRecorder.destroy(), this.videoRecorder = null), this.networkCapture && (this.networkCapture.restore(), this.networkCapture = null), this.recordedBlob && (this.recordedBlob = null), this.setButtonsDisabled(!1);
+  }
+  setButtonsDisabled(t) {
+    if (!this.container) return;
+    this.container.querySelectorAll("button.qaid-btn, button.qaid-btn-structural").forEach((o) => {
+      t ? o.classList.contains("qaid-btn-record") || (o.disabled = !0, o.style.opacity = "0.5") : (o.disabled = !1, o.style.opacity = "");
+    });
+  }
   /**
    * Destroy the embed and clean up all resources
    */
   destroy() {
-    this.consoleCapture && (this.consoleCapture.restore(), this.consoleCapture = null), window.removeEventListener("resize", this.boundResize), document.removeEventListener("keydown", this.boundKeyDown), x("qaid-highlight"), document.body.classList.remove("qaid-targeting", "qaid-type-up"), this.container && (this.isUserProvidedContainer ? (this.container.innerHTML = "", this.container.classList.remove("qaid-widget", `qaid-${this.config.position}`)) : this.container.remove(), this.container = null), this.removeTargetingOverlay(), this.hideSelectedMarker(), this.modalContainer && (this.modalContainer.remove(), this.modalContainer = null), this.backdrop && (this.backdrop.remove(), this.backdrop = null), this.tooltipElement && (this.tooltipElement.remove(), this.tooltipElement = null), K();
+    this.cleanupRecording(), this.removeVideoPreview(), this.consoleCapture && (this.consoleCapture.restore(), this.consoleCapture = null), window.removeEventListener("resize", this.boundResize), document.removeEventListener("keydown", this.boundKeyDown), I("qaid-highlight"), document.body.classList.remove("qaid-targeting", "qaid-type-up"), this.container && (this.isUserProvidedContainer ? (this.container.innerHTML = "", this.container.classList.remove("qaid-widget", `qaid-${this.config.position}`, "qaid-incognito")) : this.container.remove(), this.container = null), this.removeTargetingOverlay(), this.hideSelectedMarker(), this.modalContainer && (this.modalContainer.remove(), this.modalContainer = null), this.backdrop && (this.backdrop.remove(), this.backdrop = null), this.tooltipElement && (this.tooltipElement.remove(), this.tooltipElement = null), dt();
   }
 }
-function ut() {
+function Ht() {
   var e;
   const i = document.querySelector(
     'script[type="application/json"][data-feedback-config]'
@@ -650,54 +969,73 @@ function ut() {
     return null;
   }
 }
-function mt(i) {
+function Ot(i) {
   const t = i.getAttribute("data-endpoint");
   if (!t) return null;
-  const e = i.getAttribute("data-position"), o = i.getAttribute("data-zindex"), n = i.getAttribute("data-positive-color"), a = i.getAttribute("data-negative-color"), s = i.getAttribute("data-marker-color"), l = i.getAttribute("data-container"), r = i.getAttribute("data-button-class"), c = i.getAttribute("data-skip-targeting"), p = i.getAttribute("data-incognito"), f = i.getAttribute("data-button-size"), h = i.getAttribute("data-offset-x"), u = i.getAttribute("data-offset-y"), m = i.getAttribute("data-modal-width"), b = i.getAttribute("data-backdrop-opacity"), g = i.getAttribute("data-font-family"), v = i.getAttribute("data-font-size"), w = i.getAttribute("data-tooltip"), C = i.getAttribute("data-banner-text"), T = i.getAttribute("data-banner-hint"), S = i.getAttribute("data-modal-title"), E = i.getAttribute("data-modal-subtitle"), I = i.getAttribute("data-placeholder"), z = i.getAttribute("data-submit-button"), L = i.getAttribute("data-skip-button"), H = i.getAttribute("data-positive-icon"), F = i.getAttribute("data-negative-icon");
+  const e = i.getAttribute("data-position"), o = i.getAttribute("data-zindex"), n = i.getAttribute("data-positive-color"), a = i.getAttribute("data-negative-color"), r = i.getAttribute("data-marker-color"), l = i.getAttribute("data-container"), d = i.getAttribute("data-button-class"), s = i.getAttribute("data-skip-targeting"), c = i.getAttribute("data-incognito"), p = i.getAttribute("data-button-size"), u = i.getAttribute("data-offset-x"), f = i.getAttribute("data-offset-y"), g = i.getAttribute("data-modal-width"), b = i.getAttribute("data-backdrop-opacity"), m = i.getAttribute("data-font-family"), v = i.getAttribute("data-font-size"), y = i.getAttribute("data-tooltip"), q = i.getAttribute("data-banner-text"), M = i.getAttribute("data-banner-hint"), D = i.getAttribute("data-modal-title"), z = i.getAttribute("data-modal-subtitle"), R = i.getAttribute("data-placeholder"), B = i.getAttribute("data-submit-button"), A = i.getAttribute("data-skip-button"), X = i.getAttribute("data-positive-icon"), _ = i.getAttribute("data-negative-icon"), j = i.getAttribute("data-api-key"), K = i.getAttribute("data-capture-screenshot"), k = i.getAttribute("data-screenshot-quality"), C = i.getAttribute("data-screenshot-max-width"), E = i.getAttribute("data-screenshot-max-height"), Y = i.getAttribute("data-capture-video"), J = i.getAttribute("data-hide-thumbs"), $ = i.getAttribute("data-video-max-duration"), G = i.getAttribute("data-screenshot-method");
   return {
     endpoint: t,
+    apiKey: j ?? void 0,
+    captureScreenshot: K === "true" ? !0 : void 0,
+    screenshotOptions: k || C || E ? {
+      quality: k ? parseFloat(k) : void 0,
+      maxWidth: C ? parseInt(C, 10) : void 0,
+      maxHeight: E ? parseInt(E, 10) : void 0
+    } : void 0,
     container: l ?? void 0,
-    buttonClass: r ?? void 0,
+    buttonClass: d ?? void 0,
     position: e ?? void 0,
     zIndex: o ? parseInt(o, 10) : void 0,
-    skipTargeting: c === "true" ? !0 : void 0,
-    incognito: p === "true" ? !0 : void 0,
-    buttonSize: f ?? void 0,
-    offset: h || u ? {
-      x: h ? parseInt(h, 10) : void 0,
-      y: u ? parseInt(u, 10) : void 0
+    skipTargeting: s === "true" ? !0 : void 0,
+    incognito: c === "true" ? !0 : void 0,
+    buttonSize: p ?? void 0,
+    offset: u || f ? {
+      x: u ? parseInt(u, 10) : void 0,
+      y: f ? parseInt(f, 10) : void 0
     } : void 0,
-    modalWidth: m ? parseInt(m, 10) : void 0,
+    modalWidth: g ? parseInt(g, 10) : void 0,
     backdropOpacity: b ? parseFloat(b) : void 0,
-    fontFamily: g ?? void 0,
+    fontFamily: m ?? void 0,
     fontSize: v ? parseInt(v, 10) : void 0,
     colors: {
       positive: n ?? void 0,
       negative: a ?? void 0,
-      marker: s ?? void 0
+      marker: r ?? void 0
     },
-    text: w || C || T || S || E || I || z || L ? {
-      tooltip: w ?? void 0,
-      bannerText: C ?? void 0,
-      bannerHint: T ?? void 0,
-      modalTitle: S ?? void 0,
-      modalSubtitle: E ?? void 0,
-      placeholder: I ?? void 0,
-      submitButton: z ?? void 0,
-      skipButton: L ?? void 0
+    text: y || q || M || D || z || R || B || A ? {
+      tooltip: y ?? void 0,
+      bannerText: q ?? void 0,
+      bannerHint: M ?? void 0,
+      modalTitle: D ?? void 0,
+      modalSubtitle: z ?? void 0,
+      placeholder: R ?? void 0,
+      submitButton: B ?? void 0,
+      skipButton: A ?? void 0
     } : void 0,
-    positiveIcon: H ?? void 0,
-    negativeIcon: F ?? void 0
+    positiveIcon: X ?? void 0,
+    negativeIcon: _ ?? void 0,
+    screenshotMethod: G ?? void 0,
+    captureVideo: Y === "true" ? !0 : void 0,
+    hideThumbs: J === "true" ? !0 : void 0,
+    videoOptions: $ ? {
+      maxDuration: parseInt($, 10)
+    } : void 0
   };
 }
 if (typeof document < "u") {
   const i = () => {
-    const t = document.currentScript, e = ut(), o = t ? mt(t) : null, n = e ?? o;
-    n != null && n.endpoint && new pt(n);
+    const t = document.currentScript, e = Ht(), o = t ? Ot(t) : null, n = e ?? o;
+    n != null && n.endpoint && new Pt(n);
   };
   document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", i) : i();
 }
 export {
-  pt as FeedbackEmbed
+  Pt as FeedbackEmbed,
+  At as captureDomScreenshot,
+  Et as captureNetworkErrors,
+  It as createVideoRecorder,
+  St as getSupportedMimeType,
+  Ft as isDomScreenshotSupported,
+  Tt as isVideoRecordingSupported
 };
 //# sourceMappingURL=qaid.js.map

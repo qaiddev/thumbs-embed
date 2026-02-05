@@ -58,12 +58,25 @@ export interface FeedbackConfig {
   fontSize?: number;
   /** Enable screenshot capture with feedback. Default: false */
   captureScreenshot?: boolean;
+  /** Enable video recording button. Default: false */
+  captureVideo?: boolean;
+  /** Video recording options */
+  videoOptions?: {
+    /** Max recording duration in seconds. Default: 15 */
+    maxDuration?: number;
+  };
+  /** Custom SVG string for record button icon */
+  recordIcon?: string;
   /** When true, buttons are hidden until hovered. Default: false */
   incognito?: boolean;
   /** Custom SVG string for positive feedback button icon */
   positiveIcon?: string;
   /** Custom SVG string for negative feedback button icon */
   negativeIcon?: string;
+  /** When true, hide thumbs up/down buttons (only show video button if enabled). Default: false */
+  hideThumbs?: boolean;
+  /** Screenshot capture method. "dom" uses html2canvas (no permission), "permission" uses Screen Capture API. Default: "permission" */
+  screenshotMethod?: "dom" | "permission";
   /** Screenshot options */
   screenshotOptions?: {
     /** Quality of WebP compression (0-1). Default: 1.0 */
@@ -73,6 +86,19 @@ export interface FeedbackConfig {
     /** Max height of the screenshot. Default: 800 */
     maxHeight?: number;
   };
+}
+
+/**
+ * Network error captured during the session
+ */
+export interface NetworkError {
+  url: string;
+  method: string;
+  status: number;
+  statusText: string;
+  requestBody?: string;
+  responseBody?: string;
+  timestamp: number;
 }
 
 /**
@@ -197,6 +223,7 @@ export interface ResolvedFeedbackConfig {
   fontFamily: string;
   fontSize: number;
   captureScreenshot: boolean;
+  screenshotMethod: "dom" | "permission";
   screenshotOptions: {
     quality: number;
     maxWidth: number;
@@ -205,4 +232,10 @@ export interface ResolvedFeedbackConfig {
   incognito: boolean;
   positiveIcon: string;
   negativeIcon: string;
+  hideThumbs: boolean;
+  captureVideo: boolean;
+  videoOptions: {
+    maxDuration: number;
+  };
+  recordIcon: string;
 }
