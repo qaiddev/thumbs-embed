@@ -47,7 +47,7 @@ declare interface ElementBounds {
 }
 
 /**
- * Configuration options for the FeedbackEmbed
+ * Configuration options for the QaidFeedback
  */
 export declare interface FeedbackConfig {
     /** Required: API endpoint URL for submitting feedback */
@@ -58,6 +58,8 @@ export declare interface FeedbackConfig {
     container?: string;
     /** Custom CSS class to apply to thumb buttons. When provided, default button styles are not applied */
     buttonClass?: string;
+    /** Button layout direction. Default: 'horizontal' */
+    direction?: "horizontal" | "vertical";
     /** Position of the feedback buttons. Default: 'bottom-right'. Ignored if container is provided */
     position?: "bottom-right" | "bottom-left" | "top-right" | "top-left";
     /** Offset from edge in pixels. Default: { x: 16, y: 16 } */
@@ -84,10 +86,6 @@ export declare interface FeedbackConfig {
     text?: {
         /** Tooltip text for buttons */
         tooltip?: string;
-        /** Banner text during targeting */
-        bannerText?: string;
-        /** Banner hint text */
-        bannerHint?: string;
         /** Modal title */
         modalTitle?: string;
         /** Modal subtitle */
@@ -126,6 +124,8 @@ export declare interface FeedbackConfig {
     negativeIcon?: string;
     /** When true, hide thumbs up/down buttons (only show video button if enabled). Default: false */
     hideThumbs?: boolean;
+    /** Custom CSS to inject into the embed's shadow root for theming */
+    css?: string;
     /** Screenshot capture method. "dom" uses html2canvas (no permission), "permission" uses Screen Capture API. Default: "permission" */
     screenshotMethod?: "dom" | "permission";
     /** Screenshot options */
@@ -147,88 +147,6 @@ export declare interface FeedbackData {
     elementSelector: string | null;
     elementText: string | null;
     consoleErrors: ConsoleError[];
-}
-
-/**
- * FeedbackEmbed - Standalone feedback collection embed
- */
-export declare class FeedbackEmbed {
-    private config;
-    private state;
-    private feedbackData;
-    private selectedBounds;
-    private feedbackId;
-    private mousePos;
-    private lastHighlighted;
-    private isMobile;
-    private visitorId;
-    private consoleCapture;
-    private videoRecorder;
-    private networkCapture;
-    private recordedBlob;
-    private recordingIndicator;
-    private videoPreview;
-    private isRecording;
-    private isSendingVideo;
-    private container;
-    private isUserProvidedContainer;
-    private overlayContainer;
-    private captureLayer;
-    private crosshairH;
-    private crosshairV;
-    private scope;
-    private marker;
-    private modalContainer;
-    private backdrop;
-    private cssVars;
-    private boundKeyDown;
-    private boundMouseMove;
-    private boundClick;
-    private boundResize;
-    constructor(config: FeedbackConfig);
-    private applyVars;
-    private init;
-    private checkMobile;
-    private handleResize;
-    private createEmbed;
-    private tooltipElement;
-    private showTooltip;
-    private hideTooltip;
-    private handleThumbClick;
-    private submitDirectFeedback;
-    private startTargeting;
-    private createTargetingOverlay;
-    private handleKeyDown;
-    private handleMouseMove;
-    private handleClick;
-    private cancelTargeting;
-    private removeTargetingOverlay;
-    private showSelectedMarker;
-    private hideSelectedMarker;
-    private submitFeedback;
-    private showModal;
-    private showBottomSheet;
-    private showPositionedModal;
-    private getModalContent;
-    private setupModalInteractions;
-    private submitMessage;
-    private closeModal;
-    private startRecording;
-    private stopRecording;
-    private showRecordingIndicator;
-    private updateRecordingTimer;
-    private formatTime;
-    private removeRecordingIndicator;
-    private showRecordingPreview;
-    private cancelRecordingPreview;
-    private removeVideoPreview;
-    private submitVideoFeedback;
-    private cleanupRecording;
-    private setButtonsDisabled;
-    /**
-     * Destroy the embed and clean up all resources
-     */
-    destroy(): void;
 }
 
 /**
@@ -307,6 +225,99 @@ export declare interface NetworkError {
 }
 
 /**
+ * QaidFeedback - Standalone feedback collection embed
+ */
+export declare class QaidFeedback {
+    private config;
+    private state;
+    private feedbackData;
+    private selectedBounds;
+    private feedbackId;
+    private mousePos;
+    private lastHighlighted;
+    private isMobile;
+    private visitorId;
+    private consoleCapture;
+    private videoRecorder;
+    private networkCapture;
+    private recordedBlob;
+    private recordingIndicator;
+    private videoPreview;
+    private isRecording;
+    private isSendingVideo;
+    private shadowHost;
+    private shadowRoot;
+    private overlayShadowHost;
+    private overlayShadowRoot;
+    private buttonsContainer;
+    private isUserProvidedContainer;
+    private overlayContainer;
+    private captureLayer;
+    private crosshairH;
+    private crosshairV;
+    private scope;
+    private marker;
+    private modalContainer;
+    private backdrop;
+    private cssVars;
+    private boundKeyDown;
+    private boundMouseMove;
+    private boundClick;
+    private boundResize;
+    constructor(config: FeedbackConfig);
+    private applyVars;
+    private init;
+    private checkMobile;
+    private handleResize;
+    private createEmbed;
+    /**
+     * Lazily create a separate overlay shadow host on document.body.
+     * This host contains all full-page elements (targeting overlay, marker,
+     * backdrop, modal, recording indicator, video preview) so they escape
+     * clip-path / transform containing blocks in user containers.
+     */
+    private ensureOverlayHost;
+    private tooltipElement;
+    private showTooltip;
+    private hideTooltip;
+    private handleThumbClick;
+    private submitDirectFeedback;
+    private startTargeting;
+    private createTargetingOverlay;
+    private handleKeyDown;
+    private handleMouseMove;
+    private handleClick;
+    private cancelTargeting;
+    private removeTargetingOverlay;
+    private showSelectedMarker;
+    private hideSelectedMarker;
+    private submitFeedback;
+    private showModal;
+    private showBottomSheet;
+    private showPositionedModal;
+    private getModalContent;
+    private setupModalInteractions;
+    private submitMessage;
+    private closeModal;
+    private startRecording;
+    private stopRecording;
+    private showRecordingIndicator;
+    private updateRecordingTimer;
+    private formatTime;
+    private removeRecordingIndicator;
+    private showRecordingPreview;
+    private cancelRecordingPreview;
+    private removeVideoPreview;
+    private submitVideoFeedback;
+    private cleanupRecording;
+    private setButtonsDisabled;
+    /**
+     * Destroy the embed and clean up all resources
+     */
+    destroy(): void;
+}
+
+/**
  * Fully resolved configuration with all defaults applied
  * Used internally by the embed after processing user config
  */
@@ -315,6 +326,7 @@ export declare interface ResolvedFeedbackConfig {
     apiKey: string;
     container: string;
     buttonClass: string;
+    direction: "horizontal" | "vertical";
     position: "bottom-right" | "bottom-left" | "top-right" | "top-left";
     offset: {
         x: number;
@@ -330,8 +342,6 @@ export declare interface ResolvedFeedbackConfig {
     buttonSize: "small" | "medium" | "large";
     text: {
         tooltip: string;
-        bannerText: string;
-        bannerHint: string;
         modalTitle: string;
         modalSubtitle: string;
         placeholder: string;
@@ -353,6 +363,7 @@ export declare interface ResolvedFeedbackConfig {
     positiveIcon: string;
     negativeIcon: string;
     hideThumbs: boolean;
+    css: string;
     captureVideo: boolean;
     videoOptions: {
         maxDuration: number;

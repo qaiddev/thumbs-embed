@@ -1,57 +1,48 @@
-/* Feedback Embed Styles */
+/* Shadow DOM styles — everything inside the shadow root */
 
-/* Hide default cursor when in targeting mode */
-body.qaid-targeting {
-  cursor: none !important;
-}
-
-body.qaid-targeting * {
-  cursor: none !important;
-}
-
-/* Embed buttons keep pointer cursor */
-.qaid-widget,
-.qaid-widget *,
-.qaid-modal-container,
-.qaid-modal-container * {
-  cursor: pointer !important;
-}
-
-/* Base embed container - only for auto-created containers */
-.qaid-widget.qaid-auto-container {
-  position: fixed;
-  z-index: 50;
+/* Base buttons layout */
+.qaid-buttons {
   display: flex;
   gap: 0.5rem;
 }
 
-.qaid-widget.qaid-auto-container.qaid-bottom-right {
+.qaid-buttons.qaid-vertical {
+  flex-direction: column;
+}
+
+/* Auto-created container positioning */
+.qaid-buttons.qaid-auto-container {
+  position: fixed;
+  z-index: 50;
+}
+
+.qaid-buttons.qaid-auto-container.qaid-bottom-right {
   bottom: 1rem;
   right: 1rem;
 }
 
-.qaid-widget.qaid-auto-container.qaid-bottom-left {
+.qaid-buttons.qaid-auto-container.qaid-bottom-left {
   bottom: 1rem;
   left: 1rem;
 }
 
-.qaid-widget.qaid-auto-container.qaid-top-right {
+.qaid-buttons.qaid-auto-container.qaid-top-right {
   top: 1rem;
   right: 1rem;
 }
 
-.qaid-widget.qaid-auto-container.qaid-top-left {
+.qaid-buttons.qaid-auto-container.qaid-top-left {
   top: 1rem;
   left: 1rem;
 }
 
 /* Incognito mode - buttons hidden until hover */
-.qaid-widget.qaid-incognito {
+.qaid-buttons.qaid-incognito {
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
 }
 
-.qaid-widget.qaid-incognito:hover {
+.qaid-buttons.qaid-incognito:hover {
   opacity: 1;
 }
 
@@ -80,6 +71,14 @@ button.qaid-btn-structural {
 .qaid-emoji-icon {
   font-size: var(--qaid-icon-size, 24px);
   line-height: 1;
+}
+
+/* Embed buttons keep pointer cursor */
+.qaid-buttons,
+.qaid-buttons *,
+.qaid-modal-container,
+.qaid-modal-container * {
+  cursor: pointer !important;
 }
 
 /* Tooltip */
@@ -120,39 +119,6 @@ button.qaid-btn-structural {
   cursor: crosshair;
   pointer-events: auto;
   z-index: 9999;
-}
-
-/* Banner */
-.qaid-banner {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 0.75rem 1rem;
-  text-align: center;
-  z-index: 10000;
-  font-family: var(--qaid-font-family, system-ui, -apple-system, sans-serif);
-  font-size: var(--qaid-font-size, 16px);
-  animation: qaid-slideDown 0.2s ease-out;
-}
-
-.qaid-banner-up {
-  background: color-mix(in srgb, var(--qaid-positive) 90%, transparent);
-  color: white;
-}
-
-.qaid-banner-down {
-  background: color-mix(in srgb, var(--qaid-negative) 90%, transparent);
-  color: white;
-}
-
-.qaid-banner-text {
-  font-weight: 500;
-}
-
-.qaid-banner-hint {
-  margin-left: 0.5rem;
-  opacity: 0.75;
 }
 
 @keyframes qaid-slideDown {
@@ -246,19 +212,6 @@ button.qaid-btn-structural {
 
 .qaid-type-up .qaid-scope-dot {
   background: var(--qaid-positive);
-}
-
-/* Element highlight on hover */
-.qaid-highlight {
-  outline: 3px solid color-mix(in srgb, var(--qaid-negative) 80%, transparent) !important;
-  outline-offset: 2px !important;
-  background-color: color-mix(in srgb, var(--qaid-negative) 10%, transparent) !important;
-  transition: outline 0.1s ease, background-color 0.1s ease;
-}
-
-body.qaid-targeting.qaid-type-up .qaid-highlight {
-  outline-color: color-mix(in srgb, var(--qaid-positive) 80%, transparent) !important;
-  background-color: color-mix(in srgb, var(--qaid-positive) 10%, transparent) !important;
 }
 
 /* Selected element marker */

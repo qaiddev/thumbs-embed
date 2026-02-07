@@ -174,9 +174,9 @@ describe("captureDomScreenshot", () => {
     expect(ignoreElementsFn).toBeDefined();
 
     // Test that qaid elements are ignored
-    const widget = document.createElement("div");
-    widget.className = "qaid-widget";
-    expect(ignoreElementsFn!(widget)).toBe(true);
+    const buttons = document.createElement("div");
+    buttons.className = "qaid-buttons";
+    expect(ignoreElementsFn!(buttons)).toBe(true);
 
     const backdrop = document.createElement("div");
     backdrop.className = "qaid-backdrop";

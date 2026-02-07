@@ -43,31 +43,34 @@ export function isMobileViewport(breakpoint = 640): boolean {
 }
 
 /**
- * Get element at point, temporarily hiding an overlay element
+ * Get element at point, temporarily hiding shadow hosts so elementFromPoint
+ * sees through to the page elements underneath.
+ * Uses visibility:hidden which skips the element in elementFromPoint without
+ * triggering reflow.
  */
 export function getElementAtPointUnderOverlay(
   x: number,
   y: number,
-  overlay: HTMLElement
+  hosts: HTMLElement[]
 ): Element | null {
-  const originalPointerEvents = overlay.style.pointerEvents;
-  overlay.style.pointerEvents = "none";
+  const saved = hosts.map((h) => h.style.visibility);
+  hosts.forEach((h) => (h.style.visibility = "hidden"));
   const element = document.elementFromPoint(x, y);
-  overlay.style.pointerEvents = originalPointerEvents;
+  hosts.forEach((h, i) => (h.style.visibility = saved[i]));
   return element;
 }
 
 /**
  * Check if an element is part of the feedback embed
+ * With shadow DOM, embed elements are inside shadow hosts marked with
+ * data-qaid-embed or data-qaid-embed-overlay
  */
 export function isEmbedElement(element: Element | null): boolean {
   if (!element) return false;
-  return !!(
-    element.closest(".qaid-widget") ||
-    element.closest(".qaid-targeting-overlay") ||
-    element.closest(".qaid-modal-container") ||
-    element.closest(".qaid-bottom-sheet")
-  );
+  // Check if the element itself is a shadow host
+  if (element.hasAttribute("data-qaid-embed") || element.hasAttribute("data-qaid-embed-overlay")) return true;
+  // Check ancestors for shadow host
+  return !!element.closest("[data-qaid-embed], [data-qaid-embed-overlay]");
 }
 
 /**

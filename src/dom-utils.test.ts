@@ -84,34 +84,54 @@ describe("dom-utils", () => {
   });
 
   describe("getElementAtPointUnderOverlay", () => {
-    it("should temporarily hide overlay to find element underneath", () => {
+    it("should temporarily hide shadow host using visibility to find element underneath", () => {
       const target = document.createElement("div");
       target.id = "target";
       target.style.cssText =
         "position: fixed; top: 0; left: 0; width: 100px; height: 100px;";
       container.appendChild(target);
 
-      const overlay = document.createElement("div");
-      overlay.style.cssText =
-        "position: fixed; top: 0; left: 0; width: 200px; height: 200px; pointer-events: auto;";
-      container.appendChild(overlay);
+      const shadowHost = document.createElement("div");
+      shadowHost.style.cssText =
+        "position: fixed; top: 0; left: 0; width: 200px; height: 200px;";
+      container.appendChild(shadowHost);
 
       // Note: elementFromPoint doesn't work in happy-dom as expected
       // This is more of an integration test that would work in a real browser
-      const result = getElementAtPointUnderOverlay(50, 50, overlay);
+      const result = getElementAtPointUnderOverlay(50, 50, [shadowHost]);
 
-      // In happy-dom, elementFromPoint may not work correctly
-      // Just verify it restores pointer events
-      expect(overlay.style.pointerEvents).toBe("auto");
+      // Verify it restores original visibility (should be empty string since none was set)
+      expect(shadowHost.style.visibility).toBe("");
     });
 
-    it("should restore original pointer events", () => {
-      const overlay = document.createElement("div");
-      overlay.style.pointerEvents = "none";
+    it("should restore original visibility", () => {
+      const shadowHost = document.createElement("div");
+      shadowHost.style.visibility = "visible";
 
-      getElementAtPointUnderOverlay(0, 0, overlay);
+      getElementAtPointUnderOverlay(0, 0, [shadowHost]);
 
-      expect(overlay.style.pointerEvents).toBe("none");
+      expect(shadowHost.style.visibility).toBe("visible");
+    });
+
+    it("should restore visibility even when originally hidden", () => {
+      const shadowHost = document.createElement("div");
+      shadowHost.style.visibility = "hidden";
+
+      getElementAtPointUnderOverlay(0, 0, [shadowHost]);
+
+      expect(shadowHost.style.visibility).toBe("hidden");
+    });
+
+    it("should hide and restore multiple hosts", () => {
+      const host1 = document.createElement("div");
+      host1.style.visibility = "visible";
+      const host2 = document.createElement("div");
+      host2.style.visibility = "collapse";
+
+      getElementAtPointUnderOverlay(0, 0, [host1, host2]);
+
+      expect(host1.style.visibility).toBe("visible");
+      expect(host2.style.visibility).toBe("collapse");
     });
   });
 
@@ -120,43 +140,65 @@ describe("dom-utils", () => {
       expect(isEmbedElement(null)).toBe(false);
     });
 
-    it("should return true for qaid-widget", () => {
-      const embedContainer = document.createElement("div");
-      embedContainer.className = "qaid-widget";
+    it("should return true for element with data-qaid-embed attribute", () => {
+      const embedHost = document.createElement("div");
+      embedHost.setAttribute("data-qaid-embed", "");
+      container.appendChild(embedHost);
+
+      expect(isEmbedElement(embedHost)).toBe(true);
+    });
+
+    it("should return true for child of element with data-qaid-embed attribute", () => {
+      const embedHost = document.createElement("div");
+      embedHost.setAttribute("data-qaid-embed", "");
       const child = document.createElement("button");
-      embedContainer.appendChild(child);
-      container.appendChild(embedContainer);
+      embedHost.appendChild(child);
+      container.appendChild(embedHost);
 
       expect(isEmbedElement(child)).toBe(true);
     });
 
-    it("should return true for qaid-targeting-overlay", () => {
-      const overlay = document.createElement("div");
-      overlay.className = "qaid-targeting-overlay";
-      container.appendChild(overlay);
+    it("should return true for deeply nested child of data-qaid-embed", () => {
+      const embedHost = document.createElement("div");
+      embedHost.setAttribute("data-qaid-embed", "");
+      const inner = document.createElement("div");
+      const deepChild = document.createElement("span");
+      inner.appendChild(deepChild);
+      embedHost.appendChild(inner);
+      container.appendChild(embedHost);
 
-      expect(isEmbedElement(overlay)).toBe(true);
-    });
-
-    it("should return true for qaid-modal-container", () => {
-      const modal = document.createElement("div");
-      modal.className = "qaid-modal-container";
-      container.appendChild(modal);
-
-      expect(isEmbedElement(modal)).toBe(true);
-    });
-
-    it("should return true for qaid-bottom-sheet", () => {
-      const sheet = document.createElement("div");
-      sheet.className = "qaid-bottom-sheet";
-      container.appendChild(sheet);
-
-      expect(isEmbedElement(sheet)).toBe(true);
+      expect(isEmbedElement(deepChild)).toBe(true);
     });
 
     it("should return false for regular element", () => {
       const el = document.createElement("div");
       el.className = "some-class";
+      container.appendChild(el);
+
+      expect(isEmbedElement(el)).toBe(false);
+    });
+
+    it("should return true for element with data-qaid-embed-overlay attribute", () => {
+      const overlayHost = document.createElement("div");
+      overlayHost.setAttribute("data-qaid-embed-overlay", "");
+      container.appendChild(overlayHost);
+
+      expect(isEmbedElement(overlayHost)).toBe(true);
+    });
+
+    it("should return true for child of data-qaid-embed-overlay", () => {
+      const overlayHost = document.createElement("div");
+      overlayHost.setAttribute("data-qaid-embed-overlay", "");
+      const child = document.createElement("div");
+      overlayHost.appendChild(child);
+      container.appendChild(overlayHost);
+
+      expect(isEmbedElement(child)).toBe(true);
+    });
+
+    it("should return false for element with qaid class but no data-qaid-embed ancestor", () => {
+      const el = document.createElement("div");
+      el.className = "qaid-buttons";
       container.appendChild(el);
 
       expect(isEmbedElement(el)).toBe(false);

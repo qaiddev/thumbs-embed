@@ -8,7 +8,7 @@ import type {
   FeedbackResponse,
 } from "./types";
 import { THUMBS_UP_ICON, THUMBS_DOWN_ICON, RECORD_ICON } from "./icons";
-import { injectStyles, removeStyles, buildCssVars, applyCssVars } from "./styles";
+import { injectStyles, removeStyles, buildCssVars, applyCssVars, getEmbedStyles } from "./styles";
 import { generateElementInfo } from "./element-selector";
 import { calculateModalAndArrowPosition } from "./modal-positioning";
 import { captureConsoleErrors, type ConsoleCapture } from "./console-capture";
@@ -48,9 +48,9 @@ function getOrCreateVisitorId(): string {
 }
 
 /**
- * FeedbackEmbed - Standalone feedback collection embed
+ * QaidFeedback - Standalone feedback collection embed
  */
-export class FeedbackEmbed {
+export class QaidFeedback {
   private config: ResolvedFeedbackConfig;
   private state: EmbedState = "IDLE";
   private feedbackData: FeedbackData = {
@@ -86,8 +86,16 @@ export class FeedbackEmbed {
   private isRecording = false;
   private isSendingVideo = false;
 
-  // DOM elements
-  private container: HTMLDivElement | null = null;
+  // Shadow DOM
+  private shadowHost: HTMLDivElement | null = null;
+  private shadowRoot: ShadowRoot | null = null;
+
+  // Overlay shadow DOM (always on document.body for full-page coverage)
+  private overlayShadowHost: HTMLDivElement | null = null;
+  private overlayShadowRoot: ShadowRoot | null = null;
+
+  // DOM elements (inside shadow root)
+  private buttonsContainer: HTMLDivElement | null = null;
   private isUserProvidedContainer = false;
   private overlayContainer: HTMLDivElement | null = null;
   private captureLayer: HTMLDivElement | null = null;
@@ -113,6 +121,7 @@ export class FeedbackEmbed {
       apiKey: config.apiKey ?? "",
       container: config.container ?? "",
       buttonClass: config.buttonClass ?? "",
+      direction: config.direction ?? "horizontal",
       position: config.position ?? "bottom-right",
       offset: {
         x: config.offset?.x ?? 16,
@@ -128,8 +137,6 @@ export class FeedbackEmbed {
       buttonSize: config.buttonSize ?? "medium",
       text: {
         tooltip: config.text?.tooltip ?? "",
-        bannerText: config.text?.bannerText ?? "Click on any element to target it with your feedback",
-        bannerHint: config.text?.bannerHint ?? "(Press Escape to cancel)",
         modalTitle: config.text?.modalTitle ?? "Thank you for your feedback!",
         modalSubtitle: config.text?.modalSubtitle ?? "Would you like to add a message to help us understand your feedback better?",
         placeholder: config.text?.placeholder ?? "Optional: Tell us more about your experience...",
@@ -151,6 +158,7 @@ export class FeedbackEmbed {
       positiveIcon: config.positiveIcon ?? "",
       negativeIcon: config.negativeIcon ?? "",
       hideThumbs: config.hideThumbs ?? false,
+      css: config.css ?? "",
       captureVideo: config.captureVideo ?? false,
       videoOptions: {
         maxDuration: config.videoOptions?.maxDuration ?? 15,
@@ -175,7 +183,7 @@ export class FeedbackEmbed {
   }
 
   private init(): void {
-    // Inject shared structural styles (reference counted)
+    // Inject shared light DOM styles (cursor + highlight, reference counted)
     injectStyles();
 
     // Build per-instance CSS variables
@@ -194,7 +202,7 @@ export class FeedbackEmbed {
     this.checkMobile();
     window.addEventListener("resize", this.boundResize);
 
-    // Create main embed container
+    // Create shadow host and embed
     this.createEmbed();
 
     // Capture console errors
@@ -213,6 +221,12 @@ export class FeedbackEmbed {
   }
 
   private createEmbed(): void {
+    // Create the shadow host element
+    this.shadowHost = document.createElement("div");
+    this.shadowHost.setAttribute("data-qaid-embed", "");
+    this.shadowHost.style.position = "static";
+    this.shadowHost.style.display = "contents";
+
     // Check if user provided a container selector
     let userContainer: HTMLElement | null = null;
     if (this.config.container) {
@@ -220,35 +234,62 @@ export class FeedbackEmbed {
     }
 
     if (userContainer) {
-      // Use user-provided container
-      this.container = userContainer as HTMLDivElement;
-      this.container.classList.add("qaid-widget", `qaid-${this.config.position}`);
-      if (this.config.incognito) {
-        this.container.classList.add("qaid-incognito");
-      }
+      userContainer.appendChild(this.shadowHost);
       this.isUserProvidedContainer = true;
     } else {
-      // Create our own fixed-position container
-      this.container = document.createElement("div");
-      this.container.className = `qaid-widget qaid-auto-container qaid-${this.config.position}${this.config.incognito ? " qaid-incognito" : ""}`;
-      this.container.style.zIndex = String(this.config.zIndex);
+      // Set shadow host to fixed positioning for auto-created containers
+      this.shadowHost.style.position = "fixed";
+      this.shadowHost.style.display = "block";
+      this.shadowHost.style.inset = "0";
+      this.shadowHost.style.pointerEvents = "none";
+      this.shadowHost.style.zIndex = String(this.config.zIndex);
+      document.body.appendChild(this.shadowHost);
+    }
+
+    // Attach shadow root
+    this.shadowRoot = this.shadowHost.attachShadow({ mode: "open" });
+
+    // Inject base styles into shadow root
+    const baseStyle = document.createElement("style");
+    baseStyle.textContent = getEmbedStyles();
+    this.shadowRoot.appendChild(baseStyle);
+
+    // Inject theme CSS if provided
+    if (this.config.css) {
+      const themeStyle = document.createElement("style");
+      themeStyle.textContent = this.config.css;
+      this.shadowRoot.appendChild(themeStyle);
+    }
+
+    // Create buttons container inside shadow root
+    const dirClass = this.config.direction === "vertical" ? "qaid-vertical" : "";
+    if (this.isUserProvidedContainer) {
+      this.buttonsContainer = document.createElement("div");
+      this.buttonsContainer.className = `qaid-buttons qaid-${this.config.position} ${dirClass}`.trim();
+      if (this.config.incognito) {
+        this.buttonsContainer.classList.add("qaid-incognito");
+      }
+    } else {
+      this.buttonsContainer = document.createElement("div");
+      this.buttonsContainer.className = `qaid-buttons qaid-auto-container qaid-${this.config.position} ${dirClass}${this.config.incognito ? " qaid-incognito" : ""}`.trim();
+      this.buttonsContainer.style.pointerEvents = "auto";
       // Apply custom offset
       const { x: offsetX, y: offsetY } = this.config.offset;
       if (this.config.position.includes("right")) {
-        this.container.style.right = `${offsetX}px`;
+        this.buttonsContainer.style.right = `${offsetX}px`;
       } else {
-        this.container.style.left = `${offsetX}px`;
+        this.buttonsContainer.style.left = `${offsetX}px`;
       }
       if (this.config.position.includes("bottom")) {
-        this.container.style.bottom = `${offsetY}px`;
+        this.buttonsContainer.style.bottom = `${offsetY}px`;
       } else {
-        this.container.style.top = `${offsetY}px`;
+        this.buttonsContainer.style.top = `${offsetY}px`;
       }
-      document.body.appendChild(this.container);
     }
 
-    // Apply per-instance CSS variables to the container
-    this.applyVars(this.container);
+    // Apply per-instance CSS variables to buttons container
+    this.applyVars(this.buttonsContainer);
+    this.shadowRoot.appendChild(this.buttonsContainer);
 
     // Determine button classes
     const useCustomClass = !!this.config.buttonClass;
@@ -257,17 +298,15 @@ export class FeedbackEmbed {
       : "qaid-btn";
 
     // Determine tooltip text
-    const defaultTooltip = this.config.skipTargeting
-      ? "Feedback for us?"
-      : "Feedback for us?";
+    const defaultTooltip = "Feedback for us?";
     const tooltipText = this.config.text.tooltip || defaultTooltip;
 
-    // Create shared tooltip element
+    // Create shared tooltip element (inside shadow root)
     const tooltip = document.createElement("div");
     tooltip.className = "qaid-tooltip-text";
     tooltip.textContent = tooltipText;
     this.applyVars(tooltip);
-    document.body.appendChild(tooltip);
+    this.shadowRoot.appendChild(tooltip);
     this.tooltipElement = tooltip;
 
     // Thumbs up/down buttons (unless hidden)
@@ -298,8 +337,8 @@ export class FeedbackEmbed {
       downBtn.addEventListener("mouseleave", () => this.hideTooltip());
       downWrapper.appendChild(downBtn);
 
-      this.container.appendChild(upWrapper);
-      this.container.appendChild(downWrapper);
+      this.buttonsContainer.appendChild(upWrapper);
+      this.buttonsContainer.appendChild(downWrapper);
     }
 
     // Record button (only when captureVideo is true and browser supports it)
@@ -316,8 +355,42 @@ export class FeedbackEmbed {
       recordBtn.addEventListener("mouseleave", () => this.hideTooltip());
       recordWrapper.appendChild(recordBtn);
 
-      this.container.appendChild(recordWrapper);
+      this.buttonsContainer.appendChild(recordWrapper);
     }
+  }
+
+  /**
+   * Lazily create a separate overlay shadow host on document.body.
+   * This host contains all full-page elements (targeting overlay, marker,
+   * backdrop, modal, recording indicator, video preview) so they escape
+   * clip-path / transform containing blocks in user containers.
+   */
+  private ensureOverlayHost(): ShadowRoot {
+    if (this.overlayShadowRoot) return this.overlayShadowRoot;
+
+    this.overlayShadowHost = document.createElement("div");
+    this.overlayShadowHost.setAttribute("data-qaid-embed-overlay", "");
+    this.overlayShadowHost.style.position = "fixed";
+    this.overlayShadowHost.style.inset = "0";
+    this.overlayShadowHost.style.pointerEvents = "none";
+    this.overlayShadowHost.style.zIndex = String(this.config.zIndex);
+    document.body.appendChild(this.overlayShadowHost);
+
+    this.overlayShadowRoot = this.overlayShadowHost.attachShadow({ mode: "open" });
+
+    // Inject base styles into overlay shadow root
+    const baseStyle = document.createElement("style");
+    baseStyle.textContent = getEmbedStyles();
+    this.overlayShadowRoot.appendChild(baseStyle);
+
+    // Inject theme CSS if provided
+    if (this.config.css) {
+      const themeStyle = document.createElement("style");
+      themeStyle.textContent = this.config.css;
+      this.overlayShadowRoot.appendChild(themeStyle);
+    }
+
+    return this.overlayShadowRoot;
   }
 
   private tooltipElement: HTMLElement | null = null;
@@ -410,7 +483,7 @@ export class FeedbackEmbed {
     this.feedbackData.elementText = null;
     this.selectedBounds.visible = false;
 
-    // Add class to body
+    // Add class to body (light DOM — for cursor override)
     document.body.classList.add("qaid-targeting");
     if (type === "up") {
       document.body.classList.add("qaid-type-up");
@@ -422,14 +495,21 @@ export class FeedbackEmbed {
     document.body.style.setProperty("--qaid-positive", this.cssVars["--qaid-positive"]);
     document.body.style.setProperty("--qaid-negative", this.cssVars["--qaid-negative"]);
 
-    // Create targeting overlay
+    // Create targeting overlay (in overlay shadow host)
     this.createTargetingOverlay();
+
+    // Enable pointer events on overlay host for targeting
+    if (this.overlayShadowHost) {
+      this.overlayShadowHost.style.pointerEvents = "auto";
+    }
 
     // Add event listeners
     document.addEventListener("keydown", this.boundKeyDown);
   }
 
   private createTargetingOverlay(): void {
+    const root = this.ensureOverlayHost();
+
     this.overlayContainer = document.createElement("div");
     this.overlayContainer.className = `qaid-targeting-overlay qaid-type-${this.feedbackData.feedbackType}`;
 
@@ -438,14 +518,6 @@ export class FeedbackEmbed {
     this.captureLayer.className = "qaid-capture-layer";
     this.captureLayer.addEventListener("mousemove", this.boundMouseMove);
     this.captureLayer.addEventListener("click", this.boundClick);
-
-    // Banner
-    const banner = document.createElement("div");
-    banner.className = `qaid-banner qaid-banner-${this.feedbackData.feedbackType}`;
-    banner.innerHTML = `
-      <span class="qaid-banner-text">${this.config.text.bannerText}</span>
-      <span class="qaid-banner-hint">${this.config.text.bannerHint}</span>
-    `;
 
     // Vignette
     const vignette = document.createElement("div");
@@ -468,14 +540,13 @@ export class FeedbackEmbed {
     `;
 
     this.overlayContainer.appendChild(this.captureLayer);
-    this.overlayContainer.appendChild(banner);
     this.overlayContainer.appendChild(vignette);
     this.overlayContainer.appendChild(this.crosshairH);
     this.overlayContainer.appendChild(this.crosshairV);
     this.overlayContainer.appendChild(this.scope);
 
     this.applyVars(this.overlayContainer);
-    document.body.appendChild(this.overlayContainer);
+    root.appendChild(this.overlayContainer);
   }
 
   private handleKeyDown(e: KeyboardEvent): void {
@@ -508,12 +579,13 @@ export class FeedbackEmbed {
       this.scope.style.top = `${e.clientY}px`;
     }
 
-    // Find element underneath
-    if (this.captureLayer) {
+    // Find element underneath — hide both shadow hosts
+    if (this.captureLayer && this.shadowHost) {
+      const hosts = [this.shadowHost, this.overlayShadowHost].filter(Boolean) as HTMLElement[];
       const elementUnder = getElementAtPointUnderOverlay(
         e.clientX,
         e.clientY,
-        this.captureLayer
+        hosts
       );
 
       if (elementUnder && !isEmbedElement(elementUnder)) {
@@ -530,13 +602,14 @@ export class FeedbackEmbed {
   }
 
   private handleClick(e: MouseEvent): void {
-    if (!this.captureLayer) return;
+    if (!this.captureLayer || !this.shadowHost) return;
 
-    // Find element underneath
+    // Find element underneath — hide both shadow hosts
+    const hosts = [this.shadowHost, this.overlayShadowHost].filter(Boolean) as HTMLElement[];
     const target = getElementAtPointUnderOverlay(
       e.clientX,
       e.clientY,
-      this.captureLayer
+      hosts
     );
 
     if (!target || isEmbedElement(target)) {
@@ -568,6 +641,11 @@ export class FeedbackEmbed {
     document.body.style.removeProperty("--qaid-positive");
     document.body.style.removeProperty("--qaid-negative");
 
+    // Reset overlay host pointer events
+    if (this.overlayShadowHost) {
+      this.overlayShadowHost.style.pointerEvents = "none";
+    }
+
     this.state = "SELECTED";
 
     // Show marker and submit feedback
@@ -584,6 +662,11 @@ export class FeedbackEmbed {
     document.body.style.removeProperty("--qaid-positive");
     document.body.style.removeProperty("--qaid-negative");
     document.removeEventListener("keydown", this.boundKeyDown);
+
+    // Reset overlay host pointer events
+    if (this.overlayShadowHost) {
+      this.overlayShadowHost.style.pointerEvents = "none";
+    }
 
     this.state = "IDLE";
     this.feedbackData.feedbackType = null;
@@ -606,6 +689,7 @@ export class FeedbackEmbed {
 
   private showSelectedMarker(): void {
     if (!this.selectedBounds.visible) return;
+    const root = this.ensureOverlayHost();
 
     this.marker = document.createElement("div");
     this.marker.className = "qaid-selected-marker";
@@ -616,7 +700,7 @@ export class FeedbackEmbed {
     this.marker.style.zIndex = String(this.config.zIndex + 1);
 
     this.applyVars(this.marker);
-    document.body.appendChild(this.marker);
+    root.appendChild(this.marker);
   }
 
   private hideSelectedMarker(): void {
@@ -687,10 +771,18 @@ export class FeedbackEmbed {
 
     // Always show modal (even if API failed - useful for demos)
     this.state = "MODAL_OPEN";
+
     this.showModal();
+
+    // Enable pointer events on overlay host for modal
+    if (this.overlayShadowHost) {
+      this.overlayShadowHost.style.pointerEvents = "auto";
+    }
   }
 
   private showModal(): void {
+    const root = this.ensureOverlayHost();
+
     // Create backdrop
     this.backdrop = document.createElement("div");
     this.backdrop.className = "qaid-backdrop";
@@ -705,11 +797,13 @@ export class FeedbackEmbed {
       this.showPositionedModal();
     }
 
-    document.body.appendChild(this.backdrop);
+    root.appendChild(this.backdrop);
     document.addEventListener("keydown", this.boundKeyDown);
   }
 
   private showBottomSheet(): void {
+    const root = this.ensureOverlayHost();
+
     const sheet = document.createElement("div");
     sheet.className = "qaid-bottom-sheet";
     sheet.style.zIndex = String(this.config.zIndex + 3);
@@ -722,13 +816,15 @@ export class FeedbackEmbed {
     `;
 
     this.applyVars(sheet);
-    document.body.appendChild(sheet);
+    root.appendChild(sheet);
     this.modalContainer = sheet;
 
     this.setupModalInteractions();
   }
 
   private showPositionedModal(): void {
+    const root = this.ensureOverlayHost();
+
     const { modal, arrow } = calculateModalAndArrowPosition(
       this.selectedBounds,
       window.innerWidth,
@@ -759,7 +855,7 @@ export class FeedbackEmbed {
     this.modalContainer.appendChild(arrowEl);
     this.modalContainer.appendChild(box);
     this.applyVars(this.modalContainer);
-    document.body.appendChild(this.modalContainer);
+    root.appendChild(this.modalContainer);
 
     this.setupModalInteractions();
   }
@@ -885,6 +981,11 @@ export class FeedbackEmbed {
     document.removeEventListener("keydown", this.boundKeyDown);
     this.hideSelectedMarker();
 
+    // Reset overlay host pointer events
+    if (this.overlayShadowHost) {
+      this.overlayShadowHost.style.pointerEvents = "none";
+    }
+
     this.state = "IDLE";
     this.feedbackId = null;
     this.feedbackData.feedbackType = null;
@@ -967,6 +1068,8 @@ export class FeedbackEmbed {
   }
 
   private showRecordingIndicator(): void {
+    const root = this.ensureOverlayHost();
+
     this.recordingIndicator = document.createElement("div");
     this.recordingIndicator.className = "qaid-recording-indicator";
     this.recordingIndicator.style.zIndex = String(this.config.zIndex + 100);
@@ -989,7 +1092,13 @@ export class FeedbackEmbed {
     this.recordingIndicator.appendChild(stopBtn);
 
     this.applyVars(this.recordingIndicator);
-    document.body.appendChild(this.recordingIndicator);
+
+    // Enable pointer events on overlay host for recording indicator
+    if (this.overlayShadowHost) {
+      this.overlayShadowHost.style.pointerEvents = "auto";
+    }
+
+    root.appendChild(this.recordingIndicator);
   }
 
   private updateRecordingTimer(elapsed: number): void {
@@ -1016,6 +1125,7 @@ export class FeedbackEmbed {
 
   private showRecordingPreview(): void {
     if (!this.recordedBlob) return;
+    const root = this.ensureOverlayHost();
 
     const videoUrl = URL.createObjectURL(this.recordedBlob);
 
@@ -1076,7 +1186,13 @@ export class FeedbackEmbed {
 
     this.videoPreview.appendChild(box);
     this.applyVars(this.videoPreview);
-    document.body.appendChild(this.videoPreview);
+
+    // Enable pointer events on overlay host for video preview
+    if (this.overlayShadowHost) {
+      this.overlayShadowHost.style.pointerEvents = "auto";
+    }
+
+    root.appendChild(this.videoPreview);
 
     // Listen for escape key
     document.addEventListener("keydown", this.boundKeyDown);
@@ -1161,11 +1277,16 @@ export class FeedbackEmbed {
 
     // Re-enable buttons
     this.setButtonsDisabled(false);
+
+    // Reset overlay host pointer events if nothing else needs them
+    if (this.overlayShadowHost && this.state === "IDLE") {
+      this.overlayShadowHost.style.pointerEvents = "none";
+    }
   }
 
   private setButtonsDisabled(disabled: boolean): void {
-    if (!this.container) return;
-    const buttons = this.container.querySelectorAll<HTMLButtonElement>("button.qaid-btn, button.qaid-btn-structural");
+    if (!this.buttonsContainer) return;
+    const buttons = this.buttonsContainer.querySelectorAll<HTMLButtonElement>("button.qaid-btn, button.qaid-btn-structural");
     buttons.forEach((btn) => {
       if (disabled) {
         // Don't disable the record button itself (it has its own state)
@@ -1198,39 +1319,35 @@ export class FeedbackEmbed {
     window.removeEventListener("resize", this.boundResize);
     document.removeEventListener("keydown", this.boundKeyDown);
 
-    // Clean up highlights
+    // Clean up highlights (light DOM)
     removeAllByClass("qaid-highlight");
     document.body.classList.remove("qaid-targeting", "qaid-type-up");
     document.body.style.removeProperty("--qaid-positive");
     document.body.style.removeProperty("--qaid-negative");
 
-    // Remove DOM elements
-    if (this.container) {
-      if (this.isUserProvidedContainer) {
-        // Just clear the contents and remove our classes
-        this.container.innerHTML = "";
-        this.container.classList.remove("qaid-widget", `qaid-${this.config.position}`, "qaid-incognito");
-      } else {
-        this.container.remove();
-      }
-      this.container = null;
+    // Remove shadow hosts from DOM (this removes shadow roots and all their contents)
+    if (this.shadowHost) {
+      this.shadowHost.remove();
+      this.shadowHost = null;
+      this.shadowRoot = null;
     }
-    this.removeTargetingOverlay();
-    this.hideSelectedMarker();
-    if (this.modalContainer) {
-      this.modalContainer.remove();
-      this.modalContainer = null;
+    if (this.overlayShadowHost) {
+      this.overlayShadowHost.remove();
+      this.overlayShadowHost = null;
+      this.overlayShadowRoot = null;
     }
-    if (this.backdrop) {
-      this.backdrop.remove();
-      this.backdrop = null;
-    }
-    if (this.tooltipElement) {
-      this.tooltipElement.remove();
-      this.tooltipElement = null;
-    }
+    this.buttonsContainer = null;
+    this.overlayContainer = null;
+    this.captureLayer = null;
+    this.crosshairH = null;
+    this.crosshairV = null;
+    this.scope = null;
+    this.marker = null;
+    this.modalContainer = null;
+    this.backdrop = null;
+    this.tooltipElement = null;
 
-    // Remove styles
+    // Remove light DOM styles (reference counted)
     removeStyles();
   }
 }

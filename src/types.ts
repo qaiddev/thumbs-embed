@@ -1,5 +1,5 @@
 /**
- * Configuration options for the FeedbackEmbed
+ * Configuration options for the QaidFeedback
  */
 export interface FeedbackConfig {
   /** Required: API endpoint URL for submitting feedback */
@@ -10,6 +10,8 @@ export interface FeedbackConfig {
   container?: string;
   /** Custom CSS class to apply to thumb buttons. When provided, default button styles are not applied */
   buttonClass?: string;
+  /** Button layout direction. Default: 'horizontal' */
+  direction?: "horizontal" | "vertical";
   /** Position of the feedback buttons. Default: 'bottom-right'. Ignored if container is provided */
   position?: "bottom-right" | "bottom-left" | "top-right" | "top-left";
   /** Offset from edge in pixels. Default: { x: 16, y: 16 } */
@@ -33,10 +35,6 @@ export interface FeedbackConfig {
   text?: {
     /** Tooltip text for buttons */
     tooltip?: string;
-    /** Banner text during targeting */
-    bannerText?: string;
-    /** Banner hint text */
-    bannerHint?: string;
     /** Modal title */
     modalTitle?: string;
     /** Modal subtitle */
@@ -75,6 +73,8 @@ export interface FeedbackConfig {
   negativeIcon?: string;
   /** When true, hide thumbs up/down buttons (only show video button if enabled). Default: false */
   hideThumbs?: boolean;
+  /** Custom CSS to inject into the embed's shadow root for theming */
+  css?: string;
   /** Screenshot capture method. "dom" uses html2canvas (no permission), "permission" uses Screen Capture API. Default: "permission" */
   screenshotMethod?: "dom" | "permission";
   /** Screenshot options */
@@ -198,6 +198,7 @@ export interface ResolvedFeedbackConfig {
   apiKey: string;
   container: string;
   buttonClass: string;
+  direction: "horizontal" | "vertical";
   position: "bottom-right" | "bottom-left" | "top-right" | "top-left";
   offset: { x: number; y: number };
   zIndex: number;
@@ -210,8 +211,6 @@ export interface ResolvedFeedbackConfig {
   buttonSize: "small" | "medium" | "large";
   text: {
     tooltip: string;
-    bannerText: string;
-    bannerHint: string;
     modalTitle: string;
     modalSubtitle: string;
     placeholder: string;
@@ -233,6 +232,7 @@ export interface ResolvedFeedbackConfig {
   positiveIcon: string;
   negativeIcon: string;
   hideThumbs: boolean;
+  css: string;
   captureVideo: boolean;
   videoOptions: {
     maxDuration: number;

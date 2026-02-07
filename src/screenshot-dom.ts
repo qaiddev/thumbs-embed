@@ -111,7 +111,7 @@ export async function captureDomScreenshot(
         // Hide all qaid elements from the screenshot
         if (el instanceof HTMLElement) {
           return (
-            el.classList.contains("qaid-widget") ||
+            el.classList.contains("qaid-buttons") ||
             el.classList.contains("qaid-targeting-overlay") ||
             el.classList.contains("qaid-modal-container") ||
             el.classList.contains("qaid-bottom-sheet") ||

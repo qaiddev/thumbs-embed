@@ -5,9 +5,9 @@
  *
  * Usage via ES module:
  * ```typescript
- * import { FeedbackEmbed } from '@qaiddev/thumbs-embed';
+ * import { QaidFeedback } from '@qaiddev/thumbs-embed';
  *
- * const embed = new FeedbackEmbed({
+ * const embed = new QaidFeedback({
  *   endpoint: '/api/feedback'
  * });
  * ```
@@ -21,16 +21,16 @@
  * ```html
  * <script src="feedback.umd.cjs"></script>
  * <script>
- *   const embed = new FeedbackEmbed.FeedbackEmbed({
+ *   const embed = new QaidFeedback.QaidFeedback({
  *     endpoint: '/api/feedback'
  *   });
  * </script>
  * ```
  */
 
-import { FeedbackEmbed } from "./embed";
+import { QaidFeedback } from "./embed";
 
-export { FeedbackEmbed };
+export { QaidFeedback };
 export type {
   FeedbackConfig,
   ResolvedFeedbackConfig,
@@ -52,6 +52,15 @@ export type { DomScreenshotOptions } from "./screenshot-dom";
 import type { FeedbackConfig } from "./types";
 
 /**
+ * Find theme CSS from an element matched by a CSS selector.
+ * Used by data-css-selector attribute and JSON cssSelector property.
+ */
+function findCssFromSelector(selector: string): string {
+  const el = document.querySelector(selector);
+  return el?.textContent?.trim() ?? "";
+}
+
+/**
  * Parse JSON config from a separate script tag with type="application/json"
  * Looks for: <script type="application/json" data-feedback-config>{ ... }</script>
  */
@@ -65,7 +74,13 @@ function parseJsonConfig(): Partial<FeedbackConfig> | null {
   if (!textContent) return null;
 
   try {
-    return JSON.parse(textContent);
+    const parsed = JSON.parse(textContent);
+    // Resolve cssSelector → css
+    if (parsed.cssSelector && !parsed.css) {
+      parsed.css = findCssFromSelector(parsed.cssSelector);
+      delete parsed.cssSelector;
+    }
+    return parsed;
   } catch {
     return null;
   }
@@ -104,8 +119,6 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
   const fontFamily = script.getAttribute("data-font-family");
   const fontSize = script.getAttribute("data-font-size");
   const tooltip = script.getAttribute("data-tooltip");
-  const bannerText = script.getAttribute("data-banner-text");
-  const bannerHint = script.getAttribute("data-banner-hint");
   const modalTitle = script.getAttribute("data-modal-title");
   const modalSubtitle = script.getAttribute("data-modal-subtitle");
   const placeholder = script.getAttribute("data-placeholder");
@@ -122,9 +135,12 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
   const hideThumbs = script.getAttribute("data-hide-thumbs");
   const videoMaxDuration = script.getAttribute("data-video-max-duration");
   const screenshotMethod = script.getAttribute("data-screenshot-method") as "dom" | "permission" | null;
+  const direction = script.getAttribute("data-direction") as "horizontal" | "vertical" | null;
+  const cssSelector = script.getAttribute("data-css-selector");
 
   return {
     endpoint,
+    css: cssSelector ? findCssFromSelector(cssSelector) : undefined,
     apiKey: apiKey ?? undefined,
     captureScreenshot: captureScreenshot === "true" ? true : undefined,
     screenshotOptions: (screenshotQuality || screenshotMaxWidth || screenshotMaxHeight) ? {
@@ -134,6 +150,7 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
     } : undefined,
     container: container ?? undefined,
     buttonClass: buttonClass ?? undefined,
+    direction: direction ?? undefined,
     position: position ?? undefined,
     zIndex: zIndex ? parseInt(zIndex, 10) : undefined,
     skipTargeting: skipTargeting === "true" ? true : undefined,
@@ -152,10 +169,8 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
       negative: negativeColor ?? undefined,
       marker: markerColor ?? undefined,
     },
-    text: (tooltip || bannerText || bannerHint || modalTitle || modalSubtitle || placeholder || submitButton || skipButton) ? {
+    text: (tooltip || modalTitle || modalSubtitle || placeholder || submitButton || skipButton) ? {
       tooltip: tooltip ?? undefined,
-      bannerText: bannerText ?? undefined,
-      bannerHint: bannerHint ?? undefined,
       modalTitle: modalTitle ?? undefined,
       modalSubtitle: modalSubtitle ?? undefined,
       placeholder: placeholder ?? undefined,
@@ -184,7 +199,7 @@ if (typeof document !== "undefined") {
     const config = jsonConfig ?? dataConfig;
 
     if (config?.endpoint) {
-      new FeedbackEmbed(config as FeedbackConfig);
+      new QaidFeedback(config as FeedbackConfig);
     }
   };
 

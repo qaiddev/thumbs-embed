@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { injectStyles, removeStyles, buildCssVars, applyCssVars, _resetStylesState } from "./styles";
+import { injectStyles, removeStyles, buildCssVars, applyCssVars, getEmbedStyles, _resetStylesState } from "./styles";
 
 describe("styles", () => {
   beforeEach(() => {
@@ -32,30 +32,52 @@ describe("styles", () => {
       removeStyles();
     });
 
-    it("should include button styles", () => {
+    it("should include targeting and highlight styles", () => {
       injectStyles();
 
       const style = document.getElementById("qaid-styles");
-      expect(style?.textContent).toContain("width:var(--qaid-btn-size)");
-      expect(style?.textContent).toContain("border-radius:50%");
+      expect(style?.textContent).toContain("qaid-targeting");
+      expect(style?.textContent).toContain("qaid-highlight");
     });
 
-    it("should include qaid- prefixed classes", () => {
+    it("should NOT include buttons or button styles (those are in shadow DOM)", () => {
       injectStyles();
 
       const style = document.getElementById("qaid-styles");
-      expect(style?.textContent).toContain(".qaid-widget");
-      expect(style?.textContent).toContain(".qaid-btn");
-      expect(style?.textContent).toContain(".qaid-modal");
+      expect(style?.textContent).not.toContain(".qaid-buttons");
+      expect(style?.textContent).not.toContain(".qaid-btn");
+      expect(style?.textContent).not.toContain(".qaid-modal");
+    });
+  });
+
+  describe("getEmbedStyles", () => {
+    it("should return a CSS string for shadow root injection", () => {
+      const css = getEmbedStyles();
+      expect(typeof css).toBe("string");
+      expect(css.length).toBeGreaterThan(0);
+    });
+
+    it("should include buttons styles", () => {
+      const css = getEmbedStyles();
+      expect(css).toContain(".qaid-buttons");
+    });
+
+    it("should include button styles", () => {
+      const css = getEmbedStyles();
+      expect(css).toContain("width:var(--qaid-btn-size)");
+      expect(css).toContain("border-radius:50%");
+    });
+
+    it("should include modal styles", () => {
+      const css = getEmbedStyles();
+      expect(css).toContain(".qaid-modal");
     });
 
     it("should include animations", () => {
-      injectStyles();
-
-      const style = document.getElementById("qaid-styles");
-      expect(style?.textContent).toContain("@keyframes");
-      expect(style?.textContent).toContain("qaid-slideDown");
-      expect(style?.textContent).toContain("qaid-markerPulse");
+      const css = getEmbedStyles();
+      expect(css).toContain("@keyframes");
+      expect(css).toContain("qaid-slideDown");
+      expect(css).toContain("qaid-markerPulse");
     });
   });
 

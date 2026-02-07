@@ -3,10 +3,14 @@
  * Uses .qaid- prefix to avoid conflicts
  */
 
-// Import CSS as minified string (vite handles minification in production)
-import baseStyles from "./styles.css?inline";
+// Import CSS as strings (vite handles minification in production)
+import shadowStyles from "./styles-shadow.css?inline";
+import lightStyles from "./styles-light.css?inline";
 
 let instanceCount = 0;
+
+/** Default button styles included in shadow root */
+const DEFAULT_BUTTON_STYLES = `button.qaid-btn{width:var(--qaid-btn-size);height:var(--qaid-btn-size);border-radius:50%;border:none;background:#f3f4f6;color:#374151;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);transition:background-color .2s,color .2s,transform .2s;-webkit-appearance:none;appearance:none;--qaid-hover-up-bg:var(--qaid-positive);--qaid-hover-up-color:#fff;--qaid-hover-down-bg:var(--qaid-negative);--qaid-hover-down-color:#fff}button.qaid-btn:hover{transform:scale(1.05)}button.qaid-btn-up:hover{background:var(--qaid-hover-up-bg);color:var(--qaid-hover-up-color)}button.qaid-btn-down:hover{background:var(--qaid-hover-down-bg);color:var(--qaid-hover-down-color)}button.qaid-btn svg{width:var(--qaid-icon-size);height:var(--qaid-icon-size)}`;
 
 export interface BuildCssVarsOptions {
   positiveColor?: string;
@@ -131,19 +135,31 @@ export function applyCssVars(el: HTMLElement, vars: Record<string, string>): voi
   }
 }
 
+/**
+ * Get the CSS string to inject into a shadow root
+ * Includes base shadow styles + default button styles
+ */
+export function getEmbedStyles(): string {
+  return shadowStyles + DEFAULT_BUTTON_STYLES;
+}
+
+/**
+ * Inject light DOM styles (cursor override + highlight)
+ * Reference-counted across instances
+ */
 export function injectStyles(): void {
   instanceCount++;
   if (instanceCount > 1) return;
 
-  // Default button styles (always included - themed embeds use custom classes so these won't apply)
-  const buttonStyles = `button.qaid-btn{width:var(--qaid-btn-size);height:var(--qaid-btn-size);border-radius:50%;border:none;background:#f3f4f6;color:#374151;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);transition:background-color .2s,color .2s,transform .2s;-webkit-appearance:none;appearance:none}button.qaid-btn:hover{transform:scale(1.05)}button.qaid-btn-up:hover{background:var(--qaid-positive);color:#fff}button.qaid-btn-down:hover{background:var(--qaid-negative);color:#fff}button.qaid-btn svg{width:var(--qaid-icon-size);height:var(--qaid-icon-size)}`;
-
   const style = document.createElement("style");
   style.id = "qaid-styles";
-  style.textContent = baseStyles + buttonStyles;
+  style.textContent = lightStyles;
   document.head.appendChild(style);
 }
 
+/**
+ * Remove light DOM styles when last instance is destroyed
+ */
 export function removeStyles(): void {
   if (instanceCount <= 0) return;
   instanceCount--;
