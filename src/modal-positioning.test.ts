@@ -145,44 +145,43 @@ describe("modal-positioning", () => {
     const modalWidth = 400;
 
     it("should point to center of element", () => {
-      const bounds = createBounds({ x: 200, width: 100 }); // Center at 250
+      const bounds = createBounds({ x: 200, width: 100, clickX: 250 }); // Click at center
       const modalLeft = 50; // Modal starts at 50
 
       const result = calculateArrowPosition(bounds, modalLeft, modalWidth);
 
-      // Arrow should be at 250 - 50 = 200
-      expect(result).toBe(200);
+      // arrowLeft = clickX - modalLeft - arrowWidth/2 = 250 - 50 - 12 = 188
+      expect(result).toBe(188);
     });
 
     it("should clamp to minimum offset", () => {
-      const bounds = createBounds({ x: 0, width: 20 }); // Center at 10
+      const bounds = createBounds({ x: 0, width: 20, clickX: 10 }); // Click at center of narrow element
       const modalLeft = 16;
 
       const result = calculateArrowPosition(bounds, modalLeft, modalWidth, 24);
 
-      expect(result).toBe(24); // Clamped to minOffset
+      // arrowLeft = 10 - 16 - 12 = -18, clamped to minOffset 24
+      expect(result).toBe(24);
     });
 
     it("should clamp to maximum offset", () => {
-      const bounds = createBounds({ x: 900, width: 100 }); // Center at 950
+      const bounds = createBounds({ x: 900, width: 100, clickX: 950 }); // Click at center
       const modalLeft = 608; // 1024 - 400 - 16
 
       const result = calculateArrowPosition(bounds, modalLeft, modalWidth, 24);
 
-      // Center is 950, modalLeft is 608, so arrow would be at 950 - 608 = 342
-      // Max is modalWidth - 24 = 376, so 342 is within bounds
-      expect(result).toBe(342);
+      // arrowLeft = 950 - 608 - 12 = 330, max = 400 - 24 - 12 = 364, so 330 is within bounds
+      expect(result).toBe(330);
     });
 
     it("should actually clamp when arrow would exceed max", () => {
-      const bounds = createBounds({ x: 400, width: 100 }); // Center at 450
+      const bounds = createBounds({ x: 400, width: 100, clickX: 450 }); // Click at center
       const modalLeft = 16; // Modal at left edge
 
       const result = calculateArrowPosition(bounds, modalLeft, modalWidth, 24);
 
-      // Center is 450, modalLeft is 16, so arrow would be at 450 - 16 = 434
-      // Max is modalWidth - 24 = 376, so should be clamped
-      expect(result).toBe(modalWidth - 24);
+      // arrowLeft = 450 - 16 - 12 = 422, max = 400 - 24 - 12 = 364, so clamped
+      expect(result).toBe(modalWidth - 24 - 12);
     });
   });
 

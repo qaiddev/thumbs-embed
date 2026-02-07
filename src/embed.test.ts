@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { FeedbackEmbed } from "./embed";
+import { _resetStylesState } from "./styles";
 
 describe("FeedbackEmbed", () => {
   let embed: FeedbackEmbed;
@@ -7,9 +8,8 @@ describe("FeedbackEmbed", () => {
   beforeEach(() => {
     // Clear any existing embed elements
     document.body.innerHTML = "";
-    // Clear injected styles
-    const style = document.getElementById("qaid-styles");
-    if (style) style.remove();
+    // Reset styles module state
+    _resetStylesState();
   });
 
   afterEach(() => {
@@ -18,8 +18,7 @@ describe("FeedbackEmbed", () => {
     }
     // Clean up any remaining elements
     document.body.innerHTML = "";
-    const style = document.getElementById("qaid-styles");
-    if (style) style.remove();
+    _resetStylesState();
   });
 
   describe("initialization", () => {
@@ -185,6 +184,39 @@ describe("FeedbackEmbed", () => {
 
       // After destroy, console.error should be restored
       expect(console.error).toBe(originalError);
+    });
+  });
+
+  describe("multi-instance CSS scoping", () => {
+    it("should give each instance its own CSS variable values", () => {
+      const embed1 = new FeedbackEmbed({
+        endpoint: "/api/feedback",
+        colors: { positive: "rgb(0, 200, 83)" },
+      });
+      const embed2 = new FeedbackEmbed({
+        endpoint: "/api/feedback",
+        colors: { positive: "rgb(255, 100, 0)" },
+      });
+
+      const containers = document.querySelectorAll<HTMLElement>(".qaid-widget");
+      expect(containers).toHaveLength(2);
+
+      const val1 = containers[0].style.getPropertyValue("--qaid-positive");
+      const val2 = containers[1].style.getPropertyValue("--qaid-positive");
+
+      expect(val1).toBe("rgb(0, 200, 83)");
+      expect(val2).toBe("rgb(255, 100, 0)");
+
+      // Shared style element should still exist
+      expect(document.getElementById("qaid-styles")).not.toBeNull();
+
+      embed1.destroy();
+      // Style should remain because embed2 is still alive
+      expect(document.getElementById("qaid-styles")).not.toBeNull();
+
+      embed2.destroy();
+      // Now both gone, style should be removed
+      expect(document.getElementById("qaid-styles")).toBeNull();
     });
   });
 

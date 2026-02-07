@@ -6,15 +6,13 @@
 // Import CSS as minified string (vite handles minification in production)
 import baseStyles from "./styles.css?inline";
 
-let stylesInjected = false;
+let instanceCount = 0;
 
-export interface InjectStylesOptions {
+export interface BuildCssVarsOptions {
   positiveColor?: string;
   negativeColor?: string;
   /** Color for selected element marker */
   markerColor?: string;
-  /** When true, skip default button visual styles (user provides via buttonClass) */
-  skipButtonStyles?: boolean;
   /** Button size: small (36px), medium (48px), large (64px) */
   buttonSize?: "small" | "medium" | "large";
   /** Modal width in pixels */
@@ -91,15 +89,14 @@ function getContrastTextColor(bgColor: string): string {
   return luminance > 0.4 ? "black" : "white";
 }
 
-export function injectStyles(options: InjectStylesOptions = {}): void {
-  if (stylesInjected) return;
-  stylesInjected = true;
-
+/**
+ * Build a map of CSS variable names to values for per-instance scoping
+ */
+export function buildCssVars(options: BuildCssVarsOptions = {}): Record<string, string> {
   const {
     positiveColor = "rgb(0, 200, 83)",
     negativeColor = "rgb(255, 0, 0)",
     markerColor = "#6366f1",
-    // skipButtonStyles kept for backwards compatibility but no longer used
     buttonSize = "medium",
     modalWidth = 400,
     backdropOpacity = 0.3,
@@ -109,26 +106,60 @@ export function injectStyles(options: InjectStylesOptions = {}): void {
 
   const btnSize = BUTTON_SIZES[buttonSize];
   const iconSize = ICON_SIZES[buttonSize];
-
-  // Calculate contrast text color for marker (used on submit button)
   const markerTextColor = getContrastTextColor(markerColor);
 
-  // CSS variables for colors and sizes
-  const cssVars = `:root{--qaid-positive:${positiveColor};--qaid-negative:${negativeColor};--qaid-marker:${markerColor};--qaid-marker-text:${markerTextColor};--qaid-btn-size:${btnSize}px;--qaid-icon-size:${iconSize}px;--qaid-modal-width:${modalWidth}px;--qaid-backdrop-opacity:${backdropOpacity};--qaid-font-family:${fontFamily};--qaid-font-size:${fontSize}px}`;
+  return {
+    "--qaid-positive": positiveColor,
+    "--qaid-negative": negativeColor,
+    "--qaid-marker": markerColor,
+    "--qaid-marker-text": markerTextColor,
+    "--qaid-btn-size": `${btnSize}px`,
+    "--qaid-icon-size": `${iconSize}px`,
+    "--qaid-modal-width": `${modalWidth}px`,
+    "--qaid-backdrop-opacity": String(backdropOpacity),
+    "--qaid-font-family": fontFamily,
+    "--qaid-font-size": `${fontSize}px`,
+  };
+}
+
+/**
+ * Apply CSS variables to an element via inline style properties
+ */
+export function applyCssVars(el: HTMLElement, vars: Record<string, string>): void {
+  for (const [name, value] of Object.entries(vars)) {
+    el.style.setProperty(name, value);
+  }
+}
+
+export function injectStyles(): void {
+  instanceCount++;
+  if (instanceCount > 1) return;
 
   // Default button styles (always included - themed embeds use custom classes so these won't apply)
   const buttonStyles = `button.qaid-btn{width:var(--qaid-btn-size);height:var(--qaid-btn-size);border-radius:50%;border:none;background:#f3f4f6;color:#374151;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);transition:background-color .2s,color .2s,transform .2s;-webkit-appearance:none;appearance:none}button.qaid-btn:hover{transform:scale(1.05)}button.qaid-btn-up:hover{background:var(--qaid-positive);color:#fff}button.qaid-btn-down:hover{background:var(--qaid-negative);color:#fff}button.qaid-btn svg{width:var(--qaid-icon-size);height:var(--qaid-icon-size)}`;
 
   const style = document.createElement("style");
   style.id = "qaid-styles";
-  style.textContent = cssVars + baseStyles + buttonStyles;
+  style.textContent = baseStyles + buttonStyles;
   document.head.appendChild(style);
 }
 
 export function removeStyles(): void {
+  if (instanceCount <= 0) return;
+  instanceCount--;
+  if (instanceCount === 0) {
+    const style = document.getElementById("qaid-styles");
+    if (style) {
+      style.remove();
+    }
+  }
+}
+
+/** Reset internal state — for tests only */
+export function _resetStylesState(): void {
+  instanceCount = 0;
   const style = document.getElementById("qaid-styles");
   if (style) {
     style.remove();
-    stylesInjected = false;
   }
 }

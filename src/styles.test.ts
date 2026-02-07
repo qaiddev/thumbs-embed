@@ -1,17 +1,13 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { injectStyles, removeStyles } from "./styles";
+import { injectStyles, removeStyles, buildCssVars, applyCssVars, _resetStylesState } from "./styles";
 
 describe("styles", () => {
   beforeEach(() => {
-    // Clean up any existing styles
-    const existing = document.getElementById("qaid-styles");
-    if (existing) {
-      existing.remove();
-    }
+    _resetStylesState();
   });
 
   afterEach(() => {
-    removeStyles();
+    _resetStylesState();
   });
 
   describe("injectStyles", () => {
@@ -30,46 +26,18 @@ describe("styles", () => {
 
       const styles = document.querySelectorAll("#qaid-styles");
       expect(styles).toHaveLength(1);
+
+      // Clean up extra references
+      removeStyles();
+      removeStyles();
     });
 
-    it("should include default colors", () => {
+    it("should include button styles", () => {
       injectStyles();
 
       const style = document.getElementById("qaid-styles");
-      expect(style?.textContent).toContain("rgb(0, 200, 83)");
-      expect(style?.textContent).toContain("rgb(255, 0, 0)");
-    });
-
-    it("should use custom colors", () => {
-      injectStyles({
-        positiveColor: "rgb(100, 200, 50)",
-        negativeColor: "rgb(200, 50, 100)",
-      });
-
-      const style = document.getElementById("qaid-styles");
-      expect(style?.textContent).toContain("rgb(100, 200, 50)");
-      expect(style?.textContent).toContain("rgb(200, 50, 100)");
-    });
-
-    it("should still include button styles when skipButtonStyles is true (deprecated option)", () => {
-      injectStyles({ skipButtonStyles: true });
-
-      const style = document.getElementById("qaid-styles");
-      // Should have structural styles
-      expect(style?.textContent).toContain(".qaid-btn-structural");
-      // skipButtonStyles is deprecated and no longer removes button styles
-      expect(style?.textContent).toContain("width:var(--qaid-btn-size)");
-    });
-
-    it("should include button styles when skipButtonStyles is false", () => {
-      injectStyles({ skipButtonStyles: false });
-
-      const style = document.getElementById("qaid-styles");
-      // Should have default button styles using CSS variables
       expect(style?.textContent).toContain("width:var(--qaid-btn-size)");
       expect(style?.textContent).toContain("border-radius:50%");
-      // Should have CSS variables for button size
-      expect(style?.textContent).toContain("--qaid-btn-size:48px");
     });
 
     it("should include qaid- prefixed classes", () => {
@@ -92,7 +60,7 @@ describe("styles", () => {
   });
 
   describe("removeStyles", () => {
-    it("should remove injected styles", () => {
+    it("should remove injected styles when last instance is destroyed", () => {
       injectStyles();
       expect(document.getElementById("qaid-styles")).not.toBeNull();
 
@@ -111,6 +79,80 @@ describe("styles", () => {
     it("should handle removal when no styles injected", () => {
       // Should not throw
       expect(() => removeStyles()).not.toThrow();
+    });
+
+    it("should use reference counting — style stays when one of two instances is removed", () => {
+      injectStyles();
+      injectStyles();
+
+      removeStyles();
+      // One instance still alive, style should remain
+      expect(document.getElementById("qaid-styles")).not.toBeNull();
+
+      removeStyles();
+      // All instances gone, style should be removed
+      expect(document.getElementById("qaid-styles")).toBeNull();
+    });
+  });
+
+  describe("buildCssVars", () => {
+    it("should return correct defaults", () => {
+      const vars = buildCssVars();
+
+      expect(vars["--qaid-positive"]).toBe("rgb(0, 200, 83)");
+      expect(vars["--qaid-negative"]).toBe("rgb(255, 0, 0)");
+      expect(vars["--qaid-marker"]).toBe("#6366f1");
+      expect(vars["--qaid-btn-size"]).toBe("48px");
+      expect(vars["--qaid-icon-size"]).toBe("24px");
+      expect(vars["--qaid-modal-width"]).toBe("400px");
+      expect(vars["--qaid-backdrop-opacity"]).toBe("0.3");
+      expect(vars["--qaid-font-family"]).toBe("system-ui, -apple-system, sans-serif");
+      expect(vars["--qaid-font-size"]).toBe("16px");
+    });
+
+    it("should return custom colors when provided", () => {
+      const vars = buildCssVars({
+        positiveColor: "rgb(100, 200, 50)",
+        negativeColor: "rgb(200, 50, 100)",
+      });
+
+      expect(vars["--qaid-positive"]).toBe("rgb(100, 200, 50)");
+      expect(vars["--qaid-negative"]).toBe("rgb(200, 50, 100)");
+    });
+
+    it("should compute marker text color for contrast", () => {
+      // Dark marker → white text
+      const darkVars = buildCssVars({ markerColor: "#000000" });
+      expect(darkVars["--qaid-marker-text"]).toBe("white");
+
+      // Light marker → black text
+      const lightVars = buildCssVars({ markerColor: "#ffffff" });
+      expect(lightVars["--qaid-marker-text"]).toBe("black");
+    });
+
+    it("should respect button size option", () => {
+      const small = buildCssVars({ buttonSize: "small" });
+      expect(small["--qaid-btn-size"]).toBe("36px");
+      expect(small["--qaid-icon-size"]).toBe("18px");
+
+      const large = buildCssVars({ buttonSize: "large" });
+      expect(large["--qaid-btn-size"]).toBe("64px");
+      expect(large["--qaid-icon-size"]).toBe("32px");
+    });
+  });
+
+  describe("applyCssVars", () => {
+    it("should set CSS custom properties on element", () => {
+      const el = document.createElement("div");
+      const vars = {
+        "--qaid-positive": "rgb(0, 200, 83)",
+        "--qaid-negative": "rgb(255, 0, 0)",
+      };
+
+      applyCssVars(el, vars);
+
+      expect(el.style.getPropertyValue("--qaid-positive")).toBe("rgb(0, 200, 83)");
+      expect(el.style.getPropertyValue("--qaid-negative")).toBe("rgb(255, 0, 0)");
     });
   });
 });

@@ -8,7 +8,7 @@ import type {
   FeedbackResponse,
 } from "./types";
 import { THUMBS_UP_ICON, THUMBS_DOWN_ICON, RECORD_ICON } from "./icons";
-import { injectStyles, removeStyles } from "./styles";
+import { injectStyles, removeStyles, buildCssVars, applyCssVars } from "./styles";
 import { generateElementInfo } from "./element-selector";
 import { calculateModalAndArrowPosition } from "./modal-positioning";
 import { captureConsoleErrors, type ConsoleCapture } from "./console-capture";
@@ -98,6 +98,9 @@ export class FeedbackEmbed {
   private modalContainer: HTMLDivElement | null = null;
   private backdrop: HTMLDivElement | null = null;
 
+  // Per-instance CSS variables
+  private cssVars: Record<string, string> = {};
+
   // Bound event handlers
   private boundKeyDown: (e: KeyboardEvent) => void;
   private boundMouseMove: (e: MouseEvent) => void;
@@ -167,13 +170,19 @@ export class FeedbackEmbed {
     this.init();
   }
 
+  private applyVars(el: HTMLElement): void {
+    applyCssVars(el, this.cssVars);
+  }
+
   private init(): void {
-    // Inject styles
-    injectStyles({
+    // Inject shared structural styles (reference counted)
+    injectStyles();
+
+    // Build per-instance CSS variables
+    this.cssVars = buildCssVars({
       positiveColor: this.config.colors.positive,
       negativeColor: this.config.colors.negative,
       markerColor: this.config.colors.marker,
-      skipButtonStyles: !!this.config.buttonClass,
       buttonSize: this.config.buttonSize,
       modalWidth: this.config.modalWidth,
       backdropOpacity: this.config.backdropOpacity,
@@ -238,12 +247,8 @@ export class FeedbackEmbed {
       document.body.appendChild(this.container);
     }
 
-    // Apply custom fontFamily as inline style if not using default
-    const customFont = this.config.fontFamily;
-    const isCustomFont = customFont && customFont !== "system-ui, -apple-system, sans-serif";
-    if (isCustomFont) {
-      this.container.style.fontFamily = customFont;
-    }
+    // Apply per-instance CSS variables to the container
+    this.applyVars(this.container);
 
     // Determine button classes
     const useCustomClass = !!this.config.buttonClass;
@@ -261,9 +266,7 @@ export class FeedbackEmbed {
     const tooltip = document.createElement("div");
     tooltip.className = "qaid-tooltip-text";
     tooltip.textContent = tooltipText;
-    if (isCustomFont) {
-      tooltip.style.fontFamily = customFont;
-    }
+    this.applyVars(tooltip);
     document.body.appendChild(tooltip);
     this.tooltipElement = tooltip;
 
@@ -415,6 +418,10 @@ export class FeedbackEmbed {
       document.body.classList.remove("qaid-type-up");
     }
 
+    // Set targeting colors on body so .qaid-highlight rules can resolve them
+    document.body.style.setProperty("--qaid-positive", this.cssVars["--qaid-positive"]);
+    document.body.style.setProperty("--qaid-negative", this.cssVars["--qaid-negative"]);
+
     // Create targeting overlay
     this.createTargetingOverlay();
 
@@ -435,11 +442,6 @@ export class FeedbackEmbed {
     // Banner
     const banner = document.createElement("div");
     banner.className = `qaid-banner qaid-banner-${this.feedbackData.feedbackType}`;
-    // Apply custom font if configured
-    const customFont = this.config.fontFamily;
-    if (customFont && customFont !== "system-ui, -apple-system, sans-serif") {
-      banner.style.fontFamily = customFont;
-    }
     banner.innerHTML = `
       <span class="qaid-banner-text">${this.config.text.bannerText}</span>
       <span class="qaid-banner-hint">${this.config.text.bannerHint}</span>
@@ -472,6 +474,7 @@ export class FeedbackEmbed {
     this.overlayContainer.appendChild(this.crosshairV);
     this.overlayContainer.appendChild(this.scope);
 
+    this.applyVars(this.overlayContainer);
     document.body.appendChild(this.overlayContainer);
   }
 
@@ -562,6 +565,8 @@ export class FeedbackEmbed {
     // Remove targeting overlay
     this.removeTargetingOverlay();
     document.body.classList.remove("qaid-targeting", "qaid-type-up");
+    document.body.style.removeProperty("--qaid-positive");
+    document.body.style.removeProperty("--qaid-negative");
 
     this.state = "SELECTED";
 
@@ -576,6 +581,8 @@ export class FeedbackEmbed {
 
     this.removeTargetingOverlay();
     document.body.classList.remove("qaid-targeting", "qaid-type-up");
+    document.body.style.removeProperty("--qaid-positive");
+    document.body.style.removeProperty("--qaid-negative");
     document.removeEventListener("keydown", this.boundKeyDown);
 
     this.state = "IDLE";
@@ -608,6 +615,7 @@ export class FeedbackEmbed {
     this.marker.style.height = `${this.selectedBounds.height}px`;
     this.marker.style.zIndex = String(this.config.zIndex + 1);
 
+    this.applyVars(this.marker);
     document.body.appendChild(this.marker);
   }
 
@@ -689,6 +697,7 @@ export class FeedbackEmbed {
     this.backdrop.style.zIndex = String(this.config.zIndex + 2);
     this.backdrop.style.background = `rgba(0, 0, 0, ${this.config.backdropOpacity})`;
     this.backdrop.addEventListener("click", () => this.closeModal());
+    this.applyVars(this.backdrop);
 
     if (this.isMobile) {
       this.showBottomSheet();
@@ -704,11 +713,6 @@ export class FeedbackEmbed {
     const sheet = document.createElement("div");
     sheet.className = "qaid-bottom-sheet";
     sheet.style.zIndex = String(this.config.zIndex + 3);
-    // Apply custom font if configured
-    const customFont = this.config.fontFamily;
-    if (customFont && customFont !== "system-ui, -apple-system, sans-serif") {
-      sheet.style.fontFamily = customFont;
-    }
 
     sheet.innerHTML = `
       <div class="qaid-bottom-sheet-content">
@@ -717,6 +721,7 @@ export class FeedbackEmbed {
       </div>
     `;
 
+    this.applyVars(sheet);
     document.body.appendChild(sheet);
     this.modalContainer = sheet;
 
@@ -742,11 +747,6 @@ export class FeedbackEmbed {
     this.modalContainer.style.top = `${modal.top}px`;
     this.modalContainer.style.left = `${modal.left}px`;
     this.modalContainer.style.zIndex = String(this.config.zIndex + 3);
-    // Apply custom font if configured
-    const customFont = this.config.fontFamily;
-    if (customFont && customFont !== "system-ui, -apple-system, sans-serif") {
-      this.modalContainer.style.fontFamily = customFont;
-    }
 
     const arrowEl = document.createElement("div");
     arrowEl.className = "qaid-modal-arrow";
@@ -758,6 +758,7 @@ export class FeedbackEmbed {
 
     this.modalContainer.appendChild(arrowEl);
     this.modalContainer.appendChild(box);
+    this.applyVars(this.modalContainer);
     document.body.appendChild(this.modalContainer);
 
     this.setupModalInteractions();
@@ -987,6 +988,7 @@ export class FeedbackEmbed {
     this.recordingIndicator.appendChild(timer);
     this.recordingIndicator.appendChild(stopBtn);
 
+    this.applyVars(this.recordingIndicator);
     document.body.appendChild(this.recordingIndicator);
   }
 
@@ -1073,6 +1075,7 @@ export class FeedbackEmbed {
     box.appendChild(actions);
 
     this.videoPreview.appendChild(box);
+    this.applyVars(this.videoPreview);
     document.body.appendChild(this.videoPreview);
 
     // Listen for escape key
@@ -1198,6 +1201,8 @@ export class FeedbackEmbed {
     // Clean up highlights
     removeAllByClass("qaid-highlight");
     document.body.classList.remove("qaid-targeting", "qaid-type-up");
+    document.body.style.removeProperty("--qaid-positive");
+    document.body.style.removeProperty("--qaid-negative");
 
     // Remove DOM elements
     if (this.container) {

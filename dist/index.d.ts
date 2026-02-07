@@ -180,11 +180,13 @@ export declare class FeedbackEmbed {
     private marker;
     private modalContainer;
     private backdrop;
+    private cssVars;
     private boundKeyDown;
     private boundMouseMove;
     private boundClick;
     private boundResize;
     constructor(config: FeedbackConfig);
+    private applyVars;
     private init;
     private checkMobile;
     private handleResize;
