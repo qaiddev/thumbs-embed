@@ -117,14 +117,139 @@ describe("captureNetworkErrors", () => {
   });
 
   it("should handle XHR prototype patching", () => {
-    // Just verify the prototype methods were patched and can be restored
-    expect(XMLHttpRequest.prototype.open).toBeDefined();
-    expect(XMLHttpRequest.prototype.send).toBeDefined();
+    // Save references to the patched methods (capture was already started in beforeEach)
+    const patchedOpen = XMLHttpRequest.prototype.open;
+    const patchedSend = XMLHttpRequest.prototype.send;
+
+    // The patched methods should NOT be the same as the originals that existed
+    // before captureNetworkErrors() was called. We can verify this by creating
+    // a fresh capture and checking the methods changed.
+    // Since capture is already active, the current methods should be wrappers.
+    // We can verify they are functions and that restore() changes them.
+    expect(typeof patchedOpen).toBe("function");
+    expect(typeof patchedSend).toBe("function");
 
     capture.restore();
 
-    // After restore, originals should be back
-    expect(XMLHttpRequest.prototype.open).toBeDefined();
-    expect(XMLHttpRequest.prototype.send).toBeDefined();
+    // After restore, the prototype methods should be different from the patched versions
+    // (the originals from before captureNetworkErrors was called are restored)
+    expect(XMLHttpRequest.prototype.open).not.toBe(patchedOpen);
+    expect(XMLHttpRequest.prototype.send).not.toBe(patchedSend);
+
+    // Re-create capture for afterEach cleanup
+    capture = captureNetworkErrors();
+  });
+
+  it("should capture XHR 4xx errors", async () => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "/api/xhr-missing");
+
+    // Override the internal send to simulate a response
+    const originalSend = XMLHttpRequest.prototype.send;
+
+    // We need to simulate the XHR completing with an error status
+    // The patched send adds a load listener, so we fire it manually
+    xhr.send();
+
+    // Manually set status and trigger load event
+    Object.defineProperty(xhr, "status", { value: 404, writable: true, configurable: true });
+    Object.defineProperty(xhr, "statusText", { value: "Not Found", writable: true, configurable: true });
+    Object.defineProperty(xhr, "responseText", { value: "Not Found", writable: true, configurable: true });
+    xhr.dispatchEvent(new Event("load"));
+
+    expect(capture.errors).toHaveLength(1);
+    expect(capture.errors[0].url).toBe("/api/xhr-missing");
+    expect(capture.errors[0].method).toBe("GET");
+    expect(capture.errors[0].status).toBe(404);
+    expect(capture.errors[0].statusText).toBe("Not Found");
+    expect(capture.errors[0].responseBody).toBe("Not Found");
+  });
+
+  it("should capture XHR 5xx errors with request body", async () => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/api/xhr-broken");
+    xhr.send('{"data":"test"}');
+
+    Object.defineProperty(xhr, "status", { value: 500, writable: true, configurable: true });
+    Object.defineProperty(xhr, "statusText", { value: "Internal Server Error", writable: true, configurable: true });
+    Object.defineProperty(xhr, "responseText", { value: "Server Error", writable: true, configurable: true });
+    xhr.dispatchEvent(new Event("load"));
+
+    expect(capture.errors).toHaveLength(1);
+    expect(capture.errors[0].method).toBe("POST");
+    expect(capture.errors[0].status).toBe(500);
+    expect(capture.errors[0].requestBody).toBe('{"data":"test"}');
+  });
+
+  it("should not capture successful XHR responses", async () => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "/api/xhr-ok");
+    xhr.send();
+
+    Object.defineProperty(xhr, "status", { value: 200, writable: true, configurable: true });
+    Object.defineProperty(xhr, "statusText", { value: "OK", writable: true, configurable: true });
+    xhr.dispatchEvent(new Event("load"));
+
+    expect(capture.errors).toHaveLength(0);
+  });
+
+  it("should handle URL object in XHR open", async () => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", new URL("http://example.com/api/test"));
+    xhr.send();
+
+    Object.defineProperty(xhr, "status", { value: 400, writable: true, configurable: true });
+    Object.defineProperty(xhr, "statusText", { value: "Bad Request", writable: true, configurable: true });
+    Object.defineProperty(xhr, "responseText", { value: "", writable: true, configurable: true });
+    xhr.dispatchEvent(new Event("load"));
+
+    expect(capture.errors).toHaveLength(1);
+    expect(capture.errors[0].url).toBe("http://example.com/api/test");
+  });
+
+  it("should handle fetch with URL object input", async () => {
+    const mockResponse = new Response("Not Found", {
+      status: 404,
+      statusText: "Not Found",
+    });
+    mockFetch.mockResolvedValue(mockResponse);
+
+    await window.fetch(new URL("http://example.com/api/url-obj"));
+
+    expect(capture.errors).toHaveLength(1);
+    expect(capture.errors[0].url).toBe("http://example.com/api/url-obj");
+  });
+
+  it("should handle fetch with Request object input", async () => {
+    const mockResponse = new Response("Not Found", {
+      status: 404,
+      statusText: "Not Found",
+    });
+    mockFetch.mockResolvedValue(mockResponse);
+
+    const request = new Request("http://example.com/api/request-obj", { method: "PUT" });
+    await window.fetch(request);
+
+    expect(capture.errors).toHaveLength(1);
+    expect(capture.errors[0].url).toBe("http://example.com/api/request-obj");
+    expect(capture.errors[0].method).toBe("PUT");
+  });
+
+  it("should handle safeReadBody failure gracefully", async () => {
+    // Create a response whose clone().text() throws
+    const mockResponse = new Response("Error", {
+      status: 500,
+      statusText: "Error",
+    });
+    // Override clone to return a response that fails to read
+    vi.spyOn(mockResponse, "clone").mockReturnValue({
+      text: () => Promise.reject(new Error("Read failed")),
+    } as unknown as Response);
+    mockFetch.mockResolvedValue(mockResponse);
+
+    await window.fetch("/api/broken-response");
+
+    expect(capture.errors).toHaveLength(1);
+    expect(capture.errors[0].responseBody).toBeUndefined();
   });
 });

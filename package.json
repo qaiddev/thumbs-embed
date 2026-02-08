@@ -1,7 +1,7 @@
 {
   "name": "@qaiddev/thumbs-embed",
-  "version": "1.0.7",
-  "description": "Standalone feedback embed with element targeting",
+  "version": "1.0.8",
+  "description": "Enjoyable Quality Assurance Feedback",
   "type": "module",
   "main": "./dist/qaid.umd.cjs",
   "module": "./dist/qaid.js",

@@ -1,5 +1,9 @@
 /* Shadow DOM styles — everything inside the shadow root */
 
+button {
+  cursor: pointer;
+}
+
 /* Base buttons layout */
 .qaid-buttons {
   display: flex;
@@ -116,8 +120,7 @@ button.qaid-btn-structural {
 .qaid-capture-layer {
   position: fixed;
   inset: 0;
-  cursor: crosshair;
-  pointer-events: auto;
+  pointer-events: none;
   z-index: 9999;
 }
 
@@ -165,6 +168,25 @@ button.qaid-btn-structural {
 .qaid-type-up .qaid-crosshair-h,
 .qaid-type-up .qaid-crosshair-v {
   background: color-mix(in srgb, var(--qaid-positive) 60%, transparent);
+}
+
+/* Highlight box overlay — GPU-composited, no host DOM mutation */
+.qaid-highlight-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 41;
+  display: none;
+  border: 3px solid color-mix(in srgb, var(--qaid-negative) 80%, transparent);
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--qaid-negative) 8%, transparent);
+  will-change: transform, width, height;
+}
+
+.qaid-type-up .qaid-highlight-box {
+  border-color: color-mix(in srgb, var(--qaid-positive) 80%, transparent);
+  background: color-mix(in srgb, var(--qaid-positive) 8%, transparent);
 }
 
 /* Scope sight */

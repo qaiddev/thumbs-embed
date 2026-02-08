@@ -10,15 +10,3 @@ body.qaid-targeting * {
   cursor: none !important;
 }
 
-/* Element highlight on hover */
-.qaid-highlight {
-  outline: 3px solid color-mix(in srgb, var(--qaid-negative) 80%, transparent) !important;
-  outline-offset: 2px !important;
-  box-shadow: inset 0 0 0 9999px color-mix(in srgb, var(--qaid-negative) 8%, transparent) !important;
-  transition: outline 0.1s ease !important;
-}
-
-body.qaid-targeting.qaid-type-up .qaid-highlight {
-  outline-color: color-mix(in srgb, var(--qaid-positive) 80%, transparent) !important;
-  box-shadow: inset 0 0 0 9999px color-mix(in srgb, var(--qaid-positive) 8%, transparent) !important;
-}

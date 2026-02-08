@@ -96,6 +96,49 @@ describe("console-capture", () => {
       expect(console.error).not.toBe(wrappedError);
       expect(console.error).toBe(originalConsoleError);
     });
+
+    it("should capture console.warn calls", () => {
+      const originalWarn = console.warn;
+      const capture = captureConsoleErrors();
+
+      console.warn("Test warning");
+
+      expect(capture.errors).toHaveLength(1);
+      expect(capture.errors[0].message).toBe("Test warning");
+      expect(capture.errors[0].level).toBe("warn");
+
+      capture.restore();
+      expect(console.warn).toBe(originalWarn);
+    });
+
+    it("should capture console.log calls", () => {
+      const originalLog = console.log;
+      const capture = captureConsoleErrors();
+
+      console.log("Test log message");
+
+      expect(capture.errors).toHaveLength(1);
+      expect(capture.errors[0].message).toBe("Test log message");
+      expect(capture.errors[0].level).toBe("log");
+
+      capture.restore();
+      expect(console.log).toBe(originalLog);
+    });
+
+    it("should capture all three levels in order", () => {
+      const capture = captureConsoleErrors();
+
+      console.error("error msg");
+      console.warn("warn msg");
+      console.log("log msg");
+
+      expect(capture.errors).toHaveLength(3);
+      expect(capture.errors[0].level).toBe("error");
+      expect(capture.errors[1].level).toBe("warn");
+      expect(capture.errors[2].level).toBe("log");
+
+      capture.restore();
+    });
   });
 
   describe("addError", () => {

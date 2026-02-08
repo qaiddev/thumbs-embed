@@ -22,7 +22,6 @@ import {
   getElementAtPointUnderOverlay,
   isEmbedElement,
   getElementBounds,
-  removeAllByClass,
   isMobileViewport,
 } from "./dom-utils";
 import { captureScreenshot } from "./screenshot";
@@ -70,7 +69,6 @@ export class QaidFeedback {
   };
   private feedbackId: number | null = null;
   private mousePos = { x: 0, y: 0 };
-  private lastHighlighted: Element | null = null;
   private isMobile = false;
   private visitorId: string;
 
@@ -102,6 +100,7 @@ export class QaidFeedback {
   private crosshairH: HTMLDivElement | null = null;
   private crosshairV: HTMLDivElement | null = null;
   private scope: HTMLDivElement | null = null;
+  private highlightBox: HTMLDivElement | null = null;
   private marker: HTMLDivElement | null = null;
   private modalContainer: HTMLDivElement | null = null;
   private backdrop: HTMLDivElement | null = null;
@@ -319,7 +318,7 @@ export class QaidFeedback {
       upBtn.type = "button";
       upBtn.className = useCustomClass ? `${btnBaseClass} qaid-btn-up` : "qaid-btn qaid-btn-up";
       upBtn.innerHTML = this.config.positiveIcon || THUMBS_UP_ICON;
-      upBtn.addEventListener("click", (e) => this.handleThumbClick("up", e.currentTarget as HTMLElement));
+      upBtn.addEventListener("click", (e) => this.handleThumbClick("up", e.currentTarget as HTMLElement, e));
       upBtn.addEventListener("mouseenter", () => this.showTooltip(upBtn));
       upBtn.addEventListener("mouseleave", () => this.hideTooltip());
       upWrapper.appendChild(upBtn);
@@ -332,7 +331,7 @@ export class QaidFeedback {
       downBtn.type = "button";
       downBtn.className = useCustomClass ? `${btnBaseClass} qaid-btn-down` : "qaid-btn qaid-btn-down";
       downBtn.innerHTML = this.config.negativeIcon || THUMBS_DOWN_ICON;
-      downBtn.addEventListener("click", (e) => this.handleThumbClick("down", e.currentTarget as HTMLElement));
+      downBtn.addEventListener("click", (e) => this.handleThumbClick("down", e.currentTarget as HTMLElement, e));
       downBtn.addEventListener("mouseenter", () => this.showTooltip(downBtn));
       downBtn.addEventListener("mouseleave", () => this.hideTooltip());
       downWrapper.appendChild(downBtn);
@@ -449,11 +448,11 @@ export class QaidFeedback {
     }
   }
 
-  private handleThumbClick(type: "up" | "down", buttonEl: HTMLElement): void {
+  private handleThumbClick(type: "up" | "down", buttonEl: HTMLElement, e: MouseEvent): void {
     if (this.config.skipTargeting) {
       this.submitDirectFeedback(type, buttonEl);
     } else {
-      this.startTargeting(type);
+      this.startTargeting(type, e);
     }
   }
 
@@ -476,12 +475,16 @@ export class QaidFeedback {
     this.submitFeedback();
   }
 
-  private startTargeting(type: "up" | "down"): void {
+  private startTargeting(type: "up" | "down", e: MouseEvent): void {
     this.state = "TARGETING";
     this.feedbackData.feedbackType = type;
     this.feedbackData.elementSelector = null;
     this.feedbackData.elementText = null;
     this.selectedBounds.visible = false;
+
+    // Track initial mouse position from the click event
+    this.mousePos.x = e.clientX;
+    this.mousePos.y = e.clientY;
 
     // Add class to body (light DOM — for cursor override)
     document.body.classList.add("qaid-targeting");
@@ -498,13 +501,10 @@ export class QaidFeedback {
     // Create targeting overlay (in overlay shadow host)
     this.createTargetingOverlay();
 
-    // Enable pointer events on overlay host for targeting
-    if (this.overlayShadowHost) {
-      this.overlayShadowHost.style.pointerEvents = "auto";
-    }
-
-    // Add event listeners
+    // Add event listeners on document — overlay is pointer-events:none so scroll works naturally
     document.addEventListener("keydown", this.boundKeyDown);
+    document.addEventListener("mousemove", this.boundMouseMove);
+    document.addEventListener("click", this.boundClick, true);
   }
 
   private createTargetingOverlay(): void {
@@ -513,11 +513,9 @@ export class QaidFeedback {
     this.overlayContainer = document.createElement("div");
     this.overlayContainer.className = `qaid-targeting-overlay qaid-type-${this.feedbackData.feedbackType}`;
 
-    // Capture layer
+    // Capture layer (pointer-events:none — scroll passes through naturally)
     this.captureLayer = document.createElement("div");
     this.captureLayer.className = "qaid-capture-layer";
-    this.captureLayer.addEventListener("mousemove", this.boundMouseMove);
-    this.captureLayer.addEventListener("click", this.boundClick);
 
     // Vignette
     const vignette = document.createElement("div");
@@ -539,11 +537,22 @@ export class QaidFeedback {
       <div class="qaid-scope-dot"></div>
     `;
 
+    // Highlight box overlay (positioned over hovered elements)
+    this.highlightBox = document.createElement("div");
+    this.highlightBox.className = "qaid-highlight-box";
+
     this.overlayContainer.appendChild(this.captureLayer);
     this.overlayContainer.appendChild(vignette);
+    this.overlayContainer.appendChild(this.highlightBox);
     this.overlayContainer.appendChild(this.crosshairH);
     this.overlayContainer.appendChild(this.crosshairV);
     this.overlayContainer.appendChild(this.scope);
+
+    // Position crosshairs immediately at current mouse position
+    this.crosshairH.style.top = `${this.mousePos.y}px`;
+    this.crosshairV.style.left = `${this.mousePos.x}px`;
+    this.scope.style.left = `${this.mousePos.x}px`;
+    this.scope.style.top = `${this.mousePos.y}px`;
 
     this.applyVars(this.overlayContainer);
     root.appendChild(this.overlayContainer);
@@ -589,20 +598,25 @@ export class QaidFeedback {
       );
 
       if (elementUnder && !isEmbedElement(elementUnder)) {
-        if (this.lastHighlighted && this.lastHighlighted !== elementUnder) {
-          this.lastHighlighted.classList.remove("qaid-highlight");
+        if (this.highlightBox) {
+          const rect = elementUnder.getBoundingClientRect();
+          this.highlightBox.style.transform = `translate(${rect.left}px, ${rect.top}px)`;
+          this.highlightBox.style.width = `${rect.width}px`;
+          this.highlightBox.style.height = `${rect.height}px`;
+          this.highlightBox.style.display = "block";
         }
-        elementUnder.classList.add("qaid-highlight");
-        this.lastHighlighted = elementUnder;
-      } else if (this.lastHighlighted) {
-        this.lastHighlighted.classList.remove("qaid-highlight");
-        this.lastHighlighted = null;
+      } else {
+        if (this.highlightBox) {
+          this.highlightBox.style.display = "none";
+        }
       }
     }
   }
 
   private handleClick(e: MouseEvent): void {
-    if (!this.captureLayer || !this.shadowHost) return;
+    if (this.state !== "TARGETING" || !this.shadowHost) return;
+    e.preventDefault();
+    e.stopPropagation();
 
     // Find element underneath — hide both shadow hosts
     const hosts = [this.shadowHost, this.overlayShadowHost].filter(Boolean) as HTMLElement[];
@@ -615,9 +629,6 @@ export class QaidFeedback {
     if (!target || isEmbedElement(target)) {
       return;
     }
-
-    // Remove highlight class before generating selector
-    target.classList.remove("qaid-highlight");
 
     // Get element bounds
     const bounds = getElementBounds(target, 8);
@@ -632,19 +643,14 @@ export class QaidFeedback {
     this.feedbackData.elementSelector = selector;
     this.feedbackData.elementText = text;
 
-    // Clean up highlights
-    removeAllByClass("qaid-highlight");
-
-    // Remove targeting overlay
+    // Remove targeting overlay and document listeners
     this.removeTargetingOverlay();
+    document.removeEventListener("mousemove", this.boundMouseMove);
+    document.removeEventListener("click", this.boundClick, true);
+    document.removeEventListener("keydown", this.boundKeyDown);
     document.body.classList.remove("qaid-targeting", "qaid-type-up");
     document.body.style.removeProperty("--qaid-positive");
     document.body.style.removeProperty("--qaid-negative");
-
-    // Reset overlay host pointer events
-    if (this.overlayShadowHost) {
-      this.overlayShadowHost.style.pointerEvents = "none";
-    }
 
     this.state = "SELECTED";
 
@@ -654,26 +660,19 @@ export class QaidFeedback {
   }
 
   private cancelTargeting(): void {
-    // Clean up highlights
-    removeAllByClass("qaid-highlight");
-
     this.removeTargetingOverlay();
+    document.removeEventListener("mousemove", this.boundMouseMove);
+    document.removeEventListener("click", this.boundClick, true);
+    document.removeEventListener("keydown", this.boundKeyDown);
     document.body.classList.remove("qaid-targeting", "qaid-type-up");
     document.body.style.removeProperty("--qaid-positive");
     document.body.style.removeProperty("--qaid-negative");
-    document.removeEventListener("keydown", this.boundKeyDown);
-
-    // Reset overlay host pointer events
-    if (this.overlayShadowHost) {
-      this.overlayShadowHost.style.pointerEvents = "none";
-    }
 
     this.state = "IDLE";
     this.feedbackData.feedbackType = null;
     this.feedbackData.elementSelector = null;
     this.feedbackData.elementText = null;
     this.selectedBounds.visible = false;
-    this.lastHighlighted = null;
   }
 
   private removeTargetingOverlay(): void {
@@ -1318,9 +1317,9 @@ export class QaidFeedback {
     // Remove event listeners
     window.removeEventListener("resize", this.boundResize);
     document.removeEventListener("keydown", this.boundKeyDown);
+    document.removeEventListener("mousemove", this.boundMouseMove);
+    document.removeEventListener("click", this.boundClick, true);
 
-    // Clean up highlights (light DOM)
-    removeAllByClass("qaid-highlight");
     document.body.classList.remove("qaid-targeting", "qaid-type-up");
     document.body.style.removeProperty("--qaid-positive");
     document.body.style.removeProperty("--qaid-negative");

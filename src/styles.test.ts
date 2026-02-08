@@ -32,12 +32,11 @@ describe("styles", () => {
       removeStyles();
     });
 
-    it("should include targeting and highlight styles", () => {
+    it("should include targeting cursor styles", () => {
       injectStyles();
 
       const style = document.getElementById("qaid-styles");
       expect(style?.textContent).toContain("qaid-targeting");
-      expect(style?.textContent).toContain("qaid-highlight");
     });
 
     it("should NOT include buttons or button styles (those are in shadow DOM)", () => {
@@ -160,6 +159,41 @@ describe("styles", () => {
       const large = buildCssVars({ buttonSize: "large" });
       expect(large["--qaid-btn-size"]).toBe("64px");
       expect(large["--qaid-icon-size"]).toBe("32px");
+    });
+
+    it("should handle shorthand hex colors (#rgb)", () => {
+      const vars = buildCssVars({ markerColor: "#fff" });
+      // White should produce black text
+      expect(vars["--qaid-marker-text"]).toBe("black");
+
+      const darkVars = buildCssVars({ markerColor: "#000" });
+      expect(darkVars["--qaid-marker-text"]).toBe("white");
+    });
+
+    it("should handle rgb() format for marker color", () => {
+      const vars = buildCssVars({ markerColor: "rgb(255, 255, 255)" });
+      expect(vars["--qaid-marker-text"]).toBe("black");
+
+      const darkVars = buildCssVars({ markerColor: "rgb(0, 0, 0)" });
+      expect(darkVars["--qaid-marker-text"]).toBe("white");
+    });
+
+    it("should default to white text for unparseable colors", () => {
+      const vars = buildCssVars({ markerColor: "hsl(0, 100%, 50%)" });
+      expect(vars["--qaid-marker-text"]).toBe("white");
+    });
+
+    it("should handle custom modalWidth, backdropOpacity, fontFamily, fontSize", () => {
+      const vars = buildCssVars({
+        modalWidth: 600,
+        backdropOpacity: 0.5,
+        fontFamily: "Arial, sans-serif",
+        fontSize: 14,
+      });
+      expect(vars["--qaid-modal-width"]).toBe("600px");
+      expect(vars["--qaid-backdrop-opacity"]).toBe("0.5");
+      expect(vars["--qaid-font-family"]).toBe("Arial, sans-serif");
+      expect(vars["--qaid-font-size"]).toBe("14px");
     });
   });
 

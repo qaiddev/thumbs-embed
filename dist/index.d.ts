@@ -234,7 +234,6 @@ export declare class QaidFeedback {
     private selectedBounds;
     private feedbackId;
     private mousePos;
-    private lastHighlighted;
     private isMobile;
     private visitorId;
     private consoleCapture;
@@ -256,6 +255,7 @@ export declare class QaidFeedback {
     private crosshairH;
     private crosshairV;
     private scope;
+    private highlightBox;
     private marker;
     private modalContainer;
     private backdrop;
