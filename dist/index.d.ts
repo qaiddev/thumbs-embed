@@ -409,11 +409,3 @@ export declare interface VideoRecorderOptions {
 }
 
 export { }
-
-
-declare global {
-    interface Window {
-        html2canvas?: (element: HTMLElement, options?: Record<string, unknown>) => Promise<HTMLCanvasElement>;
-    }
-}
-

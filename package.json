@@ -1,16 +1,16 @@
 {
   "name": "@qaiddev/thumbs-embed",
-  "version": "1.0.8",
-  "description": "Enjoyable Quality Assurance Feedback",
+  "version": "1.0.9",
+  "description": "Precision User Feedback",
   "type": "module",
   "main": "./dist/qaid.umd.cjs",
   "module": "./dist/qaid.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/qaid.js",
-      "require": "./dist/qaid.umd.cjs",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/qaid.umd.cjs"
     }
   },
   "files": [
@@ -32,12 +32,12 @@
     "test:run": "vitest run"
   },
   "devDependencies": {
-    "@vitest/coverage-v8": "^2.0.0",
-    "happy-dom": "^15.0.0",
+    "@vitest/coverage-v8": "^4.0.18",
+    "happy-dom": "^20.5.1",
     "typescript": "^5.3.3",
-    "vite": "^5.0.11",
-    "vite-plugin-dts": "^3.7.1",
-    "vitest": "^2.0.0"
+    "vite": "^7.3.1",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^4.0.18"
   },
   "keywords": [
     "feedback",

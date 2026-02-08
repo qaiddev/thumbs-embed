@@ -205,7 +205,7 @@ export class QaidFeedback {
     this.createEmbed();
 
     // Capture console errors
-    this.consoleCapture = captureConsoleErrors((error) => {
+    this.consoleCapture = captureConsoleErrors((_error) => {
       this.feedbackData.consoleErrors = this.consoleCapture?.errors ?? [];
     });
     this.feedbackData.consoleErrors = this.consoleCapture.errors;
