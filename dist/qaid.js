@@ -2,24 +2,24 @@ const E = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none"
   <path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/>
 </svg>`, T = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.737 3h4.018a2 2 0 01.485.06l3.76.94m-7 10v5a2 2 0 002 2h.095c.5 0 .905-.405.905-.905 0-.714.211-1.412.608-2.006L17 13V4m-7 10h2m5-10h2a2 2 0 012 2v6a2 2 0 01-2 2h-2.5"/>
-</svg>`, tt = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, et = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/>
-</svg>`, et = "button{cursor:pointer}.qaid-buttons{display:flex;gap:.5rem}.qaid-buttons.qaid-vertical{flex-direction:column}.qaid-buttons.qaid-auto-container{position:fixed;z-index:50}.qaid-buttons.qaid-auto-container.qaid-bottom-right{bottom:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-bottom-left{bottom:1rem;left:1rem}.qaid-buttons.qaid-auto-container.qaid-top-right{top:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-top-left{top:1rem;left:1rem}.qaid-buttons.qaid-incognito{opacity:0;transition:opacity .2s ease-in-out}.qaid-buttons.qaid-incognito:hover{opacity:1}.qaid-buttons{position:relative}.qaid-dismiss-btn{position:absolute;width:20px;height:20px;padding:0;border:none;border-radius:50%;background:#0006;color:#fff;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .15s,background .15s;cursor:pointer;-webkit-appearance:none;appearance:none}.qaid-dismiss-btn:hover{background:#0009}.qaid-buttons:hover .qaid-dismiss-btn{opacity:1}.qaid-bottom-right .qaid-dismiss-btn{bottom:100%;right:0;margin-bottom:4px}.qaid-bottom-left .qaid-dismiss-btn{bottom:100%;left:0;margin-bottom:4px}.qaid-top-right .qaid-dismiss-btn{top:100%;right:0;margin-top:4px}.qaid-top-left .qaid-dismiss-btn{top:100%;left:0;margin-top:4px}button.qaid-btn-structural{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;appearance:none}.qaid-icon{width:24px;height:24px}.qaid-btn-structural:not(:has(svg)),.qaid-btn:not(:has(svg)){font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-emoji-icon{font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-buttons,.qaid-buttons *,.qaid-modal-container,.qaid-modal-container *{cursor:pointer!important}.qaid-tooltip-wrapper{position:relative}.qaid-tooltip-text{position:fixed;padding:.5rem .75rem;background:#1f2937;color:#fff;font-size:1rem;font-weight:600;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:99999}.qaid-tooltip-text.qaid-tooltip-visible{opacity:1}.qaid-targeting-overlay{position:fixed;inset:0;z-index:40;pointer-events:none}.qaid-capture-layer{position:fixed;inset:0;pointer-events:none;z-index:9999}@keyframes qaid-slideDown{0%{transform:translateY(-100%)}to{transform:translateY(0)}}.qaid-vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.3) 70%,rgba(0,0,0,.6) 100%);z-index:41}.qaid-crosshair-h,.qaid-crosshair-v{position:fixed;pointer-events:none;z-index:42}.qaid-crosshair-h{left:0;right:0;height:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-crosshair-v{top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-type-up .qaid-crosshair-h,.qaid-type-up .qaid-crosshair-v{background:color-mix(in srgb,var(--qaid-positive) 60%,transparent)}.qaid-highlight-box{position:fixed;top:0;left:0;pointer-events:none;z-index:41;display:none;border:3px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:2px;background:color-mix(in srgb,var(--qaid-negative) 8%,transparent);will-change:transform,width,height}.qaid-type-up .qaid-highlight-box{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent);background:color-mix(in srgb,var(--qaid-positive) 8%,transparent)}.qaid-scope{position:fixed;width:80px;height:80px;pointer-events:none;z-index:43;transform:translate(-50%,-50%)}.qaid-scope-ring{position:absolute;inset:10px;border:2px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent)}.qaid-scope-ring-inner{position:absolute;inset:20px;border:1px solid color-mix(in srgb,var(--qaid-negative) 50%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring-inner{border-color:color-mix(in srgb,var(--qaid-positive) 50%,transparent)}.qaid-scope-dot{position:absolute;top:50%;left:50%;width:4px;height:4px;background:var(--qaid-negative);border-radius:50%;transform:translate(-50%,-50%)}.qaid-type-up .qaid-scope-dot{background:var(--qaid-positive)}.qaid-selected-marker{position:fixed;border:3px solid var(--qaid-marker, #6366f1);border-radius:50%;pointer-events:none;z-index:44;animation:qaid-markerPulse 1.5s ease-in-out infinite}@keyframes qaid-markerPulse{0%,to{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}.qaid-backdrop{position:fixed;inset:0;z-index:45;background:#0000004d}.qaid-modal-container{position:fixed;z-index:50;display:flex;flex-direction:column;align-items:flex-start;max-height:calc(100vh - 32px);font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-modal-container.qaid-above{flex-direction:column-reverse}.qaid-modal-arrow{width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;position:relative;align-self:flex-start}.qaid-modal-container.qaid-below .qaid-modal-arrow{border-bottom:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-container.qaid-above .qaid-modal-arrow{border-top:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5));width:var(--qaid-modal-width, 400px);max-width:calc(100vw - 32px);max-height:calc(100vh - 60px);overflow-y:auto}.qaid-modal-header{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1rem}button.qaid-type-toggle{border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;-webkit-appearance:none;appearance:none}button.qaid-type-toggle:hover{transform:scale(1.1)}button.qaid-type-toggle:not(.qaid-type-toggle-custom){width:2.5rem;height:2.5rem;border-radius:50%}button.qaid-type-toggle:not(.qaid-type-toggle-custom) svg{width:1.25rem;height:1.25rem}button.qaid-type-toggle.qaid-type-up{background:var(--qaid-positive);color:#fff}button.qaid-type-toggle.qaid-type-down{background:var(--qaid-negative);color:#fff}.qaid-modal-header-text{flex:1;min-width:0}.qaid-modal-title{font-size:1.125rem;font-weight:700;margin:0 0 .25rem;color:light-dark(#1f2937,#f9fafb)}.qaid-modal-subtitle{color:light-dark(#6b7280,#9ca3af);margin:0;font-size:.875rem}.qaid-textarea{width:100%;height:6rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:1rem;resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-btn-row{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-btn-submit{padding:.5rem 1rem;background:var(--qaid-marker);color:var(--qaid-marker-text, white);border:none;border-radius:.5rem;font-size:.875rem;font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-btn-submit:hover{filter:brightness(.85)}button.qaid-btn-submit:focus{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 30%,transparent)}.qaid-bottom-sheet{position:fixed;bottom:0;left:0;right:0;z-index:50;animation:qaid-slideUpSheet .3s ease-out;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-bottom-sheet-content{background:light-dark(#ffffff,#1f2937);border-radius:1rem 1rem 0 0;padding:1.5rem;padding-bottom:max(1.5rem,env(safe-area-inset-bottom))}.qaid-bottom-sheet-handle{width:36px;height:4px;background:light-dark(rgba(0,0,0,.2),rgba(255,255,255,.2));border-radius:2px;margin:0 auto 1rem}@keyframes qaid-slideUpSheet{0%{transform:translateY(100%)}to{transform:translateY(0)}}button.qaid-btn-record:hover{background:#dc2626;color:#fff}.qaid-recording-indicator{position:fixed;top:12px;left:50%;transform:translate(-50%);display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:light-dark(#1f2937,#374151);color:#fff;border-radius:9999px;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:.875rem;font-weight:500;box-shadow:0 4px 12px #0000004d;z-index:99999;animation:qaid-slideDown .2s ease-out}.qaid-recording-dot{width:10px;height:10px;background:#dc2626;border-radius:50%;animation:qaid-dotPulse 1.5s ease-in-out infinite}@keyframes qaid-dotPulse{0%,to{opacity:1}50%{opacity:.3}}.qaid-recording-time{font-variant-numeric:tabular-nums;min-width:2.5rem;text-align:center}button.qaid-recording-stop{padding:.25rem .75rem;background:#dc2626;color:#fff;border:none;border-radius:9999px;font-size:.75rem;font-weight:600;cursor:pointer;transition:background-color .2s;-webkit-appearance:none;appearance:none}button.qaid-recording-stop:hover{background:#b91c1c}.qaid-video-preview{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#0009;z-index:99998;animation:qaid-fadeIn .2s ease-out}@keyframes qaid-fadeIn{0%{opacity:0}to{opacity:1}}.qaid-video-preview-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px #00000080;width:560px;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);overflow-y:auto;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-video-preview-box h3{font-size:1.125rem;font-weight:700;margin:0 0 1rem;color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box video{width:100%;border-radius:.5rem;background:#000;margin-bottom:1rem}.qaid-video-preview-box textarea{width:100%;height:4rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:.875rem;resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-video-preview-actions{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-video-btn{padding:.5rem 1rem;border:none;border-radius:.5rem;font-size:.875rem;font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-video-btn-cancel{background:light-dark(#f3f4f6,#374151);color:light-dark(#374151,#d1d5db)}button.qaid-video-btn-cancel:hover{background:light-dark(#e5e7eb,#4b5563)}button.qaid-video-btn-rerecord{background:light-dark(#fef3c7,#78350f);color:light-dark(#92400e,#fde68a)}button.qaid-video-btn-rerecord:hover{filter:brightness(.9)}button.qaid-video-btn-send{background:var(--qaid-marker);color:var(--qaid-marker-text, white)}button.qaid-video-btn-send:hover{filter:brightness(.85)}button.qaid-video-btn-send:disabled{opacity:.5;cursor:not-allowed}.qaid-video-sending{display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:light-dark(#6b7280,#9ca3af)}", it = "body.qaid-targeting,body.qaid-targeting *{cursor:none!important}";
+</svg>`, it = "button{cursor:pointer}.qaid-buttons{display:flex;gap:.5rem}.qaid-buttons.qaid-vertical{flex-direction:column}.qaid-buttons.qaid-auto-container{position:fixed;z-index:50}.qaid-buttons.qaid-auto-container.qaid-bottom-right{bottom:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-bottom-left{bottom:1rem;left:1rem}.qaid-buttons.qaid-auto-container.qaid-top-right{top:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-top-left{top:1rem;left:1rem}.qaid-buttons.qaid-incognito{opacity:0;transition:opacity .2s ease-in-out}.qaid-buttons.qaid-incognito:hover{opacity:1}.qaid-buttons{position:relative}.qaid-dismiss-btn{position:absolute;width:20px;height:20px;padding:0;border:none;border-radius:50%;background:#0006;color:#fff;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .15s,background .15s;cursor:pointer;pointer-events:auto;-webkit-appearance:none;appearance:none}.qaid-dismiss-btn:hover{background:#0009}.qaid-buttons:hover .qaid-dismiss-btn{opacity:1}.qaid-bottom-right .qaid-dismiss-btn{bottom:100%;right:0;margin-bottom:4px}.qaid-bottom-left .qaid-dismiss-btn{bottom:100%;left:0;margin-bottom:4px}.qaid-top-right .qaid-dismiss-btn{top:100%;right:0;margin-top:4px}.qaid-top-left .qaid-dismiss-btn{top:100%;left:0;margin-top:4px}button.qaid-btn-structural{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;appearance:none}.qaid-icon{width:24px;height:24px}.qaid-btn-structural:not(:has(svg)),.qaid-btn:not(:has(svg)){font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-emoji-icon{font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-buttons,.qaid-buttons *,.qaid-modal-container,.qaid-modal-container *{cursor:pointer!important}.qaid-tooltip-wrapper{position:relative}.qaid-tooltip-text{position:fixed;padding:.5rem .75rem;background:#1f2937;color:#fff;font-size:1rem;font-weight:600;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:99999}.qaid-tooltip-text.qaid-tooltip-visible{opacity:1}.qaid-targeting-overlay{position:fixed;inset:0;z-index:40;pointer-events:none}.qaid-capture-layer{position:fixed;inset:0;pointer-events:none;z-index:9999}@keyframes qaid-slideDown{0%{transform:translateY(-100%)}to{transform:translateY(0)}}.qaid-vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.3) 70%,rgba(0,0,0,.6) 100%);z-index:41}.qaid-crosshair-h,.qaid-crosshair-v{position:fixed;pointer-events:none;z-index:42}.qaid-crosshair-h{left:0;right:0;height:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-crosshair-v{top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-type-up .qaid-crosshair-h,.qaid-type-up .qaid-crosshair-v{background:color-mix(in srgb,var(--qaid-positive) 60%,transparent)}.qaid-highlight-box{position:fixed;top:0;left:0;pointer-events:none;z-index:41;display:none;border:3px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:2px;background:color-mix(in srgb,var(--qaid-negative) 8%,transparent);will-change:transform,width,height}.qaid-type-up .qaid-highlight-box{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent);background:color-mix(in srgb,var(--qaid-positive) 8%,transparent)}.qaid-scope{position:fixed;width:80px;height:80px;pointer-events:none;z-index:43;transform:translate(-50%,-50%)}.qaid-scope-ring{position:absolute;inset:10px;border:2px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent)}.qaid-scope-ring-inner{position:absolute;inset:20px;border:1px solid color-mix(in srgb,var(--qaid-negative) 50%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring-inner{border-color:color-mix(in srgb,var(--qaid-positive) 50%,transparent)}.qaid-scope-dot{position:absolute;top:50%;left:50%;width:4px;height:4px;background:var(--qaid-negative);border-radius:50%;transform:translate(-50%,-50%)}.qaid-type-up .qaid-scope-dot{background:var(--qaid-positive)}.qaid-selected-marker{position:fixed;border:3px solid var(--qaid-marker, #6366f1);border-radius:50%;pointer-events:none;z-index:44;animation:qaid-markerPulse 1.5s ease-in-out infinite}@keyframes qaid-markerPulse{0%,to{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}.qaid-backdrop{position:fixed;inset:0;z-index:45;background:#0000004d}.qaid-modal-container{position:fixed;z-index:50;display:flex;flex-direction:column;align-items:flex-start;max-height:calc(100vh - 32px);font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-modal-container.qaid-above{flex-direction:column-reverse}.qaid-modal-arrow{width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;position:relative;align-self:flex-start}.qaid-modal-container.qaid-below .qaid-modal-arrow{border-bottom:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-container.qaid-above .qaid-modal-arrow{border-top:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5));width:var(--qaid-modal-width, 400px);max-width:calc(100vw - 32px);max-height:calc(100vh - 60px);overflow-y:auto}.qaid-modal-header{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1rem}button.qaid-type-toggle{border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;-webkit-appearance:none;appearance:none}button.qaid-type-toggle:hover{transform:scale(1.1)}button.qaid-type-toggle:not(.qaid-type-toggle-custom){width:2.5rem;height:2.5rem;border-radius:50%}button.qaid-type-toggle:not(.qaid-type-toggle-custom) svg{width:1.25rem;height:1.25rem}button.qaid-type-toggle.qaid-type-up{background:var(--qaid-positive);color:#fff}button.qaid-type-toggle.qaid-type-down{background:var(--qaid-negative);color:#fff}.qaid-modal-header-text{flex:1;min-width:0}.qaid-modal-title{font-size:1.125rem;font-weight:700;margin:0 0 .25rem;color:light-dark(#1f2937,#f9fafb)}.qaid-modal-subtitle{color:light-dark(#6b7280,#9ca3af);margin:0;font-size:.875rem}.qaid-textarea{width:100%;height:6rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:1rem;resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-btn-row{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-btn-submit{padding:.5rem 1rem;background:var(--qaid-marker);color:var(--qaid-marker-text, white);border:none;border-radius:.5rem;font-size:.875rem;font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-btn-submit:hover{filter:brightness(.85)}button.qaid-btn-submit:focus{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 30%,transparent)}.qaid-bottom-sheet{position:fixed;bottom:0;left:0;right:0;z-index:50;animation:qaid-slideUpSheet .3s ease-out;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-bottom-sheet-content{background:light-dark(#ffffff,#1f2937);border-radius:1rem 1rem 0 0;padding:1.5rem;padding-bottom:max(1.5rem,env(safe-area-inset-bottom))}.qaid-bottom-sheet-handle{width:36px;height:4px;background:light-dark(rgba(0,0,0,.2),rgba(255,255,255,.2));border-radius:2px;margin:0 auto 1rem}@keyframes qaid-slideUpSheet{0%{transform:translateY(100%)}to{transform:translateY(0)}}button.qaid-btn-record:hover{background:#dc2626;color:#fff}.qaid-recording-indicator{position:fixed;top:12px;left:50%;transform:translate(-50%);display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:light-dark(#1f2937,#374151);color:#fff;border-radius:9999px;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:.875rem;font-weight:500;box-shadow:0 4px 12px #0000004d;z-index:99999;animation:qaid-slideDown .2s ease-out}.qaid-recording-dot{width:10px;height:10px;background:#dc2626;border-radius:50%;animation:qaid-dotPulse 1.5s ease-in-out infinite}@keyframes qaid-dotPulse{0%,to{opacity:1}50%{opacity:.3}}.qaid-recording-time{font-variant-numeric:tabular-nums;min-width:2.5rem;text-align:center}button.qaid-recording-stop{padding:.25rem .75rem;background:#dc2626;color:#fff;border:none;border-radius:9999px;font-size:.75rem;font-weight:600;cursor:pointer;transition:background-color .2s;-webkit-appearance:none;appearance:none}button.qaid-recording-stop:hover{background:#b91c1c}.qaid-video-preview{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#0009;z-index:99998;animation:qaid-fadeIn .2s ease-out}@keyframes qaid-fadeIn{0%{opacity:0}to{opacity:1}}.qaid-video-preview-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px #00000080;width:560px;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);overflow-y:auto;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-video-preview-box h3{font-size:1.125rem;font-weight:700;margin:0 0 1rem;color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box video{width:100%;border-radius:.5rem;background:#000;margin-bottom:1rem}.qaid-video-preview-box textarea{width:100%;height:4rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:.875rem;resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-video-preview-actions{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-video-btn{padding:.5rem 1rem;border:none;border-radius:.5rem;font-size:.875rem;font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-video-btn-cancel{background:light-dark(#f3f4f6,#374151);color:light-dark(#374151,#d1d5db)}button.qaid-video-btn-cancel:hover{background:light-dark(#e5e7eb,#4b5563)}button.qaid-video-btn-rerecord{background:light-dark(#fef3c7,#78350f);color:light-dark(#92400e,#fde68a)}button.qaid-video-btn-rerecord:hover{filter:brightness(.9)}button.qaid-video-btn-send{background:var(--qaid-marker);color:var(--qaid-marker-text, white)}button.qaid-video-btn-send:hover{filter:brightness(.85)}button.qaid-video-btn-send:disabled{opacity:.5;cursor:not-allowed}.qaid-video-sending{display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:light-dark(#6b7280,#9ca3af)}", ot = "body.qaid-targeting,body.qaid-targeting *{cursor:none!important}";
 let w = 0;
-const ot = "button.qaid-btn{width:var(--qaid-btn-size);height:var(--qaid-btn-size);border-radius:50%;border:none;background:#f3f4f6;color:#374151;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);transition:background-color .2s,color .2s,transform .2s;-webkit-appearance:none;appearance:none;--qaid-hover-up-bg:var(--qaid-positive);--qaid-hover-up-color:#fff;--qaid-hover-down-bg:var(--qaid-negative);--qaid-hover-down-color:#fff}button.qaid-btn:hover{transform:scale(1.05)}button.qaid-btn-up:hover{background:var(--qaid-hover-up-bg);color:var(--qaid-hover-up-color)}button.qaid-btn-down:hover{background:var(--qaid-hover-down-bg);color:var(--qaid-hover-down-color)}button.qaid-btn svg{width:var(--qaid-icon-size);height:var(--qaid-icon-size)}", nt = {
+const nt = "button.qaid-btn{width:var(--qaid-btn-size);height:var(--qaid-btn-size);border-radius:50%;border:none;background:#f3f4f6;color:#374151;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);transition:background-color .2s,color .2s,transform .2s;-webkit-appearance:none;appearance:none;--qaid-hover-up-bg:var(--qaid-positive);--qaid-hover-up-color:#fff;--qaid-hover-down-bg:var(--qaid-negative);--qaid-hover-down-color:#fff}button.qaid-btn:hover{transform:scale(1.05)}button.qaid-btn-up:hover{background:var(--qaid-hover-up-bg);color:var(--qaid-hover-up-color)}button.qaid-btn-down:hover{background:var(--qaid-hover-down-bg);color:var(--qaid-hover-down-color)}button.qaid-btn svg{width:var(--qaid-icon-size);height:var(--qaid-icon-size)}", st = {
   small: 36,
   medium: 48,
   large: 64
-}, st = {
+}, at = {
   small: 18,
   medium: 24,
   large: 32
 };
-function at(e, t, i) {
+function rt(e, t, i) {
   const [o, n, s] = [e, t, i].map((r) => (r = r / 255, r <= 0.03928 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4)));
   return 0.2126 * o + 0.7152 * n + 0.0722 * s;
 }
-function rt(e) {
+function dt(e) {
   if (e.startsWith("#")) {
     const i = e.slice(1), o = i.length === 3 ? i.split("").map((s) => s + s).join("") : i, n = parseInt(o, 16);
     return {
@@ -35,11 +35,11 @@ function rt(e) {
     b: parseInt(t[3])
   } : null;
 }
-function dt(e) {
-  const t = rt(e);
-  return t && at(t.r, t.g, t.b) > 0.4 ? "black" : "white";
+function ct(e) {
+  const t = dt(e);
+  return t && rt(t.r, t.g, t.b) > 0.4 ? "black" : "white";
 }
-function ct(e = {}) {
+function lt(e = {}) {
   const {
     positiveColor: t = "rgb(0, 200, 83)",
     negativeColor: i = "rgb(255, 0, 0)",
@@ -49,7 +49,7 @@ function ct(e = {}) {
     backdropOpacity: r = 0.3,
     fontFamily: l = "system-ui, -apple-system, sans-serif",
     fontSize: d = 16
-  } = e, a = nt[n], c = st[n], h = dt(o);
+  } = e, a = st[n], c = at[n], h = ct(o);
   return {
     "--qaid-positive": t,
     "--qaid-negative": i,
@@ -63,29 +63,29 @@ function ct(e = {}) {
     "--qaid-font-size": `${d}px`
   };
 }
-function lt(e, t) {
+function ht(e, t) {
   for (const [i, o] of Object.entries(t))
     e.style.setProperty(i, o);
 }
 function z() {
-  return et + ot;
-}
-function ht() {
-  if (w++, w > 1) return;
-  const e = document.createElement("style");
-  e.id = "qaid-styles", e.textContent = it, document.head.appendChild(e);
+  return it + nt;
 }
 function ut() {
+  if (w++, w > 1) return;
+  const e = document.createElement("style");
+  e.id = "qaid-styles", e.textContent = ot, document.head.appendChild(e);
+}
+function pt() {
   if (!(w <= 0) && (w--, w === 0)) {
     const e = document.getElementById("qaid-styles");
     e && e.remove();
   }
 }
-const pt = ["data-comp", "data-qa", "data-testid", "data-id"];
-function F(e, t = document.body) {
+const mt = ["data-comp", "data-qa", "data-testid", "data-id"];
+function U(e, t = document.body) {
   let i = e;
   for (; i && i !== t; ) {
-    for (const o of pt) {
+    for (const o of mt) {
       const n = i.getAttribute(o);
       if (n)
         return `${o}="${n}"`;
@@ -94,44 +94,44 @@ function F(e, t = document.body) {
   }
   return null;
 }
-function mt(e, t = 100) {
+function ft(e, t = 100) {
   const i = e.textContent?.trim().slice(0, t) || "";
   return i.length === t ? i + "..." : i;
 }
-function ft(e) {
+function bt(e) {
   let t = 1, i = e.previousElementSibling;
   for (; i; )
     t++, i = i.previousElementSibling;
   return t;
 }
-function bt(e) {
+function gt(e) {
   const t = [];
   let i = e;
   for (; i && i !== document.body && i !== document.documentElement; ) {
-    const o = i.tagName.toLowerCase(), n = ft(i);
+    const o = i.tagName.toLowerCase(), n = bt(i);
     t.unshift(`${o}:nth-child(${n})`), i = i.parentElement;
   }
   return t.length > 0 ? `body > ${t.join(" > ")}` : "body";
 }
-function gt(e) {
+function vt(e) {
   return e.replace(/([!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, "\\$1");
 }
-function vt(e) {
-  const t = F(e);
-  return t ? `[${t}]` : e.id ? `#${gt(e.id)}` : bt(e);
-}
 function yt(e) {
-  const t = mt(e), i = F(e);
-  return { selector: vt(e), text: t, dataAttr: i };
+  const t = U(e);
+  return t ? `[${t}]` : e.id ? `#${vt(e.id)}` : gt(e);
 }
-const U = {
+function wt(e) {
+  const t = ft(e), i = U(e);
+  return { selector: yt(e), text: t, dataAttr: i };
+}
+const W = {
   width: 400,
   height: 280,
   arrowHeight: 12,
   gap: 8,
   viewportPadding: 16
 };
-function wt(e, t, i, o, n) {
+function xt(e, t, i, o, n) {
   const s = e.y, r = t - (e.y + e.height);
   if (r >= i + o)
     return {
@@ -150,22 +150,22 @@ function wt(e, t, i, o, n) {
     t - i - n
   ) : d = Math.max(n, e.y - i - o), { top: d, position: l };
 }
-function xt(e, t, i, o) {
+function qt(e, t, i, o) {
   let s = e.x + e.width / 2 - i / 2;
   return s = Math.max(o, Math.min(s, t - i - o)), s;
 }
-function qt(e, t, i, o = 24, n = 24) {
+function kt(e, t, i, o = 24, n = 24) {
   const r = e.clickX - t - n / 2;
   return Math.max(o, Math.min(r, i - o - n / 2));
 }
-function kt(e, t, i, o = U) {
-  const n = o.height + o.arrowHeight, s = wt(
+function Ct(e, t, i, o = W) {
+  const n = o.height + o.arrowHeight, s = xt(
     e,
     i,
     n,
     o.gap,
     o.viewportPadding
-  ), r = xt(
+  ), r = qt(
     e,
     t,
     o.width,
@@ -177,8 +177,8 @@ function kt(e, t, i, o = U) {
     position: s.position
   };
 }
-function Ct(e, t, i, o = U) {
-  const n = kt(e, t, i, o), s = qt(
+function St(e, t, i, o = W) {
+  const n = Ct(e, t, i, o), s = kt(
     e,
     n.left,
     o.width
@@ -188,15 +188,15 @@ function Ct(e, t, i, o = U) {
     arrow: { left: s }
   };
 }
-const St = 20;
-function Et(e) {
+const Et = 20;
+function Tt(e) {
   const t = [], i = console.error, o = console.warn, n = console.log, s = (r, l) => {
     const d = {
       message: l.map((a) => String(a)).join(" "),
       timestamp: Date.now(),
       level: r
     };
-    t.length >= St && t.shift(), t.push(d), e && e(d);
+    t.length >= Et && t.shift(), t.push(d), e && e(d);
   };
   return console.error = function(...r) {
     s("error", r), i.apply(console, r);
@@ -211,16 +211,16 @@ function Et(e) {
     }
   };
 }
-const Tt = 20, P = 4096;
+const It = 20, P = 4096;
 function q(e) {
   if (e == null) return;
   const t = typeof e == "string" ? e : JSON.stringify(e);
   return t.length > P ? t.slice(0, P) + "…[truncated]" : t;
 }
 function O(e, t) {
-  e.length >= Tt && e.shift(), e.push(t);
+  e.length >= It && e.shift(), e.push(t);
 }
-async function It(e) {
+async function Lt(e) {
   try {
     const t = await e.clone().text();
     return q(t);
@@ -228,7 +228,7 @@ async function It(e) {
     return;
   }
 }
-function Lt() {
+function Ht() {
   const e = [], t = window.fetch;
   window.fetch = async function(n, s) {
     const r = typeof n == "string" ? n : n instanceof URL ? n.toString() : n.url, l = s?.method ?? (typeof n == "object" && "method" in n ? n.method : "GET");
@@ -236,7 +236,7 @@ function Lt() {
     s?.body && (d = q(s.body));
     const a = await t.apply(window, [n, s]);
     if (a.status >= 400) {
-      const c = await It(a);
+      const c = await Lt(a);
       O(e, {
         url: r,
         method: l.toUpperCase(),
@@ -272,10 +272,10 @@ function Lt() {
     }
   };
 }
-function Ht() {
+function Dt() {
   return typeof navigator < "u" && !!navigator.mediaDevices && typeof navigator.mediaDevices.getDisplayMedia == "function" && typeof MediaRecorder < "u";
 }
-function Dt() {
+function Mt() {
   if (typeof MediaRecorder > "u") return "";
   const e = [
     "video/webm;codecs=vp9",
@@ -288,7 +288,7 @@ function Dt() {
       return t;
   return "";
 }
-function Mt(e = {}) {
+function Bt(e = {}) {
   const t = e.maxDuration ?? 15, i = e.videoBitsPerSecond ?? 8e5;
   let o = null, n = null, s = [], r = null, l = null, d = null, a = 0, c = null, h = null, u = !1, p = null;
   function g() {
@@ -300,7 +300,7 @@ function Mt(e = {}) {
   return {
     async start() {
       u = !1, s = [];
-      const m = Dt();
+      const m = Mt();
       if (!m)
         throw new Error("No supported video MIME type found");
       o = await navigator.mediaDevices.getDisplayMedia({
@@ -347,7 +347,7 @@ function Mt(e = {}) {
     }
   };
 }
-function Bt(e = 640) {
+function Rt(e = 640) {
   return typeof window < "u" && window.innerWidth < e;
 }
 function A(e, t, i) {
@@ -359,7 +359,7 @@ function A(e, t, i) {
 function $(e) {
   return e ? e.hasAttribute("data-qaid-embed") || e.hasAttribute("data-qaid-embed-overlay") ? !0 : !!e.closest("[data-qaid-embed], [data-qaid-embed-overlay]") : !1;
 }
-function Rt(e, t = 0) {
+function zt(e, t = 0) {
   const i = e.getBoundingClientRect();
   return {
     x: i.left - t,
@@ -368,7 +368,7 @@ function Rt(e, t = 0) {
     height: i.height + t * 2
   };
 }
-async function zt(e = {}) {
+async function Pt(e = {}) {
   const { quality: t = 1, maxWidth: i = 1280, maxHeight: o = 800 } = e;
   try {
     if (!navigator.mediaDevices?.getDisplayMedia)
@@ -397,7 +397,7 @@ async function zt(e = {}) {
     return console.warn("Screenshot capture failed:", n), null;
   }
 }
-const N = "https://qaid.dev/lib/html2canvas.min.js", Pt = 1e4, Ot = 50;
+const N = "https://qaid.dev/lib/html2canvas.min.js", Ot = 1e4, At = 50;
 let y = null;
 function Xt() {
   if (typeof document > "u" || typeof window > "u")
@@ -405,7 +405,7 @@ function Xt() {
   const e = document.createElement("canvas");
   return typeof e.getContext == "function" && !!e.getContext("2d");
 }
-function At() {
+function $t() {
   return window.html2canvas ? Promise.resolve(!0) : y || (y = new Promise((e) => {
     if (!document.querySelector(
       `script[src="${N}"]`
@@ -418,19 +418,19 @@ function At() {
         e(!0);
         return;
       }
-      if (Date.now() - i > Pt) {
+      if (Date.now() - i > Ot) {
         y = null, e(!1);
         return;
       }
-      setTimeout(o, Ot);
+      setTimeout(o, At);
     };
     o();
   }), y);
 }
-async function $t(e = {}) {
+async function Nt(e = {}) {
   const { quality: t = 0.8, maxWidth: i = 1280, maxHeight: o = 800 } = e;
   try {
-    if (!await At() || !window.html2canvas)
+    if (!await $t() || !window.html2canvas)
       return console.warn("html2canvas failed to load"), null;
     const s = await window.html2canvas(document.body, {
       useCORS: !0,
@@ -459,14 +459,14 @@ const V = "qaid_visitor_id", _ = "qaid_hide_feedback";
 function I(e) {
   return e ? `${_}_${e}` : _;
 }
-function Nt(e) {
+function Vt(e) {
   try {
     return localStorage.getItem(I(e)) === "1";
   } catch {
     return !1;
   }
 }
-function Vt(e, t = !0) {
+function F(e, t = !0) {
   try {
     t ? localStorage.setItem(I(e), "1") : localStorage.removeItem(I(e));
   } catch {
@@ -594,10 +594,10 @@ class Ft {
     }, this.boundKeyDown = this.handleKeyDown.bind(this), this.boundMouseMove = this.handleMouseMove.bind(this), this.boundClick = this.handleClick.bind(this), this.boundResize = this.handleResize.bind(this), this.visitorId = _t(), this.init();
   }
   applyVars(t) {
-    lt(t, this.cssVars);
+    ht(t, this.cssVars);
   }
   init() {
-    ht(), this.cssVars = ct({
+    ut(), this.cssVars = lt({
       positiveColor: this.config.colors.positive,
       negativeColor: this.config.colors.negative,
       markerColor: this.config.colors.marker,
@@ -606,7 +606,7 @@ class Ft {
       backdropOpacity: this.config.backdropOpacity,
       fontFamily: this.config.fontFamily,
       fontSize: this.config.fontSize
-    }), Nt(this.config.apiKey) && (this.config.incognito = !0), this.checkMobile(), window.addEventListener("resize", this.boundResize), this.createEmbed(), this.consoleCapture = Et((t) => {
+    }), Vt(this.config.apiKey) && (this.config.incognito = !0), this.checkMobile(), window.addEventListener("resize", this.boundResize), this.createEmbed(), this.consoleCapture = Tt((t) => {
       this.feedbackData.consoleErrors = this.consoleCapture?.errors ?? [];
     }), this.feedbackData.consoleErrors = this.consoleCapture.errors, this.observeDom();
   }
@@ -629,7 +629,7 @@ class Ft {
     }), this.domObserver.observe(document.body, { childList: !0 });
   }
   checkMobile() {
-    this.isMobile = Bt();
+    this.isMobile = Rt();
   }
   handleResize() {
     this.checkMobile();
@@ -663,11 +663,11 @@ class Ft {
       const u = document.createElement("button");
       u.type = "button", u.className = n ? `${s} qaid-btn-down` : "qaid-btn qaid-btn-down", u.innerHTML = this.config.negativeIcon || T, u.addEventListener("click", (p) => this.handleThumbClick("down", p.currentTarget, p)), u.addEventListener("mouseenter", () => this.showTooltip(u)), u.addEventListener("mouseleave", () => this.hideTooltip()), h.appendChild(u), this.buttonsContainer.appendChild(a), this.buttonsContainer.appendChild(h);
     }
-    if (this.config.captureVideo && Ht()) {
+    if (this.config.captureVideo && Dt()) {
       const a = document.createElement("div");
       a.className = "qaid-tooltip-wrapper";
       const c = document.createElement("button");
-      c.type = "button", c.className = n ? `${s} qaid-btn-record` : "qaid-btn qaid-btn-record", c.innerHTML = this.config.recordIcon || tt, c.addEventListener("click", () => this.startRecording()), c.addEventListener("mouseenter", () => this.showTooltip(c)), c.addEventListener("mouseleave", () => this.hideTooltip()), a.appendChild(c), this.buttonsContainer.appendChild(a);
+      c.type = "button", c.className = n ? `${s} qaid-btn-record` : "qaid-btn qaid-btn-record", c.innerHTML = this.config.recordIcon || et, c.addEventListener("click", () => this.startRecording()), c.addEventListener("mouseenter", () => this.showTooltip(c)), c.addEventListener("mouseleave", () => this.hideTooltip()), a.appendChild(c), this.buttonsContainer.appendChild(a);
     }
     this.dismissBtn = document.createElement("button"), this.dismissBtn.type = "button", this.dismissBtn.className = "qaid-dismiss-btn", this.dismissBtn.setAttribute("aria-label", "Hide Feedback"), this.dismissBtn.title = "Hide Feedback", this.dismissBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>', this.dismissBtn.addEventListener("click", (a) => {
       a.stopPropagation(), this.handleDismiss();
@@ -702,10 +702,10 @@ class Ft {
     this.tooltipElement && this.tooltipElement.classList.remove("qaid-tooltip-visible");
   }
   handleDismiss() {
-    this.buttonsContainer && this.buttonsContainer.classList.add("qaid-incognito"), Vt(this.config.apiKey, !0);
+    this.buttonsContainer && this.buttonsContainer.classList.add("qaid-incognito"), F(this.config.apiKey, !0);
   }
   handleThumbClick(t, i, o) {
-    this.config.skipTargeting ? this.submitDirectFeedback(t, i) : this.startTargeting(t, o);
+    this.buttonsContainer?.classList.contains("qaid-incognito") && (this.buttonsContainer.classList.remove("qaid-incognito"), F(this.config.apiKey, !1)), this.config.skipTargeting ? this.submitDirectFeedback(t, i) : this.startTargeting(t, o);
   }
   submitDirectFeedback(t, i) {
     this.feedbackData.feedbackType = t, this.feedbackData.elementSelector = null, this.feedbackData.elementText = null;
@@ -762,14 +762,14 @@ class Ft {
     );
     if (!o || $(o))
       return;
-    const n = Rt(o, 8);
+    const n = zt(o, 8);
     this.selectedBounds = {
       ...n,
       clickX: t.clientX,
       clickY: t.clientY,
       visible: !0
     };
-    const { selector: s, text: r } = yt(o);
+    const { selector: s, text: r } = wt(o);
     this.feedbackData.elementSelector = s, this.feedbackData.elementText = r, this.removeTargetingOverlay(), document.removeEventListener("mousemove", this.boundMouseMove), document.removeEventListener("click", this.boundClick, !0), document.removeEventListener("keydown", this.boundKeyDown), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.state = "SELECTED", this.showSelectedMarker(), this.submitFeedback();
   }
   cancelTargeting() {
@@ -789,7 +789,7 @@ class Ft {
   async submitFeedback() {
     if (!this.feedbackData.feedbackType) return;
     let t = null;
-    this.config.captureScreenshot && (this.config.screenshotMethod === "dom" ? t = await $t(this.config.screenshotOptions) : t = await zt(this.config.screenshotOptions));
+    this.config.captureScreenshot && (this.config.screenshotMethod === "dom" ? t = await Nt(this.config.screenshotOptions) : t = await Pt(this.config.screenshotOptions));
     const i = this.feedbackData.elementSelector ? {
       x: this.selectedBounds.x,
       y: this.selectedBounds.y,
@@ -843,7 +843,7 @@ class Ft {
     `, this.applyVars(i), t.appendChild(i), this.modalContainer = i, this.setupModalInteractions();
   }
   showPositionedModal() {
-    const t = this.ensureOverlayHost(), { modal: i, arrow: o } = Ct(
+    const t = this.ensureOverlayHost(), { modal: i, arrow: o } = St(
       this.selectedBounds,
       window.innerWidth,
       window.innerHeight,
@@ -926,7 +926,7 @@ class Ft {
   async startRecording() {
     if (!(this.isRecording || this.state !== "IDLE"))
       try {
-        this.networkCapture = Lt(), this.videoRecorder = Mt({
+        this.networkCapture = Ht(), this.videoRecorder = Bt({
           maxDuration: this.config.videoOptions.maxDuration
         }), this.videoRecorder.onTick((t) => {
           this.updateRecordingTimer(t);
@@ -1037,10 +1037,10 @@ class Ft {
    * Destroy the embed and clean up all resources
    */
   destroy() {
-    this.destroyed = !0, this.domObserver && (this.domObserver.disconnect(), this.domObserver = null), this.boundBeforeSwap && (document.removeEventListener("astro:before-swap", this.boundBeforeSwap), this.boundBeforeSwap = null), this.cleanupRecording(), this.removeVideoPreview(), this.consoleCapture && (this.consoleCapture.restore(), this.consoleCapture = null), window.removeEventListener("resize", this.boundResize), document.removeEventListener("keydown", this.boundKeyDown), document.removeEventListener("mousemove", this.boundMouseMove), document.removeEventListener("click", this.boundClick, !0), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.shadowHost && (this.shadowHost.remove(), this.shadowHost = null, this.shadowRoot = null), this.overlayShadowHost && (this.overlayShadowHost.remove(), this.overlayShadowHost = null, this.overlayShadowRoot = null), this.buttonsContainer = null, this.overlayContainer = null, this.captureLayer = null, this.crosshairH = null, this.crosshairV = null, this.scope = null, this.marker = null, this.modalContainer = null, this.backdrop = null, this.dismissBtn = null, this.tooltipElement = null, ut();
+    this.destroyed = !0, this.domObserver && (this.domObserver.disconnect(), this.domObserver = null), this.boundBeforeSwap && (document.removeEventListener("astro:before-swap", this.boundBeforeSwap), this.boundBeforeSwap = null), this.cleanupRecording(), this.removeVideoPreview(), this.consoleCapture && (this.consoleCapture.restore(), this.consoleCapture = null), window.removeEventListener("resize", this.boundResize), document.removeEventListener("keydown", this.boundKeyDown), document.removeEventListener("mousemove", this.boundMouseMove), document.removeEventListener("click", this.boundClick, !0), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.shadowHost && (this.shadowHost.remove(), this.shadowHost = null, this.shadowRoot = null), this.overlayShadowHost && (this.overlayShadowHost.remove(), this.overlayShadowHost = null, this.overlayShadowRoot = null), this.buttonsContainer = null, this.overlayContainer = null, this.captureLayer = null, this.crosshairH = null, this.crosshairV = null, this.scope = null, this.marker = null, this.modalContainer = null, this.backdrop = null, this.dismissBtn = null, this.tooltipElement = null, pt();
   }
 }
-function W(e) {
+function X(e) {
   return document.querySelector(e)?.textContent?.trim() ?? "";
 }
 function Ut() {
@@ -1052,7 +1052,7 @@ function Ut() {
   if (!t) return null;
   try {
     const i = JSON.parse(t);
-    return i.cssSelector && !i.css && (i.css = W(i.cssSelector), delete i.cssSelector), i;
+    return i.cssSelector && !i.css && (i.css = X(i.cssSelector), delete i.cssSelector), i;
   } catch {
     return null;
   }
@@ -1060,12 +1060,12 @@ function Ut() {
 function Wt(e) {
   const t = e.getAttribute("data-endpoint");
   if (!t) return null;
-  const i = e.getAttribute("data-position"), o = e.getAttribute("data-zindex"), n = e.getAttribute("data-positive-color"), s = e.getAttribute("data-negative-color"), r = e.getAttribute("data-marker-color"), l = e.getAttribute("data-container"), d = e.getAttribute("data-button-class"), a = e.getAttribute("data-skip-targeting"), c = e.getAttribute("data-incognito"), h = e.getAttribute("data-button-size"), u = e.getAttribute("data-offset-x"), p = e.getAttribute("data-offset-y"), g = e.getAttribute("data-modal-width"), f = e.getAttribute("data-backdrop-opacity"), m = e.getAttribute("data-font-family"), v = e.getAttribute("data-font-size"), b = e.getAttribute("data-tooltip"), x = e.getAttribute("data-modal-title"), L = e.getAttribute("data-modal-subtitle"), H = e.getAttribute("data-placeholder"), D = e.getAttribute("data-submit-button"), M = e.getAttribute("data-skip-button"), X = e.getAttribute("data-positive-icon"), j = e.getAttribute("data-negative-icon"), K = e.getAttribute("data-api-key"), Y = e.getAttribute("data-capture-screenshot"), k = e.getAttribute("data-screenshot-quality"), C = e.getAttribute("data-screenshot-max-width"), S = e.getAttribute("data-screenshot-max-height"), J = e.getAttribute("data-capture-video"), G = e.getAttribute("data-hide-thumbs"), B = e.getAttribute("data-video-max-duration"), Z = e.getAttribute("data-screenshot-method"), Q = e.getAttribute("data-direction"), R = e.getAttribute("data-css-selector");
+  const i = e.getAttribute("data-position"), o = e.getAttribute("data-zindex"), n = e.getAttribute("data-positive-color"), s = e.getAttribute("data-negative-color"), r = e.getAttribute("data-marker-color"), l = e.getAttribute("data-container"), d = e.getAttribute("data-button-class"), a = e.getAttribute("data-skip-targeting"), c = e.getAttribute("data-incognito"), h = e.getAttribute("data-button-size"), u = e.getAttribute("data-offset-x"), p = e.getAttribute("data-offset-y"), g = e.getAttribute("data-modal-width"), f = e.getAttribute("data-backdrop-opacity"), m = e.getAttribute("data-font-family"), v = e.getAttribute("data-font-size"), b = e.getAttribute("data-tooltip"), x = e.getAttribute("data-modal-title"), L = e.getAttribute("data-modal-subtitle"), H = e.getAttribute("data-placeholder"), D = e.getAttribute("data-submit-button"), M = e.getAttribute("data-skip-button"), j = e.getAttribute("data-positive-icon"), K = e.getAttribute("data-negative-icon"), Y = e.getAttribute("data-api-key"), J = e.getAttribute("data-capture-screenshot"), k = e.getAttribute("data-screenshot-quality"), C = e.getAttribute("data-screenshot-max-width"), S = e.getAttribute("data-screenshot-max-height"), G = e.getAttribute("data-capture-video"), Z = e.getAttribute("data-hide-thumbs"), B = e.getAttribute("data-video-max-duration"), Q = e.getAttribute("data-screenshot-method"), tt = e.getAttribute("data-direction"), R = e.getAttribute("data-css-selector");
   return {
     endpoint: t,
-    css: R ? W(R) : void 0,
-    apiKey: K ?? void 0,
-    captureScreenshot: Y === "true" ? !0 : void 0,
+    css: R ? X(R) : void 0,
+    apiKey: Y ?? void 0,
+    captureScreenshot: J === "true" ? !0 : void 0,
     screenshotOptions: k || C || S ? {
       quality: k ? parseFloat(k) : void 0,
       maxWidth: C ? parseInt(C, 10) : void 0,
@@ -1073,7 +1073,7 @@ function Wt(e) {
     } : void 0,
     container: l ?? void 0,
     buttonClass: d ?? void 0,
-    direction: Q ?? void 0,
+    direction: tt ?? void 0,
     position: i ?? void 0,
     zIndex: o ? parseInt(o, 10) : void 0,
     skipTargeting: a === "true" ? !0 : void 0,
@@ -1100,11 +1100,11 @@ function Wt(e) {
       submitButton: D ?? void 0,
       skipButton: M ?? void 0
     } : void 0,
-    positiveIcon: X ?? void 0,
-    negativeIcon: j ?? void 0,
-    screenshotMethod: Z ?? void 0,
-    captureVideo: J === "true" ? !0 : void 0,
-    hideThumbs: G === "true" ? !0 : void 0,
+    positiveIcon: j ?? void 0,
+    negativeIcon: K ?? void 0,
+    screenshotMethod: Q ?? void 0,
+    captureVideo: G === "true" ? !0 : void 0,
+    hideThumbs: Z === "true" ? !0 : void 0,
     videoOptions: B ? {
       maxDuration: parseInt(B, 10)
     } : void 0
@@ -1119,11 +1119,11 @@ if (typeof document < "u") {
 }
 export {
   Ft as QaidFeedback,
-  $t as captureDomScreenshot,
-  Lt as captureNetworkErrors,
-  Mt as createVideoRecorder,
-  Dt as getSupportedMimeType,
+  Nt as captureDomScreenshot,
+  Ht as captureNetworkErrors,
+  Bt as createVideoRecorder,
+  Mt as getSupportedMimeType,
   Xt as isDomScreenshotSupported,
-  Ht as isVideoRecordingSupported
+  Dt as isVideoRecordingSupported
 };
 //# sourceMappingURL=qaid.js.map

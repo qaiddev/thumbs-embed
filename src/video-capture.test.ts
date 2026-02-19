@@ -8,6 +8,7 @@ import {
 // Mock MediaRecorder
 class MockMediaRecorder {
   static isTypeSupported = vi.fn().mockReturnValue(true);
+  static lastInstance: MockMediaRecorder | null = null;
   state = "inactive" as "inactive" | "recording" | "paused";
   ondataavailable: ((e: { data: Blob }) => void) | null = null;
   onstop: (() => void) | null = null;
@@ -16,7 +17,9 @@ class MockMediaRecorder {
   constructor(
     public stream: MediaStream,
     public options: { mimeType: string; videoBitsPerSecond: number }
-  ) {}
+  ) {
+    MockMediaRecorder.lastInstance = this;
+  }
 
   start(_timeslice?: number) {
     this.state = "recording";
@@ -199,5 +202,81 @@ describe("createVideoRecorder", () => {
 
     const recorder = createVideoRecorder();
     await expect(recorder.start()).rejects.toThrow("No supported video MIME type found");
+  });
+
+  it("should stop recording when video track fires 'ended' event", async () => {
+    vi.useFakeTimers();
+
+    const recorder = createVideoRecorder();
+    const stopFn = vi.fn();
+    recorder.onStop(stopFn);
+
+    await recorder.start();
+
+    // Get the video track and find the "ended" listener that was registered
+    const videoTrack = mockStream.getVideoTracks()[0];
+    const addEventListenerCall = (videoTrack.addEventListener as ReturnType<typeof vi.fn>).mock.calls.find(
+      (call: [string, () => void]) => call[0] === "ended"
+    );
+    expect(addEventListenerCall).toBeDefined();
+    const endedCallback = addEventListenerCall![1] as () => void;
+
+    // Simulate browser "Stop sharing" button
+    endedCallback();
+
+    // Advance timers so MockMediaRecorder.stop() fires onstop
+    vi.advanceTimersByTime(50);
+
+    expect(stopFn).toHaveBeenCalledWith(expect.any(Blob));
+
+    recorder.destroy();
+    vi.useRealTimers();
+  });
+
+  it("should reject stop() promise when MediaRecorder fires onerror", async () => {
+    const recorder = createVideoRecorder();
+
+    await recorder.start();
+
+    // Get the underlying MockMediaRecorder instance
+    const mockRecorder = MockMediaRecorder.lastInstance!;
+
+    // Override stop() so it does NOT fire onstop — simulating an error scenario
+    mockRecorder.stop = function () {
+      this.state = "inactive";
+      // Don't fire onstop — the error handler will fire instead
+    };
+
+    // Call stop() which sets up resolveStop/rejectStop then calls finishRecording
+    const stopPromise = recorder.stop();
+
+    // Fire the onerror handler while the promise is pending
+    mockRecorder.onerror!();
+
+    await expect(stopPromise).rejects.toThrow("MediaRecorder error");
+
+    recorder.destroy();
+  });
+
+  it("should auto-stop recording after maxDuration", async () => {
+    vi.useFakeTimers();
+
+    const maxDuration = 5;
+    const recorder = createVideoRecorder({ maxDuration });
+    const stopFn = vi.fn();
+    recorder.onStop(stopFn);
+
+    await recorder.start();
+
+    // Advance past maxDuration
+    vi.advanceTimersByTime(maxDuration * 1000);
+
+    // Advance a bit more so MockMediaRecorder.stop() fires onstop via setTimeout
+    vi.advanceTimersByTime(50);
+
+    expect(stopFn).toHaveBeenCalledWith(expect.any(Blob));
+
+    recorder.destroy();
+    vi.useRealTimers();
   });
 });

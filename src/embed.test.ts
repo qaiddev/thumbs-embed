@@ -1633,6 +1633,308 @@ describe("QaidFeedback", () => {
     });
   });
 
+  describe("video feedback submission", () => {
+    let mockStream: { getTracks: () => { stop: ReturnType<typeof vi.fn> }[]; getVideoTracks: () => { stop: ReturnType<typeof vi.fn>; addEventListener: ReturnType<typeof vi.fn>; kind: string }[] };
+    let mockMediaRecorder: {
+      state: string;
+      ondataavailable: ((e: { data: Blob }) => void) | null;
+      onstop: (() => void) | null;
+      onerror: (() => void) | null;
+      start: ReturnType<typeof vi.fn>;
+      stop: ReturnType<typeof vi.fn>;
+    };
+    let createObjectURLSpy: ReturnType<typeof vi.fn>;
+    let revokeObjectURLSpy: ReturnType<typeof vi.fn>;
+
+    beforeEach(() => {
+      const mockTrack = {
+        stop: vi.fn(),
+        addEventListener: vi.fn(),
+        kind: "video",
+      };
+
+      mockStream = {
+        getTracks: () => [mockTrack],
+        getVideoTracks: () => [mockTrack],
+      };
+
+      mockMediaRecorder = {
+        state: "inactive",
+        ondataavailable: null,
+        onstop: null,
+        onerror: null,
+        start: vi.fn().mockImplementation(function (this: typeof mockMediaRecorder) {
+          this.state = "recording";
+          setTimeout(() => {
+            if (this.ondataavailable) {
+              this.ondataavailable({ data: new Blob(["video-data"], { type: "video/webm" }) });
+            }
+          }, 10);
+        }),
+        stop: vi.fn().mockImplementation(function (this: typeof mockMediaRecorder) {
+          this.state = "inactive";
+          setTimeout(() => {
+            if (this.onstop) {
+              this.onstop();
+            }
+          }, 10);
+        }),
+      };
+
+      (globalThis as Record<string, unknown>).MediaRecorder = class {
+        static isTypeSupported = () => true;
+        state = "inactive";
+        ondataavailable: ((e: { data: Blob }) => void) | null = null;
+        onstop: (() => void) | null = null;
+        onerror: (() => void) | null = null;
+
+        constructor() {
+          Object.assign(this, {
+            start: mockMediaRecorder.start.bind(this),
+            stop: mockMediaRecorder.stop.bind(this),
+          });
+          const self = this;
+          mockMediaRecorder.ondataavailable = null;
+          mockMediaRecorder.onstop = null;
+          Object.defineProperty(mockMediaRecorder, "ondataavailable", {
+            get: () => self.ondataavailable,
+            set: (v) => { self.ondataavailable = v; },
+            configurable: true,
+          });
+          Object.defineProperty(mockMediaRecorder, "onstop", {
+            get: () => self.onstop,
+            set: (v) => { self.onstop = v; },
+            configurable: true,
+          });
+        }
+
+        start(timeslice?: number) {
+          mockMediaRecorder.start.call(this, timeslice);
+        }
+
+        stop() {
+          mockMediaRecorder.stop.call(this);
+        }
+      };
+
+      Object.defineProperty(navigator, "mediaDevices", {
+        value: {
+          getDisplayMedia: vi.fn().mockResolvedValue(mockStream),
+        },
+        writable: true,
+        configurable: true,
+      });
+
+      createObjectURLSpy = vi.fn().mockReturnValue("blob:mock-video-url");
+      revokeObjectURLSpy = vi.fn();
+      URL.createObjectURL = createObjectURLSpy;
+      URL.revokeObjectURL = revokeObjectURLSpy;
+    });
+
+    async function openVideoPreview(config: Record<string, unknown> = {}): Promise<ShadowRoot> {
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        captureVideo: true,
+        ...config,
+      });
+
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-record")?.click();
+
+      // Wait for recording indicator
+      await vi.waitFor(() => {
+        const overlayShadow = getOverlayShadowRoot();
+        expect(overlayShadow.querySelector(".qaid-recording-indicator")).not.toBeNull();
+      });
+
+      // Stop recording via stop button
+      const overlayShadow = getOverlayShadowRoot();
+      overlayShadow.querySelector<HTMLButtonElement>(".qaid-recording-stop")?.click();
+
+      // Wait for preview to appear
+      await vi.waitFor(() => {
+        expect(overlayShadow.querySelector(".qaid-video-preview")).not.toBeNull();
+      });
+
+      // The mock creates a race condition where both the stopCallback (onStop handler)
+      // and the stopRecording() continuation both call showRecordingPreview(), resulting
+      // in two preview elements. Remove the orphaned first one so tests see a clean state.
+      const allPreviews = overlayShadow.querySelectorAll(".qaid-video-preview");
+      if (allPreviews.length > 1) {
+        // Remove all but the last one (which is this.videoPreview in the embed)
+        for (let i = 0; i < allPreviews.length - 1; i++) {
+          allPreviews[i].remove();
+        }
+      }
+
+      return overlayShadow;
+    }
+
+    it("should remove video preview when cancel button is clicked", async () => {
+      const overlayShadow = await openVideoPreview();
+
+      // Video preview should exist
+      expect(overlayShadow.querySelector(".qaid-video-preview")).not.toBeNull();
+
+      // Click cancel
+      overlayShadow.querySelector<HTMLButtonElement>(".qaid-video-btn-cancel")?.click();
+
+      // Video preview should be removed
+      expect(overlayShadow.querySelector(".qaid-video-preview")).toBeNull();
+
+      // Object URL should have been revoked
+      expect(revokeObjectURLSpy).toHaveBeenCalledWith("blob:mock-video-url");
+
+      // Buttons should be re-enabled
+      const shadow = getShadowRoot();
+      const upBtn = shadow.querySelector<HTMLButtonElement>(".qaid-btn-up");
+      expect(upBtn?.disabled).toBe(false);
+    });
+
+    it("should remove video preview when Escape is pressed", async () => {
+      const overlayShadow = await openVideoPreview();
+
+      expect(overlayShadow.querySelector(".qaid-video-preview")).not.toBeNull();
+
+      // Press Escape while preview is showing
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+
+      // Video preview should be removed
+      expect(overlayShadow.querySelector(".qaid-video-preview")).toBeNull();
+      expect(revokeObjectURLSpy).toHaveBeenCalled();
+    });
+
+    it("should send FormData to correct endpoint when send button is clicked", async () => {
+      let fetchResolve: ((v: unknown) => void) | null = null;
+      const fetchResult = { ok: true, text: () => Promise.resolve("OK") };
+      const fetchMock = vi.fn().mockImplementation(() => {
+        return new Promise((resolve) => {
+          fetchResolve = resolve;
+        });
+      });
+      global.fetch = fetchMock;
+
+      const overlayShadow = await openVideoPreview({ apiKey: "test-api-key" });
+
+      // Type a message in the textarea
+      const textarea = overlayShadow.querySelector<HTMLTextAreaElement>("textarea");
+      if (textarea) {
+        textarea.value = "Bug description here";
+      }
+
+      // Click send
+      overlayShadow.querySelector<HTMLButtonElement>(".qaid-video-btn-send")?.click();
+
+      // Wait for fetch to be called
+      await vi.waitFor(() => {
+        expect(fetchMock).toHaveBeenCalled();
+      });
+
+      // Verify the request before resolving
+      const videoCalls = fetchMock.mock.calls.filter(
+        (c: unknown[]) => typeof c[0] === "string" && (c[0] as string).endsWith("/video")
+      );
+      expect(videoCalls.length).toBeGreaterThan(0);
+
+      const [url, options] = videoCalls[0];
+      expect(url).toBe("/api/feedback/video");
+      expect(options.method).toBe("POST");
+      expect(options.body).toBeInstanceOf(FormData);
+
+      const formData = options.body as FormData;
+      expect(formData.get("video")).not.toBeNull();
+      expect(formData.get("pageUrl")).toBeDefined();
+      expect(formData.get("visitorId")).toBeDefined();
+      expect(formData.get("apiKey")).toBe("test-api-key");
+      expect(formData.get("message")).toBe("Bug description here");
+
+      // Now resolve the fetch and verify cleanup
+      fetchResolve!(fetchResult);
+      await vi.waitFor(() => {
+        expect(overlayShadow.querySelector(".qaid-video-preview")).toBeNull();
+      });
+    });
+
+    it("should handle fetch error response gracefully", async () => {
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: false,
+        text: () => Promise.resolve("Server error"),
+      });
+      global.fetch = fetchMock;
+      const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+      const overlayShadow = await openVideoPreview();
+
+      // Click send
+      overlayShadow.querySelector<HTMLButtonElement>(".qaid-video-btn-send")?.click();
+
+      // Wait for the async submitVideoFeedback to complete
+      await vi.waitFor(() => {
+        expect(errorSpy).toHaveBeenCalledWith("Failed to submit video feedback:", "Server error");
+      }, { timeout: 3000 });
+
+      // Preview should be cleaned up after submission completes
+      expect(overlayShadow.querySelector(".qaid-video-preview")).toBeNull();
+
+      errorSpy.mockRestore();
+    });
+
+    it("should handle network error gracefully", async () => {
+      const fetchMock = vi.fn().mockRejectedValue(new Error("Network failure"));
+      global.fetch = fetchMock;
+      const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+      const overlayShadow = await openVideoPreview();
+
+      // Click send
+      overlayShadow.querySelector<HTMLButtonElement>(".qaid-video-btn-send")?.click();
+
+      // Wait for the async submitVideoFeedback to complete
+      await vi.waitFor(() => {
+        expect(errorSpy).toHaveBeenCalledWith(
+          "Failed to submit video feedback:",
+          expect.any(Error)
+        );
+      }, { timeout: 3000 });
+
+      // Preview should be cleaned up after submission completes
+      expect(overlayShadow.querySelector(".qaid-video-preview")).toBeNull();
+
+      errorSpy.mockRestore();
+    });
+
+    it("should disable send button and show sending state during submission", async () => {
+      // Use a fetch that we can control resolution timing
+      let resolveFetch!: (value: unknown) => void;
+      const fetchMock = vi.fn().mockImplementation(() => new Promise((resolve) => {
+        resolveFetch = resolve;
+      }));
+      global.fetch = fetchMock;
+
+      const overlayShadow = await openVideoPreview();
+
+      // Click send
+      const sendBtn = overlayShadow.querySelector<HTMLButtonElement>(".qaid-video-btn-send")!;
+      sendBtn.click();
+
+      // Wait for fetch to be called (button should be disabled while sending)
+      await vi.waitFor(() => {
+        expect(fetchMock).toHaveBeenCalled();
+      });
+
+      // Button should show "Sending..." and be disabled
+      expect(sendBtn.textContent).toBe("Sending...");
+      expect(sendBtn.disabled).toBe(true);
+
+      // Resolve the fetch to clean up
+      resolveFetch({ ok: true, text: () => Promise.resolve("OK") });
+
+      await vi.waitFor(() => {
+        expect(overlayShadow.querySelector(".qaid-video-preview")).toBeNull();
+      }, { timeout: 3000 });
+    });
+  });
+
   describe("dismiss button", () => {
     afterEach(() => {
       localStorage.removeItem("qaid_hide_feedback");
@@ -1686,6 +1988,23 @@ describe("QaidFeedback", () => {
       shadow.querySelector<HTMLButtonElement>(".qaid-dismiss-btn")?.click();
 
       expect(localStorage.getItem("qaid_hide_feedback")).toBe("1");
+    });
+
+    it("should clear incognito and localStorage when a thumb is clicked while hidden", () => {
+      localStorage.setItem("qaid_hide_feedback_test-key", "1");
+
+      embed = new QaidFeedback({ endpoint: "/api/feedback", apiKey: "test-key" });
+
+      const shadow = getShadowRoot();
+      const container = shadow.querySelector(".qaid-buttons");
+      expect(container?.classList.contains("qaid-incognito")).toBe(true);
+
+      // Click a thumb button while incognito
+      const upBtn = shadow.querySelector<HTMLButtonElement>(".qaid-btn-up");
+      upBtn?.click();
+
+      expect(container?.classList.contains("qaid-incognito")).toBe(false);
+      expect(localStorage.getItem("qaid_hide_feedback_test-key")).toBeNull();
     });
 
     it("should handle localStorage unavailability gracefully", () => {

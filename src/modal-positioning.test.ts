@@ -93,6 +93,49 @@ describe("modal-positioning", () => {
       // With very little space above, should go below
       expect(result.position).toBe("below");
     });
+
+    it("should clamp below when more space below but not enough for full modal", () => {
+      // Element near the middle-top: spaceAbove=200, spaceBelow=250
+      // Neither fits totalHeight(300)+gap(8)=308, but spaceBelow > spaceAbove → "below"
+      const bounds = createBounds({ y: 200, height: 50 });
+      const tinyViewport = 500;
+
+      const result = calculateVerticalPosition(
+        bounds,
+        tinyViewport,
+        totalHeight,
+        gap,
+        viewportPadding
+      );
+
+      expect(result.position).toBe("below");
+      // Unclamped would be bounds.y + bounds.height + gap = 258
+      // Clamped to viewportHeight - totalHeight - viewportPadding = 500 - 300 - 16 = 184
+      expect(result.top).toBe(tinyViewport - totalHeight - viewportPadding);
+    });
+
+    it("should clamp above when more space above but not enough for full modal", () => {
+      // Element near the middle-bottom: spaceAbove=350, spaceBelow=100
+      // Neither fits totalHeight(300)+gap(8)=308, but spaceBelow <= spaceAbove → "above"
+      // Unclamped would be bounds.y - totalHeight - gap = 350 - 300 - 8 = 42
+      // Max(viewportPadding, 42) = 42, so we need to force clamping
+      // Use a smaller viewport where the element is low enough that above doesn't fit
+      const bounds = createBounds({ y: 250, height: 50 });
+      const tinyViewport = 400;
+      // spaceAbove=250, spaceBelow=100 → "above"
+      // Unclamped: 250 - 300 - 8 = -58, clamped to viewportPadding=16
+
+      const result = calculateVerticalPosition(
+        bounds,
+        tinyViewport,
+        totalHeight,
+        gap,
+        viewportPadding
+      );
+
+      expect(result.position).toBe("above");
+      expect(result.top).toBe(viewportPadding);
+    });
   });
 
   describe("calculateHorizontalPosition", () => {

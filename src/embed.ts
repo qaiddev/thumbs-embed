@@ -541,6 +541,11 @@ export class QaidFeedback {
   }
 
   private handleThumbClick(type: "up" | "down", buttonEl: HTMLElement, e: MouseEvent): void {
+    // If user clicks a thumb while hidden, they want it back
+    if (this.buttonsContainer?.classList.contains("qaid-incognito")) {
+      this.buttonsContainer.classList.remove("qaid-incognito");
+      setHiddenByUser(this.config.apiKey, false);
+    }
     if (this.config.skipTargeting) {
       this.submitDirectFeedback(type, buttonEl);
     } else {
