@@ -16,12 +16,12 @@ const et = "button.qaid-btn{width:var(--qaid-btn-size);height:var(--qaid-btn-siz
   large: 32
 };
 function nt(e, t, i) {
-  const [o, n, a] = [e, t, i].map((r) => (r = r / 255, r <= 0.03928 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4)));
-  return 0.2126 * o + 0.7152 * n + 0.0722 * a;
+  const [o, n, s] = [e, t, i].map((r) => (r = r / 255, r <= 0.03928 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4)));
+  return 0.2126 * o + 0.7152 * n + 0.0722 * s;
 }
-function at(e) {
+function st(e) {
   if (e.startsWith("#")) {
-    const i = e.slice(1), o = i.length === 3 ? i.split("").map((a) => a + a).join("") : i, n = parseInt(o, 16);
+    const i = e.slice(1), o = i.length === 3 ? i.split("").map((s) => s + s).join("") : i, n = parseInt(o, 16);
     return {
       r: n >> 16 & 255,
       g: n >> 8 & 255,
@@ -35,8 +35,8 @@ function at(e) {
     b: parseInt(t[3])
   } : null;
 }
-function st(e) {
-  const t = at(e);
+function at(e) {
+  const t = st(e);
   return t && nt(t.r, t.g, t.b) > 0.4 ? "black" : "white";
 }
 function rt(e = {}) {
@@ -45,19 +45,19 @@ function rt(e = {}) {
     negativeColor: i = "rgb(255, 0, 0)",
     markerColor: o = "#6366f1",
     buttonSize: n = "medium",
-    modalWidth: a = 400,
+    modalWidth: s = 400,
     backdropOpacity: r = 0.3,
     fontFamily: l = "system-ui, -apple-system, sans-serif",
     fontSize: d = 16
-  } = e, s = it[n], c = ot[n], h = st(o);
+  } = e, a = it[n], c = ot[n], h = at(o);
   return {
     "--qaid-positive": t,
     "--qaid-negative": i,
     "--qaid-marker": o,
     "--qaid-marker-text": h,
-    "--qaid-btn-size": `${s}px`,
+    "--qaid-btn-size": `${a}px`,
     "--qaid-icon-size": `${c}px`,
-    "--qaid-modal-width": `${a}px`,
+    "--qaid-modal-width": `${s}px`,
     "--qaid-backdrop-opacity": String(r),
     "--qaid-font-family": l,
     "--qaid-font-size": `${d}px`
@@ -67,7 +67,7 @@ function dt(e, t) {
   for (const [i, o] of Object.entries(t))
     e.style.setProperty(i, o);
 }
-function z() {
+function B() {
   return Q + et;
 }
 function ct() {
@@ -116,13 +116,13 @@ function mt(e) {
 function ft(e) {
   return e.replace(/([!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, "\\$1");
 }
-function gt(e) {
+function bt(e) {
   const t = V(e);
   return t ? `[${t}]` : e.id ? `#${ft(e.id)}` : mt(e);
 }
-function bt(e) {
+function gt(e) {
   const t = ut(e), i = V(e);
-  return { selector: gt(e), text: t, dataAttr: i };
+  return { selector: bt(e), text: t, dataAttr: i };
 }
 const U = {
   width: 400,
@@ -132,18 +132,18 @@ const U = {
   viewportPadding: 16
 };
 function vt(e, t, i, o, n) {
-  const a = e.y, r = t - (e.y + e.height);
+  const s = e.y, r = t - (e.y + e.height);
   if (r >= i + o)
     return {
       top: e.y + e.height + o,
       position: "below"
     };
-  if (a >= i + o)
+  if (s >= i + o)
     return {
       top: e.y - i - o,
       position: "above"
     };
-  const l = r > a ? "below" : "above";
+  const l = r > s ? "below" : "above";
   let d;
   return l === "below" ? d = Math.min(
     e.y + e.height + o,
@@ -151,15 +151,15 @@ function vt(e, t, i, o, n) {
   ) : d = Math.max(n, e.y - i - o), { top: d, position: l };
 }
 function yt(e, t, i, o) {
-  let a = e.x + e.width / 2 - i / 2;
-  return a = Math.max(o, Math.min(a, t - i - o)), a;
+  let s = e.x + e.width / 2 - i / 2;
+  return s = Math.max(o, Math.min(s, t - i - o)), s;
 }
 function wt(e, t, i, o = 24, n = 24) {
   const r = e.clickX - t - n / 2;
   return Math.max(o, Math.min(r, i - o - n / 2));
 }
 function xt(e, t, i, o = U) {
-  const n = o.height + o.arrowHeight, a = vt(
+  const n = o.height + o.arrowHeight, s = vt(
     e,
     i,
     n,
@@ -172,38 +172,38 @@ function xt(e, t, i, o = U) {
     o.viewportPadding
   );
   return {
-    top: a.top,
+    top: s.top,
     left: r,
-    position: a.position
+    position: s.position
   };
 }
 function qt(e, t, i, o = U) {
-  const n = xt(e, t, i, o), a = wt(
+  const n = xt(e, t, i, o), s = wt(
     e,
     n.left,
     o.width
   );
   return {
     modal: n,
-    arrow: { left: a }
+    arrow: { left: s }
   };
 }
 const kt = 20;
 function Ct(e) {
-  const t = [], i = console.error, o = console.warn, n = console.log, a = (r, l) => {
+  const t = [], i = console.error, o = console.warn, n = console.log, s = (r, l) => {
     const d = {
-      message: l.map((s) => String(s)).join(" "),
+      message: l.map((a) => String(a)).join(" "),
       timestamp: Date.now(),
       level: r
     };
     t.length >= kt && t.shift(), t.push(d), e && e(d);
   };
   return console.error = function(...r) {
-    a("error", r), i.apply(console, r);
+    s("error", r), i.apply(console, r);
   }, console.warn = function(...r) {
-    a("warn", r), o.apply(console, r);
+    s("warn", r), o.apply(console, r);
   }, console.log = function(...r) {
-    a("log", r), n.apply(console, r);
+    s("log", r), n.apply(console, r);
   }, {
     errors: t,
     restore: () => {
@@ -211,13 +211,13 @@ function Ct(e) {
     }
   };
 }
-const St = 20, B = 4096;
+const St = 20, z = 4096;
 function q(e) {
   if (e == null) return;
   const t = typeof e == "string" ? e : JSON.stringify(e);
-  return t.length > B ? t.slice(0, B) + "…[truncated]" : t;
+  return t.length > z ? t.slice(0, z) + "…[truncated]" : t;
 }
-function P(e, t) {
+function O(e, t) {
   e.length >= St && e.shift(), e.push(t);
 }
 async function Et(e) {
@@ -230,38 +230,38 @@ async function Et(e) {
 }
 function Tt() {
   const e = [], t = window.fetch;
-  window.fetch = async function(n, a) {
-    const r = typeof n == "string" ? n : n instanceof URL ? n.toString() : n.url, l = a?.method ?? (typeof n == "object" && "method" in n ? n.method : "GET");
+  window.fetch = async function(n, s) {
+    const r = typeof n == "string" ? n : n instanceof URL ? n.toString() : n.url, l = s?.method ?? (typeof n == "object" && "method" in n ? n.method : "GET");
     let d;
-    a?.body && (d = q(a.body));
-    const s = await t.apply(window, [n, a]);
-    if (s.status >= 400) {
-      const c = await Et(s);
-      P(e, {
+    s?.body && (d = q(s.body));
+    const a = await t.apply(window, [n, s]);
+    if (a.status >= 400) {
+      const c = await Et(a);
+      O(e, {
         url: r,
         method: l.toUpperCase(),
-        status: s.status,
-        statusText: s.statusText,
+        status: a.status,
+        statusText: a.statusText,
         requestBody: d,
         responseBody: c,
         timestamp: Date.now()
       });
     }
-    return s;
+    return a;
   };
   const i = XMLHttpRequest.prototype.open, o = XMLHttpRequest.prototype.send;
-  return XMLHttpRequest.prototype.open = function(n, a, ...r) {
-    return this._qaid_method = n, this._qaid_url = typeof a == "string" ? a : a.toString(), i.apply(this, [n, a, ...r]);
+  return XMLHttpRequest.prototype.open = function(n, s, ...r) {
+    return this._qaid_method = n, this._qaid_url = typeof s == "string" ? s : s.toString(), i.apply(this, [n, s, ...r]);
   }, XMLHttpRequest.prototype.send = function(n) {
-    const a = this, r = n ? q(n) : void 0;
-    return a.addEventListener("load", function() {
-      a.status >= 400 && P(e, {
-        url: a._qaid_url,
-        method: a._qaid_method.toUpperCase(),
-        status: a.status,
-        statusText: a.statusText,
+    const s = this, r = n ? q(n) : void 0;
+    return s.addEventListener("load", function() {
+      s.status >= 400 && O(e, {
+        url: s._qaid_url,
+        method: s._qaid_method.toUpperCase(),
+        status: s.status,
+        statusText: s.statusText,
         requestBody: r,
-        responseBody: q(a.responseText),
+        responseBody: q(s.responseText),
         timestamp: Date.now()
       });
     }), o.apply(this, [n]);
@@ -290,16 +290,16 @@ function Lt() {
 }
 function Rt(e = {}) {
   const t = e.maxDuration ?? 15, i = e.videoBitsPerSecond ?? 8e5;
-  let o = null, n = null, a = [], r = null, l = null, d = null, s = 0, c = null, h = null, u = !1, p = null;
-  function b() {
-    d !== null && (clearInterval(d), d = null), p !== null && (clearTimeout(p), p = null), o && (o.getTracks().forEach((m) => m.stop()), o = null), n = null, a = [], r = null, l = null, c = null, h = null;
+  let o = null, n = null, s = [], r = null, l = null, d = null, a = 0, c = null, h = null, u = !1, p = null;
+  function g() {
+    d !== null && (clearInterval(d), d = null), p !== null && (clearTimeout(p), p = null), o && (o.getTracks().forEach((m) => m.stop()), o = null), n = null, s = [], r = null, l = null, c = null, h = null;
   }
   function f() {
     u || (u = !0, n && n.state !== "inactive" && n.stop());
   }
   return {
     async start() {
-      u = !1, a = [];
+      u = !1, s = [];
       const m = Lt();
       if (!m)
         throw new Error("No supported video MIME type found");
@@ -317,16 +317,16 @@ function Rt(e = {}) {
       }), n = new MediaRecorder(o, {
         mimeType: m,
         videoBitsPerSecond: i
-      }), n.ondataavailable = (g) => {
-        g.data.size > 0 && a.push(g.data);
+      }), n.ondataavailable = (b) => {
+        b.data.size > 0 && s.push(b.data);
       }, n.onstop = () => {
-        const g = new Blob(a, { type: m });
-        c && c(g), l && l(g), o && o.getTracks().forEach((x) => x.stop());
+        const b = new Blob(s, { type: m });
+        c && c(b), l && l(b), o && o.getTracks().forEach((x) => x.stop());
       }, n.onerror = () => {
         h && h(new Error("MediaRecorder error"));
-      }, n.start(1e3), s = Date.now(), d = setInterval(() => {
-        const g = Math.floor((Date.now() - s) / 1e3);
-        r && r(g);
+      }, n.start(1e3), a = Date.now(), d = setInterval(() => {
+        const b = Math.floor((Date.now() - a) / 1e3);
+        r && r(b);
       }, 1e3), p = setTimeout(() => {
         f();
       }, t * 1e3);
@@ -343,23 +343,23 @@ function Rt(e = {}) {
       l = m;
     },
     destroy() {
-      f(), b();
+      f(), g();
     }
   };
 }
-function Mt(e = 640) {
+function Ht(e = 640) {
   return typeof window < "u" && window.innerWidth < e;
 }
-function A(e, t, i) {
-  const o = i.map((a) => a.style.visibility);
-  i.forEach((a) => a.style.visibility = "hidden");
+function P(e, t, i) {
+  const o = i.map((s) => s.style.visibility);
+  i.forEach((s) => s.style.visibility = "hidden");
   const n = document.elementFromPoint(e, t);
-  return i.forEach((a, r) => a.style.visibility = o[r]), n;
+  return i.forEach((s, r) => s.style.visibility = o[r]), n;
 }
-function O(e) {
+function A(e) {
   return e ? e.hasAttribute("data-qaid-embed") || e.hasAttribute("data-qaid-embed-overlay") ? !0 : !!e.closest("[data-qaid-embed], [data-qaid-embed-overlay]") : !1;
 }
-function Dt(e, t = 0) {
+function Mt(e, t = 0) {
   const i = e.getBoundingClientRect();
   return {
     x: i.left - t,
@@ -368,7 +368,7 @@ function Dt(e, t = 0) {
     height: i.height + t * 2
   };
 }
-async function Ht(e = {}) {
+async function Dt(e = {}) {
   const { quality: t = 1, maxWidth: i = 1280, maxHeight: o = 800 } = e;
   try {
     if (!navigator.mediaDevices?.getDisplayMedia)
@@ -378,7 +378,7 @@ async function Ht(e = {}) {
       video: {
         displaySurface: "browser"
       }
-    }), a = n.getVideoTracks()[0], r = a.getSettings(), l = document.createElement("video");
+    }), s = n.getVideoTracks()[0], r = s.getSettings(), l = document.createElement("video");
     l.srcObject = n, l.muted = !0, await new Promise((f) => {
       l.onloadedmetadata = () => {
         l.play(), f();
@@ -389,15 +389,15 @@ async function Ht(e = {}) {
       };
       m();
     }), await new Promise((f) => setTimeout(f, 100));
-    const d = r.width || l.videoWidth, s = r.height || l.videoHeight, c = Math.min(i / d, o / s, 1), h = Math.round(d * c), u = Math.round(s * c), p = document.createElement("canvas");
+    const d = r.width || l.videoWidth, a = r.height || l.videoHeight, c = Math.min(i / d, o / a, 1), h = Math.round(d * c), u = Math.round(a * c), p = document.createElement("canvas");
     p.width = h, p.height = u;
-    const b = p.getContext("2d");
-    return b ? (b.drawImage(l, 0, 0, h, u), a.stop(), p.toDataURL("image/webp", t)) : (a.stop(), null);
+    const g = p.getContext("2d");
+    return g ? (g.drawImage(l, 0, 0, h, u), s.stop(), p.toDataURL("image/webp", t)) : (s.stop(), null);
   } catch (n) {
     return console.warn("Screenshot capture failed:", n), null;
   }
 }
-const $ = "https://qaid.dev/lib/html2canvas.min.js", zt = 1e4, Bt = 50;
+const $ = "https://qaid.dev/lib/html2canvas.min.js", Bt = 1e4, zt = 50;
 let y = null;
 function Ut() {
   if (typeof document > "u" || typeof window > "u")
@@ -405,7 +405,7 @@ function Ut() {
   const e = document.createElement("canvas");
   return typeof e.getContext == "function" && !!e.getContext("2d");
 }
-function Pt() {
+function Ot() {
   return window.html2canvas ? Promise.resolve(!0) : y || (y = new Promise((e) => {
     if (!document.querySelector(
       `script[src="${$}"]`
@@ -418,21 +418,21 @@ function Pt() {
         e(!0);
         return;
       }
-      if (Date.now() - i > zt) {
+      if (Date.now() - i > Bt) {
         y = null, e(!1);
         return;
       }
-      setTimeout(o, Bt);
+      setTimeout(o, zt);
     };
     o();
   }), y);
 }
-async function At(e = {}) {
+async function Pt(e = {}) {
   const { quality: t = 0.8, maxWidth: i = 1280, maxHeight: o = 800 } = e;
   try {
-    if (!await Pt() || !window.html2canvas)
+    if (!await Ot() || !window.html2canvas)
       return console.warn("html2canvas failed to load"), null;
-    const a = await window.html2canvas(document.body, {
+    const s = await window.html2canvas(document.body, {
       useCORS: !0,
       allowTaint: !1,
       logging: !1,
@@ -442,21 +442,21 @@ async function At(e = {}) {
       height: document.documentElement.clientHeight,
       x: window.scrollX,
       y: window.scrollY,
-      ignoreElements: (s) => s instanceof HTMLElement ? s.classList.contains("qaid-buttons") || s.classList.contains("qaid-targeting-overlay") || s.classList.contains("qaid-modal-container") || s.classList.contains("qaid-bottom-sheet") || s.classList.contains("qaid-backdrop") || s.classList.contains("qaid-selected-marker") || s.classList.contains("qaid-tooltip-text") || s.classList.contains("qaid-recording-indicator") || s.classList.contains("qaid-video-preview") || s.className?.toString().startsWith?.("qaid-") : !1
-    }), r = a.width, l = a.height, d = Math.min(i / r, o / l, 1);
+      ignoreElements: (a) => a instanceof HTMLElement ? a.classList.contains("qaid-buttons") || a.classList.contains("qaid-targeting-overlay") || a.classList.contains("qaid-modal-container") || a.classList.contains("qaid-bottom-sheet") || a.classList.contains("qaid-backdrop") || a.classList.contains("qaid-selected-marker") || a.classList.contains("qaid-tooltip-text") || a.classList.contains("qaid-recording-indicator") || a.classList.contains("qaid-video-preview") || a.className?.toString().startsWith?.("qaid-") : !1
+    }), r = s.width, l = s.height, d = Math.min(i / r, o / l, 1);
     if (d < 1) {
-      const s = Math.round(r * d), c = Math.round(l * d), h = document.createElement("canvas");
-      h.width = s, h.height = c;
+      const a = Math.round(r * d), c = Math.round(l * d), h = document.createElement("canvas");
+      h.width = a, h.height = c;
       const u = h.getContext("2d");
-      return u ? (u.drawImage(a, 0, 0, s, c), h.toDataURL("image/webp", t)) : null;
+      return u ? (u.drawImage(s, 0, 0, a, c), h.toDataURL("image/webp", t)) : null;
     }
-    return a.toDataURL("image/webp", t);
+    return s.toDataURL("image/webp", t);
   } catch (n) {
     return console.warn("DOM screenshot capture failed:", n), null;
   }
 }
 const N = "qaid_visitor_id";
-function Ot() {
+function At() {
   try {
     let e = localStorage.getItem(N);
     return e || (e = crypto.randomUUID(), localStorage.setItem(N, e)), e;
@@ -521,6 +521,10 @@ class $t {
   boundMouseMove;
   boundClick;
   boundResize;
+  // DOM persistence (survives framework client-side navigation)
+  destroyed = !1;
+  domObserver = null;
+  boundBeforeSwap = null;
   constructor(t) {
     this.config = {
       endpoint: t.endpoint,
@@ -570,7 +574,7 @@ class $t {
         maxDuration: t.videoOptions?.maxDuration ?? 15
       },
       recordIcon: t.recordIcon ?? ""
-    }, this.boundKeyDown = this.handleKeyDown.bind(this), this.boundMouseMove = this.handleMouseMove.bind(this), this.boundClick = this.handleClick.bind(this), this.boundResize = this.handleResize.bind(this), this.visitorId = Ot(), this.init();
+    }, this.boundKeyDown = this.handleKeyDown.bind(this), this.boundMouseMove = this.handleMouseMove.bind(this), this.boundClick = this.handleClick.bind(this), this.boundResize = this.handleResize.bind(this), this.visitorId = At(), this.init();
   }
   applyVars(t) {
     dt(t, this.cssVars);
@@ -587,10 +591,28 @@ class $t {
       fontSize: this.config.fontSize
     }), this.checkMobile(), window.addEventListener("resize", this.boundResize), this.createEmbed(), this.consoleCapture = Ct((t) => {
       this.feedbackData.consoleErrors = this.consoleCapture?.errors ?? [];
-    }), this.feedbackData.consoleErrors = this.consoleCapture.errors;
+    }), this.feedbackData.consoleErrors = this.consoleCapture.errors, this.observeDom();
+  }
+  /**
+   * Watch for the shadow hosts being removed from the DOM by framework
+   * client-side navigation (e.g. Astro View Transitions swapping <body>
+   * contents, or any SPA router that replaces DOM subtrees). If the host
+   * is disconnected and destroy() wasn't called, re-append it.
+   *
+   * Also hooks into Astro's `astro:before-swap` when available, which
+   * lets us carry elements into the new document before the swap happens
+   * (avoids a flash of the widget disappearing and reappearing).
+   */
+  observeDom() {
+    this.boundBeforeSwap = (t) => {
+      const i = t.newDocument;
+      !i || this.destroyed || (this.shadowHost && i.body.appendChild(this.shadowHost), this.overlayShadowHost && i.body.appendChild(this.overlayShadowHost));
+    }, document.addEventListener("astro:before-swap", this.boundBeforeSwap), this.domObserver = new MutationObserver(() => {
+      this.destroyed || (this.shadowHost && !this.shadowHost.isConnected && document.body.appendChild(this.shadowHost), this.overlayShadowHost && !this.overlayShadowHost.isConnected && document.body.appendChild(this.overlayShadowHost));
+    }), this.domObserver.observe(document.body, { childList: !0 });
   }
   checkMobile() {
-    this.isMobile = Mt();
+    this.isMobile = Ht();
   }
   handleResize() {
     this.checkMobile();
@@ -600,35 +622,35 @@ class $t {
     let t = null;
     this.config.container && (t = document.querySelector(this.config.container)), t ? (t.appendChild(this.shadowHost), this.isUserProvidedContainer = !0) : (this.shadowHost.style.position = "fixed", this.shadowHost.style.display = "block", this.shadowHost.style.inset = "0", this.shadowHost.style.pointerEvents = "none", this.shadowHost.style.zIndex = String(this.config.zIndex), document.body.appendChild(this.shadowHost)), this.shadowRoot = this.shadowHost.attachShadow({ mode: "open" });
     const i = document.createElement("style");
-    if (i.textContent = z(), this.shadowRoot.appendChild(i), this.config.css) {
-      const s = document.createElement("style");
-      s.textContent = this.config.css, this.shadowRoot.appendChild(s);
+    if (i.textContent = B(), this.shadowRoot.appendChild(i), this.config.css) {
+      const a = document.createElement("style");
+      a.textContent = this.config.css, this.shadowRoot.appendChild(a);
     }
     const o = this.config.direction === "vertical" ? "qaid-vertical" : "";
     if (this.isUserProvidedContainer)
       this.buttonsContainer = document.createElement("div"), this.buttonsContainer.className = `qaid-buttons qaid-${this.config.position} ${o}`.trim(), this.config.incognito && this.buttonsContainer.classList.add("qaid-incognito");
     else {
       this.buttonsContainer = document.createElement("div"), this.buttonsContainer.className = `qaid-buttons qaid-auto-container qaid-${this.config.position} ${o}${this.config.incognito ? " qaid-incognito" : ""}`.trim(), this.buttonsContainer.style.pointerEvents = "auto";
-      const { x: s, y: c } = this.config.offset;
-      this.config.position.includes("right") ? this.buttonsContainer.style.right = `${s}px` : this.buttonsContainer.style.left = `${s}px`, this.config.position.includes("bottom") ? this.buttonsContainer.style.bottom = `${c}px` : this.buttonsContainer.style.top = `${c}px`;
+      const { x: a, y: c } = this.config.offset;
+      this.config.position.includes("right") ? this.buttonsContainer.style.right = `${a}px` : this.buttonsContainer.style.left = `${a}px`, this.config.position.includes("bottom") ? this.buttonsContainer.style.bottom = `${c}px` : this.buttonsContainer.style.top = `${c}px`;
     }
     this.applyVars(this.buttonsContainer), this.shadowRoot.appendChild(this.buttonsContainer);
-    const n = !!this.config.buttonClass, a = n ? `qaid-btn-structural ${this.config.buttonClass}` : "qaid-btn", l = this.config.text.tooltip || "Feedback for us?", d = document.createElement("div");
+    const n = !!this.config.buttonClass, s = n ? `qaid-btn-structural ${this.config.buttonClass}` : "qaid-btn", l = this.config.text.tooltip || "Feedback for us?", d = document.createElement("div");
     if (d.className = "qaid-tooltip-text", d.textContent = l, this.applyVars(d), this.shadowRoot.appendChild(d), this.tooltipElement = d, !this.config.hideThumbs) {
-      const s = document.createElement("div");
-      s.className = "qaid-tooltip-wrapper";
+      const a = document.createElement("div");
+      a.className = "qaid-tooltip-wrapper";
       const c = document.createElement("button");
-      c.type = "button", c.className = n ? `${a} qaid-btn-up` : "qaid-btn qaid-btn-up", c.innerHTML = this.config.positiveIcon || E, c.addEventListener("click", (p) => this.handleThumbClick("up", p.currentTarget, p)), c.addEventListener("mouseenter", () => this.showTooltip(c)), c.addEventListener("mouseleave", () => this.hideTooltip()), s.appendChild(c);
+      c.type = "button", c.className = n ? `${s} qaid-btn-up` : "qaid-btn qaid-btn-up", c.innerHTML = this.config.positiveIcon || E, c.addEventListener("click", (p) => this.handleThumbClick("up", p.currentTarget, p)), c.addEventListener("mouseenter", () => this.showTooltip(c)), c.addEventListener("mouseleave", () => this.hideTooltip()), a.appendChild(c);
       const h = document.createElement("div");
       h.className = "qaid-tooltip-wrapper";
       const u = document.createElement("button");
-      u.type = "button", u.className = n ? `${a} qaid-btn-down` : "qaid-btn qaid-btn-down", u.innerHTML = this.config.negativeIcon || T, u.addEventListener("click", (p) => this.handleThumbClick("down", p.currentTarget, p)), u.addEventListener("mouseenter", () => this.showTooltip(u)), u.addEventListener("mouseleave", () => this.hideTooltip()), h.appendChild(u), this.buttonsContainer.appendChild(s), this.buttonsContainer.appendChild(h);
+      u.type = "button", u.className = n ? `${s} qaid-btn-down` : "qaid-btn qaid-btn-down", u.innerHTML = this.config.negativeIcon || T, u.addEventListener("click", (p) => this.handleThumbClick("down", p.currentTarget, p)), u.addEventListener("mouseenter", () => this.showTooltip(u)), u.addEventListener("mouseleave", () => this.hideTooltip()), h.appendChild(u), this.buttonsContainer.appendChild(a), this.buttonsContainer.appendChild(h);
     }
     if (this.config.captureVideo && It()) {
-      const s = document.createElement("div");
-      s.className = "qaid-tooltip-wrapper";
+      const a = document.createElement("div");
+      a.className = "qaid-tooltip-wrapper";
       const c = document.createElement("button");
-      c.type = "button", c.className = n ? `${a} qaid-btn-record` : "qaid-btn qaid-btn-record", c.innerHTML = this.config.recordIcon || Z, c.addEventListener("click", () => this.startRecording()), c.addEventListener("mouseenter", () => this.showTooltip(c)), c.addEventListener("mouseleave", () => this.hideTooltip()), s.appendChild(c), this.buttonsContainer.appendChild(s);
+      c.type = "button", c.className = n ? `${s} qaid-btn-record` : "qaid-btn qaid-btn-record", c.innerHTML = this.config.recordIcon || Z, c.addEventListener("click", () => this.startRecording()), c.addEventListener("mouseenter", () => this.showTooltip(c)), c.addEventListener("mouseleave", () => this.hideTooltip()), a.appendChild(c), this.buttonsContainer.appendChild(a);
     }
   }
   /**
@@ -641,7 +663,7 @@ class $t {
     if (this.overlayShadowRoot) return this.overlayShadowRoot;
     this.overlayShadowHost = document.createElement("div"), this.overlayShadowHost.setAttribute("data-qaid-embed-overlay", ""), this.overlayShadowHost.style.position = "fixed", this.overlayShadowHost.style.inset = "0", this.overlayShadowHost.style.pointerEvents = "none", this.overlayShadowHost.style.zIndex = String(this.config.zIndex), document.body.appendChild(this.overlayShadowHost), this.overlayShadowRoot = this.overlayShadowHost.attachShadow({ mode: "open" });
     const t = document.createElement("style");
-    if (t.textContent = z(), this.overlayShadowRoot.appendChild(t), this.config.css) {
+    if (t.textContent = B(), this.overlayShadowRoot.appendChild(t), this.config.css) {
       const i = document.createElement("style");
       i.textContent = this.config.css, this.overlayShadowRoot.appendChild(i);
     }
@@ -652,9 +674,9 @@ class $t {
     if (!this.tooltipElement) return;
     const i = this.tooltipElement, o = 8;
     i.style.visibility = "hidden", i.classList.add("qaid-tooltip-visible");
-    const n = t.getBoundingClientRect(), a = i.getBoundingClientRect(), r = window.innerWidth, l = window.innerHeight;
-    let d, s;
-    d = n.bottom + o, d + a.height > l - o && (d = n.top - a.height - o), s = n.left, s < o ? s = o : s + a.width > r - o && (s = r - a.width - o), d < o ? d = o : d + a.height > l - o && (d = l - a.height - o), i.style.top = `${d}px`, i.style.left = `${s}px`, i.style.visibility = "visible";
+    const n = t.getBoundingClientRect(), s = i.getBoundingClientRect(), r = window.innerWidth, l = window.innerHeight;
+    let d, a;
+    d = n.bottom + o, d + s.height > l - o && (d = n.top - s.height - o), a = n.left, a < o ? a = o : a + s.width > r - o && (a = r - s.width - o), d < o ? d = o : d + s.height > l - o && (d = l - s.height - o), i.style.top = `${d}px`, i.style.left = `${a}px`, i.style.visibility = "visible";
   }
   hideTooltip() {
     this.tooltipElement && this.tooltipElement.classList.remove("qaid-tooltip-visible");
@@ -693,12 +715,12 @@ class $t {
   }
   handleMouseMove(t) {
     if (this.mousePos.x = t.clientX, this.mousePos.y = t.clientY, this.crosshairH && (this.crosshairH.style.top = `${t.clientY}px`), this.crosshairV && (this.crosshairV.style.left = `${t.clientX}px`), this.scope && (this.scope.style.left = `${t.clientX}px`, this.scope.style.top = `${t.clientY}px`), this.captureLayer && this.shadowHost) {
-      const i = [this.shadowHost, this.overlayShadowHost].filter(Boolean), o = A(
+      const i = [this.shadowHost, this.overlayShadowHost].filter(Boolean), o = P(
         t.clientX,
         t.clientY,
         i
       );
-      if (o && !O(o)) {
+      if (o && !A(o)) {
         if (this.highlightBox) {
           const n = o.getBoundingClientRect();
           this.highlightBox.style.transform = `translate(${n.left}px, ${n.top}px)`, this.highlightBox.style.width = `${n.width}px`, this.highlightBox.style.height = `${n.height}px`, this.highlightBox.style.display = "block";
@@ -710,22 +732,22 @@ class $t {
   handleClick(t) {
     if (this.state !== "TARGETING" || !this.shadowHost) return;
     t.preventDefault(), t.stopPropagation();
-    const i = [this.shadowHost, this.overlayShadowHost].filter(Boolean), o = A(
+    const i = [this.shadowHost, this.overlayShadowHost].filter(Boolean), o = P(
       t.clientX,
       t.clientY,
       i
     );
-    if (!o || O(o))
+    if (!o || A(o))
       return;
-    const n = Dt(o, 8);
+    const n = Mt(o, 8);
     this.selectedBounds = {
       ...n,
       clickX: t.clientX,
       clickY: t.clientY,
       visible: !0
     };
-    const { selector: a, text: r } = bt(o);
-    this.feedbackData.elementSelector = a, this.feedbackData.elementText = r, this.removeTargetingOverlay(), document.removeEventListener("mousemove", this.boundMouseMove), document.removeEventListener("click", this.boundClick, !0), document.removeEventListener("keydown", this.boundKeyDown), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.state = "SELECTED", this.showSelectedMarker(), this.submitFeedback();
+    const { selector: s, text: r } = gt(o);
+    this.feedbackData.elementSelector = s, this.feedbackData.elementText = r, this.removeTargetingOverlay(), document.removeEventListener("mousemove", this.boundMouseMove), document.removeEventListener("click", this.boundClick, !0), document.removeEventListener("keydown", this.boundKeyDown), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.state = "SELECTED", this.showSelectedMarker(), this.submitFeedback();
   }
   cancelTargeting() {
     this.removeTargetingOverlay(), document.removeEventListener("mousemove", this.boundMouseMove), document.removeEventListener("click", this.boundClick, !0), document.removeEventListener("keydown", this.boundKeyDown), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.state = "IDLE", this.feedbackData.feedbackType = null, this.feedbackData.elementSelector = null, this.feedbackData.elementText = null, this.selectedBounds.visible = !1;
@@ -744,7 +766,7 @@ class $t {
   async submitFeedback() {
     if (!this.feedbackData.feedbackType) return;
     let t = null;
-    this.config.captureScreenshot && (this.config.screenshotMethod === "dom" ? t = await At(this.config.screenshotOptions) : t = await Ht(this.config.screenshotOptions));
+    this.config.captureScreenshot && (this.config.screenshotMethod === "dom" ? t = await Pt(this.config.screenshotOptions) : t = await Dt(this.config.screenshotOptions));
     const i = this.feedbackData.elementSelector ? {
       x: this.selectedBounds.x,
       y: this.selectedBounds.y,
@@ -776,8 +798,8 @@ class $t {
         body: JSON.stringify(o)
       });
       if (n.ok) {
-        const a = await n.json();
-        this.feedbackId = a.id;
+        const s = await n.json();
+        this.feedbackId = s.id;
       }
     } catch (n) {
       console.error("Failed to submit feedback:", n);
@@ -813,8 +835,8 @@ class $t {
     this.modalContainer = document.createElement("div"), this.modalContainer.className = `qaid-modal-container qaid-${i.position}`, this.modalContainer.style.top = `${i.top}px`, this.modalContainer.style.left = `${i.left}px`, this.modalContainer.style.zIndex = String(this.config.zIndex + 3);
     const n = document.createElement("div");
     n.className = "qaid-modal-arrow", n.style.left = `${o.left}px`;
-    const a = document.createElement("div");
-    a.className = "qaid-modal-box", a.innerHTML = this.getModalContent(), this.modalContainer.appendChild(n), this.modalContainer.appendChild(a), this.applyVars(this.modalContainer), t.appendChild(this.modalContainer), this.setupModalInteractions();
+    const s = document.createElement("div");
+    s.className = "qaid-modal-box", s.innerHTML = this.getModalContent(), this.modalContainer.appendChild(n), this.modalContainer.appendChild(s), this.applyVars(this.modalContainer), t.appendChild(this.modalContainer), this.setupModalInteractions();
   }
   getModalContent() {
     const t = this.feedbackData.feedbackType === "up", i = this.config.positiveIcon || E, o = this.config.negativeIcon || T;
@@ -847,8 +869,8 @@ class $t {
     o && o.addEventListener("click", () => {
       const n = this.feedbackData.feedbackType === "up" ? "down" : "up";
       this.feedbackData.feedbackType = n, this.config.buttonClass ? (o.classList.toggle("qaid-btn-up", n === "up"), o.classList.toggle("qaid-btn-down", n === "down")) : (o.classList.toggle("qaid-type-up", n === "up"), o.classList.toggle("qaid-type-down", n === "down"));
-      const a = this.config.positiveIcon || E, r = this.config.negativeIcon || T;
-      o.innerHTML = n === "up" ? a : r, this.feedbackId && fetch(`${this.config.endpoint}/${this.feedbackId}`, {
+      const s = this.config.positiveIcon || E, r = this.config.negativeIcon || T;
+      o.innerHTML = n === "up" ? s : r, this.feedbackId && fetch(`${this.config.endpoint}/${this.feedbackId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ feedbackType: n })
@@ -935,23 +957,23 @@ class $t {
     o.className = "qaid-video-preview-box";
     const n = document.createElement("h3");
     n.textContent = "Review your recording";
-    const a = document.createElement("video");
-    a.src = i, a.controls = !0, a.autoplay = !0, a.muted = !0;
+    const s = document.createElement("video");
+    s.src = i, s.controls = !0, s.autoplay = !0, s.muted = !0;
     const r = document.createElement("textarea");
     r.placeholder = "Optional: Describe the issue you recorded...";
     const l = document.createElement("div");
     l.className = "qaid-video-preview-actions";
     const d = document.createElement("button");
     d.type = "button", d.className = "qaid-video-btn qaid-video-btn-cancel", d.textContent = "Cancel", d.addEventListener("click", () => this.cancelRecordingPreview());
-    const s = document.createElement("button");
-    s.type = "button", s.className = "qaid-video-btn qaid-video-btn-rerecord", s.textContent = "Re-record", s.addEventListener("click", () => {
+    const a = document.createElement("button");
+    a.type = "button", a.className = "qaid-video-btn qaid-video-btn-rerecord", a.textContent = "Re-record", a.addEventListener("click", () => {
       this.cancelRecordingPreview(), this.startRecording();
     });
     const c = document.createElement("button");
     c.type = "button", c.className = "qaid-video-btn qaid-video-btn-send", c.textContent = "Send", c.addEventListener("click", () => {
       const h = r.value.trim() || null;
       this.submitVideoFeedback(h, c);
-    }), l.appendChild(d), l.appendChild(s), l.appendChild(c), o.appendChild(n), o.appendChild(a), o.appendChild(r), o.appendChild(l), this.videoPreview.appendChild(o), this.applyVars(this.videoPreview), this.overlayShadowHost && (this.overlayShadowHost.style.pointerEvents = "auto"), t.appendChild(this.videoPreview), document.addEventListener("keydown", this.boundKeyDown);
+    }), l.appendChild(d), l.appendChild(a), l.appendChild(c), o.appendChild(n), o.appendChild(s), o.appendChild(r), o.appendChild(l), this.videoPreview.appendChild(o), this.applyVars(this.videoPreview), this.overlayShadowHost && (this.overlayShadowHost.style.pointerEvents = "auto"), t.appendChild(this.videoPreview), document.addEventListener("keydown", this.boundKeyDown);
   }
   cancelRecordingPreview() {
     this.removeVideoPreview(), this.cleanupRecording();
@@ -992,7 +1014,7 @@ class $t {
    * Destroy the embed and clean up all resources
    */
   destroy() {
-    this.cleanupRecording(), this.removeVideoPreview(), this.consoleCapture && (this.consoleCapture.restore(), this.consoleCapture = null), window.removeEventListener("resize", this.boundResize), document.removeEventListener("keydown", this.boundKeyDown), document.removeEventListener("mousemove", this.boundMouseMove), document.removeEventListener("click", this.boundClick, !0), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.shadowHost && (this.shadowHost.remove(), this.shadowHost = null, this.shadowRoot = null), this.overlayShadowHost && (this.overlayShadowHost.remove(), this.overlayShadowHost = null, this.overlayShadowRoot = null), this.buttonsContainer = null, this.overlayContainer = null, this.captureLayer = null, this.crosshairH = null, this.crosshairV = null, this.scope = null, this.marker = null, this.modalContainer = null, this.backdrop = null, this.tooltipElement = null, lt();
+    this.destroyed = !0, this.domObserver && (this.domObserver.disconnect(), this.domObserver = null), this.boundBeforeSwap && (document.removeEventListener("astro:before-swap", this.boundBeforeSwap), this.boundBeforeSwap = null), this.cleanupRecording(), this.removeVideoPreview(), this.consoleCapture && (this.consoleCapture.restore(), this.consoleCapture = null), window.removeEventListener("resize", this.boundResize), document.removeEventListener("keydown", this.boundKeyDown), document.removeEventListener("mousemove", this.boundMouseMove), document.removeEventListener("click", this.boundClick, !0), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.shadowHost && (this.shadowHost.remove(), this.shadowHost = null, this.shadowRoot = null), this.overlayShadowHost && (this.overlayShadowHost.remove(), this.overlayShadowHost = null, this.overlayShadowRoot = null), this.buttonsContainer = null, this.overlayContainer = null, this.captureLayer = null, this.crosshairH = null, this.crosshairV = null, this.scope = null, this.marker = null, this.modalContainer = null, this.backdrop = null, this.tooltipElement = null, lt();
   }
 }
 function _(e) {
@@ -1015,10 +1037,10 @@ function Nt() {
 function Vt(e) {
   const t = e.getAttribute("data-endpoint");
   if (!t) return null;
-  const i = e.getAttribute("data-position"), o = e.getAttribute("data-zindex"), n = e.getAttribute("data-positive-color"), a = e.getAttribute("data-negative-color"), r = e.getAttribute("data-marker-color"), l = e.getAttribute("data-container"), d = e.getAttribute("data-button-class"), s = e.getAttribute("data-skip-targeting"), c = e.getAttribute("data-incognito"), h = e.getAttribute("data-button-size"), u = e.getAttribute("data-offset-x"), p = e.getAttribute("data-offset-y"), b = e.getAttribute("data-modal-width"), f = e.getAttribute("data-backdrop-opacity"), m = e.getAttribute("data-font-family"), v = e.getAttribute("data-font-size"), g = e.getAttribute("data-tooltip"), x = e.getAttribute("data-modal-title"), I = e.getAttribute("data-modal-subtitle"), L = e.getAttribute("data-placeholder"), R = e.getAttribute("data-submit-button"), M = e.getAttribute("data-skip-button"), F = e.getAttribute("data-positive-icon"), W = e.getAttribute("data-negative-icon"), X = e.getAttribute("data-api-key"), j = e.getAttribute("data-capture-screenshot"), k = e.getAttribute("data-screenshot-quality"), C = e.getAttribute("data-screenshot-max-width"), S = e.getAttribute("data-screenshot-max-height"), K = e.getAttribute("data-capture-video"), Y = e.getAttribute("data-hide-thumbs"), D = e.getAttribute("data-video-max-duration"), J = e.getAttribute("data-screenshot-method"), G = e.getAttribute("data-direction"), H = e.getAttribute("data-css-selector");
+  const i = e.getAttribute("data-position"), o = e.getAttribute("data-zindex"), n = e.getAttribute("data-positive-color"), s = e.getAttribute("data-negative-color"), r = e.getAttribute("data-marker-color"), l = e.getAttribute("data-container"), d = e.getAttribute("data-button-class"), a = e.getAttribute("data-skip-targeting"), c = e.getAttribute("data-incognito"), h = e.getAttribute("data-button-size"), u = e.getAttribute("data-offset-x"), p = e.getAttribute("data-offset-y"), g = e.getAttribute("data-modal-width"), f = e.getAttribute("data-backdrop-opacity"), m = e.getAttribute("data-font-family"), v = e.getAttribute("data-font-size"), b = e.getAttribute("data-tooltip"), x = e.getAttribute("data-modal-title"), I = e.getAttribute("data-modal-subtitle"), L = e.getAttribute("data-placeholder"), R = e.getAttribute("data-submit-button"), H = e.getAttribute("data-skip-button"), F = e.getAttribute("data-positive-icon"), W = e.getAttribute("data-negative-icon"), X = e.getAttribute("data-api-key"), j = e.getAttribute("data-capture-screenshot"), k = e.getAttribute("data-screenshot-quality"), C = e.getAttribute("data-screenshot-max-width"), S = e.getAttribute("data-screenshot-max-height"), K = e.getAttribute("data-capture-video"), Y = e.getAttribute("data-hide-thumbs"), M = e.getAttribute("data-video-max-duration"), J = e.getAttribute("data-screenshot-method"), G = e.getAttribute("data-direction"), D = e.getAttribute("data-css-selector");
   return {
     endpoint: t,
-    css: H ? _(H) : void 0,
+    css: D ? _(D) : void 0,
     apiKey: X ?? void 0,
     captureScreenshot: j === "true" ? !0 : void 0,
     screenshotOptions: k || C || S ? {
@@ -1031,37 +1053,37 @@ function Vt(e) {
     direction: G ?? void 0,
     position: i ?? void 0,
     zIndex: o ? parseInt(o, 10) : void 0,
-    skipTargeting: s === "true" ? !0 : void 0,
+    skipTargeting: a === "true" ? !0 : void 0,
     incognito: c === "true" ? !0 : void 0,
     buttonSize: h ?? void 0,
     offset: u || p ? {
       x: u ? parseInt(u, 10) : void 0,
       y: p ? parseInt(p, 10) : void 0
     } : void 0,
-    modalWidth: b ? parseInt(b, 10) : void 0,
+    modalWidth: g ? parseInt(g, 10) : void 0,
     backdropOpacity: f ? parseFloat(f) : void 0,
     fontFamily: m ?? void 0,
     fontSize: v ? parseInt(v, 10) : void 0,
     colors: {
       positive: n ?? void 0,
-      negative: a ?? void 0,
+      negative: s ?? void 0,
       marker: r ?? void 0
     },
-    text: g || x || I || L || R || M ? {
-      tooltip: g ?? void 0,
+    text: b || x || I || L || R || H ? {
+      tooltip: b ?? void 0,
       modalTitle: x ?? void 0,
       modalSubtitle: I ?? void 0,
       placeholder: L ?? void 0,
       submitButton: R ?? void 0,
-      skipButton: M ?? void 0
+      skipButton: H ?? void 0
     } : void 0,
     positiveIcon: F ?? void 0,
     negativeIcon: W ?? void 0,
     screenshotMethod: J ?? void 0,
     captureVideo: K === "true" ? !0 : void 0,
     hideThumbs: Y === "true" ? !0 : void 0,
-    videoOptions: D ? {
-      maxDuration: parseInt(D, 10)
+    videoOptions: M ? {
+      maxDuration: parseInt(M, 10)
     } : void 0
   };
 }
@@ -1074,7 +1096,7 @@ if (typeof document < "u") {
 }
 export {
   $t as QaidFeedback,
-  At as captureDomScreenshot,
+  Pt as captureDomScreenshot,
   Tt as captureNetworkErrors,
   Rt as createVideoRecorder,
   Lt as getSupportedMimeType,

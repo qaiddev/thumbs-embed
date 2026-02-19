@@ -264,9 +264,23 @@ export declare class QaidFeedback {
     private boundMouseMove;
     private boundClick;
     private boundResize;
+    private destroyed;
+    private domObserver;
+    private boundBeforeSwap;
     constructor(config: FeedbackConfig);
     private applyVars;
     private init;
+    /**
+     * Watch for the shadow hosts being removed from the DOM by framework
+     * client-side navigation (e.g. Astro View Transitions swapping <body>
+     * contents, or any SPA router that replaces DOM subtrees). If the host
+     * is disconnected and destroy() wasn't called, re-append it.
+     *
+     * Also hooks into Astro's `astro:before-swap` when available, which
+     * lets us carry elements into the new document before the swap happens
+     * (avoids a flash of the widget disappearing and reappearing).
+     */
+    private observeDom;
     private checkMobile;
     private handleResize;
     private createEmbed;

@@ -114,6 +114,11 @@ export class QaidFeedback {
   private boundClick: (e: MouseEvent) => void;
   private boundResize: () => void;
 
+  // DOM persistence (survives framework client-side navigation)
+  private destroyed = false;
+  private domObserver: MutationObserver | null = null;
+  private boundBeforeSwap: ((e: Event) => void) | null = null;
+
   constructor(config: FeedbackConfig) {
     this.config = {
       endpoint: config.endpoint,
@@ -209,6 +214,42 @@ export class QaidFeedback {
       this.feedbackData.consoleErrors = this.consoleCapture?.errors ?? [];
     });
     this.feedbackData.consoleErrors = this.consoleCapture.errors;
+
+    // Persist across client-side navigations (Astro View Transitions, etc.)
+    this.observeDom();
+  }
+
+  /**
+   * Watch for the shadow hosts being removed from the DOM by framework
+   * client-side navigation (e.g. Astro View Transitions swapping <body>
+   * contents, or any SPA router that replaces DOM subtrees). If the host
+   * is disconnected and destroy() wasn't called, re-append it.
+   *
+   * Also hooks into Astro's `astro:before-swap` when available, which
+   * lets us carry elements into the new document before the swap happens
+   * (avoids a flash of the widget disappearing and reappearing).
+   */
+  private observeDom(): void {
+    // Astro View Transitions: carry hosts into the new document pre-swap
+    this.boundBeforeSwap = (e: Event) => {
+      const newDoc = (e as any).newDocument as Document | undefined;
+      if (!newDoc || this.destroyed) return;
+      if (this.shadowHost) newDoc.body.appendChild(this.shadowHost);
+      if (this.overlayShadowHost) newDoc.body.appendChild(this.overlayShadowHost);
+    };
+    document.addEventListener("astro:before-swap", this.boundBeforeSwap);
+
+    // Generic fallback: MutationObserver to catch any framework removing our hosts
+    this.domObserver = new MutationObserver(() => {
+      if (this.destroyed) return;
+      if (this.shadowHost && !this.shadowHost.isConnected) {
+        document.body.appendChild(this.shadowHost);
+      }
+      if (this.overlayShadowHost && !this.overlayShadowHost.isConnected) {
+        document.body.appendChild(this.overlayShadowHost);
+      }
+    });
+    this.domObserver.observe(document.body, { childList: true });
   }
 
   private checkMobile(): void {
@@ -1304,6 +1345,19 @@ export class QaidFeedback {
    * Destroy the embed and clean up all resources
    */
   public destroy(): void {
+    // Flag as destroyed so the DOM observer doesn't re-attach hosts
+    this.destroyed = true;
+
+    // Disconnect DOM persistence observers
+    if (this.domObserver) {
+      this.domObserver.disconnect();
+      this.domObserver = null;
+    }
+    if (this.boundBeforeSwap) {
+      document.removeEventListener("astro:before-swap", this.boundBeforeSwap);
+      this.boundBeforeSwap = null;
+    }
+
     // Clean up video recording
     this.cleanupRecording();
     this.removeVideoPreview();
