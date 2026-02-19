@@ -50,6 +50,63 @@ button {
   opacity: 1;
 }
 
+/* Dismiss (X) button */
+.qaid-buttons {
+  position: relative;
+}
+
+.qaid-dismiss-btn {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.15s, background 0.15s;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.qaid-dismiss-btn:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.qaid-buttons:hover .qaid-dismiss-btn {
+  opacity: 1;
+}
+
+/* Position dismiss button based on widget position */
+.qaid-bottom-right .qaid-dismiss-btn {
+  bottom: 100%;
+  right: 0;
+  margin-bottom: 4px;
+}
+
+.qaid-bottom-left .qaid-dismiss-btn {
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 4px;
+}
+
+.qaid-top-right .qaid-dismiss-btn {
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+}
+
+.qaid-top-left .qaid-dismiss-btn {
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+}
+
 /* Minimal structural styles for buttons (always applied) */
 button.qaid-btn-structural {
   display: inline-flex;

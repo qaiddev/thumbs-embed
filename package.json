@@ -1,6 +1,6 @@
 {
   "name": "@qaiddev/thumbs-embed",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Precision User Feedback",
   "type": "module",
   "main": "./dist/qaid.umd.cjs",
@@ -26,7 +26,7 @@
   },
   "scripts": {
     "dev": "vite build --watch",
-    "build": "vite build",
+    "build": "vite build && tsc -p tsconfig.build.json",
     "preview": "vite preview",
     "test": "vitest",
     "test:run": "vitest run"
@@ -36,7 +36,6 @@
     "happy-dom": "^20.5.1",
     "typescript": "^5.3.3",
     "vite": "^7.3.1",
-    "vite-plugin-dts": "^4.5.4",
     "vitest": "^4.0.18"
   },
   "keywords": [

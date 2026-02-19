@@ -1632,4 +1632,80 @@ describe("QaidFeedback", () => {
       expect(recordBtn?.innerHTML).toContain("my-record-icon");
     });
   });
+
+  describe("dismiss button", () => {
+    afterEach(() => {
+      localStorage.removeItem("qaid_hide_feedback");
+      localStorage.removeItem("qaid_hide_feedback_test-key");
+    });
+
+    it("should render a dismiss button inside buttons container", () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+
+      const shadow = getShadowRoot();
+      const dismissBtn = shadow.querySelector<HTMLButtonElement>(".qaid-dismiss-btn");
+      expect(dismissBtn).not.toBeNull();
+      expect(dismissBtn?.title).toBe("Hide Feedback");
+      expect(dismissBtn?.getAttribute("aria-label")).toBe("Hide Feedback");
+    });
+
+    it("should add qaid-incognito class when clicked", () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+
+      const shadow = getShadowRoot();
+      const container = shadow.querySelector(".qaid-buttons");
+      expect(container?.classList.contains("qaid-incognito")).toBe(false);
+
+      shadow.querySelector<HTMLButtonElement>(".qaid-dismiss-btn")?.click();
+      expect(container?.classList.contains("qaid-incognito")).toBe(true);
+    });
+
+    it("should persist dismiss preference to localStorage", () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback", apiKey: "test-key" });
+
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-dismiss-btn")?.click();
+
+      expect(localStorage.getItem("qaid_hide_feedback_test-key")).toBe("1");
+    });
+
+    it("should restore incognito from localStorage on init", () => {
+      localStorage.setItem("qaid_hide_feedback_test-key", "1");
+
+      embed = new QaidFeedback({ endpoint: "/api/feedback", apiKey: "test-key" });
+
+      const shadow = getShadowRoot();
+      const container = shadow.querySelector(".qaid-buttons");
+      expect(container?.classList.contains("qaid-incognito")).toBe(true);
+    });
+
+    it("should use generic key when no apiKey provided", () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-dismiss-btn")?.click();
+
+      expect(localStorage.getItem("qaid_hide_feedback")).toBe("1");
+    });
+
+    it("should handle localStorage unavailability gracefully", () => {
+      const origSetItem = localStorage.setItem;
+      const origGetItem = localStorage.getItem;
+      localStorage.getItem = () => { throw new Error("Access denied"); };
+      localStorage.setItem = () => { throw new Error("Access denied"); };
+
+      // Should not throw during init
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+
+      const shadow = getShadowRoot();
+      // Should not throw when clicking dismiss
+      shadow.querySelector<HTMLButtonElement>(".qaid-dismiss-btn")?.click();
+
+      const container = shadow.querySelector(".qaid-buttons");
+      expect(container?.classList.contains("qaid-incognito")).toBe(true);
+
+      localStorage.getItem = origGetItem;
+      localStorage.setItem = origSetItem;
+    });
+  });
 });

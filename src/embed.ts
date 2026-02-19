@@ -28,6 +28,31 @@ import { captureScreenshot } from "./screenshot";
 import { captureDomScreenshot } from "./screenshot-dom";
 
 const VISITOR_ID_KEY = "qaid_visitor_id";
+const HIDE_FEEDBACK_KEY = "qaid_hide_feedback";
+
+function getHideKey(apiKey?: string): string {
+  return apiKey ? `${HIDE_FEEDBACK_KEY}_${apiKey}` : HIDE_FEEDBACK_KEY;
+}
+
+function isHiddenByUser(apiKey?: string): boolean {
+  try {
+    return localStorage.getItem(getHideKey(apiKey)) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function setHiddenByUser(apiKey?: string, hidden = true): void {
+  try {
+    if (hidden) {
+      localStorage.setItem(getHideKey(apiKey), "1");
+    } else {
+      localStorage.removeItem(getHideKey(apiKey));
+    }
+  } catch {
+    // localStorage not available
+  }
+}
 
 /**
  * Get or create a visitor ID stored in localStorage
@@ -104,6 +129,7 @@ export class QaidFeedback {
   private marker: HTMLDivElement | null = null;
   private modalContainer: HTMLDivElement | null = null;
   private backdrop: HTMLDivElement | null = null;
+  private dismissBtn: HTMLButtonElement | null = null;
 
   // Per-instance CSS variables
   private cssVars: Record<string, string> = {};
@@ -201,6 +227,11 @@ export class QaidFeedback {
       fontFamily: this.config.fontFamily,
       fontSize: this.config.fontSize,
     });
+
+    // Restore dismiss preference from localStorage
+    if (isHiddenByUser(this.config.apiKey)) {
+      this.config.incognito = true;
+    }
 
     // Check mobile
     this.checkMobile();
@@ -397,6 +428,19 @@ export class QaidFeedback {
 
       this.buttonsContainer.appendChild(recordWrapper);
     }
+
+    // Dismiss (X) button — appears on hover, activates incognito mode
+    this.dismissBtn = document.createElement("button");
+    this.dismissBtn.type = "button";
+    this.dismissBtn.className = "qaid-dismiss-btn";
+    this.dismissBtn.setAttribute("aria-label", "Hide Feedback");
+    this.dismissBtn.title = "Hide Feedback";
+    this.dismissBtn.innerHTML = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
+    this.dismissBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      this.handleDismiss();
+    });
+    this.buttonsContainer.appendChild(this.dismissBtn);
   }
 
   /**
@@ -487,6 +531,13 @@ export class QaidFeedback {
     if (this.tooltipElement) {
       this.tooltipElement.classList.remove("qaid-tooltip-visible");
     }
+  }
+
+  private handleDismiss(): void {
+    if (this.buttonsContainer) {
+      this.buttonsContainer.classList.add("qaid-incognito");
+    }
+    setHiddenByUser(this.config.apiKey, true);
   }
 
   private handleThumbClick(type: "up" | "down", buttonEl: HTMLElement, e: MouseEvent): void {
@@ -1398,6 +1449,7 @@ export class QaidFeedback {
     this.marker = null;
     this.modalContainer = null;
     this.backdrop = null;
+    this.dismissBtn = null;
     this.tooltipElement = null;
 
     // Remove light DOM styles (reference counted)
