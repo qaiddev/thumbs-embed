@@ -11,9 +11,9 @@ npm install @qaiddev/thumbs-embed
 ```
 
 ```typescript
-import { FeedbackEmbed } from '@qaiddev/thumbs-embed';
+import { QaidEmbed } from '@qaiddev/thumbs-embed';
 
-const feedback = new FeedbackEmbed({
+const feedback = new QaidEmbed({
   endpoint: 'https://qaid.dev/api/feedback',
   apiKey: 'YOUR_API_KEY',
 });
@@ -108,7 +108,7 @@ We offer a Free Plan for a compatible endpoint and a dashboard to manage your si
 Pass a `colors` object to customize the color scheme:
 
 ```typescript
-new FeedbackEmbed({
+new QaidEmbed({
   endpoint: '/api/feedback',
   colors: {
     positive: 'rgb(0, 200, 83)',  // Thumbs up color (default: green)
@@ -125,7 +125,7 @@ Colors accept hex (`#ABC`, `#AABBCC`) or `rgb(r, g, b)` format.
 Replace the default thumb icons with SVG strings or emoji:
 
 ```typescript
-new FeedbackEmbed({
+new QaidEmbed({
   endpoint: '/api/feedback',
   positiveIcon: '<svg viewBox="0 0 24 24">...</svg>',
   negativeIcon: '<svg viewBox="0 0 24 24">...</svg>',
@@ -137,7 +137,7 @@ new FeedbackEmbed({
 Every user-facing string can be overridden via the `text` object:
 
 ```typescript
-new FeedbackEmbed({
+new QaidEmbed({
   endpoint: '/api/feedback',
   text: {
     tooltip: 'Any feedback? Click to start, Esc to cancel',
@@ -157,7 +157,7 @@ new FeedbackEmbed({
 Enable automatic screenshot capture with feedback submissions:
 
 ```typescript
-new FeedbackEmbed({
+new QaidEmbed({
   endpoint: '/api/feedback',
   captureScreenshot: true,
   screenshotOptions: {
@@ -213,7 +213,7 @@ By default, the embed creates a fixed-position container in the viewport corner.
 <div id="my-feedback-spot"></div>
 
 <script>
-new FeedbackEmbed({
+new QaidEmbed({
   endpoint: '/api/feedback',
   container: '#my-feedback-spot',
 });
@@ -227,7 +227,7 @@ When `container` is set, the `position`, `offset`, and `zIndex` options are igno
 Use `buttonClass` to apply your own CSS instead of the default button styles:
 
 ```typescript
-new FeedbackEmbed({
+new QaidEmbed({
   endpoint: '/api/feedback',
   buttonClass: 'my-feedback-btn',
 });
@@ -254,7 +254,7 @@ When `buttonClass` is provided, default button colors, sizing, and shadows are n
 ### Constructor
 
 ```typescript
-const feedback = new FeedbackEmbed(config: FeedbackConfig);
+const feedback = new QaidEmbed(config: FeedbackConfig);
 ```
 
 ### Methods
@@ -372,7 +372,7 @@ Sign up at [qaid.dev](https://qaid.dev). You can also self-host — the embed wo
 The embed is endpoint-agnostic. Point it at your own server:
 
 ```typescript
-new FeedbackEmbed({
+new QaidEmbed({
   endpoint: 'https://your-server.com/api/feedback',
 });
 ```
