@@ -50,13 +50,23 @@ button {
   opacity: 1;
 }
 
-/* Dismiss (X) button */
-.qaid-buttons {
-  position: relative;
+/* Demo dismissed mode — slide buttons off-screen */
+.qaid-buttons.qaid-dismissed {
+  transition: transform 0.3s ease-in-out;
 }
 
+.qaid-buttons.qaid-dismissed.qaid-bottom-right,
+.qaid-buttons.qaid-dismissed.qaid-top-right {
+  transform: translateX(calc(100% + 2rem));
+}
+
+.qaid-buttons.qaid-dismissed.qaid-bottom-left,
+.qaid-buttons.qaid-dismissed.qaid-top-left {
+  transform: translateX(calc(-100% - 2rem));
+}
+
+/* Dismiss (X) button — inline flex item, first child in the row */
 .qaid-dismiss-btn {
-  position: absolute;
   width: 20px;
   height: 20px;
   padding: 0;
@@ -67,6 +77,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  align-self: center;
   opacity: 0;
   transition: opacity 0.15s, background 0.15s;
   cursor: pointer;
@@ -81,31 +92,6 @@ button {
 
 .qaid-buttons:hover .qaid-dismiss-btn {
   opacity: 1;
-}
-
-/* Position dismiss button based on widget position */
-.qaid-bottom-right .qaid-dismiss-btn {
-  bottom: 100%;
-  right: 0;
-  margin-bottom: 4px;
-}
-
-.qaid-bottom-left .qaid-dismiss-btn {
-  bottom: 100%;
-  left: 0;
-  margin-bottom: 4px;
-}
-
-.qaid-top-right .qaid-dismiss-btn {
-  top: 100%;
-  right: 0;
-  margin-top: 4px;
-}
-
-.qaid-top-left .qaid-dismiss-btn {
-  top: 100%;
-  left: 0;
-  margin-top: 4px;
 }
 
 /* Minimal structural styles for buttons (always applied) */

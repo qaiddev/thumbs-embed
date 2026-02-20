@@ -140,6 +140,9 @@ export class QaidFeedback {
   private boundClick: (e: MouseEvent) => void;
   private boundResize: () => void;
 
+  // Start with buttons slid off-screen (localStorage dismiss, no animation)
+  private _startDismissed = false;
+
   // DOM persistence (survives framework client-side navigation)
   private destroyed = false;
   private domObserver: MutationObserver | null = null;
@@ -185,6 +188,7 @@ export class QaidFeedback {
         maxHeight: config.screenshotOptions?.maxHeight ?? 800,
       },
       incognito: config.incognito ?? false,
+      hideDismiss: config.hideDismiss ?? false,
       positiveIcon: config.positiveIcon ?? "",
       negativeIcon: config.negativeIcon ?? "",
       hideThumbs: config.hideThumbs ?? false,
@@ -228,9 +232,9 @@ export class QaidFeedback {
       fontSize: this.config.fontSize,
     });
 
-    // Restore dismiss preference from localStorage
-    if (isHiddenByUser(this.config.apiKey)) {
-      this.config.incognito = true;
+    // Restore dismiss preference from localStorage (skip if hideDismiss)
+    if (!this.config.hideDismiss && isHiddenByUser(this.config.apiKey)) {
+      this._startDismissed = true;
     }
 
     // Check mobile
@@ -307,6 +311,8 @@ export class QaidFeedback {
     if (userContainer) {
       userContainer.appendChild(this.shadowHost);
       this.isUserProvidedContainer = true;
+      // Container mode never needs a dismiss button
+      this.config.hideDismiss = true;
     } else {
       // Set shadow host to fixed positioning for auto-created containers
       this.shadowHost.style.position = "fixed";
@@ -429,18 +435,32 @@ export class QaidFeedback {
       this.buttonsContainer.appendChild(recordWrapper);
     }
 
-    // Dismiss (X) button — appears on hover, activates incognito mode
-    this.dismissBtn = document.createElement("button");
-    this.dismissBtn.type = "button";
-    this.dismissBtn.className = "qaid-dismiss-btn";
-    this.dismissBtn.setAttribute("aria-label", "Hide Feedback");
-    this.dismissBtn.title = "Hide Feedback";
-    this.dismissBtn.innerHTML = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
-    this.dismissBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      this.handleDismiss();
-    });
-    this.buttonsContainer.appendChild(this.dismissBtn);
+    // Dismiss (X) button — only in body/fixed mode (hidden for container embeds)
+    if (!this.config.hideDismiss) {
+      this.dismissBtn = document.createElement("button");
+      this.dismissBtn.type = "button";
+      this.dismissBtn.className = "qaid-dismiss-btn";
+      this.dismissBtn.setAttribute("aria-label", "Hide Feedback");
+      this.dismissBtn.title = "Hide Feedback";
+      this.dismissBtn.innerHTML = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
+      this.dismissBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        this.handleDismiss();
+      });
+      // Insert as first child so it sits to the left of thumb buttons
+      this.buttonsContainer.insertBefore(this.dismissBtn, this.buttonsContainer.firstChild);
+
+      // If previously dismissed via localStorage, start slid off-screen (no animation)
+      if (this._startDismissed) {
+        this.buttonsContainer.style.transition = "none";
+        this.buttonsContainer.classList.add("qaid-dismissed");
+        requestAnimationFrame(() => {
+          if (this.buttonsContainer) {
+            this.buttonsContainer.style.transition = "";
+          }
+        });
+      }
+    }
   }
 
   /**
@@ -535,14 +555,17 @@ export class QaidFeedback {
 
   private handleDismiss(): void {
     if (this.buttonsContainer) {
-      this.buttonsContainer.classList.add("qaid-incognito");
+      this.buttonsContainer.classList.add("qaid-dismissed");
     }
     setHiddenByUser(this.config.apiKey, true);
   }
 
   private handleThumbClick(type: "up" | "down", buttonEl: HTMLElement, e: MouseEvent): void {
-    // If user clicks a thumb while hidden, they want it back
-    if (this.buttonsContainer?.classList.contains("qaid-incognito")) {
+    // If user clicks a thumb while dismissed/hidden, they want it back
+    if (this.buttonsContainer?.classList.contains("qaid-dismissed")) {
+      this.buttonsContainer.classList.remove("qaid-dismissed");
+      setHiddenByUser(this.config.apiKey, false);
+    } else if (this.buttonsContainer?.classList.contains("qaid-incognito")) {
       this.buttonsContainer.classList.remove("qaid-incognito");
       setHiddenByUser(this.config.apiKey, false);
     }

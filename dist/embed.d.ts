@@ -40,6 +40,7 @@ export declare class QaidFeedback {
     private boundMouseMove;
     private boundClick;
     private boundResize;
+    private _startDismissed;
     private destroyed;
     private domObserver;
     private boundBeforeSwap;

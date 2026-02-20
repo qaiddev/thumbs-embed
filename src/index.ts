@@ -133,6 +133,7 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
   const screenshotMaxHeight = script.getAttribute("data-screenshot-max-height");
   const captureVideo = script.getAttribute("data-capture-video");
   const hideThumbs = script.getAttribute("data-hide-thumbs");
+  const hideDismiss = script.getAttribute("data-hide-dismiss");
   const videoMaxDuration = script.getAttribute("data-video-max-duration");
   const screenshotMethod = script.getAttribute("data-screenshot-method") as "dom" | "permission" | null;
   const direction = script.getAttribute("data-direction") as "horizontal" | "vertical" | null;
@@ -182,6 +183,7 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
     screenshotMethod: screenshotMethod ?? undefined,
     captureVideo: captureVideo === "true" ? true : undefined,
     hideThumbs: hideThumbs === "true" ? true : undefined,
+    hideDismiss: hideDismiss === "true" ? true : undefined,
     videoOptions: videoMaxDuration ? {
       maxDuration: parseInt(videoMaxDuration, 10),
     } : undefined,

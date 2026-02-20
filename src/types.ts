@@ -67,6 +67,8 @@ export interface FeedbackConfig {
   recordIcon?: string;
   /** When true, buttons are hidden until hovered. Default: false */
   incognito?: boolean;
+  /** When true, hide the dismiss (X) button. Auto-set for container mode. Default: false */
+  hideDismiss?: boolean;
   /** Custom SVG string for positive feedback button icon */
   positiveIcon?: string;
   /** Custom SVG string for negative feedback button icon */
@@ -229,6 +231,7 @@ export interface ResolvedFeedbackConfig {
     maxHeight: number;
   };
   incognito: boolean;
+  hideDismiss: boolean;
   positiveIcon: string;
   negativeIcon: string;
   hideThumbs: boolean;
