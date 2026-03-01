@@ -450,15 +450,9 @@ export class QaidFeedback {
       // Insert as first child so it sits to the left of thumb buttons
       this.buttonsContainer.insertBefore(this.dismissBtn, this.buttonsContainer.firstChild);
 
-      // If previously dismissed via localStorage, start slid off-screen (no animation)
+      // If previously dismissed via localStorage, start in incognito mode
       if (this._startDismissed) {
-        this.buttonsContainer.style.transition = "none";
-        this.buttonsContainer.classList.add("qaid-dismissed");
-        requestAnimationFrame(() => {
-          if (this.buttonsContainer) {
-            this.buttonsContainer.style.transition = "";
-          }
-        });
+        this.buttonsContainer.classList.add("qaid-incognito");
       }
     }
   }
@@ -555,18 +549,20 @@ export class QaidFeedback {
 
   private handleDismiss(): void {
     if (this.buttonsContainer) {
-      this.buttonsContainer.classList.add("qaid-dismissed");
+      this.buttonsContainer.classList.add("qaid-incognito");
+      this.buttonsContainer.classList.add("qaid-force-hidden");
+      this.buttonsContainer.addEventListener("mouseleave", () => {
+        this.buttonsContainer?.classList.remove("qaid-force-hidden");
+      }, { once: true });
     }
     setHiddenByUser(this.config.apiKey, true);
   }
 
   private handleThumbClick(type: "up" | "down", buttonEl: HTMLElement, e: MouseEvent): void {
-    // If user clicks a thumb while dismissed/hidden, they want it back
-    if (this.buttonsContainer?.classList.contains("qaid-dismissed")) {
-      this.buttonsContainer.classList.remove("qaid-dismissed");
-      setHiddenByUser(this.config.apiKey, false);
-    } else if (this.buttonsContainer?.classList.contains("qaid-incognito")) {
+    // If user clicks a thumb while incognito, they want it back
+    if (this.buttonsContainer?.classList.contains("qaid-incognito")) {
       this.buttonsContainer.classList.remove("qaid-incognito");
+      this.buttonsContainer.classList.remove("qaid-force-hidden");
       setHiddenByUser(this.config.apiKey, false);
     }
     if (this.config.skipTargeting) {

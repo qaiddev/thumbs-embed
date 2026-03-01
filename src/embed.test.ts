@@ -1951,15 +1951,15 @@ describe("QaidFeedback", () => {
       expect(dismissBtn?.getAttribute("aria-label")).toBe("Hide Feedback");
     });
 
-    it("should add qaid-dismissed class when clicked", () => {
+    it("should add qaid-incognito class when clicked", () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
 
       const shadow = getShadowRoot();
       const container = shadow.querySelector(".qaid-buttons");
-      expect(container?.classList.contains("qaid-dismissed")).toBe(false);
+      expect(container?.classList.contains("qaid-incognito")).toBe(false);
 
       shadow.querySelector<HTMLButtonElement>(".qaid-dismiss-btn")?.click();
-      expect(container?.classList.contains("qaid-dismissed")).toBe(true);
+      expect(container?.classList.contains("qaid-incognito")).toBe(true);
     });
 
     it("should persist dismiss preference to localStorage", () => {
@@ -1978,7 +1978,7 @@ describe("QaidFeedback", () => {
 
       const shadow = getShadowRoot();
       const container = shadow.querySelector(".qaid-buttons");
-      expect(container?.classList.contains("qaid-dismissed")).toBe(true);
+      expect(container?.classList.contains("qaid-incognito")).toBe(true);
     });
 
     it("should use generic key when no apiKey provided", () => {
@@ -1990,20 +1990,20 @@ describe("QaidFeedback", () => {
       expect(localStorage.getItem("qaid_hide_feedback")).toBe("1");
     });
 
-    it("should clear dismissed state and localStorage when a thumb is clicked while hidden", () => {
+    it("should clear incognito state and localStorage when a thumb is clicked while hidden", () => {
       localStorage.setItem("qaid_hide_feedback_test-key", "1");
 
       embed = new QaidFeedback({ endpoint: "/api/feedback", apiKey: "test-key" });
 
       const shadow = getShadowRoot();
       const container = shadow.querySelector(".qaid-buttons");
-      expect(container?.classList.contains("qaid-dismissed")).toBe(true);
+      expect(container?.classList.contains("qaid-incognito")).toBe(true);
 
-      // Click a thumb button while dismissed
+      // Click a thumb button while incognito
       const upBtn = shadow.querySelector<HTMLButtonElement>(".qaid-btn-up");
       upBtn?.click();
 
-      expect(container?.classList.contains("qaid-dismissed")).toBe(false);
+      expect(container?.classList.contains("qaid-incognito")).toBe(false);
       expect(localStorage.getItem("qaid_hide_feedback_test-key")).toBeNull();
     });
 
@@ -2021,7 +2021,7 @@ describe("QaidFeedback", () => {
       shadow.querySelector<HTMLButtonElement>(".qaid-dismiss-btn")?.click();
 
       const container = shadow.querySelector(".qaid-buttons");
-      expect(container?.classList.contains("qaid-dismissed")).toBe(true);
+      expect(container?.classList.contains("qaid-incognito")).toBe(true);
 
       localStorage.getItem = origGetItem;
       localStorage.setItem = origSetItem;

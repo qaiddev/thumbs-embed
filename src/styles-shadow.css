@@ -50,19 +50,8 @@ button {
   opacity: 1;
 }
 
-/* Demo dismissed mode — slide buttons off-screen */
-.qaid-buttons.qaid-dismissed {
-  transition: transform 0.3s ease-in-out;
-}
-
-.qaid-buttons.qaid-dismissed.qaid-bottom-right,
-.qaid-buttons.qaid-dismissed.qaid-top-right {
-  transform: translateX(calc(100% + 2rem));
-}
-
-.qaid-buttons.qaid-dismissed.qaid-bottom-left,
-.qaid-buttons.qaid-dismissed.qaid-top-left {
-  transform: translateX(calc(-100% - 2rem));
+.qaid-buttons.qaid-incognito.qaid-force-hidden {
+  opacity: 0;
 }
 
 /* Dismiss (X) button — inline flex item, first child in the row */
