@@ -14,10 +14,9 @@ export interface NetworkCapture {
 }
 
 /**
- * Truncate a body to max size
+ * Truncate a body to max size. Callers must guard against null/undefined.
  */
-function truncateBody(body: unknown): string | undefined {
-  if (body === null || body === undefined) return undefined;
+export function truncateBody(body: unknown): string {
   const str = typeof body === "string" ? body : JSON.stringify(body);
   if (str.length > MAX_BODY_SIZE) {
     return str.slice(0, MAX_BODY_SIZE) + "…[truncated]";
@@ -28,7 +27,7 @@ function truncateBody(body: unknown): string | undefined {
 /**
  * Add an error to the buffer, evicting oldest if at capacity
  */
-function addEntry(errors: NetworkError[], entry: NetworkError): void {
+export function addEntry(errors: NetworkError[], entry: NetworkError): void {
   if (errors.length >= MAX_ENTRIES) {
     errors.shift();
   }

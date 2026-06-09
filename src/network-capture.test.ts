@@ -1,5 +1,11 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { captureNetworkErrors, type NetworkCapture } from "./network-capture";
+import {
+  captureNetworkErrors,
+  truncateBody,
+  addEntry,
+  type NetworkCapture,
+} from "./network-capture";
+import type { NetworkError } from "./types";
 
 describe("captureNetworkErrors", () => {
   let capture: NetworkCapture;
@@ -233,6 +239,48 @@ describe("captureNetworkErrors", () => {
     expect(capture.errors).toHaveLength(1);
     expect(capture.errors[0].url).toBe("http://example.com/api/request-obj");
     expect(capture.errors[0].method).toBe("PUT");
+  });
+
+  it("truncateBody returns string unchanged when under limit", () => {
+    expect(truncateBody("hello")).toBe("hello");
+  });
+
+  it("truncateBody stringifies non-string values", () => {
+    expect(truncateBody({ a: 1 })).toBe('{"a":1}');
+  });
+
+  it("truncateBody truncates oversized strings", () => {
+    const long = "x".repeat(5000);
+    const result = truncateBody(long);
+    expect(result.length).toBeLessThan(5000);
+    expect(result.endsWith("…[truncated]")).toBe(true);
+  });
+
+  it("addEntry pushes when below capacity", () => {
+    const errors: NetworkError[] = [];
+    addEntry(errors, {
+      url: "/a",
+      method: "GET",
+      status: 500,
+      statusText: "x",
+      timestamp: 0,
+    });
+    expect(errors).toHaveLength(1);
+  });
+
+  it("addEntry evicts oldest at capacity", () => {
+    const errors: NetworkError[] = [];
+    for (let i = 0; i < 25; i++) {
+      addEntry(errors, {
+        url: `/${i}`,
+        method: "GET",
+        status: 500,
+        statusText: "x",
+        timestamp: i,
+      });
+    }
+    expect(errors).toHaveLength(20);
+    expect(errors[0].url).toBe("/5");
   });
 
   it("should handle safeReadBody failure gracefully", async () => {

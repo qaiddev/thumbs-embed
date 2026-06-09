@@ -5,6 +5,7 @@ import {
   calculateArrowPosition,
   calculateModalPosition,
   calculateModalAndArrowPosition,
+  calculateTooltipPosition,
 } from "./modal-positioning";
 import type { SelectedBounds } from "./types";
 
@@ -285,6 +286,61 @@ describe("modal-positioning", () => {
       // Account for clamping
       expect(result.arrow.left).toBeGreaterThanOrEqual(24);
       expect(result.arrow.left).toBeLessThanOrEqual(400 - 24);
+    });
+  });
+
+  describe("calculateTooltipPosition", () => {
+    const viewport = { width: 1024, height: 768 };
+    const tooltip = { width: 120, height: 40 };
+
+    it("places below the anchor when there is room", () => {
+      const anchor = { top: 100, bottom: 140, left: 200 };
+      const result = calculateTooltipPosition(anchor, tooltip, viewport);
+      expect(result.top).toBe(140 + 8);
+      expect(result.left).toBe(200);
+    });
+
+    it("flips above when below would overflow", () => {
+      const anchor = { top: 700, bottom: 740, left: 200 };
+      const result = calculateTooltipPosition(anchor, tooltip, viewport);
+      expect(result.top).toBe(700 - 40 - 8);
+    });
+
+    it("clamps left edge to viewport gap when anchor is too far left", () => {
+      const anchor = { top: 100, bottom: 140, left: -50 };
+      const result = calculateTooltipPosition(anchor, tooltip, viewport);
+      expect(result.left).toBe(8);
+    });
+
+    it("clamps right edge when anchor is too far right", () => {
+      const anchor = { top: 100, bottom: 140, left: 1000 };
+      const result = calculateTooltipPosition(anchor, tooltip, viewport);
+      expect(result.left).toBe(viewport.width - tooltip.width - 8);
+    });
+
+    it("clamps top edge upward when flipped position would underflow", () => {
+      // Tiny viewport so below overflows; anchor near top so above also underflows.
+      const tinyViewport = { width: 1024, height: 100 };
+      const t = { width: 100, height: 80 };
+      const anchor = { top: 5, bottom: 30, left: 200 };
+      const result = calculateTooltipPosition(anchor, t, tinyViewport);
+      // Below: 38 + 80 = 118 > 92 → flip; flipped top = -83 < 8 → clamp to 8
+      expect(result.top).toBe(8);
+    });
+
+    it("clamps bottom edge downward when anchor sits below viewport", () => {
+      // Anchor positioned below the visible viewport (e.g., scrolled content).
+      const t = { width: 100, height: 40 };
+      const anchor = { top: 800, bottom: 850, left: 200 };
+      const result = calculateTooltipPosition(anchor, t, viewport);
+      // Below overflows → flip → top = 752; 752 + 40 = 792 > 760 → clamp to 720
+      expect(result.top).toBe(viewport.height - t.height - 8);
+    });
+
+    it("respects custom gap", () => {
+      const anchor = { top: 100, bottom: 140, left: 200 };
+      const result = calculateTooltipPosition(anchor, tooltip, viewport, { gap: 20 });
+      expect(result.top).toBe(140 + 20);
     });
   });
 });

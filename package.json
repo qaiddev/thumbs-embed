@@ -1,6 +1,6 @@
 {
   "name": "@qaiddev/thumbs-embed",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "Precision User Feedback",
   "type": "module",
   "main": "./dist/qaid.umd.cjs",
@@ -29,7 +29,9 @@
     "build": "vite build && tsc -p tsconfig.build.json",
     "preview": "vite preview",
     "test": "vitest",
-    "test:run": "vitest run"
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage && npm run coverage:badge",
+    "coverage:badge": "node --experimental-strip-types --disable-warning=ExperimentalWarning scripts/coverage-badge.ts"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^4.0.18",

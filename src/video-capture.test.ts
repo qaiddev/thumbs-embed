@@ -117,6 +117,15 @@ describe("getSupportedMimeType", () => {
 
     expect(getSupportedMimeType()).toBe("");
   });
+
+  it("should return empty string when MediaRecorder is undefined", () => {
+    const original = (globalThis as Record<string, unknown>).MediaRecorder;
+    delete (globalThis as Record<string, unknown>).MediaRecorder;
+
+    expect(getSupportedMimeType()).toBe("");
+
+    (globalThis as Record<string, unknown>).MediaRecorder = original;
+  });
 });
 
 describe("createVideoRecorder", () => {
@@ -254,6 +263,49 @@ describe("createVideoRecorder", () => {
     mockRecorder.onerror!();
 
     await expect(stopPromise).rejects.toThrow("MediaRecorder error");
+
+    recorder.destroy();
+  });
+
+  it("should handle stream with no video tracks", async () => {
+    // Stream with no video tracks
+    const emptyStream = {
+      getTracks: vi.fn().mockReturnValue([]),
+      getVideoTracks: vi.fn().mockReturnValue([]),
+    };
+    Object.defineProperty(navigator, "mediaDevices", {
+      value: {
+        getDisplayMedia: vi.fn().mockResolvedValue(emptyStream),
+      },
+      writable: true,
+      configurable: true,
+    });
+
+    const recorder = createVideoRecorder();
+    await expect(recorder.start()).resolves.toBeUndefined();
+    recorder.destroy();
+  });
+
+  it("should ignore zero-sized data chunks", async () => {
+    const recorder = createVideoRecorder();
+    await recorder.start();
+
+    const mockRecorder = MockMediaRecorder.lastInstance!;
+    mockRecorder.ondataavailable!({ data: new Blob([], { type: "video/webm" }) });
+
+    const blob = await recorder.stop();
+    // Only the 10ms-delayed chunk from MockMediaRecorder.start fires; empty chunk skipped
+    expect(blob).toBeInstanceOf(Blob);
+    recorder.destroy();
+  });
+
+  it("should not reject if onerror fires while no stop() promise is pending", async () => {
+    const recorder = createVideoRecorder();
+    await recorder.start();
+
+    const mockRecorder = MockMediaRecorder.lastInstance!;
+    // Should not throw — rejectStop is null because stop() hasn't been called
+    expect(() => mockRecorder.onerror!()).not.toThrow();
 
     recorder.destroy();
   });

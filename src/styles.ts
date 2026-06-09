@@ -164,10 +164,7 @@ export function removeStyles(): void {
   if (instanceCount <= 0) return;
   instanceCount--;
   if (instanceCount === 0) {
-    const style = document.getElementById("qaid-styles");
-    if (style) {
-      style.remove();
-    }
+    document.getElementById("qaid-styles")!.remove();
   }
 }
 

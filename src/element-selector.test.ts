@@ -177,6 +177,14 @@ describe("element-selector", () => {
       expect(() => document.querySelector(path)).not.toThrow();
       expect(document.querySelector(path)).toBe(el);
     });
+
+    it("should return 'body' when called on document.body itself", () => {
+      expect(generateNthChildPath(document.body)).toBe("body");
+    });
+
+    it("should return 'body' when called on document.documentElement", () => {
+      expect(generateNthChildPath(document.documentElement)).toBe("body");
+    });
   });
 
   describe("generateSelector", () => {

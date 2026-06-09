@@ -296,6 +296,60 @@ describe("captureScreenshot", () => {
     expect(canvasHeight).toBeLessThanOrEqual(800);
   });
 
+  it("should poll via requestAnimationFrame until video readyState is sufficient", async () => {
+    Object.defineProperty(navigator, "mediaDevices", {
+      value: {
+        getDisplayMedia: vi.fn().mockResolvedValue(mockStream),
+      },
+      writable: true,
+      configurable: true,
+    });
+
+    const origCreateElement = document.createElement.bind(document);
+    let readyStateCalls = 0;
+
+    vi.spyOn(document, "createElement").mockImplementation((tag: string) => {
+      if (tag === "video") {
+        const video = origCreateElement("video") as HTMLVideoElement;
+        Object.defineProperty(video, "videoWidth", { value: 1920, configurable: true });
+        Object.defineProperty(video, "videoHeight", { value: 1080, configurable: true });
+        // First two reads return 0 (not ready), then 4 (ready)
+        Object.defineProperty(video, "readyState", {
+          get() {
+            readyStateCalls++;
+            return readyStateCalls < 3 ? 0 : 4;
+          },
+          configurable: true,
+        });
+        Object.defineProperty(video, "play", { value: vi.fn(), configurable: true });
+        Object.defineProperty(video, "srcObject", {
+          set(_val: unknown) {
+            setTimeout(() => {
+              if (video.onloadedmetadata) {
+                (video.onloadedmetadata as () => void)();
+              }
+            }, 0);
+          },
+          configurable: true,
+        });
+        return video;
+      }
+      if (tag === "canvas") {
+        const canvas = origCreateElement("canvas") as HTMLCanvasElement;
+        vi.spyOn(canvas, "getContext").mockReturnValue({
+          drawImage: vi.fn(),
+        } as unknown as CanvasRenderingContext2D);
+        vi.spyOn(canvas, "toDataURL").mockReturnValue("data:image/webp;base64,polled");
+        return canvas;
+      }
+      return origCreateElement(tag);
+    });
+
+    const result = await captureScreenshot();
+    expect(result).toBe("data:image/webp;base64,polled");
+    expect(readyStateCalls).toBeGreaterThanOrEqual(3);
+  });
+
   it("should use video dimensions as fallback when track settings have no width/height", async () => {
     mockTrack.getSettings.mockReturnValue({});
 

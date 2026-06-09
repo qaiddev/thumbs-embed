@@ -1,5 +1,25 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import { QaidFeedback } from "./embed";
+
+// Hoisted mocks for screenshot modules so we can verify which one is called
+const screenshotMocks = vi.hoisted(() => ({
+  captureScreenshot: vi.fn(async () => "data:image/webp;base64,permission"),
+  captureDomScreenshot: vi.fn(async () => "data:image/webp;base64,dom"),
+}));
+
+vi.mock("./screenshot", () => ({
+  captureScreenshot: screenshotMocks.captureScreenshot,
+}));
+
+vi.mock("./screenshot-dom", () => ({
+  captureDomScreenshot: screenshotMocks.captureDomScreenshot,
+}));
+
+import {
+  QaidFeedback,
+  isHiddenByUser,
+  setHiddenByUser,
+  getOrCreateVisitorId,
+} from "./embed";
 import { _resetStylesState } from "./styles";
 
 function getShadowRoot(): ShadowRoot {
@@ -1155,6 +1175,7 @@ describe("QaidFeedback", () => {
       upBtn?.dispatchEvent(new MouseEvent("mouseleave", { bubbles: true }));
       expect(tooltip?.classList.contains("qaid-tooltip-visible")).toBe(false);
     });
+
   });
 
   describe("bottom sheet (mobile)", () => {
@@ -1631,6 +1652,19 @@ describe("QaidFeedback", () => {
       const recordBtn = shadow.querySelector<HTMLButtonElement>(".qaid-btn-record");
       expect(recordBtn?.innerHTML).toContain("my-record-icon");
     });
+
+    it("should apply custom buttonClass to record button", () => {
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        captureVideo: true,
+        buttonClass: "my-custom-btn",
+      });
+
+      const shadow = getShadowRoot();
+      const recordBtn = shadow.querySelector<HTMLButtonElement>(".qaid-btn-record");
+      expect(recordBtn?.classList.contains("my-custom-btn")).toBe(true);
+      expect(recordBtn?.classList.contains("qaid-btn")).toBe(false);
+    });
   });
 
   describe("video feedback submission", () => {
@@ -2025,6 +2059,1135 @@ describe("QaidFeedback", () => {
 
       localStorage.getItem = origGetItem;
       localStorage.setItem = origSetItem;
+    });
+  });
+
+  describe("exported helpers", () => {
+    afterEach(() => {
+      localStorage.removeItem("qaid_visitor_id");
+      localStorage.removeItem("qaid_hide_feedback");
+      localStorage.removeItem("qaid_hide_feedback_my-key");
+    });
+
+    it("isHiddenByUser returns true when value is set", () => {
+      localStorage.setItem("qaid_hide_feedback", "1");
+      expect(isHiddenByUser()).toBe(true);
+    });
+
+    it("isHiddenByUser returns false when value is missing", () => {
+      expect(isHiddenByUser()).toBe(false);
+    });
+
+    it("isHiddenByUser scopes by apiKey", () => {
+      localStorage.setItem("qaid_hide_feedback_my-key", "1");
+      expect(isHiddenByUser("my-key")).toBe(true);
+      expect(isHiddenByUser("other-key")).toBe(false);
+    });
+
+    it("isHiddenByUser returns false when localStorage throws", () => {
+      const orig = localStorage.getItem;
+      Object.defineProperty(localStorage, "getItem", {
+        value: () => {
+          throw new Error("denied");
+        },
+        configurable: true,
+        writable: true,
+      });
+      try {
+        expect(isHiddenByUser()).toBe(false);
+      } finally {
+        Object.defineProperty(localStorage, "getItem", {
+          value: orig,
+          configurable: true,
+          writable: true,
+        });
+      }
+    });
+
+    it("setHiddenByUser writes a value when hidden=true", () => {
+      setHiddenByUser(undefined, true);
+      expect(localStorage.getItem("qaid_hide_feedback")).toBe("1");
+    });
+
+    it("setHiddenByUser removes value when hidden=false", () => {
+      localStorage.setItem("qaid_hide_feedback_my-key", "1");
+      setHiddenByUser("my-key", false);
+      expect(localStorage.getItem("qaid_hide_feedback_my-key")).toBeNull();
+    });
+
+    it("setHiddenByUser swallows localStorage errors", () => {
+      const origSet = localStorage.setItem;
+      const origRemove = localStorage.removeItem;
+      Object.defineProperty(localStorage, "setItem", {
+        value: () => {
+          throw new Error("denied");
+        },
+        configurable: true,
+        writable: true,
+      });
+      Object.defineProperty(localStorage, "removeItem", {
+        value: () => {
+          throw new Error("denied");
+        },
+        configurable: true,
+        writable: true,
+      });
+      try {
+        // Should not throw on set or remove paths
+        expect(() => setHiddenByUser("x", true)).not.toThrow();
+        expect(() => setHiddenByUser("x", false)).not.toThrow();
+      } finally {
+        Object.defineProperty(localStorage, "setItem", {
+          value: origSet,
+          configurable: true,
+          writable: true,
+        });
+        Object.defineProperty(localStorage, "removeItem", {
+          value: origRemove,
+          configurable: true,
+          writable: true,
+        });
+      }
+    });
+
+    it("getOrCreateVisitorId reuses an existing UUID", () => {
+      localStorage.setItem("qaid_visitor_id", "abc-123");
+      expect(getOrCreateVisitorId()).toBe("abc-123");
+    });
+
+    it("getOrCreateVisitorId creates a new UUID and stores it", () => {
+      localStorage.removeItem("qaid_visitor_id");
+      const id = getOrCreateVisitorId();
+      expect(id).toMatch(
+        /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+      );
+      expect(localStorage.getItem("qaid_visitor_id")).toBe(id);
+    });
+
+    it("getOrCreateVisitorId returns a fresh UUID when localStorage throws", () => {
+      const origGet = localStorage.getItem;
+      const origSet = localStorage.setItem;
+      Object.defineProperty(localStorage, "getItem", {
+        value: () => {
+          throw new Error("denied");
+        },
+        configurable: true,
+        writable: true,
+      });
+      Object.defineProperty(localStorage, "setItem", {
+        value: () => {
+          throw new Error("denied");
+        },
+        configurable: true,
+        writable: true,
+      });
+      try {
+        const id = getOrCreateVisitorId();
+        expect(id).toMatch(
+          /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+        );
+      } finally {
+        Object.defineProperty(localStorage, "getItem", {
+          value: origGet,
+          configurable: true,
+          writable: true,
+        });
+        Object.defineProperty(localStorage, "setItem", {
+          value: origSet,
+          configurable: true,
+          writable: true,
+        });
+      }
+    });
+  });
+
+  describe("DOM persistence", () => {
+    it("re-attaches shadow hosts when removed by external code", async () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+      // Trigger overlay host creation by entering targeting mode
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+      // Cancel targeting so we're back to IDLE but overlay host exists
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+
+      const host = document.querySelector("[data-qaid-embed]") as HTMLElement;
+      const overlayHost = document.querySelector(
+        "[data-qaid-embed-overlay]"
+      ) as HTMLElement;
+      expect(host).not.toBeNull();
+      expect(overlayHost).not.toBeNull();
+
+      // Externally remove both hosts (simulating SPA route swap)
+      host.remove();
+      overlayHost.remove();
+      expect(document.querySelector("[data-qaid-embed]")).toBeNull();
+      expect(document.querySelector("[data-qaid-embed-overlay]")).toBeNull();
+
+      // Trigger a mutation by appending a sibling
+      const sibling = document.createElement("div");
+      document.body.appendChild(sibling);
+
+      // MutationObserver fires asynchronously
+      await vi.waitFor(() => {
+        expect(document.querySelector("[data-qaid-embed]")).not.toBeNull();
+        expect(document.querySelector("[data-qaid-embed-overlay]")).not.toBeNull();
+      });
+    });
+
+    it("astro:before-swap moves hosts into the new document body", () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+      // Ensure overlay host exists
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+
+      const newDoc = document.implementation.createHTMLDocument("new");
+      const event = new Event("astro:before-swap");
+      Object.defineProperty(event, "newDocument", {
+        value: newDoc,
+        configurable: true,
+      });
+
+      document.dispatchEvent(event);
+
+      // Hosts should now live inside the new document body
+      expect(newDoc.body.querySelector("[data-qaid-embed]")).not.toBeNull();
+      expect(newDoc.body.querySelector("[data-qaid-embed-overlay]")).not.toBeNull();
+    });
+
+    it("observer ignores mutations after destroy", async () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+
+      // Trigger overlay creation so we have both hosts
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+
+      // Mark destroyed flag manually before disconnecting the observer so
+      // we can simulate a queued mutation firing after destroy started.
+      const inst = embed as unknown as { destroyed: boolean };
+      inst.destroyed = true;
+
+      // Trigger a mutation
+      document.body.appendChild(document.createElement("div"));
+
+      // Allow microtasks to drain
+      await new Promise((r) => queueMicrotask(() => r(undefined)));
+
+      // Hosts should NOT have been re-attached (we never removed them, but
+      // the destroyed flag should still short-circuit the observer body).
+      // No assertion on DOM state — just verify no crash and the embed
+      // continues to function for cleanup.
+      expect(() => embed.destroy()).not.toThrow();
+      // Reset our reference so afterEach doesn't double-destroy
+      embed = undefined as unknown as QaidFeedback;
+    });
+
+    it("astro:before-swap without newDocument is a no-op", () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+      const beforeHost = document.querySelector("[data-qaid-embed]");
+      const event = new Event("astro:before-swap");
+      // No newDocument set; handler should bail out silently
+      expect(() => document.dispatchEvent(event)).not.toThrow();
+      // Original host still present
+      expect(document.querySelector("[data-qaid-embed]")).toBe(beforeHost);
+    });
+
+    it("astro:before-swap is a no-op after destroy flag is set", () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+      const inst = embed as unknown as { destroyed: boolean };
+      inst.destroyed = true;
+
+      const newDoc = document.implementation.createHTMLDocument("new");
+      const event = new Event("astro:before-swap");
+      Object.defineProperty(event, "newDocument", {
+        value: newDoc,
+        configurable: true,
+      });
+      document.dispatchEvent(event);
+
+      // Hosts should NOT have been moved into the new doc
+      expect(newDoc.body.querySelector("[data-qaid-embed]")).toBeNull();
+      expect(newDoc.body.querySelector("[data-qaid-embed-overlay]")).toBeNull();
+
+      // Reset destroyed flag so afterEach destroy works cleanly
+      inst.destroyed = false;
+    });
+  });
+
+  describe("button hover tooltips", () => {
+    it("shows tooltip on thumbs-down hover and hides on leave", () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+      const shadow = getShadowRoot();
+      const downBtn = shadow.querySelector<HTMLButtonElement>(".qaid-btn-down");
+      const tooltip = shadow.querySelector<HTMLElement>(".qaid-tooltip-text");
+
+      downBtn?.dispatchEvent(new MouseEvent("mouseenter", { bubbles: true }));
+      expect(tooltip?.classList.contains("qaid-tooltip-visible")).toBe(true);
+
+      downBtn?.dispatchEvent(new MouseEvent("mouseleave", { bubbles: true }));
+      expect(tooltip?.classList.contains("qaid-tooltip-visible")).toBe(false);
+    });
+
+    it("shows tooltip on record button hover and hides on leave", () => {
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        captureVideo: true,
+      });
+      const shadow = getShadowRoot();
+      const recordBtn = shadow.querySelector<HTMLButtonElement>(
+        ".qaid-btn-record"
+      );
+      const tooltip = shadow.querySelector<HTMLElement>(".qaid-tooltip-text");
+
+      recordBtn?.dispatchEvent(new MouseEvent("mouseenter", { bubbles: true }));
+      expect(tooltip?.classList.contains("qaid-tooltip-visible")).toBe(true);
+
+      recordBtn?.dispatchEvent(new MouseEvent("mouseleave", { bubbles: true }));
+      expect(tooltip?.classList.contains("qaid-tooltip-visible")).toBe(false);
+    });
+
+  });
+
+  describe("dismiss behaviour", () => {
+    afterEach(() => {
+      localStorage.removeItem("qaid_hide_feedback");
+    });
+
+    it("removes qaid-force-hidden class on mouseleave after dismiss", () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+      const shadow = getShadowRoot();
+      const container = shadow.querySelector(".qaid-buttons") as HTMLElement;
+      shadow.querySelector<HTMLButtonElement>(".qaid-dismiss-btn")?.click();
+      expect(container.classList.contains("qaid-force-hidden")).toBe(true);
+
+      container.dispatchEvent(new MouseEvent("mouseleave", { bubbles: true }));
+      expect(container.classList.contains("qaid-force-hidden")).toBe(false);
+      // qaid-incognito should still be present (only force-hidden is removed)
+      expect(container.classList.contains("qaid-incognito")).toBe(true);
+    });
+  });
+
+  describe("targeting click flow", () => {
+    let elementFromPointSpy: ReturnType<typeof vi.spyOn>;
+
+    afterEach(() => {
+      elementFromPointSpy?.mockRestore();
+    });
+
+    it("highlights element on mousemove and selects it on click", async () => {
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ id: 7 }),
+      });
+      global.fetch = fetchMock;
+
+      // A target element underneath the overlay
+      const target = document.createElement("button");
+      target.id = "target-btn";
+      target.textContent = "Click me";
+      document.body.appendChild(target);
+
+      // Mock the bounding rect so the highlight values are deterministic
+      target.getBoundingClientRect = () =>
+        ({
+          left: 10,
+          top: 20,
+          right: 110,
+          bottom: 70,
+          width: 100,
+          height: 50,
+          x: 10,
+          y: 20,
+          toJSON() {
+            return {};
+          },
+        }) as DOMRect;
+
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+
+      // Start the targeting phase, then mock elementFromPoint for the rest
+      elementFromPointSpy = vi
+        .spyOn(document, "elementFromPoint")
+        .mockReturnValue(target);
+
+      // Move the mouse over the target
+      document.dispatchEvent(
+        new MouseEvent("mousemove", {
+          clientX: 50,
+          clientY: 40,
+          bubbles: true,
+        })
+      );
+
+      const overlayShadow = getOverlayShadowRoot();
+      const highlight = overlayShadow.querySelector<HTMLElement>(
+        ".qaid-highlight-box"
+      );
+      expect(highlight?.style.display).toBe("block");
+      expect(highlight?.style.width).toBe("100px");
+      expect(highlight?.style.height).toBe("50px");
+
+      // Click — should transition to SELECTED, build a marker, and fetch
+      document.dispatchEvent(
+        new MouseEvent("click", {
+          clientX: 50,
+          clientY: 40,
+          bubbles: true,
+        })
+      );
+
+      await vi.waitFor(() => {
+        expect(fetchMock).toHaveBeenCalled();
+      });
+
+      // Marker should have been created in the overlay host
+      const marker = overlayShadow.querySelector<HTMLElement>(
+        ".qaid-selected-marker"
+      );
+      expect(marker).not.toBeNull();
+
+      // Targeting cleanup
+      expect(document.body.classList.contains("qaid-targeting")).toBe(false);
+
+      // Payload should include element selector and bounds
+      const body = JSON.parse(fetchMock.mock.calls[0][1].body);
+      expect(body.elementSelector).toBeTruthy();
+      expect(body.elementBounds).toEqual(
+        expect.objectContaining({ width: expect.any(Number) })
+      );
+
+      // Close the modal so the marker is removed (covers hideSelectedMarker body)
+      await vi.waitFor(() => {
+        expect(
+          overlayShadow.querySelector(".qaid-modal-container, .qaid-bottom-sheet")
+        ).not.toBeNull();
+      });
+      overlayShadow.querySelector<HTMLElement>(".qaid-backdrop")?.click();
+      expect(
+        overlayShadow.querySelector(".qaid-selected-marker")
+      ).toBeNull();
+    });
+
+    it("hides highlight box when no element is found", () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+
+      // Mock to return null (nothing under cursor)
+      elementFromPointSpy = vi
+        .spyOn(document, "elementFromPoint")
+        .mockReturnValue(null);
+
+      document.dispatchEvent(
+        new MouseEvent("mousemove", {
+          clientX: 0,
+          clientY: 0,
+          bubbles: true,
+        })
+      );
+
+      const overlayShadow = getOverlayShadowRoot();
+      const highlight = overlayShadow.querySelector<HTMLElement>(
+        ".qaid-highlight-box"
+      );
+      expect(highlight?.style.display).toBe("none");
+    });
+
+    it("ignores clicks on embed elements during targeting", () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+
+      // Return the embed shadow host as the click target — should be filtered out
+      const embedHost = document.querySelector(
+        "[data-qaid-embed]"
+      ) as HTMLElement;
+      elementFromPointSpy = vi
+        .spyOn(document, "elementFromPoint")
+        .mockReturnValue(embedHost);
+
+      document.dispatchEvent(
+        new MouseEvent("click", {
+          clientX: 0,
+          clientY: 0,
+          bubbles: true,
+        })
+      );
+
+      // Should still be in targeting mode
+      expect(document.body.classList.contains("qaid-targeting")).toBe(true);
+    });
+
+    it("does nothing when handleClick fires while not targeting", () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+      // No targeting active — the document click listener isn't attached, so
+      // we exercise this by entering then exiting targeting before the click.
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+      // Cancel via Escape — listeners are removed
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+
+      // Even if elementFromPoint were called, no listener should react
+      const target = document.createElement("div");
+      document.body.appendChild(target);
+      elementFromPointSpy = vi
+        .spyOn(document, "elementFromPoint")
+        .mockReturnValue(target);
+
+      document.dispatchEvent(
+        new MouseEvent("click", { clientX: 1, clientY: 1, bubbles: true })
+      );
+
+      // Still IDLE
+      expect(document.body.classList.contains("qaid-targeting")).toBe(false);
+    });
+  });
+
+  describe("screenshot capture", () => {
+    beforeEach(() => {
+      screenshotMocks.captureScreenshot.mockClear();
+      screenshotMocks.captureDomScreenshot.mockClear();
+    });
+
+    it("calls captureScreenshot when screenshotMethod is permission", async () => {
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ id: 1 }),
+      });
+      global.fetch = fetchMock;
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        skipTargeting: true,
+        captureScreenshot: true,
+        screenshotMethod: "permission",
+      });
+
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+
+      await vi.waitFor(() => {
+        expect(fetchMock).toHaveBeenCalled();
+      });
+
+      expect(screenshotMocks.captureScreenshot).toHaveBeenCalledTimes(1);
+      expect(screenshotMocks.captureDomScreenshot).not.toHaveBeenCalled();
+
+      const body = JSON.parse(fetchMock.mock.calls[0][1].body);
+      expect(body.screenshot).toBe("data:image/webp;base64,permission");
+    });
+
+    it("calls captureDomScreenshot when screenshotMethod is dom", async () => {
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ id: 1 }),
+      });
+      global.fetch = fetchMock;
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        skipTargeting: true,
+        captureScreenshot: true,
+        screenshotMethod: "dom",
+      });
+
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+
+      await vi.waitFor(() => {
+        expect(fetchMock).toHaveBeenCalled();
+      });
+
+      expect(screenshotMocks.captureDomScreenshot).toHaveBeenCalledTimes(1);
+      expect(screenshotMocks.captureScreenshot).not.toHaveBeenCalled();
+
+      const body = JSON.parse(fetchMock.mock.calls[0][1].body);
+      expect(body.screenshot).toBe("data:image/webp;base64,dom");
+    });
+  });
+
+  describe("modal toggle and PATCH errors", () => {
+    it("logs an error when toggling type fails on the server", async () => {
+      let postResolved = false;
+      const fetchMock = vi.fn().mockImplementation((_url, opts) => {
+        if (opts?.method === "POST") {
+          postResolved = true;
+          return Promise.resolve({
+            ok: true,
+            json: () => Promise.resolve({ id: 12 }),
+          });
+        }
+        // PATCH path rejects
+        return Promise.reject(new Error("Server down"));
+      });
+      global.fetch = fetchMock;
+      const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        skipTargeting: true,
+      });
+
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+
+      void postResolved;
+      await vi.waitFor(() => {
+        const host = document.querySelector("[data-qaid-embed-overlay]");
+        expect(host).not.toBeNull();
+        expect(host!.shadowRoot!.querySelector(".qaid-type-toggle")).not.toBeNull();
+      });
+      const overlayShadow = getOverlayShadowRoot();
+      overlayShadow
+        .querySelector<HTMLButtonElement>(".qaid-type-toggle")
+        ?.click();
+
+      await vi.waitFor(() => {
+        expect(errorSpy).toHaveBeenCalledWith(
+          "Failed to update feedback type:",
+          expect.any(Error)
+        );
+      });
+
+      errorSpy.mockRestore();
+    });
+
+    it("renders custom buttonClass toggle initially as qaid-btn-down for down feedback", async () => {
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ id: 21 }),
+      });
+      global.fetch = fetchMock;
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        skipTargeting: true,
+        buttonClass: "my-btn",
+      });
+
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-down")?.click();
+
+      await vi.waitFor(() => {
+        const host = document.querySelector("[data-qaid-embed-overlay]");
+        expect(host).not.toBeNull();
+        expect(host!.shadowRoot!.querySelector(".qaid-type-toggle")).not.toBeNull();
+      });
+      const overlayShadow = getOverlayShadowRoot();
+      const typeToggle = overlayShadow.querySelector<HTMLButtonElement>(
+        ".qaid-type-toggle"
+      );
+      // With buttonClass and feedbackType=down, toggle starts with qaid-btn-down
+      expect(typeToggle?.classList.contains("qaid-btn-down")).toBe(true);
+      expect(typeToggle?.classList.contains("qaid-btn-up")).toBe(false);
+    });
+
+    it("toggles down -> up updating icon and class", async () => {
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ id: 33 }),
+      });
+      global.fetch = fetchMock;
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        skipTargeting: true,
+      });
+
+      const shadow = getShadowRoot();
+      // Open with a thumbs-DOWN to flip the toggle path
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-down")?.click();
+
+      await vi.waitFor(() => {
+        const host = document.querySelector("[data-qaid-embed-overlay]");
+        expect(host).not.toBeNull();
+        expect(host!.shadowRoot!.querySelector(".qaid-type-toggle")).not.toBeNull();
+      });
+      const overlayShadow = getOverlayShadowRoot();
+
+      const typeToggle = overlayShadow.querySelector<HTMLButtonElement>(
+        ".qaid-type-toggle"
+      );
+      expect(typeToggle?.classList.contains("qaid-type-down")).toBe(true);
+
+      typeToggle?.click();
+      expect(typeToggle?.classList.contains("qaid-type-up")).toBe(true);
+      expect(typeToggle?.classList.contains("qaid-type-down")).toBe(false);
+    });
+
+    it("logs an error when finalize PATCH on close fails", async () => {
+      let postResolved = false;
+      const fetchMock = vi.fn().mockImplementation((_url, opts) => {
+        if (opts?.method === "POST") {
+          postResolved = true;
+          return Promise.resolve({
+            ok: true,
+            json: () => Promise.resolve({ id: 88 }),
+          });
+        }
+        return Promise.reject(new Error("Finalize failed"));
+      });
+      global.fetch = fetchMock;
+      const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        skipTargeting: true,
+      });
+
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+      void postResolved;
+      // Wait for modal to mount (post resolved AND overlay populated)
+      await vi.waitFor(() => {
+        const host = document.querySelector("[data-qaid-embed-overlay]");
+        expect(host).not.toBeNull();
+        expect(host!.shadowRoot!.querySelector(".qaid-modal-container, .qaid-bottom-sheet")).not.toBeNull();
+      });
+
+      // Close via Escape — triggers PATCH finalize
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+
+      await vi.waitFor(() => {
+        expect(errorSpy).toHaveBeenCalledWith(
+          "Failed to finalize feedback:",
+          expect.any(Error)
+        );
+      });
+
+      errorSpy.mockRestore();
+    });
+
+    it("logs an error when submitMessage PATCH fails", async () => {
+      let postResolved = false;
+      const fetchMock = vi.fn().mockImplementation((_url, opts) => {
+        if (opts?.method === "POST") {
+          postResolved = true;
+          return Promise.resolve({
+            ok: true,
+            json: () => Promise.resolve({ id: 91 }),
+          });
+        }
+        return Promise.reject(new Error("Patch failed"));
+      });
+      global.fetch = fetchMock;
+      const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        skipTargeting: true,
+      });
+
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+      void postResolved;
+      await vi.waitFor(() => {
+        const host = document.querySelector("[data-qaid-embed-overlay]");
+        expect(host).not.toBeNull();
+        expect(host!.shadowRoot!.querySelector(".qaid-btn-submit")).not.toBeNull();
+      });
+      const overlayShadow = getOverlayShadowRoot();
+      const textarea = overlayShadow.querySelector<HTMLTextAreaElement>(
+        ".qaid-textarea"
+      );
+      if (textarea) textarea.value = "thoughts";
+      overlayShadow.querySelector<HTMLButtonElement>(".qaid-btn-submit")?.click();
+
+      await vi.waitFor(() => {
+        expect(errorSpy).toHaveBeenCalledWith(
+          "Failed to submit feedback message:",
+          expect.any(Error)
+        );
+      });
+
+      errorSpy.mockRestore();
+    });
+  });
+
+  describe("recording edge cases", () => {
+    let mockMediaRecorder: {
+      state: string;
+      ondataavailable: ((e: { data: Blob }) => void) | null;
+      onstop: (() => void) | null;
+      onerror: (() => void) | null;
+      start: ReturnType<typeof vi.fn>;
+      stop: ReturnType<typeof vi.fn>;
+    };
+
+    beforeEach(() => {
+      const mockTrack = { stop: vi.fn(), addEventListener: vi.fn(), kind: "video" };
+      const mockStream = {
+        getTracks: () => [mockTrack],
+        getVideoTracks: () => [mockTrack],
+      };
+
+      mockMediaRecorder = {
+        state: "inactive",
+        ondataavailable: null,
+        onstop: null,
+        onerror: null,
+        start: vi.fn().mockImplementation(function (this: typeof mockMediaRecorder) {
+          this.state = "recording";
+          setTimeout(() => {
+            if (this.ondataavailable) {
+              this.ondataavailable({
+                data: new Blob(["video-data"], { type: "video/webm" }),
+              });
+            }
+          }, 10);
+        }),
+        stop: vi.fn().mockImplementation(function (this: typeof mockMediaRecorder) {
+          this.state = "inactive";
+          setTimeout(() => {
+            if (this.onstop) this.onstop();
+          }, 10);
+        }),
+      };
+
+      (globalThis as Record<string, unknown>).MediaRecorder = class {
+        static isTypeSupported = () => true;
+        state = "inactive";
+        ondataavailable: ((e: { data: Blob }) => void) | null = null;
+        onstop: (() => void) | null = null;
+        onerror: (() => void) | null = null;
+        constructor() {
+          Object.assign(this, {
+            start: mockMediaRecorder.start.bind(this),
+            stop: mockMediaRecorder.stop.bind(this),
+          });
+          const self = this;
+          Object.defineProperty(mockMediaRecorder, "ondataavailable", {
+            get: () => self.ondataavailable,
+            set: (v) => {
+              self.ondataavailable = v;
+            },
+            configurable: true,
+          });
+          Object.defineProperty(mockMediaRecorder, "onstop", {
+            get: () => self.onstop,
+            set: (v) => {
+              self.onstop = v;
+            },
+            configurable: true,
+          });
+        }
+        start(timeslice?: number) {
+          mockMediaRecorder.start.call(this, timeslice);
+        }
+        stop() {
+          mockMediaRecorder.stop.call(this);
+        }
+      };
+
+      Object.defineProperty(navigator, "mediaDevices", {
+        value: {
+          getDisplayMedia: vi.fn().mockResolvedValue(mockStream),
+        },
+        writable: true,
+        configurable: true,
+      });
+
+      URL.createObjectURL = vi.fn().mockReturnValue("blob:mock");
+      URL.revokeObjectURL = vi.fn();
+    });
+
+    it("ignores second click on record button while already recording", async () => {
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        captureVideo: true,
+      });
+      const shadow = getShadowRoot();
+      const recordBtn = shadow.querySelector<HTMLButtonElement>(
+        ".qaid-btn-record"
+      );
+      recordBtn?.click();
+
+      await vi.waitFor(() => {
+        const overlayShadow = getOverlayShadowRoot();
+        expect(
+          overlayShadow.querySelector(".qaid-recording-indicator")
+        ).not.toBeNull();
+      });
+
+      const callsAfterFirst =
+        (navigator.mediaDevices.getDisplayMedia as ReturnType<typeof vi.fn>).mock
+          .calls.length;
+
+      // Click again while still recording
+      recordBtn?.click();
+
+      // Wait a tick — should NOT have called getDisplayMedia again
+      await new Promise((r) => setTimeout(r, 30));
+      expect(
+        (navigator.mediaDevices.getDisplayMedia as ReturnType<typeof vi.fn>).mock
+          .calls.length
+      ).toBe(callsAfterFirst);
+    });
+
+    it("re-records when the rerecord button is clicked", async () => {
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        captureVideo: true,
+      });
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-record")?.click();
+
+      await vi.waitFor(() => {
+        const overlayShadow = getOverlayShadowRoot();
+        expect(
+          overlayShadow.querySelector(".qaid-recording-indicator")
+        ).not.toBeNull();
+      });
+
+      // Stop -> preview
+      const overlayShadow = getOverlayShadowRoot();
+      overlayShadow
+        .querySelector<HTMLButtonElement>(".qaid-recording-stop")
+        ?.click();
+      await vi.waitFor(() => {
+        expect(overlayShadow.querySelector(".qaid-video-preview")).not.toBeNull();
+      });
+
+      // Remove orphan preview elements caused by the recorder mock race
+      const orphans = overlayShadow.querySelectorAll(".qaid-video-preview");
+      for (let i = 0; i < orphans.length - 1; i++) orphans[i].remove();
+
+      const getDisplayMediaMock =
+        navigator.mediaDevices.getDisplayMedia as ReturnType<typeof vi.fn>;
+      const beforeCount = getDisplayMediaMock.mock.calls.length;
+
+      // Click re-record
+      overlayShadow
+        .querySelector<HTMLButtonElement>(".qaid-video-btn-rerecord")
+        ?.click();
+
+      // Should have requested display media again and the live preview removed
+      await vi.waitFor(() => {
+        expect(getDisplayMediaMock.mock.calls.length).toBeGreaterThan(
+          beforeCount
+        );
+      });
+      expect(overlayShadow.querySelector(".qaid-video-preview")).toBeNull();
+    });
+
+    it("ignores duplicate send clicks while already sending", async () => {
+      let resolveFetch!: (v: unknown) => void;
+      const fetchMock = vi.fn().mockImplementation(
+        () => new Promise((resolve) => (resolveFetch = resolve))
+      );
+      global.fetch = fetchMock;
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        captureVideo: true,
+      });
+
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-record")?.click();
+      await vi.waitFor(() => {
+        const overlayShadow = getOverlayShadowRoot();
+        expect(
+          overlayShadow.querySelector(".qaid-recording-indicator")
+        ).not.toBeNull();
+      });
+
+      const overlayShadow = getOverlayShadowRoot();
+      overlayShadow
+        .querySelector<HTMLButtonElement>(".qaid-recording-stop")
+        ?.click();
+      await vi.waitFor(() => {
+        expect(overlayShadow.querySelector(".qaid-video-preview")).not.toBeNull();
+      });
+
+      // Clean up duplicate preview elements caused by the recorder mock race
+      const allPreviews = overlayShadow.querySelectorAll(".qaid-video-preview");
+      for (let i = 0; i < allPreviews.length - 1; i++) {
+        allPreviews[i].remove();
+      }
+
+      const sendBtn = overlayShadow.querySelector<HTMLButtonElement>(
+        ".qaid-video-btn-send"
+      )!;
+      sendBtn.click();
+
+      await vi.waitFor(() => {
+        expect(fetchMock).toHaveBeenCalledTimes(1);
+      });
+
+      // Re-enable the disabled button so we can dispatch a click and verify
+      // the embed's own isSendingVideo guard rejects it
+      sendBtn.disabled = false;
+      sendBtn.click();
+
+      // Still only one fetch call (second click hits the isSendingVideo guard)
+      await new Promise((r) => setTimeout(r, 30));
+      expect(fetchMock).toHaveBeenCalledTimes(1);
+
+      resolveFetch({ ok: true, text: () => Promise.resolve("OK") });
+
+      await vi.waitFor(() => {
+        expect(overlayShadow.querySelector(".qaid-video-preview")).toBeNull();
+      });
+    });
+
+    it("recording onStop with empty blob runs cleanup and skips preview", async () => {
+      // Override MediaRecorder to emit no data chunks before onstop
+      (globalThis as Record<string, unknown>).MediaRecorder = class {
+        static isTypeSupported = () => true;
+        state = "inactive";
+        ondataavailable: ((e: { data: Blob }) => void) | null = null;
+        onstop: (() => void) | null = null;
+        onerror: (() => void) | null = null;
+        start() {
+          this.state = "recording";
+          // Do NOT emit any data — onstop fires below with no chunks
+        }
+        stop() {
+          this.state = "inactive";
+          // Stop without ever emitting data: blob will be empty
+          setTimeout(() => this.onstop?.(), 5);
+        }
+      };
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        captureVideo: true,
+      });
+
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-record")?.click();
+      await vi.waitFor(() => {
+        const overlayShadow = getOverlayShadowRoot();
+        expect(
+          overlayShadow.querySelector(".qaid-recording-indicator")
+        ).not.toBeNull();
+      });
+
+      const overlayShadow = getOverlayShadowRoot();
+      overlayShadow
+        .querySelector<HTMLButtonElement>(".qaid-recording-stop")
+        ?.click();
+
+      // Indicator should disappear and NO preview should appear
+      await vi.waitFor(() => {
+        expect(
+          overlayShadow.querySelector(".qaid-recording-indicator")
+        ).toBeNull();
+      });
+      expect(overlayShadow.querySelector(".qaid-video-preview")).toBeNull();
+    });
+
+    it("onTick after the indicator was removed does not throw", async () => {
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        captureVideo: true,
+      });
+
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-record")?.click();
+      await vi.waitFor(() => {
+        const overlayShadow = getOverlayShadowRoot();
+        expect(
+          overlayShadow.querySelector(".qaid-recording-indicator")
+        ).not.toBeNull();
+      });
+
+      // Null out the embed's reference (covers the !recordingIndicator early return)
+      const inst = embed as unknown as {
+        recordingIndicator: HTMLElement | null;
+        updateRecordingTimer(n: number): void;
+      };
+      inst.recordingIndicator = null;
+      expect(() => inst.updateRecordingTimer(2)).not.toThrow();
+    });
+
+    it("uses mp4 extension when recorded blob is mp4", async () => {
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: true,
+        text: () => Promise.resolve("OK"),
+      });
+      global.fetch = fetchMock;
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        captureVideo: true,
+      });
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-record")?.click();
+      await vi.waitFor(() => {
+        const overlayShadow = getOverlayShadowRoot();
+        expect(
+          overlayShadow.querySelector(".qaid-recording-indicator")
+        ).not.toBeNull();
+      });
+
+      const overlayShadow = getOverlayShadowRoot();
+      overlayShadow
+        .querySelector<HTMLButtonElement>(".qaid-recording-stop")
+        ?.click();
+      await vi.waitFor(() => {
+        expect(overlayShadow.querySelector(".qaid-video-preview")).not.toBeNull();
+      });
+
+      // Replace the recorded blob with an mp4-typed blob
+      const inst = embed as unknown as { recordedBlob: Blob };
+      inst.recordedBlob = new Blob(["x"], { type: "video/mp4" });
+
+      // Spy on FormData append to capture the filename argument used
+      const appendSpy = vi.spyOn(FormData.prototype, "append");
+
+      overlayShadow
+        .querySelector<HTMLButtonElement>(".qaid-video-btn-send")
+        ?.click();
+
+      await vi.waitFor(() => {
+        expect(fetchMock).toHaveBeenCalled();
+      });
+
+      const videoCall = appendSpy.mock.calls.find((c) => c[0] === "video");
+      expect(videoCall?.[2]).toBe("recording.mp4");
+
+      appendSpy.mockRestore();
+    });
+
+    it("stopRecording catch path nulls the recorded blob", async () => {
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        captureVideo: true,
+      });
+
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-record")?.click();
+      await vi.waitFor(() => {
+        const overlayShadow = getOverlayShadowRoot();
+        expect(
+          overlayShadow.querySelector(".qaid-recording-indicator")
+        ).not.toBeNull();
+      });
+
+      // Force the recorder.stop() to reject
+      const inst = embed as unknown as {
+        videoRecorder: { stop: () => Promise<Blob> };
+        recordedBlob: Blob | null;
+      };
+      inst.videoRecorder.stop = vi.fn().mockRejectedValue(new Error("boom"));
+
+      const overlayShadow = getOverlayShadowRoot();
+      overlayShadow
+        .querySelector<HTMLButtonElement>(".qaid-recording-stop")
+        ?.click();
+
+      await vi.waitFor(() => {
+        expect(
+          overlayShadow.querySelector(".qaid-recording-indicator")
+        ).toBeNull();
+      });
+      expect(inst.recordedBlob).toBeNull();
+      // No preview either
+      expect(overlayShadow.querySelector(".qaid-video-preview")).toBeNull();
     });
   });
 });

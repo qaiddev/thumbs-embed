@@ -34,6 +34,18 @@ describe("isDomScreenshotSupported", () => {
 
     vi.restoreAllMocks();
   });
+
+  it("should return false when document is undefined", () => {
+    vi.stubGlobal("document", undefined);
+    expect(isDomScreenshotSupported()).toBe(false);
+    vi.unstubAllGlobals();
+  });
+
+  it("should return false when window is undefined", () => {
+    vi.stubGlobal("window", undefined);
+    expect(isDomScreenshotSupported()).toBe(false);
+    vi.unstubAllGlobals();
+  });
 });
 
 describe("captureDomScreenshot", () => {
@@ -186,6 +198,111 @@ describe("captureDomScreenshot", () => {
     const normalEl = document.createElement("div");
     normalEl.className = "my-app-element";
     expect(ignoreElementsFn!(normalEl)).toBe(false);
+
+    // Non-HTMLElement (e.g., SVG) should also not be ignored
+    const svg = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "svg"
+    );
+    expect(ignoreElementsFn!(svg)).toBe(false);
+  });
+
+  it("should return null when scaled canvas 2d context unavailable", async () => {
+    mockCanvas.width = 2560;
+    mockCanvas.height = 1600;
+
+    const scaledCanvas = {
+      width: 0,
+      height: 0,
+      getContext: vi.fn().mockReturnValue(null),
+      toDataURL: vi.fn(),
+    };
+
+    const origCreateElement = document.createElement.bind(document);
+    vi.spyOn(document, "createElement").mockImplementation((tag: string) => {
+      if (tag === "canvas") {
+        return scaledCanvas as unknown as HTMLCanvasElement;
+      }
+      return origCreateElement(tag);
+    });
+
+    const result = await captureDomScreenshot({ maxWidth: 1280, maxHeight: 800 });
+    expect(result).toBeNull();
+  });
+
+  it("reuses in-flight load promise across concurrent callers", async () => {
+    vi.useFakeTimers();
+    delete (window as Record<string, unknown>).html2canvas;
+    vi.resetModules();
+    const { captureDomScreenshot: freshCapture } = await import("./screenshot-dom");
+
+    vi.spyOn(document.head, "appendChild").mockImplementation(
+      () => document.createElement("script")
+    );
+
+    const p1 = freshCapture();
+    const p2 = freshCapture();
+
+    await vi.advanceTimersByTimeAsync(11_000);
+
+    expect(await p1).toBeNull();
+    expect(await p2).toBeNull();
+
+    vi.useRealTimers();
+  });
+
+  it("does not create a duplicate script tag if one already exists", async () => {
+    vi.useFakeTimers();
+    delete (window as Record<string, unknown>).html2canvas;
+    vi.resetModules();
+
+    // Pre-insert a script tag with the expected src
+    const existingScript = document.createElement("script");
+    existingScript.src = "https://qaid.dev/lib/html2canvas.min.js";
+    document.head.appendChild(existingScript);
+
+    const appendSpy = vi.spyOn(document.head, "appendChild");
+
+    const { captureDomScreenshot: freshCapture } = await import("./screenshot-dom");
+    const promise = freshCapture();
+
+    // Fast-forward past the load timeout
+    await vi.advanceTimersByTimeAsync(11_000);
+    expect(await promise).toBeNull();
+
+    // appendChild should not have been called for the script (already exists)
+    const scriptAppends = appendSpy.mock.calls.filter(
+      ([node]) => (node as HTMLElement).tagName === "SCRIPT"
+    );
+    expect(scriptAppends).toHaveLength(0);
+
+    existingScript.remove();
+    vi.useRealTimers();
+  });
+
+  it("resolves when html2canvas appears mid-poll", async () => {
+    vi.useFakeTimers();
+    delete (window as Record<string, unknown>).html2canvas;
+    vi.resetModules();
+    const { captureDomScreenshot: freshCapture } = await import("./screenshot-dom");
+
+    vi.spyOn(document.head, "appendChild").mockImplementation(
+      () => document.createElement("script")
+    );
+
+    const promise = freshCapture();
+
+    // Make html2canvas appear after a few poll cycles
+    await vi.advanceTimersByTimeAsync(200);
+    (window as Record<string, unknown>).html2canvas = vi
+      .fn()
+      .mockResolvedValue(mockCanvas);
+    await vi.advanceTimersByTimeAsync(100);
+
+    const result = await promise;
+    expect(result).toBe("data:image/webp;base64,mockdata");
+
+    vi.useRealTimers();
   });
 
   it("should return null on html2canvas error", async () => {

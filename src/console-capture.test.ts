@@ -186,5 +186,25 @@ describe("console-capture", () => {
       expect(result).toContain("Something went wrong");
       expect(result).toMatch(/\[\d+:\d+:\d+.*\]/);
     });
+
+    it("should prefix with ERR for error level", () => {
+      const result = formatError({ message: "x", timestamp: 0, level: "error" });
+      expect(result).toContain("[ERR]");
+    });
+
+    it("should prefix with WRN for warn level", () => {
+      const result = formatError({ message: "x", timestamp: 0, level: "warn" });
+      expect(result).toContain("[WRN]");
+    });
+
+    it("should prefix with LOG for log level", () => {
+      const result = formatError({ message: "x", timestamp: 0, level: "log" });
+      expect(result).toContain("[LOG]");
+    });
+
+    it("should prefix with LOG when level is undefined", () => {
+      const result = formatError({ message: "x", timestamp: 0 });
+      expect(result).toContain("[LOG]");
+    });
   });
 });

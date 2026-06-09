@@ -1,5 +1,8 @@
 # @qaiddev/thumbs-embed
 
+[![npm version](https://img.shields.io/npm/v/@qaiddev/thumbs-embed)](https://www.npmjs.com/package/@qaiddev/thumbs-embed)
+[![coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fqaiddev%2Fthumbs-embed%2Fprod%2Fcoverage-badge.json)](https://github.com/qaiddev/thumbs-embed)
+
 A zero-dependency, lightweight feedback embed that adds thumbs up/down buttons to any website. Users can optionally target specific page elements, leave messages, and capture screenshots — all submitted to your API endpoint or the [QAid.dev hosted dashboard](https://qaid.dev).
 
 ## Install

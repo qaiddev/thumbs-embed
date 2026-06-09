@@ -10,7 +10,7 @@ import type {
 import { THUMBS_UP_ICON, THUMBS_DOWN_ICON, RECORD_ICON } from "./icons";
 import { injectStyles, removeStyles, buildCssVars, applyCssVars, getEmbedStyles } from "./styles";
 import { generateElementInfo } from "./element-selector";
-import { calculateModalAndArrowPosition } from "./modal-positioning";
+import { calculateModalAndArrowPosition, calculateTooltipPosition } from "./modal-positioning";
 import { captureConsoleErrors, type ConsoleCapture } from "./console-capture";
 import { captureNetworkErrors, type NetworkCapture } from "./network-capture";
 import {
@@ -34,7 +34,7 @@ function getHideKey(apiKey?: string): string {
   return apiKey ? `${HIDE_FEEDBACK_KEY}_${apiKey}` : HIDE_FEEDBACK_KEY;
 }
 
-function isHiddenByUser(apiKey?: string): boolean {
+export function isHiddenByUser(apiKey?: string): boolean {
   try {
     return localStorage.getItem(getHideKey(apiKey)) === "1";
   } catch {
@@ -42,7 +42,7 @@ function isHiddenByUser(apiKey?: string): boolean {
   }
 }
 
-function setHiddenByUser(apiKey?: string, hidden = true): void {
+export function setHiddenByUser(apiKey?: string, hidden = true): void {
   try {
     if (hidden) {
       localStorage.setItem(getHideKey(apiKey), "1");
@@ -57,7 +57,7 @@ function setHiddenByUser(apiKey?: string, hidden = true): void {
 /**
  * Get or create a visitor ID stored in localStorage
  */
-function getOrCreateVisitorId(): string {
+export function getOrCreateVisitorId(): string {
   try {
     let visitorId = localStorage.getItem(VISITOR_ID_KEY);
     if (!visitorId) {
@@ -494,10 +494,7 @@ export class QaidFeedback {
   private tooltipElement: HTMLElement | null = null;
 
   private showTooltip(anchor: HTMLElement): void {
-    if (!this.tooltipElement) return;
-
-    const tooltip = this.tooltipElement;
-    const gap = 8;
+    const tooltip = this.tooltipElement!;
 
     // Make visible to measure
     tooltip.style.visibility = "hidden";
@@ -505,36 +502,11 @@ export class QaidFeedback {
 
     const anchorRect = anchor.getBoundingClientRect();
     const tooltipRect = tooltip.getBoundingClientRect();
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-
-    let top: number;
-    let left: number;
-
-    // Always position below the button
-    top = anchorRect.bottom + gap;
-
-    // If below would overflow viewport, try above
-    if (top + tooltipRect.height > viewportHeight - gap) {
-      top = anchorRect.top - tooltipRect.height - gap;
-    }
-
-    // Align to left edge of anchor
-    left = anchorRect.left;
-
-    // Clamp to viewport horizontally
-    if (left < gap) {
-      left = gap;
-    } else if (left + tooltipRect.width > viewportWidth - gap) {
-      left = viewportWidth - tooltipRect.width - gap;
-    }
-
-    // Clamp to viewport vertically
-    if (top < gap) {
-      top = gap;
-    } else if (top + tooltipRect.height > viewportHeight - gap) {
-      top = viewportHeight - tooltipRect.height - gap;
-    }
+    const { top, left } = calculateTooltipPosition(
+      anchorRect,
+      tooltipRect,
+      { width: window.innerWidth, height: window.innerHeight }
+    );
 
     tooltip.style.top = `${top}px`;
     tooltip.style.left = `${left}px`;
@@ -542,19 +514,16 @@ export class QaidFeedback {
   }
 
   private hideTooltip(): void {
-    if (this.tooltipElement) {
-      this.tooltipElement.classList.remove("qaid-tooltip-visible");
-    }
+    this.tooltipElement!.classList.remove("qaid-tooltip-visible");
   }
 
   private handleDismiss(): void {
-    if (this.buttonsContainer) {
-      this.buttonsContainer.classList.add("qaid-incognito");
-      this.buttonsContainer.classList.add("qaid-force-hidden");
-      this.buttonsContainer.addEventListener("mouseleave", () => {
-        this.buttonsContainer?.classList.remove("qaid-force-hidden");
-      }, { once: true });
-    }
+    const container = this.buttonsContainer!;
+    container.classList.add("qaid-incognito");
+    container.classList.add("qaid-force-hidden");
+    container.addEventListener("mouseleave", () => {
+      container.classList.remove("qaid-force-hidden");
+    }, { once: true });
     setHiddenByUser(this.config.apiKey, true);
   }
 
@@ -730,7 +699,6 @@ export class QaidFeedback {
   }
 
   private handleClick(e: MouseEvent): void {
-    if (this.state !== "TARGETING" || !this.shadowHost) return;
     e.preventDefault();
     e.stopPropagation();
 
@@ -803,7 +771,6 @@ export class QaidFeedback {
   }
 
   private showSelectedMarker(): void {
-    if (!this.selectedBounds.visible) return;
     const root = this.ensureOverlayHost();
 
     this.marker = document.createElement("div");
@@ -826,8 +793,6 @@ export class QaidFeedback {
   }
 
   private async submitFeedback(): Promise<void> {
-    if (!this.feedbackData.feedbackType) return;
-
     // Capture screenshot if enabled (server will gate by plan)
     let screenshot: string | null = null;
     if (this.config.captureScreenshot) {
@@ -1000,12 +965,10 @@ export class QaidFeedback {
   }
 
   private setupModalInteractions(): void {
-    if (!this.modalContainer) return;
-
     const textarea =
-      this.modalContainer.querySelector<HTMLTextAreaElement>(".qaid-textarea");
+      this.modalContainer!.querySelector<HTMLTextAreaElement>(".qaid-textarea");
     const submitBtn =
-      this.modalContainer.querySelector<HTMLButtonElement>(".qaid-btn-submit");
+      this.modalContainer!.querySelector<HTMLButtonElement>(".qaid-btn-submit");
     if (textarea) {
       // Auto-focus
       setTimeout(() => textarea.focus(), 100);
@@ -1026,7 +989,7 @@ export class QaidFeedback {
     }
 
     // Handle feedback type toggle
-    const typeToggle = this.modalContainer.querySelector<HTMLButtonElement>(".qaid-type-toggle");
+    const typeToggle = this.modalContainer!.querySelector<HTMLButtonElement>(".qaid-type-toggle");
     if (typeToggle) {
       typeToggle.addEventListener("click", () => {
         const newType = this.feedbackData.feedbackType === "up" ? "down" : "up";
@@ -1163,10 +1126,8 @@ export class QaidFeedback {
   }
 
   private async stopRecording(): Promise<void> {
-    if (!this.isRecording || !this.videoRecorder) return;
-
     try {
-      this.recordedBlob = await this.videoRecorder.stop();
+      this.recordedBlob = await this.videoRecorder!.stop();
     } catch {
       this.recordedBlob = null;
     }
@@ -1239,10 +1200,9 @@ export class QaidFeedback {
   }
 
   private showRecordingPreview(): void {
-    if (!this.recordedBlob) return;
     const root = this.ensureOverlayHost();
 
-    const videoUrl = URL.createObjectURL(this.recordedBlob);
+    const videoUrl = URL.createObjectURL(this.recordedBlob!);
 
     this.videoPreview = document.createElement("div");
     this.videoPreview.className = "qaid-video-preview";
