@@ -815,7 +815,7 @@ export class QaidFeedback {
       : null;
 
     const payload: FeedbackPayload = {
-      feedbackType: this.feedbackData.feedbackType,
+      feedbackType: this.feedbackData.feedbackType!,
       pageUrl: window.location.href,
       apiKey: this.config.apiKey || undefined,
       elementSelector: this.feedbackData.elementSelector,

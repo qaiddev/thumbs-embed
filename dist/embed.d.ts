@@ -1,4 +1,10 @@
 import type { FeedbackConfig } from "./types";
+export declare function isHiddenByUser(apiKey?: string): boolean;
+export declare function setHiddenByUser(apiKey?: string, hidden?: boolean): void;
+/**
+ * Get or create a visitor ID stored in localStorage
+ */
+export declare function getOrCreateVisitorId(): string;
 /**
  * QaidFeedback - Standalone feedback collection embed
  */
