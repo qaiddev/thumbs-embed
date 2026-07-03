@@ -50,8 +50,11 @@ button {
   opacity: 1;
 }
 
-.qaid-buttons.qaid-incognito.qaid-force-hidden {
-  opacity: 0;
+/* Dismissed via the X button — fully removed. Unlike incognito, this
+   never reappears on hover; the widget is gone until localStorage is
+   cleared (or the visitor re-enables it). */
+.qaid-buttons.qaid-dismissed {
+  display: none !important;
 }
 
 /* Dismiss (X) button — inline flex item, first child in the row */

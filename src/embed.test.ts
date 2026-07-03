@@ -1985,15 +1985,32 @@ describe("QaidFeedback", () => {
       expect(dismissBtn?.getAttribute("aria-label")).toBe("Hide Feedback");
     });
 
-    it("should add qaid-incognito class when clicked", () => {
+    it("should fully hide the widget (qaid-dismissed) when clicked", () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
 
       const shadow = getShadowRoot();
       const container = shadow.querySelector(".qaid-buttons");
-      expect(container?.classList.contains("qaid-incognito")).toBe(false);
+      expect(container?.classList.contains("qaid-dismissed")).toBe(false);
 
       shadow.querySelector<HTMLButtonElement>(".qaid-dismiss-btn")?.click();
-      expect(container?.classList.contains("qaid-incognito")).toBe(true);
+      expect(container?.classList.contains("qaid-dismissed")).toBe(true);
+      // It should NOT fall back to the hover-reveal incognito state
+      expect(container?.classList.contains("qaid-incognito")).toBe(false);
+    });
+
+    it("should stay hidden after hovering once dismissed", () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+
+      const shadow = getShadowRoot();
+      const container = shadow.querySelector<HTMLElement>(".qaid-buttons");
+      shadow.querySelector<HTMLButtonElement>(".qaid-dismiss-btn")?.click();
+      expect(container?.classList.contains("qaid-dismissed")).toBe(true);
+
+      // Simulate a hover in-and-out; the widget must not come back.
+      container?.dispatchEvent(new MouseEvent("mouseenter"));
+      container?.dispatchEvent(new MouseEvent("mouseleave"));
+      expect(container?.classList.contains("qaid-dismissed")).toBe(true);
+      expect(container?.classList.contains("qaid-incognito")).toBe(false);
     });
 
     it("should persist dismiss preference to localStorage", () => {
@@ -2005,14 +2022,15 @@ describe("QaidFeedback", () => {
       expect(localStorage.getItem("qaid_hide_feedback_test-key")).toBe("1");
     });
 
-    it("should restore dismissed state from localStorage on init", () => {
+    it("should restore dismissed state from localStorage on init (fully hidden)", () => {
       localStorage.setItem("qaid_hide_feedback_test-key", "1");
 
       embed = new QaidFeedback({ endpoint: "/api/feedback", apiKey: "test-key" });
 
       const shadow = getShadowRoot();
       const container = shadow.querySelector(".qaid-buttons");
-      expect(container?.classList.contains("qaid-incognito")).toBe(true);
+      expect(container?.classList.contains("qaid-dismissed")).toBe(true);
+      expect(container?.classList.contains("qaid-incognito")).toBe(false);
     });
 
     it("should use generic key when no apiKey provided", () => {
@@ -2024,16 +2042,20 @@ describe("QaidFeedback", () => {
       expect(localStorage.getItem("qaid_hide_feedback")).toBe("1");
     });
 
-    it("should clear incognito state and localStorage when a thumb is clicked while hidden", () => {
+    it("should clear incognito state and localStorage when a thumb is clicked in incognito mode", () => {
       localStorage.setItem("qaid_hide_feedback_test-key", "1");
 
-      embed = new QaidFeedback({ endpoint: "/api/feedback", apiKey: "test-key" });
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        apiKey: "test-key",
+        incognito: true,
+      });
 
       const shadow = getShadowRoot();
       const container = shadow.querySelector(".qaid-buttons");
       expect(container?.classList.contains("qaid-incognito")).toBe(true);
 
-      // Click a thumb button while incognito
+      // Click a thumb button while incognito — brings the widget back.
       const upBtn = shadow.querySelector<HTMLButtonElement>(".qaid-btn-up");
       upBtn?.click();
 
@@ -2055,7 +2077,7 @@ describe("QaidFeedback", () => {
       shadow.querySelector<HTMLButtonElement>(".qaid-dismiss-btn")?.click();
 
       const container = shadow.querySelector(".qaid-buttons");
-      expect(container?.classList.contains("qaid-incognito")).toBe(true);
+      expect(container?.classList.contains("qaid-dismissed")).toBe(true);
 
       localStorage.getItem = origGetItem;
       localStorage.setItem = origSetItem;
@@ -2354,17 +2376,19 @@ describe("QaidFeedback", () => {
       localStorage.removeItem("qaid_hide_feedback");
     });
 
-    it("removes qaid-force-hidden class on mouseleave after dismiss", () => {
+    it("fully removes the widget on dismiss and never reveals it on hover", () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
       const shadow = getShadowRoot();
       const container = shadow.querySelector(".qaid-buttons") as HTMLElement;
       shadow.querySelector<HTMLButtonElement>(".qaid-dismiss-btn")?.click();
-      expect(container.classList.contains("qaid-force-hidden")).toBe(true);
+      expect(container.classList.contains("qaid-dismissed")).toBe(true);
 
+      // Hovering must not bring it back (the old incognito/force-hidden dance).
+      container.dispatchEvent(new MouseEvent("mouseenter", { bubbles: true }));
       container.dispatchEvent(new MouseEvent("mouseleave", { bubbles: true }));
+      expect(container.classList.contains("qaid-dismissed")).toBe(true);
+      expect(container.classList.contains("qaid-incognito")).toBe(false);
       expect(container.classList.contains("qaid-force-hidden")).toBe(false);
-      // qaid-incognito should still be present (only force-hidden is removed)
-      expect(container.classList.contains("qaid-incognito")).toBe(true);
     });
   });
 

@@ -450,9 +450,10 @@ export class QaidFeedback {
       // Insert as first child so it sits to the left of thumb buttons
       this.buttonsContainer.insertBefore(this.dismissBtn, this.buttonsContainer.firstChild);
 
-      // If previously dismissed via localStorage, start in incognito mode
+      // If previously dismissed via localStorage, start fully hidden so it
+      // doesn't flash back on hover — matching the dismiss behavior.
       if (this._startDismissed) {
-        this.buttonsContainer.classList.add("qaid-incognito");
+        this.buttonsContainer.classList.add("qaid-dismissed");
       }
     }
   }
@@ -518,20 +519,18 @@ export class QaidFeedback {
   }
 
   private handleDismiss(): void {
-    const container = this.buttonsContainer!;
-    container.classList.add("qaid-incognito");
-    container.classList.add("qaid-force-hidden");
-    container.addEventListener("mouseleave", () => {
-      container.classList.remove("qaid-force-hidden");
-    }, { once: true });
+    // Fully remove the widget. It does not linger as a hover-reveal ghost
+    // (that's `qaid-incognito`); once dismissed it stays gone until the
+    // visitor clears the stored preference.
+    this.buttonsContainer!.classList.add("qaid-dismissed");
     setHiddenByUser(this.config.apiKey, true);
   }
 
   private handleThumbClick(type: "up" | "down", buttonEl: HTMLElement, e: MouseEvent): void {
-    // If user clicks a thumb while incognito, they want it back
+    // If user clicks a thumb while in incognito mode, they want it back.
+    // (Dismissed widgets are `display:none`, so this can't fire for them.)
     if (this.buttonsContainer?.classList.contains("qaid-incognito")) {
       this.buttonsContainer.classList.remove("qaid-incognito");
-      this.buttonsContainer.classList.remove("qaid-force-hidden");
       setHiddenByUser(this.config.apiKey, false);
     }
     if (this.config.skipTargeting) {
