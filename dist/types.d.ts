@@ -48,6 +48,14 @@ export interface FeedbackConfig {
         submitButton?: string;
         /** Skip button text */
         skipButton?: string;
+        /** Accessible name (screen readers) for the thumbs-up button */
+        positiveLabel?: string;
+        /** Accessible name for the thumbs-down button */
+        negativeLabel?: string;
+        /** Accessible name for the record button */
+        recordLabel?: string;
+        /** Accessible name for the dismiss (hide) button */
+        dismissLabel?: string;
     };
     /** Modal width in pixels. Default: 400 */
     modalWidth?: number;
@@ -214,6 +222,10 @@ export interface ResolvedFeedbackConfig {
         placeholder: string;
         submitButton: string;
         skipButton: string;
+        positiveLabel: string;
+        negativeLabel: string;
+        recordLabel: string;
+        dismissLabel: string;
     };
     modalWidth: number;
     backdropOpacity: number;

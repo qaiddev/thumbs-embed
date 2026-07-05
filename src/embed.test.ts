@@ -89,6 +89,31 @@ describe("QaidFeedback", () => {
       expect(downBtn).not.toBeNull();
     });
 
+    it("should give the icon-only buttons accessible names (WCAG 4.1.2)", () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback", captureVideo: true });
+
+      const shadow = getShadowRoot();
+      const upBtn = shadow.querySelector(".qaid-btn-up");
+      const downBtn = shadow.querySelector(".qaid-btn-down");
+      expect(upBtn?.getAttribute("aria-label")).toBe("Send positive feedback");
+      expect(downBtn?.getAttribute("aria-label")).toBe("Send negative feedback");
+      // No icon button should announce as a bare "button".
+      shadow.querySelectorAll("button").forEach((btn) => {
+        expect((btn.getAttribute("aria-label") || btn.textContent || "").trim().length).toBeGreaterThan(0);
+      });
+    });
+
+    it("should use custom accessible names from config.text", () => {
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        text: { positiveLabel: "Yes", negativeLabel: "No" },
+      });
+
+      const shadow = getShadowRoot();
+      expect(shadow.querySelector(".qaid-btn-up")?.getAttribute("aria-label")).toBe("Yes");
+      expect(shadow.querySelector(".qaid-btn-down")?.getAttribute("aria-label")).toBe("No");
+    });
+
     it("should apply default position (bottom-right)", () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
 

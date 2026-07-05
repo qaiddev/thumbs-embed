@@ -9,7 +9,20 @@ import type {
 } from "./types";
 import { THUMBS_UP_ICON, THUMBS_DOWN_ICON, RECORD_ICON } from "./icons";
 import { injectStyles, removeStyles, buildCssVars, applyCssVars, getEmbedStyles } from "./styles";
-import { generateElementInfo } from "./element-selector";
+import {
+  generateElementInfo,
+  startKeyboardTargeting,
+  type KeyboardTargetingController,
+} from "./element-selector";
+import {
+  announce,
+  createFocusTrap,
+  saveFocus,
+  restoreFocus,
+  applyDialog,
+  setBackgroundInert,
+  type FocusTrap,
+} from "./a11y";
 import { calculateModalAndArrowPosition, calculateTooltipPosition } from "./modal-positioning";
 import { captureConsoleErrors, type ConsoleCapture } from "./console-capture";
 import { captureNetworkErrors, type NetworkCapture } from "./network-capture";
@@ -134,6 +147,21 @@ export class QaidFeedback {
   // Per-instance CSS variables
   private cssVars: Record<string, string> = {};
 
+  // Keyboard element-targeting
+  private keyboardController: KeyboardTargetingController | null = null;
+  private activeThumbBtn: HTMLElement | null = null;
+  // Tracks whether the pending activation came from the keyboard (Enter/Space)
+  // rather than a pointer, so targeting can avoid elementFromPoint(0,0).
+  private keyboardActivation = false;
+
+  // Accessibility: dialog focus management
+  private dialogTrigger: HTMLElement | null = null;
+  private dialogTrap: FocusTrap | null = null;
+  private dialogRestoreInert: (() => void) | null = null;
+
+  // Unique id suffix for aria-labelledby/describedby references
+  private readonly uid = Math.random().toString(36).slice(2, 9);
+
   // Bound event handlers
   private boundKeyDown: (e: KeyboardEvent) => void;
   private boundMouseMove: (e: MouseEvent) => void;
@@ -175,6 +203,10 @@ export class QaidFeedback {
         placeholder: config.text?.placeholder ?? "Optional: Tell us more about your experience...",
         submitButton: config.text?.submitButton ?? "Submit",
         skipButton: config.text?.skipButton ?? "Skip",
+        positiveLabel: config.text?.positiveLabel ?? "Send positive feedback",
+        negativeLabel: config.text?.negativeLabel ?? "Send negative feedback",
+        recordLabel: config.text?.recordLabel ?? "Record a screen recording",
+        dismissLabel: config.text?.dismissLabel ?? "Hide feedback buttons",
       },
       modalWidth: config.modalWidth ?? 400,
       backdropOpacity: config.backdropOpacity ?? 0.3,
@@ -214,6 +246,50 @@ export class QaidFeedback {
 
   private applyVars(el: HTMLElement): void {
     applyCssVars(el, this.cssVars);
+  }
+
+  /**
+   * Announce a message via the shared visually-hidden live regions.
+   * Prefer the overlay shadow root (which hosts every transient surface and
+   * is never inerted by its own dialogs) so announcements are not suppressed
+   * while a dialog aria-hides the main button host.
+   */
+  private announceMsg(message: string, assertive = false): void {
+    const root = this.overlayShadowRoot ?? this.shadowRoot;
+    if (root) announce(root, message, { assertive });
+  }
+
+  /**
+   * Turn a transient surface into an accessible modal dialog: save the
+   * invoking control, apply dialog semantics, trap focus, and inert the
+   * background. Paired with closeDialogA11y() on every close path.
+   */
+  private openDialogA11y(
+    container: HTMLElement,
+    opts: { labelledbyId?: string; describedbyId?: string; label?: string }
+  ): void {
+    this.dialogTrigger = saveFocus();
+    applyDialog(container, opts);
+    this.dialogTrap = createFocusTrap(container);
+    this.dialogRestoreInert = setBackgroundInert(container);
+  }
+
+  private closeDialogA11y(): void {
+    this.dialogTrap?.release();
+    this.dialogTrap = null;
+    if (this.dialogRestoreInert) {
+      this.dialogRestoreInert();
+      this.dialogRestoreInert = null;
+    }
+    restoreFocus(this.dialogTrigger);
+    this.dialogTrigger = null;
+  }
+
+  private clearActiveThumb(): void {
+    if (this.activeThumbBtn) {
+      this.activeThumbBtn.setAttribute("aria-pressed", "false");
+      this.activeThumbBtn = null;
+    }
   }
 
   private init(): void {
@@ -368,6 +444,21 @@ export class QaidFeedback {
     this.applyVars(this.buttonsContainer);
     this.shadowRoot.appendChild(this.buttonsContainer);
 
+    // Track input modality so a keyboard-activated control (Enter/Space) can be
+    // distinguished from a pointer click. A keyboard-fired synthetic click has
+    // clientX/clientY===0, which would break elementFromPoint targeting.
+    this.buttonsContainer.addEventListener("keydown", (ev) => {
+      if (ev.key === "Enter" || ev.key === " " || ev.key === "Spacebar") {
+        this.keyboardActivation = true;
+      }
+    });
+    this.buttonsContainer.addEventListener("mousedown", () => {
+      this.keyboardActivation = false;
+    });
+    this.buttonsContainer.addEventListener("pointerdown", () => {
+      this.keyboardActivation = false;
+    });
+
     // Determine button classes
     const useCustomClass = !!this.config.buttonClass;
     const btnBaseClass = useCustomClass
@@ -395,6 +486,7 @@ export class QaidFeedback {
       const upBtn = document.createElement("button");
       upBtn.type = "button";
       upBtn.className = useCustomClass ? `${btnBaseClass} qaid-btn-up` : "qaid-btn qaid-btn-up";
+      upBtn.setAttribute("aria-label", this.config.text.positiveLabel);
       upBtn.innerHTML = this.config.positiveIcon || THUMBS_UP_ICON;
       upBtn.addEventListener("click", (e) => this.handleThumbClick("up", e.currentTarget as HTMLElement, e));
       upBtn.addEventListener("mouseenter", () => this.showTooltip(upBtn));
@@ -408,6 +500,7 @@ export class QaidFeedback {
       const downBtn = document.createElement("button");
       downBtn.type = "button";
       downBtn.className = useCustomClass ? `${btnBaseClass} qaid-btn-down` : "qaid-btn qaid-btn-down";
+      downBtn.setAttribute("aria-label", this.config.text.negativeLabel);
       downBtn.innerHTML = this.config.negativeIcon || THUMBS_DOWN_ICON;
       downBtn.addEventListener("click", (e) => this.handleThumbClick("down", e.currentTarget as HTMLElement, e));
       downBtn.addEventListener("mouseenter", () => this.showTooltip(downBtn));
@@ -426,6 +519,7 @@ export class QaidFeedback {
       const recordBtn = document.createElement("button");
       recordBtn.type = "button";
       recordBtn.className = useCustomClass ? `${btnBaseClass} qaid-btn-record` : "qaid-btn qaid-btn-record";
+      recordBtn.setAttribute("aria-label", this.config.text.recordLabel);
       recordBtn.innerHTML = this.config.recordIcon || RECORD_ICON;
       recordBtn.addEventListener("click", () => this.startRecording());
       recordBtn.addEventListener("mouseenter", () => this.showTooltip(recordBtn));
@@ -440,8 +534,8 @@ export class QaidFeedback {
       this.dismissBtn = document.createElement("button");
       this.dismissBtn.type = "button";
       this.dismissBtn.className = "qaid-dismiss-btn";
-      this.dismissBtn.setAttribute("aria-label", "Hide Feedback");
-      this.dismissBtn.title = "Hide Feedback";
+      this.dismissBtn.setAttribute("aria-label", this.config.text.dismissLabel);
+      this.dismissBtn.title = this.config.text.dismissLabel;
       this.dismissBtn.innerHTML = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
       this.dismissBtn.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -536,7 +630,20 @@ export class QaidFeedback {
     if (this.config.skipTargeting) {
       this.submitDirectFeedback(type, buttonEl);
     } else {
-      this.startTargeting(type, e);
+      // Expose targeting on/off state on the trigger
+      this.activeThumbBtn = buttonEl;
+      buttonEl.setAttribute("aria-pressed", "true");
+      // A keyboard-activated <button> fires a synthetic click whose clientX/
+      // clientY are (0,0). Route those through the keyboard path instead of
+      // elementFromPoint(0,0). `keyboardActivation` is set by a preceding
+      // Enter/Space keydown and cleared by any pointerdown/mousedown.
+      const keyboard = this.keyboardActivation;
+      this.keyboardActivation = false;
+      if (keyboard) {
+        this.startKeyboardTargetingFlow(type);
+      } else {
+        this.startTargeting(type, e);
+      }
     }
   }
 
@@ -589,6 +696,74 @@ export class QaidFeedback {
     document.addEventListener("keydown", this.boundKeyDown);
     document.addEventListener("mousemove", this.boundMouseMove);
     document.addEventListener("click", this.boundClick, true);
+  }
+
+  /**
+   * Keyboard-driven targeting. Mirrors startTargeting minus the mouse
+   * plumbing: no `qaid-targeting` body class (keeps the cursor visible for
+   * keyboard users), no mouse reticle, and no document mouse/click listeners.
+   * The KeyboardTargetingController owns Tab/Arrow/Enter/Space/Escape.
+   */
+  private startKeyboardTargetingFlow(type: "up" | "down"): void {
+    this.state = "TARGETING";
+    this.feedbackData.feedbackType = type;
+    this.feedbackData.elementSelector = null;
+    this.feedbackData.elementText = null;
+    this.selectedBounds.visible = false;
+
+    // Set overlay theming colors (NOT the cursor-hiding qaid-targeting class)
+    document.body.style.setProperty("--qaid-positive", this.cssVars["--qaid-positive"]);
+    document.body.style.setProperty("--qaid-negative", this.cssVars["--qaid-negative"]);
+
+    // Build the highlight box, then hide the mouse reticle (meaningless here)
+    this.createTargetingOverlay();
+    if (this.crosshairH) this.crosshairH.style.display = "none";
+    if (this.crosshairV) this.crosshairV.style.display = "none";
+    if (this.scope) this.scope.style.display = "none";
+
+    this.keyboardController = startKeyboardTargeting({
+      isExcluded: (el) => isEmbedElement(el),
+      onHighlight: (el) => {
+        const rect = el.getBoundingClientRect();
+        const b = this.highlightBox;
+        if (b) {
+          b.style.transform = `translate(${rect.left}px, ${rect.top}px)`;
+          b.style.width = `${rect.width}px`;
+          b.style.height = `${rect.height}px`;
+          b.style.display = "block";
+        }
+        const { text } = generateElementInfo(el);
+        this.announceMsg(`Targeting ${text || el.tagName.toLowerCase()}`);
+      },
+      onSelect: (el) => this.selectKeyboardTarget(el),
+      onCancel: () => this.cancelTargeting(),
+    });
+  }
+
+  private selectKeyboardTarget(el: Element): void {
+    const bounds = getElementBounds(el, 8);
+    this.selectedBounds = {
+      ...bounds,
+      clickX: bounds.x + bounds.width / 2,
+      clickY: bounds.y + bounds.height / 2,
+      visible: true,
+    };
+
+    const { selector, text } = generateElementInfo(el);
+    this.feedbackData.elementSelector = selector;
+    this.feedbackData.elementText = text;
+
+    // Teardown (controller has already auto-stopped before onSelect fired)
+    this.removeTargetingOverlay();
+    document.body.classList.remove("qaid-targeting", "qaid-type-up");
+    document.body.style.removeProperty("--qaid-positive");
+    document.body.style.removeProperty("--qaid-negative");
+    this.keyboardController = null;
+    this.clearActiveThumb();
+
+    this.state = "SELECTED";
+    this.showSelectedMarker();
+    this.submitFeedback();
   }
 
   private createTargetingOverlay(): void {
@@ -736,6 +911,7 @@ export class QaidFeedback {
     document.body.style.removeProperty("--qaid-negative");
 
     this.state = "SELECTED";
+    this.clearActiveThumb();
 
     // Show marker and submit feedback
     this.showSelectedMarker();
@@ -743,6 +919,8 @@ export class QaidFeedback {
   }
 
   private cancelTargeting(): void {
+    this.keyboardController?.stop();
+    this.keyboardController = null;
     this.removeTargetingOverlay();
     document.removeEventListener("mousemove", this.boundMouseMove);
     document.removeEventListener("click", this.boundClick, true);
@@ -750,6 +928,7 @@ export class QaidFeedback {
     document.body.classList.remove("qaid-targeting", "qaid-type-up");
     document.body.style.removeProperty("--qaid-positive");
     document.body.style.removeProperty("--qaid-negative");
+    this.clearActiveThumb();
 
     this.state = "IDLE";
     this.feedbackData.feedbackType = null;
@@ -800,6 +979,7 @@ export class QaidFeedback {
       } else {
         screenshot = await captureScreenshot(this.config.screenshotOptions);
       }
+      if (screenshot) this.announceMsg("Screenshot captured");
     }
 
     // Include element bounds for server-side screenshot fallback
@@ -843,9 +1023,11 @@ export class QaidFeedback {
       if (response.ok) {
         const data: FeedbackResponse = await response.json();
         this.feedbackId = data.id;
+        this.announceMsg("Feedback sent");
       }
     } catch (error) {
       console.error("Failed to submit feedback:", error);
+      this.announceMsg("Failed to send feedback", true);
     }
 
     // Always show modal (even if API failed - useful for demos)
@@ -946,17 +1128,18 @@ export class QaidFeedback {
     const toggleClass = this.config.buttonClass
       ? `qaid-type-toggle qaid-type-toggle-custom ${this.config.buttonClass} ${isUp ? "qaid-btn-up" : "qaid-btn-down"}`
       : `qaid-type-toggle ${isUp ? "qaid-type-up" : "qaid-type-down"}`;
+    const toggleLabel = isUp ? "Feedback type: positive" : "Feedback type: negative";
     return `
       <div class="qaid-modal-header">
-        <button type="button" class="${toggleClass}" title="Click to switch">
+        <button type="button" class="${toggleClass}" title="Click to switch" aria-pressed="${isUp}" aria-label="${toggleLabel}">
           ${isUp ? positiveIcon : negativeIcon}
         </button>
         <div class="qaid-modal-header-text">
-          <h3 class="qaid-modal-title">${this.config.text.modalTitle}</h3>
-          <p class="qaid-modal-subtitle">${this.config.text.modalSubtitle}</p>
+          <h3 class="qaid-modal-title" id="qaid-modal-title-${this.uid}">${this.config.text.modalTitle}</h3>
+          <p class="qaid-modal-subtitle" id="qaid-modal-subtitle-${this.uid}">${this.config.text.modalSubtitle}</p>
         </div>
       </div>
-      <textarea class="qaid-textarea" placeholder="${this.config.text.placeholder}"></textarea>
+      <textarea class="qaid-textarea" aria-label="${this.config.text.modalSubtitle}" placeholder="${this.config.text.placeholder}"></textarea>
       <div class="qaid-btn-row">
         <button type="button" class="qaid-btn-submit">${this.config.text.skipButton}</button>
       </div>
@@ -964,6 +1147,12 @@ export class QaidFeedback {
   }
 
   private setupModalInteractions(): void {
+    // Dialog semantics + focus trap + background inert
+    this.openDialogA11y(this.modalContainer!, {
+      labelledbyId: `qaid-modal-title-${this.uid}`,
+      describedbyId: `qaid-modal-subtitle-${this.uid}`,
+    });
+
     const textarea =
       this.modalContainer!.querySelector<HTMLTextAreaElement>(".qaid-textarea");
     const submitBtn =
@@ -1006,6 +1195,12 @@ export class QaidFeedback {
         const negativeIcon = this.config.negativeIcon || THUMBS_DOWN_ICON;
         typeToggle.innerHTML = newType === "up" ? positiveIcon : negativeIcon;
 
+        // Update accessible state and announce the change
+        const toggleLabel = newType === "up" ? "Feedback type: positive" : "Feedback type: negative";
+        typeToggle.setAttribute("aria-pressed", String(newType === "up"));
+        typeToggle.setAttribute("aria-label", toggleLabel);
+        this.announceMsg(toggleLabel);
+
         // Update feedback on server
         if (this.feedbackId) {
           fetch(`${this.config.endpoint}/${this.feedbackId}`, {
@@ -1045,6 +1240,9 @@ export class QaidFeedback {
         body: JSON.stringify({ message: null }),
       }).catch((err) => console.error("Failed to finalize feedback:", err));
     }
+
+    // Release focus trap / inert and restore focus before removing the DOM
+    this.closeDialogA11y();
 
     if (this.modalContainer) {
       this.modalContainer.remove();
@@ -1095,6 +1293,7 @@ export class QaidFeedback {
         if (this.isRecording) {
           this.recordedBlob = blob;
           this.isRecording = false;
+          this.announceMsg("Recording stopped");
           this.removeRecordingIndicator();
           document.removeEventListener("keydown", this.boundKeyDown);
           this.setButtonsDisabled(false);
@@ -1109,6 +1308,7 @@ export class QaidFeedback {
 
       await this.videoRecorder.start();
       this.isRecording = true;
+      this.announceMsg("Recording started");
 
       // Disable thumb buttons while recording
       this.setButtonsDisabled(true);
@@ -1132,6 +1332,7 @@ export class QaidFeedback {
     }
 
     this.isRecording = false;
+    this.announceMsg("Recording stopped");
     this.removeRecordingIndicator();
     document.removeEventListener("keydown", this.boundKeyDown);
 
@@ -1182,6 +1383,10 @@ export class QaidFeedback {
     if (timer) {
       const remaining = Math.max(0, this.config.videoOptions.maxDuration - elapsed);
       timer.textContent = this.formatTime(remaining);
+      // Announce the final countdown so it is perceivable non-visually
+      if (remaining > 0 && remaining <= 5) {
+        this.announceMsg(`${remaining} second${remaining === 1 ? "" : "s"} remaining`);
+      }
     }
   }
 
@@ -1212,6 +1417,7 @@ export class QaidFeedback {
 
     const title = document.createElement("h3");
     title.textContent = "Review your recording";
+    title.id = `qaid-video-title-${this.uid}`;
 
     const videoEl = document.createElement("video");
     videoEl.src = videoUrl;
@@ -1221,6 +1427,7 @@ export class QaidFeedback {
 
     const textarea = document.createElement("textarea");
     textarea.placeholder = "Optional: Describe the issue you recorded...";
+    textarea.setAttribute("aria-label", "Describe the issue you recorded");
 
     const actions = document.createElement("div");
     actions.className = "qaid-video-preview-actions";
@@ -1268,6 +1475,9 @@ export class QaidFeedback {
 
     root.appendChild(this.videoPreview);
 
+    // Dialog semantics + focus trap + background inert
+    this.openDialogA11y(box, { labelledbyId: title.id });
+
     // Listen for escape key
     document.addEventListener("keydown", this.boundKeyDown);
   }
@@ -1278,6 +1488,8 @@ export class QaidFeedback {
   }
 
   private removeVideoPreview(): void {
+    // Release focus trap / inert and restore focus before removing the DOM
+    this.closeDialogA11y();
     if (this.videoPreview) {
       // Revoke object URLs
       const videoEl = this.videoPreview.querySelector<HTMLVideoElement>("video");
@@ -1321,11 +1533,15 @@ export class QaidFeedback {
         body: formData,
       });
 
-      if (!response.ok) {
+      if (response.ok) {
+        this.announceMsg("Recording sent");
+      } else {
         console.error("Failed to submit video feedback:", await response.text());
+        this.announceMsg("Failed to send recording", true);
       }
     } catch (error) {
       console.error("Failed to submit video feedback:", error);
+      this.announceMsg("Failed to send recording", true);
     }
 
     this.isSendingVideo = false;
@@ -1391,6 +1607,12 @@ export class QaidFeedback {
       document.removeEventListener("astro:before-swap", this.boundBeforeSwap);
       this.boundBeforeSwap = null;
     }
+
+    // Stop keyboard targeting and release any open dialog focus state
+    this.keyboardController?.stop();
+    this.keyboardController = null;
+    this.clearActiveThumb();
+    this.closeDialogA11y();
 
     // Clean up video recording
     this.cleanupRecording();

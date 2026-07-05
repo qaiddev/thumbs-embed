@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import {
   DATA_ATTRS,
   findDataAttribute,
@@ -6,6 +6,11 @@ import {
   generateSelector,
   generateElementInfo,
   generateNthChildPath,
+  TARGETABLE_SELECTOR,
+  isElementVisible,
+  collectTargetableElements,
+  startKeyboardTargeting,
+  type KeyboardTargetingController,
 } from "./element-selector";
 
 describe("element-selector", () => {
@@ -274,6 +279,483 @@ describe("element-selector", () => {
 
       const info = generateElementInfo(el);
       expect(info.text).toBe("X".repeat(100) + "...");
+    });
+  });
+
+  describe("isElementVisible", () => {
+    it("returns true for a plain visible element", () => {
+      const el = document.createElement("div");
+      container.appendChild(el);
+      expect(isElementVisible(el)).toBe(true);
+    });
+
+    it("returns false when the hidden attribute is set", () => {
+      const el = document.createElement("div");
+      el.setAttribute("hidden", "");
+      container.appendChild(el);
+      expect(isElementVisible(el)).toBe(false);
+    });
+
+    it("returns false when aria-hidden is true", () => {
+      const el = document.createElement("div");
+      el.setAttribute("aria-hidden", "true");
+      container.appendChild(el);
+      expect(isElementVisible(el)).toBe(false);
+    });
+
+    it("returns false when display is none", () => {
+      const el = document.createElement("div");
+      el.style.display = "none";
+      container.appendChild(el);
+      expect(isElementVisible(el)).toBe(false);
+    });
+
+    it("returns false when visibility is hidden", () => {
+      const el = document.createElement("div");
+      el.style.visibility = "hidden";
+      container.appendChild(el);
+      expect(isElementVisible(el)).toBe(false);
+    });
+  });
+
+  describe("TARGETABLE_SELECTOR", () => {
+    it("includes focusable, semantic, and data-attribute selectors", () => {
+      expect(TARGETABLE_SELECTOR).toContain("button");
+      expect(TARGETABLE_SELECTOR).toContain("[role]");
+      expect(TARGETABLE_SELECTOR).toContain("[data-testid]");
+    });
+
+    it("is a selector that querySelectorAll accepts without throwing", () => {
+      expect(() =>
+        document.querySelectorAll(TARGETABLE_SELECTOR)
+      ).not.toThrow();
+    });
+  });
+
+  describe("collectTargetableElements", () => {
+    it("collects targetable elements within a root", () => {
+      const btn = document.createElement("button");
+      const heading = document.createElement("h2");
+      const plainSpan = document.createElement("span"); // not targetable
+      container.append(btn, heading, plainSpan);
+
+      const found = collectTargetableElements({ root: container });
+      expect(found).toContain(btn);
+      expect(found).toContain(heading);
+      expect(found).not.toContain(plainSpan);
+    });
+
+    it("preserves document order", () => {
+      const first = document.createElement("button");
+      const second = document.createElement("a");
+      second.setAttribute("href", "#");
+      container.append(first, second);
+
+      const found = collectTargetableElements({ root: container });
+      expect(found.indexOf(first)).toBeLessThan(found.indexOf(second));
+    });
+
+    it("drops elements rejected by isExcluded", () => {
+      const keep = document.createElement("button");
+      const drop = document.createElement("button");
+      drop.setAttribute("data-embed", "");
+      container.append(keep, drop);
+
+      const found = collectTargetableElements({
+        root: container,
+        isExcluded: (el) => el.hasAttribute("data-embed"),
+      });
+      expect(found).toContain(keep);
+      expect(found).not.toContain(drop);
+    });
+
+    it("drops elements rejected by isVisible", () => {
+      const visible = document.createElement("button");
+      const invisible = document.createElement("button");
+      invisible.setAttribute("hidden", "");
+      container.append(visible, invisible);
+
+      const found = collectTargetableElements({ root: container });
+      expect(found).toContain(visible);
+      expect(found).not.toContain(invisible);
+    });
+
+    it("honors a custom selector", () => {
+      const a = document.createElement("div");
+      a.className = "pick-me";
+      const b = document.createElement("div");
+      container.append(a, b);
+
+      const found = collectTargetableElements({
+        root: container,
+        selector: ".pick-me",
+      });
+      expect(found).toEqual([a]);
+    });
+
+    it("defaults its root to document.body", () => {
+      const btn = document.createElement("button");
+      btn.id = "collect-default-root";
+      container.appendChild(btn);
+      const found = collectTargetableElements();
+      expect(found).toContain(btn);
+    });
+  });
+
+  describe("startKeyboardTargeting", () => {
+    let controller: KeyboardTargetingController | null = null;
+
+    function makeCandidates(count: number): HTMLElement[] {
+      const els: HTMLElement[] = [];
+      for (let i = 0; i < count; i++) {
+        const btn = document.createElement("button");
+        btn.textContent = `Candidate ${i}`;
+        container.appendChild(btn);
+        els.push(btn);
+      }
+      return els;
+    }
+
+    function press(
+      key: string,
+      init: KeyboardEventInit = {},
+      dispatchOn: EventTarget = document
+    ): KeyboardEvent {
+      const event = new KeyboardEvent("keydown", {
+        key,
+        bubbles: true,
+        cancelable: true,
+        ...init,
+      });
+      dispatchOn.dispatchEvent(event);
+      return event;
+    }
+
+    afterEach(() => {
+      controller?.stop();
+      controller = null;
+    });
+
+    it("starts on the first candidate when nothing is focused", () => {
+      const els = makeCandidates(3);
+      (document.activeElement as HTMLElement | null)?.blur?.();
+      controller = startKeyboardTargeting({
+        candidates: els,
+        onSelect: () => {},
+      });
+      expect(controller.getIndex()).toBe(0);
+      expect(controller.getCurrent()).toBe(els[0]);
+    });
+
+    it("seeds the highlight from document.activeElement when it is a candidate", () => {
+      const els = makeCandidates(3);
+      els[2].focus();
+      controller = startKeyboardTargeting({
+        candidates: els,
+        onSelect: () => {},
+      });
+      expect(controller.getCurrent()).toBe(els[2]);
+    });
+
+    it("honors an explicit initial element", () => {
+      const els = makeCandidates(3);
+      controller = startKeyboardTargeting({
+        candidates: els,
+        initial: els[1],
+        onSelect: () => {},
+      });
+      expect(controller.getCurrent()).toBe(els[1]);
+    });
+
+    it("falls back to the first candidate when initial is not a candidate", () => {
+      const els = makeCandidates(3);
+      const outsider = document.createElement("button");
+      container.appendChild(outsider);
+      controller = startKeyboardTargeting({
+        candidates: els,
+        initial: outsider,
+        onSelect: () => {},
+      });
+      expect(controller.getIndex()).toBe(0);
+    });
+
+    it("emits an initial highlight synchronously", () => {
+      const els = makeCandidates(2);
+      const onHighlight = vi.fn();
+      controller = startKeyboardTargeting({
+        candidates: els,
+        initial: els[0],
+        onHighlight,
+        onSelect: () => {},
+      });
+      expect(onHighlight).toHaveBeenCalledWith(els[0], 0);
+    });
+
+    it("moves to the next candidate on Tab and ArrowDown/ArrowRight", () => {
+      const els = makeCandidates(3);
+      const onHighlight = vi.fn();
+      controller = startKeyboardTargeting({
+        candidates: els,
+        initial: els[0],
+        onHighlight,
+        onSelect: () => {},
+      });
+
+      press("Tab");
+      expect(controller.getCurrent()).toBe(els[1]);
+      press("ArrowDown");
+      expect(controller.getCurrent()).toBe(els[2]);
+      press("ArrowRight");
+      expect(controller.getCurrent()).toBe(els[0]); // wraps
+      expect(onHighlight).toHaveBeenLastCalledWith(els[0], 0);
+    });
+
+    it("moves to the previous candidate on Shift+Tab and ArrowUp/ArrowLeft", () => {
+      const els = makeCandidates(3);
+      controller = startKeyboardTargeting({
+        candidates: els,
+        initial: els[0],
+        onSelect: () => {},
+      });
+
+      press("Tab", { shiftKey: true });
+      expect(controller.getCurrent()).toBe(els[2]); // wraps backwards
+      press("ArrowUp");
+      expect(controller.getCurrent()).toBe(els[1]);
+      press("ArrowLeft");
+      expect(controller.getCurrent()).toBe(els[0]);
+    });
+
+    it("wraps via moveTo for out-of-range indices", () => {
+      const els = makeCandidates(3);
+      controller = startKeyboardTargeting({
+        candidates: els,
+        initial: els[0],
+        onSelect: () => {},
+      });
+      controller.moveTo(5); // 5 % 3 === 2
+      expect(controller.getCurrent()).toBe(els[2]);
+      controller.moveTo(-1);
+      expect(controller.getCurrent()).toBe(els[2]);
+    });
+
+    it("selects the current candidate on Enter and stops", () => {
+      const els = makeCandidates(3);
+      const onSelect = vi.fn();
+      controller = startKeyboardTargeting({
+        candidates: els,
+        initial: els[1],
+        onSelect,
+      });
+      press("Enter");
+      expect(onSelect).toHaveBeenCalledTimes(1);
+      expect(onSelect).toHaveBeenCalledWith(els[1]);
+
+      // Listener removed: further keys are ignored.
+      press("Tab");
+      expect(controller.getCurrent()).toBe(els[1]);
+    });
+
+    it("selects on Space", () => {
+      const els = makeCandidates(2);
+      const onSelect = vi.fn();
+      controller = startKeyboardTargeting({
+        candidates: els,
+        initial: els[0],
+        onSelect,
+      });
+      press(" ");
+      expect(onSelect).toHaveBeenCalledWith(els[0]);
+    });
+
+    it("cancels on Escape and does not select", () => {
+      const els = makeCandidates(2);
+      const onSelect = vi.fn();
+      const onCancel = vi.fn();
+      controller = startKeyboardTargeting({
+        candidates: els,
+        initial: els[0],
+        onSelect,
+        onCancel,
+      });
+      press("Escape");
+      expect(onCancel).toHaveBeenCalledTimes(1);
+      expect(onSelect).not.toHaveBeenCalled();
+    });
+
+    it("prevents default and stops propagation for handled keys", () => {
+      const els = makeCandidates(2);
+      controller = startKeyboardTargeting({
+        candidates: els,
+        initial: els[0],
+        onSelect: () => {},
+      });
+      const tab = press("Tab");
+      expect(tab.defaultPrevented).toBe(true);
+      const esc = press("Escape");
+      expect(esc.defaultPrevented).toBe(true);
+    });
+
+    it("ignores unrelated keys", () => {
+      const els = makeCandidates(2);
+      const onSelect = vi.fn();
+      const onCancel = vi.fn();
+      controller = startKeyboardTargeting({
+        candidates: els,
+        initial: els[0],
+        onSelect,
+        onCancel,
+      });
+      const other = press("a");
+      expect(other.defaultPrevented).toBe(false);
+      expect(controller.getCurrent()).toBe(els[0]);
+      expect(onSelect).not.toHaveBeenCalled();
+      expect(onCancel).not.toHaveBeenCalled();
+    });
+
+    it("moves native focus to the highlighted candidate", () => {
+      const els = makeCandidates(3);
+      controller = startKeyboardTargeting({
+        candidates: els,
+        initial: els[0],
+        onSelect: () => {},
+      });
+      expect(document.activeElement).toBe(els[0]);
+      controller.next();
+      expect(document.activeElement).toBe(els[1]);
+    });
+
+    it("makes non-focusable content focusable with a temporary tabindex and cleans it up", () => {
+      const p = document.createElement("p");
+      p.textContent = "A paragraph";
+      container.appendChild(p);
+      controller = startKeyboardTargeting({
+        candidates: [p],
+        initial: p,
+        onSelect: () => {},
+      });
+      expect(p.getAttribute("tabindex")).toBe("-1");
+      controller.stop();
+      expect(p.hasAttribute("tabindex")).toBe(false);
+    });
+
+    it("does not add a tabindex to natively focusable elements", () => {
+      const els = makeCandidates(1);
+      controller = startKeyboardTargeting({
+        candidates: els,
+        initial: els[0],
+        onSelect: () => {},
+      });
+      expect(els[0].hasAttribute("tabindex")).toBe(false);
+    });
+
+    it("preserves an author-provided tabindex", () => {
+      const div = document.createElement("div");
+      div.setAttribute("tabindex", "0");
+      container.appendChild(div);
+      controller = startKeyboardTargeting({
+        candidates: [div],
+        initial: div,
+        onSelect: () => {},
+      });
+      controller.stop();
+      expect(div.getAttribute("tabindex")).toBe("0");
+    });
+
+    it("does not move focus when moveFocus is false", () => {
+      const els = makeCandidates(2);
+      (document.activeElement as HTMLElement | null)?.blur?.();
+      controller = startKeyboardTargeting({
+        candidates: els,
+        initial: els[0],
+        moveFocus: false,
+        onSelect: () => {},
+      });
+      expect(document.activeElement).not.toBe(els[0]);
+    });
+
+    it("collects candidates itself when none are provided", () => {
+      const btn = document.createElement("button");
+      btn.id = "self-collect";
+      container.appendChild(btn);
+      controller = startKeyboardTargeting({
+        root: container,
+        initial: btn,
+        onSelect: () => {},
+      });
+      expect(controller.candidates).toContain(btn);
+      expect(controller.getCurrent()).toBe(btn);
+    });
+
+    it("handles an empty candidate list without throwing", () => {
+      const onSelect = vi.fn();
+      const onCancel = vi.fn();
+      controller = startKeyboardTargeting({
+        candidates: [],
+        onSelect,
+        onCancel,
+      });
+      expect(controller.getIndex()).toBe(-1);
+      expect(controller.getCurrent()).toBeNull();
+      controller.next();
+      controller.prev();
+      controller.moveTo(0);
+      press("Enter"); // no current → no onSelect
+      expect(onSelect).not.toHaveBeenCalled();
+      // A fresh controller can still cancel cleanly.
+      controller = startKeyboardTargeting({
+        candidates: [],
+        onSelect,
+        onCancel,
+      });
+      press("Escape");
+      expect(onCancel).toHaveBeenCalledTimes(1);
+    });
+
+    it("stop() is idempotent and detaches the listener", () => {
+      const els = makeCandidates(2);
+      const onSelect = vi.fn();
+      controller = startKeyboardTargeting({
+        candidates: els,
+        initial: els[0],
+        onSelect,
+      });
+      controller.stop();
+      controller.stop(); // no throw
+      press("Enter");
+      expect(onSelect).not.toHaveBeenCalled();
+    });
+
+    it("select() and cancel() are no-ops after stop()", () => {
+      const els = makeCandidates(2);
+      const onSelect = vi.fn();
+      const onCancel = vi.fn();
+      controller = startKeyboardTargeting({
+        candidates: els,
+        initial: els[0],
+        onSelect,
+        onCancel,
+      });
+      controller.stop();
+      controller.select();
+      controller.cancel();
+      expect(onSelect).not.toHaveBeenCalled();
+      expect(onCancel).not.toHaveBeenCalled();
+    });
+
+    it("routes forwarded keydown events via handleKey", () => {
+      const els = makeCandidates(3);
+      controller = startKeyboardTargeting({
+        candidates: els,
+        initial: els[0],
+        eventTarget: container, // not document
+        onSelect: () => {},
+      });
+      // Direct forwarding still works even though the listener is on container.
+      controller.handleKey(
+        new KeyboardEvent("keydown", { key: "ArrowDown", cancelable: true })
+      );
+      expect(controller.getCurrent()).toBe(els[1]);
     });
   });
 });

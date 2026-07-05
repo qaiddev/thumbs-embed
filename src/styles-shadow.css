@@ -690,3 +690,94 @@ button.qaid-video-btn-send:disabled {
   font-size: 0.875rem;
   color: light-dark(#6b7280, #9ca3af);
 }
+
+/* ==================== Accessibility ==================== */
+
+/* Visible keyboard focus ring on every interactive control.
+   WCAG 2.4.7 (Focus Visible) / 2.4.11 (Focus Not Obscured).
+   :focus-visible so it only shows for keyboard/AT, never on pointer clicks. */
+button:focus-visible,
+textarea:focus-visible,
+a:focus-visible,
+[tabindex]:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--qaid-marker, #6366f1);
+  outline-offset: 2px;
+}
+
+/* The textarea and submit button deliberately set `outline: none` on :focus
+   (they draw a box-shadow ring). Re-assert a real outline for keyboard focus
+   so the ring survives forced-colors mode (which drops box-shadow). These
+   class selectors match the existing :focus specificity and win on source
+   order, without touching the pointer-focus (:focus) box-shadow behaviour. */
+.qaid-textarea:focus-visible,
+button.qaid-btn-submit:focus-visible,
+.qaid-video-preview-box textarea:focus-visible {
+  outline: 2px solid var(--qaid-marker, #6366f1);
+  outline-offset: 2px;
+}
+
+/* Reveal the incognito cluster and the dismiss (X) button on keyboard focus,
+   mirroring the existing :hover reveals so nothing focusable is invisible.
+   WCAG 2.4.7 / 2.4.11. */
+.qaid-buttons.qaid-incognito:focus-within {
+  opacity: 1;
+}
+
+.qaid-buttons:focus-within .qaid-dismiss-btn,
+.qaid-dismiss-btn:focus-visible {
+  opacity: 1;
+}
+
+/* Minimum 24x24 CSS px target size for the small controls (WCAG 2.5.8).
+   The dismiss button is visually 20px and the recording-stop pill can fall
+   just under 24px; min-* grows the target without disturbing the icon or the
+   surrounding flex layout. */
+.qaid-dismiss-btn {
+  min-width: 24px;
+  min-height: 24px;
+}
+
+button.qaid-recording-stop {
+  min-height: 24px;
+}
+
+/* Honor prefers-reduced-motion: kill the entry/slide/scale/fade transitions
+   and stop the indefinite pulses (selected-marker pulse, recording-dot pulse).
+   Every animated element's un-animated resting state is already its final
+   visible state, so disabling animation leaves the marker and dot fully
+   visible and static. WCAG 2.2.2 / 2.3.1 / 2.3.3. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Forced colors (Windows High Contrast): the UA drops box-shadow, so the
+   textarea/submit focus rings would vanish. Restore real outlines in system
+   colors and keep key borders visible. WCAG 1.4.11 / 2.4.7 / 2.4.13. */
+@media (forced-colors: active) {
+  button:focus-visible,
+  textarea:focus-visible,
+  a:focus-visible,
+  [tabindex]:focus-visible,
+  [role="button"]:focus-visible,
+  .qaid-textarea:focus,
+  button.qaid-btn-submit:focus,
+  .qaid-video-preview-box textarea:focus {
+    outline: 2px solid CanvasText;
+    outline-offset: 2px;
+  }
+
+  /* Selected-element marker and highlight box rely on color-mix()/opacity,
+     which forced-colors can flatten; pin them to a system color so the
+     targeting affordances stay visible. */
+  .qaid-selected-marker,
+  .qaid-highlight-box {
+    border-color: Highlight;
+  }
+}

@@ -78,6 +78,32 @@ describe("styles", () => {
       expect(css).toContain("qaid-slideDown");
       expect(css).toContain("qaid-markerPulse");
     });
+
+    it("should honor prefers-reduced-motion (disables animation + transition)", () => {
+      const css = getEmbedStyles();
+      expect(css).toContain("@media (prefers-reduced-motion: reduce)");
+      expect(css).toContain("animation: none");
+      expect(css).toContain("transition: none");
+    });
+
+    it("should include a forced-colors (Windows High Contrast) block", () => {
+      const css = getEmbedStyles();
+      expect(css).toContain("@media (forced-colors: active)");
+      // Focus rings fall back to a system color when box-shadow is dropped
+      expect(css).toContain("CanvasText");
+    });
+
+    it("should expose a keyboard focus ring via :focus-visible", () => {
+      const css = getEmbedStyles();
+      expect(css).toContain(":focus-visible");
+      expect(css).toContain("outline");
+    });
+
+    it("should reveal the incognito cluster and dismiss button on keyboard focus", () => {
+      const css = getEmbedStyles();
+      expect(css).toContain(".qaid-buttons.qaid-incognito:focus-within");
+      expect(css).toContain(".qaid-dismiss-btn:focus-visible");
+    });
   });
 
   describe("removeStyles", () => {

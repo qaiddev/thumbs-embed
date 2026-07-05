@@ -42,6 +42,13 @@ export declare class QaidFeedback {
     private backdrop;
     private dismissBtn;
     private cssVars;
+    private keyboardController;
+    private activeThumbBtn;
+    private keyboardActivation;
+    private dialogTrigger;
+    private dialogTrap;
+    private dialogRestoreInert;
+    private readonly uid;
     private boundKeyDown;
     private boundMouseMove;
     private boundClick;
@@ -52,6 +59,21 @@ export declare class QaidFeedback {
     private boundBeforeSwap;
     constructor(config: FeedbackConfig);
     private applyVars;
+    /**
+     * Announce a message via the shared visually-hidden live regions.
+     * Prefer the overlay shadow root (which hosts every transient surface and
+     * is never inerted by its own dialogs) so announcements are not suppressed
+     * while a dialog aria-hides the main button host.
+     */
+    private announceMsg;
+    /**
+     * Turn a transient surface into an accessible modal dialog: save the
+     * invoking control, apply dialog semantics, trap focus, and inert the
+     * background. Paired with closeDialogA11y() on every close path.
+     */
+    private openDialogA11y;
+    private closeDialogA11y;
+    private clearActiveThumb;
     private init;
     /**
      * Watch for the shadow hosts being removed from the DOM by framework
@@ -81,6 +103,14 @@ export declare class QaidFeedback {
     private handleThumbClick;
     private submitDirectFeedback;
     private startTargeting;
+    /**
+     * Keyboard-driven targeting. Mirrors startTargeting minus the mouse
+     * plumbing: no `qaid-targeting` body class (keeps the cursor visible for
+     * keyboard users), no mouse reticle, and no document mouse/click listeners.
+     * The KeyboardTargetingController owns Tab/Arrow/Enter/Space/Escape.
+     */
+    private startKeyboardTargetingFlow;
+    private selectKeyboardTarget;
     private createTargetingOverlay;
     private handleKeyDown;
     private handleMouseMove;
