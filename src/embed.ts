@@ -206,7 +206,7 @@ export class QaidFeedback {
         positiveLabel: config.text?.positiveLabel ?? "Send positive feedback",
         negativeLabel: config.text?.negativeLabel ?? "Send negative feedback",
         recordLabel: config.text?.recordLabel ?? "Record a screen recording",
-        dismissLabel: config.text?.dismissLabel ?? "Hide feedback buttons",
+        dismissLabel: config.text?.dismissLabel ?? "Hide Feedback",
       },
       modalWidth: config.modalWidth ?? 400,
       backdropOpacity: config.backdropOpacity ?? 0.3,
