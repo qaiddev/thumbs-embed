@@ -743,6 +743,58 @@ describe("element-selector", () => {
       expect(onCancel).not.toHaveBeenCalled();
     });
 
+    it("highlights a candidate whose focus is not callable without throwing", () => {
+      const els = makeCandidates(1);
+      // A candidate whose `focus` was clobbered (e.g. an exotic host object)
+      // must still highlight — focusCurrent bails on the non-callable focus.
+      (els[0] as unknown as { focus: unknown }).focus = null;
+      const onHighlight = vi.fn();
+      controller = startKeyboardTargeting({
+        candidates: els,
+        initial: els[0],
+        onHighlight,
+        onSelect: () => {},
+      });
+      expect(onHighlight).toHaveBeenCalledWith(els[0], 0);
+    });
+
+    it("skips the highlight when the resolved candidate is missing", () => {
+      const el = makeCandidates(1)[0];
+      // A sparse candidate list: navigating onto the empty slot emits nothing.
+      const els = [el, undefined as unknown as Element];
+      const onHighlight = vi.fn();
+      controller = startKeyboardTargeting({
+        candidates: els,
+        initial: el,
+        onHighlight,
+        onSelect: () => {},
+      });
+      expect(onHighlight).toHaveBeenCalledTimes(1);
+      controller.moveTo(1); // valid index, but candidates[1] is undefined
+      expect(onHighlight).toHaveBeenCalledTimes(1); // no extra highlight
+    });
+
+    it("ignores forwarded keydown events after the controller has stopped", () => {
+      const els = makeCandidates(3);
+      const onSelect = vi.fn();
+      controller = startKeyboardTargeting({
+        candidates: els,
+        initial: els[0],
+        onSelect,
+      });
+      controller.stop();
+      // Forwarding an event directly bypasses the (now removed) listener, so
+      // handleKey must guard on `stopped` itself.
+      controller.handleKey(
+        new KeyboardEvent("keydown", { key: "ArrowDown", cancelable: true })
+      );
+      controller.handleKey(
+        new KeyboardEvent("keydown", { key: "Enter", cancelable: true })
+      );
+      expect(controller.getCurrent()).toBe(els[0]); // unchanged
+      expect(onSelect).not.toHaveBeenCalled();
+    });
+
     it("routes forwarded keydown events via handleKey", () => {
       const els = makeCandidates(3);
       controller = startKeyboardTargeting({

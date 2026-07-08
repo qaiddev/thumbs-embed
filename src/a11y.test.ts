@@ -161,6 +161,16 @@ describe("a11y", () => {
       expect(getFocusable(container)).toEqual([]);
     });
 
+    it("excludes an anchor that is selectable via tabindex but has no href", () => {
+      // The anchor matches the [tabindex] selector (so it reaches the filter),
+      // but a hrefless <a> is not keyboard-actionable and must be dropped.
+      const link = document.createElement("a");
+      link.setAttribute("tabindex", "0");
+      link.textContent = "not really a link";
+      container.appendChild(link);
+      expect(getFocusable(container)).toEqual([]);
+    });
+
     it("excludes hidden inputs", () => {
       const input = document.createElement("input");
       input.type = "hidden";
@@ -471,6 +481,72 @@ describe("a11y", () => {
       expect(dialog.inert).toBe(false);
       expect(sib.inert).toBe(true);
       restore();
+    });
+
+    it("inerts everything when the reference element is detached (no kept ancestor)", () => {
+      // A detached element has no parent to walk, so topLevelAncestor resolves
+      // to null and there is no top-level element to keep interactive.
+      const sib1 = document.createElement("div");
+      const sib2 = document.createElement("main");
+      document.body.append(sib1, sib2);
+      const detached = document.createElement("div"); // never appended
+
+      const restore = setBackgroundInert(detached);
+      expect(sib1.inert).toBe(true);
+      expect(sib2.inert).toBe(true);
+
+      restore();
+      expect(sib1.inert).toBe(false);
+      expect(sib2.inert).toBe(false);
+    });
+
+    it("inerts every child when the reference element is the body itself", () => {
+      // Walking up from body exits immediately with no kept ancestor.
+      const sib = document.createElement("div");
+      document.body.append(sib);
+
+      const restore = setBackgroundInert(document.body);
+      expect(sib.inert).toBe(true);
+      expect(sib.getAttribute("aria-hidden")).toBe("true");
+
+      restore();
+      expect(sib.inert).toBe(false);
+      expect(sib.hasAttribute("aria-hidden")).toBe(false);
+    });
+
+    it("returns a callable no-op restore when the owner document has no body", () => {
+      const el = document.createElement("div");
+      // Simulate an element owned by a document without a <body> (e.g. a
+      // detached/XML document): there is nothing to isolate.
+      Object.defineProperty(el, "ownerDocument", {
+        value: { body: null },
+        configurable: true,
+      });
+
+      const restore = setBackgroundInert(el);
+      expect(restore).toBeTypeOf("function");
+      expect(() => restore()).not.toThrow();
+    });
+
+    it("skips a non-HTML (SVG) top-level element", () => {
+      const dialog = document.createElement("div");
+      const svg = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "svg"
+      );
+      const sib = document.createElement("div");
+      document.body.append(dialog, svg, sib);
+
+      const restore = setBackgroundInert(dialog);
+      // The plain HTML sibling is isolated...
+      expect(sib.inert).toBe(true);
+      expect(sib.getAttribute("aria-hidden")).toBe("true");
+      // ...but the SVG element (not an HTMLElement) is left untouched.
+      expect((svg as unknown as { inert?: boolean }).inert).toBeFalsy();
+      expect(svg.hasAttribute("aria-hidden")).toBe(false);
+
+      restore();
+      expect(sib.inert).toBe(false);
     });
   });
 });

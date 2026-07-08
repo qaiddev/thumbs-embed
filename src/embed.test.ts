@@ -381,6 +381,52 @@ describe("QaidFeedback", () => {
       expect(overlayShadow.querySelector(".qaid-targeting-overlay")).toBeNull();
     });
 
+    it("routes a keyboard-activated thumb through keyboard targeting and cancels on Escape", () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+
+      const shadow = getShadowRoot();
+      const container = shadow.querySelector<HTMLElement>(".qaid-buttons")!;
+      const upBtn = shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")!;
+
+      // Enter/Space keydown flags the activation as keyboard-driven.
+      container.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "Enter", bubbles: true })
+      );
+      // The synthetic click that follows is routed through the keyboard flow,
+      // which (unlike the pointer flow) never adds the cursor-hiding class.
+      upBtn.click();
+
+      const overlayShadow = getOverlayShadowRoot();
+      expect(document.body.classList.contains("qaid-targeting")).toBe(false);
+      expect(
+        overlayShadow.querySelector(".qaid-targeting-overlay")
+      ).not.toBeNull();
+
+      // Escape drives the controller's cancel -> onCancel -> cancelTargeting.
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+      expect(overlayShadow.querySelector(".qaid-targeting-overlay")).toBeNull();
+    });
+
+    it("clears keyboard activation on pointer input so the thumb uses pointer targeting", () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+
+      const shadow = getShadowRoot();
+      const container = shadow.querySelector<HTMLElement>(".qaid-buttons")!;
+      const upBtn = shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")!;
+
+      // Flag keyboard activation, then pointer input should reset it.
+      container.dispatchEvent(
+        new KeyboardEvent("keydown", { key: " ", bubbles: true })
+      );
+      container.dispatchEvent(new Event("pointerdown", { bubbles: true }));
+      container.dispatchEvent(new Event("mousedown", { bubbles: true }));
+
+      upBtn.click();
+
+      // Pointer path adds the qaid-targeting body class; keyboard path never does.
+      expect(document.body.classList.contains("qaid-targeting")).toBe(true);
+    });
+
     it("should set targeting CSS variables on body", () => {
       embed = new QaidFeedback({
         endpoint: "/api/feedback",
@@ -3151,6 +3197,35 @@ describe("QaidFeedback", () => {
       };
       inst.recordingIndicator = null;
       expect(() => inst.updateRecordingTimer(2)).not.toThrow();
+    });
+
+    it("announces the final countdown in the last five seconds", async () => {
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        captureVideo: true,
+      });
+
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-record")?.click();
+      await vi.waitFor(() => {
+        expect(
+          getOverlayShadowRoot().querySelector(".qaid-recording-indicator")
+        ).not.toBeNull();
+      });
+
+      const inst = embed as unknown as {
+        updateRecordingTimer(n: number): void;
+      };
+      // 12s elapsed of the 15s default cap -> 3s remaining, inside the window
+      inst.updateRecordingTimer(12);
+
+      const overlayShadow = getOverlayShadowRoot();
+      expect(
+        overlayShadow.querySelector(".qaid-recording-time")?.textContent
+      ).toBe("0:03");
+      expect(
+        overlayShadow.querySelector('[role="status"]')?.textContent
+      ).toBe("3 seconds remaining");
     });
 
     it("uses mp4 extension when recorded blob is mp4", async () => {

@@ -308,8 +308,8 @@ export function setBackgroundInert(except: HTMLElement): () => void {
 
   return function restore(): void {
     while (changed.length) {
-      const entry = changed.pop();
-      if (!entry) continue;
+      // The loop guard guarantees pop() returns an entry.
+      const entry = changed.pop()!;
       entry.el.inert = entry.prevInert;
       if (entry.prevAriaHidden === null) {
         entry.el.removeAttribute("aria-hidden");
