@@ -3,6 +3,12 @@
  * Uses getDisplayMedia + MediaRecorder for screen recording
  */
 
+import {
+  isIOSDevice,
+  buildOrientationCorrectedStream,
+  type OrientationCorrectedStream,
+} from "./video-orientation";
+
 export interface VideoRecorderOptions {
   /** Max recording duration in seconds. Default: 15 */
   maxDuration?: number;
@@ -65,6 +71,7 @@ export function createVideoRecorder(options: VideoRecorderOptions = {}): VideoRe
   const videoBitsPerSecond = options.videoBitsPerSecond ?? 800_000;
 
   let stream: MediaStream | null = null;
+  let orientationCorrection: OrientationCorrectedStream | null = null;
   let recorder: MediaRecorder | null = null;
   let chunks: Blob[] = [];
   let tickCallback: ((elapsed: number) => void) | null = null;
@@ -84,6 +91,10 @@ export function createVideoRecorder(options: VideoRecorderOptions = {}): VideoRe
     if (autoStopTimeout !== null) {
       clearTimeout(autoStopTimeout);
       autoStopTimeout = null;
+    }
+    if (orientationCorrection) {
+      orientationCorrection.stop();
+      orientationCorrection = null;
     }
     if (stream) {
       stream.getTracks().forEach((t) => t.stop());
@@ -134,7 +145,19 @@ export function createVideoRecorder(options: VideoRecorderOptions = {}): VideoRe
         });
       }
 
-      recorder = new MediaRecorder(stream, {
+      // On iOS/iPadOS the captured file is rotated by the OS; re-encode the live
+      // frames through a canvas so the recording is upright everywhere. Falls
+      // back to the raw stream if the canvas pipeline isn't available.
+      let recordStream: MediaStream = stream;
+      if (isIOSDevice()) {
+        const corrected = await buildOrientationCorrectedStream(stream);
+        if (corrected) {
+          orientationCorrection = corrected;
+          recordStream = corrected.stream;
+        }
+      }
+
+      recorder = new MediaRecorder(recordStream, {
         mimeType,
         videoBitsPerSecond,
       });
@@ -154,7 +177,11 @@ export function createVideoRecorder(options: VideoRecorderOptions = {}): VideoRe
         if (stopCallback) {
           stopCallback(blob);
         }
-        // Stop stream tracks
+        // Stop the canvas pipeline (iOS) and the display stream tracks
+        if (orientationCorrection) {
+          orientationCorrection.stop();
+          orientationCorrection = null;
+        }
         if (stream) {
           stream.getTracks().forEach((t) => t.stop());
         }

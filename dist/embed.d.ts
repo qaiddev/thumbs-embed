@@ -53,6 +53,9 @@ export declare class QaidFeedback {
     private boundKeyDown;
     private boundMouseMove;
     private boundClick;
+    private boundTouchStart;
+    private boundTouchEnd;
+    private touchStartPos;
     private boundResize;
     private _startDismissed;
     private destroyed;
@@ -115,7 +118,18 @@ export declare class QaidFeedback {
     private createTargetingOverlay;
     private handleKeyDown;
     private handleMouseMove;
+    /** Move the crosshair/scope reticle and highlight the element under (x, y).
+     *  Shared by the mouse (hover) and touch (drag) targeting paths. */
+    private updateReticleAt;
     private handleClick;
+    private handleTouchStart;
+    private handleTouchEnd;
+    /** Select the element under (x, y) and tear down targeting.
+     *  Shared by the mouse (click) and touch (touchend) targeting paths. */
+    private selectAt;
+    /** Remove the targeting overlay and every mouse/touch/keyboard listener the
+     *  pointer-targeting flow attaches to the document. */
+    private stopTargetingListeners;
     private cancelTargeting;
     private removeTargetingOverlay;
     private showSelectedMarker;

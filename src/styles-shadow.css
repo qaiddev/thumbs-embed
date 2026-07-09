@@ -571,9 +571,21 @@ button.qaid-recording-stop:hover {
 .qaid-video-preview {
   position: fixed;
   inset: 0;
+  /* Size to the *visible* viewport (dvh), not the layout viewport, and pad
+     clear of mobile browser chrome / the home indicator (safe-area insets).
+     Otherwise the vertically-centred box is centred in the taller layout
+     viewport and its bottom — the action buttons — falls behind the toolbar,
+     unreachable even by scrolling the interior. vh first as a fallback. */
+  bottom: auto;
+  height: 100vh;
+  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 16px;
+  padding-top: max(16px, env(safe-area-inset-top));
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+  box-sizing: border-box;
   background: rgba(0, 0, 0, 0.6);
   z-index: 99998;
   animation: qaid-fadeIn 0.2s ease-out;
@@ -591,8 +603,11 @@ button.qaid-recording-stop:hover {
   padding: 1.5rem;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   width: 560px;
-  max-width: calc(100vw - 32px);
-  max-height: calc(100vh - 32px);
+  /* Fill the padded overlay (which is already sized to the visible viewport and
+     inset from the safe area); the overlay's padding supplies the gutter, and
+     the box scrolls internally when its content is taller than that space. */
+  max-width: 100%;
+  max-height: 100%;
   overflow-y: auto;
   font-family: var(--qaid-font-family, system-ui, -apple-system, sans-serif);
   font-size: var(--qaid-font-size, 16px);
@@ -607,6 +622,13 @@ button.qaid-recording-stop:hover {
 
 .qaid-video-preview-box video {
   width: 100%;
+  /* Cap the height and letterbox so a portrait or rotated recording (e.g.
+     iPadOS screen capture comes back rotated 90°, giving a tall aspect ratio)
+     can't blow out the box and push the action buttons off-screen. contain
+     keeps the frame undistorted; the black background fills the letterbox. */
+  max-height: 50vh;
+  max-height: 50dvh;
+  object-fit: contain;
   border-radius: 0.5rem;
   background: #000;
   margin-bottom: 1rem;

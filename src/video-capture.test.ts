@@ -1,9 +1,17 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach, type Mock } from "vitest";
 import {
   isVideoRecordingSupported,
   getSupportedMimeType,
   createVideoRecorder,
 } from "./video-capture";
+import { isIOSDevice, buildOrientationCorrectedStream } from "./video-orientation";
+
+// The orientation module is exercised in video-orientation.test.ts; here we
+// mock it to drive video-capture's iOS branch. Default: non-iOS (unchanged).
+vi.mock("./video-orientation", () => ({
+  isIOSDevice: vi.fn(() => false),
+  buildOrientationCorrectedStream: vi.fn(),
+}));
 
 // Mock MediaRecorder
 class MockMediaRecorder {
@@ -330,5 +338,66 @@ describe("createVideoRecorder", () => {
 
     recorder.destroy();
     vi.useRealTimers();
+  });
+
+  describe("iOS orientation normalisation", () => {
+    afterEach(() => {
+      (isIOSDevice as Mock).mockReturnValue(false);
+      (buildOrientationCorrectedStream as Mock).mockReset();
+    });
+
+    it("records the original stream when the canvas pipeline is unavailable", async () => {
+      (isIOSDevice as Mock).mockReturnValue(true);
+      (buildOrientationCorrectedStream as Mock).mockResolvedValue(null);
+
+      const recorder = createVideoRecorder();
+      await recorder.start();
+
+      expect(buildOrientationCorrectedStream).toHaveBeenCalledWith(mockStream);
+      // Falls back to the raw display stream.
+      expect(MockMediaRecorder.lastInstance!.stream).toBe(
+        mockStream as unknown as MediaStream
+      );
+
+      recorder.destroy();
+    });
+
+    it("records the orientation-corrected canvas stream and stops it on stop()", async () => {
+      const correctedStream = { id: "canvas" } as unknown as MediaStream;
+      const stop = vi.fn();
+      (isIOSDevice as Mock).mockReturnValue(true);
+      (buildOrientationCorrectedStream as Mock).mockResolvedValue({
+        stream: correctedStream,
+        stop,
+      });
+
+      const recorder = createVideoRecorder();
+      await recorder.start();
+
+      // MediaRecorder is fed the canvas stream, not the raw capture.
+      expect(MockMediaRecorder.lastInstance!.stream).toBe(correctedStream);
+
+      const blob = await recorder.stop();
+      expect(blob).toBeInstanceOf(Blob);
+      // onstop tears down the canvas pipeline.
+      expect(stop).toHaveBeenCalled();
+
+      recorder.destroy();
+    });
+
+    it("stops the canvas pipeline on destroy()", async () => {
+      const stop = vi.fn();
+      (isIOSDevice as Mock).mockReturnValue(true);
+      (buildOrientationCorrectedStream as Mock).mockResolvedValue({
+        stream: { id: "canvas" } as unknown as MediaStream,
+        stop,
+      });
+
+      const recorder = createVideoRecorder();
+      await recorder.start();
+      recorder.destroy();
+
+      expect(stop).toHaveBeenCalled();
+    });
   });
 });

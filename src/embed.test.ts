@@ -2567,6 +2567,140 @@ describe("QaidFeedback", () => {
       ).toBeNull();
     });
 
+    // iOS/iPadOS does not synthesise mousemove/click for taps on
+    // non-interactive page elements, so targeting is driven by touch events.
+    function makeTouchEvent(type: string, x: number, y: number): Event {
+      const e = new Event(type, { bubbles: true, cancelable: true });
+      const touch = { clientX: x, clientY: y } as Touch;
+      Object.defineProperty(e, "touches", {
+        value: type === "touchend" ? [] : [touch],
+        configurable: true,
+      });
+      Object.defineProperty(e, "changedTouches", {
+        value: [touch],
+        configurable: true,
+      });
+      return e;
+    }
+
+    it("highlights on touchstart and selects on a tap (iPad path)", async () => {
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ id: 9 }),
+      });
+      global.fetch = fetchMock;
+
+      const target = document.createElement("button");
+      target.id = "touch-target";
+      target.textContent = "Tap me";
+      document.body.appendChild(target);
+      target.getBoundingClientRect = () =>
+        ({
+          left: 10,
+          top: 20,
+          right: 110,
+          bottom: 70,
+          width: 100,
+          height: 50,
+          x: 10,
+          y: 20,
+          toJSON() {
+            return {};
+          },
+        }) as DOMRect;
+
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+
+      elementFromPointSpy = vi
+        .spyOn(document, "elementFromPoint")
+        .mockReturnValue(target);
+
+      // Finger down over the target — highlight should preview it.
+      document.dispatchEvent(makeTouchEvent("touchstart", 50, 40));
+
+      const overlayShadow = getOverlayShadowRoot();
+      const highlight = overlayShadow.querySelector<HTMLElement>(
+        ".qaid-highlight-box"
+      );
+      expect(highlight?.style.display).toBe("block");
+      expect(highlight?.style.width).toBe("100px");
+
+      // Lift near the same spot (a tap) — should select, submit, leave targeting.
+      document.dispatchEvent(makeTouchEvent("touchend", 52, 41));
+
+      await vi.waitFor(() => {
+        expect(fetchMock).toHaveBeenCalled();
+      });
+      expect(document.body.classList.contains("qaid-targeting")).toBe(false);
+      const body = JSON.parse(fetchMock.mock.calls[0][1].body);
+      expect(body.elementSelector).toBeTruthy();
+    });
+
+    it("treats a touch drag as a scroll and does not select", async () => {
+      const fetchMock = vi.fn();
+      global.fetch = fetchMock;
+
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+
+      const target = document.createElement("div");
+      document.body.appendChild(target);
+      elementFromPointSpy = vi
+        .spyOn(document, "elementFromPoint")
+        .mockReturnValue(target);
+
+      // Finger travels well beyond the tap slop — a scroll, not a selection.
+      document.dispatchEvent(makeTouchEvent("touchstart", 50, 40));
+      document.dispatchEvent(makeTouchEvent("touchend", 50, 140));
+
+      expect(fetchMock).not.toHaveBeenCalled();
+      expect(document.body.classList.contains("qaid-targeting")).toBe(true);
+    });
+
+    it("ignores taps on embed elements during targeting", () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+
+      const embedHost = document.querySelector(
+        "[data-qaid-embed]"
+      ) as HTMLElement;
+      elementFromPointSpy = vi
+        .spyOn(document, "elementFromPoint")
+        .mockReturnValue(embedHost);
+
+      document.dispatchEvent(makeTouchEvent("touchstart", 5, 5));
+      document.dispatchEvent(makeTouchEvent("touchend", 5, 5));
+
+      // Still targeting — a tap on the widget itself must not select.
+      expect(document.body.classList.contains("qaid-targeting")).toBe(true);
+    });
+
+    it("ignores touch events with no active touch point", () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+      const shadow = getShadowRoot();
+      shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+
+      const empty = (type: string) => {
+        const e = new Event(type, { bubbles: true, cancelable: true });
+        Object.defineProperty(e, "touches", { value: [], configurable: true });
+        Object.defineProperty(e, "changedTouches", {
+          value: [],
+          configurable: true,
+        });
+        return e;
+      };
+
+      // No touches / changedTouches — handlers should no-op, staying in targeting.
+      document.dispatchEvent(empty("touchstart"));
+      // touchend with no prior touchstart: touchStartPos is null → ignored.
+      document.dispatchEvent(empty("touchend"));
+      expect(document.body.classList.contains("qaid-targeting")).toBe(true);
+    });
+
     it("hides highlight box when no element is found", () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
       const shadow = getShadowRoot();

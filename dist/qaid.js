@@ -1,11 +1,11 @@
-const T = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+const I = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/>
-</svg>`, L = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, A = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.737 3h4.018a2 2 0 01.485.06l3.76.94m-7 10v5a2 2 0 002 2h.095c.5 0 .905-.405.905-.905 0-.714.211-1.412.608-2.006L17 13V4m-7 10h2m5-10h2a2 2 0 012 2v6a2 2 0 01-2 2h-2.5"/>
 </svg>`, bt = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/>
-</svg>`, gt = "button{cursor:pointer}.qaid-buttons{display:flex;gap:.5rem}.qaid-buttons.qaid-vertical{flex-direction:column}.qaid-buttons.qaid-auto-container{position:fixed;z-index:50}.qaid-buttons.qaid-auto-container.qaid-bottom-right{bottom:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-bottom-left{bottom:1rem;left:1rem}.qaid-buttons.qaid-auto-container.qaid-top-right{top:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-top-left{top:1rem;left:1rem}.qaid-buttons.qaid-incognito{opacity:0;transition:opacity .2s ease-in-out}.qaid-buttons.qaid-incognito:hover{opacity:1}.qaid-buttons.qaid-dismissed{display:none!important}.qaid-dismiss-btn{width:20px;height:20px;padding:0;border:none;border-radius:50%;background:#0006;color:#fff;display:flex;align-items:center;justify-content:center;align-self:center;opacity:0;transition:opacity .15s,background .15s;cursor:pointer;pointer-events:auto;-webkit-appearance:none;appearance:none}.qaid-dismiss-btn:hover{background:#0009}.qaid-buttons:hover .qaid-dismiss-btn{opacity:1}button.qaid-btn-structural{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;appearance:none}.qaid-icon{width:24px;height:24px}.qaid-btn-structural:not(:has(svg)),.qaid-btn:not(:has(svg)){font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-emoji-icon{font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-buttons,.qaid-buttons *,.qaid-modal-container,.qaid-modal-container *{cursor:pointer!important}.qaid-tooltip-wrapper{position:relative}.qaid-tooltip-text{position:fixed;padding:.5rem .75rem;background:#1f2937;color:#fff;font-size:1rem;font-weight:600;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:99999}.qaid-tooltip-text.qaid-tooltip-visible{opacity:1}.qaid-targeting-overlay{position:fixed;inset:0;z-index:40;pointer-events:none}.qaid-capture-layer{position:fixed;inset:0;pointer-events:none;z-index:9999}@keyframes qaid-slideDown{0%{transform:translateY(-100%)}to{transform:translateY(0)}}.qaid-vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.3) 70%,rgba(0,0,0,.6) 100%);z-index:41}.qaid-crosshair-h,.qaid-crosshair-v{position:fixed;pointer-events:none;z-index:42}.qaid-crosshair-h{left:0;right:0;height:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-crosshair-v{top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-type-up .qaid-crosshair-h,.qaid-type-up .qaid-crosshair-v{background:color-mix(in srgb,var(--qaid-positive) 60%,transparent)}.qaid-highlight-box{position:fixed;top:0;left:0;pointer-events:none;z-index:41;display:none;border:3px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:2px;background:color-mix(in srgb,var(--qaid-negative) 8%,transparent);will-change:transform,width,height}.qaid-type-up .qaid-highlight-box{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent);background:color-mix(in srgb,var(--qaid-positive) 8%,transparent)}.qaid-scope{position:fixed;width:80px;height:80px;pointer-events:none;z-index:43;transform:translate(-50%,-50%)}.qaid-scope-ring{position:absolute;inset:10px;border:2px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent)}.qaid-scope-ring-inner{position:absolute;inset:20px;border:1px solid color-mix(in srgb,var(--qaid-negative) 50%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring-inner{border-color:color-mix(in srgb,var(--qaid-positive) 50%,transparent)}.qaid-scope-dot{position:absolute;top:50%;left:50%;width:4px;height:4px;background:var(--qaid-negative);border-radius:50%;transform:translate(-50%,-50%)}.qaid-type-up .qaid-scope-dot{background:var(--qaid-positive)}.qaid-selected-marker{position:fixed;border:3px solid var(--qaid-marker, #6366f1);border-radius:50%;pointer-events:none;z-index:44;animation:qaid-markerPulse 1.5s ease-in-out infinite}@keyframes qaid-markerPulse{0%,to{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}.qaid-backdrop{position:fixed;inset:0;z-index:45;background:#0000004d}.qaid-modal-container{position:fixed;z-index:50;display:flex;flex-direction:column;align-items:flex-start;max-height:calc(100vh - 32px);font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-modal-container.qaid-above{flex-direction:column-reverse}.qaid-modal-arrow{width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;position:relative;align-self:flex-start}.qaid-modal-container.qaid-below .qaid-modal-arrow{border-bottom:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-container.qaid-above .qaid-modal-arrow{border-top:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5));width:var(--qaid-modal-width, 400px);max-width:calc(100vw - 32px);max-height:calc(100vh - 60px);overflow-y:auto}.qaid-modal-header{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1rem}button.qaid-type-toggle{border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;-webkit-appearance:none;appearance:none}button.qaid-type-toggle:hover{transform:scale(1.1)}button.qaid-type-toggle:not(.qaid-type-toggle-custom){width:2.5rem;height:2.5rem;border-radius:50%}button.qaid-type-toggle:not(.qaid-type-toggle-custom) svg{width:1.25rem;height:1.25rem}button.qaid-type-toggle.qaid-type-up{background:var(--qaid-positive);color:#fff}button.qaid-type-toggle.qaid-type-down{background:var(--qaid-negative);color:#fff}.qaid-modal-header-text{flex:1;min-width:0}.qaid-modal-title{font-size:1.125rem;font-weight:700;margin:0 0 .25rem;color:light-dark(#1f2937,#f9fafb)}.qaid-modal-subtitle{color:light-dark(#6b7280,#9ca3af);margin:0;font-size:.875rem}.qaid-textarea{width:100%;height:6rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:1rem;resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-btn-row{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-btn-submit{padding:.5rem 1rem;background:var(--qaid-marker);color:var(--qaid-marker-text, white);border:none;border-radius:.5rem;font-size:.875rem;font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-btn-submit:hover{filter:brightness(.85)}button.qaid-btn-submit:focus{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 30%,transparent)}.qaid-bottom-sheet{position:fixed;bottom:0;left:0;right:0;z-index:50;animation:qaid-slideUpSheet .3s ease-out;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-bottom-sheet-content{background:light-dark(#ffffff,#1f2937);border-radius:1rem 1rem 0 0;padding:1.5rem;padding-bottom:max(1.5rem,env(safe-area-inset-bottom))}.qaid-bottom-sheet-handle{width:36px;height:4px;background:light-dark(rgba(0,0,0,.2),rgba(255,255,255,.2));border-radius:2px;margin:0 auto 1rem}@keyframes qaid-slideUpSheet{0%{transform:translateY(100%)}to{transform:translateY(0)}}button.qaid-btn-record:hover{background:#dc2626;color:#fff}.qaid-recording-indicator{position:fixed;top:12px;left:50%;transform:translate(-50%);display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:light-dark(#1f2937,#374151);color:#fff;border-radius:9999px;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:.875rem;font-weight:500;box-shadow:0 4px 12px #0000004d;z-index:99999;animation:qaid-slideDown .2s ease-out}.qaid-recording-dot{width:10px;height:10px;background:#dc2626;border-radius:50%;animation:qaid-dotPulse 1.5s ease-in-out infinite}@keyframes qaid-dotPulse{0%,to{opacity:1}50%{opacity:.3}}.qaid-recording-time{font-variant-numeric:tabular-nums;min-width:2.5rem;text-align:center}button.qaid-recording-stop{padding:.25rem .75rem;background:#dc2626;color:#fff;border:none;border-radius:9999px;font-size:.75rem;font-weight:600;cursor:pointer;transition:background-color .2s;-webkit-appearance:none;appearance:none}button.qaid-recording-stop:hover{background:#b91c1c}.qaid-video-preview{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#0009;z-index:99998;animation:qaid-fadeIn .2s ease-out}@keyframes qaid-fadeIn{0%{opacity:0}to{opacity:1}}.qaid-video-preview-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px #00000080;width:560px;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);overflow-y:auto;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-video-preview-box h3{font-size:1.125rem;font-weight:700;margin:0 0 1rem;color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box video{width:100%;border-radius:.5rem;background:#000;margin-bottom:1rem}.qaid-video-preview-box textarea{width:100%;height:4rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:.875rem;resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-video-preview-actions{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-video-btn{padding:.5rem 1rem;border:none;border-radius:.5rem;font-size:.875rem;font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-video-btn-cancel{background:light-dark(#f3f4f6,#374151);color:light-dark(#374151,#d1d5db)}button.qaid-video-btn-cancel:hover{background:light-dark(#e5e7eb,#4b5563)}button.qaid-video-btn-rerecord{background:light-dark(#fef3c7,#78350f);color:light-dark(#92400e,#fde68a)}button.qaid-video-btn-rerecord:hover{filter:brightness(.9)}button.qaid-video-btn-send{background:var(--qaid-marker);color:var(--qaid-marker-text, white)}button.qaid-video-btn-send:hover{filter:brightness(.85)}button.qaid-video-btn-send:disabled{opacity:.5;cursor:not-allowed}.qaid-video-sending{display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:light-dark(#6b7280,#9ca3af)}button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible{outline:2px solid var(--qaid-marker, #6366f1);outline-offset:2px}.qaid-textarea:focus-visible,button.qaid-btn-submit:focus-visible,.qaid-video-preview-box textarea:focus-visible{outline:2px solid var(--qaid-marker, #6366f1);outline-offset:2px}.qaid-buttons.qaid-incognito:focus-within{opacity:1}.qaid-buttons:focus-within .qaid-dismiss-btn,.qaid-dismiss-btn:focus-visible{opacity:1}.qaid-dismiss-btn{min-width:24px;min-height:24px}button.qaid-recording-stop{min-height:24px}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}@media(forced-colors:active){button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible,.qaid-textarea:focus,button.qaid-btn-submit:focus,.qaid-video-preview-box textarea:focus{outline:2px solid CanvasText;outline-offset:2px}.qaid-selected-marker,.qaid-highlight-box{border-color:Highlight}}", vt = "body.qaid-targeting,body.qaid-targeting *{cursor:none!important}";
-let q = 0;
+</svg>`, gt = "button{cursor:pointer}.qaid-buttons{display:flex;gap:.5rem}.qaid-buttons.qaid-vertical{flex-direction:column}.qaid-buttons.qaid-auto-container{position:fixed;z-index:50}.qaid-buttons.qaid-auto-container.qaid-bottom-right{bottom:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-bottom-left{bottom:1rem;left:1rem}.qaid-buttons.qaid-auto-container.qaid-top-right{top:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-top-left{top:1rem;left:1rem}.qaid-buttons.qaid-incognito{opacity:0;transition:opacity .2s ease-in-out}.qaid-buttons.qaid-incognito:hover{opacity:1}.qaid-buttons.qaid-dismissed{display:none!important}.qaid-dismiss-btn{width:20px;height:20px;padding:0;border:none;border-radius:50%;background:#0006;color:#fff;display:flex;align-items:center;justify-content:center;align-self:center;opacity:0;transition:opacity .15s,background .15s;cursor:pointer;pointer-events:auto;-webkit-appearance:none;appearance:none}.qaid-dismiss-btn:hover{background:#0009}.qaid-buttons:hover .qaid-dismiss-btn{opacity:1}button.qaid-btn-structural{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;appearance:none}.qaid-icon{width:24px;height:24px}.qaid-btn-structural:not(:has(svg)),.qaid-btn:not(:has(svg)){font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-emoji-icon{font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-buttons,.qaid-buttons *,.qaid-modal-container,.qaid-modal-container *{cursor:pointer!important}.qaid-tooltip-wrapper{position:relative}.qaid-tooltip-text{position:fixed;padding:.5rem .75rem;background:#1f2937;color:#fff;font-size:1rem;font-weight:600;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:99999}.qaid-tooltip-text.qaid-tooltip-visible{opacity:1}.qaid-targeting-overlay{position:fixed;inset:0;z-index:40;pointer-events:none}.qaid-capture-layer{position:fixed;inset:0;pointer-events:none;z-index:9999}@keyframes qaid-slideDown{0%{transform:translateY(-100%)}to{transform:translateY(0)}}.qaid-vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.3) 70%,rgba(0,0,0,.6) 100%);z-index:41}.qaid-crosshair-h,.qaid-crosshair-v{position:fixed;pointer-events:none;z-index:42}.qaid-crosshair-h{left:0;right:0;height:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-crosshair-v{top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-type-up .qaid-crosshair-h,.qaid-type-up .qaid-crosshair-v{background:color-mix(in srgb,var(--qaid-positive) 60%,transparent)}.qaid-highlight-box{position:fixed;top:0;left:0;pointer-events:none;z-index:41;display:none;border:3px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:2px;background:color-mix(in srgb,var(--qaid-negative) 8%,transparent);will-change:transform,width,height}.qaid-type-up .qaid-highlight-box{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent);background:color-mix(in srgb,var(--qaid-positive) 8%,transparent)}.qaid-scope{position:fixed;width:80px;height:80px;pointer-events:none;z-index:43;transform:translate(-50%,-50%)}.qaid-scope-ring{position:absolute;inset:10px;border:2px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent)}.qaid-scope-ring-inner{position:absolute;inset:20px;border:1px solid color-mix(in srgb,var(--qaid-negative) 50%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring-inner{border-color:color-mix(in srgb,var(--qaid-positive) 50%,transparent)}.qaid-scope-dot{position:absolute;top:50%;left:50%;width:4px;height:4px;background:var(--qaid-negative);border-radius:50%;transform:translate(-50%,-50%)}.qaid-type-up .qaid-scope-dot{background:var(--qaid-positive)}.qaid-selected-marker{position:fixed;border:3px solid var(--qaid-marker, #6366f1);border-radius:50%;pointer-events:none;z-index:44;animation:qaid-markerPulse 1.5s ease-in-out infinite}@keyframes qaid-markerPulse{0%,to{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}.qaid-backdrop{position:fixed;inset:0;z-index:45;background:#0000004d}.qaid-modal-container{position:fixed;z-index:50;display:flex;flex-direction:column;align-items:flex-start;max-height:calc(100vh - 32px);font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-modal-container.qaid-above{flex-direction:column-reverse}.qaid-modal-arrow{width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;position:relative;align-self:flex-start}.qaid-modal-container.qaid-below .qaid-modal-arrow{border-bottom:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-container.qaid-above .qaid-modal-arrow{border-top:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5));width:var(--qaid-modal-width, 400px);max-width:calc(100vw - 32px);max-height:calc(100vh - 60px);overflow-y:auto}.qaid-modal-header{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1rem}button.qaid-type-toggle{border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;-webkit-appearance:none;appearance:none}button.qaid-type-toggle:hover{transform:scale(1.1)}button.qaid-type-toggle:not(.qaid-type-toggle-custom){width:2.5rem;height:2.5rem;border-radius:50%}button.qaid-type-toggle:not(.qaid-type-toggle-custom) svg{width:1.25rem;height:1.25rem}button.qaid-type-toggle.qaid-type-up{background:var(--qaid-positive);color:#fff}button.qaid-type-toggle.qaid-type-down{background:var(--qaid-negative);color:#fff}.qaid-modal-header-text{flex:1;min-width:0}.qaid-modal-title{font-size:1.125rem;font-weight:700;margin:0 0 .25rem;color:light-dark(#1f2937,#f9fafb)}.qaid-modal-subtitle{color:light-dark(#6b7280,#9ca3af);margin:0;font-size:.875rem}.qaid-textarea{width:100%;height:6rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:1rem;resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-btn-row{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-btn-submit{padding:.5rem 1rem;background:var(--qaid-marker);color:var(--qaid-marker-text, white);border:none;border-radius:.5rem;font-size:.875rem;font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-btn-submit:hover{filter:brightness(.85)}button.qaid-btn-submit:focus{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 30%,transparent)}.qaid-bottom-sheet{position:fixed;bottom:0;left:0;right:0;z-index:50;animation:qaid-slideUpSheet .3s ease-out;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-bottom-sheet-content{background:light-dark(#ffffff,#1f2937);border-radius:1rem 1rem 0 0;padding:1.5rem;padding-bottom:max(1.5rem,env(safe-area-inset-bottom))}.qaid-bottom-sheet-handle{width:36px;height:4px;background:light-dark(rgba(0,0,0,.2),rgba(255,255,255,.2));border-radius:2px;margin:0 auto 1rem}@keyframes qaid-slideUpSheet{0%{transform:translateY(100%)}to{transform:translateY(0)}}button.qaid-btn-record:hover{background:#dc2626;color:#fff}.qaid-recording-indicator{position:fixed;top:12px;left:50%;transform:translate(-50%);display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:light-dark(#1f2937,#374151);color:#fff;border-radius:9999px;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:.875rem;font-weight:500;box-shadow:0 4px 12px #0000004d;z-index:99999;animation:qaid-slideDown .2s ease-out}.qaid-recording-dot{width:10px;height:10px;background:#dc2626;border-radius:50%;animation:qaid-dotPulse 1.5s ease-in-out infinite}@keyframes qaid-dotPulse{0%,to{opacity:1}50%{opacity:.3}}.qaid-recording-time{font-variant-numeric:tabular-nums;min-width:2.5rem;text-align:center}button.qaid-recording-stop{padding:.25rem .75rem;background:#dc2626;color:#fff;border:none;border-radius:9999px;font-size:.75rem;font-weight:600;cursor:pointer;transition:background-color .2s;-webkit-appearance:none;appearance:none}button.qaid-recording-stop:hover{background:#b91c1c}.qaid-video-preview{position:fixed;inset:0 0 auto;height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#0009;z-index:99998;animation:qaid-fadeIn .2s ease-out}@keyframes qaid-fadeIn{0%{opacity:0}to{opacity:1}}.qaid-video-preview-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px #00000080;width:560px;max-width:100%;max-height:100%;overflow-y:auto;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-video-preview-box h3{font-size:1.125rem;font-weight:700;margin:0 0 1rem;color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box video{width:100%;max-height:50vh;max-height:50dvh;object-fit:contain;border-radius:.5rem;background:#000;margin-bottom:1rem}.qaid-video-preview-box textarea{width:100%;height:4rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:.875rem;resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-video-preview-actions{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-video-btn{padding:.5rem 1rem;border:none;border-radius:.5rem;font-size:.875rem;font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-video-btn-cancel{background:light-dark(#f3f4f6,#374151);color:light-dark(#374151,#d1d5db)}button.qaid-video-btn-cancel:hover{background:light-dark(#e5e7eb,#4b5563)}button.qaid-video-btn-rerecord{background:light-dark(#fef3c7,#78350f);color:light-dark(#92400e,#fde68a)}button.qaid-video-btn-rerecord:hover{filter:brightness(.9)}button.qaid-video-btn-send{background:var(--qaid-marker);color:var(--qaid-marker-text, white)}button.qaid-video-btn-send:hover{filter:brightness(.85)}button.qaid-video-btn-send:disabled{opacity:.5;cursor:not-allowed}.qaid-video-sending{display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:light-dark(#6b7280,#9ca3af)}button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible{outline:2px solid var(--qaid-marker, #6366f1);outline-offset:2px}.qaid-textarea:focus-visible,button.qaid-btn-submit:focus-visible,.qaid-video-preview-box textarea:focus-visible{outline:2px solid var(--qaid-marker, #6366f1);outline-offset:2px}.qaid-buttons.qaid-incognito:focus-within{opacity:1}.qaid-buttons:focus-within .qaid-dismiss-btn,.qaid-dismiss-btn:focus-visible{opacity:1}.qaid-dismiss-btn{min-width:24px;min-height:24px}button.qaid-recording-stop{min-height:24px}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}@media(forced-colors:active){button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible,.qaid-textarea:focus,button.qaid-btn-submit:focus,.qaid-video-preview-box textarea:focus{outline:2px solid CanvasText;outline-offset:2px}.qaid-selected-marker,.qaid-highlight-box{border-color:Highlight}}", vt = "body.qaid-targeting,body.qaid-targeting *{cursor:none!important}";
+let k = 0;
 const yt = "button.qaid-btn{width:var(--qaid-btn-size);height:var(--qaid-btn-size);border-radius:50%;border:none;background:#f3f4f6;color:#374151;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);transition:background-color .2s,color .2s,transform .2s;-webkit-appearance:none;appearance:none;--qaid-hover-up-bg:var(--qaid-positive);--qaid-hover-up-color:#fff;--qaid-hover-down-bg:var(--qaid-negative);--qaid-hover-down-color:#fff}button.qaid-btn:hover{transform:scale(1.05)}button.qaid-btn-up:hover{background:var(--qaid-hover-up-bg);color:var(--qaid-hover-up-color)}button.qaid-btn-down:hover{background:var(--qaid-hover-down-bg);color:var(--qaid-hover-down-color)}button.qaid-btn svg{width:var(--qaid-icon-size);height:var(--qaid-icon-size)}", wt = {
   small: 36,
   medium: 48,
@@ -39,7 +39,7 @@ function Ct(e) {
   const t = kt(e);
   return t && qt(t.r, t.g, t.b) > 0.4 ? "black" : "white";
 }
-function Et(e = {}) {
+function St(e = {}) {
   const {
     positiveColor: t = "rgb(0, 200, 83)",
     negativeColor: i = "rgb(255, 0, 0)",
@@ -47,23 +47,23 @@ function Et(e = {}) {
     buttonSize: n = "medium",
     modalWidth: s = 400,
     backdropOpacity: a = 0.3,
-    fontFamily: l = "system-ui, -apple-system, sans-serif",
-    fontSize: c = 16
-  } = e, r = wt[n], d = xt[n], p = Ct(o);
+    fontFamily: d = "system-ui, -apple-system, sans-serif",
+    fontSize: l = 16
+  } = e, r = wt[n], c = xt[n], p = Ct(o);
   return {
     "--qaid-positive": t,
     "--qaid-negative": i,
     "--qaid-marker": o,
     "--qaid-marker-text": p,
     "--qaid-btn-size": `${r}px`,
-    "--qaid-icon-size": `${d}px`,
+    "--qaid-icon-size": `${c}px`,
     "--qaid-modal-width": `${s}px`,
     "--qaid-backdrop-opacity": String(a),
-    "--qaid-font-family": l,
-    "--qaid-font-size": `${c}px`
+    "--qaid-font-family": d,
+    "--qaid-font-size": `${l}px`
   };
 }
-function St(e, t) {
+function Et(e, t) {
   for (const [i, o] of Object.entries(t))
     e.style.setProperty(i, o);
 }
@@ -71,12 +71,12 @@ function N() {
   return gt + yt;
 }
 function Tt() {
-  if (q++, q > 1) return;
+  if (k++, k > 1) return;
   const e = document.createElement("style");
   e.id = "qaid-styles", e.textContent = vt, document.head.appendChild(e);
 }
 function Lt() {
-  q <= 0 || (q--, q === 0 && document.getElementById("qaid-styles").remove());
+  k <= 0 || (k--, k === 0 && document.getElementById("qaid-styles").remove());
 }
 const G = ["data-comp", "data-qa", "data-testid", "data-id"];
 function J(e, t = document.body) {
@@ -117,7 +117,7 @@ function Rt(e) {
   const t = J(e);
   return t ? `[${t}]` : e.id ? `#${Mt(e.id)}` : Dt(e);
 }
-function I(e) {
+function D(e) {
   const t = It(e), i = J(e);
   return { selector: Rt(e), text: t, dataAttr: i };
 }
@@ -142,7 +142,7 @@ const Ht = [
   "label",
   ...G.map((e) => `[${e}]`)
 ].join(","), Bt = /^(?:A|BUTTON|INPUT|SELECT|TEXTAREA|SUMMARY)$/;
-function zt(e) {
+function Pt(e) {
   if (e.hasAttribute("hidden") || e.getAttribute("aria-hidden") === "true") return !1;
   const t = e.ownerDocument?.defaultView;
   if (t && typeof t.getComputedStyle == "function") {
@@ -151,67 +151,67 @@ function zt(e) {
   }
   return !0;
 }
-function Pt(e = {}) {
-  const t = e.root ?? document.body, i = e.selector ?? Ht, o = e.isExcluded ?? (() => !1), n = e.isVisible ?? zt;
+function zt(e = {}) {
+  const t = e.root ?? document.body, i = e.selector ?? Ht, o = e.isExcluded ?? (() => !1), n = e.isVisible ?? Pt;
   return Array.from(t.querySelectorAll(i)).filter(
     (s) => !o(s) && n(s)
   );
 }
-function $t(e) {
-  const t = e.candidates ?? Pt({
+function Ot(e) {
+  const t = e.candidates ?? zt({
     root: e.root,
     selector: e.selector,
     isExcluded: e.isExcluded,
     isVisible: e.isVisible
   }), i = e.moveFocus ?? !0, o = e.eventTarget ?? document, n = /* @__PURE__ */ new Set();
   let s = -1, a = !1;
-  const l = e.initial !== void 0 ? e.initial : typeof document < "u" ? document.activeElement : null;
-  if (l) {
-    const h = t.indexOf(l);
+  const d = e.initial !== void 0 ? e.initial : typeof document < "u" ? document.activeElement : null;
+  if (d) {
+    const h = t.indexOf(d);
     h >= 0 && (s = h);
   }
   s < 0 && t.length > 0 && (s = 0);
-  function c(h) {
+  function l(h) {
     if (!i) return;
-    const y = h;
-    if (typeof y.focus == "function") {
+    const w = h;
+    if (typeof w.focus == "function") {
       h.getAttribute("tabindex") === null && !Bt.test(h.tagName) && (h.setAttribute("tabindex", "-1"), n.add(h));
       try {
-        y.focus();
+        w.focus();
       } catch {
       }
     }
   }
   function r() {
     const h = t[s];
-    h && (c(h), e.onHighlight?.(h, s));
+    h && (l(h), e.onHighlight?.(h, s));
   }
-  function d(h) {
+  function c(h) {
     if (a || t.length === 0) return;
-    const y = t.length;
-    s = (h % y + y) % y, r();
+    const w = t.length;
+    s = (h % w + w) % w, r();
   }
   function p() {
-    d(s + 1);
+    c(s + 1);
   }
   function u() {
-    d(s - 1);
+    c(s - 1);
   }
   function m() {
     return t[s] ?? null;
   }
-  function g() {
-    a || (a = !0, o.removeEventListener("keydown", v, !0), n.forEach((h) => h.removeAttribute("tabindex")), n.clear());
-  }
   function b() {
+    a || (a = !0, o.removeEventListener("keydown", f, !0), n.forEach((h) => h.removeAttribute("tabindex")), n.clear());
+  }
+  function v() {
     if (a) return;
     const h = m();
-    g(), h && e.onSelect(h);
+    b(), h && e.onSelect(h);
   }
-  function f() {
-    a || (g(), e.onCancel?.());
+  function y() {
+    a || (b(), e.onCancel?.());
   }
-  function v(h) {
+  function f(h) {
     if (!a)
       switch (h.key) {
         case "Tab":
@@ -228,28 +228,28 @@ function $t(e) {
         case "Enter":
         case " ":
         case "Spacebar":
-          h.preventDefault(), h.stopPropagation(), b();
+          h.preventDefault(), h.stopPropagation(), v();
           break;
         case "Escape":
         case "Esc":
-          h.preventDefault(), h.stopPropagation(), f();
+          h.preventDefault(), h.stopPropagation(), y();
           break;
       }
   }
-  return o.addEventListener("keydown", v, !0), s >= 0 && r(), {
+  return o.addEventListener("keydown", f, !0), s >= 0 && r(), {
     candidates: t,
     getIndex: () => s,
     getCurrent: m,
     next: p,
     prev: u,
-    moveTo: d,
-    select: b,
-    cancel: f,
-    handleKey: v,
-    stop: g
+    moveTo: c,
+    select: v,
+    cancel: y,
+    handleKey: f,
+    stop: b
   };
 }
-const V = "data-qaid-a11y-live", Ot = "position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;", Nt = [
+const F = "data-qaid-a11y-live", $t = "position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;", Nt = [
   "a[href]",
   "button",
   "input",
@@ -257,19 +257,19 @@ const V = "data-qaid-a11y-live", Ot = "position:absolute;width:1px;height:1px;ma
   "select",
   "[tabindex]"
 ].join(",");
-function Vt(e) {
+function Ft(e) {
   return e.ownerDocument || document;
 }
-function Ft(e, t) {
+function Vt(e, t) {
   const i = t ? "assertive" : "polite", o = e.querySelector(
-    `[${V}="${i}"]`
+    `[${F}="${i}"]`
   );
   if (o) return o;
-  const s = Vt(e).createElement("div");
-  return s.setAttribute(V, i), s.setAttribute("role", t ? "alert" : "status"), s.setAttribute("aria-live", t ? "assertive" : "polite"), s.setAttribute("aria-atomic", "true"), s.style.cssText = Ot, e.appendChild(s), s;
+  const s = Ft(e).createElement("div");
+  return s.setAttribute(F, i), s.setAttribute("role", t ? "alert" : "status"), s.setAttribute("aria-live", t ? "assertive" : "polite"), s.setAttribute("aria-atomic", "true"), s.style.cssText = $t, e.appendChild(s), s;
 }
 function Ut(e, t, i = {}) {
-  const o = Ft(e, !!i.assertive);
+  const o = Vt(e, !!i.assertive);
   o.textContent = "", o.textContent = t;
 }
 function _t(e) {
@@ -286,7 +286,7 @@ function Kt(e) {
   }
   return !1;
 }
-function F(e) {
+function V(e) {
   return Array.from(
     e.querySelectorAll(Nt)
   ).filter((i) => !(i.getAttribute("tabindex") === "-1" || i instanceof HTMLInputElement && i.type === "hidden" || i instanceof HTMLAnchorElement && !i.getAttribute("href") || _t(i) || Kt(i)));
@@ -297,28 +297,28 @@ function Z(e) {
     t = t.shadowRoot.activeElement;
   return t instanceof HTMLElement ? t : null;
 }
-function Xt(e) {
+function jt(e) {
   const t = e.ownerDocument || document;
   let i = !1;
   const o = (s) => {
     if (s.key !== "Tab") return;
-    const a = F(e);
+    const a = V(e);
     if (a.length === 0) {
       s.preventDefault(), e.focus();
       return;
     }
-    const l = a[0], c = a[a.length - 1], r = Z(t), d = r ? a.indexOf(r) !== -1 : !1;
-    s.shiftKey ? (!d || r === l) && (s.preventDefault(), c.focus()) : (!d || r === c) && (s.preventDefault(), l.focus());
+    const d = a[0], l = a[a.length - 1], r = Z(t), c = r ? a.indexOf(r) !== -1 : !1;
+    s.shiftKey ? (!c || r === d) && (s.preventDefault(), l.focus()) : (!c || r === l) && (s.preventDefault(), d.focus());
   };
   e.addEventListener("keydown", o);
-  const n = F(e);
+  const n = V(e);
   return n.length > 0 ? n[0].focus() : (e.hasAttribute("tabindex") || (e.setAttribute("tabindex", "-1"), i = !0), e.focus()), {
     release() {
       e.removeEventListener("keydown", o), i && (e.removeAttribute("tabindex"), i = !1);
     }
   };
 }
-function jt() {
+function Xt() {
   return Z(document);
 }
 function Wt(e) {
@@ -352,8 +352,8 @@ function Gt(e) {
   const o = Qt(e, i), n = [];
   return Array.from(i.children).forEach((s) => {
     if (!(s instanceof HTMLElement) || o && s === o) return;
-    const a = s.inert === !0, l = s.getAttribute("aria-hidden");
-    a && l === "true" || (s.inert = !0, s.setAttribute("aria-hidden", "true"), n.push({ el: s, prevInert: a, prevAriaHidden: l }));
+    const a = s.inert === !0, d = s.getAttribute("aria-hidden");
+    a && d === "true" || (s.inert = !0, s.setAttribute("aria-hidden", "true"), n.push({ el: s, prevInert: a, prevAriaHidden: d }));
   }), function() {
     for (; n.length; ) {
       const a = n.pop();
@@ -380,12 +380,12 @@ function Jt(e, t, i, o, n) {
       top: e.y - i - o,
       position: "above"
     };
-  const l = a > s ? "below" : "above";
-  let c;
-  return l === "below" ? c = Math.min(
+  const d = a > s ? "below" : "above";
+  let l;
+  return d === "below" ? l = Math.min(
     e.y + e.height + o,
     t - i - n
-  ) : c = Math.max(n, e.y - i - o), { top: c, position: l };
+  ) : l = Math.max(n, e.y - i - o), { top: l, position: d };
 }
 function Zt(e, t, i, o) {
   let s = e.x + e.width / 2 - i / 2;
@@ -434,13 +434,13 @@ function oe(e, t, i, o = tt) {
 }
 const ne = 20;
 function se(e) {
-  const t = [], i = console.error, o = console.warn, n = console.log, s = (a, l) => {
-    const c = {
-      message: l.map((r) => String(r)).join(" "),
+  const t = [], i = console.error, o = console.warn, n = console.log, s = (a, d) => {
+    const l = {
+      message: d.map((r) => String(r)).join(" "),
       timestamp: Date.now(),
       level: a
     };
-    t.length >= ne && t.shift(), t.push(c), e && e(c);
+    t.length >= ne && t.shift(), t.push(l), e && e(l);
   };
   return console.error = function(...a) {
     s("error", a), i.apply(console, a);
@@ -456,7 +456,7 @@ function se(e) {
   };
 }
 const ae = 20, U = 4096;
-function k(e) {
+function S(e) {
   const t = typeof e == "string" ? e : JSON.stringify(e);
   return t.length > U ? t.slice(0, U) + "…[truncated]" : t;
 }
@@ -466,7 +466,7 @@ function _(e, t) {
 async function re(e) {
   try {
     const t = await e.clone().text();
-    return k(t);
+    return S(t);
   } catch {
     return;
   }
@@ -474,19 +474,19 @@ async function re(e) {
 function de() {
   const e = [], t = window.fetch;
   window.fetch = async function(n, s) {
-    const a = typeof n == "string" ? n : n instanceof URL ? n.toString() : n.url, l = s?.method ?? (typeof n == "object" && "method" in n ? n.method : "GET");
-    let c;
-    s?.body && (c = k(s.body));
+    const a = typeof n == "string" ? n : n instanceof URL ? n.toString() : n.url, d = s?.method ?? (typeof n == "object" && "method" in n ? n.method : "GET");
+    let l;
+    s?.body && (l = S(s.body));
     const r = await t.apply(window, [n, s]);
     if (r.status >= 400) {
-      const d = await re(r);
+      const c = await re(r);
       _(e, {
         url: a,
-        method: l.toUpperCase(),
+        method: d.toUpperCase(),
         status: r.status,
         statusText: r.statusText,
-        requestBody: c,
-        responseBody: d,
+        requestBody: l,
+        responseBody: c,
         timestamp: Date.now()
       });
     }
@@ -496,7 +496,7 @@ function de() {
   return XMLHttpRequest.prototype.open = function(n, s, ...a) {
     return this._qaid_method = n, this._qaid_url = typeof s == "string" ? s : s.toString(), i.apply(this, [n, s, ...a]);
   }, XMLHttpRequest.prototype.send = function(n) {
-    const s = this, a = n ? k(n) : void 0;
+    const s = this, a = n ? S(n) : void 0;
     return s.addEventListener("load", function() {
       s.status >= 400 && _(e, {
         url: s._qaid_url,
@@ -504,7 +504,7 @@ function de() {
         status: s.status,
         statusText: s.statusText,
         requestBody: a,
-        responseBody: k(s.responseText),
+        responseBody: S(s.responseText),
         timestamp: Date.now()
       });
     }), o.apply(this, [n]);
@@ -515,10 +515,73 @@ function de() {
     }
   };
 }
-function le() {
+function ce() {
+  const e = navigator.userAgent || "";
+  return /iP(hone|ad|od)/.test(e) || // iPadOS 13+ masquerades as "MacIntel" but is a multi-touch device.
+  navigator.platform === "MacIntel" && (navigator.maxTouchPoints || 0) > 1;
+}
+function le(e, t, i, o, n) {
+  const s = e >= t, a = i >= o;
+  return s === a ? { width: e, height: t, rotate: 0 } : { width: t, height: e, rotate: n === 270 ? -90 : 90 };
+}
+function he(e, t, i) {
+  if (i.rotate === 0) {
+    e.drawImage(t, 0, 0, i.width, i.height);
+    return;
+  }
+  e.save(), i.rotate === 90 ? (e.translate(i.width, 0), e.rotate(Math.PI / 2)) : (e.translate(0, i.height), e.rotate(-Math.PI / 2)), e.drawImage(t, 0, 0, i.height, i.width), e.restore();
+}
+function ue() {
+  const e = typeof screen < "u" ? screen.orientation : void 0;
+  return e && typeof e.angle == "number" ? e.angle : 0;
+}
+function pe(e) {
+  return new Promise((t) => {
+    if (e.videoWidth > 0) {
+      t();
+      return;
+    }
+    e.addEventListener("loadedmetadata", () => t(), { once: !0 });
+  });
+}
+async function me(e) {
+  try {
+    await e.play();
+  } catch {
+  }
+}
+async function fe(e, t = 15) {
+  const i = document.createElement("canvas");
+  if (typeof i.captureStream != "function") return null;
+  const o = i.getContext("2d");
+  if (!o) return null;
+  const n = document.createElement("video");
+  n.muted = !0, n.playsInline = !0, n.srcObject = e, await pe(n);
+  const s = le(
+    n.videoWidth,
+    n.videoHeight,
+    window.innerWidth,
+    window.innerHeight,
+    ue()
+  );
+  i.width = s.width, i.height = s.height, await me(n);
+  let a = 0;
+  const d = () => {
+    he(o, n, s), a = requestAnimationFrame(d);
+  };
+  d();
+  const l = i.captureStream(t);
+  return {
+    stream: l,
+    stop: () => {
+      a && cancelAnimationFrame(a), a = 0, l.getTracks().forEach((r) => r.stop()), n.pause(), n.srcObject = null;
+    }
+  };
+}
+function be() {
   return typeof navigator < "u" && !!navigator.mediaDevices && typeof navigator.mediaDevices.getDisplayMedia == "function" && typeof MediaRecorder < "u";
 }
-function ce() {
+function ge() {
   if (typeof MediaRecorder > "u") return "";
   const e = [
     "video/webm;codecs=vp9",
@@ -531,19 +594,19 @@ function ce() {
       return t;
   return "";
 }
-function he(e = {}) {
+function ve(e = {}) {
   const t = e.maxDuration ?? 15, i = e.videoBitsPerSecond ?? 8e5;
-  let o = null, n = null, s = [], a = null, l = null, c = null, r = 0, d = null, p = null, u = !1, m = null;
-  function g() {
-    c !== null && (clearInterval(c), c = null), m !== null && (clearTimeout(m), m = null), o && (o.getTracks().forEach((f) => f.stop()), o = null), n = null, s = [], a = null, l = null, d = null, p = null;
+  let o = null, n = null, s = null, a = [], d = null, l = null, r = null, c = 0, p = null, u = null, m = !1, b = null;
+  function v() {
+    r !== null && (clearInterval(r), r = null), b !== null && (clearTimeout(b), b = null), n && (n.stop(), n = null), o && (o.getTracks().forEach((f) => f.stop()), o = null), s = null, a = [], d = null, l = null, p = null, u = null;
   }
-  function b() {
-    u || (u = !0, n && n.state !== "inactive" && n.stop());
+  function y() {
+    m || (m = !0, s && s.state !== "inactive" && s.stop());
   }
   return {
     async start() {
-      u = !1, s = [];
-      const f = ce();
+      m = !1, a = [];
+      const f = ge();
       if (!f)
         throw new Error("No supported video MIME type found");
       o = await navigator.mediaDevices.getDisplayMedia({
@@ -554,43 +617,49 @@ function he(e = {}) {
         // @ts-expect-error preferCurrentTab is not in the TS types yet
         preferCurrentTab: !0
       });
-      const v = o.getVideoTracks()[0];
-      v && v.addEventListener("ended", () => {
-        b();
-      }), n = new MediaRecorder(o, {
+      const h = o.getVideoTracks()[0];
+      h && h.addEventListener("ended", () => {
+        y();
+      });
+      let w = o;
+      if (ce()) {
+        const g = await fe(o);
+        g && (n = g, w = g.stream);
+      }
+      s = new MediaRecorder(w, {
         mimeType: f,
         videoBitsPerSecond: i
-      }), n.ondataavailable = (h) => {
-        h.data.size > 0 && s.push(h.data);
-      }, n.onstop = () => {
-        const h = new Blob(s, { type: f });
-        d && d(h), l && l(h), o && o.getTracks().forEach((y) => y.stop());
-      }, n.onerror = () => {
-        p && p(new Error("MediaRecorder error"));
-      }, n.start(1e3), r = Date.now(), c = setInterval(() => {
-        const h = Math.floor((Date.now() - r) / 1e3);
-        a && a(h);
-      }, 1e3), m = setTimeout(() => {
-        b();
+      }), s.ondataavailable = (g) => {
+        g.data.size > 0 && a.push(g.data);
+      }, s.onstop = () => {
+        const g = new Blob(a, { type: f });
+        p && p(g), l && l(g), n && (n.stop(), n = null), o && o.getTracks().forEach((C) => C.stop());
+      }, s.onerror = () => {
+        u && u(new Error("MediaRecorder error"));
+      }, s.start(1e3), c = Date.now(), r = setInterval(() => {
+        const g = Math.floor((Date.now() - c) / 1e3);
+        d && d(g);
+      }, 1e3), b = setTimeout(() => {
+        y();
       }, t * 1e3);
     },
     stop() {
-      return new Promise((f, v) => {
-        d = f, p = v, b();
+      return new Promise((f, h) => {
+        p = f, u = h, y();
       });
     },
     onTick(f) {
-      a = f;
+      d = f;
     },
     onStop(f) {
       l = f;
     },
     destroy() {
-      b(), g();
+      y(), v();
     }
   };
 }
-function ue(e = 640) {
+function ye(e = 640) {
   return typeof window < "u" && window.innerWidth < e;
 }
 function K(e, t, i) {
@@ -599,10 +668,10 @@ function K(e, t, i) {
   const n = document.elementFromPoint(e, t);
   return i.forEach((s, a) => s.style.visibility = o[a]), n;
 }
-function A(e) {
+function M(e) {
   return e ? e.hasAttribute("data-qaid-embed") || e.hasAttribute("data-qaid-embed-overlay") ? !0 : !!e.closest("[data-qaid-embed], [data-qaid-embed-overlay]") : !1;
 }
-function X(e, t = 0) {
+function j(e, t = 0) {
   const i = e.getBoundingClientRect();
   return {
     x: i.left - t,
@@ -611,7 +680,7 @@ function X(e, t = 0) {
     height: i.height + t * 2
   };
 }
-async function pe(e = {}) {
+async function we(e = {}) {
   const { quality: t = 1, maxWidth: i = 1280, maxHeight: o = 800 } = e;
   try {
     if (!navigator.mediaDevices?.getDisplayMedia)
@@ -621,59 +690,59 @@ async function pe(e = {}) {
       video: {
         displaySurface: "browser"
       }
-    }), s = n.getVideoTracks()[0], a = s.getSettings(), l = document.createElement("video");
-    l.srcObject = n, l.muted = !0, await new Promise((b) => {
-      l.onloadedmetadata = () => {
-        l.play(), b();
+    }), s = n.getVideoTracks()[0], a = s.getSettings(), d = document.createElement("video");
+    d.srcObject = n, d.muted = !0, await new Promise((v) => {
+      d.onloadedmetadata = () => {
+        d.play(), v();
       };
-    }), await new Promise((b) => {
-      const f = () => {
-        l.readyState >= 2 ? b() : requestAnimationFrame(f);
+    }), await new Promise((v) => {
+      const y = () => {
+        d.readyState >= 2 ? v() : requestAnimationFrame(y);
       };
-      f();
-    }), await new Promise((b) => setTimeout(b, 100));
-    const c = a.width || l.videoWidth, r = a.height || l.videoHeight, d = Math.min(i / c, o / r, 1), p = Math.round(c * d), u = Math.round(r * d), m = document.createElement("canvas");
+      y();
+    }), await new Promise((v) => setTimeout(v, 100));
+    const l = a.width || d.videoWidth, r = a.height || d.videoHeight, c = Math.min(i / l, o / r, 1), p = Math.round(l * c), u = Math.round(r * c), m = document.createElement("canvas");
     m.width = p, m.height = u;
-    const g = m.getContext("2d");
-    return g ? (g.drawImage(l, 0, 0, p, u), s.stop(), m.toDataURL("image/webp", t)) : (s.stop(), null);
+    const b = m.getContext("2d");
+    return b ? (b.drawImage(d, 0, 0, p, u), s.stop(), m.toDataURL("image/webp", t)) : (s.stop(), null);
   } catch (n) {
     return console.warn("Screenshot capture failed:", n), null;
   }
 }
-const j = "https://qaid.dev/lib/html2canvas.min.js", me = 1e4, fe = 50;
-let w = null;
-function Le() {
+const X = "https://qaid.dev/lib/html2canvas.min.js", xe = 1e4, qe = 50;
+let x = null;
+function Pe() {
   if (typeof document > "u" || typeof window > "u")
     return !1;
   const e = document.createElement("canvas");
   return typeof e.getContext == "function" && !!e.getContext("2d");
 }
-function be() {
-  return window.html2canvas ? Promise.resolve(!0) : w || (w = new Promise((e) => {
+function ke() {
+  return window.html2canvas ? Promise.resolve(!0) : x || (x = new Promise((e) => {
     if (!document.querySelector(
-      `script[src="${j}"]`
+      `script[src="${X}"]`
     )) {
       const n = document.createElement("script");
-      n.src = j, n.async = !0, document.head.appendChild(n);
+      n.src = X, n.async = !0, document.head.appendChild(n);
     }
     const i = Date.now(), o = () => {
       if (window.html2canvas) {
         e(!0);
         return;
       }
-      if (Date.now() - i > me) {
-        w = null, e(!1);
+      if (Date.now() - i > xe) {
+        x = null, e(!1);
         return;
       }
-      setTimeout(o, fe);
+      setTimeout(o, qe);
     };
     o();
-  }), w);
+  }), x);
 }
-async function ge(e = {}) {
+async function Ce(e = {}) {
   const { quality: t = 0.8, maxWidth: i = 1280, maxHeight: o = 800 } = e;
   try {
-    if (!await be() || !window.html2canvas)
+    if (!await ke() || !window.html2canvas)
       return console.warn("html2canvas failed to load"), null;
     const s = await window.html2canvas(document.body, {
       useCORS: !0,
@@ -686,19 +755,19 @@ async function ge(e = {}) {
       x: window.scrollX,
       y: window.scrollY,
       ignoreElements: (r) => r instanceof HTMLElement ? r.classList.contains("qaid-buttons") || r.classList.contains("qaid-targeting-overlay") || r.classList.contains("qaid-modal-container") || r.classList.contains("qaid-bottom-sheet") || r.classList.contains("qaid-backdrop") || r.classList.contains("qaid-selected-marker") || r.classList.contains("qaid-tooltip-text") || r.classList.contains("qaid-recording-indicator") || r.classList.contains("qaid-video-preview") || r.className?.toString().startsWith?.("qaid-") : !1
-    }), a = s.width, l = s.height, c = Math.min(i / a, o / l, 1);
-    if (c < 1) {
-      const r = Math.round(a * c), d = Math.round(l * c), p = document.createElement("canvas");
-      p.width = r, p.height = d;
+    }), a = s.width, d = s.height, l = Math.min(i / a, o / d, 1);
+    if (l < 1) {
+      const r = Math.round(a * l), c = Math.round(d * l), p = document.createElement("canvas");
+      p.width = r, p.height = c;
       const u = p.getContext("2d");
-      return u ? (u.drawImage(s, 0, 0, r, d), p.toDataURL("image/webp", t)) : null;
+      return u ? (u.drawImage(s, 0, 0, r, c), p.toDataURL("image/webp", t)) : null;
     }
     return s.toDataURL("image/webp", t);
   } catch (n) {
     return console.warn("DOM screenshot capture failed:", n), null;
   }
 }
-const ve = "https://unpkg.com/@qaiddev/quests-embed@1/dist/qaid-quests.js", ye = (e) => (
+const Se = "https://unpkg.com/@qaiddev/quests-embed@1/dist/qaid-quests.js", Ee = (e) => (
   // The URL is a runtime value, not a static specifier — keep Vite from
   // trying to analyze/bundle it.
   import(
@@ -706,19 +775,19 @@ const ve = "https://unpkg.com/@qaiddev/quests-embed@1/dist/qaid-quests.js", ye =
     e
   )
 );
-let we = ye, x = null, D = null;
-function xe(e) {
-  return x && D === e || (D = e, x = Promise.resolve(we(e)).then((t) => {
+let Te = Ee, q = null, R = null;
+function Le(e) {
+  return q && R === e || (R = e, q = Promise.resolve(Te(e)).then((t) => {
     const i = t;
     if (!i || typeof i.QaidQuests != "function")
       throw new Error("quests module has no QaidQuests export");
     return i;
   }).catch((t) => {
-    throw x = null, D = null, t;
-  })), x;
+    throw q = null, R = null, t;
+  })), q;
 }
-async function qe(e) {
-  const t = await xe(e.moduleUrl), i = e.base.replace(/\/+$/, ""), o = e.feedbackId != null ? { feedbackId: e.feedbackId } : void 0;
+async function Ie(e) {
+  const t = await Le(e.moduleUrl), i = e.base.replace(/\/+$/, ""), o = e.feedbackId != null ? { feedbackId: e.feedbackId } : void 0;
   return new t.QaidQuests({
     endpoint: `${i}/responses`,
     configUrl: `${i}/${encodeURIComponent(e.questId)}/definition`,
@@ -727,24 +796,24 @@ async function qe(e) {
     onClose: e.onClose
   });
 }
-const W = "qaid_visitor_id", Y = "qaid_hide_feedback";
-function M(e) {
+const W = "qaid_visitor_id", Y = "qaid_hide_feedback", Ae = 12;
+function H(e) {
   return e ? `${Y}_${e}` : Y;
 }
-function ke(e) {
+function De(e) {
   try {
-    return localStorage.getItem(M(e)) === "1";
+    return localStorage.getItem(H(e)) === "1";
   } catch {
     return !1;
   }
 }
 function Q(e, t = !0) {
   try {
-    t ? localStorage.setItem(M(e), "1") : localStorage.removeItem(M(e));
+    t ? localStorage.setItem(H(e), "1") : localStorage.removeItem(H(e));
   } catch {
   }
 }
-function Ce() {
+function Me() {
   try {
     let e = localStorage.getItem(W);
     return e || (e = crypto.randomUUID(), localStorage.setItem(W, e)), e;
@@ -752,7 +821,7 @@ function Ce() {
     return crypto.randomUUID();
   }
 }
-class Ee {
+class Re {
   config;
   state = "IDLE";
   feedbackData = {
@@ -823,6 +892,13 @@ class Ee {
   boundKeyDown;
   boundMouseMove;
   boundClick;
+  // Touch equivalents for targeting. iOS/iPadOS does not synthesise `click`
+  // (or `mousemove`) for taps on non-interactive page elements, so targeting
+  // must be driven by touch events there.
+  boundTouchStart;
+  boundTouchEnd;
+  // Where the current targeting touch began, to tell a tap from a scroll.
+  touchStartPos = null;
   boundResize;
   // Start with buttons slid off-screen (localStorage dismiss, no animation)
   _startDismissed = !1;
@@ -891,12 +967,12 @@ class Ee {
         video: t.quests?.video ?? "",
         // Quest service reuses the feedback API key unless overridden.
         apiKey: t.quests?.apiKey ?? t.apiKey ?? "",
-        moduleUrl: t.quests?.moduleUrl ?? ve
+        moduleUrl: t.quests?.moduleUrl ?? Se
       }
-    }, this.boundKeyDown = this.handleKeyDown.bind(this), this.boundMouseMove = this.handleMouseMove.bind(this), this.boundClick = this.handleClick.bind(this), this.boundResize = this.handleResize.bind(this), this.visitorId = Ce(), this.init();
+    }, this.boundKeyDown = this.handleKeyDown.bind(this), this.boundMouseMove = this.handleMouseMove.bind(this), this.boundClick = this.handleClick.bind(this), this.boundTouchStart = this.handleTouchStart.bind(this), this.boundTouchEnd = this.handleTouchEnd.bind(this), this.boundResize = this.handleResize.bind(this), this.visitorId = Me(), this.init();
   }
   applyVars(t) {
-    St(t, this.cssVars);
+    Et(t, this.cssVars);
   }
   /**
    * Announce a message via the shared visually-hidden live regions.
@@ -914,7 +990,7 @@ class Ee {
    * background. Paired with closeDialogA11y() on every close path.
    */
   openDialogA11y(t, i) {
-    this.dialogTrigger = jt(), Yt(t, i), this.dialogTrap = Xt(t), this.dialogRestoreInert = Gt(t);
+    this.dialogTrigger = Xt(), Yt(t, i), this.dialogTrap = jt(t), this.dialogRestoreInert = Gt(t);
   }
   closeDialogA11y() {
     this.dialogTrap?.release(), this.dialogTrap = null, this.dialogRestoreInert && (this.dialogRestoreInert(), this.dialogRestoreInert = null), Wt(this.dialogTrigger), this.dialogTrigger = null;
@@ -923,7 +999,7 @@ class Ee {
     this.activeThumbBtn && (this.activeThumbBtn.setAttribute("aria-pressed", "false"), this.activeThumbBtn = null);
   }
   init() {
-    Tt(), this.cssVars = Et({
+    Tt(), this.cssVars = St({
       positiveColor: this.config.colors.positive,
       negativeColor: this.config.colors.negative,
       markerColor: this.config.colors.marker,
@@ -932,7 +1008,7 @@ class Ee {
       backdropOpacity: this.config.backdropOpacity,
       fontFamily: this.config.fontFamily,
       fontSize: this.config.fontSize
-    }), !this.config.hideDismiss && ke(this.config.apiKey) && (this._startDismissed = !0), this.checkMobile(), window.addEventListener("resize", this.boundResize), this.createEmbed(), this.consoleCapture = se((t) => {
+    }), !this.config.hideDismiss && De(this.config.apiKey) && (this._startDismissed = !0), this.checkMobile(), window.addEventListener("resize", this.boundResize), this.createEmbed(), this.consoleCapture = se((t) => {
       this.feedbackData.consoleErrors = this.consoleCapture?.errors ?? [];
     }), this.feedbackData.consoleErrors = this.consoleCapture.errors, this.observeDom();
   }
@@ -955,7 +1031,7 @@ class Ee {
     }), this.domObserver.observe(document.body, { childList: !0 });
   }
   checkMobile() {
-    this.isMobile = ue();
+    this.isMobile = ye();
   }
   handleResize() {
     this.checkMobile();
@@ -974,8 +1050,8 @@ class Ee {
       this.buttonsContainer = document.createElement("div"), this.buttonsContainer.className = `qaid-buttons qaid-${this.config.position} ${o}`.trim(), this.config.incognito && this.buttonsContainer.classList.add("qaid-incognito");
     else {
       this.buttonsContainer = document.createElement("div"), this.buttonsContainer.className = `qaid-buttons qaid-auto-container qaid-${this.config.position} ${o}${this.config.incognito ? " qaid-incognito" : ""}`.trim(), this.buttonsContainer.style.pointerEvents = "auto";
-      const { x: r, y: d } = this.config.offset;
-      this.config.position.includes("right") ? this.buttonsContainer.style.right = `${r}px` : this.buttonsContainer.style.left = `${r}px`, this.config.position.includes("bottom") ? this.buttonsContainer.style.bottom = `${d}px` : this.buttonsContainer.style.top = `${d}px`;
+      const { x: r, y: c } = this.config.offset;
+      this.config.position.includes("right") ? this.buttonsContainer.style.right = `${r}px` : this.buttonsContainer.style.left = `${r}px`, this.config.position.includes("bottom") ? this.buttonsContainer.style.bottom = `${c}px` : this.buttonsContainer.style.top = `${c}px`;
     }
     this.applyVars(this.buttonsContainer), this.shadowRoot.appendChild(this.buttonsContainer), this.buttonsContainer.addEventListener("keydown", (r) => {
       (r.key === "Enter" || r.key === " " || r.key === "Spacebar") && (this.keyboardActivation = !0);
@@ -984,22 +1060,22 @@ class Ee {
     }), this.buttonsContainer.addEventListener("pointerdown", () => {
       this.keyboardActivation = !1;
     });
-    const n = !!this.config.buttonClass, s = n ? `qaid-btn-structural ${this.config.buttonClass}` : "qaid-btn", l = this.config.text.tooltip || "Feedback for us?", c = document.createElement("div");
-    if (c.className = "qaid-tooltip-text", c.textContent = l, this.applyVars(c), this.shadowRoot.appendChild(c), this.tooltipElement = c, !this.config.hideThumbs) {
+    const n = !!this.config.buttonClass, s = n ? `qaid-btn-structural ${this.config.buttonClass}` : "qaid-btn", d = this.config.text.tooltip || "Feedback for us?", l = document.createElement("div");
+    if (l.className = "qaid-tooltip-text", l.textContent = d, this.applyVars(l), this.shadowRoot.appendChild(l), this.tooltipElement = l, !this.config.hideThumbs) {
       const r = document.createElement("div");
       r.className = "qaid-tooltip-wrapper";
-      const d = document.createElement("button");
-      d.type = "button", d.className = n ? `${s} qaid-btn-up` : "qaid-btn qaid-btn-up", d.setAttribute("aria-label", this.config.text.positiveLabel), d.innerHTML = this.config.positiveIcon || T, d.addEventListener("click", (m) => this.handleThumbClick("up", m.currentTarget, m)), d.addEventListener("mouseenter", () => this.showTooltip(d)), d.addEventListener("mouseleave", () => this.hideTooltip()), r.appendChild(d);
+      const c = document.createElement("button");
+      c.type = "button", c.className = n ? `${s} qaid-btn-up` : "qaid-btn qaid-btn-up", c.setAttribute("aria-label", this.config.text.positiveLabel), c.innerHTML = this.config.positiveIcon || I, c.addEventListener("click", (m) => this.handleThumbClick("up", m.currentTarget, m)), c.addEventListener("mouseenter", () => this.showTooltip(c)), c.addEventListener("mouseleave", () => this.hideTooltip()), r.appendChild(c);
       const p = document.createElement("div");
       p.className = "qaid-tooltip-wrapper";
       const u = document.createElement("button");
-      u.type = "button", u.className = n ? `${s} qaid-btn-down` : "qaid-btn qaid-btn-down", u.setAttribute("aria-label", this.config.text.negativeLabel), u.innerHTML = this.config.negativeIcon || L, u.addEventListener("click", (m) => this.handleThumbClick("down", m.currentTarget, m)), u.addEventListener("mouseenter", () => this.showTooltip(u)), u.addEventListener("mouseleave", () => this.hideTooltip()), p.appendChild(u), this.buttonsContainer.appendChild(r), this.buttonsContainer.appendChild(p);
+      u.type = "button", u.className = n ? `${s} qaid-btn-down` : "qaid-btn qaid-btn-down", u.setAttribute("aria-label", this.config.text.negativeLabel), u.innerHTML = this.config.negativeIcon || A, u.addEventListener("click", (m) => this.handleThumbClick("down", m.currentTarget, m)), u.addEventListener("mouseenter", () => this.showTooltip(u)), u.addEventListener("mouseleave", () => this.hideTooltip()), p.appendChild(u), this.buttonsContainer.appendChild(r), this.buttonsContainer.appendChild(p);
     }
-    if (this.config.captureVideo && le()) {
+    if (this.config.captureVideo && be()) {
       const r = document.createElement("div");
       r.className = "qaid-tooltip-wrapper";
-      const d = document.createElement("button");
-      d.type = "button", d.className = n ? `${s} qaid-btn-record` : "qaid-btn qaid-btn-record", d.setAttribute("aria-label", this.config.text.recordLabel), d.innerHTML = this.config.recordIcon || bt, d.addEventListener("click", () => this.startRecording()), d.addEventListener("mouseenter", () => this.showTooltip(d)), d.addEventListener("mouseleave", () => this.hideTooltip()), r.appendChild(d), this.buttonsContainer.appendChild(r);
+      const c = document.createElement("button");
+      c.type = "button", c.className = n ? `${s} qaid-btn-record` : "qaid-btn qaid-btn-record", c.setAttribute("aria-label", this.config.text.recordLabel), c.innerHTML = this.config.recordIcon || bt, c.addEventListener("click", () => this.startRecording()), c.addEventListener("mouseenter", () => this.showTooltip(c)), c.addEventListener("mouseleave", () => this.hideTooltip()), r.appendChild(c), this.buttonsContainer.appendChild(r);
     }
     this.config.hideDismiss || (this.dismissBtn = document.createElement("button"), this.dismissBtn.type = "button", this.dismissBtn.className = "qaid-dismiss-btn", this.dismissBtn.setAttribute("aria-label", this.config.text.dismissLabel), this.dismissBtn.title = this.config.text.dismissLabel, this.dismissBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>', this.dismissBtn.addEventListener("click", (r) => {
       r.stopPropagation(), this.handleDismiss();
@@ -1061,7 +1137,7 @@ class Ee {
     }, this.submitFeedback();
   }
   startTargeting(t, i) {
-    this.state = "TARGETING", this.feedbackData.feedbackType = t, this.feedbackData.elementSelector = null, this.feedbackData.elementText = null, this.selectedBounds.visible = !1, this.mousePos.x = i.clientX, this.mousePos.y = i.clientY, document.body.classList.add("qaid-targeting"), t === "up" ? document.body.classList.add("qaid-type-up") : document.body.classList.remove("qaid-type-up"), document.body.style.setProperty("--qaid-positive", this.cssVars["--qaid-positive"]), document.body.style.setProperty("--qaid-negative", this.cssVars["--qaid-negative"]), this.createTargetingOverlay(), document.addEventListener("keydown", this.boundKeyDown), document.addEventListener("mousemove", this.boundMouseMove), document.addEventListener("click", this.boundClick, !0);
+    this.state = "TARGETING", this.feedbackData.feedbackType = t, this.feedbackData.elementSelector = null, this.feedbackData.elementText = null, this.selectedBounds.visible = !1, this.mousePos.x = i.clientX, this.mousePos.y = i.clientY, document.body.classList.add("qaid-targeting"), t === "up" ? document.body.classList.add("qaid-type-up") : document.body.classList.remove("qaid-type-up"), document.body.style.setProperty("--qaid-positive", this.cssVars["--qaid-positive"]), document.body.style.setProperty("--qaid-negative", this.cssVars["--qaid-negative"]), this.createTargetingOverlay(), document.addEventListener("keydown", this.boundKeyDown), document.addEventListener("mousemove", this.boundMouseMove), document.addEventListener("click", this.boundClick, !0), document.addEventListener("touchstart", this.boundTouchStart, { passive: !0 }), document.addEventListener("touchend", this.boundTouchEnd, { passive: !1 });
   }
   /**
    * Keyboard-driven targeting. Mirrors startTargeting minus the mouse
@@ -1070,12 +1146,12 @@ class Ee {
    * The KeyboardTargetingController owns Tab/Arrow/Enter/Space/Escape.
    */
   startKeyboardTargetingFlow(t) {
-    this.state = "TARGETING", this.feedbackData.feedbackType = t, this.feedbackData.elementSelector = null, this.feedbackData.elementText = null, this.selectedBounds.visible = !1, document.body.style.setProperty("--qaid-positive", this.cssVars["--qaid-positive"]), document.body.style.setProperty("--qaid-negative", this.cssVars["--qaid-negative"]), this.createTargetingOverlay(), this.crosshairH && (this.crosshairH.style.display = "none"), this.crosshairV && (this.crosshairV.style.display = "none"), this.scope && (this.scope.style.display = "none"), this.keyboardController = $t({
-      isExcluded: (i) => A(i),
+    this.state = "TARGETING", this.feedbackData.feedbackType = t, this.feedbackData.elementSelector = null, this.feedbackData.elementText = null, this.selectedBounds.visible = !1, document.body.style.setProperty("--qaid-positive", this.cssVars["--qaid-positive"]), document.body.style.setProperty("--qaid-negative", this.cssVars["--qaid-negative"]), this.createTargetingOverlay(), this.crosshairH && (this.crosshairH.style.display = "none"), this.crosshairV && (this.crosshairV.style.display = "none"), this.scope && (this.scope.style.display = "none"), this.keyboardController = Ot({
+      isExcluded: (i) => M(i),
       onHighlight: (i) => {
         const o = i.getBoundingClientRect(), n = this.highlightBox;
         n && (n.style.transform = `translate(${o.left}px, ${o.top}px)`, n.style.width = `${o.width}px`, n.style.height = `${o.height}px`, n.style.display = "block");
-        const { text: s } = I(i);
+        const { text: s } = D(i);
         this.announceMsg(`Targeting ${s || i.tagName.toLowerCase()}`);
       },
       onSelect: (i) => this.selectKeyboardTarget(i),
@@ -1083,14 +1159,14 @@ class Ee {
     });
   }
   selectKeyboardTarget(t) {
-    const i = X(t, 8);
+    const i = j(t, 8);
     this.selectedBounds = {
       ...i,
       clickX: i.x + i.width / 2,
       clickY: i.y + i.height / 2,
       visible: !0
     };
-    const { selector: o, text: n } = I(t);
+    const { selector: o, text: n } = D(t);
     this.feedbackData.elementSelector = o, this.feedbackData.elementText = n, this.removeTargetingOverlay(), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.keyboardController = null, this.clearActiveThumb(), this.state = "SELECTED", this.showSelectedMarker(), this.submitFeedback();
   }
   createTargetingOverlay() {
@@ -1107,42 +1183,61 @@ class Ee {
     t.key === "Escape" && (this.isRecording ? this.stopRecording() : this.videoPreview ? this.cancelRecordingPreview() : this.state === "TARGETING" ? this.cancelTargeting() : this.state === "MODAL_OPEN" && this.closeModal());
   }
   handleMouseMove(t) {
-    if (this.mousePos.x = t.clientX, this.mousePos.y = t.clientY, this.crosshairH && (this.crosshairH.style.top = `${t.clientY}px`), this.crosshairV && (this.crosshairV.style.left = `${t.clientX}px`), this.scope && (this.scope.style.left = `${t.clientX}px`, this.scope.style.top = `${t.clientY}px`), this.captureLayer && this.shadowHost) {
-      const i = [this.shadowHost, this.overlayShadowHost].filter(Boolean), o = K(
-        t.clientX,
-        t.clientY,
-        i
-      );
-      if (o && !A(o)) {
+    this.updateReticleAt(t.clientX, t.clientY);
+  }
+  /** Move the crosshair/scope reticle and highlight the element under (x, y).
+   *  Shared by the mouse (hover) and touch (drag) targeting paths. */
+  updateReticleAt(t, i) {
+    if (this.mousePos.x = t, this.mousePos.y = i, this.crosshairH && (this.crosshairH.style.top = `${i}px`), this.crosshairV && (this.crosshairV.style.left = `${t}px`), this.scope && (this.scope.style.left = `${t}px`, this.scope.style.top = `${i}px`), this.captureLayer && this.shadowHost) {
+      const o = [this.shadowHost, this.overlayShadowHost].filter(Boolean), n = K(t, i, o);
+      if (n && !M(n)) {
         if (this.highlightBox) {
-          const n = o.getBoundingClientRect();
-          this.highlightBox.style.transform = `translate(${n.left}px, ${n.top}px)`, this.highlightBox.style.width = `${n.width}px`, this.highlightBox.style.height = `${n.height}px`, this.highlightBox.style.display = "block";
+          const s = n.getBoundingClientRect();
+          this.highlightBox.style.transform = `translate(${s.left}px, ${s.top}px)`, this.highlightBox.style.width = `${s.width}px`, this.highlightBox.style.height = `${s.height}px`, this.highlightBox.style.display = "block";
         }
       } else
         this.highlightBox && (this.highlightBox.style.display = "none");
     }
   }
   handleClick(t) {
-    t.preventDefault(), t.stopPropagation();
-    const i = [this.shadowHost, this.overlayShadowHost].filter(Boolean), o = K(
-      t.clientX,
-      t.clientY,
-      i
-    );
-    if (!o || A(o))
+    t.preventDefault(), t.stopPropagation(), this.selectAt(t.clientX, t.clientY);
+  }
+  // ---- Touch targeting (iOS/iPadOS) ----
+  // iOS/iPadOS taps on non-interactive elements don't fire click, so touch
+  // drives targeting here. Scrolling stays enabled (the page may need to scroll
+  // to bring the target into view); a low-movement touch is treated as a tap
+  // that selects, distinguishing it from a scroll/drag.
+  handleTouchStart(t) {
+    const i = t.touches[0];
+    i && (this.touchStartPos = { x: i.clientX, y: i.clientY }, this.updateReticleAt(i.clientX, i.clientY));
+  }
+  handleTouchEnd(t) {
+    const i = t.changedTouches[0], o = this.touchStartPos;
+    this.touchStartPos = null, !(!i || !o || Math.hypot(i.clientX - o.x, i.clientY - o.y) > Ae) && (t.preventDefault(), this.selectAt(i.clientX, i.clientY));
+  }
+  /** Select the element under (x, y) and tear down targeting.
+   *  Shared by the mouse (click) and touch (touchend) targeting paths. */
+  selectAt(t, i) {
+    const o = [this.shadowHost, this.overlayShadowHost].filter(Boolean), n = K(t, i, o);
+    if (!n || M(n))
       return;
-    const n = X(o, 8);
+    const s = j(n, 8);
     this.selectedBounds = {
-      ...n,
-      clickX: t.clientX,
-      clickY: t.clientY,
+      ...s,
+      clickX: t,
+      clickY: i,
       visible: !0
     };
-    const { selector: s, text: a } = I(o);
-    this.feedbackData.elementSelector = s, this.feedbackData.elementText = a, this.removeTargetingOverlay(), document.removeEventListener("mousemove", this.boundMouseMove), document.removeEventListener("click", this.boundClick, !0), document.removeEventListener("keydown", this.boundKeyDown), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.state = "SELECTED", this.clearActiveThumb(), this.showSelectedMarker(), this.submitFeedback();
+    const { selector: a, text: d } = D(n);
+    this.feedbackData.elementSelector = a, this.feedbackData.elementText = d, this.stopTargetingListeners(), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.state = "SELECTED", this.clearActiveThumb(), this.showSelectedMarker(), this.submitFeedback();
+  }
+  /** Remove the targeting overlay and every mouse/touch/keyboard listener the
+   *  pointer-targeting flow attaches to the document. */
+  stopTargetingListeners() {
+    this.removeTargetingOverlay(), this.touchStartPos = null, document.removeEventListener("mousemove", this.boundMouseMove), document.removeEventListener("click", this.boundClick, !0), document.removeEventListener("touchstart", this.boundTouchStart), document.removeEventListener("touchend", this.boundTouchEnd), document.removeEventListener("keydown", this.boundKeyDown);
   }
   cancelTargeting() {
-    this.keyboardController?.stop(), this.keyboardController = null, this.removeTargetingOverlay(), document.removeEventListener("mousemove", this.boundMouseMove), document.removeEventListener("click", this.boundClick, !0), document.removeEventListener("keydown", this.boundKeyDown), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.clearActiveThumb(), this.state = "IDLE", this.feedbackData.feedbackType = null, this.feedbackData.elementSelector = null, this.feedbackData.elementText = null, this.selectedBounds.visible = !1;
+    this.keyboardController?.stop(), this.keyboardController = null, this.stopTargetingListeners(), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.clearActiveThumb(), this.state = "IDLE", this.feedbackData.feedbackType = null, this.feedbackData.elementSelector = null, this.feedbackData.elementText = null, this.selectedBounds.visible = !1;
   }
   removeTargetingOverlay() {
     this.overlayContainer && (this.overlayContainer.remove(), this.overlayContainer = null), this.captureLayer = null, this.crosshairH = null, this.crosshairV = null, this.scope = null;
@@ -1156,7 +1251,7 @@ class Ee {
   }
   async submitFeedback() {
     let t = null;
-    this.config.captureScreenshot && (this.config.screenshotMethod === "dom" ? t = await ge(this.config.screenshotOptions) : t = await pe(this.config.screenshotOptions), t && this.announceMsg("Screenshot captured"));
+    this.config.captureScreenshot && (this.config.screenshotMethod === "dom" ? t = await Ce(this.config.screenshotOptions) : t = await we(this.config.screenshotOptions), t && this.announceMsg("Screenshot captured"));
     const i = this.feedbackData.elementSelector ? {
       x: this.selectedBounds.x,
       y: this.selectedBounds.y,
@@ -1220,7 +1315,7 @@ class Ee {
     const o = this.questIdFor(t);
     if (!o) return !1;
     try {
-      return this.activeQuest?.destroy(), this.activeQuest = await qe({
+      return this.activeQuest?.destroy(), this.activeQuest = await Ie({
         questId: o,
         base: this.config.quests.base,
         apiKey: this.config.quests.apiKey || void 0,
@@ -1275,7 +1370,7 @@ class Ee {
     s.className = "qaid-modal-box", s.innerHTML = this.getModalContent(), this.modalContainer.appendChild(n), this.modalContainer.appendChild(s), this.applyVars(this.modalContainer), t.appendChild(this.modalContainer), this.setupModalInteractions();
   }
   getModalContent() {
-    const t = this.feedbackData.feedbackType === "up", i = this.config.positiveIcon || T, o = this.config.negativeIcon || L;
+    const t = this.feedbackData.feedbackType === "up", i = this.config.positiveIcon || I, o = this.config.negativeIcon || A;
     return `
       <div class="qaid-modal-header">
         <button type="button" class="${this.config.buttonClass ? `qaid-type-toggle qaid-type-toggle-custom ${this.config.buttonClass} ${t ? "qaid-btn-up" : "qaid-btn-down"}` : `qaid-type-toggle ${t ? "qaid-type-up" : "qaid-type-down"}`}" title="Click to switch" aria-pressed="${t}" aria-label="${t ? "Feedback type: positive" : "Feedback type: negative"}">
@@ -1308,14 +1403,14 @@ class Ee {
     o && o.addEventListener("click", () => {
       const n = this.feedbackData.feedbackType === "up" ? "down" : "up";
       this.feedbackData.feedbackType = n, this.config.buttonClass ? (o.classList.toggle("qaid-btn-up", n === "up"), o.classList.toggle("qaid-btn-down", n === "down")) : (o.classList.toggle("qaid-type-up", n === "up"), o.classList.toggle("qaid-type-down", n === "down"));
-      const s = this.config.positiveIcon || T, a = this.config.negativeIcon || L;
+      const s = this.config.positiveIcon || I, a = this.config.negativeIcon || A;
       o.innerHTML = n === "up" ? s : a;
-      const l = n === "up" ? "Feedback type: positive" : "Feedback type: negative";
-      o.setAttribute("aria-pressed", String(n === "up")), o.setAttribute("aria-label", l), this.announceMsg(l), this.feedbackId && fetch(`${this.config.endpoint}/${this.feedbackId}`, {
+      const d = n === "up" ? "Feedback type: positive" : "Feedback type: negative";
+      o.setAttribute("aria-pressed", String(n === "up")), o.setAttribute("aria-label", d), this.announceMsg(d), this.feedbackId && fetch(`${this.config.endpoint}/${this.feedbackId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ feedbackType: n })
-      }).catch((c) => console.error("Failed to update feedback type:", c));
+      }).catch((l) => console.error("Failed to update feedback type:", l));
     });
   }
   async submitMessage(t) {
@@ -1344,7 +1439,7 @@ class Ee {
   async startRecording() {
     if (!(this.isRecording || this.state !== "IDLE"))
       try {
-        this.networkCapture = de(), this.videoRecorder = he({
+        this.networkCapture = de(), this.videoRecorder = ve({
           maxDuration: this.config.videoOptions.maxDuration
         }), this.videoRecorder.onTick((t) => {
           this.updateRecordingTimer(t);
@@ -1399,19 +1494,19 @@ class Ee {
     s.src = i, s.controls = !0, s.autoplay = !0, s.muted = !0;
     const a = document.createElement("textarea");
     a.placeholder = "Optional: Describe the issue you recorded...", a.setAttribute("aria-label", "Describe the issue you recorded");
-    const l = document.createElement("div");
-    l.className = "qaid-video-preview-actions";
-    const c = document.createElement("button");
-    c.type = "button", c.className = "qaid-video-btn qaid-video-btn-cancel", c.textContent = "Cancel", c.addEventListener("click", () => this.cancelRecordingPreview());
+    const d = document.createElement("div");
+    d.className = "qaid-video-preview-actions";
+    const l = document.createElement("button");
+    l.type = "button", l.className = "qaid-video-btn qaid-video-btn-cancel", l.textContent = "Cancel", l.addEventListener("click", () => this.cancelRecordingPreview());
     const r = document.createElement("button");
     r.type = "button", r.className = "qaid-video-btn qaid-video-btn-rerecord", r.textContent = "Re-record", r.addEventListener("click", () => {
       this.cancelRecordingPreview(), this.startRecording();
     });
-    const d = document.createElement("button");
-    d.type = "button", d.className = "qaid-video-btn qaid-video-btn-send", d.textContent = "Send", d.addEventListener("click", () => {
+    const c = document.createElement("button");
+    c.type = "button", c.className = "qaid-video-btn qaid-video-btn-send", c.textContent = "Send", c.addEventListener("click", () => {
       const p = a.value.trim() || null;
-      this.submitVideoFeedback(p, d);
-    }), l.appendChild(c), l.appendChild(r), l.appendChild(d), o.appendChild(n), o.appendChild(s), o.appendChild(a), o.appendChild(l), this.videoPreview.appendChild(o), this.applyVars(this.videoPreview), this.overlayShadowHost && (this.overlayShadowHost.style.pointerEvents = "auto"), t.appendChild(this.videoPreview), this.openDialogA11y(o, { labelledbyId: n.id }), document.addEventListener("keydown", this.boundKeyDown);
+      this.submitVideoFeedback(p, c);
+    }), d.appendChild(l), d.appendChild(r), d.appendChild(c), o.appendChild(n), o.appendChild(s), o.appendChild(a), o.appendChild(d), this.videoPreview.appendChild(o), this.applyVars(this.videoPreview), this.overlayShadowHost && (this.overlayShadowHost.style.pointerEvents = "auto"), t.appendChild(this.videoPreview), this.openDialogA11y(o, { labelledbyId: n.id }), document.addEventListener("keydown", this.boundKeyDown);
   }
   cancelRecordingPreview() {
     this.removeVideoPreview(), this.cleanupRecording();
@@ -1460,13 +1555,13 @@ class Ee {
    * Destroy the embed and clean up all resources
    */
   destroy() {
-    this.destroyed = !0, this.domObserver && (this.domObserver.disconnect(), this.domObserver = null), this.boundBeforeSwap && (document.removeEventListener("astro:before-swap", this.boundBeforeSwap), this.boundBeforeSwap = null), this.keyboardController?.stop(), this.keyboardController = null, this.clearActiveThumb(), this.closeDialogA11y(), this.cleanupRecording(), this.removeVideoPreview(), this.activeQuest?.destroy(), this.activeQuest = null, this.consoleCapture && (this.consoleCapture.restore(), this.consoleCapture = null), window.removeEventListener("resize", this.boundResize), document.removeEventListener("keydown", this.boundKeyDown), document.removeEventListener("mousemove", this.boundMouseMove), document.removeEventListener("click", this.boundClick, !0), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.shadowHost && (this.shadowHost.remove(), this.shadowHost = null, this.shadowRoot = null), this.overlayShadowHost && (this.overlayShadowHost.remove(), this.overlayShadowHost = null, this.overlayShadowRoot = null), this.buttonsContainer = null, this.overlayContainer = null, this.captureLayer = null, this.crosshairH = null, this.crosshairV = null, this.scope = null, this.marker = null, this.modalContainer = null, this.backdrop = null, this.dismissBtn = null, this.tooltipElement = null, Lt();
+    this.destroyed = !0, this.domObserver && (this.domObserver.disconnect(), this.domObserver = null), this.boundBeforeSwap && (document.removeEventListener("astro:before-swap", this.boundBeforeSwap), this.boundBeforeSwap = null), this.keyboardController?.stop(), this.keyboardController = null, this.clearActiveThumb(), this.closeDialogA11y(), this.cleanupRecording(), this.removeVideoPreview(), this.activeQuest?.destroy(), this.activeQuest = null, this.consoleCapture && (this.consoleCapture.restore(), this.consoleCapture = null), window.removeEventListener("resize", this.boundResize), document.removeEventListener("keydown", this.boundKeyDown), document.removeEventListener("mousemove", this.boundMouseMove), document.removeEventListener("click", this.boundClick, !0), document.removeEventListener("touchstart", this.boundTouchStart), document.removeEventListener("touchend", this.boundTouchEnd), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.shadowHost && (this.shadowHost.remove(), this.shadowHost = null, this.shadowRoot = null), this.overlayShadowHost && (this.overlayShadowHost.remove(), this.overlayShadowHost = null, this.overlayShadowRoot = null), this.buttonsContainer = null, this.overlayContainer = null, this.captureLayer = null, this.crosshairH = null, this.crosshairV = null, this.scope = null, this.marker = null, this.modalContainer = null, this.backdrop = null, this.dismissBtn = null, this.tooltipElement = null, Lt();
   }
 }
 function et(e) {
   return document.querySelector(e)?.textContent?.trim() ?? "";
 }
-function Se() {
+function He() {
   const e = document.querySelector(
     'script[type="application/json"][data-feedback-config]'
   );
@@ -1480,60 +1575,60 @@ function Se() {
     return null;
   }
 }
-function Te(e) {
+function Be(e) {
   const t = e.getAttribute("data-endpoint");
   if (!t) return null;
-  const i = e.getAttribute("data-position"), o = e.getAttribute("data-zindex"), n = e.getAttribute("data-positive-color"), s = e.getAttribute("data-negative-color"), a = e.getAttribute("data-marker-color"), l = e.getAttribute("data-container"), c = e.getAttribute("data-button-class"), r = e.getAttribute("data-skip-targeting"), d = e.getAttribute("data-incognito"), p = e.getAttribute("data-button-size"), u = e.getAttribute("data-offset-x"), m = e.getAttribute("data-offset-y"), g = e.getAttribute("data-modal-width"), b = e.getAttribute("data-backdrop-opacity"), f = e.getAttribute("data-font-family"), v = e.getAttribute("data-font-size"), h = e.getAttribute("data-tooltip"), y = e.getAttribute("data-modal-title"), R = e.getAttribute("data-modal-subtitle"), H = e.getAttribute("data-placeholder"), B = e.getAttribute("data-submit-button"), z = e.getAttribute("data-skip-button"), it = e.getAttribute("data-positive-icon"), ot = e.getAttribute("data-negative-icon"), nt = e.getAttribute("data-api-key"), st = e.getAttribute("data-capture-screenshot"), C = e.getAttribute("data-screenshot-quality"), E = e.getAttribute("data-screenshot-max-width"), S = e.getAttribute("data-screenshot-max-height"), at = e.getAttribute("data-capture-video"), rt = e.getAttribute("data-hide-thumbs"), dt = e.getAttribute("data-hide-dismiss"), P = e.getAttribute("data-video-max-duration"), lt = e.getAttribute("data-screenshot-method"), ct = e.getAttribute("data-direction"), $ = e.getAttribute("data-css-selector"), O = e.getAttribute("data-quest-base"), ht = e.getAttribute("data-quest-up"), ut = e.getAttribute("data-quest-down"), pt = e.getAttribute("data-quest-video"), mt = e.getAttribute("data-quest-api-key"), ft = e.getAttribute("data-quest-module-url");
+  const i = e.getAttribute("data-position"), o = e.getAttribute("data-zindex"), n = e.getAttribute("data-positive-color"), s = e.getAttribute("data-negative-color"), a = e.getAttribute("data-marker-color"), d = e.getAttribute("data-container"), l = e.getAttribute("data-button-class"), r = e.getAttribute("data-skip-targeting"), c = e.getAttribute("data-incognito"), p = e.getAttribute("data-button-size"), u = e.getAttribute("data-offset-x"), m = e.getAttribute("data-offset-y"), b = e.getAttribute("data-modal-width"), v = e.getAttribute("data-backdrop-opacity"), y = e.getAttribute("data-font-family"), f = e.getAttribute("data-font-size"), h = e.getAttribute("data-tooltip"), w = e.getAttribute("data-modal-title"), g = e.getAttribute("data-modal-subtitle"), C = e.getAttribute("data-placeholder"), B = e.getAttribute("data-submit-button"), P = e.getAttribute("data-skip-button"), it = e.getAttribute("data-positive-icon"), ot = e.getAttribute("data-negative-icon"), nt = e.getAttribute("data-api-key"), st = e.getAttribute("data-capture-screenshot"), E = e.getAttribute("data-screenshot-quality"), T = e.getAttribute("data-screenshot-max-width"), L = e.getAttribute("data-screenshot-max-height"), at = e.getAttribute("data-capture-video"), rt = e.getAttribute("data-hide-thumbs"), dt = e.getAttribute("data-hide-dismiss"), z = e.getAttribute("data-video-max-duration"), ct = e.getAttribute("data-screenshot-method"), lt = e.getAttribute("data-direction"), O = e.getAttribute("data-css-selector"), $ = e.getAttribute("data-quest-base"), ht = e.getAttribute("data-quest-up"), ut = e.getAttribute("data-quest-down"), pt = e.getAttribute("data-quest-video"), mt = e.getAttribute("data-quest-api-key"), ft = e.getAttribute("data-quest-module-url");
   return {
     endpoint: t,
-    css: $ ? et($) : void 0,
+    css: O ? et(O) : void 0,
     apiKey: nt ?? void 0,
     captureScreenshot: st === "true" ? !0 : void 0,
-    screenshotOptions: C || E || S ? {
-      quality: C ? parseFloat(C) : void 0,
-      maxWidth: E ? parseInt(E, 10) : void 0,
-      maxHeight: S ? parseInt(S, 10) : void 0
+    screenshotOptions: E || T || L ? {
+      quality: E ? parseFloat(E) : void 0,
+      maxWidth: T ? parseInt(T, 10) : void 0,
+      maxHeight: L ? parseInt(L, 10) : void 0
     } : void 0,
-    container: l ?? void 0,
-    buttonClass: c ?? void 0,
-    direction: ct ?? void 0,
+    container: d ?? void 0,
+    buttonClass: l ?? void 0,
+    direction: lt ?? void 0,
     position: i ?? void 0,
     zIndex: o ? parseInt(o, 10) : void 0,
     skipTargeting: r === "true" ? !0 : void 0,
-    incognito: d === "true" ? !0 : void 0,
+    incognito: c === "true" ? !0 : void 0,
     buttonSize: p ?? void 0,
     offset: u || m ? {
       x: u ? parseInt(u, 10) : void 0,
       y: m ? parseInt(m, 10) : void 0
     } : void 0,
-    modalWidth: g ? parseInt(g, 10) : void 0,
-    backdropOpacity: b ? parseFloat(b) : void 0,
-    fontFamily: f ?? void 0,
-    fontSize: v ? parseInt(v, 10) : void 0,
+    modalWidth: b ? parseInt(b, 10) : void 0,
+    backdropOpacity: v ? parseFloat(v) : void 0,
+    fontFamily: y ?? void 0,
+    fontSize: f ? parseInt(f, 10) : void 0,
     colors: {
       positive: n ?? void 0,
       negative: s ?? void 0,
       marker: a ?? void 0
     },
-    text: h || y || R || H || B || z ? {
+    text: h || w || g || C || B || P ? {
       tooltip: h ?? void 0,
-      modalTitle: y ?? void 0,
-      modalSubtitle: R ?? void 0,
-      placeholder: H ?? void 0,
+      modalTitle: w ?? void 0,
+      modalSubtitle: g ?? void 0,
+      placeholder: C ?? void 0,
       submitButton: B ?? void 0,
-      skipButton: z ?? void 0
+      skipButton: P ?? void 0
     } : void 0,
     positiveIcon: it ?? void 0,
     negativeIcon: ot ?? void 0,
-    screenshotMethod: lt ?? void 0,
+    screenshotMethod: ct ?? void 0,
     captureVideo: at === "true" ? !0 : void 0,
     hideThumbs: rt === "true" ? !0 : void 0,
     hideDismiss: dt === "true" ? !0 : void 0,
-    videoOptions: P ? {
-      maxDuration: parseInt(P, 10)
+    videoOptions: z ? {
+      maxDuration: parseInt(z, 10)
     } : void 0,
-    quests: O ? {
-      base: O,
+    quests: $ ? {
+      base: $,
       up: ht ?? void 0,
       down: ut ?? void 0,
       video: pt ?? void 0,
@@ -1544,18 +1639,18 @@ function Te(e) {
 }
 if (typeof document < "u") {
   const e = () => {
-    const t = document.currentScript, i = Se(), o = t ? Te(t) : null, n = i ?? o;
-    n?.endpoint && new Ee(n);
+    const t = document.currentScript, i = He(), o = t ? Be(t) : null, n = i ?? o;
+    n?.endpoint && new Re(n);
   };
   document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", e) : e();
 }
 export {
-  Ee as QaidFeedback,
-  ge as captureDomScreenshot,
+  Re as QaidFeedback,
+  Ce as captureDomScreenshot,
   de as captureNetworkErrors,
-  he as createVideoRecorder,
-  ce as getSupportedMimeType,
-  Le as isDomScreenshotSupported,
-  le as isVideoRecordingSupported
+  ve as createVideoRecorder,
+  ge as getSupportedMimeType,
+  Pe as isDomScreenshotSupported,
+  be as isVideoRecordingSupported
 };
 //# sourceMappingURL=qaid.js.map

@@ -48,6 +48,10 @@ import {
 const VISITOR_ID_KEY = "qaid_visitor_id";
 const HIDE_FEEDBACK_KEY = "qaid_hide_feedback";
 
+// Max finger travel (px) for a touch to still count as a tap (vs a scroll)
+// when selecting a target element.
+const TOUCH_TAP_SLOP = 12;
+
 function getHideKey(apiKey?: string): string {
   return apiKey ? `${HIDE_FEEDBACK_KEY}_${apiKey}` : HIDE_FEEDBACK_KEY;
 }
@@ -173,6 +177,13 @@ export class QaidFeedback {
   private boundKeyDown: (e: KeyboardEvent) => void;
   private boundMouseMove: (e: MouseEvent) => void;
   private boundClick: (e: MouseEvent) => void;
+  // Touch equivalents for targeting. iOS/iPadOS does not synthesise `click`
+  // (or `mousemove`) for taps on non-interactive page elements, so targeting
+  // must be driven by touch events there.
+  private boundTouchStart: (e: TouchEvent) => void;
+  private boundTouchEnd: (e: TouchEvent) => void;
+  // Where the current targeting touch began, to tell a tap from a scroll.
+  private touchStartPos: { x: number; y: number } | null = null;
   private boundResize: () => void;
 
   // Start with buttons slid off-screen (localStorage dismiss, no animation)
@@ -252,6 +263,8 @@ export class QaidFeedback {
     this.boundKeyDown = this.handleKeyDown.bind(this);
     this.boundMouseMove = this.handleMouseMove.bind(this);
     this.boundClick = this.handleClick.bind(this);
+    this.boundTouchStart = this.handleTouchStart.bind(this);
+    this.boundTouchEnd = this.handleTouchEnd.bind(this);
     this.boundResize = this.handleResize.bind(this);
 
     // Get or create visitor ID for anonymous feedback tracking
@@ -712,6 +725,12 @@ export class QaidFeedback {
     document.addEventListener("keydown", this.boundKeyDown);
     document.addEventListener("mousemove", this.boundMouseMove);
     document.addEventListener("click", this.boundClick, true);
+    // Touch: tap to select (scrolling stays enabled). touchstart is passive
+    // (we only read the point); touchend is non-passive so a tap can
+    // preventDefault the synthesised click that would otherwise activate the
+    // targeted element.
+    document.addEventListener("touchstart", this.boundTouchStart, { passive: true });
+    document.addEventListener("touchend", this.boundTouchEnd, { passive: false });
   }
 
   /**
@@ -848,29 +867,31 @@ export class QaidFeedback {
   }
 
   private handleMouseMove(e: MouseEvent): void {
-    this.mousePos.x = e.clientX;
-    this.mousePos.y = e.clientY;
+    this.updateReticleAt(e.clientX, e.clientY);
+  }
+
+  /** Move the crosshair/scope reticle and highlight the element under (x, y).
+   *  Shared by the mouse (hover) and touch (drag) targeting paths. */
+  private updateReticleAt(x: number, y: number): void {
+    this.mousePos.x = x;
+    this.mousePos.y = y;
 
     // Update crosshairs and scope
     if (this.crosshairH) {
-      this.crosshairH.style.top = `${e.clientY}px`;
+      this.crosshairH.style.top = `${y}px`;
     }
     if (this.crosshairV) {
-      this.crosshairV.style.left = `${e.clientX}px`;
+      this.crosshairV.style.left = `${x}px`;
     }
     if (this.scope) {
-      this.scope.style.left = `${e.clientX}px`;
-      this.scope.style.top = `${e.clientY}px`;
+      this.scope.style.left = `${x}px`;
+      this.scope.style.top = `${y}px`;
     }
 
     // Find element underneath — hide both shadow hosts
     if (this.captureLayer && this.shadowHost) {
       const hosts = [this.shadowHost, this.overlayShadowHost].filter(Boolean) as HTMLElement[];
-      const elementUnder = getElementAtPointUnderOverlay(
-        e.clientX,
-        e.clientY,
-        hosts
-      );
+      const elementUnder = getElementAtPointUnderOverlay(x, y, hosts);
 
       if (elementUnder && !isEmbedElement(elementUnder)) {
         if (this.highlightBox) {
@@ -891,14 +912,42 @@ export class QaidFeedback {
   private handleClick(e: MouseEvent): void {
     e.preventDefault();
     e.stopPropagation();
+    this.selectAt(e.clientX, e.clientY);
+  }
 
+  // ---- Touch targeting (iOS/iPadOS) ----
+  // iOS/iPadOS taps on non-interactive elements don't fire click, so touch
+  // drives targeting here. Scrolling stays enabled (the page may need to scroll
+  // to bring the target into view); a low-movement touch is treated as a tap
+  // that selects, distinguishing it from a scroll/drag.
+
+  private handleTouchStart(e: TouchEvent): void {
+    const t = e.touches[0];
+    if (!t) return;
+    this.touchStartPos = { x: t.clientX, y: t.clientY };
+    // Preview what's under the finger; don't preventDefault so scrolling works.
+    this.updateReticleAt(t.clientX, t.clientY);
+  }
+
+  private handleTouchEnd(e: TouchEvent): void {
+    // touches is empty on touchend; the lifted point is in changedTouches.
+    const t = e.changedTouches[0];
+    const start = this.touchStartPos;
+    this.touchStartPos = null;
+    if (!t || !start) return;
+    // A drag beyond the slop threshold is a scroll, not a selection — ignore it.
+    const moved = Math.hypot(t.clientX - start.x, t.clientY - start.y);
+    if (moved > TOUCH_TAP_SLOP) return;
+    e.preventDefault(); // suppress the tap's synthesised click
+    this.selectAt(t.clientX, t.clientY);
+  }
+
+  /** Select the element under (x, y) and tear down targeting.
+   *  Shared by the mouse (click) and touch (touchend) targeting paths. */
+  private selectAt(x: number, y: number): void {
     // Find element underneath — hide both shadow hosts
     const hosts = [this.shadowHost, this.overlayShadowHost].filter(Boolean) as HTMLElement[];
-    const target = getElementAtPointUnderOverlay(
-      e.clientX,
-      e.clientY,
-      hosts
-    );
+    const target = getElementAtPointUnderOverlay(x, y, hosts);
 
     if (!target || isEmbedElement(target)) {
       return;
@@ -908,8 +957,8 @@ export class QaidFeedback {
     const bounds = getElementBounds(target, 8);
     this.selectedBounds = {
       ...bounds,
-      clickX: e.clientX,
-      clickY: e.clientY,
+      clickX: x,
+      clickY: y,
       visible: true,
     };
 
@@ -918,10 +967,7 @@ export class QaidFeedback {
     this.feedbackData.elementText = text;
 
     // Remove targeting overlay and document listeners
-    this.removeTargetingOverlay();
-    document.removeEventListener("mousemove", this.boundMouseMove);
-    document.removeEventListener("click", this.boundClick, true);
-    document.removeEventListener("keydown", this.boundKeyDown);
+    this.stopTargetingListeners();
     document.body.classList.remove("qaid-targeting", "qaid-type-up");
     document.body.style.removeProperty("--qaid-positive");
     document.body.style.removeProperty("--qaid-negative");
@@ -934,13 +980,22 @@ export class QaidFeedback {
     this.submitFeedback();
   }
 
+  /** Remove the targeting overlay and every mouse/touch/keyboard listener the
+   *  pointer-targeting flow attaches to the document. */
+  private stopTargetingListeners(): void {
+    this.removeTargetingOverlay();
+    this.touchStartPos = null;
+    document.removeEventListener("mousemove", this.boundMouseMove);
+    document.removeEventListener("click", this.boundClick, true);
+    document.removeEventListener("touchstart", this.boundTouchStart);
+    document.removeEventListener("touchend", this.boundTouchEnd);
+    document.removeEventListener("keydown", this.boundKeyDown);
+  }
+
   private cancelTargeting(): void {
     this.keyboardController?.stop();
     this.keyboardController = null;
-    this.removeTargetingOverlay();
-    document.removeEventListener("mousemove", this.boundMouseMove);
-    document.removeEventListener("click", this.boundClick, true);
-    document.removeEventListener("keydown", this.boundKeyDown);
+    this.stopTargetingListeners();
     document.body.classList.remove("qaid-targeting", "qaid-type-up");
     document.body.style.removeProperty("--qaid-positive");
     document.body.style.removeProperty("--qaid-negative");
@@ -1721,6 +1776,8 @@ export class QaidFeedback {
     document.removeEventListener("keydown", this.boundKeyDown);
     document.removeEventListener("mousemove", this.boundMouseMove);
     document.removeEventListener("click", this.boundClick, true);
+    document.removeEventListener("touchstart", this.boundTouchStart);
+    document.removeEventListener("touchend", this.boundTouchEnd);
 
     document.body.classList.remove("qaid-targeting", "qaid-type-up");
     document.body.style.removeProperty("--qaid-positive");
