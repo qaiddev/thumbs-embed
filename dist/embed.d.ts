@@ -14,6 +14,7 @@ export declare class QaidFeedback {
     private feedbackData;
     private selectedBounds;
     private feedbackId;
+    private activeQuest;
     private mousePos;
     private isMobile;
     private visitorId;
@@ -120,6 +121,25 @@ export declare class QaidFeedback {
     private showSelectedMarker;
     private hideSelectedMarker;
     private submitFeedback;
+    /**
+     * Quest id linked to `type`, or "" when quest launching is disabled
+     * (no `base`) or this button has no quest configured.
+     */
+    private questIdFor;
+    /**
+     * Launch the quest linked to `type`, if any. Resolves `true` when a quest
+     * was configured and the widget launched; `false` when no quest is
+     * configured or the widget failed to load (caller falls back to its
+     * normal UI). The created feedback record id is passed through so the
+     * quest response can be joined back to it server-side.
+     */
+    private tryLaunchQuest;
+    /**
+     * Reset the thumbs targeting/marker UI back to idle without opening or
+     * closing the message modal. Shared by closeModal() and the quest-launch
+     * path (which bypasses the modal entirely).
+     */
+    private resetFeedbackUi;
     private showModal;
     private showBottomSheet;
     private showPositionedModal;

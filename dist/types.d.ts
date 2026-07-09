@@ -99,6 +99,43 @@ export interface FeedbackConfig {
         /** Max height of the screenshot. Default: 800 */
         maxHeight?: number;
     };
+    /**
+     * Link buttons to quests. When a button has a quest id here, clicking it
+     * launches that quest (via `@qaiddev/quests-embed`, lazy-loaded at runtime)
+     * in place of the optional message box. Leave `base` unset to keep the
+     * classic message-box behaviour for every button.
+     */
+    quests?: QuestsLaunchConfig;
+}
+/**
+ * Per-button quest links plus how to reach the quest service.
+ *
+ * The quests widget is loaded on demand from a CDN the first time a quest
+ * is triggered, so this stays a thin link — `thumbs-embed` gains no
+ * questionnaire code and no build-time dependency on the quests package.
+ */
+export interface QuestsLaunchConfig {
+    /**
+     * Base URL of the quest service. **Required to enable quest launching.**
+     * For QAid.dev this is e.g. `"https://qaid.dev/api/quests"`. The embed
+     * derives the quest definition URL (`{base}/{questId}/definition`) and the
+     * response endpoint (`{base}/responses`) from it.
+     */
+    base?: string;
+    /** Quest id launched after a thumbs-up (in place of the message box). */
+    up?: string;
+    /** Quest id launched after a thumbs-down. */
+    down?: string;
+    /** Quest id launched after a video recording is sent. */
+    video?: string;
+    /** API key for the quest service. Defaults to the top-level `apiKey`. */
+    apiKey?: string;
+    /**
+     * ES-module URL to lazy-load `@qaiddev/quests-embed` from at runtime.
+     * Default: the unpkg build pinned to a compatible major. Override to
+     * self-host or to point at a local build during development.
+     */
+    moduleUrl?: string;
 }
 /**
  * Network error captured during the session
@@ -249,4 +286,16 @@ export interface ResolvedFeedbackConfig {
         maxDuration: number;
     };
     recordIcon: string;
+    quests: {
+        /** Quest-service base URL. Empty string when quest launching is disabled. */
+        base: string;
+        /** Quest ids per button. Empty string means "no quest for this button". */
+        up: string;
+        down: string;
+        video: string;
+        /** Resolved quest API key (falls back to the top-level apiKey). */
+        apiKey: string;
+        /** Resolved ES-module URL for lazy-loading the quests widget. */
+        moduleUrl: string;
+    };
 }

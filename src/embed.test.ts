@@ -21,6 +21,7 @@ import {
   getOrCreateVisitorId,
 } from "./embed";
 import { _resetStylesState } from "./styles";
+import { _setQuestsImporter, type LaunchedQuestConfig } from "./quest-launcher";
 
 function getShadowRoot(): ShadowRoot {
   const host = document.querySelector("[data-qaid-embed]");
@@ -3312,6 +3313,195 @@ describe("QaidFeedback", () => {
       expect(inst.recordedBlob).toBeNull();
       // No preview either
       expect(overlayShadow.querySelector(".qaid-video-preview")).toBeNull();
+    });
+  });
+
+  describe("quest launching", () => {
+    let questConfigs: LaunchedQuestConfig[];
+    let fakeInstances: { config: LaunchedQuestConfig; destroyed: boolean }[];
+
+    beforeEach(() => {
+      questConfigs = [];
+      fakeInstances = [];
+      class FakeQuest {
+        config: LaunchedQuestConfig;
+        destroyed = false;
+        constructor(config: LaunchedQuestConfig) {
+          this.config = config;
+          questConfigs.push(config);
+          fakeInstances.push(this);
+        }
+        destroy(): void {
+          this.destroyed = true;
+          this.config.onClose?.();
+        }
+      }
+      _setQuestsImporter(async () => ({ QaidQuests: FakeQuest }));
+    });
+
+    afterEach(() => {
+      _setQuestsImporter(null);
+    });
+
+    function overlayModal(): Element | null {
+      const overlay = document.querySelector("[data-qaid-embed-overlay]");
+      return (
+        overlay?.shadowRoot?.querySelector(
+          ".qaid-modal-container, .qaid-bottom-sheet",
+        ) ?? null
+      );
+    }
+
+    it("launches the linked quest instead of the message box on a thumb click", async () => {
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ id: "fb-1" }),
+      });
+      global.fetch = fetchMock;
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        skipTargeting: true,
+        apiKey: "proj-key",
+        quests: { base: "https://qaid.dev/api/quests", up: "quest-up" },
+      });
+
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-up")!.click();
+
+      await vi.waitFor(() => expect(questConfigs.length).toBe(1));
+
+      // No message-box modal was opened
+      expect(overlayModal()).toBeNull();
+
+      const cfg = questConfigs[0]!;
+      expect(cfg.endpoint).toBe("https://qaid.dev/api/quests/responses");
+      expect(cfg.configUrl).toBe("https://qaid.dev/api/quests/quest-up/definition");
+      expect(cfg.apiKey).toBe("proj-key");
+      expect(cfg.metadata).toEqual({ feedbackId: "fb-1" });
+    });
+
+    it("shows the message box for a button that has no linked quest", async () => {
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ id: "fb-1" }),
+      });
+      global.fetch = fetchMock;
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        skipTargeting: true,
+        // "up" is linked but we click "down", which has no quest
+        quests: { base: "https://qaid.dev/api/quests", up: "quest-up" },
+      });
+
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-down")!.click();
+
+      await vi.waitFor(() => expect(overlayModal()).not.toBeNull());
+      expect(questConfigs.length).toBe(0);
+    });
+
+    it("falls back to the message box when the quest module fails to load", async () => {
+      _setQuestsImporter(async () => {
+        throw new Error("cdn down");
+      });
+      const errSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ id: "fb-1" }),
+      });
+      global.fetch = fetchMock;
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        skipTargeting: true,
+        quests: { base: "https://qaid.dev/api/quests", up: "quest-up" },
+      });
+
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-up")!.click();
+
+      await vi.waitFor(() => expect(overlayModal()).not.toBeNull());
+      expect(questConfigs.length).toBe(0);
+      errSpy.mockRestore();
+    });
+
+    it("does not launch quests at all when no base is configured", async () => {
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ id: "fb-1" }),
+      });
+      global.fetch = fetchMock;
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        skipTargeting: true,
+        // ids present but no base → feature disabled
+        quests: { up: "quest-up", down: "quest-down" },
+      });
+
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-up")!.click();
+
+      await vi.waitFor(() => expect(overlayModal()).not.toBeNull());
+      expect(questConfigs.length).toBe(0);
+    });
+
+    it("launches the video quest after the recording is sent, linked to the video feedback id", async () => {
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: true,
+        text: () => Promise.resolve("OK"),
+        json: () => Promise.resolve({ id: "vid-7" }),
+      });
+      global.fetch = fetchMock;
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        captureVideo: true,
+        quests: { base: "https://qaid.dev/api/quests", video: "quest-vid" },
+      });
+
+      // Drive submitVideoFeedback directly with a recorded blob, avoiding the
+      // full MediaRecorder harness.
+      const inst = embed as unknown as {
+        recordedBlob: Blob | null;
+        submitVideoFeedback: (
+          message: string | null,
+          sendBtn: HTMLButtonElement,
+        ) => Promise<void>;
+      };
+      inst.recordedBlob = new Blob(["x"], { type: "video/webm" });
+      await inst.submitVideoFeedback(null, document.createElement("button"));
+
+      await vi.waitFor(() => expect(questConfigs.length).toBe(1));
+
+      // The video POST happened before the quest launched.
+      const videoPosted = fetchMock.mock.calls.some(
+        (c: unknown[]) =>
+          typeof c[0] === "string" && (c[0] as string).endsWith("/video"),
+      );
+      expect(videoPosted).toBe(true);
+
+      const cfg = questConfigs[0]!;
+      expect(cfg.configUrl).toBe("https://qaid.dev/api/quests/quest-vid/definition");
+      expect(cfg.metadata).toEqual({ feedbackId: "vid-7" });
+    });
+
+    it("tears down an active quest on destroy()", async () => {
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ id: "fb-1" }),
+      });
+      global.fetch = fetchMock;
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        skipTargeting: true,
+        quests: { base: "https://qaid.dev/api/quests", up: "quest-up" },
+      });
+
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-up")!.click();
+      await vi.waitFor(() => expect(fakeInstances.length).toBe(1));
+
+      embed.destroy();
+      expect(fakeInstances[0]!.destroyed).toBe(true);
     });
   });
 });

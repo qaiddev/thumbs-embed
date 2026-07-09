@@ -39,6 +39,11 @@ import {
 } from "./dom-utils";
 import { captureScreenshot } from "./screenshot";
 import { captureDomScreenshot } from "./screenshot-dom";
+import {
+  launchQuest,
+  DEFAULT_QUESTS_MODULE_URL,
+  type QuestInstance,
+} from "./quest-launcher";
 
 const VISITOR_ID_KEY = "qaid_visitor_id";
 const HIDE_FEEDBACK_KEY = "qaid_hide_feedback";
@@ -106,6 +111,8 @@ export class QaidFeedback {
     visible: false,
   };
   private feedbackId: number | null = null;
+  // A quest launched from a button (in place of the message box), if any.
+  private activeQuest: QuestInstance | null = null;
   private mousePos = { x: 0, y: 0 };
   private isMobile = false;
   private visitorId: string;
@@ -230,6 +237,15 @@ export class QaidFeedback {
         maxDuration: config.videoOptions?.maxDuration ?? 15,
       },
       recordIcon: config.recordIcon ?? "",
+      quests: {
+        base: config.quests?.base ?? "",
+        up: config.quests?.up ?? "",
+        down: config.quests?.down ?? "",
+        video: config.quests?.video ?? "",
+        // Quest service reuses the feedback API key unless overridden.
+        apiKey: config.quests?.apiKey ?? config.apiKey ?? "",
+        moduleUrl: config.quests?.moduleUrl ?? DEFAULT_QUESTS_MODULE_URL,
+      },
     };
 
     // Bind event handlers
@@ -1030,6 +1046,17 @@ export class QaidFeedback {
       this.announceMsg("Failed to send feedback", true);
     }
 
+    // If this button is linked to a quest, launch it in place of the
+    // message box. The feedback record already exists, so on success we
+    // just tear down the targeting UI and hand off. On any load failure we
+    // fall through to the classic message box so the user can still leave
+    // an optional message.
+    const type = this.feedbackData.feedbackType;
+    if (type && (await this.tryLaunchQuest(type, this.feedbackId))) {
+      this.resetFeedbackUi();
+      return;
+    }
+
     // Always show modal (even if API failed - useful for demos)
     this.state = "MODAL_OPEN";
 
@@ -1039,6 +1066,66 @@ export class QaidFeedback {
     if (this.overlayShadowHost) {
       this.overlayShadowHost.style.pointerEvents = "auto";
     }
+  }
+
+  /**
+   * Quest id linked to `type`, or "" when quest launching is disabled
+   * (no `base`) or this button has no quest configured.
+   */
+  private questIdFor(type: "up" | "down" | "video"): string {
+    const q = this.config.quests;
+    return q.base ? q[type] || "" : "";
+  }
+
+  /**
+   * Launch the quest linked to `type`, if any. Resolves `true` when a quest
+   * was configured and the widget launched; `false` when no quest is
+   * configured or the widget failed to load (caller falls back to its
+   * normal UI). The created feedback record id is passed through so the
+   * quest response can be joined back to it server-side.
+   */
+  private async tryLaunchQuest(
+    type: "up" | "down" | "video",
+    feedbackId: number | string | null,
+  ): Promise<boolean> {
+    const questId = this.questIdFor(type);
+    if (!questId) return false;
+    try {
+      this.activeQuest?.destroy();
+      this.activeQuest = await launchQuest({
+        questId,
+        base: this.config.quests.base,
+        apiKey: this.config.quests.apiKey || undefined,
+        moduleUrl: this.config.quests.moduleUrl,
+        feedbackId,
+        onClose: () => {
+          this.activeQuest = null;
+        },
+      });
+      return true;
+    } catch (error) {
+      console.error("Failed to launch quest:", error);
+      this.activeQuest = null;
+      return false;
+    }
+  }
+
+  /**
+   * Reset the thumbs targeting/marker UI back to idle without opening or
+   * closing the message modal. Shared by closeModal() and the quest-launch
+   * path (which bypasses the modal entirely).
+   */
+  private resetFeedbackUi(): void {
+    this.hideSelectedMarker();
+    if (this.overlayShadowHost) {
+      this.overlayShadowHost.style.pointerEvents = "none";
+    }
+    this.state = "IDLE";
+    this.feedbackId = null;
+    this.feedbackData.feedbackType = null;
+    this.feedbackData.elementSelector = null;
+    this.feedbackData.elementText = null;
+    this.selectedBounds.visible = false;
   }
 
   private showModal(): void {
@@ -1254,19 +1341,8 @@ export class QaidFeedback {
     }
 
     document.removeEventListener("keydown", this.boundKeyDown);
-    this.hideSelectedMarker();
 
-    // Reset overlay host pointer events
-    if (this.overlayShadowHost) {
-      this.overlayShadowHost.style.pointerEvents = "none";
-    }
-
-    this.state = "IDLE";
-    this.feedbackId = null;
-    this.feedbackData.feedbackType = null;
-    this.feedbackData.elementSelector = null;
-    this.feedbackData.elementText = null;
-    this.selectedBounds.visible = false;
+    this.resetFeedbackUi();
   }
 
   // ==================== Video Recording ====================
@@ -1527,6 +1603,7 @@ export class QaidFeedback {
       formData.append("networkErrors", JSON.stringify(this.networkCapture.errors));
     }
 
+    let videoFeedbackId: string | number | null = null;
     try {
       const response = await fetch(`${this.config.endpoint}/video`, {
         method: "POST",
@@ -1535,6 +1612,12 @@ export class QaidFeedback {
 
       if (response.ok) {
         this.announceMsg("Recording sent");
+        try {
+          const data = (await response.json()) as { id?: string | number };
+          videoFeedbackId = data?.id ?? null;
+        } catch {
+          // Non-JSON / no id — the quest can still launch, just unlinked.
+        }
       } else {
         console.error("Failed to submit video feedback:", await response.text());
         this.announceMsg("Failed to send recording", true);
@@ -1547,6 +1630,11 @@ export class QaidFeedback {
     this.isSendingVideo = false;
     this.removeVideoPreview();
     this.cleanupRecording();
+
+    // Once the recording is safely sent, launch the linked quest (if any),
+    // passing the new feedback record id so its response is joinable.
+    // tryLaunchQuest is a no-op when no video quest is configured.
+    await this.tryLaunchQuest("video", videoFeedbackId);
   }
 
   private cleanupRecording(): void {
@@ -1617,6 +1705,10 @@ export class QaidFeedback {
     // Clean up video recording
     this.cleanupRecording();
     this.removeVideoPreview();
+
+    // Tear down any quest launched from a button
+    this.activeQuest?.destroy();
+    this.activeQuest = null;
 
     // Restore console.error
     if (this.consoleCapture) {

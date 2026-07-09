@@ -33,6 +33,7 @@ import { QaidFeedback } from "./embed";
 export { QaidFeedback };
 export type {
   FeedbackConfig,
+  QuestsLaunchConfig,
   ResolvedFeedbackConfig,
   ConsoleError,
   NetworkError,
@@ -138,6 +139,12 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
   const screenshotMethod = script.getAttribute("data-screenshot-method") as "dom" | "permission" | null;
   const direction = script.getAttribute("data-direction") as "horizontal" | "vertical" | null;
   const cssSelector = script.getAttribute("data-css-selector");
+  const questBase = script.getAttribute("data-quest-base");
+  const questUp = script.getAttribute("data-quest-up");
+  const questDown = script.getAttribute("data-quest-down");
+  const questVideo = script.getAttribute("data-quest-video");
+  const questApiKey = script.getAttribute("data-quest-api-key");
+  const questModuleUrl = script.getAttribute("data-quest-module-url");
 
   return {
     endpoint,
@@ -186,6 +193,14 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
     hideDismiss: hideDismiss === "true" ? true : undefined,
     videoOptions: videoMaxDuration ? {
       maxDuration: parseInt(videoMaxDuration, 10),
+    } : undefined,
+    quests: questBase ? {
+      base: questBase,
+      up: questUp ?? undefined,
+      down: questDown ?? undefined,
+      video: questVideo ?? undefined,
+      apiKey: questApiKey ?? undefined,
+      moduleUrl: questModuleUrl ?? undefined,
     } : undefined,
   };
 }

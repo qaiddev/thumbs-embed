@@ -173,6 +173,29 @@ new QaidEmbed({
 
 Screenshots use the browser's Screen Capture API. The user will see a permission dialog. If they decline or the API is unavailable, the feedback is still submitted without a screenshot.
 
+### Linking buttons to quests
+
+Instead of the optional message box, a button can open a **quest** — a short questionnaire powered by [`@qaiddev/quests-embed`](https://www.npmjs.com/package/@qaiddev/quests-embed). You can ask one set of questions after a thumbs-up, a different set after a thumbs-down, and another after a video recording is sent. The quest widget is loaded on demand from a CDN the first time it's needed, so the thumbs bundle stays zero-dependency; if it can't load, the classic message box is shown instead.
+
+```typescript
+new QaidEmbed({
+  endpoint: 'https://qaid.dev/api/feedback',
+  apiKey: 'YOUR_API_KEY',
+  captureVideo: true,
+  quests: {
+    // Base URL of the quest service. Required to enable the feature.
+    base: 'https://qaid.dev/api/quests',
+    up: 'QUEST_ID_FOR_THUMBS_UP',     // optional, per button
+    down: 'QUEST_ID_FOR_THUMBS_DOWN',
+    video: 'QUEST_ID_AFTER_VIDEO',
+    // apiKey defaults to the top-level apiKey; override only if different.
+    // moduleUrl overrides where the quests widget is loaded from.
+  },
+});
+```
+
+`base` is the only required field — omit a button's id to keep the normal message box for that button. The embed derives the quest definition URL (`{base}/{questId}/definition`) and the response endpoint (`{base}/responses`) from it, and passes the created feedback record's id to the quest so its answers are joined back to that feedback on the server.
+
 ## Script Tag Data Attributes
 
 When using the script tag method, all config options are available as `data-*` attributes:
@@ -207,6 +230,12 @@ When using the script tag method, all config options are available as `data-*` a
 | `data-skip-button` | `text.skipButton` |
 | `data-positive-icon` | `positiveIcon` |
 | `data-negative-icon` | `negativeIcon` |
+| `data-quest-base` | `quests.base` |
+| `data-quest-up` | `quests.up` |
+| `data-quest-down` | `quests.down` |
+| `data-quest-video` | `quests.video` |
+| `data-quest-api-key` | `quests.apiKey` |
+| `data-quest-module-url` | `quests.moduleUrl` |
 
 ## Custom Button Container
 
