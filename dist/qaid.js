@@ -249,7 +249,7 @@ function Ot(e) {
     stop: b
   };
 }
-const F = "data-qaid-a11y-live", $t = "position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;", Nt = [
+const V = "data-qaid-a11y-live", $t = "position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;", Nt = [
   "a[href]",
   "button",
   "input",
@@ -257,19 +257,19 @@ const F = "data-qaid-a11y-live", $t = "position:absolute;width:1px;height:1px;ma
   "select",
   "[tabindex]"
 ].join(",");
-function Ft(e) {
+function Vt(e) {
   return e.ownerDocument || document;
 }
-function Vt(e, t) {
+function Ft(e, t) {
   const i = t ? "assertive" : "polite", o = e.querySelector(
-    `[${F}="${i}"]`
+    `[${V}="${i}"]`
   );
   if (o) return o;
-  const s = Ft(e).createElement("div");
-  return s.setAttribute(F, i), s.setAttribute("role", t ? "alert" : "status"), s.setAttribute("aria-live", t ? "assertive" : "polite"), s.setAttribute("aria-atomic", "true"), s.style.cssText = $t, e.appendChild(s), s;
+  const s = Vt(e).createElement("div");
+  return s.setAttribute(V, i), s.setAttribute("role", t ? "alert" : "status"), s.setAttribute("aria-live", t ? "assertive" : "polite"), s.setAttribute("aria-atomic", "true"), s.style.cssText = $t, e.appendChild(s), s;
 }
 function Ut(e, t, i = {}) {
-  const o = Vt(e, !!i.assertive);
+  const o = Ft(e, !!i.assertive);
   o.textContent = "", o.textContent = t;
 }
 function _t(e) {
@@ -286,7 +286,7 @@ function Kt(e) {
   }
   return !1;
 }
-function V(e) {
+function F(e) {
   return Array.from(
     e.querySelectorAll(Nt)
   ).filter((i) => !(i.getAttribute("tabindex") === "-1" || i instanceof HTMLInputElement && i.type === "hidden" || i instanceof HTMLAnchorElement && !i.getAttribute("href") || _t(i) || Kt(i)));
@@ -302,7 +302,7 @@ function jt(e) {
   let i = !1;
   const o = (s) => {
     if (s.key !== "Tab") return;
-    const a = V(e);
+    const a = F(e);
     if (a.length === 0) {
       s.preventDefault(), e.focus();
       return;
@@ -311,7 +311,7 @@ function jt(e) {
     s.shiftKey ? (!c || r === d) && (s.preventDefault(), l.focus()) : (!c || r === l) && (s.preventDefault(), d.focus());
   };
   e.addEventListener("keydown", o);
-  const n = V(e);
+  const n = F(e);
   return n.length > 0 ? n[0].focus() : (e.hasAttribute("tabindex") || (e.setAttribute("tabindex", "-1"), i = !0), e.focus()), {
     release() {
       e.removeEventListener("keydown", o), i && (e.removeAttribute("tabindex"), i = !1);
@@ -711,7 +711,7 @@ async function we(e = {}) {
 }
 const X = "https://qaid.dev/lib/html2canvas.min.js", xe = 1e4, qe = 50;
 let x = null;
-function Pe() {
+function ze() {
   if (typeof document > "u" || typeof window > "u")
     return !1;
   const e = document.createElement("canvas");
@@ -797,10 +797,13 @@ async function Ie(e) {
   });
 }
 const W = "qaid_visitor_id", Y = "qaid_hide_feedback", Ae = 12;
+function De() {
+  return typeof window.matchMedia == "function" && window.matchMedia("(pointer: coarse)").matches;
+}
 function H(e) {
   return e ? `${Y}_${e}` : Y;
 }
-function De(e) {
+function Me(e) {
   try {
     return localStorage.getItem(H(e)) === "1";
   } catch {
@@ -813,7 +816,7 @@ function Q(e, t = !0) {
   } catch {
   }
 }
-function Me() {
+function Re() {
   try {
     let e = localStorage.getItem(W);
     return e || (e = crypto.randomUUID(), localStorage.setItem(W, e)), e;
@@ -821,7 +824,7 @@ function Me() {
     return crypto.randomUUID();
   }
 }
-class Re {
+class He {
   config;
   state = "IDLE";
   feedbackData = {
@@ -969,7 +972,7 @@ class Re {
         apiKey: t.quests?.apiKey ?? t.apiKey ?? "",
         moduleUrl: t.quests?.moduleUrl ?? Se
       }
-    }, this.boundKeyDown = this.handleKeyDown.bind(this), this.boundMouseMove = this.handleMouseMove.bind(this), this.boundClick = this.handleClick.bind(this), this.boundTouchStart = this.handleTouchStart.bind(this), this.boundTouchEnd = this.handleTouchEnd.bind(this), this.boundResize = this.handleResize.bind(this), this.visitorId = Me(), this.init();
+    }, this.boundKeyDown = this.handleKeyDown.bind(this), this.boundMouseMove = this.handleMouseMove.bind(this), this.boundClick = this.handleClick.bind(this), this.boundTouchStart = this.handleTouchStart.bind(this), this.boundTouchEnd = this.handleTouchEnd.bind(this), this.boundResize = this.handleResize.bind(this), this.visitorId = Re(), this.init();
   }
   applyVars(t) {
     Et(t, this.cssVars);
@@ -1008,7 +1011,7 @@ class Re {
       backdropOpacity: this.config.backdropOpacity,
       fontFamily: this.config.fontFamily,
       fontSize: this.config.fontSize
-    }), !this.config.hideDismiss && De(this.config.apiKey) && (this._startDismissed = !0), this.checkMobile(), window.addEventListener("resize", this.boundResize), this.createEmbed(), this.consoleCapture = se((t) => {
+    }), !this.config.hideDismiss && Me(this.config.apiKey) && (this._startDismissed = !0), this.checkMobile(), window.addEventListener("resize", this.boundResize), this.createEmbed(), this.consoleCapture = se((t) => {
       this.feedbackData.consoleErrors = this.consoleCapture?.errors ?? [];
     }), this.feedbackData.consoleErrors = this.consoleCapture.errors, this.observeDom();
   }
@@ -1249,9 +1252,15 @@ class Re {
   hideSelectedMarker() {
     this.marker && (this.marker.remove(), this.marker = null);
   }
+  /** Whether to capture the screenshot with the DOM/canvas method (html2canvas)
+   *  instead of the permission-based Screen Capture API. Explicit "dom" wins;
+   *  otherwise DOM is used on touch devices to avoid the getDisplayMedia prompt. */
+  shouldCaptureViaDom() {
+    return this.config.screenshotMethod === "dom" || De();
+  }
   async submitFeedback() {
     let t = null;
-    this.config.captureScreenshot && (this.config.screenshotMethod === "dom" ? t = await Ce(this.config.screenshotOptions) : t = await we(this.config.screenshotOptions), t && this.announceMsg("Screenshot captured"));
+    this.config.captureScreenshot && (t = this.shouldCaptureViaDom() ? await Ce(this.config.screenshotOptions) : await we(this.config.screenshotOptions), t && this.announceMsg("Screenshot captured"));
     const i = this.feedbackData.elementSelector ? {
       x: this.selectedBounds.x,
       y: this.selectedBounds.y,
@@ -1561,7 +1570,7 @@ class Re {
 function et(e) {
   return document.querySelector(e)?.textContent?.trim() ?? "";
 }
-function He() {
+function Be() {
   const e = document.querySelector(
     'script[type="application/json"][data-feedback-config]'
   );
@@ -1575,7 +1584,7 @@ function He() {
     return null;
   }
 }
-function Be(e) {
+function Pe(e) {
   const t = e.getAttribute("data-endpoint");
   if (!t) return null;
   const i = e.getAttribute("data-position"), o = e.getAttribute("data-zindex"), n = e.getAttribute("data-positive-color"), s = e.getAttribute("data-negative-color"), a = e.getAttribute("data-marker-color"), d = e.getAttribute("data-container"), l = e.getAttribute("data-button-class"), r = e.getAttribute("data-skip-targeting"), c = e.getAttribute("data-incognito"), p = e.getAttribute("data-button-size"), u = e.getAttribute("data-offset-x"), m = e.getAttribute("data-offset-y"), b = e.getAttribute("data-modal-width"), v = e.getAttribute("data-backdrop-opacity"), y = e.getAttribute("data-font-family"), f = e.getAttribute("data-font-size"), h = e.getAttribute("data-tooltip"), w = e.getAttribute("data-modal-title"), g = e.getAttribute("data-modal-subtitle"), C = e.getAttribute("data-placeholder"), B = e.getAttribute("data-submit-button"), P = e.getAttribute("data-skip-button"), it = e.getAttribute("data-positive-icon"), ot = e.getAttribute("data-negative-icon"), nt = e.getAttribute("data-api-key"), st = e.getAttribute("data-capture-screenshot"), E = e.getAttribute("data-screenshot-quality"), T = e.getAttribute("data-screenshot-max-width"), L = e.getAttribute("data-screenshot-max-height"), at = e.getAttribute("data-capture-video"), rt = e.getAttribute("data-hide-thumbs"), dt = e.getAttribute("data-hide-dismiss"), z = e.getAttribute("data-video-max-duration"), ct = e.getAttribute("data-screenshot-method"), lt = e.getAttribute("data-direction"), O = e.getAttribute("data-css-selector"), $ = e.getAttribute("data-quest-base"), ht = e.getAttribute("data-quest-up"), ut = e.getAttribute("data-quest-down"), pt = e.getAttribute("data-quest-video"), mt = e.getAttribute("data-quest-api-key"), ft = e.getAttribute("data-quest-module-url");
@@ -1639,18 +1648,18 @@ function Be(e) {
 }
 if (typeof document < "u") {
   const e = () => {
-    const t = document.currentScript, i = He(), o = t ? Be(t) : null, n = i ?? o;
-    n?.endpoint && new Re(n);
+    const t = document.currentScript, i = Be(), o = t ? Pe(t) : null, n = i ?? o;
+    n?.endpoint && new He(n);
   };
   document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", e) : e();
 }
 export {
-  Re as QaidFeedback,
+  He as QaidFeedback,
   Ce as captureDomScreenshot,
   de as captureNetworkErrors,
   ve as createVideoRecorder,
   ge as getSupportedMimeType,
-  Pe as isDomScreenshotSupported,
+  ze as isDomScreenshotSupported,
   be as isVideoRecordingSupported
 };
 //# sourceMappingURL=qaid.js.map

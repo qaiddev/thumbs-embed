@@ -2837,6 +2837,44 @@ describe("QaidFeedback", () => {
       const body = JSON.parse(fetchMock.mock.calls[0][1].body);
       expect(body.screenshot).toBe("data:image/webp;base64,dom");
     });
+
+    it("uses the DOM screenshot on touch devices even when method is permission", async () => {
+      // Simulate a touch-primary device (phone/tablet).
+      const mmSpy = vi
+        .spyOn(window, "matchMedia")
+        .mockImplementation(
+          (q: string) => ({ matches: q === "(pointer: coarse)" }) as MediaQueryList
+        );
+      try {
+        const fetchMock = vi.fn().mockResolvedValue({
+          ok: true,
+          json: () => Promise.resolve({ id: 1 }),
+        });
+        global.fetch = fetchMock;
+
+        embed = new QaidFeedback({
+          endpoint: "/api/feedback",
+          skipTargeting: true,
+          captureScreenshot: true,
+          screenshotMethod: "permission", // default; should be overridden on touch
+        });
+
+        const shadow = getShadowRoot();
+        shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+
+        await vi.waitFor(() => {
+          expect(fetchMock).toHaveBeenCalled();
+        });
+
+        // No getDisplayMedia prompt — DOM/canvas capture is used instead.
+        expect(screenshotMocks.captureDomScreenshot).toHaveBeenCalledTimes(1);
+        expect(screenshotMocks.captureScreenshot).not.toHaveBeenCalled();
+        const body = JSON.parse(fetchMock.mock.calls[0][1].body);
+        expect(body.screenshot).toBe("data:image/webp;base64,dom");
+      } finally {
+        mmSpy.mockRestore();
+      }
+    });
   });
 
   describe("modal toggle and PATCH errors", () => {

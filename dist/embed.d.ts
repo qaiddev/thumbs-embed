@@ -134,6 +134,10 @@ export declare class QaidFeedback {
     private removeTargetingOverlay;
     private showSelectedMarker;
     private hideSelectedMarker;
+    /** Whether to capture the screenshot with the DOM/canvas method (html2canvas)
+     *  instead of the permission-based Screen Capture API. Explicit "dom" wins;
+     *  otherwise DOM is used on touch devices to avoid the getDisplayMedia prompt. */
+    private shouldCaptureViaDom;
     private submitFeedback;
     /**
      * Quest id linked to `type`, or "" when quest launching is disabled

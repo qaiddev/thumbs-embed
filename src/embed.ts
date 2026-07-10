@@ -52,6 +52,17 @@ const HIDE_FEEDBACK_KEY = "qaid_hide_feedback";
 // when selecting a target element.
 const TOUCH_TAP_SLOP = 12;
 
+// True when the primary pointer is touch (phone/tablet). On these devices the
+// Screen Capture API (getDisplayMedia) shows an intrusive "start capturing"
+// system prompt, dims the screen, and on iOS returns a rotated frame — so the
+// permission-free DOM/canvas screenshot is the right default there.
+function isTouchPrimaryDevice(): boolean {
+  return (
+    typeof window.matchMedia === "function" &&
+    window.matchMedia("(pointer: coarse)").matches
+  );
+}
+
 function getHideKey(apiKey?: string): string {
   return apiKey ? `${HIDE_FEEDBACK_KEY}_${apiKey}` : HIDE_FEEDBACK_KEY;
 }
@@ -1041,15 +1052,20 @@ export class QaidFeedback {
     }
   }
 
+  /** Whether to capture the screenshot with the DOM/canvas method (html2canvas)
+   *  instead of the permission-based Screen Capture API. Explicit "dom" wins;
+   *  otherwise DOM is used on touch devices to avoid the getDisplayMedia prompt. */
+  private shouldCaptureViaDom(): boolean {
+    return this.config.screenshotMethod === "dom" || isTouchPrimaryDevice();
+  }
+
   private async submitFeedback(): Promise<void> {
     // Capture screenshot if enabled (server will gate by plan)
     let screenshot: string | null = null;
     if (this.config.captureScreenshot) {
-      if (this.config.screenshotMethod === "dom") {
-        screenshot = await captureDomScreenshot(this.config.screenshotOptions);
-      } else {
-        screenshot = await captureScreenshot(this.config.screenshotOptions);
-      }
+      screenshot = this.shouldCaptureViaDom()
+        ? await captureDomScreenshot(this.config.screenshotOptions)
+        : await captureScreenshot(this.config.screenshotOptions);
       if (screenshot) this.announceMsg("Screenshot captured");
     }
 
