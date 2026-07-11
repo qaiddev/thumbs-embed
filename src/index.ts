@@ -49,6 +49,20 @@ export { createVideoRecorder, isVideoRecordingSupported, getSupportedMimeType } 
 export type { VideoRecorder, VideoRecorderOptions } from "./video-capture";
 export { captureDomScreenshot, isDomScreenshotSupported } from "./screenshot-dom";
 export type { DomScreenshotOptions } from "./screenshot-dom";
+export {
+  openAnnotationEditor,
+  compositeAnnotations,
+  drawShape,
+  rectFromPoints,
+  AnnotationEditor,
+} from "./annotate";
+export type {
+  Shape,
+  ShapeType,
+  Point,
+  AnnotationLabels,
+  AnnotationEditorOptions,
+} from "./annotate";
 
 import type { FeedbackConfig } from "./types";
 
@@ -129,6 +143,7 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
   const negativeIcon = script.getAttribute("data-negative-icon");
   const apiKey = script.getAttribute("data-api-key");
   const captureScreenshot = script.getAttribute("data-capture-screenshot");
+  const annotate = script.getAttribute("data-annotate");
   const screenshotQuality = script.getAttribute("data-screenshot-quality");
   const screenshotMaxWidth = script.getAttribute("data-screenshot-max-width");
   const screenshotMaxHeight = script.getAttribute("data-screenshot-max-height");
@@ -151,6 +166,8 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
     css: cssSelector ? findCssFromSelector(cssSelector) : undefined,
     apiKey: apiKey ?? undefined,
     captureScreenshot: captureScreenshot === "true" ? true : undefined,
+    // Annotation is on by default; only an explicit "false" disables it.
+    annotate: annotate === "false" ? false : undefined,
     screenshotOptions: (screenshotQuality || screenshotMaxWidth || screenshotMaxHeight) ? {
       quality: screenshotQuality ? parseFloat(screenshotQuality) : undefined,
       maxWidth: screenshotMaxWidth ? parseInt(screenshotMaxWidth, 10) : undefined,

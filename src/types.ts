@@ -64,6 +64,13 @@ export interface FeedbackConfig {
   fontSize?: number;
   /** Enable screenshot capture with feedback. Default: false */
   captureScreenshot?: boolean;
+  /**
+   * Let the user draw on the captured screenshot (rectangle, arrow, freehand
+   * pen, blur/redact) in a full-screen editor before it is submitted. Only
+   * applies when a screenshot was captured. Default: true (set `false` to
+   * always submit the raw screenshot).
+   */
+  annotate?: boolean;
   /** Enable video recording button. Default: false */
   captureVideo?: boolean;
   /** Video recording options */
@@ -274,6 +281,8 @@ export interface ResolvedFeedbackConfig {
   fontFamily: string;
   fontSize: number;
   captureScreenshot: boolean;
+  /** Whether the screenshot annotation editor is offered after capture. */
+  annotate: boolean;
   screenshotMethod: "dom" | "permission";
   screenshotOptions: {
     quality: number;

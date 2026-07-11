@@ -39,6 +39,7 @@ import {
 } from "./dom-utils";
 import { captureScreenshot } from "./screenshot";
 import { captureDomScreenshot } from "./screenshot-dom";
+import { openAnnotationEditor } from "./annotate";
 import {
   launchQuest,
   DEFAULT_QUESTS_MODULE_URL,
@@ -242,6 +243,7 @@ export class QaidFeedback {
       fontFamily: config.fontFamily ?? "system-ui, -apple-system, sans-serif",
       fontSize: config.fontSize ?? 16,
       captureScreenshot: config.captureScreenshot ?? false,
+      annotate: config.annotate ?? true,
       screenshotMethod: config.screenshotMethod ?? "permission",
       screenshotOptions: {
         quality: config.screenshotOptions?.quality ?? 0.8,
@@ -1059,6 +1061,34 @@ export class QaidFeedback {
     return this.config.screenshotMethod === "dom" || isTouchPrimaryDevice();
   }
 
+  /**
+   * Open the full-screen annotation editor over the captured screenshot,
+   * reusing the overlay shadow host and the shared dialog a11y helpers.
+   * Resolves with the composited WebP data URL, or null when the user skips
+   * (caller keeps the original). Pointer events on the overlay host are
+   * enabled while the editor is open and restored on close.
+   */
+  private async openAnnotationEditor(screenshot: string): Promise<string | null> {
+    const root = this.ensureOverlayHost();
+    const host = this.overlayShadowHost!;
+    const prevPointerEvents = host.style.pointerEvents;
+    host.style.pointerEvents = "auto";
+    try {
+      return await openAnnotationEditor({
+        dataUrl: screenshot,
+        root,
+        quality: this.config.screenshotOptions.quality,
+        color: this.config.colors.marker,
+        applyVars: (el) => this.applyVars(el),
+        announce: (msg, assertive) => this.announceMsg(msg, assertive),
+        openDialog: (container, opts) => this.openDialogA11y(container, opts),
+        closeDialog: () => this.closeDialogA11y(),
+      });
+    } finally {
+      host.style.pointerEvents = prevPointerEvents;
+    }
+  }
+
   private async submitFeedback(): Promise<void> {
     // Capture screenshot if enabled (server will gate by plan)
     let screenshot: string | null = null;
@@ -1067,6 +1097,14 @@ export class QaidFeedback {
         ? await captureDomScreenshot(this.config.screenshotOptions)
         : await captureScreenshot(this.config.screenshotOptions);
       if (screenshot) this.announceMsg("Screenshot captured");
+    }
+
+    // Let the user mark up / redact the screenshot before it is submitted.
+    // The message modal only opens after the POST below, so the composited
+    // result lands in the same request — no backend change needed. On skip
+    // the editor resolves null and the original screenshot is kept.
+    if (screenshot && this.config.annotate) {
+      screenshot = (await this.openAnnotationEditor(screenshot)) ?? screenshot;
     }
 
     // Include element bounds for server-side screenshot fallback

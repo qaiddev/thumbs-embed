@@ -1,25 +1,39 @@
-const I = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+const D = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/>
-</svg>`, A = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, M = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.737 3h4.018a2 2 0 01.485.06l3.76.94m-7 10v5a2 2 0 002 2h.095c.5 0 .905-.405.905-.905 0-.714.211-1.412.608-2.006L17 13V4m-7 10h2m5-10h2a2 2 0 012 2v6a2 2 0 01-2 2h-2.5"/>
-</svg>`, bt = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, xt = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/>
-</svg>`, gt = "button{cursor:pointer}.qaid-buttons{display:flex;gap:.5rem}.qaid-buttons.qaid-vertical{flex-direction:column}.qaid-buttons.qaid-auto-container{position:fixed;z-index:50}.qaid-buttons.qaid-auto-container.qaid-bottom-right{bottom:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-bottom-left{bottom:1rem;left:1rem}.qaid-buttons.qaid-auto-container.qaid-top-right{top:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-top-left{top:1rem;left:1rem}.qaid-buttons.qaid-incognito{opacity:0;transition:opacity .2s ease-in-out}.qaid-buttons.qaid-incognito:hover{opacity:1}.qaid-buttons.qaid-dismissed{display:none!important}.qaid-dismiss-btn{width:20px;height:20px;padding:0;border:none;border-radius:50%;background:#0006;color:#fff;display:flex;align-items:center;justify-content:center;align-self:center;opacity:0;transition:opacity .15s,background .15s;cursor:pointer;pointer-events:auto;-webkit-appearance:none;appearance:none}.qaid-dismiss-btn:hover{background:#0009}.qaid-buttons:hover .qaid-dismiss-btn{opacity:1}button.qaid-btn-structural{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;appearance:none}.qaid-icon{width:24px;height:24px}.qaid-btn-structural:not(:has(svg)),.qaid-btn:not(:has(svg)){font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-emoji-icon{font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-buttons,.qaid-buttons *,.qaid-modal-container,.qaid-modal-container *{cursor:pointer!important}.qaid-tooltip-wrapper{position:relative}.qaid-tooltip-text{position:fixed;padding:.5rem .75rem;background:#1f2937;color:#fff;font-size:1rem;font-weight:600;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:99999}.qaid-tooltip-text.qaid-tooltip-visible{opacity:1}.qaid-targeting-overlay{position:fixed;inset:0;z-index:40;pointer-events:none}.qaid-capture-layer{position:fixed;inset:0;pointer-events:none;z-index:9999}@keyframes qaid-slideDown{0%{transform:translateY(-100%)}to{transform:translateY(0)}}.qaid-vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.3) 70%,rgba(0,0,0,.6) 100%);z-index:41}.qaid-crosshair-h,.qaid-crosshair-v{position:fixed;pointer-events:none;z-index:42}.qaid-crosshair-h{left:0;right:0;height:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-crosshair-v{top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-type-up .qaid-crosshair-h,.qaid-type-up .qaid-crosshair-v{background:color-mix(in srgb,var(--qaid-positive) 60%,transparent)}.qaid-highlight-box{position:fixed;top:0;left:0;pointer-events:none;z-index:41;display:none;border:3px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:2px;background:color-mix(in srgb,var(--qaid-negative) 8%,transparent);will-change:transform,width,height}.qaid-type-up .qaid-highlight-box{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent);background:color-mix(in srgb,var(--qaid-positive) 8%,transparent)}.qaid-scope{position:fixed;width:80px;height:80px;pointer-events:none;z-index:43;transform:translate(-50%,-50%)}.qaid-scope-ring{position:absolute;inset:10px;border:2px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent)}.qaid-scope-ring-inner{position:absolute;inset:20px;border:1px solid color-mix(in srgb,var(--qaid-negative) 50%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring-inner{border-color:color-mix(in srgb,var(--qaid-positive) 50%,transparent)}.qaid-scope-dot{position:absolute;top:50%;left:50%;width:4px;height:4px;background:var(--qaid-negative);border-radius:50%;transform:translate(-50%,-50%)}.qaid-type-up .qaid-scope-dot{background:var(--qaid-positive)}.qaid-selected-marker{position:fixed;border:3px solid var(--qaid-marker, #6366f1);border-radius:50%;pointer-events:none;z-index:44;animation:qaid-markerPulse 1.5s ease-in-out infinite}@keyframes qaid-markerPulse{0%,to{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}.qaid-backdrop{position:fixed;inset:0;z-index:45;background:#0000004d}.qaid-modal-container{position:fixed;z-index:50;display:flex;flex-direction:column;align-items:flex-start;max-height:calc(100vh - 32px);font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-modal-container.qaid-above{flex-direction:column-reverse}.qaid-modal-arrow{width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;position:relative;align-self:flex-start}.qaid-modal-container.qaid-below .qaid-modal-arrow{border-bottom:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-container.qaid-above .qaid-modal-arrow{border-top:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5));width:var(--qaid-modal-width, 400px);max-width:calc(100vw - 32px);max-height:calc(100vh - 60px);overflow-y:auto}.qaid-modal-header{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1rem}button.qaid-type-toggle{border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;-webkit-appearance:none;appearance:none}button.qaid-type-toggle:hover{transform:scale(1.1)}button.qaid-type-toggle:not(.qaid-type-toggle-custom){width:2.5rem;height:2.5rem;border-radius:50%}button.qaid-type-toggle:not(.qaid-type-toggle-custom) svg{width:1.25rem;height:1.25rem}button.qaid-type-toggle.qaid-type-up{background:var(--qaid-positive);color:#fff}button.qaid-type-toggle.qaid-type-down{background:var(--qaid-negative);color:#fff}.qaid-modal-header-text{flex:1;min-width:0}.qaid-modal-title{font-size:1.125rem;font-weight:700;margin:0 0 .25rem;color:light-dark(#1f2937,#f9fafb)}.qaid-modal-subtitle{color:light-dark(#6b7280,#9ca3af);margin:0;font-size:.875rem}.qaid-textarea{width:100%;height:6rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:1rem;resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-btn-row{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-btn-submit{padding:.5rem 1rem;background:var(--qaid-marker);color:var(--qaid-marker-text, white);border:none;border-radius:.5rem;font-size:.875rem;font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-btn-submit:hover{filter:brightness(.85)}button.qaid-btn-submit:focus{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 30%,transparent)}.qaid-bottom-sheet{position:fixed;bottom:0;left:0;right:0;z-index:50;animation:qaid-slideUpSheet .3s ease-out;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-bottom-sheet-content{background:light-dark(#ffffff,#1f2937);border-radius:1rem 1rem 0 0;padding:1.5rem;padding-bottom:max(1.5rem,env(safe-area-inset-bottom))}.qaid-bottom-sheet-handle{width:36px;height:4px;background:light-dark(rgba(0,0,0,.2),rgba(255,255,255,.2));border-radius:2px;margin:0 auto 1rem}@keyframes qaid-slideUpSheet{0%{transform:translateY(100%)}to{transform:translateY(0)}}button.qaid-btn-record:hover{background:#dc2626;color:#fff}.qaid-recording-indicator{position:fixed;top:12px;left:50%;transform:translate(-50%);display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:light-dark(#1f2937,#374151);color:#fff;border-radius:9999px;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:.875rem;font-weight:500;box-shadow:0 4px 12px #0000004d;z-index:99999;animation:qaid-slideDown .2s ease-out}.qaid-recording-dot{width:10px;height:10px;background:#dc2626;border-radius:50%;animation:qaid-dotPulse 1.5s ease-in-out infinite}@keyframes qaid-dotPulse{0%,to{opacity:1}50%{opacity:.3}}.qaid-recording-time{font-variant-numeric:tabular-nums;min-width:2.5rem;text-align:center}button.qaid-recording-stop{padding:.25rem .75rem;background:#dc2626;color:#fff;border:none;border-radius:9999px;font-size:.75rem;font-weight:600;cursor:pointer;transition:background-color .2s;-webkit-appearance:none;appearance:none}button.qaid-recording-stop:hover{background:#b91c1c}.qaid-video-preview{position:fixed;inset:0 0 auto;height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#0009;z-index:99998;animation:qaid-fadeIn .2s ease-out}@keyframes qaid-fadeIn{0%{opacity:0}to{opacity:1}}.qaid-video-preview-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px #00000080;width:560px;max-width:100%;max-height:100%;overflow-y:auto;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-video-preview-box h3{font-size:1.125rem;font-weight:700;margin:0 0 1rem;color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box video{width:100%;max-height:50vh;max-height:50dvh;object-fit:contain;border-radius:.5rem;background:#000;margin-bottom:1rem}.qaid-video-preview-box textarea{width:100%;height:4rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:.875rem;resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-video-preview-actions{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-video-btn{padding:.5rem 1rem;border:none;border-radius:.5rem;font-size:.875rem;font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-video-btn-cancel{background:light-dark(#f3f4f6,#374151);color:light-dark(#374151,#d1d5db)}button.qaid-video-btn-cancel:hover{background:light-dark(#e5e7eb,#4b5563)}button.qaid-video-btn-rerecord{background:light-dark(#fef3c7,#78350f);color:light-dark(#92400e,#fde68a)}button.qaid-video-btn-rerecord:hover{filter:brightness(.9)}button.qaid-video-btn-send{background:var(--qaid-marker);color:var(--qaid-marker-text, white)}button.qaid-video-btn-send:hover{filter:brightness(.85)}button.qaid-video-btn-send:disabled{opacity:.5;cursor:not-allowed}.qaid-video-sending{display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:light-dark(#6b7280,#9ca3af)}button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible{outline:2px solid var(--qaid-marker, #6366f1);outline-offset:2px}.qaid-textarea:focus-visible,button.qaid-btn-submit:focus-visible,.qaid-video-preview-box textarea:focus-visible{outline:2px solid var(--qaid-marker, #6366f1);outline-offset:2px}.qaid-buttons.qaid-incognito:focus-within{opacity:1}.qaid-buttons:focus-within .qaid-dismiss-btn,.qaid-dismiss-btn:focus-visible{opacity:1}.qaid-dismiss-btn{min-width:24px;min-height:24px}button.qaid-recording-stop{min-height:24px}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}@media(forced-colors:active){button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible,.qaid-textarea:focus,button.qaid-btn-submit:focus,.qaid-video-preview-box textarea:focus{outline:2px solid CanvasText;outline-offset:2px}.qaid-selected-marker,.qaid-highlight-box{border-color:Highlight}}", vt = "body.qaid-targeting,body.qaid-targeting *{cursor:none!important}";
-let k = 0;
-const yt = "button.qaid-btn{width:var(--qaid-btn-size);height:var(--qaid-btn-size);border-radius:50%;border:none;background:#f3f4f6;color:#374151;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);transition:background-color .2s,color .2s,transform .2s;-webkit-appearance:none;appearance:none;--qaid-hover-up-bg:var(--qaid-positive);--qaid-hover-up-color:#fff;--qaid-hover-down-bg:var(--qaid-negative);--qaid-hover-down-color:#fff}button.qaid-btn:hover{transform:scale(1.05)}button.qaid-btn-up:hover{background:var(--qaid-hover-up-bg);color:var(--qaid-hover-up-color)}button.qaid-btn-down:hover{background:var(--qaid-hover-down-bg);color:var(--qaid-hover-down-color)}button.qaid-btn svg{width:var(--qaid-icon-size);height:var(--qaid-icon-size)}", wt = {
+</svg>`, kt = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <rect x="4" y="6" width="16" height="12" rx="1" stroke-linejoin="round"/>
+</svg>`, Ct = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M5 19L19 5m0 0h-8m8 0v8"/>
+</svg>`, Et = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+</svg>`, St = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 3s6 6.4 6 10a6 6 0 01-12 0c0-3.6 6-10 6-10z"/>
+</svg>`, Tt = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9 14L4 9l5-5M4 9h11a5 5 0 010 10h-4"/>
+</svg>`, Lt = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M20 6L9 17l-5-5"/>
+</svg>`, It = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6L6 18"/>
+</svg>`, At = "button{cursor:pointer}.qaid-buttons{display:flex;gap:.5rem}.qaid-buttons.qaid-vertical{flex-direction:column}.qaid-buttons.qaid-auto-container{position:fixed;z-index:50}.qaid-buttons.qaid-auto-container.qaid-bottom-right{bottom:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-bottom-left{bottom:1rem;left:1rem}.qaid-buttons.qaid-auto-container.qaid-top-right{top:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-top-left{top:1rem;left:1rem}.qaid-buttons.qaid-incognito{opacity:0;transition:opacity .2s ease-in-out}.qaid-buttons.qaid-incognito:hover{opacity:1}.qaid-buttons.qaid-dismissed{display:none!important}.qaid-dismiss-btn{width:20px;height:20px;padding:0;border:none;border-radius:50%;background:#0006;color:#fff;display:flex;align-items:center;justify-content:center;align-self:center;opacity:0;transition:opacity .15s,background .15s;cursor:pointer;pointer-events:auto;-webkit-appearance:none;appearance:none}.qaid-dismiss-btn:hover{background:#0009}.qaid-buttons:hover .qaid-dismiss-btn{opacity:1}button.qaid-btn-structural{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;appearance:none}.qaid-icon{width:24px;height:24px}.qaid-btn-structural:not(:has(svg)),.qaid-btn:not(:has(svg)){font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-emoji-icon{font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-buttons,.qaid-buttons *,.qaid-modal-container,.qaid-modal-container *{cursor:pointer!important}.qaid-tooltip-wrapper{position:relative}.qaid-tooltip-text{position:fixed;padding:.5rem .75rem;background:#1f2937;color:#fff;font-size:1rem;font-weight:600;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:99999}.qaid-tooltip-text.qaid-tooltip-visible{opacity:1}.qaid-targeting-overlay{position:fixed;inset:0;z-index:40;pointer-events:none}.qaid-capture-layer{position:fixed;inset:0;pointer-events:none;z-index:9999}@keyframes qaid-slideDown{0%{transform:translateY(-100%)}to{transform:translateY(0)}}.qaid-vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.3) 70%,rgba(0,0,0,.6) 100%);z-index:41}.qaid-crosshair-h,.qaid-crosshair-v{position:fixed;pointer-events:none;z-index:42}.qaid-crosshair-h{left:0;right:0;height:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-crosshair-v{top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-type-up .qaid-crosshair-h,.qaid-type-up .qaid-crosshair-v{background:color-mix(in srgb,var(--qaid-positive) 60%,transparent)}.qaid-highlight-box{position:fixed;top:0;left:0;pointer-events:none;z-index:41;display:none;border:3px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:2px;background:color-mix(in srgb,var(--qaid-negative) 8%,transparent);will-change:transform,width,height}.qaid-type-up .qaid-highlight-box{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent);background:color-mix(in srgb,var(--qaid-positive) 8%,transparent)}.qaid-scope{position:fixed;width:80px;height:80px;pointer-events:none;z-index:43;transform:translate(-50%,-50%)}.qaid-scope-ring{position:absolute;inset:10px;border:2px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent)}.qaid-scope-ring-inner{position:absolute;inset:20px;border:1px solid color-mix(in srgb,var(--qaid-negative) 50%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring-inner{border-color:color-mix(in srgb,var(--qaid-positive) 50%,transparent)}.qaid-scope-dot{position:absolute;top:50%;left:50%;width:4px;height:4px;background:var(--qaid-negative);border-radius:50%;transform:translate(-50%,-50%)}.qaid-type-up .qaid-scope-dot{background:var(--qaid-positive)}.qaid-selected-marker{position:fixed;border:3px solid var(--qaid-marker, #6366f1);border-radius:50%;pointer-events:none;z-index:44;animation:qaid-markerPulse 1.5s ease-in-out infinite}@keyframes qaid-markerPulse{0%,to{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}.qaid-backdrop{position:fixed;inset:0;z-index:45;background:#0000004d}.qaid-modal-container{position:fixed;z-index:50;display:flex;flex-direction:column;align-items:flex-start;max-height:calc(100vh - 32px);font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-modal-container.qaid-above{flex-direction:column-reverse}.qaid-modal-arrow{width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;position:relative;align-self:flex-start}.qaid-modal-container.qaid-below .qaid-modal-arrow{border-bottom:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-container.qaid-above .qaid-modal-arrow{border-top:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5));width:var(--qaid-modal-width, 400px);max-width:calc(100vw - 32px);max-height:calc(100vh - 60px);overflow-y:auto}.qaid-modal-header{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1rem}button.qaid-type-toggle{border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;-webkit-appearance:none;appearance:none}button.qaid-type-toggle:hover{transform:scale(1.1)}button.qaid-type-toggle:not(.qaid-type-toggle-custom){width:2.5rem;height:2.5rem;border-radius:50%}button.qaid-type-toggle:not(.qaid-type-toggle-custom) svg{width:1.25rem;height:1.25rem}button.qaid-type-toggle.qaid-type-up{background:var(--qaid-positive);color:#fff}button.qaid-type-toggle.qaid-type-down{background:var(--qaid-negative);color:#fff}.qaid-modal-header-text{flex:1;min-width:0}.qaid-modal-title{font-size:1.125rem;font-weight:700;margin:0 0 .25rem;color:light-dark(#1f2937,#f9fafb)}.qaid-modal-subtitle{color:light-dark(#6b7280,#9ca3af);margin:0;font-size:.875rem}.qaid-textarea{width:100%;height:6rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:1rem;resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-btn-row{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-btn-submit{padding:.5rem 1rem;background:var(--qaid-marker);color:var(--qaid-marker-text, white);border:none;border-radius:.5rem;font-size:.875rem;font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-btn-submit:hover{filter:brightness(.85)}button.qaid-btn-submit:focus{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 30%,transparent)}.qaid-bottom-sheet{position:fixed;bottom:0;left:0;right:0;z-index:50;animation:qaid-slideUpSheet .3s ease-out;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-bottom-sheet-content{background:light-dark(#ffffff,#1f2937);border-radius:1rem 1rem 0 0;padding:1.5rem;padding-bottom:max(1.5rem,env(safe-area-inset-bottom))}.qaid-bottom-sheet-handle{width:36px;height:4px;background:light-dark(rgba(0,0,0,.2),rgba(255,255,255,.2));border-radius:2px;margin:0 auto 1rem}@keyframes qaid-slideUpSheet{0%{transform:translateY(100%)}to{transform:translateY(0)}}button.qaid-btn-record:hover{background:#dc2626;color:#fff}.qaid-recording-indicator{position:fixed;top:12px;left:50%;transform:translate(-50%);display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:light-dark(#1f2937,#374151);color:#fff;border-radius:9999px;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:.875rem;font-weight:500;box-shadow:0 4px 12px #0000004d;z-index:99999;animation:qaid-slideDown .2s ease-out}.qaid-recording-dot{width:10px;height:10px;background:#dc2626;border-radius:50%;animation:qaid-dotPulse 1.5s ease-in-out infinite}@keyframes qaid-dotPulse{0%,to{opacity:1}50%{opacity:.3}}.qaid-recording-time{font-variant-numeric:tabular-nums;min-width:2.5rem;text-align:center}button.qaid-recording-stop{padding:.25rem .75rem;background:#dc2626;color:#fff;border:none;border-radius:9999px;font-size:.75rem;font-weight:600;cursor:pointer;transition:background-color .2s;-webkit-appearance:none;appearance:none}button.qaid-recording-stop:hover{background:#b91c1c}.qaid-video-preview{position:fixed;inset:0 0 auto;height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#0009;z-index:99998;animation:qaid-fadeIn .2s ease-out}@keyframes qaid-fadeIn{0%{opacity:0}to{opacity:1}}.qaid-video-preview-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px #00000080;width:560px;max-width:100%;max-height:100%;overflow-y:auto;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-video-preview-box h3{font-size:1.125rem;font-weight:700;margin:0 0 1rem;color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box video{width:100%;max-height:50vh;max-height:50dvh;object-fit:contain;border-radius:.5rem;background:#000;margin-bottom:1rem}.qaid-video-preview-box textarea{width:100%;height:4rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:.875rem;resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-video-preview-actions{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-video-btn{padding:.5rem 1rem;border:none;border-radius:.5rem;font-size:.875rem;font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-video-btn-cancel{background:light-dark(#f3f4f6,#374151);color:light-dark(#374151,#d1d5db)}button.qaid-video-btn-cancel:hover{background:light-dark(#e5e7eb,#4b5563)}button.qaid-video-btn-rerecord{background:light-dark(#fef3c7,#78350f);color:light-dark(#92400e,#fde68a)}button.qaid-video-btn-rerecord:hover{filter:brightness(.9)}button.qaid-video-btn-send{background:var(--qaid-marker);color:var(--qaid-marker-text, white)}button.qaid-video-btn-send:hover{filter:brightness(.85)}button.qaid-video-btn-send:disabled{opacity:.5;cursor:not-allowed}.qaid-video-sending{display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:light-dark(#6b7280,#9ca3af)}.qaid-annotate{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;gap:.75rem;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#000000d9;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px);animation:qaid-fadeIn .2s ease-out}.qaid-annotate-title{margin:0;font-size:1rem;font-weight:700;text-align:center;color:#f9fafb}.qaid-annotate-desc{margin:0;font-size:.8125rem;line-height:1.4;text-align:center;color:#f9fafbbf}.qaid-annotate-stage{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;overflow:auto}.qaid-annotate-canvas{max-width:100%;max-height:100%;object-fit:contain;background:light-dark(#ffffff,#111827);border-radius:.5rem;box-shadow:0 10px 30px #00000080;touch-action:none;cursor:crosshair}.qaid-annotate-toolbar{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;justify-content:center;padding:.5rem .75rem;background:light-dark(#ffffff,#1f2937);border-radius:.75rem;box-shadow:0 10px 30px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5))}.qaid-annotate-tools,.qaid-annotate-actions{display:flex;gap:.375rem;align-items:center}button.qaid-annotate-tool,button.qaid-annotate-action{display:inline-flex;align-items:center;justify-content:center;gap:.375rem;min-width:44px;min-height:44px;padding:0 .75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;background:light-dark(#f9fafb,#111827);color:light-dark(#1f2937,#f9fafb);font-family:inherit;font-size:.8125rem;font-weight:600;cursor:pointer;-webkit-appearance:none;appearance:none;transition:background-color .15s,color .15s,border-color .15s,filter .15s}button.qaid-annotate-tool{padding:0}button.qaid-annotate-tool svg,button.qaid-annotate-action svg{width:20px;height:20px}button.qaid-annotate-tool:hover,button.qaid-annotate-action:hover{background:light-dark(#eef2ff,#312e81)}button.qaid-annotate-tool[aria-pressed=true],button.qaid-annotate-done{background:var(--qaid-marker, #6366f1);color:var(--qaid-marker-text, #fff);border-color:var(--qaid-marker, #6366f1)}button.qaid-annotate-done:hover{filter:brightness(.9);background:var(--qaid-marker, #6366f1)}button.qaid-annotate-action:disabled{opacity:.45;cursor:not-allowed}@media(forced-colors:active){button.qaid-annotate-tool[aria-pressed=true],button.qaid-annotate-done{border:2px solid Highlight}.qaid-annotate-canvas{border:1px solid CanvasText}}button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible{outline:2px solid var(--qaid-marker, #6366f1);outline-offset:2px}.qaid-textarea:focus-visible,button.qaid-btn-submit:focus-visible,.qaid-video-preview-box textarea:focus-visible{outline:2px solid var(--qaid-marker, #6366f1);outline-offset:2px}.qaid-buttons.qaid-incognito:focus-within{opacity:1}.qaid-buttons:focus-within .qaid-dismiss-btn,.qaid-dismiss-btn:focus-visible{opacity:1}.qaid-dismiss-btn{min-width:24px;min-height:24px}button.qaid-recording-stop{min-height:24px}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}@media(forced-colors:active){button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible,.qaid-textarea:focus,button.qaid-btn-submit:focus,.qaid-video-preview-box textarea:focus{outline:2px solid CanvasText;outline-offset:2px}.qaid-selected-marker,.qaid-highlight-box{border-color:Highlight}}", Dt = "body.qaid-targeting,body.qaid-targeting *{cursor:none!important}";
+let E = 0;
+const Mt = "button.qaid-btn{width:var(--qaid-btn-size);height:var(--qaid-btn-size);border-radius:50%;border:none;background:#f3f4f6;color:#374151;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);transition:background-color .2s,color .2s,transform .2s;-webkit-appearance:none;appearance:none;--qaid-hover-up-bg:var(--qaid-positive);--qaid-hover-up-color:#fff;--qaid-hover-down-bg:var(--qaid-negative);--qaid-hover-down-color:#fff}button.qaid-btn:hover{transform:scale(1.05)}button.qaid-btn-up:hover{background:var(--qaid-hover-up-bg);color:var(--qaid-hover-up-color)}button.qaid-btn-down:hover{background:var(--qaid-hover-down-bg);color:var(--qaid-hover-down-color)}button.qaid-btn svg{width:var(--qaid-icon-size);height:var(--qaid-icon-size)}", Rt = {
   small: 36,
   medium: 48,
   large: 64
-}, xt = {
+}, Bt = {
   small: 18,
   medium: 24,
   large: 32
 };
-function qt(e, t, i) {
+function Ht(e, t, i) {
   const [o, n, s] = [e, t, i].map((a) => (a = a / 255, a <= 0.03928 ? a / 12.92 : Math.pow((a + 0.055) / 1.055, 2.4)));
   return 0.2126 * o + 0.7152 * n + 0.0722 * s;
 }
-function kt(e) {
+function Pt(e) {
   if (e.startsWith("#")) {
     const i = e.slice(1), o = i.length === 3 ? i.split("").map((s) => s + s).join("") : i, n = parseInt(o, 16);
     return {
@@ -35,11 +49,11 @@ function kt(e) {
     b: parseInt(t[3])
   } : null;
 }
-function Ct(e) {
-  const t = kt(e);
-  return t && qt(t.r, t.g, t.b) > 0.4 ? "black" : "white";
+function Ot(e) {
+  const t = Pt(e);
+  return t && Ht(t.r, t.g, t.b) > 0.4 ? "black" : "white";
 }
-function St(e = {}) {
+function zt(e = {}) {
   const {
     positiveColor: t = "rgb(0, 200, 83)",
     negativeColor: i = "rgb(255, 0, 0)",
@@ -48,41 +62,41 @@ function St(e = {}) {
     modalWidth: s = 400,
     backdropOpacity: a = 0.3,
     fontFamily: d = "system-ui, -apple-system, sans-serif",
-    fontSize: l = 16
-  } = e, r = wt[n], c = xt[n], p = Ct(o);
+    fontSize: c = 16
+  } = e, r = Rt[n], l = Bt[n], p = Ot(o);
   return {
     "--qaid-positive": t,
     "--qaid-negative": i,
     "--qaid-marker": o,
     "--qaid-marker-text": p,
     "--qaid-btn-size": `${r}px`,
-    "--qaid-icon-size": `${c}px`,
+    "--qaid-icon-size": `${l}px`,
     "--qaid-modal-width": `${s}px`,
     "--qaid-backdrop-opacity": String(a),
     "--qaid-font-family": d,
-    "--qaid-font-size": `${l}px`
+    "--qaid-font-size": `${c}px`
   };
 }
-function Et(e, t) {
+function $t(e, t) {
   for (const [i, o] of Object.entries(t))
     e.style.setProperty(i, o);
 }
-function N() {
-  return gt + yt;
+function _() {
+  return At + Mt;
 }
-function Tt() {
-  if (k++, k > 1) return;
+function Nt() {
+  if (E++, E > 1) return;
   const e = document.createElement("style");
-  e.id = "qaid-styles", e.textContent = vt, document.head.appendChild(e);
+  e.id = "qaid-styles", e.textContent = Dt, document.head.appendChild(e);
 }
-function Lt() {
-  k <= 0 || (k--, k === 0 && document.getElementById("qaid-styles").remove());
+function Ut() {
+  E <= 0 || (E--, E === 0 && document.getElementById("qaid-styles").remove());
 }
-const G = ["data-comp", "data-qa", "data-testid", "data-id"];
-function J(e, t = document.body) {
+const et = ["data-comp", "data-qa", "data-testid", "data-id"];
+function it(e, t = document.body) {
   let i = e;
   for (; i && i !== t; ) {
-    for (const o of G) {
+    for (const o of et) {
       const n = i.getAttribute(o);
       if (n)
         return `${o}="${n}"`;
@@ -91,37 +105,37 @@ function J(e, t = document.body) {
   }
   return null;
 }
-function It(e, t = 100) {
+function Ft(e, t = 100) {
   const i = e.textContent?.trim().slice(0, t) || "";
   return i.length === t ? i + "..." : i;
 }
-function At(e) {
+function Vt(e) {
   let t = 1, i = e.previousElementSibling;
   for (; i; )
     t++, i = i.previousElementSibling;
   return t;
 }
-function Dt(e) {
+function _t(e) {
   const t = [];
   let i = e;
   for (; i && i !== document.body && i !== document.documentElement; ) {
-    const o = i.tagName.toLowerCase(), n = At(i);
+    const o = i.tagName.toLowerCase(), n = Vt(i);
     t.unshift(`${o}:nth-child(${n})`), i = i.parentElement;
   }
   return t.length > 0 ? `body > ${t.join(" > ")}` : "body";
 }
-function Mt(e) {
+function Kt(e) {
   return e.replace(/([!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, "\\$1");
 }
-function Rt(e) {
-  const t = J(e);
-  return t ? `[${t}]` : e.id ? `#${Mt(e.id)}` : Dt(e);
+function jt(e) {
+  const t = it(e);
+  return t ? `[${t}]` : e.id ? `#${Kt(e.id)}` : _t(e);
 }
-function D(e) {
-  const t = It(e), i = J(e);
-  return { selector: Rt(e), text: t, dataAttr: i };
+function R(e) {
+  const t = Ft(e), i = it(e);
+  return { selector: jt(e), text: t, dataAttr: i };
 }
-const Ht = [
+const Wt = [
   "a[href]",
   "button",
   "input:not([type=hidden])",
@@ -140,9 +154,9 @@ const Ht = [
   "p",
   "li",
   "label",
-  ...G.map((e) => `[${e}]`)
-].join(","), Bt = /^(?:A|BUTTON|INPUT|SELECT|TEXTAREA|SUMMARY)$/;
-function Pt(e) {
+  ...et.map((e) => `[${e}]`)
+].join(","), Xt = /^(?:A|BUTTON|INPUT|SELECT|TEXTAREA|SUMMARY)$/;
+function Yt(e) {
   if (e.hasAttribute("hidden") || e.getAttribute("aria-hidden") === "true") return !1;
   const t = e.ownerDocument?.defaultView;
   if (t && typeof t.getComputedStyle == "function") {
@@ -151,14 +165,14 @@ function Pt(e) {
   }
   return !0;
 }
-function zt(e = {}) {
-  const t = e.root ?? document.body, i = e.selector ?? Ht, o = e.isExcluded ?? (() => !1), n = e.isVisible ?? Pt;
+function Qt(e = {}) {
+  const t = e.root ?? document.body, i = e.selector ?? Wt, o = e.isExcluded ?? (() => !1), n = e.isVisible ?? Yt;
   return Array.from(t.querySelectorAll(i)).filter(
     (s) => !o(s) && n(s)
   );
 }
-function Ot(e) {
-  const t = e.candidates ?? zt({
+function Gt(e) {
+  const t = e.candidates ?? Qt({
     root: e.root,
     selector: e.selector,
     isExcluded: e.isExcluded,
@@ -171,11 +185,11 @@ function Ot(e) {
     h >= 0 && (s = h);
   }
   s < 0 && t.length > 0 && (s = 0);
-  function l(h) {
+  function c(h) {
     if (!i) return;
     const w = h;
     if (typeof w.focus == "function") {
-      h.getAttribute("tabindex") === null && !Bt.test(h.tagName) && (h.setAttribute("tabindex", "-1"), n.add(h));
+      h.getAttribute("tabindex") === null && !Xt.test(h.tagName) && (h.setAttribute("tabindex", "-1"), n.add(h));
       try {
         w.focus();
       } catch {
@@ -184,34 +198,34 @@ function Ot(e) {
   }
   function r() {
     const h = t[s];
-    h && (l(h), e.onHighlight?.(h, s));
+    h && (c(h), e.onHighlight?.(h, s));
   }
-  function c(h) {
+  function l(h) {
     if (a || t.length === 0) return;
     const w = t.length;
     s = (h % w + w) % w, r();
   }
   function p() {
-    c(s + 1);
+    l(s + 1);
   }
   function u() {
-    c(s - 1);
+    l(s - 1);
   }
-  function m() {
+  function f() {
     return t[s] ?? null;
   }
   function b() {
-    a || (a = !0, o.removeEventListener("keydown", f, !0), n.forEach((h) => h.removeAttribute("tabindex")), n.clear());
+    a || (a = !0, o.removeEventListener("keydown", m, !0), n.forEach((h) => h.removeAttribute("tabindex")), n.clear());
   }
   function v() {
     if (a) return;
-    const h = m();
+    const h = f();
     b(), h && e.onSelect(h);
   }
   function y() {
     a || (b(), e.onCancel?.());
   }
-  function f(h) {
+  function m(h) {
     if (!a)
       switch (h.key) {
         case "Tab":
@@ -236,20 +250,20 @@ function Ot(e) {
           break;
       }
   }
-  return o.addEventListener("keydown", f, !0), s >= 0 && r(), {
+  return o.addEventListener("keydown", m, !0), s >= 0 && r(), {
     candidates: t,
     getIndex: () => s,
-    getCurrent: m,
+    getCurrent: f,
     next: p,
     prev: u,
-    moveTo: c,
+    moveTo: l,
     select: v,
     cancel: y,
-    handleKey: f,
+    handleKey: m,
     stop: b
   };
 }
-const V = "data-qaid-a11y-live", $t = "position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;", Nt = [
+const K = "data-qaid-a11y-live", Jt = "position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;", Zt = [
   "a[href]",
   "button",
   "input",
@@ -257,25 +271,25 @@ const V = "data-qaid-a11y-live", $t = "position:absolute;width:1px;height:1px;ma
   "select",
   "[tabindex]"
 ].join(",");
-function Vt(e) {
+function te(e) {
   return e.ownerDocument || document;
 }
-function Ft(e, t) {
+function ee(e, t) {
   const i = t ? "assertive" : "polite", o = e.querySelector(
-    `[${V}="${i}"]`
+    `[${K}="${i}"]`
   );
   if (o) return o;
-  const s = Vt(e).createElement("div");
-  return s.setAttribute(V, i), s.setAttribute("role", t ? "alert" : "status"), s.setAttribute("aria-live", t ? "assertive" : "polite"), s.setAttribute("aria-atomic", "true"), s.style.cssText = $t, e.appendChild(s), s;
+  const s = te(e).createElement("div");
+  return s.setAttribute(K, i), s.setAttribute("role", t ? "alert" : "status"), s.setAttribute("aria-live", t ? "assertive" : "polite"), s.setAttribute("aria-atomic", "true"), s.style.cssText = Jt, e.appendChild(s), s;
 }
-function Ut(e, t, i = {}) {
-  const o = Ft(e, !!i.assertive);
+function ie(e, t, i = {}) {
+  const o = ee(e, !!i.assertive);
   o.textContent = "", o.textContent = t;
 }
-function _t(e) {
+function oe(e) {
   return e.hasAttribute("disabled") ? !0 : e.disabled === !0;
 }
-function Kt(e) {
+function ne(e) {
   let t = e;
   for (; t; ) {
     if (t.hasAttribute("hidden")) return !0;
@@ -286,52 +300,52 @@ function Kt(e) {
   }
   return !1;
 }
-function F(e) {
+function j(e) {
   return Array.from(
-    e.querySelectorAll(Nt)
-  ).filter((i) => !(i.getAttribute("tabindex") === "-1" || i instanceof HTMLInputElement && i.type === "hidden" || i instanceof HTMLAnchorElement && !i.getAttribute("href") || _t(i) || Kt(i)));
+    e.querySelectorAll(Zt)
+  ).filter((i) => !(i.getAttribute("tabindex") === "-1" || i instanceof HTMLInputElement && i.type === "hidden" || i instanceof HTMLAnchorElement && !i.getAttribute("href") || oe(i) || ne(i)));
 }
-function Z(e) {
+function ot(e) {
   let t = e.activeElement;
   for (; t && t.shadowRoot && t.shadowRoot.activeElement; )
     t = t.shadowRoot.activeElement;
   return t instanceof HTMLElement ? t : null;
 }
-function jt(e) {
+function se(e) {
   const t = e.ownerDocument || document;
   let i = !1;
   const o = (s) => {
     if (s.key !== "Tab") return;
-    const a = F(e);
+    const a = j(e);
     if (a.length === 0) {
       s.preventDefault(), e.focus();
       return;
     }
-    const d = a[0], l = a[a.length - 1], r = Z(t), c = r ? a.indexOf(r) !== -1 : !1;
-    s.shiftKey ? (!c || r === d) && (s.preventDefault(), l.focus()) : (!c || r === l) && (s.preventDefault(), d.focus());
+    const d = a[0], c = a[a.length - 1], r = ot(t), l = r ? a.indexOf(r) !== -1 : !1;
+    s.shiftKey ? (!l || r === d) && (s.preventDefault(), c.focus()) : (!l || r === c) && (s.preventDefault(), d.focus());
   };
   e.addEventListener("keydown", o);
-  const n = F(e);
+  const n = j(e);
   return n.length > 0 ? n[0].focus() : (e.hasAttribute("tabindex") || (e.setAttribute("tabindex", "-1"), i = !0), e.focus()), {
     release() {
       e.removeEventListener("keydown", o), i && (e.removeAttribute("tabindex"), i = !1);
     }
   };
 }
-function Xt() {
-  return Z(document);
+function ae() {
+  return ot(document);
 }
-function Wt(e) {
+function re(e) {
   if (!(!e || typeof e.focus != "function"))
     try {
       e.focus();
     } catch {
     }
 }
-function Yt(e, t = {}) {
+function de(e, t = {}) {
   e.setAttribute("role", "dialog"), e.setAttribute("aria-modal", "true"), t.labelledbyId && e.setAttribute("aria-labelledby", t.labelledbyId), t.describedbyId && e.setAttribute("aria-describedby", t.describedbyId), t.label && e.setAttribute("aria-label", t.label);
 }
-function Qt(e, t) {
+function le(e, t) {
   let i = e;
   for (; i && i !== t; ) {
     const o = i.parentNode;
@@ -345,11 +359,11 @@ function Qt(e, t) {
   }
   return null;
 }
-function Gt(e) {
+function ce(e) {
   const i = (e.ownerDocument || document).body;
   if (!i) return () => {
   };
-  const o = Qt(e, i), n = [];
+  const o = le(e, i), n = [];
   return Array.from(i.children).forEach((s) => {
     if (!(s instanceof HTMLElement) || o && s === o) return;
     const a = s.inert === !0, d = s.getAttribute("aria-hidden");
@@ -361,14 +375,14 @@ function Gt(e) {
     }
   };
 }
-const tt = {
+const nt = {
   width: 400,
   height: 280,
   arrowHeight: 12,
   gap: 8,
   viewportPadding: 16
 };
-function Jt(e, t, i, o, n) {
+function he(e, t, i, o, n) {
   const s = e.y, a = t - (e.y + e.height);
   if (a >= i + o)
     return {
@@ -381,28 +395,28 @@ function Jt(e, t, i, o, n) {
       position: "above"
     };
   const d = a > s ? "below" : "above";
-  let l;
-  return d === "below" ? l = Math.min(
+  let c;
+  return d === "below" ? c = Math.min(
     e.y + e.height + o,
     t - i - n
-  ) : l = Math.max(n, e.y - i - o), { top: l, position: d };
+  ) : c = Math.max(n, e.y - i - o), { top: c, position: d };
 }
-function Zt(e, t, i, o) {
+function ue(e, t, i, o) {
   let s = e.x + e.width / 2 - i / 2;
   return s = Math.max(o, Math.min(s, t - i - o)), s;
 }
-function te(e, t, i, o = 24, n = 24) {
+function pe(e, t, i, o = 24, n = 24) {
   const a = e.clickX - t - n / 2;
   return Math.max(o, Math.min(a, i - o - n / 2));
 }
-function ee(e, t, i, o = tt) {
-  const n = o.height + o.arrowHeight, s = Jt(
+function fe(e, t, i, o = nt) {
+  const n = o.height + o.arrowHeight, s = he(
     e,
     i,
     n,
     o.gap,
     o.viewportPadding
-  ), a = Zt(
+  ), a = ue(
     e,
     t,
     o.width,
@@ -414,15 +428,15 @@ function ee(e, t, i, o = tt) {
     position: s.position
   };
 }
-function ie(e, t, i, o = {}) {
+function me(e, t, i, o = {}) {
   const n = o.gap ?? 8;
   let s = e.bottom + n;
   s + t.height > i.height - n && (s = e.top - t.height - n);
   let a = e.left;
   return a < n ? a = n : a + t.width > i.width - n && (a = i.width - t.width - n), s < n ? s = n : s + t.height > i.height - n && (s = i.height - t.height - n), { top: s, left: a };
 }
-function oe(e, t, i, o = tt) {
-  const n = ee(e, t, i, o), s = te(
+function be(e, t, i, o = nt) {
+  const n = fe(e, t, i, o), s = pe(
     e,
     n.left,
     o.width
@@ -432,15 +446,15 @@ function oe(e, t, i, o = tt) {
     arrow: { left: s }
   };
 }
-const ne = 20;
-function se(e) {
+const ge = 20;
+function ve(e) {
   const t = [], i = console.error, o = console.warn, n = console.log, s = (a, d) => {
-    const l = {
+    const c = {
       message: d.map((r) => String(r)).join(" "),
       timestamp: Date.now(),
       level: a
     };
-    t.length >= ne && t.shift(), t.push(l), e && e(l);
+    t.length >= ge && t.shift(), t.push(c), e && e(c);
   };
   return console.error = function(...a) {
     s("error", a), i.apply(console, a);
@@ -455,38 +469,38 @@ function se(e) {
     }
   };
 }
-const ae = 20, U = 4096;
-function S(e) {
+const ye = 20, W = 4096;
+function T(e) {
   const t = typeof e == "string" ? e : JSON.stringify(e);
-  return t.length > U ? t.slice(0, U) + "…[truncated]" : t;
+  return t.length > W ? t.slice(0, W) + "…[truncated]" : t;
 }
-function _(e, t) {
-  e.length >= ae && e.shift(), e.push(t);
+function X(e, t) {
+  e.length >= ye && e.shift(), e.push(t);
 }
-async function re(e) {
+async function we(e) {
   try {
     const t = await e.clone().text();
-    return S(t);
+    return T(t);
   } catch {
     return;
   }
 }
-function de() {
+function qe() {
   const e = [], t = window.fetch;
   window.fetch = async function(n, s) {
     const a = typeof n == "string" ? n : n instanceof URL ? n.toString() : n.url, d = s?.method ?? (typeof n == "object" && "method" in n ? n.method : "GET");
-    let l;
-    s?.body && (l = S(s.body));
+    let c;
+    s?.body && (c = T(s.body));
     const r = await t.apply(window, [n, s]);
     if (r.status >= 400) {
-      const c = await re(r);
-      _(e, {
+      const l = await we(r);
+      X(e, {
         url: a,
         method: d.toUpperCase(),
         status: r.status,
         statusText: r.statusText,
-        requestBody: l,
-        responseBody: c,
+        requestBody: c,
+        responseBody: l,
         timestamp: Date.now()
       });
     }
@@ -496,15 +510,15 @@ function de() {
   return XMLHttpRequest.prototype.open = function(n, s, ...a) {
     return this._qaid_method = n, this._qaid_url = typeof s == "string" ? s : s.toString(), i.apply(this, [n, s, ...a]);
   }, XMLHttpRequest.prototype.send = function(n) {
-    const s = this, a = n ? S(n) : void 0;
+    const s = this, a = n ? T(n) : void 0;
     return s.addEventListener("load", function() {
-      s.status >= 400 && _(e, {
+      s.status >= 400 && X(e, {
         url: s._qaid_url,
         method: s._qaid_method.toUpperCase(),
         status: s.status,
         statusText: s.statusText,
         requestBody: a,
-        responseBody: S(s.responseText),
+        responseBody: T(s.responseText),
         timestamp: Date.now()
       });
     }), o.apply(this, [n]);
@@ -515,27 +529,27 @@ function de() {
     }
   };
 }
-function ce() {
+function xe() {
   const e = navigator.userAgent || "";
   return /iP(hone|ad|od)/.test(e) || // iPadOS 13+ masquerades as "MacIntel" but is a multi-touch device.
   navigator.platform === "MacIntel" && (navigator.maxTouchPoints || 0) > 1;
 }
-function le(e, t, i, o, n) {
+function ke(e, t, i, o, n) {
   const s = e >= t, a = i >= o;
   return s === a ? { width: e, height: t, rotate: 0 } : { width: t, height: e, rotate: n === 270 ? -90 : 90 };
 }
-function he(e, t, i) {
+function Ce(e, t, i) {
   if (i.rotate === 0) {
     e.drawImage(t, 0, 0, i.width, i.height);
     return;
   }
   e.save(), i.rotate === 90 ? (e.translate(i.width, 0), e.rotate(Math.PI / 2)) : (e.translate(0, i.height), e.rotate(-Math.PI / 2)), e.drawImage(t, 0, 0, i.height, i.width), e.restore();
 }
-function ue() {
+function Ee() {
   const e = typeof screen < "u" ? screen.orientation : void 0;
   return e && typeof e.angle == "number" ? e.angle : 0;
 }
-function pe(e) {
+function Se(e) {
   return new Promise((t) => {
     if (e.videoWidth > 0) {
       t();
@@ -544,44 +558,44 @@ function pe(e) {
     e.addEventListener("loadedmetadata", () => t(), { once: !0 });
   });
 }
-async function me(e) {
+async function Te(e) {
   try {
     await e.play();
   } catch {
   }
 }
-async function fe(e, t = 15) {
+async function Le(e, t = 15) {
   const i = document.createElement("canvas");
   if (typeof i.captureStream != "function") return null;
   const o = i.getContext("2d");
   if (!o) return null;
   const n = document.createElement("video");
-  n.muted = !0, n.playsInline = !0, n.srcObject = e, await pe(n);
-  const s = le(
+  n.muted = !0, n.playsInline = !0, n.srcObject = e, await Se(n);
+  const s = ke(
     n.videoWidth,
     n.videoHeight,
     window.innerWidth,
     window.innerHeight,
-    ue()
+    Ee()
   );
-  i.width = s.width, i.height = s.height, await me(n);
+  i.width = s.width, i.height = s.height, await Te(n);
   let a = 0;
   const d = () => {
-    he(o, n, s), a = requestAnimationFrame(d);
+    Ce(o, n, s), a = requestAnimationFrame(d);
   };
   d();
-  const l = i.captureStream(t);
+  const c = i.captureStream(t);
   return {
-    stream: l,
+    stream: c,
     stop: () => {
-      a && cancelAnimationFrame(a), a = 0, l.getTracks().forEach((r) => r.stop()), n.pause(), n.srcObject = null;
+      a && cancelAnimationFrame(a), a = 0, c.getTracks().forEach((r) => r.stop()), n.pause(), n.srcObject = null;
     }
   };
 }
-function be() {
+function Ie() {
   return typeof navigator < "u" && !!navigator.mediaDevices && typeof navigator.mediaDevices.getDisplayMedia == "function" && typeof MediaRecorder < "u";
 }
-function ge() {
+function Ae() {
   if (typeof MediaRecorder > "u") return "";
   const e = [
     "video/webm;codecs=vp9",
@@ -594,20 +608,20 @@ function ge() {
       return t;
   return "";
 }
-function ve(e = {}) {
+function De(e = {}) {
   const t = e.maxDuration ?? 15, i = e.videoBitsPerSecond ?? 8e5;
-  let o = null, n = null, s = null, a = [], d = null, l = null, r = null, c = 0, p = null, u = null, m = !1, b = null;
+  let o = null, n = null, s = null, a = [], d = null, c = null, r = null, l = 0, p = null, u = null, f = !1, b = null;
   function v() {
-    r !== null && (clearInterval(r), r = null), b !== null && (clearTimeout(b), b = null), n && (n.stop(), n = null), o && (o.getTracks().forEach((f) => f.stop()), o = null), s = null, a = [], d = null, l = null, p = null, u = null;
+    r !== null && (clearInterval(r), r = null), b !== null && (clearTimeout(b), b = null), n && (n.stop(), n = null), o && (o.getTracks().forEach((m) => m.stop()), o = null), s = null, a = [], d = null, c = null, p = null, u = null;
   }
   function y() {
-    m || (m = !0, s && s.state !== "inactive" && s.stop());
+    f || (f = !0, s && s.state !== "inactive" && s.stop());
   }
   return {
     async start() {
-      m = !1, a = [];
-      const f = ge();
-      if (!f)
+      f = !1, a = [];
+      const m = Ae();
+      if (!m)
         throw new Error("No supported video MIME type found");
       o = await navigator.mediaDevices.getDisplayMedia({
         video: {
@@ -622,56 +636,63 @@ function ve(e = {}) {
         y();
       });
       let w = o;
-      if (ce()) {
-        const g = await fe(o);
+      if (xe()) {
+        const g = await Le(o);
         g && (n = g, w = g.stream);
       }
       s = new MediaRecorder(w, {
-        mimeType: f,
+        mimeType: m,
         videoBitsPerSecond: i
       }), s.ondataavailable = (g) => {
         g.data.size > 0 && a.push(g.data);
       }, s.onstop = () => {
-        const g = new Blob(a, { type: f });
-        p && p(g), l && l(g), n && (n.stop(), n = null), o && o.getTracks().forEach((C) => C.stop());
+        const g = new Blob(a, { type: m });
+        p && p(g), c && c(g), n && (n.stop(), n = null), o && o.getTracks().forEach((S) => S.stop());
       }, s.onerror = () => {
         u && u(new Error("MediaRecorder error"));
-      }, s.start(1e3), c = Date.now(), r = setInterval(() => {
-        const g = Math.floor((Date.now() - c) / 1e3);
+      }, s.start(1e3), l = Date.now(), r = setInterval(() => {
+        const g = Math.floor((Date.now() - l) / 1e3);
         d && d(g);
       }, 1e3), b = setTimeout(() => {
         y();
       }, t * 1e3);
     },
     stop() {
-      return new Promise((f, h) => {
-        p = f, u = h, y();
+      return new Promise((m, h) => {
+        p = m, u = h, y();
       });
     },
-    onTick(f) {
-      d = f;
+    onTick(m) {
+      d = m;
     },
-    onStop(f) {
-      l = f;
+    onStop(m) {
+      c = m;
     },
     destroy() {
       y(), v();
     }
   };
 }
-function ye(e = 640) {
+function q(e, t, i) {
+  const o = document.createElement(e);
+  if (t)
+    for (const [n, s] of Object.entries(t))
+      n === "className" ? o.className = s : o.setAttribute(n, s);
+  return o;
+}
+function Me(e = 640) {
   return typeof window < "u" && window.innerWidth < e;
 }
-function K(e, t, i) {
+function Y(e, t, i) {
   const o = i.map((s) => s.style.visibility);
   i.forEach((s) => s.style.visibility = "hidden");
   const n = document.elementFromPoint(e, t);
   return i.forEach((s, a) => s.style.visibility = o[a]), n;
 }
-function M(e) {
+function B(e) {
   return e ? e.hasAttribute("data-qaid-embed") || e.hasAttribute("data-qaid-embed-overlay") ? !0 : !!e.closest("[data-qaid-embed], [data-qaid-embed-overlay]") : !1;
 }
-function j(e, t = 0) {
+function Q(e, t = 0) {
   const i = e.getBoundingClientRect();
   return {
     x: i.left - t,
@@ -680,7 +701,7 @@ function j(e, t = 0) {
     height: i.height + t * 2
   };
 }
-async function we(e = {}) {
+async function Re(e = {}) {
   const { quality: t = 1, maxWidth: i = 1280, maxHeight: o = 800 } = e;
   try {
     if (!navigator.mediaDevices?.getDisplayMedia)
@@ -701,48 +722,48 @@ async function we(e = {}) {
       };
       y();
     }), await new Promise((v) => setTimeout(v, 100));
-    const l = a.width || d.videoWidth, r = a.height || d.videoHeight, c = Math.min(i / l, o / r, 1), p = Math.round(l * c), u = Math.round(r * c), m = document.createElement("canvas");
-    m.width = p, m.height = u;
-    const b = m.getContext("2d");
-    return b ? (b.drawImage(d, 0, 0, p, u), s.stop(), m.toDataURL("image/webp", t)) : (s.stop(), null);
+    const c = a.width || d.videoWidth, r = a.height || d.videoHeight, l = Math.min(i / c, o / r, 1), p = Math.round(c * l), u = Math.round(r * l), f = document.createElement("canvas");
+    f.width = p, f.height = u;
+    const b = f.getContext("2d");
+    return b ? (b.drawImage(d, 0, 0, p, u), s.stop(), f.toDataURL("image/webp", t)) : (s.stop(), null);
   } catch (n) {
     return console.warn("Screenshot capture failed:", n), null;
   }
 }
-const X = "https://qaid.dev/lib/html2canvas.min.js", xe = 1e4, qe = 50;
-let x = null;
-function ze() {
+const G = "https://qaid.dev/lib/html2canvas.min.js", Be = 1e4, He = 50;
+let k = null;
+function li() {
   if (typeof document > "u" || typeof window > "u")
     return !1;
   const e = document.createElement("canvas");
   return typeof e.getContext == "function" && !!e.getContext("2d");
 }
-function ke() {
-  return window.html2canvas ? Promise.resolve(!0) : x || (x = new Promise((e) => {
+function Pe() {
+  return window.html2canvas ? Promise.resolve(!0) : k || (k = new Promise((e) => {
     if (!document.querySelector(
-      `script[src="${X}"]`
+      `script[src="${G}"]`
     )) {
       const n = document.createElement("script");
-      n.src = X, n.async = !0, document.head.appendChild(n);
+      n.src = G, n.async = !0, document.head.appendChild(n);
     }
     const i = Date.now(), o = () => {
       if (window.html2canvas) {
         e(!0);
         return;
       }
-      if (Date.now() - i > xe) {
-        x = null, e(!1);
+      if (Date.now() - i > Be) {
+        k = null, e(!1);
         return;
       }
-      setTimeout(o, qe);
+      setTimeout(o, He);
     };
     o();
-  }), x);
+  }), k);
 }
-async function Ce(e = {}) {
+async function Oe(e = {}) {
   const { quality: t = 0.8, maxWidth: i = 1280, maxHeight: o = 800 } = e;
   try {
-    if (!await ke() || !window.html2canvas)
+    if (!await Pe() || !window.html2canvas)
       return console.warn("html2canvas failed to load"), null;
     const s = await window.html2canvas(document.body, {
       useCORS: !0,
@@ -755,19 +776,313 @@ async function Ce(e = {}) {
       x: window.scrollX,
       y: window.scrollY,
       ignoreElements: (r) => r instanceof HTMLElement ? r.classList.contains("qaid-buttons") || r.classList.contains("qaid-targeting-overlay") || r.classList.contains("qaid-modal-container") || r.classList.contains("qaid-bottom-sheet") || r.classList.contains("qaid-backdrop") || r.classList.contains("qaid-selected-marker") || r.classList.contains("qaid-tooltip-text") || r.classList.contains("qaid-recording-indicator") || r.classList.contains("qaid-video-preview") || r.className?.toString().startsWith?.("qaid-") : !1
-    }), a = s.width, d = s.height, l = Math.min(i / a, o / d, 1);
-    if (l < 1) {
-      const r = Math.round(a * l), c = Math.round(d * l), p = document.createElement("canvas");
-      p.width = r, p.height = c;
+    }), a = s.width, d = s.height, c = Math.min(i / a, o / d, 1);
+    if (c < 1) {
+      const r = Math.round(a * c), l = Math.round(d * c), p = document.createElement("canvas");
+      p.width = r, p.height = l;
       const u = p.getContext("2d");
-      return u ? (u.drawImage(s, 0, 0, r, c), p.toDataURL("image/webp", t)) : null;
+      return u ? (u.drawImage(s, 0, 0, r, l), p.toDataURL("image/webp", t)) : null;
     }
     return s.toDataURL("image/webp", t);
   } catch (n) {
     return console.warn("DOM screenshot capture failed:", n), null;
   }
 }
-const Se = "https://unpkg.com/@qaiddev/quests-embed@1/dist/qaid-quests.js", Ee = (e) => (
+const x = 12, ze = "#ef4444", $e = 4, Ne = 0.8, Ue = {
+  title: "Annotate screenshot",
+  instructions: "Draw on the screenshot to highlight or hide details, then choose Done to attach it or Skip to send the original.",
+  rectangle: "Rectangle",
+  arrow: "Arrow",
+  pen: "Pen",
+  blur: "Blur or redact",
+  undo: "Undo last",
+  skip: "Skip annotation",
+  done: "Done"
+};
+function P(e, t) {
+  return {
+    x: Math.min(e.x, t.x),
+    y: Math.min(e.y, t.y),
+    w: Math.abs(e.x - t.x),
+    h: Math.abs(e.y - t.y)
+  };
+}
+function Fe(e) {
+  if (e.type === "pen") return e.points.length < 2;
+  const t = P(e.points[0], e.points[1]);
+  return t.w < 3 && t.h < 3;
+}
+function Ve(e, t, i, o) {
+  e.beginPath(), e.moveTo(t.x, t.y), e.lineTo(i.x, i.y), e.stroke();
+  const n = Math.atan2(i.y - t.y, i.x - t.x), s = Math.max(10, o * 3);
+  e.beginPath(), e.moveTo(i.x, i.y), e.lineTo(
+    i.x - s * Math.cos(n - Math.PI / 6),
+    i.y - s * Math.sin(n - Math.PI / 6)
+  ), e.moveTo(i.x, i.y), e.lineTo(
+    i.x - s * Math.cos(n + Math.PI / 6),
+    i.y - s * Math.sin(n + Math.PI / 6)
+  ), e.stroke();
+}
+function _e(e, t) {
+  if (t.length !== 0) {
+    e.beginPath(), e.moveTo(t[0].x, t[0].y);
+    for (let i = 1; i < t.length; i++)
+      e.lineTo(t[i].x, t[i].y);
+    e.stroke();
+  }
+}
+function Ke(e, t, i, o, n) {
+  e.fillStyle = "rgb(15, 23, 42)", e.fillRect(t, i, o, n), e.fillStyle = "rgb(37, 47, 63)";
+  for (let s = i; s < i + n; s += x)
+    for (let a = t; a < t + o; a += x)
+      (Math.floor((a - t) / x) + Math.floor((s - i) / x)) % 2 === 0 && e.fillRect(
+        a,
+        s,
+        Math.min(x, t + o - a),
+        Math.min(x, i + n - s)
+      );
+}
+function O(e, t) {
+  switch (e.save(), e.strokeStyle = t.color, e.fillStyle = t.color, e.lineWidth = t.strokeWidth, e.lineJoin = "round", e.lineCap = "round", t.type) {
+    case "rect": {
+      const i = P(t.points[0], t.points[1]);
+      e.strokeRect(i.x, i.y, i.w, i.h);
+      break;
+    }
+    case "arrow":
+      Ve(e, t.points[0], t.points[1], t.strokeWidth);
+      break;
+    case "pen":
+      _e(e, t.points);
+      break;
+    case "blur": {
+      const i = P(t.points[0], t.points[1]);
+      Ke(e, i.x, i.y, i.w, i.h);
+      break;
+    }
+  }
+  e.restore();
+}
+function st(e) {
+  return new Promise((t, i) => {
+    const o = new Image();
+    o.onload = () => t(o), o.onerror = () => i(new Error("Failed to load screenshot")), o.src = e;
+  });
+}
+async function je(e, t, i = {}) {
+  const o = i.quality ?? Ne;
+  let n;
+  try {
+    n = await st(e);
+  } catch {
+    return e;
+  }
+  const s = document.createElement("canvas");
+  s.width = n.naturalWidth || n.width || 1, s.height = n.naturalHeight || n.height || 1;
+  const a = s.getContext("2d");
+  if (!a) return e;
+  a.drawImage(n, 0, 0, s.width, s.height);
+  for (const d of t)
+    O(a, d);
+  return s.toDataURL("image/webp", o);
+}
+let We = 0;
+class Xe {
+  shapes = [];
+  tool = "rect";
+  opts;
+  labels;
+  color;
+  strokeWidth;
+  uid = `qaid-annotate-${++We}`;
+  container;
+  canvas;
+  ctx = null;
+  toolbar;
+  undoBtn;
+  img = null;
+  drawing = !1;
+  current = null;
+  settled = !1;
+  // Assigned in open() before any settle() is reachable (done/skip only fire
+  // after the editor is mounted).
+  resolveResult;
+  constructor(t) {
+    this.opts = t, this.labels = { ...Ue, ...t.labels ?? {} }, this.color = t.color ?? ze, this.strokeWidth = t.strokeWidth ?? $e;
+  }
+  /** Mount the editor and resolve when the user commits (Done) or skips. */
+  open() {
+    const t = new Promise((i) => {
+      this.resolveResult = i;
+    });
+    return this.mount(), t;
+  }
+  toolButton(t, i, o) {
+    const n = q("button", {
+      type: "button",
+      class: "qaid-annotate-tool",
+      "data-qaid-tool": t,
+      "aria-pressed": t === this.tool ? "true" : "false",
+      "aria-label": `${o} tool`,
+      title: o
+    });
+    return n.innerHTML = i, n;
+  }
+  actionButton(t, i, o, n) {
+    const s = q("button", {
+      type: "button",
+      class: `qaid-annotate-action ${n}`,
+      "data-qaid-action": t,
+      "aria-label": o,
+      title: o
+    });
+    return s.innerHTML = `${i}<span class="qaid-annotate-btn-text">${o}</span>`, s;
+  }
+  mount() {
+    const t = `${this.uid}-title`, i = `${this.uid}-desc`;
+    this.container = q("div", { class: "qaid-annotate" }), this.opts.applyVars?.(this.container);
+    const o = q("h2", {
+      id: t,
+      class: "qaid-annotate-title"
+    });
+    o.textContent = this.labels.title;
+    const n = q("p", {
+      id: i,
+      class: "qaid-annotate-desc"
+    });
+    n.textContent = this.labels.instructions;
+    const s = q("div", { class: "qaid-annotate-stage" });
+    this.canvas = document.createElement("canvas"), this.canvas.className = "qaid-annotate-canvas", this.canvas.width = 1, this.canvas.height = 1, this.canvas.setAttribute("role", "img"), this.canvas.setAttribute("aria-label", this.labels.title), this.ctx = this.canvas.getContext("2d"), s.appendChild(this.canvas), this.toolbar = q("div", {
+      class: "qaid-annotate-toolbar",
+      role: "toolbar",
+      "aria-label": this.labels.title
+    });
+    const a = q("div", { class: "qaid-annotate-tools" });
+    a.appendChild(this.toolButton("rect", kt, this.labels.rectangle)), a.appendChild(this.toolButton("arrow", Ct, this.labels.arrow)), a.appendChild(this.toolButton("pen", Et, this.labels.pen)), a.appendChild(this.toolButton("blur", St, this.labels.blur)), this.undoBtn = this.actionButton("undo", Tt, this.labels.undo, "qaid-annotate-undo"), this.undoBtn.disabled = !0;
+    const d = this.actionButton("skip", It, this.labels.skip, "qaid-annotate-skip"), c = this.actionButton("done", Lt, this.labels.done, "qaid-annotate-done"), r = q("div", { class: "qaid-annotate-actions" });
+    r.appendChild(this.undoBtn), r.appendChild(d), r.appendChild(c), this.toolbar.appendChild(a), this.toolbar.appendChild(r), this.container.appendChild(o), this.container.appendChild(n), this.container.appendChild(s), this.container.appendChild(this.toolbar), this.opts.root.appendChild(this.container), this.toolbar.addEventListener("click", this.onToolbarClick), this.canvas.addEventListener("pointerdown", this.onPointerDown), this.container.addEventListener("pointermove", this.onPointerMove), this.container.addEventListener("pointerup", this.onPointerUp), this.container.addEventListener("keydown", this.onKeyDown), this.opts.openDialog?.(this.container, {
+      labelledbyId: t,
+      describedbyId: i
+    }), this.opts.announce?.(this.labels.instructions), st(this.opts.dataUrl).then((l) => {
+      this.img = l, this.canvas.width = l.naturalWidth || l.width || 1, this.canvas.height = l.naturalHeight || l.height || 1, this.redraw();
+    }).catch(() => {
+      this.img = null, this.redraw();
+    });
+  }
+  /** Convert a pointer event's client coordinates into natural image pixels. */
+  toImageCoords(t) {
+    const i = this.canvas.getBoundingClientRect(), o = this.canvas.width / (i.width || this.canvas.width), n = this.canvas.height / (i.height || this.canvas.height);
+    return {
+      x: (t.clientX - i.left) * o,
+      y: (t.clientY - i.top) * n
+    };
+  }
+  /** Repaint the display canvas: base image (if loaded) then every shape. */
+  redraw() {
+    const t = this.ctx;
+    if (t) {
+      t.clearRect(0, 0, this.canvas.width, this.canvas.height), this.img && t.drawImage(this.img, 0, 0, this.canvas.width, this.canvas.height);
+      for (const i of this.shapes)
+        O(t, i);
+      this.current && O(t, this.current);
+    }
+  }
+  /** Select the active drawing tool and reflect it on the toolbar. */
+  selectTool(t) {
+    this.tool = t, this.toolbar.querySelectorAll("[data-qaid-tool]").forEach((n) => {
+      n.setAttribute(
+        "aria-pressed",
+        n.getAttribute("data-qaid-tool") === t ? "true" : "false"
+      );
+    });
+    const o = this.labels[Ye[t]];
+    this.opts.announce?.(`${o} tool selected`);
+  }
+  onToolbarClick = (t) => {
+    const o = t.target?.closest("[data-qaid-tool],[data-qaid-action]");
+    if (!o) return;
+    const n = o.getAttribute("data-qaid-tool");
+    if (n) {
+      this.selectTool(n);
+      return;
+    }
+    const s = o.getAttribute("data-qaid-action");
+    s === "undo" ? this.undo() : s === "skip" ? this.skip() : s === "done" && this.done();
+  };
+  onPointerDown = (t) => {
+    t.preventDefault?.(), this.drawing = !0;
+    const i = this.toImageCoords(t);
+    this.current = {
+      type: this.tool,
+      color: this.color,
+      strokeWidth: this.strokeWidth,
+      points: this.tool === "pen" ? [i] : [i, { ...i }]
+    }, this.redraw();
+  };
+  onPointerMove = (t) => {
+    if (!this.drawing || !this.current) return;
+    const i = this.toImageCoords(t);
+    this.current.type === "pen" ? this.current.points.push(i) : this.current.points[1] = i, this.redraw();
+  };
+  onPointerUp = () => {
+    if (!this.drawing || !this.current) return;
+    this.drawing = !1;
+    const t = this.current;
+    if (this.current = null, Fe(t)) {
+      this.redraw();
+      return;
+    }
+    this.shapes.push(t), this.undoBtn.disabled = !1, this.opts.announce?.("Annotation added"), this.redraw();
+  };
+  onKeyDown = (t) => {
+    if (t.key === "Escape") {
+      t.preventDefault(), this.skip();
+      return;
+    }
+    if (t.key === "Enter") {
+      const i = t.target;
+      if (i?.getAttribute("data-qaid-tool") || i?.getAttribute("data-qaid-action"))
+        return;
+      t.preventDefault(), this.done();
+    }
+  };
+  /** Remove the most recently added shape. */
+  undo() {
+    if (this.shapes.length === 0) {
+      this.opts.announce?.("Nothing to undo");
+      return;
+    }
+    this.shapes.pop(), this.undoBtn.disabled = this.shapes.length === 0, this.opts.announce?.("Removed last annotation"), this.redraw();
+  }
+  /** Composite the annotations and resolve with the new WebP data URL. */
+  async done() {
+    if (this.settled) return;
+    const t = await je(this.opts.dataUrl, this.shapes, {
+      quality: this.opts.quality
+    });
+    this.opts.announce?.("Annotated screenshot attached"), this.settle(t);
+  }
+  /** Discard annotations and resolve with `null` (caller keeps the original). */
+  skip() {
+    this.settled || (this.opts.announce?.("Annotation skipped"), this.settle(null));
+  }
+  settle(t) {
+    this.settled = !0, this.teardown(), this.resolveResult(t);
+  }
+  teardown() {
+    this.toolbar.removeEventListener("click", this.onToolbarClick), this.canvas.removeEventListener("pointerdown", this.onPointerDown), this.container.removeEventListener("pointermove", this.onPointerMove), this.container.removeEventListener("pointerup", this.onPointerUp), this.container.removeEventListener("keydown", this.onKeyDown), this.opts.closeDialog?.(), this.container.remove();
+  }
+}
+const Ye = {
+  rect: "rectangle",
+  arrow: "arrow",
+  pen: "pen",
+  blur: "blur"
+};
+function Qe(e) {
+  return new Xe(e).open();
+}
+const Ge = "https://unpkg.com/@qaiddev/quests-embed@1/dist/qaid-quests.js", Je = (e) => (
   // The URL is a runtime value, not a static specifier — keep Vite from
   // trying to analyze/bundle it.
   import(
@@ -775,19 +1090,19 @@ const Se = "https://unpkg.com/@qaiddev/quests-embed@1/dist/qaid-quests.js", Ee =
     e
   )
 );
-let Te = Ee, q = null, R = null;
-function Le(e) {
-  return q && R === e || (R = e, q = Promise.resolve(Te(e)).then((t) => {
+let Ze = Je, C = null, H = null;
+function ti(e) {
+  return C && H === e || (H = e, C = Promise.resolve(Ze(e)).then((t) => {
     const i = t;
     if (!i || typeof i.QaidQuests != "function")
       throw new Error("quests module has no QaidQuests export");
     return i;
   }).catch((t) => {
-    throw q = null, R = null, t;
-  })), q;
+    throw C = null, H = null, t;
+  })), C;
 }
-async function Ie(e) {
-  const t = await Le(e.moduleUrl), i = e.base.replace(/\/+$/, ""), o = e.feedbackId != null ? { feedbackId: e.feedbackId } : void 0;
+async function ei(e) {
+  const t = await ti(e.moduleUrl), i = e.base.replace(/\/+$/, ""), o = e.feedbackId != null ? { feedbackId: e.feedbackId } : void 0;
   return new t.QaidQuests({
     endpoint: `${i}/responses`,
     configUrl: `${i}/${encodeURIComponent(e.questId)}/definition`,
@@ -796,35 +1111,35 @@ async function Ie(e) {
     onClose: e.onClose
   });
 }
-const W = "qaid_visitor_id", Y = "qaid_hide_feedback", Ae = 12;
-function De() {
+const J = "qaid_visitor_id", Z = "qaid_hide_feedback", ii = 12;
+function oi() {
   return typeof window.matchMedia == "function" && window.matchMedia("(pointer: coarse)").matches;
 }
-function H(e) {
-  return e ? `${Y}_${e}` : Y;
+function z(e) {
+  return e ? `${Z}_${e}` : Z;
 }
-function Me(e) {
+function ni(e) {
   try {
-    return localStorage.getItem(H(e)) === "1";
+    return localStorage.getItem(z(e)) === "1";
   } catch {
     return !1;
   }
 }
-function Q(e, t = !0) {
+function tt(e, t = !0) {
   try {
-    t ? localStorage.setItem(H(e), "1") : localStorage.removeItem(H(e));
+    t ? localStorage.setItem(z(e), "1") : localStorage.removeItem(z(e));
   } catch {
   }
 }
-function Re() {
+function si() {
   try {
-    let e = localStorage.getItem(W);
-    return e || (e = crypto.randomUUID(), localStorage.setItem(W, e)), e;
+    let e = localStorage.getItem(J);
+    return e || (e = crypto.randomUUID(), localStorage.setItem(J, e)), e;
   } catch {
     return crypto.randomUUID();
   }
 }
-class He {
+class ai {
   config;
   state = "IDLE";
   feedbackData = {
@@ -946,6 +1261,7 @@ class He {
       fontFamily: t.fontFamily ?? "system-ui, -apple-system, sans-serif",
       fontSize: t.fontSize ?? 16,
       captureScreenshot: t.captureScreenshot ?? !1,
+      annotate: t.annotate ?? !0,
       screenshotMethod: t.screenshotMethod ?? "permission",
       screenshotOptions: {
         quality: t.screenshotOptions?.quality ?? 0.8,
@@ -970,12 +1286,12 @@ class He {
         video: t.quests?.video ?? "",
         // Quest service reuses the feedback API key unless overridden.
         apiKey: t.quests?.apiKey ?? t.apiKey ?? "",
-        moduleUrl: t.quests?.moduleUrl ?? Se
+        moduleUrl: t.quests?.moduleUrl ?? Ge
       }
-    }, this.boundKeyDown = this.handleKeyDown.bind(this), this.boundMouseMove = this.handleMouseMove.bind(this), this.boundClick = this.handleClick.bind(this), this.boundTouchStart = this.handleTouchStart.bind(this), this.boundTouchEnd = this.handleTouchEnd.bind(this), this.boundResize = this.handleResize.bind(this), this.visitorId = Re(), this.init();
+    }, this.boundKeyDown = this.handleKeyDown.bind(this), this.boundMouseMove = this.handleMouseMove.bind(this), this.boundClick = this.handleClick.bind(this), this.boundTouchStart = this.handleTouchStart.bind(this), this.boundTouchEnd = this.handleTouchEnd.bind(this), this.boundResize = this.handleResize.bind(this), this.visitorId = si(), this.init();
   }
   applyVars(t) {
-    Et(t, this.cssVars);
+    $t(t, this.cssVars);
   }
   /**
    * Announce a message via the shared visually-hidden live regions.
@@ -985,7 +1301,7 @@ class He {
    */
   announceMsg(t, i = !1) {
     const o = this.overlayShadowRoot ?? this.shadowRoot;
-    o && Ut(o, t, { assertive: i });
+    o && ie(o, t, { assertive: i });
   }
   /**
    * Turn a transient surface into an accessible modal dialog: save the
@@ -993,16 +1309,16 @@ class He {
    * background. Paired with closeDialogA11y() on every close path.
    */
   openDialogA11y(t, i) {
-    this.dialogTrigger = Xt(), Yt(t, i), this.dialogTrap = jt(t), this.dialogRestoreInert = Gt(t);
+    this.dialogTrigger = ae(), de(t, i), this.dialogTrap = se(t), this.dialogRestoreInert = ce(t);
   }
   closeDialogA11y() {
-    this.dialogTrap?.release(), this.dialogTrap = null, this.dialogRestoreInert && (this.dialogRestoreInert(), this.dialogRestoreInert = null), Wt(this.dialogTrigger), this.dialogTrigger = null;
+    this.dialogTrap?.release(), this.dialogTrap = null, this.dialogRestoreInert && (this.dialogRestoreInert(), this.dialogRestoreInert = null), re(this.dialogTrigger), this.dialogTrigger = null;
   }
   clearActiveThumb() {
     this.activeThumbBtn && (this.activeThumbBtn.setAttribute("aria-pressed", "false"), this.activeThumbBtn = null);
   }
   init() {
-    Tt(), this.cssVars = St({
+    Nt(), this.cssVars = zt({
       positiveColor: this.config.colors.positive,
       negativeColor: this.config.colors.negative,
       markerColor: this.config.colors.marker,
@@ -1011,7 +1327,7 @@ class He {
       backdropOpacity: this.config.backdropOpacity,
       fontFamily: this.config.fontFamily,
       fontSize: this.config.fontSize
-    }), !this.config.hideDismiss && Me(this.config.apiKey) && (this._startDismissed = !0), this.checkMobile(), window.addEventListener("resize", this.boundResize), this.createEmbed(), this.consoleCapture = se((t) => {
+    }), !this.config.hideDismiss && ni(this.config.apiKey) && (this._startDismissed = !0), this.checkMobile(), window.addEventListener("resize", this.boundResize), this.createEmbed(), this.consoleCapture = ve((t) => {
       this.feedbackData.consoleErrors = this.consoleCapture?.errors ?? [];
     }), this.feedbackData.consoleErrors = this.consoleCapture.errors, this.observeDom();
   }
@@ -1034,7 +1350,7 @@ class He {
     }), this.domObserver.observe(document.body, { childList: !0 });
   }
   checkMobile() {
-    this.isMobile = ye();
+    this.isMobile = Me();
   }
   handleResize() {
     this.checkMobile();
@@ -1044,7 +1360,7 @@ class He {
     let t = null;
     this.config.container && (t = document.querySelector(this.config.container)), t ? (t.appendChild(this.shadowHost), this.isUserProvidedContainer = !0, this.config.hideDismiss = !0) : (this.shadowHost.style.position = "fixed", this.shadowHost.style.display = "block", this.shadowHost.style.inset = "0", this.shadowHost.style.pointerEvents = "none", this.shadowHost.style.zIndex = String(this.config.zIndex), document.body.appendChild(this.shadowHost)), this.shadowRoot = this.shadowHost.attachShadow({ mode: "open" });
     const i = document.createElement("style");
-    if (i.textContent = N(), this.shadowRoot.appendChild(i), this.config.css) {
+    if (i.textContent = _(), this.shadowRoot.appendChild(i), this.config.css) {
       const r = document.createElement("style");
       r.textContent = this.config.css, this.shadowRoot.appendChild(r);
     }
@@ -1053,8 +1369,8 @@ class He {
       this.buttonsContainer = document.createElement("div"), this.buttonsContainer.className = `qaid-buttons qaid-${this.config.position} ${o}`.trim(), this.config.incognito && this.buttonsContainer.classList.add("qaid-incognito");
     else {
       this.buttonsContainer = document.createElement("div"), this.buttonsContainer.className = `qaid-buttons qaid-auto-container qaid-${this.config.position} ${o}${this.config.incognito ? " qaid-incognito" : ""}`.trim(), this.buttonsContainer.style.pointerEvents = "auto";
-      const { x: r, y: c } = this.config.offset;
-      this.config.position.includes("right") ? this.buttonsContainer.style.right = `${r}px` : this.buttonsContainer.style.left = `${r}px`, this.config.position.includes("bottom") ? this.buttonsContainer.style.bottom = `${c}px` : this.buttonsContainer.style.top = `${c}px`;
+      const { x: r, y: l } = this.config.offset;
+      this.config.position.includes("right") ? this.buttonsContainer.style.right = `${r}px` : this.buttonsContainer.style.left = `${r}px`, this.config.position.includes("bottom") ? this.buttonsContainer.style.bottom = `${l}px` : this.buttonsContainer.style.top = `${l}px`;
     }
     this.applyVars(this.buttonsContainer), this.shadowRoot.appendChild(this.buttonsContainer), this.buttonsContainer.addEventListener("keydown", (r) => {
       (r.key === "Enter" || r.key === " " || r.key === "Spacebar") && (this.keyboardActivation = !0);
@@ -1063,22 +1379,22 @@ class He {
     }), this.buttonsContainer.addEventListener("pointerdown", () => {
       this.keyboardActivation = !1;
     });
-    const n = !!this.config.buttonClass, s = n ? `qaid-btn-structural ${this.config.buttonClass}` : "qaid-btn", d = this.config.text.tooltip || "Feedback for us?", l = document.createElement("div");
-    if (l.className = "qaid-tooltip-text", l.textContent = d, this.applyVars(l), this.shadowRoot.appendChild(l), this.tooltipElement = l, !this.config.hideThumbs) {
+    const n = !!this.config.buttonClass, s = n ? `qaid-btn-structural ${this.config.buttonClass}` : "qaid-btn", d = this.config.text.tooltip || "Feedback for us?", c = document.createElement("div");
+    if (c.className = "qaid-tooltip-text", c.textContent = d, this.applyVars(c), this.shadowRoot.appendChild(c), this.tooltipElement = c, !this.config.hideThumbs) {
       const r = document.createElement("div");
       r.className = "qaid-tooltip-wrapper";
-      const c = document.createElement("button");
-      c.type = "button", c.className = n ? `${s} qaid-btn-up` : "qaid-btn qaid-btn-up", c.setAttribute("aria-label", this.config.text.positiveLabel), c.innerHTML = this.config.positiveIcon || I, c.addEventListener("click", (m) => this.handleThumbClick("up", m.currentTarget, m)), c.addEventListener("mouseenter", () => this.showTooltip(c)), c.addEventListener("mouseleave", () => this.hideTooltip()), r.appendChild(c);
+      const l = document.createElement("button");
+      l.type = "button", l.className = n ? `${s} qaid-btn-up` : "qaid-btn qaid-btn-up", l.setAttribute("aria-label", this.config.text.positiveLabel), l.innerHTML = this.config.positiveIcon || D, l.addEventListener("click", (f) => this.handleThumbClick("up", f.currentTarget, f)), l.addEventListener("mouseenter", () => this.showTooltip(l)), l.addEventListener("mouseleave", () => this.hideTooltip()), r.appendChild(l);
       const p = document.createElement("div");
       p.className = "qaid-tooltip-wrapper";
       const u = document.createElement("button");
-      u.type = "button", u.className = n ? `${s} qaid-btn-down` : "qaid-btn qaid-btn-down", u.setAttribute("aria-label", this.config.text.negativeLabel), u.innerHTML = this.config.negativeIcon || A, u.addEventListener("click", (m) => this.handleThumbClick("down", m.currentTarget, m)), u.addEventListener("mouseenter", () => this.showTooltip(u)), u.addEventListener("mouseleave", () => this.hideTooltip()), p.appendChild(u), this.buttonsContainer.appendChild(r), this.buttonsContainer.appendChild(p);
+      u.type = "button", u.className = n ? `${s} qaid-btn-down` : "qaid-btn qaid-btn-down", u.setAttribute("aria-label", this.config.text.negativeLabel), u.innerHTML = this.config.negativeIcon || M, u.addEventListener("click", (f) => this.handleThumbClick("down", f.currentTarget, f)), u.addEventListener("mouseenter", () => this.showTooltip(u)), u.addEventListener("mouseleave", () => this.hideTooltip()), p.appendChild(u), this.buttonsContainer.appendChild(r), this.buttonsContainer.appendChild(p);
     }
-    if (this.config.captureVideo && be()) {
+    if (this.config.captureVideo && Ie()) {
       const r = document.createElement("div");
       r.className = "qaid-tooltip-wrapper";
-      const c = document.createElement("button");
-      c.type = "button", c.className = n ? `${s} qaid-btn-record` : "qaid-btn qaid-btn-record", c.setAttribute("aria-label", this.config.text.recordLabel), c.innerHTML = this.config.recordIcon || bt, c.addEventListener("click", () => this.startRecording()), c.addEventListener("mouseenter", () => this.showTooltip(c)), c.addEventListener("mouseleave", () => this.hideTooltip()), r.appendChild(c), this.buttonsContainer.appendChild(r);
+      const l = document.createElement("button");
+      l.type = "button", l.className = n ? `${s} qaid-btn-record` : "qaid-btn qaid-btn-record", l.setAttribute("aria-label", this.config.text.recordLabel), l.innerHTML = this.config.recordIcon || xt, l.addEventListener("click", () => this.startRecording()), l.addEventListener("mouseenter", () => this.showTooltip(l)), l.addEventListener("mouseleave", () => this.hideTooltip()), r.appendChild(l), this.buttonsContainer.appendChild(r);
     }
     this.config.hideDismiss || (this.dismissBtn = document.createElement("button"), this.dismissBtn.type = "button", this.dismissBtn.className = "qaid-dismiss-btn", this.dismissBtn.setAttribute("aria-label", this.config.text.dismissLabel), this.dismissBtn.title = this.config.text.dismissLabel, this.dismissBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>', this.dismissBtn.addEventListener("click", (r) => {
       r.stopPropagation(), this.handleDismiss();
@@ -1094,7 +1410,7 @@ class He {
     if (this.overlayShadowRoot) return this.overlayShadowRoot;
     this.overlayShadowHost = document.createElement("div"), this.overlayShadowHost.setAttribute("data-qaid-embed-overlay", ""), this.overlayShadowHost.style.position = "fixed", this.overlayShadowHost.style.inset = "0", this.overlayShadowHost.style.pointerEvents = "none", this.overlayShadowHost.style.zIndex = String(this.config.zIndex), document.body.appendChild(this.overlayShadowHost), this.overlayShadowRoot = this.overlayShadowHost.attachShadow({ mode: "open" });
     const t = document.createElement("style");
-    if (t.textContent = N(), this.overlayShadowRoot.appendChild(t), this.config.css) {
+    if (t.textContent = _(), this.overlayShadowRoot.appendChild(t), this.config.css) {
       const i = document.createElement("style");
       i.textContent = this.config.css, this.overlayShadowRoot.appendChild(i);
     }
@@ -1104,7 +1420,7 @@ class He {
   showTooltip(t) {
     const i = this.tooltipElement;
     i.style.visibility = "hidden", i.classList.add("qaid-tooltip-visible");
-    const o = t.getBoundingClientRect(), n = i.getBoundingClientRect(), { top: s, left: a } = ie(
+    const o = t.getBoundingClientRect(), n = i.getBoundingClientRect(), { top: s, left: a } = me(
       o,
       n,
       { width: window.innerWidth, height: window.innerHeight }
@@ -1115,10 +1431,10 @@ class He {
     this.tooltipElement.classList.remove("qaid-tooltip-visible");
   }
   handleDismiss() {
-    this.buttonsContainer.classList.add("qaid-dismissed"), Q(this.config.apiKey, !0);
+    this.buttonsContainer.classList.add("qaid-dismissed"), tt(this.config.apiKey, !0);
   }
   handleThumbClick(t, i, o) {
-    if (this.buttonsContainer?.classList.contains("qaid-incognito") && (this.buttonsContainer.classList.remove("qaid-incognito"), Q(this.config.apiKey, !1)), this.config.skipTargeting)
+    if (this.buttonsContainer?.classList.contains("qaid-incognito") && (this.buttonsContainer.classList.remove("qaid-incognito"), tt(this.config.apiKey, !1)), this.config.skipTargeting)
       this.submitDirectFeedback(t, i);
     else {
       this.activeThumbBtn = i, i.setAttribute("aria-pressed", "true");
@@ -1149,12 +1465,12 @@ class He {
    * The KeyboardTargetingController owns Tab/Arrow/Enter/Space/Escape.
    */
   startKeyboardTargetingFlow(t) {
-    this.state = "TARGETING", this.feedbackData.feedbackType = t, this.feedbackData.elementSelector = null, this.feedbackData.elementText = null, this.selectedBounds.visible = !1, document.body.style.setProperty("--qaid-positive", this.cssVars["--qaid-positive"]), document.body.style.setProperty("--qaid-negative", this.cssVars["--qaid-negative"]), this.createTargetingOverlay(), this.crosshairH && (this.crosshairH.style.display = "none"), this.crosshairV && (this.crosshairV.style.display = "none"), this.scope && (this.scope.style.display = "none"), this.keyboardController = Ot({
-      isExcluded: (i) => M(i),
+    this.state = "TARGETING", this.feedbackData.feedbackType = t, this.feedbackData.elementSelector = null, this.feedbackData.elementText = null, this.selectedBounds.visible = !1, document.body.style.setProperty("--qaid-positive", this.cssVars["--qaid-positive"]), document.body.style.setProperty("--qaid-negative", this.cssVars["--qaid-negative"]), this.createTargetingOverlay(), this.crosshairH && (this.crosshairH.style.display = "none"), this.crosshairV && (this.crosshairV.style.display = "none"), this.scope && (this.scope.style.display = "none"), this.keyboardController = Gt({
+      isExcluded: (i) => B(i),
       onHighlight: (i) => {
         const o = i.getBoundingClientRect(), n = this.highlightBox;
         n && (n.style.transform = `translate(${o.left}px, ${o.top}px)`, n.style.width = `${o.width}px`, n.style.height = `${o.height}px`, n.style.display = "block");
-        const { text: s } = D(i);
+        const { text: s } = R(i);
         this.announceMsg(`Targeting ${s || i.tagName.toLowerCase()}`);
       },
       onSelect: (i) => this.selectKeyboardTarget(i),
@@ -1162,14 +1478,14 @@ class He {
     });
   }
   selectKeyboardTarget(t) {
-    const i = j(t, 8);
+    const i = Q(t, 8);
     this.selectedBounds = {
       ...i,
       clickX: i.x + i.width / 2,
       clickY: i.y + i.height / 2,
       visible: !0
     };
-    const { selector: o, text: n } = D(t);
+    const { selector: o, text: n } = R(t);
     this.feedbackData.elementSelector = o, this.feedbackData.elementText = n, this.removeTargetingOverlay(), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.keyboardController = null, this.clearActiveThumb(), this.state = "SELECTED", this.showSelectedMarker(), this.submitFeedback();
   }
   createTargetingOverlay() {
@@ -1192,8 +1508,8 @@ class He {
    *  Shared by the mouse (hover) and touch (drag) targeting paths. */
   updateReticleAt(t, i) {
     if (this.mousePos.x = t, this.mousePos.y = i, this.crosshairH && (this.crosshairH.style.top = `${i}px`), this.crosshairV && (this.crosshairV.style.left = `${t}px`), this.scope && (this.scope.style.left = `${t}px`, this.scope.style.top = `${i}px`), this.captureLayer && this.shadowHost) {
-      const o = [this.shadowHost, this.overlayShadowHost].filter(Boolean), n = K(t, i, o);
-      if (n && !M(n)) {
+      const o = [this.shadowHost, this.overlayShadowHost].filter(Boolean), n = Y(t, i, o);
+      if (n && !B(n)) {
         if (this.highlightBox) {
           const s = n.getBoundingClientRect();
           this.highlightBox.style.transform = `translate(${s.left}px, ${s.top}px)`, this.highlightBox.style.width = `${s.width}px`, this.highlightBox.style.height = `${s.height}px`, this.highlightBox.style.display = "block";
@@ -1216,22 +1532,22 @@ class He {
   }
   handleTouchEnd(t) {
     const i = t.changedTouches[0], o = this.touchStartPos;
-    this.touchStartPos = null, !(!i || !o || Math.hypot(i.clientX - o.x, i.clientY - o.y) > Ae) && (t.preventDefault(), this.selectAt(i.clientX, i.clientY));
+    this.touchStartPos = null, !(!i || !o || Math.hypot(i.clientX - o.x, i.clientY - o.y) > ii) && (t.preventDefault(), this.selectAt(i.clientX, i.clientY));
   }
   /** Select the element under (x, y) and tear down targeting.
    *  Shared by the mouse (click) and touch (touchend) targeting paths. */
   selectAt(t, i) {
-    const o = [this.shadowHost, this.overlayShadowHost].filter(Boolean), n = K(t, i, o);
-    if (!n || M(n))
+    const o = [this.shadowHost, this.overlayShadowHost].filter(Boolean), n = Y(t, i, o);
+    if (!n || B(n))
       return;
-    const s = j(n, 8);
+    const s = Q(n, 8);
     this.selectedBounds = {
       ...s,
       clickX: t,
       clickY: i,
       visible: !0
     };
-    const { selector: a, text: d } = D(n);
+    const { selector: a, text: d } = R(n);
     this.feedbackData.elementSelector = a, this.feedbackData.elementText = d, this.stopTargetingListeners(), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.state = "SELECTED", this.clearActiveThumb(), this.showSelectedMarker(), this.submitFeedback();
   }
   /** Remove the targeting overlay and every mouse/touch/keyboard listener the
@@ -1256,11 +1572,36 @@ class He {
    *  instead of the permission-based Screen Capture API. Explicit "dom" wins;
    *  otherwise DOM is used on touch devices to avoid the getDisplayMedia prompt. */
   shouldCaptureViaDom() {
-    return this.config.screenshotMethod === "dom" || De();
+    return this.config.screenshotMethod === "dom" || oi();
+  }
+  /**
+   * Open the full-screen annotation editor over the captured screenshot,
+   * reusing the overlay shadow host and the shared dialog a11y helpers.
+   * Resolves with the composited WebP data URL, or null when the user skips
+   * (caller keeps the original). Pointer events on the overlay host are
+   * enabled while the editor is open and restored on close.
+   */
+  async openAnnotationEditor(t) {
+    const i = this.ensureOverlayHost(), o = this.overlayShadowHost, n = o.style.pointerEvents;
+    o.style.pointerEvents = "auto";
+    try {
+      return await Qe({
+        dataUrl: t,
+        root: i,
+        quality: this.config.screenshotOptions.quality,
+        color: this.config.colors.marker,
+        applyVars: (s) => this.applyVars(s),
+        announce: (s, a) => this.announceMsg(s, a),
+        openDialog: (s, a) => this.openDialogA11y(s, a),
+        closeDialog: () => this.closeDialogA11y()
+      });
+    } finally {
+      o.style.pointerEvents = n;
+    }
   }
   async submitFeedback() {
     let t = null;
-    this.config.captureScreenshot && (t = this.shouldCaptureViaDom() ? await Ce(this.config.screenshotOptions) : await we(this.config.screenshotOptions), t && this.announceMsg("Screenshot captured"));
+    this.config.captureScreenshot && (t = this.shouldCaptureViaDom() ? await Oe(this.config.screenshotOptions) : await Re(this.config.screenshotOptions), t && this.announceMsg("Screenshot captured")), t && this.config.annotate && (t = await this.openAnnotationEditor(t) ?? t);
     const i = this.feedbackData.elementSelector ? {
       x: this.selectedBounds.x,
       y: this.selectedBounds.y,
@@ -1324,7 +1665,7 @@ class He {
     const o = this.questIdFor(t);
     if (!o) return !1;
     try {
-      return this.activeQuest?.destroy(), this.activeQuest = await Ie({
+      return this.activeQuest?.destroy(), this.activeQuest = await ei({
         questId: o,
         base: this.config.quests.base,
         apiKey: this.config.quests.apiKey || void 0,
@@ -1360,7 +1701,7 @@ class He {
     `, this.applyVars(i), t.appendChild(i), this.modalContainer = i, this.setupModalInteractions();
   }
   showPositionedModal() {
-    const t = this.ensureOverlayHost(), { modal: i, arrow: o } = oe(
+    const t = this.ensureOverlayHost(), { modal: i, arrow: o } = be(
       this.selectedBounds,
       window.innerWidth,
       window.innerHeight,
@@ -1379,7 +1720,7 @@ class He {
     s.className = "qaid-modal-box", s.innerHTML = this.getModalContent(), this.modalContainer.appendChild(n), this.modalContainer.appendChild(s), this.applyVars(this.modalContainer), t.appendChild(this.modalContainer), this.setupModalInteractions();
   }
   getModalContent() {
-    const t = this.feedbackData.feedbackType === "up", i = this.config.positiveIcon || I, o = this.config.negativeIcon || A;
+    const t = this.feedbackData.feedbackType === "up", i = this.config.positiveIcon || D, o = this.config.negativeIcon || M;
     return `
       <div class="qaid-modal-header">
         <button type="button" class="${this.config.buttonClass ? `qaid-type-toggle qaid-type-toggle-custom ${this.config.buttonClass} ${t ? "qaid-btn-up" : "qaid-btn-down"}` : `qaid-type-toggle ${t ? "qaid-type-up" : "qaid-type-down"}`}" title="Click to switch" aria-pressed="${t}" aria-label="${t ? "Feedback type: positive" : "Feedback type: negative"}">
@@ -1412,14 +1753,14 @@ class He {
     o && o.addEventListener("click", () => {
       const n = this.feedbackData.feedbackType === "up" ? "down" : "up";
       this.feedbackData.feedbackType = n, this.config.buttonClass ? (o.classList.toggle("qaid-btn-up", n === "up"), o.classList.toggle("qaid-btn-down", n === "down")) : (o.classList.toggle("qaid-type-up", n === "up"), o.classList.toggle("qaid-type-down", n === "down"));
-      const s = this.config.positiveIcon || I, a = this.config.negativeIcon || A;
+      const s = this.config.positiveIcon || D, a = this.config.negativeIcon || M;
       o.innerHTML = n === "up" ? s : a;
       const d = n === "up" ? "Feedback type: positive" : "Feedback type: negative";
       o.setAttribute("aria-pressed", String(n === "up")), o.setAttribute("aria-label", d), this.announceMsg(d), this.feedbackId && fetch(`${this.config.endpoint}/${this.feedbackId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ feedbackType: n })
-      }).catch((l) => console.error("Failed to update feedback type:", l));
+      }).catch((c) => console.error("Failed to update feedback type:", c));
     });
   }
   async submitMessage(t) {
@@ -1448,7 +1789,7 @@ class He {
   async startRecording() {
     if (!(this.isRecording || this.state !== "IDLE"))
       try {
-        this.networkCapture = de(), this.videoRecorder = ve({
+        this.networkCapture = qe(), this.videoRecorder = De({
           maxDuration: this.config.videoOptions.maxDuration
         }), this.videoRecorder.onTick((t) => {
           this.updateRecordingTimer(t);
@@ -1505,17 +1846,17 @@ class He {
     a.placeholder = "Optional: Describe the issue you recorded...", a.setAttribute("aria-label", "Describe the issue you recorded");
     const d = document.createElement("div");
     d.className = "qaid-video-preview-actions";
-    const l = document.createElement("button");
-    l.type = "button", l.className = "qaid-video-btn qaid-video-btn-cancel", l.textContent = "Cancel", l.addEventListener("click", () => this.cancelRecordingPreview());
+    const c = document.createElement("button");
+    c.type = "button", c.className = "qaid-video-btn qaid-video-btn-cancel", c.textContent = "Cancel", c.addEventListener("click", () => this.cancelRecordingPreview());
     const r = document.createElement("button");
     r.type = "button", r.className = "qaid-video-btn qaid-video-btn-rerecord", r.textContent = "Re-record", r.addEventListener("click", () => {
       this.cancelRecordingPreview(), this.startRecording();
     });
-    const c = document.createElement("button");
-    c.type = "button", c.className = "qaid-video-btn qaid-video-btn-send", c.textContent = "Send", c.addEventListener("click", () => {
+    const l = document.createElement("button");
+    l.type = "button", l.className = "qaid-video-btn qaid-video-btn-send", l.textContent = "Send", l.addEventListener("click", () => {
       const p = a.value.trim() || null;
-      this.submitVideoFeedback(p, c);
-    }), d.appendChild(l), d.appendChild(r), d.appendChild(c), o.appendChild(n), o.appendChild(s), o.appendChild(a), o.appendChild(d), this.videoPreview.appendChild(o), this.applyVars(this.videoPreview), this.overlayShadowHost && (this.overlayShadowHost.style.pointerEvents = "auto"), t.appendChild(this.videoPreview), this.openDialogA11y(o, { labelledbyId: n.id }), document.addEventListener("keydown", this.boundKeyDown);
+      this.submitVideoFeedback(p, l);
+    }), d.appendChild(c), d.appendChild(r), d.appendChild(l), o.appendChild(n), o.appendChild(s), o.appendChild(a), o.appendChild(d), this.videoPreview.appendChild(o), this.applyVars(this.videoPreview), this.overlayShadowHost && (this.overlayShadowHost.style.pointerEvents = "auto"), t.appendChild(this.videoPreview), this.openDialogA11y(o, { labelledbyId: n.id }), document.addEventListener("keydown", this.boundKeyDown);
   }
   cancelRecordingPreview() {
     this.removeVideoPreview(), this.cleanupRecording();
@@ -1564,13 +1905,13 @@ class He {
    * Destroy the embed and clean up all resources
    */
   destroy() {
-    this.destroyed = !0, this.domObserver && (this.domObserver.disconnect(), this.domObserver = null), this.boundBeforeSwap && (document.removeEventListener("astro:before-swap", this.boundBeforeSwap), this.boundBeforeSwap = null), this.keyboardController?.stop(), this.keyboardController = null, this.clearActiveThumb(), this.closeDialogA11y(), this.cleanupRecording(), this.removeVideoPreview(), this.activeQuest?.destroy(), this.activeQuest = null, this.consoleCapture && (this.consoleCapture.restore(), this.consoleCapture = null), window.removeEventListener("resize", this.boundResize), document.removeEventListener("keydown", this.boundKeyDown), document.removeEventListener("mousemove", this.boundMouseMove), document.removeEventListener("click", this.boundClick, !0), document.removeEventListener("touchstart", this.boundTouchStart), document.removeEventListener("touchend", this.boundTouchEnd), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.shadowHost && (this.shadowHost.remove(), this.shadowHost = null, this.shadowRoot = null), this.overlayShadowHost && (this.overlayShadowHost.remove(), this.overlayShadowHost = null, this.overlayShadowRoot = null), this.buttonsContainer = null, this.overlayContainer = null, this.captureLayer = null, this.crosshairH = null, this.crosshairV = null, this.scope = null, this.marker = null, this.modalContainer = null, this.backdrop = null, this.dismissBtn = null, this.tooltipElement = null, Lt();
+    this.destroyed = !0, this.domObserver && (this.domObserver.disconnect(), this.domObserver = null), this.boundBeforeSwap && (document.removeEventListener("astro:before-swap", this.boundBeforeSwap), this.boundBeforeSwap = null), this.keyboardController?.stop(), this.keyboardController = null, this.clearActiveThumb(), this.closeDialogA11y(), this.cleanupRecording(), this.removeVideoPreview(), this.activeQuest?.destroy(), this.activeQuest = null, this.consoleCapture && (this.consoleCapture.restore(), this.consoleCapture = null), window.removeEventListener("resize", this.boundResize), document.removeEventListener("keydown", this.boundKeyDown), document.removeEventListener("mousemove", this.boundMouseMove), document.removeEventListener("click", this.boundClick, !0), document.removeEventListener("touchstart", this.boundTouchStart), document.removeEventListener("touchend", this.boundTouchEnd), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.shadowHost && (this.shadowHost.remove(), this.shadowHost = null, this.shadowRoot = null), this.overlayShadowHost && (this.overlayShadowHost.remove(), this.overlayShadowHost = null, this.overlayShadowRoot = null), this.buttonsContainer = null, this.overlayContainer = null, this.captureLayer = null, this.crosshairH = null, this.crosshairV = null, this.scope = null, this.marker = null, this.modalContainer = null, this.backdrop = null, this.dismissBtn = null, this.tooltipElement = null, Ut();
   }
 }
-function et(e) {
+function at(e) {
   return document.querySelector(e)?.textContent?.trim() ?? "";
 }
-function Be() {
+function ri() {
   const e = document.querySelector(
     'script[type="application/json"][data-feedback-config]'
   );
@@ -1579,87 +1920,94 @@ function Be() {
   if (!t) return null;
   try {
     const i = JSON.parse(t);
-    return i.cssSelector && !i.css && (i.css = et(i.cssSelector), delete i.cssSelector), i;
+    return i.cssSelector && !i.css && (i.css = at(i.cssSelector), delete i.cssSelector), i;
   } catch {
     return null;
   }
 }
-function Pe(e) {
+function di(e) {
   const t = e.getAttribute("data-endpoint");
   if (!t) return null;
-  const i = e.getAttribute("data-position"), o = e.getAttribute("data-zindex"), n = e.getAttribute("data-positive-color"), s = e.getAttribute("data-negative-color"), a = e.getAttribute("data-marker-color"), d = e.getAttribute("data-container"), l = e.getAttribute("data-button-class"), r = e.getAttribute("data-skip-targeting"), c = e.getAttribute("data-incognito"), p = e.getAttribute("data-button-size"), u = e.getAttribute("data-offset-x"), m = e.getAttribute("data-offset-y"), b = e.getAttribute("data-modal-width"), v = e.getAttribute("data-backdrop-opacity"), y = e.getAttribute("data-font-family"), f = e.getAttribute("data-font-size"), h = e.getAttribute("data-tooltip"), w = e.getAttribute("data-modal-title"), g = e.getAttribute("data-modal-subtitle"), C = e.getAttribute("data-placeholder"), B = e.getAttribute("data-submit-button"), P = e.getAttribute("data-skip-button"), it = e.getAttribute("data-positive-icon"), ot = e.getAttribute("data-negative-icon"), nt = e.getAttribute("data-api-key"), st = e.getAttribute("data-capture-screenshot"), E = e.getAttribute("data-screenshot-quality"), T = e.getAttribute("data-screenshot-max-width"), L = e.getAttribute("data-screenshot-max-height"), at = e.getAttribute("data-capture-video"), rt = e.getAttribute("data-hide-thumbs"), dt = e.getAttribute("data-hide-dismiss"), z = e.getAttribute("data-video-max-duration"), ct = e.getAttribute("data-screenshot-method"), lt = e.getAttribute("data-direction"), O = e.getAttribute("data-css-selector"), $ = e.getAttribute("data-quest-base"), ht = e.getAttribute("data-quest-up"), ut = e.getAttribute("data-quest-down"), pt = e.getAttribute("data-quest-video"), mt = e.getAttribute("data-quest-api-key"), ft = e.getAttribute("data-quest-module-url");
+  const i = e.getAttribute("data-position"), o = e.getAttribute("data-zindex"), n = e.getAttribute("data-positive-color"), s = e.getAttribute("data-negative-color"), a = e.getAttribute("data-marker-color"), d = e.getAttribute("data-container"), c = e.getAttribute("data-button-class"), r = e.getAttribute("data-skip-targeting"), l = e.getAttribute("data-incognito"), p = e.getAttribute("data-button-size"), u = e.getAttribute("data-offset-x"), f = e.getAttribute("data-offset-y"), b = e.getAttribute("data-modal-width"), v = e.getAttribute("data-backdrop-opacity"), y = e.getAttribute("data-font-family"), m = e.getAttribute("data-font-size"), h = e.getAttribute("data-tooltip"), w = e.getAttribute("data-modal-title"), g = e.getAttribute("data-modal-subtitle"), S = e.getAttribute("data-placeholder"), $ = e.getAttribute("data-submit-button"), N = e.getAttribute("data-skip-button"), rt = e.getAttribute("data-positive-icon"), dt = e.getAttribute("data-negative-icon"), lt = e.getAttribute("data-api-key"), ct = e.getAttribute("data-capture-screenshot"), ht = e.getAttribute("data-annotate"), L = e.getAttribute("data-screenshot-quality"), I = e.getAttribute("data-screenshot-max-width"), A = e.getAttribute("data-screenshot-max-height"), ut = e.getAttribute("data-capture-video"), pt = e.getAttribute("data-hide-thumbs"), ft = e.getAttribute("data-hide-dismiss"), U = e.getAttribute("data-video-max-duration"), mt = e.getAttribute("data-screenshot-method"), bt = e.getAttribute("data-direction"), F = e.getAttribute("data-css-selector"), V = e.getAttribute("data-quest-base"), gt = e.getAttribute("data-quest-up"), vt = e.getAttribute("data-quest-down"), yt = e.getAttribute("data-quest-video"), wt = e.getAttribute("data-quest-api-key"), qt = e.getAttribute("data-quest-module-url");
   return {
     endpoint: t,
-    css: O ? et(O) : void 0,
-    apiKey: nt ?? void 0,
-    captureScreenshot: st === "true" ? !0 : void 0,
-    screenshotOptions: E || T || L ? {
-      quality: E ? parseFloat(E) : void 0,
-      maxWidth: T ? parseInt(T, 10) : void 0,
-      maxHeight: L ? parseInt(L, 10) : void 0
+    css: F ? at(F) : void 0,
+    apiKey: lt ?? void 0,
+    captureScreenshot: ct === "true" ? !0 : void 0,
+    // Annotation is on by default; only an explicit "false" disables it.
+    annotate: ht === "false" ? !1 : void 0,
+    screenshotOptions: L || I || A ? {
+      quality: L ? parseFloat(L) : void 0,
+      maxWidth: I ? parseInt(I, 10) : void 0,
+      maxHeight: A ? parseInt(A, 10) : void 0
     } : void 0,
     container: d ?? void 0,
-    buttonClass: l ?? void 0,
-    direction: lt ?? void 0,
+    buttonClass: c ?? void 0,
+    direction: bt ?? void 0,
     position: i ?? void 0,
     zIndex: o ? parseInt(o, 10) : void 0,
     skipTargeting: r === "true" ? !0 : void 0,
-    incognito: c === "true" ? !0 : void 0,
+    incognito: l === "true" ? !0 : void 0,
     buttonSize: p ?? void 0,
-    offset: u || m ? {
+    offset: u || f ? {
       x: u ? parseInt(u, 10) : void 0,
-      y: m ? parseInt(m, 10) : void 0
+      y: f ? parseInt(f, 10) : void 0
     } : void 0,
     modalWidth: b ? parseInt(b, 10) : void 0,
     backdropOpacity: v ? parseFloat(v) : void 0,
     fontFamily: y ?? void 0,
-    fontSize: f ? parseInt(f, 10) : void 0,
+    fontSize: m ? parseInt(m, 10) : void 0,
     colors: {
       positive: n ?? void 0,
       negative: s ?? void 0,
       marker: a ?? void 0
     },
-    text: h || w || g || C || B || P ? {
+    text: h || w || g || S || $ || N ? {
       tooltip: h ?? void 0,
       modalTitle: w ?? void 0,
       modalSubtitle: g ?? void 0,
-      placeholder: C ?? void 0,
-      submitButton: B ?? void 0,
-      skipButton: P ?? void 0
+      placeholder: S ?? void 0,
+      submitButton: $ ?? void 0,
+      skipButton: N ?? void 0
     } : void 0,
-    positiveIcon: it ?? void 0,
-    negativeIcon: ot ?? void 0,
-    screenshotMethod: ct ?? void 0,
-    captureVideo: at === "true" ? !0 : void 0,
-    hideThumbs: rt === "true" ? !0 : void 0,
-    hideDismiss: dt === "true" ? !0 : void 0,
-    videoOptions: z ? {
-      maxDuration: parseInt(z, 10)
+    positiveIcon: rt ?? void 0,
+    negativeIcon: dt ?? void 0,
+    screenshotMethod: mt ?? void 0,
+    captureVideo: ut === "true" ? !0 : void 0,
+    hideThumbs: pt === "true" ? !0 : void 0,
+    hideDismiss: ft === "true" ? !0 : void 0,
+    videoOptions: U ? {
+      maxDuration: parseInt(U, 10)
     } : void 0,
-    quests: $ ? {
-      base: $,
-      up: ht ?? void 0,
-      down: ut ?? void 0,
-      video: pt ?? void 0,
-      apiKey: mt ?? void 0,
-      moduleUrl: ft ?? void 0
+    quests: V ? {
+      base: V,
+      up: gt ?? void 0,
+      down: vt ?? void 0,
+      video: yt ?? void 0,
+      apiKey: wt ?? void 0,
+      moduleUrl: qt ?? void 0
     } : void 0
   };
 }
 if (typeof document < "u") {
   const e = () => {
-    const t = document.currentScript, i = Be(), o = t ? Pe(t) : null, n = i ?? o;
-    n?.endpoint && new He(n);
+    const t = document.currentScript, i = ri(), o = t ? di(t) : null, n = i ?? o;
+    n?.endpoint && new ai(n);
   };
   document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", e) : e();
 }
 export {
-  He as QaidFeedback,
-  Ce as captureDomScreenshot,
-  de as captureNetworkErrors,
-  ve as createVideoRecorder,
-  ge as getSupportedMimeType,
-  ze as isDomScreenshotSupported,
-  be as isVideoRecordingSupported
+  Xe as AnnotationEditor,
+  ai as QaidFeedback,
+  Oe as captureDomScreenshot,
+  qe as captureNetworkErrors,
+  je as compositeAnnotations,
+  De as createVideoRecorder,
+  O as drawShape,
+  Ae as getSupportedMimeType,
+  li as isDomScreenshotSupported,
+  Ie as isVideoRecordingSupported,
+  Qe as openAnnotationEditor,
+  P as rectFromPoints
 };
 //# sourceMappingURL=qaid.js.map

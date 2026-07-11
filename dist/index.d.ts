@@ -36,3 +36,5 @@ export { createVideoRecorder, isVideoRecordingSupported, getSupportedMimeType } 
 export type { VideoRecorder, VideoRecorderOptions } from "./video-capture";
 export { captureDomScreenshot, isDomScreenshotSupported } from "./screenshot-dom";
 export type { DomScreenshotOptions } from "./screenshot-dom";
+export { openAnnotationEditor, compositeAnnotations, drawShape, rectFromPoints, AnnotationEditor, } from "./annotate";
+export type { Shape, ShapeType, Point, AnnotationLabels, AnnotationEditorOptions, } from "./annotate";

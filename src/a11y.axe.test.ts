@@ -2,6 +2,8 @@ import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import axe from "axe-core";
 import { QaidFeedback } from "./embed";
 import { _resetStylesState } from "./styles";
+import { AnnotationEditor } from "./annotate";
+import { applyDialog } from "./a11y";
 
 /**
  * Automated axe-core regression net for the thumbs embed.
@@ -99,5 +101,33 @@ describe("axe-core accessibility (thumbs embed)", () => {
       results.violations,
       `axe violations:\n${summarizeViolations(results.violations)}`
     ).toEqual([]);
+  });
+
+  it("has zero axe violations for the screenshot annotation editor", async () => {
+    const host = document.createElement("div");
+    host.setAttribute("data-qaid-embed-overlay", "");
+    document.body.appendChild(host);
+    const shadow = host.attachShadow({ mode: "open" });
+
+    const editor = new AnnotationEditor({
+      dataUrl: "data:image/webp;base64,xxx",
+      root: shadow,
+      // Wire real dialog semantics so the container gets an accessible name.
+      openDialog: (container, opts) => applyDialog(container, opts),
+      closeDialog: () => {},
+    });
+    const result = editor.open();
+
+    const results = await axe.run(host, AXE_OPTIONS);
+
+    expect(
+      results.violations,
+      `axe violations:\n${summarizeViolations(results.violations)}`
+    ).toEqual([]);
+
+    // Resolve the pending editor promise and tear it down.
+    editor.skip();
+    await result;
+    host.remove();
   });
 });

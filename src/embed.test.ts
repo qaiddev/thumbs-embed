@@ -14,6 +14,17 @@ vi.mock("./screenshot-dom", () => ({
   captureDomScreenshot: screenshotMocks.captureDomScreenshot,
 }));
 
+// The annotation editor is exercised in depth in annotate.test.ts; here we mock
+// its entry point so the embed flow tests stay deterministic. Default: resolve
+// null (user skipped) so the original screenshot flows through unchanged.
+const annotateMock = vi.hoisted(() => ({
+  openAnnotationEditor: vi.fn(async (): Promise<string | null> => null),
+}));
+
+vi.mock("./annotate", () => ({
+  openAnnotationEditor: annotateMock.openAnnotationEditor,
+}));
+
 import {
   QaidFeedback,
   isHiddenByUser,
@@ -2780,6 +2791,8 @@ describe("QaidFeedback", () => {
     beforeEach(() => {
       screenshotMocks.captureScreenshot.mockClear();
       screenshotMocks.captureDomScreenshot.mockClear();
+      annotateMock.openAnnotationEditor.mockClear();
+      annotateMock.openAnnotationEditor.mockResolvedValue(null);
     });
 
     it("calls captureScreenshot when screenshotMethod is permission", async () => {
@@ -2874,6 +2887,168 @@ describe("QaidFeedback", () => {
       } finally {
         mmSpy.mockRestore();
       }
+    });
+
+    it("opens the annotation editor and submits the composited screenshot", async () => {
+      annotateMock.openAnnotationEditor.mockResolvedValue(
+        "data:image/webp;base64,annotated"
+      );
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ id: 1 }),
+      });
+      global.fetch = fetchMock;
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        skipTargeting: true,
+        captureScreenshot: true,
+        screenshotMethod: "permission",
+      });
+
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+
+      await vi.waitFor(() => {
+        expect(fetchMock).toHaveBeenCalled();
+      });
+
+      expect(annotateMock.openAnnotationEditor).toHaveBeenCalledTimes(1);
+      // The editor receives the raw captured screenshot as its data URL.
+      expect(annotateMock.openAnnotationEditor).toHaveBeenCalledWith(
+        expect.objectContaining({ dataUrl: "data:image/webp;base64,permission" })
+      );
+      const body = JSON.parse(fetchMock.mock.calls[0][1].body);
+      expect(body.screenshot).toBe("data:image/webp;base64,annotated");
+    });
+
+    it("keeps the original screenshot when annotation is skipped", async () => {
+      // Default mock resolves null (skip).
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ id: 1 }),
+      });
+      global.fetch = fetchMock;
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        skipTargeting: true,
+        captureScreenshot: true,
+        screenshotMethod: "permission",
+      });
+
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+
+      await vi.waitFor(() => {
+        expect(fetchMock).toHaveBeenCalled();
+      });
+
+      expect(annotateMock.openAnnotationEditor).toHaveBeenCalledTimes(1);
+      const body = JSON.parse(fetchMock.mock.calls[0][1].body);
+      expect(body.screenshot).toBe("data:image/webp;base64,permission");
+    });
+
+    it("does not open the annotation editor when annotate is false", async () => {
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ id: 1 }),
+      });
+      global.fetch = fetchMock;
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        skipTargeting: true,
+        captureScreenshot: true,
+        screenshotMethod: "permission",
+        annotate: false,
+      });
+
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+
+      await vi.waitFor(() => {
+        expect(fetchMock).toHaveBeenCalled();
+      });
+
+      expect(annotateMock.openAnnotationEditor).not.toHaveBeenCalled();
+      const body = JSON.parse(fetchMock.mock.calls[0][1].body);
+      expect(body.screenshot).toBe("data:image/webp;base64,permission");
+    });
+
+    it("toggles overlay-host pointer events around the annotation editor", async () => {
+      let pointerEventsWhileOpen: string | undefined;
+      annotateMock.openAnnotationEditor.mockImplementation(async () => {
+        const host = document.querySelector<HTMLElement>(
+          "[data-qaid-embed-overlay]"
+        );
+        pointerEventsWhileOpen = host?.style.pointerEvents;
+        return null;
+      });
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ id: 1 }),
+      });
+      global.fetch = fetchMock;
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        skipTargeting: true,
+        captureScreenshot: true,
+        screenshotMethod: "permission",
+      });
+
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+
+      await vi.waitFor(() => {
+        expect(fetchMock).toHaveBeenCalled();
+      });
+
+      // Enabled while the editor runs so the user can interact with it.
+      expect(pointerEventsWhileOpen).toBe("auto");
+    });
+
+    it("wires the embed's a11y + theming helpers into the annotation editor", async () => {
+      let dialogEl: HTMLElement | undefined;
+      let varsEl: HTMLElement | undefined;
+      annotateMock.openAnnotationEditor.mockImplementation(
+        async (opts: {
+          applyVars?: (el: HTMLElement) => void;
+          announce?: (m: string, a?: boolean) => void;
+          openDialog?: (c: HTMLElement, o: { labelledbyId?: string }) => void;
+          closeDialog?: () => void;
+        }): Promise<string | null> => {
+          varsEl = document.createElement("div");
+          opts.applyVars?.(varsEl);
+          opts.announce?.("Editing screenshot");
+          dialogEl = document.createElement("div");
+          opts.openDialog?.(dialogEl, { labelledbyId: "t" });
+          opts.closeDialog?.();
+          return "data:image/webp;base64,annotated";
+        }
+      );
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ id: 1 }),
+      });
+      global.fetch = fetchMock;
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        skipTargeting: true,
+        captureScreenshot: true,
+        screenshotMethod: "permission",
+      });
+
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+
+      await vi.waitFor(() => {
+        expect(fetchMock).toHaveBeenCalled();
+      });
+
+      // applyVars applied the per-instance CSS variables to the passed element.
+      expect(varsEl!.style.getPropertyValue("--qaid-marker")).not.toBe("");
+      // openDialog applied real dialog semantics.
+      expect(dialogEl!.getAttribute("role")).toBe("dialog");
+      const body = JSON.parse(fetchMock.mock.calls[0][1].body);
+      expect(body.screenshot).toBe("data:image/webp;base64,annotated");
     });
   });
 

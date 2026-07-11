@@ -138,6 +138,14 @@ export declare class QaidFeedback {
      *  instead of the permission-based Screen Capture API. Explicit "dom" wins;
      *  otherwise DOM is used on touch devices to avoid the getDisplayMedia prompt. */
     private shouldCaptureViaDom;
+    /**
+     * Open the full-screen annotation editor over the captured screenshot,
+     * reusing the overlay shadow host and the shared dialog a11y helpers.
+     * Resolves with the composited WebP data URL, or null when the user skips
+     * (caller keeps the original). Pointer events on the overlay host are
+     * enabled while the editor is open and restored on close.
+     */
+    private openAnnotationEditor;
     private submitFeedback;
     /**
      * Quest id linked to `type`, or "" when quest launching is disabled
