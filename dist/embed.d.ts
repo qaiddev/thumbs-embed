@@ -15,35 +15,26 @@ export declare class QaidFeedback {
     private selectedBounds;
     private feedbackId;
     private activeQuest;
-    private mousePos;
     private isMobile;
     private visitorId;
     private consoleCapture;
-    private videoRecorder;
-    private networkCapture;
-    private recordedBlob;
-    private recordingIndicator;
-    private videoPreview;
-    private isRecording;
-    private isSendingVideo;
+    private recording;
+    private targeting;
+    private targetingPrewarmed;
+    private prewarmHandle;
+    private prewarmIsTimeout;
+    private videoPrewarmed;
+    private screenshotPrewarmed;
     private shadowHost;
     private shadowRoot;
     private overlayShadowHost;
     private overlayShadowRoot;
     private buttonsContainer;
     private isUserProvidedContainer;
-    private overlayContainer;
-    private captureLayer;
-    private crosshairH;
-    private crosshairV;
-    private scope;
-    private highlightBox;
-    private marker;
-    private modalContainer;
-    private backdrop;
+    private modal;
+    private modalPrewarmed;
     private dismissBtn;
     private cssVars;
-    private keyboardController;
     private activeThumbBtn;
     private keyboardActivation;
     private dialogTrigger;
@@ -51,11 +42,6 @@ export declare class QaidFeedback {
     private dialogRestoreInert;
     private readonly uid;
     private boundKeyDown;
-    private boundMouseMove;
-    private boundClick;
-    private boundTouchStart;
-    private boundTouchEnd;
-    private touchStartPos;
     private boundResize;
     private _startDismissed;
     private destroyed;
@@ -79,6 +65,16 @@ export declare class QaidFeedback {
     private closeDialogA11y;
     private clearActiveThumb;
     private init;
+    /**
+     * Best-effort preload of a lazily-split feature chunk so its first use is
+     * instant. Warming fetches + compiles (and defines) the module; the feature
+     * modules have no load-time side effects, so this is safe. Errors are
+     * swallowed — a failed preload just falls back to an on-demand load.
+     */
+    private prewarmVideo;
+    private prewarmScreenshot;
+    /** Run fn when the main thread is idle; cancelled by destroy(). */
+    private schedulePrewarm;
     /**
      * Watch for the shadow hosts being removed from the DOM by framework
      * client-side navigation (e.g. Astro View Transitions swapping <body>
@@ -106,34 +102,7 @@ export declare class QaidFeedback {
     private handleDismiss;
     private handleThumbClick;
     private submitDirectFeedback;
-    private startTargeting;
-    /**
-     * Keyboard-driven targeting. Mirrors startTargeting minus the mouse
-     * plumbing: no `qaid-targeting` body class (keeps the cursor visible for
-     * keyboard users), no mouse reticle, and no document mouse/click listeners.
-     * The KeyboardTargetingController owns Tab/Arrow/Enter/Space/Escape.
-     */
-    private startKeyboardTargetingFlow;
-    private selectKeyboardTarget;
-    private createTargetingOverlay;
     private handleKeyDown;
-    private handleMouseMove;
-    /** Move the crosshair/scope reticle and highlight the element under (x, y).
-     *  Shared by the mouse (hover) and touch (drag) targeting paths. */
-    private updateReticleAt;
-    private handleClick;
-    private handleTouchStart;
-    private handleTouchEnd;
-    /** Select the element under (x, y) and tear down targeting.
-     *  Shared by the mouse (click) and touch (touchend) targeting paths. */
-    private selectAt;
-    /** Remove the targeting overlay and every mouse/touch/keyboard listener the
-     *  pointer-targeting flow attaches to the document. */
-    private stopTargetingListeners;
-    private cancelTargeting;
-    private removeTargetingOverlay;
-    private showSelectedMarker;
-    private hideSelectedMarker;
     /** Whether to capture the screenshot with the DOM/canvas method (html2canvas)
      *  instead of the permission-based Screen Capture API. Explicit "dom" wins;
      *  otherwise DOM is used on touch devices to avoid the getDisplayMedia prompt. */
@@ -166,24 +135,40 @@ export declare class QaidFeedback {
      * path (which bypasses the modal entirely).
      */
     private resetFeedbackUi;
-    private showModal;
-    private showBottomSheet;
-    private showPositionedModal;
-    private getModalContent;
-    private setupModalInteractions;
-    private submitMessage;
-    private closeModal;
-    private startRecording;
-    private stopRecording;
-    private showRecordingIndicator;
-    private updateRecordingTimer;
-    private formatTime;
-    private removeRecordingIndicator;
-    private showRecordingPreview;
-    private cancelRecordingPreview;
-    private removeVideoPreview;
-    private submitVideoFeedback;
-    private cleanupRecording;
+    /**
+     * Lazily load and instantiate the modal controller. The message modal lives
+     * in a separate chunk, fetched the first time it opens (and pre-warmed while
+     * the user targets an element — see prewarmModal).
+     */
+    private ensureModal;
+    /** Narrow view of the embed the modal controller talks back through. */
+    private makeModalHost;
+    /** Warm the modal chunk while the user is targeting, so it opens instantly. */
+    private prewarmModal;
+    /**
+     * Lazily load and instantiate the targeting controller. The subsystem (with
+     * element-selector) lives in a separate chunk, fetched the first time the
+     * user targets — pre-warmed on thumb-button hover (see prewarmTargeting).
+     */
+    private ensureTargeting;
+    /** Narrow view of the embed the targeting controller talks back through. */
+    private makeTargetingHost;
+    /** Warm the targeting chunk on thumb-button hover, before the click. */
+    private prewarmTargeting;
+    /**
+     * Cheap synchronous capability check so the record button can render without
+     * pulling in the (lazily-loaded) video subsystem. Mirrors
+     * isVideoRecordingSupported() in video-capture.ts.
+     */
+    private videoSupported;
+    /**
+     * Lazily load and instantiate the recording controller. The whole recording
+     * subsystem lives in a separate chunk, fetched only the first time the record
+     * button is used (and pre-warmed on hover — see prewarmVideo).
+     */
+    private ensureRecording;
+    /** Narrow view of the embed the recording controller talks back through. */
+    private makeRecordingHost;
     private setButtonsDisabled;
     /**
      * Destroy the embed and clean up all resources

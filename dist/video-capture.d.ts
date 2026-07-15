@@ -7,6 +7,13 @@ export interface VideoRecorderOptions {
     maxDuration?: number;
     /** Video bitrate in bps. Default: 800000 (800kbps) */
     videoBitsPerSecond?: number;
+    /**
+     * Elements whose live bounding boxes are blurred out of the recording. The
+     * blur tracks each element as the page scrolls. Empty/omitted = no redaction.
+     */
+    redactionElements?: Element[];
+    /** Blur radius in px for redacted regions. Default: 12. */
+    redactionBlurRadius?: number;
 }
 export interface VideoRecorder {
     /** Start recording. Requests getDisplayMedia if not already started. */

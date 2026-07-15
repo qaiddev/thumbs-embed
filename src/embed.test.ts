@@ -44,6 +44,17 @@ function getOverlayShadowRoot(): ShadowRoot {
   return host!.shadowRoot!;
 }
 
+/** Targeting loads lazily now — wait for its overlay after a thumb click. */
+async function waitForTargeting(): Promise<void> {
+  await vi.waitFor(() => {
+    const host = document.querySelector("[data-qaid-embed-overlay]");
+    expect(host).not.toBeNull();
+    // Non-null assertions (not optional chaining) so a missing overlay throws
+    // and vi.waitFor keeps polling — `expect(undefined).not.toBeNull()` passes.
+    expect(host!.shadowRoot!.querySelector(".qaid-targeting-overlay")).not.toBeNull();
+  });
+}
+
 describe("QaidFeedback", () => {
   let embed: QaidFeedback;
 
@@ -334,34 +345,37 @@ describe("QaidFeedback", () => {
   });
 
   describe("targeting mode", () => {
-    it("should enter targeting mode when thumbs up is clicked", () => {
+    it("should enter targeting mode when thumbs up is clicked", async () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
 
       const shadow = getShadowRoot();
       const upBtn = shadow.querySelector<HTMLButtonElement>(".qaid-btn-up");
       upBtn?.click();
+      await waitForTargeting();
 
       expect(document.body.classList.contains("qaid-targeting")).toBe(true);
       expect(document.body.classList.contains("qaid-type-up")).toBe(true);
     });
 
-    it("should enter targeting mode when thumbs down is clicked", () => {
+    it("should enter targeting mode when thumbs down is clicked", async () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
 
       const shadow = getShadowRoot();
       const downBtn = shadow.querySelector<HTMLButtonElement>(".qaid-btn-down");
       downBtn?.click();
+      await waitForTargeting();
 
       expect(document.body.classList.contains("qaid-targeting")).toBe(true);
       expect(document.body.classList.contains("qaid-type-up")).toBe(false);
     });
 
-    it("should create targeting overlay when entering targeting mode", () => {
+    it("should create targeting overlay when entering targeting mode", async () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
 
       const shadow = getShadowRoot();
       const upBtn = shadow.querySelector<HTMLButtonElement>(".qaid-btn-up");
       upBtn?.click();
+      await waitForTargeting();
 
       const overlayShadow = getOverlayShadowRoot();
       const overlay = overlayShadow.querySelector(".qaid-targeting-overlay");
@@ -373,12 +387,13 @@ describe("QaidFeedback", () => {
       expect(scope).not.toBeNull();
     });
 
-    it("should exit targeting mode when Escape is pressed", () => {
+    it("should exit targeting mode when Escape is pressed", async () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
 
       const shadow = getShadowRoot();
       const upBtn = shadow.querySelector<HTMLButtonElement>(".qaid-btn-up");
       upBtn?.click();
+      await waitForTargeting();
 
       expect(document.body.classList.contains("qaid-targeting")).toBe(true);
 
@@ -393,7 +408,7 @@ describe("QaidFeedback", () => {
       expect(overlayShadow.querySelector(".qaid-targeting-overlay")).toBeNull();
     });
 
-    it("routes a keyboard-activated thumb through keyboard targeting and cancels on Escape", () => {
+    it("routes a keyboard-activated thumb through keyboard targeting and cancels on Escape", async () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
 
       const shadow = getShadowRoot();
@@ -407,6 +422,7 @@ describe("QaidFeedback", () => {
       // The synthetic click that follows is routed through the keyboard flow,
       // which (unlike the pointer flow) never adds the cursor-hiding class.
       upBtn.click();
+      await waitForTargeting();
 
       const overlayShadow = getOverlayShadowRoot();
       expect(document.body.classList.contains("qaid-targeting")).toBe(false);
@@ -419,7 +435,7 @@ describe("QaidFeedback", () => {
       expect(overlayShadow.querySelector(".qaid-targeting-overlay")).toBeNull();
     });
 
-    it("clears keyboard activation on pointer input so the thumb uses pointer targeting", () => {
+    it("clears keyboard activation on pointer input so the thumb uses pointer targeting", async () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
 
       const shadow = getShadowRoot();
@@ -434,12 +450,13 @@ describe("QaidFeedback", () => {
       container.dispatchEvent(new Event("mousedown", { bubbles: true }));
 
       upBtn.click();
+      await waitForTargeting();
 
       // Pointer path adds the qaid-targeting body class; keyboard path never does.
       expect(document.body.classList.contains("qaid-targeting")).toBe(true);
     });
 
-    it("should set targeting CSS variables on body", () => {
+    it("should set targeting CSS variables on body", async () => {
       embed = new QaidFeedback({
         endpoint: "/api/feedback",
         colors: { positive: "rgb(0, 255, 0)", negative: "rgb(255, 0, 0)" },
@@ -448,29 +465,32 @@ describe("QaidFeedback", () => {
       const shadow = getShadowRoot();
       const upBtn = shadow.querySelector<HTMLButtonElement>(".qaid-btn-up");
       upBtn?.click();
+      await waitForTargeting();
 
       expect(document.body.style.getPropertyValue("--qaid-positive")).toBe("rgb(0, 255, 0)");
       expect(document.body.style.getPropertyValue("--qaid-negative")).toBe("rgb(255, 0, 0)");
     });
 
-    it("should create overlay with pointer-events none for scroll passthrough", () => {
+    it("should create overlay with pointer-events none for scroll passthrough", async () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
 
       const shadow = getShadowRoot();
       const upBtn = shadow.querySelector<HTMLButtonElement>(".qaid-btn-up");
       upBtn?.click();
+      await waitForTargeting();
 
       const overlayShadow = getOverlayShadowRoot();
       const captureLayer = overlayShadow.querySelector<HTMLElement>(".qaid-capture-layer");
       expect(captureLayer).not.toBeNull();
     });
 
-    it("should handle mousemove events on document during targeting", () => {
+    it("should handle mousemove events on document during targeting", async () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
 
       const shadow = getShadowRoot();
       const upBtn = shadow.querySelector<HTMLButtonElement>(".qaid-btn-up");
       upBtn?.click();
+      await waitForTargeting();
 
       const overlayShadow = getOverlayShadowRoot();
       const crosshairH = overlayShadow.querySelector<HTMLElement>(".qaid-crosshair-h");
@@ -967,7 +987,7 @@ describe("QaidFeedback", () => {
   });
 
   describe("destroy", () => {
-    it("should remove shadow host from document", () => {
+    it("should remove shadow host from document", async () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
       expect(document.querySelector("[data-qaid-embed]")).not.toBeNull();
 
@@ -975,6 +995,7 @@ describe("QaidFeedback", () => {
       const shadow = getShadowRoot();
       const upBtn = shadow.querySelector<HTMLButtonElement>(".qaid-btn-up");
       upBtn?.click();
+      await waitForTargeting();
       expect(document.querySelector("[data-qaid-embed-overlay]")).not.toBeNull();
 
       embed.destroy();
@@ -990,12 +1011,13 @@ describe("QaidFeedback", () => {
       expect(document.getElementById("qaid-styles")).toBeNull();
     });
 
-    it("should remove targeting overlay if active", () => {
+    it("should remove targeting overlay if active", async () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
 
       const shadow = getShadowRoot();
       const upBtn = shadow.querySelector<HTMLButtonElement>(".qaid-btn-up");
       upBtn?.click();
+      await waitForTargeting();
 
       const overlayShadow = getOverlayShadowRoot();
       expect(overlayShadow.querySelector(".qaid-targeting-overlay")).not.toBeNull();
@@ -2312,6 +2334,7 @@ describe("QaidFeedback", () => {
       // Trigger overlay host creation by entering targeting mode
       const shadow = getShadowRoot();
       shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+      await waitForTargeting();
       // Cancel targeting so we're back to IDLE but overlay host exists
       document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
 
@@ -2339,11 +2362,12 @@ describe("QaidFeedback", () => {
       });
     });
 
-    it("astro:before-swap moves hosts into the new document body", () => {
+    it("astro:before-swap moves hosts into the new document body", async () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
       // Ensure overlay host exists
       const shadow = getShadowRoot();
       shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+      await waitForTargeting();
       document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
 
       const newDoc = document.implementation.createHTMLDocument("new");
@@ -2514,6 +2538,7 @@ describe("QaidFeedback", () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
       const shadow = getShadowRoot();
       shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+      await waitForTargeting();
 
       // Start the targeting phase, then mock elementFromPoint for the rest
       elementFromPointSpy = vi
@@ -2623,6 +2648,7 @@ describe("QaidFeedback", () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
       const shadow = getShadowRoot();
       shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+      await waitForTargeting();
 
       elementFromPointSpy = vi
         .spyOn(document, "elementFromPoint")
@@ -2656,6 +2682,7 @@ describe("QaidFeedback", () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
       const shadow = getShadowRoot();
       shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+      await waitForTargeting();
 
       const target = document.createElement("div");
       document.body.appendChild(target);
@@ -2671,10 +2698,11 @@ describe("QaidFeedback", () => {
       expect(document.body.classList.contains("qaid-targeting")).toBe(true);
     });
 
-    it("ignores taps on embed elements during targeting", () => {
+    it("ignores taps on embed elements during targeting", async () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
       const shadow = getShadowRoot();
       shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+      await waitForTargeting();
 
       const embedHost = document.querySelector(
         "[data-qaid-embed]"
@@ -2690,10 +2718,11 @@ describe("QaidFeedback", () => {
       expect(document.body.classList.contains("qaid-targeting")).toBe(true);
     });
 
-    it("ignores touch events with no active touch point", () => {
+    it("ignores touch events with no active touch point", async () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
       const shadow = getShadowRoot();
       shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+      await waitForTargeting();
 
       const empty = (type: string) => {
         const e = new Event(type, { bubbles: true, cancelable: true });
@@ -2712,10 +2741,11 @@ describe("QaidFeedback", () => {
       expect(document.body.classList.contains("qaid-targeting")).toBe(true);
     });
 
-    it("hides highlight box when no element is found", () => {
+    it("hides highlight box when no element is found", async () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
       const shadow = getShadowRoot();
       shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+      await waitForTargeting();
 
       // Mock to return null (nothing under cursor)
       elementFromPointSpy = vi
@@ -2737,10 +2767,11 @@ describe("QaidFeedback", () => {
       expect(highlight?.style.display).toBe("none");
     });
 
-    it("ignores clicks on embed elements during targeting", () => {
+    it("ignores clicks on embed elements during targeting", async () => {
       embed = new QaidFeedback({ endpoint: "/api/feedback" });
       const shadow = getShadowRoot();
       shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+      await waitForTargeting();
 
       // Return the embed shadow host as the click target — should be filtered out
       const embedHost = document.querySelector(
@@ -3538,11 +3569,10 @@ describe("QaidFeedback", () => {
         ).not.toBeNull();
       });
 
-      // Null out the embed's reference (covers the !recordingIndicator early return)
-      const inst = embed as unknown as {
-        recordingIndicator: HTMLElement | null;
-        updateRecordingTimer(n: number): void;
-      };
+      // Null out the controller's reference (covers the !recordingIndicator early return)
+      const inst = (embed as unknown as {
+        recording: { recordingIndicator: HTMLElement | null; updateRecordingTimer(n: number): void };
+      }).recording;
       inst.recordingIndicator = null;
       expect(() => inst.updateRecordingTimer(2)).not.toThrow();
     });
@@ -3561,9 +3591,9 @@ describe("QaidFeedback", () => {
         ).not.toBeNull();
       });
 
-      const inst = embed as unknown as {
-        updateRecordingTimer(n: number): void;
-      };
+      const inst = (embed as unknown as {
+        recording: { updateRecordingTimer(n: number): void };
+      }).recording;
       // 12s elapsed of the 15s default cap -> 3s remaining, inside the window
       inst.updateRecordingTimer(12);
 
@@ -3605,7 +3635,7 @@ describe("QaidFeedback", () => {
       });
 
       // Replace the recorded blob with an mp4-typed blob
-      const inst = embed as unknown as { recordedBlob: Blob };
+      const inst = (embed as unknown as { recording: { recordedBlob: Blob } }).recording;
       inst.recordedBlob = new Blob(["x"], { type: "video/mp4" });
 
       // Spy on FormData append to capture the filename argument used
@@ -3641,10 +3671,9 @@ describe("QaidFeedback", () => {
       });
 
       // Force the recorder.stop() to reject
-      const inst = embed as unknown as {
-        videoRecorder: { stop: () => Promise<Blob> };
-        recordedBlob: Blob | null;
-      };
+      const inst = (embed as unknown as {
+        recording: { videoRecorder: { stop: () => Promise<Blob> }; recordedBlob: Blob | null };
+      }).recording;
       inst.videoRecorder.stop = vi.fn().mockRejectedValue(new Error("boom"));
 
       const overlayShadow = getOverlayShadowRoot();
@@ -3806,14 +3835,17 @@ describe("QaidFeedback", () => {
       });
 
       // Drive submitVideoFeedback directly with a recorded blob, avoiding the
-      // full MediaRecorder harness.
-      const inst = embed as unknown as {
-        recordedBlob: Blob | null;
-        submitVideoFeedback: (
-          message: string | null,
-          sendBtn: HTMLButtonElement,
-        ) => Promise<void>;
-      };
+      // full MediaRecorder harness. ensureRecording() lazily creates the
+      // controller (no screen-share needed for instantiation).
+      const inst = await (embed as unknown as {
+        ensureRecording(): Promise<{
+          recordedBlob: Blob | null;
+          submitVideoFeedback: (
+            message: string | null,
+            sendBtn: HTMLButtonElement,
+          ) => Promise<void>;
+        }>;
+      }).ensureRecording();
       inst.recordedBlob = new Blob(["x"], { type: "video/webm" });
       await inst.submitVideoFeedback(null, document.createElement("button"));
 

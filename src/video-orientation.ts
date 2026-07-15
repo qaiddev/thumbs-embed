@@ -100,7 +100,7 @@ function getScreenAngle(): number {
     : 0;
 }
 
-function waitForVideoDimensions(video: HTMLVideoElement): Promise<void> {
+export function waitForVideoDimensions(video: HTMLVideoElement): Promise<void> {
   return new Promise<void>((resolve) => {
     if (video.videoWidth > 0) {
       resolve();
@@ -110,7 +110,7 @@ function waitForVideoDimensions(video: HTMLVideoElement): Promise<void> {
   });
 }
 
-async function playSilently(video: HTMLVideoElement): Promise<void> {
+export async function playSilently(video: HTMLVideoElement): Promise<void> {
   try {
     await video.play();
   } catch {

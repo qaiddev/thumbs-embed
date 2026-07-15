@@ -26,13 +26,21 @@ const feedback = new QaidEmbed({
 
 ```html
 <script
-  src="https://unpkg.com/@qaiddev/thumbs-embed/dist/qaid.umd.cjs"
+  src="https://unpkg.com/@qaiddev/thumbs-embed/dist/embed.js"
   data-endpoint="https://qaid.dev/api/feedback"
   data-api-key="YOUR_API_KEY"
 ></script>
 ```
 
-The embed auto-initializes when it detects a `data-endpoint` attribute on its script tag.
+`embed.js` is a tiny classic loader that works in every browser: it feature-detects
+ES-module support and pulls in the right build automatically — the **progressive
+loader** (`loader.js`, a small core with screenshot/video/annotation/targeting loading
+on demand) on modern browsers, or the all-in-one UMD bundle (`qaid.umd.cjs`) on older
+ones. The injected build auto-initializes when it detects a `data-endpoint` attribute.
+
+> Prefer to skip the loader's feature-detect hop? Point straight at
+> `dist/loader.js` with `type="module"` (modern browsers only), or
+> `dist/qaid.umd.cjs` as a classic script (works everywhere, no code-splitting).
 
 ### JSON Config (Script Tag)
 
@@ -55,7 +63,7 @@ For complex configurations, use a separate JSON config element:
   }
 }
 </script>
-<script src="https://unpkg.com/@qaiddev/thumbs-embed/dist/qaid.umd.cjs"></script>
+<script src="https://unpkg.com/@qaiddev/thumbs-embed/dist/embed.js"></script>
 ```
 
 ## How It Works

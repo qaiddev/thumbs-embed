@@ -80,6 +80,11 @@ export interface FeedbackConfig {
     videoOptions?: {
         /** Max recording duration in seconds. Default: 15 */
         maxDuration?: number;
+        /**
+         * Let the user click page areas to blur before recording; the blur tracks
+         * each area as the page scrolls. Default: false.
+         */
+        redaction?: boolean;
     };
     /** Custom SVG string for record button icon */
     recordIcon?: string;
@@ -188,7 +193,7 @@ export interface FeedbackData {
 /**
  * State machine states for the embed
  */
-export type EmbedState = "IDLE" | "TARGETING" | "SELECTED" | "MODAL_OPEN";
+export type EmbedState = "IDLE" | "TARGETING" | "SELECTED" | "MODAL_OPEN" | "REDACT_PICKING";
 /**
  * Element bounds for server-side screenshot fallback
  */
@@ -293,6 +298,7 @@ export interface ResolvedFeedbackConfig {
     captureVideo: boolean;
     videoOptions: {
         maxDuration: number;
+        redaction: boolean;
     };
     recordIcon: string;
     quests: {

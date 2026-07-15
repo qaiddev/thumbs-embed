@@ -9,11 +9,9 @@ import type {
 } from "./types";
 import { THUMBS_UP_ICON, THUMBS_DOWN_ICON, RECORD_ICON } from "./icons";
 import { injectStyles, removeStyles, buildCssVars, applyCssVars, getEmbedStyles } from "./styles";
-import {
-  generateElementInfo,
-  startKeyboardTargeting,
-  type KeyboardTargetingController,
-} from "./element-selector";
+// The element-targeting subsystem (with element-selector, ~14 KB) lives in a
+// lazily-loaded chunk (targeting.ts), pulled in the first time the user targets.
+import type { TargetingController, TargetingHost } from "./targeting";
 import {
   announce,
   createFocusTrap,
@@ -23,23 +21,16 @@ import {
   setBackgroundInert,
   type FocusTrap,
 } from "./a11y";
-import { calculateModalAndArrowPosition, calculateTooltipPosition } from "./modal-positioning";
+import { calculateTooltipPosition } from "./modal-positioning";
+import type { ModalController, ModalHost } from "./modal";
 import { captureConsoleErrors, type ConsoleCapture } from "./console-capture";
-import { captureNetworkErrors, type NetworkCapture } from "./network-capture";
-import {
-  createVideoRecorder,
-  isVideoRecordingSupported,
-  type VideoRecorder,
-} from "./video-capture";
-import {
-  getElementAtPointUnderOverlay,
-  isEmbedElement,
-  getElementBounds,
-  isMobileViewport,
-} from "./dom-utils";
-import { captureScreenshot } from "./screenshot";
-import { captureDomScreenshot } from "./screenshot-dom";
-import { openAnnotationEditor } from "./annotate";
+// The whole video-recording subsystem lives in a lazily-loaded chunk
+// (recording.ts), pulled in the first time the record button is used. Only the
+// types are imported eagerly (erased at build time).
+import type { RecordingController, RecordingHost } from "./recording";
+import { isMobileViewport } from "./dom-utils";
+// Screenshot capture and the annotation editor are loaded on demand the first
+// time a screenshot is taken — see submitFeedback() / openAnnotationEditor().
 import {
   launchQuest,
   DEFAULT_QUESTS_MODULE_URL,
@@ -48,10 +39,6 @@ import {
 
 const VISITOR_ID_KEY = "qaid_visitor_id";
 const HIDE_FEEDBACK_KEY = "qaid_hide_feedback";
-
-// Max finger travel (px) for a touch to still count as a tap (vs a scroll)
-// when selecting a target element.
-const TOUCH_TAP_SLOP = 12;
 
 // True when the primary pointer is touch (phone/tablet). On these devices the
 // Screen Capture API (getDisplayMedia) shows an intrusive "start capturing"
@@ -129,21 +116,23 @@ export class QaidFeedback {
   private feedbackId: number | null = null;
   // A quest launched from a button (in place of the message box), if any.
   private activeQuest: QuestInstance | null = null;
-  private mousePos = { x: 0, y: 0 };
   private isMobile = false;
   private visitorId: string;
 
   // Console capture
   private consoleCapture: ConsoleCapture | null = null;
 
-  // Video recording
-  private videoRecorder: VideoRecorder | null = null;
-  private networkCapture: NetworkCapture | null = null;
-  private recordedBlob: Blob | null = null;
-  private recordingIndicator: HTMLDivElement | null = null;
-  private videoPreview: HTMLDivElement | null = null;
-  private isRecording = false;
-  private isSendingVideo = false;
+  // Video recording — the whole subsystem lives in a lazily-loaded chunk
+  // (recording.ts); a thumbs-only visitor never downloads it.
+  private recording: RecordingController | null = null;
+  // Element targeting — also a lazily-loaded chunk (targeting.ts).
+  private targeting: TargetingController | null = null;
+  private targetingPrewarmed = false;
+  // Preload-on-intent: warm the lazily-split feature chunks before first use.
+  private prewarmHandle: number | null = null;
+  private prewarmIsTimeout = false;
+  private videoPrewarmed = false;
+  private screenshotPrewarmed = false;
 
   // Shadow DOM
   private shadowHost: HTMLDivElement | null = null;
@@ -156,22 +145,14 @@ export class QaidFeedback {
   // DOM elements (inside shadow root)
   private buttonsContainer: HTMLDivElement | null = null;
   private isUserProvidedContainer = false;
-  private overlayContainer: HTMLDivElement | null = null;
-  private captureLayer: HTMLDivElement | null = null;
-  private crosshairH: HTMLDivElement | null = null;
-  private crosshairV: HTMLDivElement | null = null;
-  private scope: HTMLDivElement | null = null;
-  private highlightBox: HTMLDivElement | null = null;
-  private marker: HTMLDivElement | null = null;
-  private modalContainer: HTMLDivElement | null = null;
-  private backdrop: HTMLDivElement | null = null;
+  // The message modal lives in a lazily-loaded chunk (modal.ts).
+  private modal: ModalController | null = null;
+  private modalPrewarmed = false;
   private dismissBtn: HTMLButtonElement | null = null;
 
   // Per-instance CSS variables
   private cssVars: Record<string, string> = {};
 
-  // Keyboard element-targeting
-  private keyboardController: KeyboardTargetingController | null = null;
   private activeThumbBtn: HTMLElement | null = null;
   // Tracks whether the pending activation came from the keyboard (Enter/Space)
   // rather than a pointer, so targeting can avoid elementFromPoint(0,0).
@@ -187,15 +168,6 @@ export class QaidFeedback {
 
   // Bound event handlers
   private boundKeyDown: (e: KeyboardEvent) => void;
-  private boundMouseMove: (e: MouseEvent) => void;
-  private boundClick: (e: MouseEvent) => void;
-  // Touch equivalents for targeting. iOS/iPadOS does not synthesise `click`
-  // (or `mousemove`) for taps on non-interactive page elements, so targeting
-  // must be driven by touch events there.
-  private boundTouchStart: (e: TouchEvent) => void;
-  private boundTouchEnd: (e: TouchEvent) => void;
-  // Where the current targeting touch began, to tell a tap from a scroll.
-  private touchStartPos: { x: number; y: number } | null = null;
   private boundResize: () => void;
 
   // Start with buttons slid off-screen (localStorage dismiss, no animation)
@@ -259,6 +231,7 @@ export class QaidFeedback {
       captureVideo: config.captureVideo ?? false,
       videoOptions: {
         maxDuration: config.videoOptions?.maxDuration ?? 15,
+        redaction: config.videoOptions?.redaction ?? false,
       },
       recordIcon: config.recordIcon ?? "",
       quests: {
@@ -274,10 +247,6 @@ export class QaidFeedback {
 
     // Bind event handlers
     this.boundKeyDown = this.handleKeyDown.bind(this);
-    this.boundMouseMove = this.handleMouseMove.bind(this);
-    this.boundClick = this.handleClick.bind(this);
-    this.boundTouchStart = this.handleTouchStart.bind(this);
-    this.boundTouchEnd = this.handleTouchEnd.bind(this);
     this.boundResize = this.handleResize.bind(this);
 
     // Get or create visitor ID for anonymous feedback tracking
@@ -370,6 +339,61 @@ export class QaidFeedback {
 
     // Persist across client-side navigations (Astro View Transitions, etc.)
     this.observeDom();
+
+    // Preload split feature chunks on idle when their config flags are set, so
+    // the first screenshot / recording doesn't wait on a chunk fetch. Hovering
+    // the record button also warms the video chunk (see createEmbed).
+    if (
+      (this.config.captureVideo && this.videoSupported()) ||
+      this.config.captureScreenshot
+    ) {
+      this.schedulePrewarm(() => {
+        if (this.config.captureVideo && this.videoSupported()) this.prewarmVideo();
+        if (this.config.captureScreenshot) this.prewarmScreenshot();
+      });
+    }
+  }
+
+  /**
+   * Best-effort preload of a lazily-split feature chunk so its first use is
+   * instant. Warming fetches + compiles (and defines) the module; the feature
+   * modules have no load-time side effects, so this is safe. Errors are
+   * swallowed — a failed preload just falls back to an on-demand load.
+   */
+  private prewarmVideo(): void {
+    if (this.videoPrewarmed) return;
+    this.videoPrewarmed = true;
+    // Warm both the recording controller chunk and the capture chunk it pulls
+    // in on start, so the first recording begins without waiting on either.
+    import("./recording").catch(() => {});
+    import("./video-capture").catch(() => {});
+  }
+
+  private prewarmScreenshot(): void {
+    if (this.screenshotPrewarmed) return;
+    this.screenshotPrewarmed = true;
+    (this.shouldCaptureViaDom()
+      ? import("./screenshot-dom")
+      : import("./screenshot")
+    ).catch(() => {});
+    if (this.config.annotate) import("./annotate").catch(() => {});
+  }
+
+  /** Run fn when the main thread is idle; cancelled by destroy(). */
+  private schedulePrewarm(fn: () => void): void {
+    const w = window as unknown as {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+    };
+    const guarded = (): void => {
+      if (!this.destroyed) fn();
+    };
+    if (typeof w.requestIdleCallback === "function") {
+      this.prewarmIsTimeout = false;
+      this.prewarmHandle = w.requestIdleCallback(guarded, { timeout: 2000 });
+    } else {
+      this.prewarmIsTimeout = true;
+      this.prewarmHandle = window.setTimeout(guarded, 1200);
+    }
   }
 
   /**
@@ -531,7 +555,10 @@ export class QaidFeedback {
       upBtn.setAttribute("aria-label", this.config.text.positiveLabel);
       upBtn.innerHTML = this.config.positiveIcon || THUMBS_UP_ICON;
       upBtn.addEventListener("click", (e) => this.handleThumbClick("up", e.currentTarget as HTMLElement, e));
-      upBtn.addEventListener("mouseenter", () => this.showTooltip(upBtn));
+      upBtn.addEventListener("mouseenter", () => {
+        this.prewarmTargeting();
+        this.showTooltip(upBtn);
+      });
       upBtn.addEventListener("mouseleave", () => this.hideTooltip());
       upWrapper.appendChild(upBtn);
 
@@ -545,7 +572,10 @@ export class QaidFeedback {
       downBtn.setAttribute("aria-label", this.config.text.negativeLabel);
       downBtn.innerHTML = this.config.negativeIcon || THUMBS_DOWN_ICON;
       downBtn.addEventListener("click", (e) => this.handleThumbClick("down", e.currentTarget as HTMLElement, e));
-      downBtn.addEventListener("mouseenter", () => this.showTooltip(downBtn));
+      downBtn.addEventListener("mouseenter", () => {
+        this.prewarmTargeting();
+        this.showTooltip(downBtn);
+      });
       downBtn.addEventListener("mouseleave", () => this.hideTooltip());
       downWrapper.appendChild(downBtn);
 
@@ -554,7 +584,7 @@ export class QaidFeedback {
     }
 
     // Record button (only when captureVideo is true and browser supports it)
-    if (this.config.captureVideo && isVideoRecordingSupported()) {
+    if (this.config.captureVideo && this.videoSupported()) {
       const recordWrapper = document.createElement("div");
       recordWrapper.className = "qaid-tooltip-wrapper";
 
@@ -563,8 +593,20 @@ export class QaidFeedback {
       recordBtn.className = useCustomClass ? `${btnBaseClass} qaid-btn-record` : "qaid-btn qaid-btn-record";
       recordBtn.setAttribute("aria-label", this.config.text.recordLabel);
       recordBtn.innerHTML = this.config.recordIcon || RECORD_ICON;
-      recordBtn.addEventListener("click", () => this.startRecording());
-      recordBtn.addEventListener("mouseenter", () => this.showTooltip(recordBtn));
+      recordBtn.addEventListener("click", () => {
+        void this.ensureRecording().then((rec) =>
+          this.config.videoOptions.redaction ? rec.startPicking() : rec.startRecording()
+        );
+      });
+      // Warm the video chunk on hover/focus/touch — the ~200ms before a click —
+      // so recording starts without waiting on the chunk fetch.
+      const warmVideo = (): void => this.prewarmVideo();
+      recordBtn.addEventListener("mouseenter", () => {
+        warmVideo();
+        this.showTooltip(recordBtn);
+      });
+      recordBtn.addEventListener("focus", warmVideo);
+      recordBtn.addEventListener("touchstart", warmVideo, { passive: true });
       recordBtn.addEventListener("mouseleave", () => this.hideTooltip());
       recordWrapper.appendChild(recordBtn);
 
@@ -669,6 +711,8 @@ export class QaidFeedback {
       this.buttonsContainer.classList.remove("qaid-incognito");
       setHiddenByUser(this.config.apiKey, false);
     }
+    // A message modal follows this feedback flow — warm its chunk now.
+    this.prewarmModal();
     if (this.config.skipTargeting) {
       this.submitDirectFeedback(type, buttonEl);
     } else {
@@ -681,11 +725,12 @@ export class QaidFeedback {
       // Enter/Space keydown and cleared by any pointerdown/mousedown.
       const keyboard = this.keyboardActivation;
       this.keyboardActivation = false;
-      if (keyboard) {
-        this.startKeyboardTargetingFlow(type);
-      } else {
-        this.startTargeting(type, e);
-      }
+      // Load the targeting chunk (pre-warmed on hover) then start it.
+      void this.ensureTargeting().then((t) => {
+        if (this.destroyed) return;
+        if (keyboard) t.startKeyboard(type);
+        else t.startPointer(type, e);
+      });
     }
   }
 
@@ -708,351 +753,20 @@ export class QaidFeedback {
     this.submitFeedback();
   }
 
-  private startTargeting(type: "up" | "down", e: MouseEvent): void {
-    this.state = "TARGETING";
-    this.feedbackData.feedbackType = type;
-    this.feedbackData.elementSelector = null;
-    this.feedbackData.elementText = null;
-    this.selectedBounds.visible = false;
-
-    // Track initial mouse position from the click event
-    this.mousePos.x = e.clientX;
-    this.mousePos.y = e.clientY;
-
-    // Add class to body (light DOM — for cursor override)
-    document.body.classList.add("qaid-targeting");
-    if (type === "up") {
-      document.body.classList.add("qaid-type-up");
-    } else {
-      document.body.classList.remove("qaid-type-up");
-    }
-
-    // Set targeting colors on body so .qaid-highlight rules can resolve them
-    document.body.style.setProperty("--qaid-positive", this.cssVars["--qaid-positive"]);
-    document.body.style.setProperty("--qaid-negative", this.cssVars["--qaid-negative"]);
-
-    // Create targeting overlay (in overlay shadow host)
-    this.createTargetingOverlay();
-
-    // Add event listeners on document — overlay is pointer-events:none so scroll works naturally
-    document.addEventListener("keydown", this.boundKeyDown);
-    document.addEventListener("mousemove", this.boundMouseMove);
-    document.addEventListener("click", this.boundClick, true);
-    // Touch: tap to select (scrolling stays enabled). touchstart is passive
-    // (we only read the point); touchend is non-passive so a tap can
-    // preventDefault the synthesised click that would otherwise activate the
-    // targeted element.
-    document.addEventListener("touchstart", this.boundTouchStart, { passive: true });
-    document.addEventListener("touchend", this.boundTouchEnd, { passive: false });
-  }
-
-  /**
-   * Keyboard-driven targeting. Mirrors startTargeting minus the mouse
-   * plumbing: no `qaid-targeting` body class (keeps the cursor visible for
-   * keyboard users), no mouse reticle, and no document mouse/click listeners.
-   * The KeyboardTargetingController owns Tab/Arrow/Enter/Space/Escape.
-   */
-  private startKeyboardTargetingFlow(type: "up" | "down"): void {
-    this.state = "TARGETING";
-    this.feedbackData.feedbackType = type;
-    this.feedbackData.elementSelector = null;
-    this.feedbackData.elementText = null;
-    this.selectedBounds.visible = false;
-
-    // Set overlay theming colors (NOT the cursor-hiding qaid-targeting class)
-    document.body.style.setProperty("--qaid-positive", this.cssVars["--qaid-positive"]);
-    document.body.style.setProperty("--qaid-negative", this.cssVars["--qaid-negative"]);
-
-    // Build the highlight box, then hide the mouse reticle (meaningless here)
-    this.createTargetingOverlay();
-    if (this.crosshairH) this.crosshairH.style.display = "none";
-    if (this.crosshairV) this.crosshairV.style.display = "none";
-    if (this.scope) this.scope.style.display = "none";
-
-    this.keyboardController = startKeyboardTargeting({
-      isExcluded: (el) => isEmbedElement(el),
-      onHighlight: (el) => {
-        const rect = el.getBoundingClientRect();
-        const b = this.highlightBox;
-        if (b) {
-          b.style.transform = `translate(${rect.left}px, ${rect.top}px)`;
-          b.style.width = `${rect.width}px`;
-          b.style.height = `${rect.height}px`;
-          b.style.display = "block";
-        }
-        const { text } = generateElementInfo(el);
-        this.announceMsg(`Targeting ${text || el.tagName.toLowerCase()}`);
-      },
-      onSelect: (el) => this.selectKeyboardTarget(el),
-      onCancel: () => this.cancelTargeting(),
-    });
-  }
-
-  private selectKeyboardTarget(el: Element): void {
-    const bounds = getElementBounds(el, 8);
-    this.selectedBounds = {
-      ...bounds,
-      clickX: bounds.x + bounds.width / 2,
-      clickY: bounds.y + bounds.height / 2,
-      visible: true,
-    };
-
-    const { selector, text } = generateElementInfo(el);
-    this.feedbackData.elementSelector = selector;
-    this.feedbackData.elementText = text;
-
-    // Teardown (controller has already auto-stopped before onSelect fired)
-    this.removeTargetingOverlay();
-    document.body.classList.remove("qaid-targeting", "qaid-type-up");
-    document.body.style.removeProperty("--qaid-positive");
-    document.body.style.removeProperty("--qaid-negative");
-    this.keyboardController = null;
-    this.clearActiveThumb();
-
-    this.state = "SELECTED";
-    this.showSelectedMarker();
-    this.submitFeedback();
-  }
-
-  private createTargetingOverlay(): void {
-    const root = this.ensureOverlayHost();
-
-    this.overlayContainer = document.createElement("div");
-    this.overlayContainer.className = `qaid-targeting-overlay qaid-type-${this.feedbackData.feedbackType}`;
-
-    // Capture layer (pointer-events:none — scroll passes through naturally)
-    this.captureLayer = document.createElement("div");
-    this.captureLayer.className = "qaid-capture-layer";
-
-    // Vignette
-    const vignette = document.createElement("div");
-    vignette.className = "qaid-vignette";
-
-    // Crosshairs
-    this.crosshairH = document.createElement("div");
-    this.crosshairH.className = "qaid-crosshair-h";
-
-    this.crosshairV = document.createElement("div");
-    this.crosshairV.className = "qaid-crosshair-v";
-
-    // Scope
-    this.scope = document.createElement("div");
-    this.scope.className = "qaid-scope";
-    this.scope.innerHTML = `
-      <div class="qaid-scope-ring"></div>
-      <div class="qaid-scope-ring-inner"></div>
-      <div class="qaid-scope-dot"></div>
-    `;
-
-    // Highlight box overlay (positioned over hovered elements)
-    this.highlightBox = document.createElement("div");
-    this.highlightBox.className = "qaid-highlight-box";
-
-    this.overlayContainer.appendChild(this.captureLayer);
-    this.overlayContainer.appendChild(vignette);
-    this.overlayContainer.appendChild(this.highlightBox);
-    this.overlayContainer.appendChild(this.crosshairH);
-    this.overlayContainer.appendChild(this.crosshairV);
-    this.overlayContainer.appendChild(this.scope);
-
-    // Position crosshairs immediately at current mouse position
-    this.crosshairH.style.top = `${this.mousePos.y}px`;
-    this.crosshairV.style.left = `${this.mousePos.x}px`;
-    this.scope.style.left = `${this.mousePos.x}px`;
-    this.scope.style.top = `${this.mousePos.y}px`;
-
-    this.applyVars(this.overlayContainer);
-    root.appendChild(this.overlayContainer);
-  }
 
   private handleKeyDown(e: KeyboardEvent): void {
     if (e.key === "Escape") {
-      if (this.isRecording) {
-        this.stopRecording();
-      } else if (this.videoPreview) {
-        this.cancelRecordingPreview();
-      } else if (this.state === "TARGETING") {
-        this.cancelTargeting();
+      // The recording controller owns Escape while recording / in preview /
+      // picking; let it consume the key first.
+      if (this.recording?.handleEscape()) return;
+      if (this.state === "TARGETING") {
+        this.targeting?.cancel();
       } else if (this.state === "MODAL_OPEN") {
-        this.closeModal();
+        this.modal?.close();
       }
     }
   }
 
-  private handleMouseMove(e: MouseEvent): void {
-    this.updateReticleAt(e.clientX, e.clientY);
-  }
-
-  /** Move the crosshair/scope reticle and highlight the element under (x, y).
-   *  Shared by the mouse (hover) and touch (drag) targeting paths. */
-  private updateReticleAt(x: number, y: number): void {
-    this.mousePos.x = x;
-    this.mousePos.y = y;
-
-    // Update crosshairs and scope
-    if (this.crosshairH) {
-      this.crosshairH.style.top = `${y}px`;
-    }
-    if (this.crosshairV) {
-      this.crosshairV.style.left = `${x}px`;
-    }
-    if (this.scope) {
-      this.scope.style.left = `${x}px`;
-      this.scope.style.top = `${y}px`;
-    }
-
-    // Find element underneath — hide both shadow hosts
-    if (this.captureLayer && this.shadowHost) {
-      const hosts = [this.shadowHost, this.overlayShadowHost].filter(Boolean) as HTMLElement[];
-      const elementUnder = getElementAtPointUnderOverlay(x, y, hosts);
-
-      if (elementUnder && !isEmbedElement(elementUnder)) {
-        if (this.highlightBox) {
-          const rect = elementUnder.getBoundingClientRect();
-          this.highlightBox.style.transform = `translate(${rect.left}px, ${rect.top}px)`;
-          this.highlightBox.style.width = `${rect.width}px`;
-          this.highlightBox.style.height = `${rect.height}px`;
-          this.highlightBox.style.display = "block";
-        }
-      } else {
-        if (this.highlightBox) {
-          this.highlightBox.style.display = "none";
-        }
-      }
-    }
-  }
-
-  private handleClick(e: MouseEvent): void {
-    e.preventDefault();
-    e.stopPropagation();
-    this.selectAt(e.clientX, e.clientY);
-  }
-
-  // ---- Touch targeting (iOS/iPadOS) ----
-  // iOS/iPadOS taps on non-interactive elements don't fire click, so touch
-  // drives targeting here. Scrolling stays enabled (the page may need to scroll
-  // to bring the target into view); a low-movement touch is treated as a tap
-  // that selects, distinguishing it from a scroll/drag.
-
-  private handleTouchStart(e: TouchEvent): void {
-    const t = e.touches[0];
-    if (!t) return;
-    this.touchStartPos = { x: t.clientX, y: t.clientY };
-    // Preview what's under the finger; don't preventDefault so scrolling works.
-    this.updateReticleAt(t.clientX, t.clientY);
-  }
-
-  private handleTouchEnd(e: TouchEvent): void {
-    // touches is empty on touchend; the lifted point is in changedTouches.
-    const t = e.changedTouches[0];
-    const start = this.touchStartPos;
-    this.touchStartPos = null;
-    if (!t || !start) return;
-    // A drag beyond the slop threshold is a scroll, not a selection — ignore it.
-    const moved = Math.hypot(t.clientX - start.x, t.clientY - start.y);
-    if (moved > TOUCH_TAP_SLOP) return;
-    e.preventDefault(); // suppress the tap's synthesised click
-    this.selectAt(t.clientX, t.clientY);
-  }
-
-  /** Select the element under (x, y) and tear down targeting.
-   *  Shared by the mouse (click) and touch (touchend) targeting paths. */
-  private selectAt(x: number, y: number): void {
-    // Find element underneath — hide both shadow hosts
-    const hosts = [this.shadowHost, this.overlayShadowHost].filter(Boolean) as HTMLElement[];
-    const target = getElementAtPointUnderOverlay(x, y, hosts);
-
-    if (!target || isEmbedElement(target)) {
-      return;
-    }
-
-    // Get element bounds
-    const bounds = getElementBounds(target, 8);
-    this.selectedBounds = {
-      ...bounds,
-      clickX: x,
-      clickY: y,
-      visible: true,
-    };
-
-    const { selector, text } = generateElementInfo(target);
-    this.feedbackData.elementSelector = selector;
-    this.feedbackData.elementText = text;
-
-    // Remove targeting overlay and document listeners
-    this.stopTargetingListeners();
-    document.body.classList.remove("qaid-targeting", "qaid-type-up");
-    document.body.style.removeProperty("--qaid-positive");
-    document.body.style.removeProperty("--qaid-negative");
-
-    this.state = "SELECTED";
-    this.clearActiveThumb();
-
-    // Show marker and submit feedback
-    this.showSelectedMarker();
-    this.submitFeedback();
-  }
-
-  /** Remove the targeting overlay and every mouse/touch/keyboard listener the
-   *  pointer-targeting flow attaches to the document. */
-  private stopTargetingListeners(): void {
-    this.removeTargetingOverlay();
-    this.touchStartPos = null;
-    document.removeEventListener("mousemove", this.boundMouseMove);
-    document.removeEventListener("click", this.boundClick, true);
-    document.removeEventListener("touchstart", this.boundTouchStart);
-    document.removeEventListener("touchend", this.boundTouchEnd);
-    document.removeEventListener("keydown", this.boundKeyDown);
-  }
-
-  private cancelTargeting(): void {
-    this.keyboardController?.stop();
-    this.keyboardController = null;
-    this.stopTargetingListeners();
-    document.body.classList.remove("qaid-targeting", "qaid-type-up");
-    document.body.style.removeProperty("--qaid-positive");
-    document.body.style.removeProperty("--qaid-negative");
-    this.clearActiveThumb();
-
-    this.state = "IDLE";
-    this.feedbackData.feedbackType = null;
-    this.feedbackData.elementSelector = null;
-    this.feedbackData.elementText = null;
-    this.selectedBounds.visible = false;
-  }
-
-  private removeTargetingOverlay(): void {
-    if (this.overlayContainer) {
-      this.overlayContainer.remove();
-      this.overlayContainer = null;
-    }
-    this.captureLayer = null;
-    this.crosshairH = null;
-    this.crosshairV = null;
-    this.scope = null;
-  }
-
-  private showSelectedMarker(): void {
-    const root = this.ensureOverlayHost();
-
-    this.marker = document.createElement("div");
-    this.marker.className = "qaid-selected-marker";
-    this.marker.style.left = `${this.selectedBounds.x}px`;
-    this.marker.style.top = `${this.selectedBounds.y}px`;
-    this.marker.style.width = `${this.selectedBounds.width}px`;
-    this.marker.style.height = `${this.selectedBounds.height}px`;
-    this.marker.style.zIndex = String(this.config.zIndex + 1);
-
-    this.applyVars(this.marker);
-    root.appendChild(this.marker);
-  }
-
-  private hideSelectedMarker(): void {
-    if (this.marker) {
-      this.marker.remove();
-      this.marker = null;
-    }
-  }
 
   /** Whether to capture the screenshot with the DOM/canvas method (html2canvas)
    *  instead of the permission-based Screen Capture API. Explicit "dom" wins;
@@ -1074,6 +788,7 @@ export class QaidFeedback {
     const prevPointerEvents = host.style.pointerEvents;
     host.style.pointerEvents = "auto";
     try {
+      const { openAnnotationEditor } = await import("./annotate");
       return await openAnnotationEditor({
         dataUrl: screenshot,
         root,
@@ -1093,9 +808,15 @@ export class QaidFeedback {
     // Capture screenshot if enabled (server will gate by plan)
     let screenshot: string | null = null;
     if (this.config.captureScreenshot) {
-      screenshot = this.shouldCaptureViaDom()
-        ? await captureDomScreenshot(this.config.screenshotOptions)
-        : await captureScreenshot(this.config.screenshotOptions);
+      // Loaded on demand so visitors who never submit a screenshot never
+      // download the capture + annotation code.
+      if (this.shouldCaptureViaDom()) {
+        const { captureDomScreenshot } = await import("./screenshot-dom");
+        screenshot = await captureDomScreenshot(this.config.screenshotOptions);
+      } else {
+        const { captureScreenshot } = await import("./screenshot");
+        screenshot = await captureScreenshot(this.config.screenshotOptions);
+      }
       if (screenshot) this.announceMsg("Screenshot captured");
     }
 
@@ -1169,7 +890,11 @@ export class QaidFeedback {
     // Always show modal (even if API failed - useful for demos)
     this.state = "MODAL_OPEN";
 
-    this.showModal();
+    // The modal chunk loads async; bail if the embed was destroyed meanwhile,
+    // so a raced modal never opens (and never leaks a listener) post-destroy.
+    const modal = await this.ensureModal();
+    if (this.destroyed) return;
+    modal.open();
 
     // Enable pointer events on overlay host for modal
     if (this.overlayShadowHost) {
@@ -1225,7 +950,7 @@ export class QaidFeedback {
    * path (which bypasses the modal entirely).
    */
   private resetFeedbackUi(): void {
-    this.hideSelectedMarker();
+    this.targeting?.hideMarker();
     if (this.overlayShadowHost) {
       this.overlayShadowHost.style.pointerEvents = "none";
     }
@@ -1237,538 +962,192 @@ export class QaidFeedback {
     this.selectedBounds.visible = false;
   }
 
-  private showModal(): void {
-    const root = this.ensureOverlayHost();
 
-    // Create backdrop
-    this.backdrop = document.createElement("div");
-    this.backdrop.className = "qaid-backdrop";
-    this.backdrop.style.zIndex = String(this.config.zIndex + 2);
-    this.backdrop.style.background = `rgba(0, 0, 0, ${this.config.backdropOpacity})`;
-    this.backdrop.addEventListener("click", () => this.closeModal());
-    this.applyVars(this.backdrop);
-
-    if (this.isMobile) {
-      this.showBottomSheet();
-    } else {
-      this.showPositionedModal();
+  /**
+   * Lazily load and instantiate the modal controller. The message modal lives
+   * in a separate chunk, fetched the first time it opens (and pre-warmed while
+   * the user targets an element — see prewarmModal).
+   */
+  private async ensureModal(): Promise<ModalController> {
+    if (!this.modal) {
+      const { ModalController } = await import("./modal");
+      this.modal = new ModalController(this.makeModalHost());
     }
-
-    root.appendChild(this.backdrop);
-    document.addEventListener("keydown", this.boundKeyDown);
+    return this.modal;
   }
 
-  private showBottomSheet(): void {
-    const root = this.ensureOverlayHost();
-
-    const sheet = document.createElement("div");
-    sheet.className = "qaid-bottom-sheet";
-    sheet.style.zIndex = String(this.config.zIndex + 3);
-
-    sheet.innerHTML = `
-      <div class="qaid-bottom-sheet-content">
-        <div class="qaid-bottom-sheet-handle"></div>
-        ${this.getModalContent()}
-      </div>
-    `;
-
-    this.applyVars(sheet);
-    root.appendChild(sheet);
-    this.modalContainer = sheet;
-
-    this.setupModalInteractions();
+  /** Narrow view of the embed the modal controller talks back through. */
+  private makeModalHost(): ModalHost {
+    const self = this;
+    return {
+      get config() {
+        return self.config;
+      },
+      get uid() {
+        return self.uid;
+      },
+      get isMobile() {
+        return self.isMobile;
+      },
+      get state() {
+        return self.state;
+      },
+      get boundKeyDown() {
+        return self.boundKeyDown;
+      },
+      get feedbackData() {
+        return self.feedbackData;
+      },
+      get selectedBounds() {
+        return self.selectedBounds;
+      },
+      get feedbackId() {
+        return self.feedbackId;
+      },
+      setFeedbackId: (id) => {
+        self.feedbackId = id;
+      },
+      ensureOverlayHost: () => self.ensureOverlayHost(),
+      applyVars: (el) => self.applyVars(el),
+      announceMsg: (message, assertive) => self.announceMsg(message, assertive),
+      openDialogA11y: (container, opts) => self.openDialogA11y(container, opts),
+      closeDialogA11y: () => self.closeDialogA11y(),
+      resetFeedbackUi: () => self.resetFeedbackUi(),
+    };
   }
 
-  private showPositionedModal(): void {
-    const root = this.ensureOverlayHost();
-
-    const { modal, arrow } = calculateModalAndArrowPosition(
-      this.selectedBounds,
-      window.innerWidth,
-      window.innerHeight,
-      {
-        width: this.config.modalWidth,
-        height: 280,
-        arrowHeight: 12,
-        gap: 8,
-        viewportPadding: 16,
-      }
-    );
-
-    this.modalContainer = document.createElement("div");
-    this.modalContainer.className = `qaid-modal-container qaid-${modal.position}`;
-    this.modalContainer.style.top = `${modal.top}px`;
-    this.modalContainer.style.left = `${modal.left}px`;
-    this.modalContainer.style.zIndex = String(this.config.zIndex + 3);
-
-    const arrowEl = document.createElement("div");
-    arrowEl.className = "qaid-modal-arrow";
-    arrowEl.style.left = `${arrow.left}px`;
-
-    const box = document.createElement("div");
-    box.className = "qaid-modal-box";
-    box.innerHTML = this.getModalContent();
-
-    this.modalContainer.appendChild(arrowEl);
-    this.modalContainer.appendChild(box);
-    this.applyVars(this.modalContainer);
-    root.appendChild(this.modalContainer);
-
-    this.setupModalInteractions();
+  /** Warm the modal chunk while the user is targeting, so it opens instantly. */
+  private prewarmModal(): void {
+    if (this.modalPrewarmed) return;
+    this.modalPrewarmed = true;
+    import("./modal").catch(() => {});
   }
 
-  private getModalContent(): string {
-    const isUp = this.feedbackData.feedbackType === "up";
-    const positiveIcon = this.config.positiveIcon || THUMBS_UP_ICON;
-    const negativeIcon = this.config.negativeIcon || THUMBS_DOWN_ICON;
-    const toggleClass = this.config.buttonClass
-      ? `qaid-type-toggle qaid-type-toggle-custom ${this.config.buttonClass} ${isUp ? "qaid-btn-up" : "qaid-btn-down"}`
-      : `qaid-type-toggle ${isUp ? "qaid-type-up" : "qaid-type-down"}`;
-    const toggleLabel = isUp ? "Feedback type: positive" : "Feedback type: negative";
-    return `
-      <div class="qaid-modal-header">
-        <button type="button" class="${toggleClass}" title="Click to switch" aria-pressed="${isUp}" aria-label="${toggleLabel}">
-          ${isUp ? positiveIcon : negativeIcon}
-        </button>
-        <div class="qaid-modal-header-text">
-          <h3 class="qaid-modal-title" id="qaid-modal-title-${this.uid}">${this.config.text.modalTitle}</h3>
-          <p class="qaid-modal-subtitle" id="qaid-modal-subtitle-${this.uid}">${this.config.text.modalSubtitle}</p>
-        </div>
-      </div>
-      <textarea class="qaid-textarea" aria-label="${this.config.text.modalSubtitle}" placeholder="${this.config.text.placeholder}"></textarea>
-      <div class="qaid-btn-row">
-        <button type="button" class="qaid-btn-submit">${this.config.text.skipButton}</button>
-      </div>
-    `;
+  /**
+   * Lazily load and instantiate the targeting controller. The subsystem (with
+   * element-selector) lives in a separate chunk, fetched the first time the
+   * user targets — pre-warmed on thumb-button hover (see prewarmTargeting).
+   */
+  private async ensureTargeting(): Promise<TargetingController> {
+    if (!this.targeting) {
+      const { TargetingController } = await import("./targeting");
+      this.targeting = new TargetingController(this.makeTargetingHost());
+    }
+    return this.targeting;
   }
 
-  private setupModalInteractions(): void {
-    // Dialog semantics + focus trap + background inert
-    this.openDialogA11y(this.modalContainer!, {
-      labelledbyId: `qaid-modal-title-${this.uid}`,
-      describedbyId: `qaid-modal-subtitle-${this.uid}`,
-    });
-
-    const textarea =
-      this.modalContainer!.querySelector<HTMLTextAreaElement>(".qaid-textarea");
-    const submitBtn =
-      this.modalContainer!.querySelector<HTMLButtonElement>(".qaid-btn-submit");
-    if (textarea) {
-      // Auto-focus
-      setTimeout(() => textarea.focus(), 100);
-
-      // Update button text based on content
-      textarea.addEventListener("input", () => {
-        if (submitBtn) {
-          submitBtn.textContent = textarea.value.trim() ? this.config.text.submitButton : this.config.text.skipButton;
-        }
-      });
-    }
-
-    if (submitBtn) {
-      submitBtn.addEventListener("click", () => {
-        const message = textarea?.value.trim() || null;
-        this.submitMessage(message);
-      });
-    }
-
-    // Handle feedback type toggle
-    const typeToggle = this.modalContainer!.querySelector<HTMLButtonElement>(".qaid-type-toggle");
-    if (typeToggle) {
-      typeToggle.addEventListener("click", () => {
-        const newType = this.feedbackData.feedbackType === "up" ? "down" : "up";
-        this.feedbackData.feedbackType = newType;
-
-        // Update UI - use different classes depending on custom buttonClass
-        if (this.config.buttonClass) {
-          typeToggle.classList.toggle("qaid-btn-up", newType === "up");
-          typeToggle.classList.toggle("qaid-btn-down", newType === "down");
-        } else {
-          typeToggle.classList.toggle("qaid-type-up", newType === "up");
-          typeToggle.classList.toggle("qaid-type-down", newType === "down");
-        }
-        const positiveIcon = this.config.positiveIcon || THUMBS_UP_ICON;
-        const negativeIcon = this.config.negativeIcon || THUMBS_DOWN_ICON;
-        typeToggle.innerHTML = newType === "up" ? positiveIcon : negativeIcon;
-
-        // Update accessible state and announce the change
-        const toggleLabel = newType === "up" ? "Feedback type: positive" : "Feedback type: negative";
-        typeToggle.setAttribute("aria-pressed", String(newType === "up"));
-        typeToggle.setAttribute("aria-label", toggleLabel);
-        this.announceMsg(toggleLabel);
-
-        // Update feedback on server
-        if (this.feedbackId) {
-          fetch(`${this.config.endpoint}/${this.feedbackId}`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ feedbackType: newType }),
-          }).catch((err) => console.error("Failed to update feedback type:", err));
-        }
-      });
-    }
+  /** Narrow view of the embed the targeting controller talks back through. */
+  private makeTargetingHost(): TargetingHost {
+    const self = this;
+    return {
+      get config() {
+        return self.config;
+      },
+      get cssVars() {
+        return self.cssVars;
+      },
+      get state() {
+        return self.state;
+      },
+      get shadowHost() {
+        return self.shadowHost;
+      },
+      get overlayShadowHost() {
+        return self.overlayShadowHost;
+      },
+      get boundKeyDown() {
+        return self.boundKeyDown;
+      },
+      get feedbackData() {
+        return self.feedbackData;
+      },
+      get selectedBounds() {
+        return self.selectedBounds;
+      },
+      setState: (state) => {
+        self.state = state;
+      },
+      ensureOverlayHost: () => self.ensureOverlayHost(),
+      applyVars: (el) => self.applyVars(el),
+      announceMsg: (message, assertive) => self.announceMsg(message, assertive),
+      clearActiveThumb: () => self.clearActiveThumb(),
+      submitFeedback: () => self.submitFeedback(),
+    };
   }
 
-  private async submitMessage(message: string | null): Promise<void> {
-    if (this.feedbackId) {
-      try {
-        await fetch(`${this.config.endpoint}/${this.feedbackId}`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message }),
-        });
-      } catch (error) {
-        console.error("Failed to submit feedback message:", error);
-      }
-      // Clear feedbackId so closeModal doesn't send another PATCH
-      this.feedbackId = null;
-    }
-
-    this.closeModal();
-  }
-
-  private closeModal(): void {
-    // If modal is open and we're closing without submitting, still finalize
-    if (this.state === "MODAL_OPEN" && this.feedbackId) {
-      fetch(`${this.config.endpoint}/${this.feedbackId}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: null }),
-      }).catch((err) => console.error("Failed to finalize feedback:", err));
-    }
-
-    // Release focus trap / inert and restore focus before removing the DOM
-    this.closeDialogA11y();
-
-    if (this.modalContainer) {
-      this.modalContainer.remove();
-      this.modalContainer = null;
-    }
-    if (this.backdrop) {
-      this.backdrop.remove();
-      this.backdrop = null;
-    }
-
-    document.removeEventListener("keydown", this.boundKeyDown);
-
-    this.resetFeedbackUi();
+  /** Warm the targeting chunk on thumb-button hover, before the click. */
+  private prewarmTargeting(): void {
+    if (this.targetingPrewarmed || this.config.skipTargeting) return;
+    this.targetingPrewarmed = true;
+    import("./targeting").catch(() => {});
   }
 
   // ==================== Video Recording ====================
 
-  private async startRecording(): Promise<void> {
-    // Don't start if already recording or in targeting/modal flow
-    if (this.isRecording || this.state !== "IDLE") return;
-
-    try {
-      // Start network capture
-      this.networkCapture = captureNetworkErrors();
-
-      // Create video recorder
-      this.videoRecorder = createVideoRecorder({
-        maxDuration: this.config.videoOptions.maxDuration,
-      });
-
-      this.videoRecorder.onTick((elapsed) => {
-        this.updateRecordingTimer(elapsed);
-      });
-
-      // Handle unexpected stops (browser stop button, max duration)
-      this.videoRecorder.onStop((blob) => {
-        if (this.isRecording) {
-          this.recordedBlob = blob;
-          this.isRecording = false;
-          this.announceMsg("Recording stopped");
-          this.removeRecordingIndicator();
-          document.removeEventListener("keydown", this.boundKeyDown);
-          this.setButtonsDisabled(false);
-
-          if (blob && blob.size > 0) {
-            this.showRecordingPreview();
-          } else {
-            this.cleanupRecording();
-          }
-        }
-      });
-
-      await this.videoRecorder.start();
-      this.isRecording = true;
-      this.announceMsg("Recording started");
-
-      // Disable thumb buttons while recording
-      this.setButtonsDisabled(true);
-
-      // Show recording indicator
-      this.showRecordingIndicator();
-
-      // Listen for escape key
-      document.addEventListener("keydown", this.boundKeyDown);
-    } catch (error) {
-      // User denied screen share or error occurred
-      this.cleanupRecording();
-    }
+  /**
+   * Cheap synchronous capability check so the record button can render without
+   * pulling in the (lazily-loaded) video subsystem. Mirrors
+   * isVideoRecordingSupported() in video-capture.ts.
+   */
+  private videoSupported(): boolean {
+    return (
+      typeof navigator !== "undefined" &&
+      !!navigator.mediaDevices &&
+      typeof navigator.mediaDevices.getDisplayMedia === "function" &&
+      typeof MediaRecorder !== "undefined"
+    );
   }
 
-  private async stopRecording(): Promise<void> {
-    try {
-      this.recordedBlob = await this.videoRecorder!.stop();
-    } catch {
-      this.recordedBlob = null;
-    }
 
-    this.isRecording = false;
-    this.announceMsg("Recording stopped");
-    this.removeRecordingIndicator();
-    document.removeEventListener("keydown", this.boundKeyDown);
-
-    if (this.recordedBlob && this.recordedBlob.size > 0) {
-      this.showRecordingPreview();
-    } else {
-      this.cleanupRecording();
+  /**
+   * Lazily load and instantiate the recording controller. The whole recording
+   * subsystem lives in a separate chunk, fetched only the first time the record
+   * button is used (and pre-warmed on hover — see prewarmVideo).
+   */
+  private async ensureRecording(): Promise<RecordingController> {
+    if (!this.recording) {
+      const { RecordingController } = await import("./recording");
+      this.recording = new RecordingController(this.makeRecordingHost());
     }
+    return this.recording;
   }
 
-  private showRecordingIndicator(): void {
-    const root = this.ensureOverlayHost();
-
-    this.recordingIndicator = document.createElement("div");
-    this.recordingIndicator.className = "qaid-recording-indicator";
-    this.recordingIndicator.style.zIndex = String(this.config.zIndex + 100);
-
-    const dot = document.createElement("div");
-    dot.className = "qaid-recording-dot";
-
-    const timer = document.createElement("span");
-    timer.className = "qaid-recording-time";
-    timer.textContent = this.formatTime(this.config.videoOptions.maxDuration);
-
-    const stopBtn = document.createElement("button");
-    stopBtn.type = "button";
-    stopBtn.className = "qaid-recording-stop";
-    stopBtn.textContent = "Stop";
-    stopBtn.addEventListener("click", () => this.stopRecording());
-
-    this.recordingIndicator.appendChild(dot);
-    this.recordingIndicator.appendChild(timer);
-    this.recordingIndicator.appendChild(stopBtn);
-
-    this.applyVars(this.recordingIndicator);
-
-    // Enable pointer events on overlay host for recording indicator
-    if (this.overlayShadowHost) {
-      this.overlayShadowHost.style.pointerEvents = "auto";
-    }
-
-    root.appendChild(this.recordingIndicator);
-  }
-
-  private updateRecordingTimer(elapsed: number): void {
-    if (!this.recordingIndicator) return;
-    const timer = this.recordingIndicator.querySelector<HTMLSpanElement>(".qaid-recording-time");
-    if (timer) {
-      const remaining = Math.max(0, this.config.videoOptions.maxDuration - elapsed);
-      timer.textContent = this.formatTime(remaining);
-      // Announce the final countdown so it is perceivable non-visually
-      if (remaining > 0 && remaining <= 5) {
-        this.announceMsg(`${remaining} second${remaining === 1 ? "" : "s"} remaining`);
-      }
-    }
-  }
-
-  private formatTime(seconds: number): string {
-    const m = Math.floor(seconds / 60);
-    const s = seconds % 60;
-    return `${m}:${s.toString().padStart(2, "0")}`;
-  }
-
-  private removeRecordingIndicator(): void {
-    if (this.recordingIndicator) {
-      this.recordingIndicator.remove();
-      this.recordingIndicator = null;
-    }
-  }
-
-  private showRecordingPreview(): void {
-    const root = this.ensureOverlayHost();
-
-    const videoUrl = URL.createObjectURL(this.recordedBlob!);
-
-    this.videoPreview = document.createElement("div");
-    this.videoPreview.className = "qaid-video-preview";
-    this.videoPreview.style.zIndex = String(this.config.zIndex + 100);
-
-    const box = document.createElement("div");
-    box.className = "qaid-video-preview-box";
-
-    const title = document.createElement("h3");
-    title.textContent = "Review your recording";
-    title.id = `qaid-video-title-${this.uid}`;
-
-    const videoEl = document.createElement("video");
-    videoEl.src = videoUrl;
-    videoEl.controls = true;
-    videoEl.autoplay = true;
-    videoEl.muted = true;
-
-    const textarea = document.createElement("textarea");
-    textarea.placeholder = "Optional: Describe the issue you recorded...";
-    textarea.setAttribute("aria-label", "Describe the issue you recorded");
-
-    const actions = document.createElement("div");
-    actions.className = "qaid-video-preview-actions";
-
-    const cancelBtn = document.createElement("button");
-    cancelBtn.type = "button";
-    cancelBtn.className = "qaid-video-btn qaid-video-btn-cancel";
-    cancelBtn.textContent = "Cancel";
-    cancelBtn.addEventListener("click", () => this.cancelRecordingPreview());
-
-    const rerecordBtn = document.createElement("button");
-    rerecordBtn.type = "button";
-    rerecordBtn.className = "qaid-video-btn qaid-video-btn-rerecord";
-    rerecordBtn.textContent = "Re-record";
-    rerecordBtn.addEventListener("click", () => {
-      this.cancelRecordingPreview();
-      this.startRecording();
-    });
-
-    const sendBtn = document.createElement("button");
-    sendBtn.type = "button";
-    sendBtn.className = "qaid-video-btn qaid-video-btn-send";
-    sendBtn.textContent = "Send";
-    sendBtn.addEventListener("click", () => {
-      const message = textarea.value.trim() || null;
-      this.submitVideoFeedback(message, sendBtn);
-    });
-
-    actions.appendChild(cancelBtn);
-    actions.appendChild(rerecordBtn);
-    actions.appendChild(sendBtn);
-
-    box.appendChild(title);
-    box.appendChild(videoEl);
-    box.appendChild(textarea);
-    box.appendChild(actions);
-
-    this.videoPreview.appendChild(box);
-    this.applyVars(this.videoPreview);
-
-    // Enable pointer events on overlay host for video preview
-    if (this.overlayShadowHost) {
-      this.overlayShadowHost.style.pointerEvents = "auto";
-    }
-
-    root.appendChild(this.videoPreview);
-
-    // Dialog semantics + focus trap + background inert
-    this.openDialogA11y(box, { labelledbyId: title.id });
-
-    // Listen for escape key
-    document.addEventListener("keydown", this.boundKeyDown);
-  }
-
-  private cancelRecordingPreview(): void {
-    this.removeVideoPreview();
-    this.cleanupRecording();
-  }
-
-  private removeVideoPreview(): void {
-    // Release focus trap / inert and restore focus before removing the DOM
-    this.closeDialogA11y();
-    if (this.videoPreview) {
-      // Revoke object URLs
-      const videoEl = this.videoPreview.querySelector<HTMLVideoElement>("video");
-      if (videoEl?.src) {
-        URL.revokeObjectURL(videoEl.src);
-      }
-      this.videoPreview.remove();
-      this.videoPreview = null;
-    }
-    document.removeEventListener("keydown", this.boundKeyDown);
-  }
-
-  private async submitVideoFeedback(message: string | null, sendBtn: HTMLButtonElement): Promise<void> {
-    if (!this.recordedBlob || this.isSendingVideo) return;
-
-    this.isSendingVideo = true;
-    sendBtn.disabled = true;
-    sendBtn.textContent = "Sending...";
-
-    const formData = new FormData();
-    formData.append("video", this.recordedBlob, `recording.${this.recordedBlob.type.includes("mp4") ? "mp4" : "webm"}`);
-    formData.append("pageUrl", window.location.href);
-    formData.append("visitorId", this.visitorId);
-
-    if (this.config.apiKey) {
-      formData.append("apiKey", this.config.apiKey);
-    }
-    if (message) {
-      formData.append("message", message);
-    }
-    if (this.consoleCapture) {
-      formData.append("consoleErrors", JSON.stringify(this.consoleCapture.errors));
-    }
-    if (this.networkCapture) {
-      formData.append("networkErrors", JSON.stringify(this.networkCapture.errors));
-    }
-
-    let videoFeedbackId: string | number | null = null;
-    try {
-      const response = await fetch(`${this.config.endpoint}/video`, {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok) {
-        this.announceMsg("Recording sent");
-        try {
-          const data = (await response.json()) as { id?: string | number };
-          videoFeedbackId = data?.id ?? null;
-        } catch {
-          // Non-JSON / no id — the quest can still launch, just unlinked.
-        }
-      } else {
-        console.error("Failed to submit video feedback:", await response.text());
-        this.announceMsg("Failed to send recording", true);
-      }
-    } catch (error) {
-      console.error("Failed to submit video feedback:", error);
-      this.announceMsg("Failed to send recording", true);
-    }
-
-    this.isSendingVideo = false;
-    this.removeVideoPreview();
-    this.cleanupRecording();
-
-    // Once the recording is safely sent, launch the linked quest (if any),
-    // passing the new feedback record id so its response is joinable.
-    // tryLaunchQuest is a no-op when no video quest is configured.
-    await this.tryLaunchQuest("video", videoFeedbackId);
-  }
-
-  private cleanupRecording(): void {
-    this.isRecording = false;
-    this.removeRecordingIndicator();
-
-    if (this.videoRecorder) {
-      this.videoRecorder.destroy();
-      this.videoRecorder = null;
-    }
-    if (this.networkCapture) {
-      this.networkCapture.restore();
-      this.networkCapture = null;
-    }
-    if (this.recordedBlob) {
-      this.recordedBlob = null;
-    }
-
-    // Re-enable buttons
-    this.setButtonsDisabled(false);
-
-    // Reset overlay host pointer events if nothing else needs them
-    if (this.overlayShadowHost && this.state === "IDLE") {
-      this.overlayShadowHost.style.pointerEvents = "none";
-    }
+  /** Narrow view of the embed the recording controller talks back through. */
+  private makeRecordingHost(): RecordingHost {
+    const self = this;
+    return {
+      get config() {
+        return self.config;
+      },
+      get visitorId() {
+        return self.visitorId;
+      },
+      get uid() {
+        return self.uid;
+      },
+      get overlayShadowHost() {
+        return self.overlayShadowHost;
+      },
+      get consoleCapture() {
+        return self.consoleCapture;
+      },
+      get boundKeyDown() {
+        return self.boundKeyDown;
+      },
+      get state() {
+        return self.state;
+      },
+      setState: (state) => {
+        self.state = state;
+      },
+      ensureOverlayHost: () => self.ensureOverlayHost(),
+      applyVars: (el) => self.applyVars(el),
+      announceMsg: (message, assertive) => self.announceMsg(message, assertive),
+      openDialogA11y: (container, opts) => self.openDialogA11y(container, opts),
+      closeDialogA11y: () => self.closeDialogA11y(),
+      setButtonsDisabled: (disabled) => self.setButtonsDisabled(disabled),
+      tryLaunchQuest: (type, feedbackId) => self.tryLaunchQuest(type, feedbackId),
+    };
   }
 
   private setButtonsDisabled(disabled: boolean): void {
@@ -1805,15 +1184,26 @@ export class QaidFeedback {
       this.boundBeforeSwap = null;
     }
 
-    // Stop keyboard targeting and release any open dialog focus state
-    this.keyboardController?.stop();
-    this.keyboardController = null;
+    // Tear down the targeting subsystem + release any open dialog focus state
+    this.targeting?.destroy();
+    this.targeting = null;
     this.clearActiveThumb();
     this.closeDialogA11y();
 
-    // Clean up video recording
-    this.cleanupRecording();
-    this.removeVideoPreview();
+    // Cancel any pending idle preload
+    if (this.prewarmHandle !== null) {
+      const w = window as unknown as { cancelIdleCallback?: (h: number) => void };
+      if (this.prewarmIsTimeout) clearTimeout(this.prewarmHandle);
+      else w.cancelIdleCallback?.(this.prewarmHandle);
+      this.prewarmHandle = null;
+    }
+
+    // Tear down the recording subsystem (recorder, picker, preview) if loaded.
+    this.recording?.destroy();
+    this.recording = null;
+    // Tear down the message modal if it was loaded/open.
+    this.modal?.destroy();
+    this.modal = null;
 
     // Tear down any quest launched from a button
     this.activeQuest?.destroy();
@@ -1828,10 +1218,6 @@ export class QaidFeedback {
     // Remove event listeners
     window.removeEventListener("resize", this.boundResize);
     document.removeEventListener("keydown", this.boundKeyDown);
-    document.removeEventListener("mousemove", this.boundMouseMove);
-    document.removeEventListener("click", this.boundClick, true);
-    document.removeEventListener("touchstart", this.boundTouchStart);
-    document.removeEventListener("touchend", this.boundTouchEnd);
 
     document.body.classList.remove("qaid-targeting", "qaid-type-up");
     document.body.style.removeProperty("--qaid-positive");
@@ -1849,14 +1235,6 @@ export class QaidFeedback {
       this.overlayShadowRoot = null;
     }
     this.buttonsContainer = null;
-    this.overlayContainer = null;
-    this.captureLayer = null;
-    this.crosshairH = null;
-    this.crosshairV = null;
-    this.scope = null;
-    this.marker = null;
-    this.modalContainer = null;
-    this.backdrop = null;
     this.dismissBtn = null;
     this.tooltipElement = null;
 

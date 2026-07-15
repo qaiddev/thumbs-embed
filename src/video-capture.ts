@@ -8,12 +8,20 @@ import {
   buildOrientationCorrectedStream,
   type OrientationCorrectedStream,
 } from "./video-orientation";
+import { buildRedactedStream, type RedactedStream } from "./video-redaction";
 
 export interface VideoRecorderOptions {
   /** Max recording duration in seconds. Default: 15 */
   maxDuration?: number;
   /** Video bitrate in bps. Default: 800000 (800kbps) */
   videoBitsPerSecond?: number;
+  /**
+   * Elements whose live bounding boxes are blurred out of the recording. The
+   * blur tracks each element as the page scrolls. Empty/omitted = no redaction.
+   */
+  redactionElements?: Element[];
+  /** Blur radius in px for redacted regions. Default: 12. */
+  redactionBlurRadius?: number;
 }
 
 export interface VideoRecorder {
@@ -69,9 +77,12 @@ export function getSupportedMimeType(): string {
 export function createVideoRecorder(options: VideoRecorderOptions = {}): VideoRecorder {
   const maxDuration = options.maxDuration ?? 15;
   const videoBitsPerSecond = options.videoBitsPerSecond ?? 800_000;
+  const redactionElements = options.redactionElements ?? [];
+  const redactionBlurRadius = options.redactionBlurRadius;
 
   let stream: MediaStream | null = null;
   let orientationCorrection: OrientationCorrectedStream | null = null;
+  let redaction: RedactedStream | null = null;
   let recorder: MediaRecorder | null = null;
   let chunks: Blob[] = [];
   let tickCallback: ((elapsed: number) => void) | null = null;
@@ -95,6 +106,10 @@ export function createVideoRecorder(options: VideoRecorderOptions = {}): VideoRe
     if (orientationCorrection) {
       orientationCorrection.stop();
       orientationCorrection = null;
+    }
+    if (redaction) {
+      redaction.stop();
+      redaction = null;
     }
     if (stream) {
       stream.getTracks().forEach((t) => t.stop());
@@ -127,33 +142,64 @@ export function createVideoRecorder(options: VideoRecorderOptions = {}): VideoRe
         throw new Error("No supported video MIME type found");
       }
 
-      // Request screen capture
+      // Request screen capture, restricted to the current tab (the page the
+      // embed is running on). `preferCurrentTab` collapses the Chromium picker
+      // to a single "share this tab" choice; the other hints drop window and
+      // whole-screen options where the browser honours them. These keys are
+      // not in the DOM types yet.
       stream = await navigator.mediaDevices.getDisplayMedia({
         video: {
           frameRate: 15,
+          displaySurface: "browser",
         },
         audio: false,
         // @ts-expect-error preferCurrentTab is not in the TS types yet
         preferCurrentTab: true,
+        selfBrowserSurface: "include",
+        monitorTypeSurfaces: "exclude",
+        surfaceSwitching: "exclude",
       });
 
-      // Handle browser "Stop sharing" button
+      // Enforce tab-only capture. In browsers that ignore the hints above and
+      // still let the user share a window or the whole screen, reject it — qaid
+      // records only the tab it is embedded in, never other windows or the
+      // desktop.
       const videoTrack = stream.getVideoTracks()[0];
+      const surface = videoTrack?.getSettings?.()?.displaySurface;
+      if (surface === "monitor" || surface === "window") {
+        stream.getTracks().forEach((t) => t.stop());
+        stream = null;
+        throw new Error(
+          "qaid records only the current tab — please share this tab, not a window or your whole screen.",
+        );
+      }
+
+      // Handle browser "Stop sharing" button
       if (videoTrack) {
         videoTrack.addEventListener("ended", () => {
           finishRecording();
         });
       }
 
-      // On iOS/iPadOS the captured file is rotated by the OS; re-encode the live
-      // frames through a canvas so the recording is upright everywhere. Falls
-      // back to the raw stream if the canvas pipeline isn't available.
+      // Route the raw capture through a canvas pipeline when needed. On
+      // iOS/iPadOS the captured file is rotated by the OS, so re-encode the live
+      // frames upright. Otherwise, if the user marked regions to redact, blur
+      // their live bounding boxes into the recording. Both fall back to the raw
+      // stream if the canvas pipeline isn't available.
       let recordStream: MediaStream = stream;
       if (isIOSDevice()) {
         const corrected = await buildOrientationCorrectedStream(stream);
         if (corrected) {
           orientationCorrection = corrected;
           recordStream = corrected.stream;
+        }
+      } else if (redactionElements.length > 0) {
+        const redacted = await buildRedactedStream(stream, redactionElements, {
+          blurRadius: redactionBlurRadius,
+        });
+        if (redacted) {
+          redaction = redacted;
+          recordStream = redacted.stream;
         }
       }
 
@@ -177,10 +223,15 @@ export function createVideoRecorder(options: VideoRecorderOptions = {}): VideoRe
         if (stopCallback) {
           stopCallback(blob);
         }
-        // Stop the canvas pipeline (iOS) and the display stream tracks
+        // Stop the canvas pipeline (iOS orientation / redaction) and the
+        // display stream tracks.
         if (orientationCorrection) {
           orientationCorrection.stop();
           orientationCorrection = null;
+        }
+        if (redaction) {
+          redaction.stop();
+          redaction = null;
         }
         if (stream) {
           stream.getTracks().forEach((t) => t.stop());

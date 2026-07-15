@@ -40,6 +40,8 @@ export declare function isIOSDevice(): boolean;
 export declare function computeOrientationTransform(frameW: number, frameH: number, viewportW: number, viewportH: number, screenAngle: number): OrientationTransform;
 /** Draw one video frame onto the canvas context, applying the transform. */
 export declare function drawRotatedFrame(ctx: CanvasRenderingContext2D, source: CanvasImageSource, t: OrientationTransform): void;
+export declare function waitForVideoDimensions(video: HTMLVideoElement): Promise<void>;
+export declare function playSilently(video: HTMLVideoElement): Promise<void>;
 /**
  * Build a canvas-backed, orientation-normalised copy of a display-capture
  * stream. Returns null when the browser can't support the canvas pipeline, in

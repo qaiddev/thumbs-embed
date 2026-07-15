@@ -51,7 +51,7 @@ class MockMediaRecorder {
 
 // Mock MediaStream
 class MockMediaStream {
-  private tracks: { stop: () => void; addEventListener: (event: string, cb: () => void) => void; kind: string }[] = [];
+  private tracks: { stop: () => void; addEventListener: (event: string, cb: () => void) => void; kind: string; getSettings: () => { displaySurface: string } }[] = [];
 
   constructor() {
     this.tracks = [
@@ -59,9 +59,13 @@ class MockMediaStream {
         stop: vi.fn(),
         addEventListener: vi.fn(),
         kind: "video",
+        getSettings: () => ({ displaySurface: this.displaySurface }),
       },
     ];
   }
+
+  /** Surface reported by the video track's getSettings(). Default: a tab. */
+  displaySurface = "browser";
 
   getTracks() {
     return this.tracks;
@@ -177,6 +181,32 @@ describe("createVideoRecorder", () => {
         audio: false,
       })
     );
+
+    recorder.destroy();
+  });
+
+  it("restricts capture to the current tab via getDisplayMedia hints", async () => {
+    const recorder = createVideoRecorder();
+    await recorder.start();
+
+    expect(navigator.mediaDevices.getDisplayMedia).toHaveBeenCalledWith(
+      expect.objectContaining({
+        preferCurrentTab: true,
+        monitorTypeSurfaces: "exclude",
+        video: expect.objectContaining({ displaySurface: "browser" }),
+      })
+    );
+
+    recorder.destroy();
+  });
+
+  it("rejects when the user shares a window or the whole screen", async () => {
+    mockStream.displaySurface = "monitor";
+    const recorder = createVideoRecorder();
+
+    await expect(recorder.start()).rejects.toThrow(/only the current tab/i);
+    // The disallowed capture must be torn down, not left running.
+    expect(mockStream.getVideoTracks()[0].stop).toHaveBeenCalled();
 
     recorder.destroy();
   });

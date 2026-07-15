@@ -7,25 +7,23 @@
  * ```typescript
  * import { QaidFeedback } from '@qaiddev/thumbs-embed';
  *
- * const embed = new QaidFeedback({
- *   endpoint: '/api/feedback'
- * });
+ * const embed = new QaidFeedback({ endpoint: '/api/feedback' });
  * ```
  *
- * Usage via script tag:
+ * Usage via script tag (full bundle):
  * ```html
- * <script src="feedback.umd.cjs" data-endpoint="/api/feedback"></script>
+ * <script src="qaid.umd.cjs" data-endpoint="/api/feedback"></script>
  * ```
  *
- * Or manually initialize:
+ * For progressive loading (small core + on-demand screenshot/video/redaction
+ * chunks), load the ESM loader instead:
  * ```html
- * <script src="feedback.umd.cjs"></script>
- * <script>
- *   const embed = new QaidFeedback.QaidFeedback({
- *     endpoint: '/api/feedback'
- *   });
- * </script>
+ * <script type="module" src="…/loader.js" data-endpoint="/api/feedback"></script>
  * ```
+ *
+ * This entry re-exports the full public API. Because those re-exports pull the
+ * feature modules into this chunk, this entry is the "full" bundle; the
+ * `loader` entry stays lean so its features split into on-demand chunks.
  */
 import { QaidFeedback } from "./embed";
 export { QaidFeedback };

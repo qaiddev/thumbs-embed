@@ -259,6 +259,16 @@ describe("a11y behaviour (thumbs embed)", () => {
       );
       upBtn.click();
 
+      // Targeting loads lazily now — wait for the keyboard controller's overlay
+      // before committing (non-null asserts so a missing overlay keeps polling).
+      await vi.waitFor(() => {
+        const host = document.querySelector("[data-qaid-embed-overlay]");
+        expect(host).not.toBeNull();
+        expect(
+          host!.shadowRoot!.querySelector(".qaid-targeting-overlay")
+        ).not.toBeNull();
+      });
+
       // The keyboard controller listens on document; Enter commits the highlight.
       document.dispatchEvent(
         new KeyboardEvent("keydown", { key: "Enter", bubbles: true })
