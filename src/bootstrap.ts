@@ -66,6 +66,11 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
   const container = script.getAttribute("data-container");
   const buttonClass = script.getAttribute("data-button-class");
   const skipTargeting = script.getAttribute("data-skip-targeting");
+  const singleButton = script.getAttribute("data-single-button");
+  const feedbackMode = script.getAttribute("data-feedback-mode") as
+    | "target"
+    | "annotate"
+    | null;
   const incognito = script.getAttribute("data-incognito");
   const buttonSize = script.getAttribute("data-button-size") as
     | "small"
@@ -86,9 +91,12 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
   const skipButton = script.getAttribute("data-skip-button");
   const positiveIcon = script.getAttribute("data-positive-icon");
   const negativeIcon = script.getAttribute("data-negative-icon");
+  const feedbackIcon = script.getAttribute("data-feedback-icon");
+  const feedbackLabel = script.getAttribute("data-feedback-label");
   const apiKey = script.getAttribute("data-api-key");
   const captureScreenshot = script.getAttribute("data-capture-screenshot");
   const annotate = script.getAttribute("data-annotate");
+  const annotationColor = script.getAttribute("data-annotation-color");
   const screenshotQuality = script.getAttribute("data-screenshot-quality");
   const screenshotMaxWidth = script.getAttribute("data-screenshot-max-width");
   const screenshotMaxHeight = script.getAttribute("data-screenshot-max-height");
@@ -114,6 +122,7 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
     captureScreenshot: captureScreenshot === "true" ? true : undefined,
     // Annotation is on by default; only an explicit "false" disables it.
     annotate: annotate === "false" ? false : undefined,
+    annotationColor: annotationColor ?? undefined,
     screenshotOptions: (screenshotQuality || screenshotMaxWidth || screenshotMaxHeight) ? {
       quality: screenshotQuality ? parseFloat(screenshotQuality) : undefined,
       maxWidth: screenshotMaxWidth ? parseInt(screenshotMaxWidth, 10) : undefined,
@@ -125,6 +134,8 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
     position: position ?? undefined,
     zIndex: zIndex ? parseInt(zIndex, 10) : undefined,
     skipTargeting: skipTargeting === "true" ? true : undefined,
+    singleButton: singleButton === "true" ? true : undefined,
+    feedbackMode: feedbackMode ?? undefined,
     incognito: incognito === "true" ? true : undefined,
     buttonSize: buttonSize ?? undefined,
     offset: (offsetX || offsetY) ? {
@@ -140,16 +151,18 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
       negative: negativeColor ?? undefined,
       marker: markerColor ?? undefined,
     },
-    text: (tooltip || modalTitle || modalSubtitle || placeholder || submitButton || skipButton) ? {
+    text: (tooltip || modalTitle || modalSubtitle || placeholder || submitButton || skipButton || feedbackLabel) ? {
       tooltip: tooltip ?? undefined,
       modalTitle: modalTitle ?? undefined,
       modalSubtitle: modalSubtitle ?? undefined,
       placeholder: placeholder ?? undefined,
       submitButton: submitButton ?? undefined,
       skipButton: skipButton ?? undefined,
+      feedbackLabel: feedbackLabel ?? undefined,
     } : undefined,
     positiveIcon: positiveIcon ?? undefined,
     negativeIcon: negativeIcon ?? undefined,
+    feedbackIcon: feedbackIcon ?? undefined,
     screenshotMethod: screenshotMethod ?? undefined,
     captureVideo: captureVideo === "true" ? true : undefined,
     hideThumbs: hideThumbs === "true" ? true : undefined,

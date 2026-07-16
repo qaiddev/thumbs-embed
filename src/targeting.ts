@@ -23,6 +23,7 @@ import type {
   ResolvedFeedbackConfig,
   EmbedState,
   FeedbackData,
+  FeedbackType,
   SelectedBounds,
 } from "./types";
 
@@ -67,7 +68,7 @@ export class TargetingController {
 
   constructor(private host: TargetingHost) {}
 
-  startPointer(type: "up" | "down", e: MouseEvent): void {
+  startPointer(type: FeedbackType, e: MouseEvent): void {
     this.host.setState("TARGETING");
     this.host.feedbackData.feedbackType = type;
     this.host.feedbackData.elementSelector = null;
@@ -110,7 +111,7 @@ export class TargetingController {
    * users), no mouse reticle, and no document mouse/click listeners. The
    * KeyboardTargetingController owns Tab/Arrow/Enter/Space/Escape.
    */
-  startKeyboard(type: "up" | "down"): void {
+  startKeyboard(type: FeedbackType): void {
     this.host.setState("TARGETING");
     this.host.feedbackData.feedbackType = type;
     this.host.feedbackData.elementSelector = null;

@@ -3883,4 +3883,86 @@ describe("QaidFeedback", () => {
       expect(fakeInstances[0]!.destroyed).toBe(true);
     });
   });
+
+  describe("single button mode", () => {
+    it("renders one neutral feedback button instead of the thumbs pair", () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback", singleButton: true });
+      const shadow = getShadowRoot();
+      expect(shadow.querySelector(".qaid-btn-feedback")).not.toBeNull();
+      expect(shadow.querySelector(".qaid-btn-up")).toBeNull();
+      expect(shadow.querySelector(".qaid-btn-down")).toBeNull();
+    });
+
+    it("submits neutral feedback", async () => {
+      const fetchMock = vi
+        .fn()
+        .mockResolvedValue({ ok: true, json: () => Promise.resolve({ id: 7 }) });
+      global.fetch = fetchMock;
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        singleButton: true,
+        skipTargeting: true,
+      });
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-feedback")?.click();
+      await vi.waitFor(() => expect(fetchMock).toHaveBeenCalled());
+      expect(JSON.parse(fetchMock.mock.calls[0][1].body).feedbackType).toBe("neutral");
+    });
+
+    it("shows a static neutral icon (no up/down toggle) in the modal", async () => {
+      const fetchMock = vi
+        .fn()
+        .mockResolvedValue({ ok: true, json: () => Promise.resolve({ id: 11 }) });
+      global.fetch = fetchMock;
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        singleButton: true,
+        skipTargeting: true,
+      });
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-feedback")?.click();
+      await vi.waitFor(() => {
+        expect(
+          getOverlayShadowRoot().querySelector(".qaid-modal-container, .qaid-bottom-sheet")
+        ).not.toBeNull();
+      });
+      const overlay = getOverlayShadowRoot();
+      expect(overlay.querySelector(".qaid-type-static")).not.toBeNull();
+      expect(overlay.querySelector(".qaid-type-toggle")).toBeNull();
+    });
+  });
+
+  describe("feedbackMode: annotate", () => {
+    it("opens the markup editor instead of targeting, then submits", async () => {
+      const fetchMock = vi
+        .fn()
+        .mockResolvedValue({ ok: true, json: () => Promise.resolve({ id: 9 }) });
+      global.fetch = fetchMock;
+      embed = new QaidFeedback({ endpoint: "/api/feedback", feedbackMode: "annotate" });
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+      // No element targeting.
+      expect(document.body.classList.contains("qaid-targeting")).toBe(false);
+      await vi.waitFor(() => expect(fetchMock).toHaveBeenCalled());
+      // A screenshot was captured (even without captureScreenshot) and annotated.
+      expect(annotateMock.openAnnotationEditor).toHaveBeenCalled();
+      expect(JSON.parse(fetchMock.mock.calls[0][1].body).feedbackType).toBe("up");
+    });
+
+    it("passes the configured annotation colour + palette to the editor", async () => {
+      const fetchMock = vi
+        .fn()
+        .mockResolvedValue({ ok: true, json: () => Promise.resolve({ id: 9 }) });
+      global.fetch = fetchMock;
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        feedbackMode: "annotate",
+        annotationColor: "#00ff00",
+        annotationPalette: ["#00ff00", "#ff0000"],
+      });
+      annotateMock.openAnnotationEditor.mockClear();
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+      await vi.waitFor(() => expect(annotateMock.openAnnotationEditor).toHaveBeenCalled());
+      const opts = annotateMock.openAnnotationEditor.mock.lastCall![0];
+      expect(opts.color).toBe("#00ff00");
+      expect(opts.palette).toEqual(["#00ff00", "#ff0000"]);
+    });
+  });
 });

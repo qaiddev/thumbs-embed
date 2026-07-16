@@ -1,14 +1,14 @@
-import { c } from "./bootstrap-U4yiPm5-.js";
-import { T as n, a as d } from "./annotate-BNibaDg3.js";
+import { c } from "./bootstrap-rINL2pCt.js";
+import { T as d, a as h, F as r } from "./annotate-pSxJNPPL.js";
 class g {
-  constructor(t) {
-    this.host = t;
+  constructor(e) {
+    this.host = e;
   }
   modalContainer = null;
   backdrop = null;
   open() {
-    const t = this.host.ensureOverlayHost();
-    this.backdrop = document.createElement("div"), this.backdrop.className = "qaid-backdrop", this.backdrop.style.zIndex = String(this.host.config.zIndex + 2), this.backdrop.style.background = `rgba(0, 0, 0, ${this.host.config.backdropOpacity})`, this.backdrop.addEventListener("click", () => this.close()), this.host.applyVars(this.backdrop), this.host.isMobile ? this.showBottomSheet() : this.showPositionedModal(), t.appendChild(this.backdrop), document.addEventListener("keydown", this.host.boundKeyDown);
+    const e = this.host.ensureOverlayHost();
+    this.backdrop = document.createElement("div"), this.backdrop.className = "qaid-backdrop", this.backdrop.style.zIndex = String(this.host.config.zIndex + 2), this.backdrop.style.background = `rgba(0, 0, 0, ${this.host.config.backdropOpacity})`, this.backdrop.addEventListener("click", () => this.close()), this.host.applyVars(this.backdrop), this.host.isMobile ? this.showBottomSheet() : this.showPositionedModal(), e.appendChild(this.backdrop), document.addEventListener("keydown", this.host.boundKeyDown);
   }
   /** Escape / external close. Runs the finalize-PATCH + teardown. */
   close() {
@@ -16,7 +16,7 @@ class g {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: null })
-    }).catch((t) => console.error("Failed to finalize feedback:", t)), this.teardown(), this.host.resetFeedbackUi();
+    }).catch((e) => console.error("Failed to finalize feedback:", e)), this.teardown(), this.host.resetFeedbackUi();
   }
   /** DOM/listener teardown only — no PATCH, no state reset (for embed destroy). */
   destroy() {
@@ -26,16 +26,16 @@ class g {
     this.host.closeDialogA11y(), this.modalContainer && (this.modalContainer.remove(), this.modalContainer = null), this.backdrop && (this.backdrop.remove(), this.backdrop = null), document.removeEventListener("keydown", this.host.boundKeyDown);
   }
   showBottomSheet() {
-    const t = this.host.ensureOverlayHost(), e = document.createElement("div");
-    e.className = "qaid-bottom-sheet", e.style.zIndex = String(this.host.config.zIndex + 3), e.innerHTML = `
+    const e = this.host.ensureOverlayHost(), t = document.createElement("div");
+    t.className = "qaid-bottom-sheet", t.style.zIndex = String(this.host.config.zIndex + 3), t.innerHTML = `
       <div class="qaid-bottom-sheet-content">
         <div class="qaid-bottom-sheet-handle"></div>
         ${this.getModalContent()}
       </div>
-    `, this.host.applyVars(e), t.appendChild(e), this.modalContainer = e, this.setupModalInteractions();
+    `, this.host.applyVars(t), e.appendChild(t), this.modalContainer = t, this.setupModalInteractions();
   }
   showPositionedModal() {
-    const t = this.host.ensureOverlayHost(), { modal: e, arrow: s } = c(
+    const e = this.host.ensureOverlayHost(), { modal: t, arrow: s } = c(
       this.host.selectedBounds,
       window.innerWidth,
       window.innerHeight,
@@ -47,19 +47,19 @@ class g {
         viewportPadding: 16
       }
     );
-    this.modalContainer = document.createElement("div"), this.modalContainer.className = `qaid-modal-container qaid-${e.position}`, this.modalContainer.style.top = `${e.top}px`, this.modalContainer.style.left = `${e.left}px`, this.modalContainer.style.zIndex = String(this.host.config.zIndex + 3);
+    this.modalContainer = document.createElement("div"), this.modalContainer.className = `qaid-modal-container qaid-${t.position}`, this.modalContainer.style.top = `${t.top}px`, this.modalContainer.style.left = `${t.left}px`, this.modalContainer.style.zIndex = String(this.host.config.zIndex + 3);
     const o = document.createElement("div");
     o.className = "qaid-modal-arrow", o.style.left = `${s.left}px`;
     const i = document.createElement("div");
-    i.className = "qaid-modal-box", i.innerHTML = this.getModalContent(), this.modalContainer.appendChild(o), this.modalContainer.appendChild(i), this.host.applyVars(this.modalContainer), t.appendChild(this.modalContainer), this.setupModalInteractions();
+    i.className = "qaid-modal-box", i.innerHTML = this.getModalContent(), this.modalContainer.appendChild(o), this.modalContainer.appendChild(i), this.host.applyVars(this.modalContainer), e.appendChild(this.modalContainer), this.setupModalInteractions();
   }
   getModalContent() {
-    const t = this.host.feedbackData.feedbackType === "up", e = this.host.config.positiveIcon || n, s = this.host.config.negativeIcon || d;
+    const e = this.host.feedbackData.feedbackType, t = e === "up", s = this.host.config.positiveIcon || d, o = this.host.config.negativeIcon || h, i = this.host.config.buttonClass ? `qaid-type-toggle qaid-type-toggle-custom ${this.host.config.buttonClass} ${t ? "qaid-btn-up" : "qaid-btn-down"}` : `qaid-type-toggle ${t ? "qaid-type-up" : "qaid-type-down"}`;
     return `
       <div class="qaid-modal-header">
-        <button type="button" class="${this.host.config.buttonClass ? `qaid-type-toggle qaid-type-toggle-custom ${this.host.config.buttonClass} ${t ? "qaid-btn-up" : "qaid-btn-down"}` : `qaid-type-toggle ${t ? "qaid-type-up" : "qaid-type-down"}`}" title="Click to switch" aria-pressed="${t}" aria-label="${t ? "Feedback type: positive" : "Feedback type: negative"}">
-          ${t ? e : s}
-        </button>
+        ${e === "neutral" ? `<span class="qaid-type-static" aria-hidden="true">${this.host.config.feedbackIcon || r}</span>` : `<button type="button" class="${i}" title="Click to switch" aria-pressed="${t}" aria-label="${t ? "Feedback type: positive" : "Feedback type: negative"}">
+          ${t ? s : o}
+        </button>`}
         <div class="qaid-modal-header-text">
           <h3 class="qaid-modal-title" id="qaid-modal-title-${this.host.uid}">${this.host.config.text.modalTitle}</h3>
           <p class="qaid-modal-subtitle" id="qaid-modal-subtitle-${this.host.uid}">${this.host.config.text.modalSubtitle}</p>
@@ -76,37 +76,37 @@ class g {
       labelledbyId: `qaid-modal-title-${this.host.uid}`,
       describedbyId: `qaid-modal-subtitle-${this.host.uid}`
     });
-    const t = this.modalContainer.querySelector(".qaid-textarea"), e = this.modalContainer.querySelector(".qaid-btn-submit");
-    t && (setTimeout(() => t.focus(), 100), t.addEventListener("input", () => {
-      e && (e.textContent = t.value.trim() ? this.host.config.text.submitButton : this.host.config.text.skipButton);
-    })), e && e.addEventListener("click", () => {
-      const o = t?.value.trim() || null;
+    const e = this.modalContainer.querySelector(".qaid-textarea"), t = this.modalContainer.querySelector(".qaid-btn-submit");
+    e && (setTimeout(() => e.focus(), 100), e.addEventListener("input", () => {
+      t && (t.textContent = e.value.trim() ? this.host.config.text.submitButton : this.host.config.text.skipButton);
+    })), t && t.addEventListener("click", () => {
+      const o = e?.value.trim() || null;
       this.submitMessage(o);
     });
     const s = this.modalContainer.querySelector(".qaid-type-toggle");
     s && s.addEventListener("click", () => {
       const o = this.host.feedbackData.feedbackType === "up" ? "down" : "up";
       this.host.feedbackData.feedbackType = o, this.host.config.buttonClass ? (s.classList.toggle("qaid-btn-up", o === "up"), s.classList.toggle("qaid-btn-down", o === "down")) : (s.classList.toggle("qaid-type-up", o === "up"), s.classList.toggle("qaid-type-down", o === "down"));
-      const i = this.host.config.positiveIcon || n, l = this.host.config.negativeIcon || d;
-      s.innerHTML = o === "up" ? i : l;
+      const i = this.host.config.positiveIcon || d, n = this.host.config.negativeIcon || h;
+      s.innerHTML = o === "up" ? i : n;
       const a = o === "up" ? "Feedback type: positive" : "Feedback type: negative";
       s.setAttribute("aria-pressed", String(o === "up")), s.setAttribute("aria-label", a), this.host.announceMsg(a), this.host.feedbackId && fetch(`${this.host.config.endpoint}/${this.host.feedbackId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ feedbackType: o })
-      }).catch((h) => console.error("Failed to update feedback type:", h));
+      }).catch((l) => console.error("Failed to update feedback type:", l));
     });
   }
-  async submitMessage(t) {
+  async submitMessage(e) {
     if (this.host.feedbackId) {
       try {
         await fetch(`${this.host.config.endpoint}/${this.host.feedbackId}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: t })
+          body: JSON.stringify({ message: e })
         });
-      } catch (e) {
-        console.error("Failed to submit feedback message:", e);
+      } catch (t) {
+        console.error("Failed to submit feedback message:", t);
       }
       this.host.setFeedbackId(null);
     }
@@ -116,4 +116,4 @@ class g {
 export {
   g as ModalController
 };
-//# sourceMappingURL=modal-BX5wqy4s.js.map
+//# sourceMappingURL=modal-Br-8TcEE.js.map

@@ -14,6 +14,11 @@ export const RECORD_ICON = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-
   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/>
 </svg>`;
 
+/** Chat-bubble icon for the single, sentiment-free "Feedback" button. */
+export const FEEDBACK_ICON = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5m-9 6l3.5-3.5H18a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v14z"/>
+</svg>`;
+
 /* ---------------------------------------------------------------------------
  * Screenshot annotation toolbar icons. Same 24×24 stroked style as the thumbs
  * icons above so they inherit `.qaid-icon` sizing and `currentColor`.

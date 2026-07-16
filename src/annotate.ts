@@ -51,6 +51,22 @@ const BLUR_TILE = 12;
 
 /** Default stroke colour: a high-visibility red that reads on most screenshots. */
 const DEFAULT_STROKE = "#ef4444";
+/** Default swatch palette when the embed doesn't supply one. */
+const DEFAULT_PALETTE = ["#ef4444", "#f59e0b", "#22c55e", "#3b82f6", "#111827", "#ffffff"];
+/** Friendly names for common swatches (for accessible labels). */
+const COLOR_NAMES: Record<string, string> = {
+  "#ef4444": "red",
+  "#f59e0b": "amber",
+  "#22c55e": "green",
+  "#3b82f6": "blue",
+  "#111827": "black",
+  "#ffffff": "white",
+  "#6366f1": "indigo",
+};
+/** Accessible name for a swatch colour — a friendly name, else the hex. */
+function colorName(hex: string): string {
+  return COLOR_NAMES[hex.toLowerCase()] ?? hex;
+}
 /** Default stroke width in natural pixels. */
 const DEFAULT_STROKE_WIDTH = 4;
 /** Default WebP quality for the re-encoded composite. */
@@ -67,6 +83,7 @@ export interface AnnotationLabels {
   undo: string;
   skip: string;
   done: string;
+  colors: string;
 }
 
 const DEFAULT_LABELS: AnnotationLabels = {
@@ -80,6 +97,7 @@ const DEFAULT_LABELS: AnnotationLabels = {
   undo: "Undo last",
   skip: "Skip annotation",
   done: "Done",
+  colors: "Drawing colour",
 };
 
 /**
@@ -268,6 +286,8 @@ export interface AnnotationEditorOptions {
   quality?: number;
   /** Default stroke colour for rectangle/arrow/pen. */
   color?: string;
+  /** Colour swatches offered in the toolbar. The active `color` is ensured present. */
+  palette?: string[];
   /** Default stroke width. */
   strokeWidth?: number;
   /** Label overrides. */
@@ -298,7 +318,8 @@ export class AnnotationEditor {
 
   private readonly opts: AnnotationEditorOptions;
   private readonly labels: AnnotationLabels;
-  private readonly color: string;
+  private color: string;
+  private readonly palette: string[];
   private readonly strokeWidth: number;
   private readonly uid = `qaid-annotate-${++editorSeq}`;
 
@@ -320,6 +341,11 @@ export class AnnotationEditor {
     this.opts = opts;
     this.labels = { ...DEFAULT_LABELS, ...(opts.labels ?? {}) };
     this.color = opts.color ?? DEFAULT_STROKE;
+    this.palette = (opts.palette && opts.palette.length ? opts.palette : DEFAULT_PALETTE).slice();
+    // Ensure the active colour is offered as a swatch so it stays selectable.
+    if (!this.palette.some((c) => c.toLowerCase() === this.color.toLowerCase())) {
+      this.palette.unshift(this.color);
+    }
     this.strokeWidth = opts.strokeWidth ?? DEFAULT_STROKE_WIDTH;
   }
 
@@ -341,7 +367,22 @@ export class AnnotationEditor {
       "aria-label": `${label} tool`,
       title: label,
     });
-    btn.innerHTML = icon;
+    btn.innerHTML = `${icon}<span class="qaid-annotate-btn-text">${label}</span>`;
+    return btn;
+  }
+
+  /** A round colour swatch button for the toolbar's colour group. */
+  private swatchButton(color: string): HTMLButtonElement {
+    const name = colorName(color);
+    const btn = createElement("button", {
+      type: "button",
+      class: "qaid-annotate-swatch",
+      "data-qaid-color": color,
+      "aria-pressed": color.toLowerCase() === this.color.toLowerCase() ? "true" : "false",
+      "aria-label": `Draw in ${name}`,
+      title: name,
+    });
+    btn.style.setProperty("--qaid-swatch", color);
     return btn;
   }
 
@@ -403,6 +444,13 @@ export class AnnotationEditor {
     tools.appendChild(this.toolButton("pen", PENCIL_ICON, this.labels.pen));
     tools.appendChild(this.toolButton("blur", BLUR_ICON, this.labels.blur));
 
+    const colors = createElement("div", {
+      class: "qaid-annotate-colors",
+      role: "group",
+      "aria-label": this.labels.colors,
+    });
+    for (const c of this.palette) colors.appendChild(this.swatchButton(c));
+
     this.undoBtn = this.actionButton("undo", UNDO_ICON, this.labels.undo, "qaid-annotate-undo");
     this.undoBtn.disabled = true;
 
@@ -415,6 +463,7 @@ export class AnnotationEditor {
     actions.appendChild(doneBtn);
 
     this.toolbar.appendChild(tools);
+    this.toolbar.appendChild(colors);
     this.toolbar.appendChild(actions);
 
     this.container.appendChild(title);
@@ -489,10 +538,32 @@ export class AnnotationEditor {
     this.opts.announce?.(`${label} tool selected`);
   }
 
+  /** Set the active drawing colour; subsequent shapes use it. */
+  selectColor(color: string): void {
+    this.color = color;
+    const swatches = this.toolbar.querySelectorAll<HTMLButtonElement>("[data-qaid-color]");
+    swatches.forEach((s) => {
+      s.setAttribute(
+        "aria-pressed",
+        (s.getAttribute("data-qaid-color") ?? "").toLowerCase() === color.toLowerCase()
+          ? "true"
+          : "false"
+      );
+    });
+    this.opts.announce?.(`${colorName(color)} colour selected`);
+  }
+
   private onToolbarClick = (e: Event): void => {
     const target = e.target as HTMLElement | null;
-    const btn = target?.closest<HTMLElement>("[data-qaid-tool],[data-qaid-action]");
+    const btn = target?.closest<HTMLElement>(
+      "[data-qaid-tool],[data-qaid-action],[data-qaid-color]"
+    );
     if (!btn) return;
+    const color = btn.getAttribute("data-qaid-color");
+    if (color) {
+      this.selectColor(color);
+      return;
+    }
     const tool = btn.getAttribute("data-qaid-tool");
     if (tool) {
       this.selectTool(tool as ShapeType);

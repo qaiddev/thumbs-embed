@@ -8,7 +8,7 @@
  * flows, and the selected-element marker; it talks back to the embed through
  * the narrow `TargetingHost` interface.
  */
-import type { ResolvedFeedbackConfig, EmbedState, FeedbackData, SelectedBounds } from "./types";
+import type { ResolvedFeedbackConfig, EmbedState, FeedbackData, FeedbackType, SelectedBounds } from "./types";
 /** The slice of the embed the targeting subsystem needs. */
 export interface TargetingHost {
     readonly config: ResolvedFeedbackConfig;
@@ -44,14 +44,14 @@ export declare class TargetingController {
     private boundTouchStart;
     private boundTouchEnd;
     constructor(host: TargetingHost);
-    startPointer(type: "up" | "down", e: MouseEvent): void;
+    startPointer(type: FeedbackType, e: MouseEvent): void;
     /**
      * Keyboard-driven targeting. Mirrors startPointer minus the mouse plumbing:
      * no `qaid-targeting` body class (keeps the cursor visible for keyboard
      * users), no mouse reticle, and no document mouse/click listeners. The
      * KeyboardTargetingController owns Tab/Arrow/Enter/Space/Escape.
      */
-    startKeyboard(type: "up" | "down"): void;
+    startKeyboard(type: FeedbackType): void;
     private selectKeyboardTarget;
     private createTargetingOverlay;
     private handleMouseMove;

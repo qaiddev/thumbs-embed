@@ -42,6 +42,7 @@ export interface AnnotationLabels {
     undo: string;
     skip: string;
     done: string;
+    colors: string;
 }
 /**
  * Normalise two drag corners into a top-left origin plus positive width/height,
@@ -78,6 +79,8 @@ export interface AnnotationEditorOptions {
     quality?: number;
     /** Default stroke colour for rectangle/arrow/pen. */
     color?: string;
+    /** Colour swatches offered in the toolbar. The active `color` is ensured present. */
+    palette?: string[];
     /** Default stroke width. */
     strokeWidth?: number;
     /** Label overrides. */
@@ -104,7 +107,8 @@ export declare class AnnotationEditor {
     tool: ShapeType;
     private readonly opts;
     private readonly labels;
-    private readonly color;
+    private color;
+    private readonly palette;
     private readonly strokeWidth;
     private readonly uid;
     private container;
@@ -121,6 +125,8 @@ export declare class AnnotationEditor {
     /** Mount the editor and resolve when the user commits (Done) or skips. */
     open(): Promise<string | null>;
     private toolButton;
+    /** A round colour swatch button for the toolbar's colour group. */
+    private swatchButton;
     private actionButton;
     private mount;
     /** Convert a pointer event's client coordinates into natural image pixels. */
@@ -129,6 +135,8 @@ export declare class AnnotationEditor {
     redraw(): void;
     /** Select the active drawing tool and reflect it on the toolbar. */
     selectTool(tool: ShapeType): void;
+    /** Set the active drawing colour; subsequent shapes use it. */
+    selectColor(color: string): void;
     private onToolbarClick;
     onPointerDown: (e: PointerEvent) => void;
     onPointerMove: (e: PointerEvent) => void;

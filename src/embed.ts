@@ -2,12 +2,13 @@ import type {
   FeedbackConfig,
   ResolvedFeedbackConfig,
   FeedbackData,
+  FeedbackType,
   SelectedBounds,
   EmbedState,
   FeedbackPayload,
   FeedbackResponse,
 } from "./types";
-import { THUMBS_UP_ICON, THUMBS_DOWN_ICON, RECORD_ICON } from "./icons";
+import { THUMBS_UP_ICON, THUMBS_DOWN_ICON, RECORD_ICON, FEEDBACK_ICON } from "./icons";
 import { injectStyles, removeStyles, buildCssVars, applyCssVars, getEmbedStyles } from "./styles";
 // The element-targeting subsystem (with element-selector, ~14 KB) lives in a
 // lazily-loaded chunk (targeting.ts), pulled in the first time the user targets.
@@ -39,6 +40,15 @@ import {
 
 const VISITOR_ID_KEY = "qaid_visitor_id";
 const HIDE_FEEDBACK_KEY = "qaid_hide_feedback";
+/** Default annotation swatches: red, amber, green, blue, near-black, white. */
+const DEFAULT_ANNOTATION_PALETTE = [
+  "#ef4444",
+  "#f59e0b",
+  "#22c55e",
+  "#3b82f6",
+  "#111827",
+  "#ffffff",
+];
 
 // True when the primary pointer is touch (phone/tablet). On these devices the
 // Screen Capture API (getDisplayMedia) shows an intrusive "start capturing"
@@ -192,6 +202,8 @@ export class QaidFeedback {
       },
       zIndex: config.zIndex ?? 50,
       skipTargeting: config.skipTargeting ?? false,
+      singleButton: config.singleButton ?? false,
+      feedbackMode: config.feedbackMode ?? "target",
       colors: {
         positive: config.colors?.positive ?? "rgb(0, 200, 83)",
         negative: config.colors?.negative ?? "rgb(255, 0, 0)",
@@ -209,6 +221,7 @@ export class QaidFeedback {
         negativeLabel: config.text?.negativeLabel ?? "Send negative feedback",
         recordLabel: config.text?.recordLabel ?? "Record a screen recording",
         dismissLabel: config.text?.dismissLabel ?? "Hide Feedback",
+        feedbackLabel: config.text?.feedbackLabel ?? "Send feedback",
       },
       modalWidth: config.modalWidth ?? 400,
       backdropOpacity: config.backdropOpacity ?? 0.3,
@@ -216,6 +229,8 @@ export class QaidFeedback {
       fontSize: config.fontSize ?? 16,
       captureScreenshot: config.captureScreenshot ?? false,
       annotate: config.annotate ?? true,
+      annotationColor: config.annotationColor ?? config.colors?.marker ?? "#6366f1",
+      annotationPalette: config.annotationPalette ?? DEFAULT_ANNOTATION_PALETTE,
       screenshotMethod: config.screenshotMethod ?? "permission",
       screenshotOptions: {
         quality: config.screenshotOptions?.quality ?? 0.8,
@@ -226,6 +241,7 @@ export class QaidFeedback {
       hideDismiss: config.hideDismiss ?? false,
       positiveIcon: config.positiveIcon ?? "",
       negativeIcon: config.negativeIcon ?? "",
+      feedbackIcon: config.feedbackIcon ?? "",
       hideThumbs: config.hideThumbs ?? false,
       css: config.css ?? "",
       captureVideo: config.captureVideo ?? false,
@@ -543,8 +559,26 @@ export class QaidFeedback {
     this.shadowRoot.appendChild(tooltip);
     this.tooltipElement = tooltip;
 
-    // Thumbs up/down buttons (unless hidden)
-    if (!this.config.hideThumbs) {
+    // Single sentiment-free "Feedback" button, or the thumbs up/down pair.
+    if (this.config.singleButton) {
+      const fbWrapper = document.createElement("div");
+      fbWrapper.className = "qaid-tooltip-wrapper";
+
+      const fbBtn = document.createElement("button");
+      fbBtn.type = "button";
+      fbBtn.className = useCustomClass ? `${btnBaseClass} qaid-btn-feedback` : "qaid-btn qaid-btn-feedback";
+      fbBtn.setAttribute("aria-label", this.config.text.feedbackLabel);
+      fbBtn.innerHTML = this.config.feedbackIcon || FEEDBACK_ICON;
+      fbBtn.addEventListener("click", (e) => this.handleThumbClick("neutral", e.currentTarget as HTMLElement, e));
+      fbBtn.addEventListener("mouseenter", () => {
+        this.prewarmTargeting();
+        this.showTooltip(fbBtn);
+      });
+      fbBtn.addEventListener("mouseleave", () => this.hideTooltip());
+      fbWrapper.appendChild(fbBtn);
+
+      this.buttonsContainer.appendChild(fbWrapper);
+    } else if (!this.config.hideThumbs) {
       // Thumbs up button
       const upWrapper = document.createElement("div");
       upWrapper.className = "qaid-tooltip-wrapper";
@@ -704,7 +738,7 @@ export class QaidFeedback {
     setHiddenByUser(this.config.apiKey, true);
   }
 
-  private handleThumbClick(type: "up" | "down", buttonEl: HTMLElement, e: MouseEvent): void {
+  private handleThumbClick(type: FeedbackType, buttonEl: HTMLElement, e: MouseEvent): void {
     // If user clicks a thumb while in incognito mode, they want it back.
     // (Dismissed widgets are `display:none`, so this can't fire for them.)
     if (this.buttonsContainer?.classList.contains("qaid-incognito")) {
@@ -713,7 +747,9 @@ export class QaidFeedback {
     }
     // A message modal follows this feedback flow — warm its chunk now.
     this.prewarmModal();
-    if (this.config.skipTargeting) {
+    // "annotate" mode and skipTargeting both bypass element targeting and go
+    // straight to the (screenshot →) modal flow.
+    if (this.config.skipTargeting || this.config.feedbackMode === "annotate") {
       this.submitDirectFeedback(type, buttonEl);
     } else {
       // Expose targeting on/off state on the trigger
@@ -734,7 +770,7 @@ export class QaidFeedback {
     }
   }
 
-  private submitDirectFeedback(type: "up" | "down", buttonEl: HTMLElement): void {
+  private submitDirectFeedback(type: FeedbackType, buttonEl: HTMLElement): void {
     this.feedbackData.feedbackType = type;
     this.feedbackData.elementSelector = null;
     this.feedbackData.elementText = null;
@@ -793,7 +829,8 @@ export class QaidFeedback {
         dataUrl: screenshot,
         root,
         quality: this.config.screenshotOptions.quality,
-        color: this.config.colors.marker,
+        color: this.config.annotationColor,
+        palette: this.config.annotationPalette,
         applyVars: (el) => this.applyVars(el),
         announce: (msg, assertive) => this.announceMsg(msg, assertive),
         openDialog: (container, opts) => this.openDialogA11y(container, opts),
@@ -805,9 +842,12 @@ export class QaidFeedback {
   }
 
   private async submitFeedback(): Promise<void> {
-    // Capture screenshot if enabled (server will gate by plan)
+    // Capture screenshot if enabled (server will gate by plan). "annotate" mode
+    // always captures one to mark up, even without captureScreenshot set.
     let screenshot: string | null = null;
-    if (this.config.captureScreenshot) {
+    const wantScreenshot =
+      this.config.captureScreenshot || this.config.feedbackMode === "annotate";
+    if (wantScreenshot) {
       // Loaded on demand so visitors who never submit a screenshot never
       // download the capture + annotation code.
       if (this.shouldCaptureViaDom()) {
@@ -882,7 +922,9 @@ export class QaidFeedback {
     // fall through to the classic message box so the user can still leave
     // an optional message.
     const type = this.feedbackData.feedbackType;
-    if (type && (await this.tryLaunchQuest(type, this.feedbackId))) {
+    // Quest links are keyed by up/down/video; neutral single-button feedback
+    // has no quest mapping, so it always falls through to the message box.
+    if (type && type !== "neutral" && (await this.tryLaunchQuest(type, this.feedbackId))) {
       this.resetFeedbackUi();
       return;
     }

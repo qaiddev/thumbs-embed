@@ -1,5 +1,5 @@
-import { a } from "./chunks/bootstrap-U4yiPm5-.js";
-import { Q as e } from "./chunks/bootstrap-U4yiPm5-.js";
+import { a } from "./chunks/bootstrap-rINL2pCt.js";
+import { Q as e } from "./chunks/bootstrap-rINL2pCt.js";
 a();
 export {
   e as QaidFeedback

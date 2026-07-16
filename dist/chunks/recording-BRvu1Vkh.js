@@ -1,4 +1,4 @@
-import { b as h } from "./annotate-BNibaDg3.js";
+import { b as h } from "./annotate-pSxJNPPL.js";
 import { c as l } from "./network-capture-DMbMwwwR.js";
 const u = document;
 function s(d, t, ...i) {
@@ -253,4 +253,4 @@ class g {
 export {
   g as RecordingController
 };
-//# sourceMappingURL=recording--IwOtRL2.js.map
+//# sourceMappingURL=recording-BRvu1Vkh.js.map

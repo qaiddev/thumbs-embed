@@ -8,7 +8,7 @@
  */
 
 import { calculateModalAndArrowPosition } from "./modal-positioning";
-import { THUMBS_UP_ICON, THUMBS_DOWN_ICON } from "./icons";
+import { THUMBS_UP_ICON, THUMBS_DOWN_ICON, FEEDBACK_ICON } from "./icons";
 import type {
   ResolvedFeedbackConfig,
   EmbedState,
@@ -159,18 +159,25 @@ export class ModalController {
   }
 
   private getModalContent(): string {
-    const isUp = this.host.feedbackData.feedbackType === "up";
+    const type = this.host.feedbackData.feedbackType;
+    const isUp = type === "up";
     const positiveIcon = this.host.config.positiveIcon || THUMBS_UP_ICON;
     const negativeIcon = this.host.config.negativeIcon || THUMBS_DOWN_ICON;
     const toggleClass = this.host.config.buttonClass
       ? `qaid-type-toggle qaid-type-toggle-custom ${this.host.config.buttonClass} ${isUp ? "qaid-btn-up" : "qaid-btn-down"}`
       : `qaid-type-toggle ${isUp ? "qaid-type-up" : "qaid-type-down"}`;
     const toggleLabel = isUp ? "Feedback type: positive" : "Feedback type: negative";
+    // Neutral (single-button) feedback has no sentiment to toggle — show a
+    // static feedback icon in place of the up/down toggle.
+    const header =
+      type === "neutral"
+        ? `<span class="qaid-type-static" aria-hidden="true">${this.host.config.feedbackIcon || FEEDBACK_ICON}</span>`
+        : `<button type="button" class="${toggleClass}" title="Click to switch" aria-pressed="${isUp}" aria-label="${toggleLabel}">
+          ${isUp ? positiveIcon : negativeIcon}
+        </button>`;
     return `
       <div class="qaid-modal-header">
-        <button type="button" class="${toggleClass}" title="Click to switch" aria-pressed="${isUp}" aria-label="${toggleLabel}">
-          ${isUp ? positiveIcon : negativeIcon}
-        </button>
+        ${header}
         <div class="qaid-modal-header-text">
           <h3 class="qaid-modal-title" id="qaid-modal-title-${this.host.uid}">${this.host.config.text.modalTitle}</h3>
           <p class="qaid-modal-subtitle" id="qaid-modal-subtitle-${this.host.uid}">${this.host.config.text.modalSubtitle}</p>

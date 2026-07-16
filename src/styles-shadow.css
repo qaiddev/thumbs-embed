@@ -400,6 +400,25 @@ button.qaid-type-toggle.qaid-type-down {
   /* Background controlled by custom buttonClass */
 }
 
+/* Static neutral icon shown in the modal header for single-button feedback
+   (no up/down to toggle). Mirrors the default toggle's circle. */
+.qaid-type-static {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--qaid-marker, #6366f1);
+  color: var(--qaid-marker-text, white);
+}
+
+.qaid-type-static svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
 .qaid-modal-header-text {
   flex: 1;
   min-width: 0;
@@ -810,15 +829,47 @@ button.qaid-annotate-action {
   transition: background-color 0.15s, color 0.15s, border-color 0.15s, filter 0.15s;
 }
 
-/* Tool buttons are icon-only squares. */
-button.qaid-annotate-tool {
-  padding: 0;
-}
-
 button.qaid-annotate-tool svg,
 button.qaid-annotate-action svg {
   width: 20px;
   height: 20px;
+}
+
+/* Colour swatches — round buttons tinted by the --qaid-swatch custom prop. */
+.qaid-annotate-colors {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+button.qaid-annotate-swatch {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  padding: 0;
+  border-radius: 9999px;
+  border: 2px solid light-dark(#d1d5db, #4b5563);
+  background: var(--qaid-swatch, #000);
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: transform 0.1s, box-shadow 0.15s, border-color 0.15s;
+}
+
+button.qaid-annotate-swatch:hover {
+  transform: scale(1.12);
+}
+
+button.qaid-annotate-swatch[aria-pressed="true"] {
+  border-color: light-dark(#111827, #f9fafb);
+  box-shadow: 0 0 0 2px var(--qaid-swatch);
+}
+
+@media (forced-colors: active) {
+  button.qaid-annotate-swatch[aria-pressed="true"] {
+    outline: 2px solid Highlight;
+    outline-offset: 1px;
+  }
 }
 
 button.qaid-annotate-tool:hover,

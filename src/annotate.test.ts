@@ -661,3 +661,79 @@ describe("openAnnotationEditor", () => {
     expect(await promise).toBeNull();
   });
 });
+
+describe("AnnotationEditor colour swatches", () => {
+  it("renders a swatch per palette colour with the active colour pre-selected", () => {
+    const { editor, root } = makeEditor({
+      color: "#3b82f6",
+      palette: ["#ef4444", "#3b82f6", "#22c55e"],
+    });
+    editor.open();
+    expect(root.querySelectorAll("[data-qaid-color]")).toHaveLength(3);
+    expect(
+      root.querySelector('[data-qaid-color="#3b82f6"]')!.getAttribute("aria-pressed")
+    ).toBe("true");
+    editor.skip();
+  });
+
+  it("ensures the active colour is offered even if absent from the palette", () => {
+    const { editor, root } = makeEditor({ color: "#abcdef", palette: ["#ef4444"] });
+    editor.open();
+    expect(root.querySelector('[data-qaid-color="#abcdef"]')).not.toBeNull();
+    expect(root.querySelectorAll("[data-qaid-color]")).toHaveLength(2);
+    editor.skip();
+  });
+
+  it("falls back to a default palette when none is supplied", () => {
+    const { editor, root } = makeEditor();
+    editor.open();
+    expect(root.querySelectorAll("[data-qaid-color]").length).toBeGreaterThanOrEqual(6);
+    editor.skip();
+  });
+
+  it("switches the active colour on click and uses it for the next shape", () => {
+    const { editor, root, announce } = makeEditor({ palette: ["#ef4444", "#22c55e"] });
+    editor.open();
+    const green = root.querySelector<HTMLButtonElement>('[data-qaid-color="#22c55e"]')!;
+    green.click();
+    expect(green.getAttribute("aria-pressed")).toBe("true");
+    expect(
+      root.querySelector('[data-qaid-color="#ef4444"]')!.getAttribute("aria-pressed")
+    ).toBe("false");
+    expect(announce).toHaveBeenCalledWith("green colour selected");
+
+    editor.onPointerDown(fakePointer(10, 10));
+    editor.onPointerMove(fakePointer(60, 60));
+    editor.onPointerUp();
+    expect(editor.shapes[editor.shapes.length - 1].color).toBe("#22c55e");
+    editor.skip();
+  });
+
+  it("labels a known colour by name and an unknown one by its hex", () => {
+    const { editor, root } = makeEditor({ palette: ["#ef4444", "#123456"] });
+    editor.open();
+    expect(
+      root.querySelector('[data-qaid-color="#ef4444"]')!.getAttribute("aria-label")
+    ).toBe("Draw in red");
+    expect(
+      root.querySelector('[data-qaid-color="#123456"]')!.getAttribute("aria-label")
+    ).toBe("Draw in #123456");
+    editor.skip();
+  });
+});
+
+describe("AnnotationEditor tool labels", () => {
+  it("shows a text label alongside each tool icon", () => {
+    const { editor, root } = makeEditor();
+    editor.open();
+    expect(
+      root.querySelector('[data-qaid-tool="rect"]')!.querySelector(".qaid-annotate-btn-text")
+        ?.textContent
+    ).toBe("Rectangle");
+    expect(
+      root.querySelector('[data-qaid-tool="blur"]')!.querySelector(".qaid-annotate-btn-text")
+        ?.textContent
+    ).toBe("Blur or redact");
+    editor.skip();
+  });
+});

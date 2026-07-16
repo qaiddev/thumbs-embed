@@ -1,4 +1,10 @@
 /**
+ * Feedback sentiment. `up`/`down` come from the thumbs buttons; `neutral` is
+ * used by the single-button mode (a sentiment-free "Feedback" button).
+ */
+export type FeedbackType = "up" | "down" | "neutral";
+
+/**
  * Configuration options for the QaidFeedback
  */
 export interface FeedbackConfig {
@@ -20,6 +26,18 @@ export interface FeedbackConfig {
   zIndex?: number;
   /** When true, skip element targeting and go directly to feedback modal. Default: false */
   skipTargeting?: boolean;
+  /**
+   * Show a single, sentiment-free "Feedback" button instead of the thumbs
+   * up/down pair. Its submissions record `feedbackType: "neutral"`. Default: false
+   */
+  singleButton?: boolean;
+  /**
+   * What a button click does before the message modal:
+   *  - `"target"` (default): let the user point at an element on the page.
+   *  - `"annotate"`: skip targeting; capture a screenshot and open the markup
+   *    editor so the user can draw on it. Implies screenshot capture.
+   */
+  feedbackMode?: "target" | "annotate";
   /** Custom colors for feedback types */
   colors?: {
     /** Color for positive feedback. Default: rgb(0, 200, 83) */
@@ -53,6 +71,8 @@ export interface FeedbackConfig {
     recordLabel?: string;
     /** Accessible name for the dismiss (hide) button */
     dismissLabel?: string;
+    /** Accessible name / tooltip for the single "Feedback" button (singleButton mode) */
+    feedbackLabel?: string;
   };
   /** Modal width in pixels. Default: 400 */
   modalWidth?: number;
@@ -71,6 +91,16 @@ export interface FeedbackConfig {
    * always submit the raw screenshot).
    */
   annotate?: boolean;
+  /**
+   * Default drawing colour in the annotation editor. Falls back to
+   * `colors.marker`. The user can switch colours via the toolbar swatches.
+   */
+  annotationColor?: string;
+  /**
+   * Colour swatches offered in the annotation editor toolbar (hex strings).
+   * The default colour is pre-selected. Defaults to a 6-colour palette.
+   */
+  annotationPalette?: string[];
   /** Enable video recording button. Default: false */
   captureVideo?: boolean;
   /** Video recording options */
@@ -93,6 +123,8 @@ export interface FeedbackConfig {
   positiveIcon?: string;
   /** Custom SVG string for negative feedback button icon */
   negativeIcon?: string;
+  /** Custom SVG string for the single "Feedback" button icon (singleButton mode) */
+  feedbackIcon?: string;
   /** When true, hide thumbs up/down buttons (only show video button if enabled). Default: false */
   hideThumbs?: boolean;
   /** Custom CSS to inject into the embed's shadow root for theming */
@@ -187,7 +219,7 @@ export interface SelectedBounds {
  * Current feedback data being collected
  */
 export interface FeedbackData {
-  feedbackType: "up" | "down" | null;
+  feedbackType: FeedbackType | null;
   elementSelector: string | null;
   elementText: string | null;
   consoleErrors: ConsoleError[];
@@ -212,7 +244,7 @@ export interface ElementBounds {
  * Payload sent to the feedback API
  */
 export interface FeedbackPayload {
-  feedbackType: "up" | "down";
+  feedbackType: FeedbackType;
   pageUrl: string;
   /** API key for authenticating with the feedback service */
   apiKey?: string;
@@ -263,6 +295,8 @@ export interface ResolvedFeedbackConfig {
   offset: { x: number; y: number };
   zIndex: number;
   skipTargeting: boolean;
+  singleButton: boolean;
+  feedbackMode: "target" | "annotate";
   colors: {
     positive: string;
     negative: string;
@@ -280,6 +314,7 @@ export interface ResolvedFeedbackConfig {
     negativeLabel: string;
     recordLabel: string;
     dismissLabel: string;
+    feedbackLabel: string;
   };
   modalWidth: number;
   backdropOpacity: number;
@@ -288,6 +323,8 @@ export interface ResolvedFeedbackConfig {
   captureScreenshot: boolean;
   /** Whether the screenshot annotation editor is offered after capture. */
   annotate: boolean;
+  annotationColor: string;
+  annotationPalette: string[];
   screenshotMethod: "dom" | "permission";
   screenshotOptions: {
     quality: number;
@@ -298,6 +335,7 @@ export interface ResolvedFeedbackConfig {
   hideDismiss: boolean;
   positiveIcon: string;
   negativeIcon: string;
+  feedbackIcon: string;
   hideThumbs: boolean;
   css: string;
   captureVideo: boolean;
