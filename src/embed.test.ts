@@ -4016,5 +4016,33 @@ describe("QaidFeedback", () => {
       });
       expect(JSON.parse(fetchMock.mock.calls[0][1].body).screenshot).toBeNull();
     });
+
+    it("finishes at the message modal when the screenshot prompt is denied", async () => {
+      annotateMock.openAnnotationEditor.mockClear();
+      // Denial: getDisplayMedia rejects, so capture resolves null (no throw).
+      screenshotMocks.captureScreenshot.mockResolvedValueOnce(null);
+      screenshotMocks.captureDomScreenshot.mockResolvedValueOnce(null);
+      const fetchMock = vi
+        .fn()
+        .mockResolvedValue({ ok: true, json: () => Promise.resolve({ id: 8 }) });
+      global.fetch = fetchMock;
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        skipTargeting: true,
+        captureScreenshot: true,
+      });
+
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+
+      // Denying the prompt finishes as usual: no screenshot → no annotate
+      // editor → the (optional) message modal is the terminal state.
+      await vi.waitFor(() => {
+        expect(
+          getOverlayShadowRoot().querySelector(".qaid-modal-container, .qaid-bottom-sheet")
+        ).not.toBeNull();
+      });
+      expect(annotateMock.openAnnotationEditor).not.toHaveBeenCalled();
+      expect(JSON.parse(fetchMock.mock.calls[0][1].body).screenshot).toBeNull();
+    });
   });
 });
