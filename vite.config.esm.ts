@@ -13,8 +13,10 @@ export default defineConfig({
     sourcemap: true,
     minify: "esbuild",
     lib: {
+      // Only the CDN loader path is code-split. The npm entry (index.js) is a
+      // separate NON-split full build (vite.config.index.ts) so bundler
+      // consumers don't depend on the embed's runtime chunks.
       entry: {
-        index: resolve(__dirname, "src/index.ts"),
         loader: resolve(__dirname, "src/loader.ts"),
       },
       formats: ["es"],

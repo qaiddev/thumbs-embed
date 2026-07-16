@@ -1,19 +1,78 @@
-import { b as h } from "./annotate-pSxJNPPL.js";
-import { c as l } from "./network-capture-DMbMwwwR.js";
-const u = document;
-function s(d, t, ...i) {
-  const e = u.createElement(d);
+import { b as v } from "./annotate-NeITyYNe.js";
+const g = document;
+function r(n, t, ...o) {
+  const e = g.createElement(n);
   if (t) {
     if (t.class && (e.className = t.class), t.style && (e.style.cssText = t.style), t.html != null && (e.innerHTML = t.html), t.text != null && (e.textContent = t.text), t.attrs)
-      for (const o in t.attrs) e.setAttribute(o, t.attrs[o]);
+      for (const i in t.attrs) e.setAttribute(i, t.attrs[i]);
     if (t.on)
-      for (const o in t.on) e.addEventListener(o, t.on[o]);
+      for (const i in t.on) e.addEventListener(i, t.on[i]);
   }
-  for (const o of i)
-    o != null && o !== !1 && e.append(o);
+  for (const i of o)
+    i != null && i !== !1 && e.append(i);
   return e;
 }
-class g {
+const R = 20, u = 4096;
+function l(n) {
+  const t = typeof n == "string" ? n : JSON.stringify(n);
+  return t.length > u ? t.slice(0, u) + "…[truncated]" : t;
+}
+function f(n, t) {
+  n.length >= R && n.shift(), n.push(t);
+}
+async function b(n) {
+  try {
+    const t = await n.clone().text();
+    return l(t);
+  } catch {
+    return;
+  }
+}
+function y() {
+  const n = [], t = window.fetch;
+  window.fetch = async function(i, s) {
+    const d = typeof i == "string" ? i : i instanceof URL ? i.toString() : i.url, h = s?.method ?? (typeof i == "object" && "method" in i ? i.method : "GET");
+    let c;
+    s?.body && (c = l(s.body));
+    const a = await t.apply(window, [i, s]);
+    if (a.status >= 400) {
+      const p = await b(a);
+      f(n, {
+        url: d,
+        method: h.toUpperCase(),
+        status: a.status,
+        statusText: a.statusText,
+        requestBody: c,
+        responseBody: p,
+        timestamp: Date.now()
+      });
+    }
+    return a;
+  };
+  const o = XMLHttpRequest.prototype.open, e = XMLHttpRequest.prototype.send;
+  return XMLHttpRequest.prototype.open = function(i, s, ...d) {
+    return this._qaid_method = i, this._qaid_url = typeof s == "string" ? s : s.toString(), o.apply(this, [i, s, ...d]);
+  }, XMLHttpRequest.prototype.send = function(i) {
+    const s = this, d = i ? l(i) : void 0;
+    return s.addEventListener("load", function() {
+      s.status >= 400 && f(n, {
+        url: s._qaid_url,
+        method: s._qaid_method.toUpperCase(),
+        status: s.status,
+        statusText: s.statusText,
+        requestBody: d,
+        responseBody: l(s.responseText),
+        timestamp: Date.now()
+      });
+    }), e.apply(this, [i]);
+  }, {
+    errors: n,
+    restore: () => {
+      window.fetch = t, XMLHttpRequest.prototype.open = o, XMLHttpRequest.prototype.send = e;
+    }
+  };
+}
+class w {
   constructor(t) {
     this.host = t;
   }
@@ -39,9 +98,9 @@ class g {
   async startRecording(t = []) {
     if (!(this.isRecording || this.host.state !== "IDLE"))
       try {
-        this.networkCapture = l();
-        const { createVideoRecorder: i } = await import("./video-BOYqf2Im.js");
-        this.videoRecorder = i({
+        this.networkCapture = y();
+        const { createVideoRecorder: o } = await import("./video-BOYqf2Im.js");
+        this.videoRecorder = o({
           maxDuration: this.host.config.videoOptions.maxDuration,
           redactionElements: t
         }), this.videoRecorder.onTick((e) => {
@@ -49,8 +108,8 @@ class g {
         }), this.videoRecorder.onStop((e) => {
           this.isRecording && (this.recordedBlob = e, this.isRecording = !1, this.host.announceMsg("Recording stopped"), this.removeRecordingIndicator(), document.removeEventListener("keydown", this.host.boundKeyDown), this.host.setButtonsDisabled(!1), e && e.size > 0 ? this.showRecordingPreview() : this.cleanupRecording());
         }), await this.videoRecorder.start(), this.isRecording = !0, this.host.announceMsg("Recording started"), this.host.setButtonsDisabled(!0), this.showRecordingIndicator(), document.addEventListener("keydown", this.host.boundKeyDown);
-      } catch (i) {
-        i instanceof Error && /current tab/i.test(i.message) && this.host.announceMsg(i.message), this.cleanupRecording();
+      } catch (o) {
+        o instanceof Error && /current tab/i.test(o.message) && this.host.announceMsg(o.message), this.cleanupRecording();
       }
   }
   async stopRecording() {
@@ -70,27 +129,27 @@ class g {
   startPicking() {
     if (this.isRecording || this.host.state !== "IDLE") return;
     this.host.setState("REDACT_PICKING"), this.redactPicks = [];
-    const t = this.host.ensureOverlayHost(), i = s("div", { style: "position:absolute;inset:0;" }), e = s(
+    const t = this.host.ensureOverlayHost(), o = r("div", { style: "position:absolute;inset:0;" }), e = r(
       "div",
       { class: "qaid-redact-picker", style: "position:fixed;inset:0;pointer-events:none;" },
-      i,
+      o,
       // Control bar — the only pointer-interactive part of the overlay.
-      s(
+      r(
         "div",
         {
           style: "position:fixed;left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:12px;align-items:center;pointer-events:auto;background:#0b1220;color:#fff;border:1px solid #ff6b6b;border-radius:9999px;padding:10px 16px;font:600 13px system-ui,sans-serif;box-shadow:0 8px 30px rgba(0,0,0,.5);"
         },
-        s("span", {
+        r("span", {
           text: "Click sensitive areas to blur",
           attrs: { "data-qaid-redact-label": "" }
         }),
-        s("button", {
+        r("button", {
           text: "Start recording",
           attrs: { type: "button" },
           style: "cursor:pointer;border:0;border-radius:9999px;padding:8px 14px;background:#ff6b6b;color:#0b1220;font:inherit;",
           on: { click: () => this.finishRedactionPicking(!0) }
         }),
-        s("button", {
+        r("button", {
           text: "Cancel",
           attrs: { type: "button" },
           style: "cursor:pointer;border:0;background:transparent;color:#9fb3c8;font:inherit;",
@@ -99,29 +158,29 @@ class g {
       )
     );
     t.appendChild(e), this.redactPickerRoot = e;
-    const o = () => {
-      this.renderRedactPicks(i), this.redactRafId = requestAnimationFrame(o);
+    const i = () => {
+      this.renderRedactPicks(o), this.redactRafId = requestAnimationFrame(i);
     };
-    o(), document.addEventListener("click", this.boundRedactClick, !0), document.addEventListener("keydown", this.host.boundKeyDown), this.host.announceMsg("Click sensitive areas to blur, then start recording");
+    i(), document.addEventListener("click", this.boundRedactClick, !0), document.addEventListener("keydown", this.host.boundKeyDown), this.host.announceMsg("Click sensitive areas to blur, then start recording");
   }
   handleRedactPickClick(t) {
-    const i = t.target instanceof Element ? t.target : null;
-    if (!i || h(i) || this.redactPickerRoot?.contains(i)) return;
+    const o = t.target instanceof Element ? t.target : null;
+    if (!o || v(o) || this.redactPickerRoot?.contains(o)) return;
     t.preventDefault(), t.stopPropagation();
-    const e = this.redactPicks.indexOf(i);
-    e >= 0 ? this.redactPicks.splice(e, 1) : this.redactPicks.push(i);
-    const o = this.redactPickerRoot?.querySelector("[data-qaid-redact-label]");
-    if (o) {
-      const r = this.redactPicks.length;
-      o.textContent = r === 0 ? "Click sensitive areas to blur" : `${r} area${r === 1 ? "" : "s"} will be blurred`;
+    const e = this.redactPicks.indexOf(o);
+    e >= 0 ? this.redactPicks.splice(e, 1) : this.redactPicks.push(o);
+    const i = this.redactPickerRoot?.querySelector("[data-qaid-redact-label]");
+    if (i) {
+      const s = this.redactPicks.length;
+      i.textContent = s === 0 ? "Click sensitive areas to blur" : `${s} area${s === 1 ? "" : "s"} will be blurred`;
     }
   }
   renderRedactPicks(t) {
     t.textContent = "";
-    for (const i of this.redactPicks) {
-      const e = i.getBoundingClientRect();
+    for (const o of this.redactPicks) {
+      const e = o.getBoundingClientRect();
       e.width <= 0 || e.height <= 0 || t.appendChild(
-        s("div", {
+        r("div", {
           style: `position:fixed;left:${e.left}px;top:${e.top}px;width:${e.width}px;height:${e.height}px;border:2px solid #ff6b6b;border-radius:4px;background:rgba(255,107,107,.18);pointer-events:none;`
         })
       );
@@ -129,20 +188,20 @@ class g {
   }
   finishRedactionPicking(t) {
     this.redactRafId && cancelAnimationFrame(this.redactRafId), this.redactRafId = 0, document.removeEventListener("click", this.boundRedactClick, !0), document.removeEventListener("keydown", this.host.boundKeyDown), this.redactPickerRoot && (this.redactPickerRoot.remove(), this.redactPickerRoot = null);
-    const i = this.redactPicks;
-    this.redactPicks = [], this.host.setState("IDLE"), t && this.startRecording(i);
+    const o = this.redactPicks;
+    this.redactPicks = [], this.host.setState("IDLE"), t && this.startRecording(o);
   }
   showRecordingIndicator() {
     const t = this.host.ensureOverlayHost();
-    this.recordingIndicator = s(
+    this.recordingIndicator = r(
       "div",
       { class: "qaid-recording-indicator", style: `z-index:${this.host.config.zIndex + 100}` },
-      s("div", { class: "qaid-recording-dot" }),
-      s("span", {
+      r("div", { class: "qaid-recording-dot" }),
+      r("span", {
         class: "qaid-recording-time",
         text: this.formatTime(this.host.config.videoOptions.maxDuration)
       }),
-      s("button", {
+      r("button", {
         class: "qaid-recording-stop",
         text: "Stop",
         attrs: { type: "button" },
@@ -152,48 +211,48 @@ class g {
   }
   updateRecordingTimer(t) {
     if (!this.recordingIndicator) return;
-    const i = this.recordingIndicator.querySelector(".qaid-recording-time");
-    if (i) {
+    const o = this.recordingIndicator.querySelector(".qaid-recording-time");
+    if (o) {
       const e = Math.max(0, this.host.config.videoOptions.maxDuration - t);
-      i.textContent = this.formatTime(e), e > 0 && e <= 5 && this.host.announceMsg(`${e} second${e === 1 ? "" : "s"} remaining`);
+      o.textContent = this.formatTime(e), e > 0 && e <= 5 && this.host.announceMsg(`${e} second${e === 1 ? "" : "s"} remaining`);
     }
   }
   formatTime(t) {
-    const i = Math.floor(t / 60), e = t % 60;
-    return `${i}:${e.toString().padStart(2, "0")}`;
+    const o = Math.floor(t / 60), e = t % 60;
+    return `${o}:${e.toString().padStart(2, "0")}`;
   }
   removeRecordingIndicator() {
     this.recordingIndicator && (this.recordingIndicator.remove(), this.recordingIndicator = null);
   }
   showRecordingPreview() {
-    const t = this.host.ensureOverlayHost(), i = URL.createObjectURL(this.recordedBlob), e = `qaid-video-title-${this.host.uid}`, o = s("h3", { text: "Review your recording", attrs: { id: e } }), r = s("video");
-    r.src = i, r.controls = !0, r.autoplay = !0, r.muted = !0;
-    const n = s("textarea", {
+    const t = this.host.ensureOverlayHost(), o = URL.createObjectURL(this.recordedBlob), e = `qaid-video-title-${this.host.uid}`, i = r("h3", { text: "Review your recording", attrs: { id: e } }), s = r("video");
+    s.src = o, s.controls = !0, s.autoplay = !0, s.muted = !0;
+    const d = r("textarea", {
       attrs: {
         placeholder: "Optional: Describe the issue you recorded...",
         "aria-label": "Describe the issue you recorded"
       }
-    }), c = s("button", {
+    }), h = r("button", {
       class: "qaid-video-btn qaid-video-btn-send",
       text: "Send",
       attrs: { type: "button" },
-      on: { click: () => this.submitVideoFeedback(n.value.trim() || null, c) }
-    }), a = s(
+      on: { click: () => this.submitVideoFeedback(d.value.trim() || null, h) }
+    }), c = r(
       "div",
       { class: "qaid-video-preview-box" },
-      o,
-      r,
-      n,
-      s(
+      i,
+      s,
+      d,
+      r(
         "div",
         { class: "qaid-video-preview-actions" },
-        s("button", {
+        r("button", {
           class: "qaid-video-btn qaid-video-btn-cancel",
           text: "Cancel",
           attrs: { type: "button" },
           on: { click: () => this.cancelRecordingPreview() }
         }),
-        s("button", {
+        r("button", {
           class: "qaid-video-btn qaid-video-btn-rerecord",
           text: "Re-record",
           attrs: { type: "button" },
@@ -203,14 +262,14 @@ class g {
             }
           }
         }),
-        c
+        h
       )
     );
-    this.videoPreview = s(
+    this.videoPreview = r(
       "div",
       { class: "qaid-video-preview", style: `z-index:${this.host.config.zIndex + 100}` },
-      a
-    ), this.host.applyVars(this.videoPreview), this.host.overlayShadowHost && (this.host.overlayShadowHost.style.pointerEvents = "auto"), t.appendChild(this.videoPreview), this.host.openDialogA11y(a, { labelledbyId: o.id }), document.addEventListener("keydown", this.host.boundKeyDown);
+      c
+    ), this.host.applyVars(this.videoPreview), this.host.overlayShadowHost && (this.host.overlayShadowHost.style.pointerEvents = "auto"), t.appendChild(this.videoPreview), this.host.openDialogA11y(c, { labelledbyId: i.id }), document.addEventListener("keydown", this.host.boundKeyDown);
   }
   cancelRecordingPreview() {
     this.removeVideoPreview(), this.cleanupRecording();
@@ -222,35 +281,35 @@ class g {
     }
     document.removeEventListener("keydown", this.host.boundKeyDown);
   }
-  async submitVideoFeedback(t, i) {
+  async submitVideoFeedback(t, o) {
     if (!this.recordedBlob || this.isSendingVideo) return;
-    this.isSendingVideo = !0, i.disabled = !0, i.textContent = "Sending...";
+    this.isSendingVideo = !0, o.disabled = !0, o.textContent = "Sending...";
     const e = new FormData();
     e.append("video", this.recordedBlob, `recording.${this.recordedBlob.type.includes("mp4") ? "mp4" : "webm"}`), e.append("pageUrl", window.location.href), e.append("visitorId", this.host.visitorId), this.host.config.apiKey && e.append("apiKey", this.host.config.apiKey), t && e.append("message", t), this.host.consoleCapture && e.append("consoleErrors", JSON.stringify(this.host.consoleCapture.errors)), this.networkCapture && e.append("networkErrors", JSON.stringify(this.networkCapture.errors));
-    let o = null;
+    let i = null;
     try {
-      const r = await fetch(`${this.host.config.endpoint}/video`, {
+      const s = await fetch(`${this.host.config.endpoint}/video`, {
         method: "POST",
         body: e
       });
-      if (r.ok) {
+      if (s.ok) {
         this.host.announceMsg("Recording sent");
         try {
-          o = (await r.json())?.id ?? null;
+          i = (await s.json())?.id ?? null;
         } catch {
         }
       } else
-        console.error("Failed to submit video feedback:", await r.text()), this.host.announceMsg("Failed to send recording", !0);
-    } catch (r) {
-      console.error("Failed to submit video feedback:", r), this.host.announceMsg("Failed to send recording", !0);
+        console.error("Failed to submit video feedback:", await s.text()), this.host.announceMsg("Failed to send recording", !0);
+    } catch (s) {
+      console.error("Failed to submit video feedback:", s), this.host.announceMsg("Failed to send recording", !0);
     }
-    this.isSendingVideo = !1, this.removeVideoPreview(), this.cleanupRecording(), await this.host.tryLaunchQuest("video", o);
+    this.isSendingVideo = !1, this.removeVideoPreview(), this.cleanupRecording(), await this.host.tryLaunchQuest("video", i);
   }
   cleanupRecording() {
     this.isRecording = !1, this.removeRecordingIndicator(), this.videoRecorder && (this.videoRecorder.destroy(), this.videoRecorder = null), this.networkCapture && (this.networkCapture.restore(), this.networkCapture = null), this.recordedBlob && (this.recordedBlob = null), this.host.setButtonsDisabled(!1), this.host.overlayShadowHost && this.host.state === "IDLE" && (this.host.overlayShadowHost.style.pointerEvents = "none");
   }
 }
 export {
-  g as RecordingController
+  w as RecordingController
 };
-//# sourceMappingURL=recording-BRvu1Vkh.js.map
+//# sourceMappingURL=recording-DhRZ6-tW.js.map

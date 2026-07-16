@@ -1,4 +1,4 @@
-import { i as ct, F as ut, T as ht, a as pt, R as bt } from "./annotate-pSxJNPPL.js";
+import { i as ct, F as ut, T as ht, a as pt, R as bt } from "./annotate-NeITyYNe.js";
 const ft = "button{cursor:pointer}.qaid-buttons{display:flex;gap:.5rem}.qaid-buttons.qaid-vertical{flex-direction:column}.qaid-buttons.qaid-auto-container{position:fixed;z-index:50}.qaid-buttons.qaid-auto-container.qaid-bottom-right{bottom:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-bottom-left{bottom:1rem;left:1rem}.qaid-buttons.qaid-auto-container.qaid-top-right{top:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-top-left{top:1rem;left:1rem}.qaid-buttons.qaid-incognito{opacity:0;transition:opacity .2s ease-in-out}.qaid-buttons.qaid-incognito:hover{opacity:1}.qaid-buttons.qaid-dismissed{display:none!important}.qaid-dismiss-btn{width:20px;height:20px;padding:0;border:none;border-radius:50%;background:#0006;color:#fff;display:flex;align-items:center;justify-content:center;align-self:center;opacity:0;transition:opacity .15s,background .15s;cursor:pointer;pointer-events:auto;-webkit-appearance:none;appearance:none}.qaid-dismiss-btn:hover{background:#0009}.qaid-buttons:hover .qaid-dismiss-btn{opacity:1}button.qaid-btn-structural{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;appearance:none}.qaid-icon{width:24px;height:24px}.qaid-btn-structural:not(:has(svg)),.qaid-btn:not(:has(svg)){font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-emoji-icon{font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-buttons,.qaid-buttons *,.qaid-modal-container,.qaid-modal-container *{cursor:pointer!important}.qaid-tooltip-wrapper{position:relative}.qaid-tooltip-text{position:fixed;padding:.5rem .75rem;background:#1f2937;color:#fff;font-size:1rem;font-weight:600;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:99999}.qaid-tooltip-text.qaid-tooltip-visible{opacity:1}.qaid-targeting-overlay{position:fixed;inset:0;z-index:40;pointer-events:none}.qaid-capture-layer{position:fixed;inset:0;pointer-events:none;z-index:9999}@keyframes qaid-slideDown{0%{transform:translateY(-100%)}to{transform:translateY(0)}}.qaid-vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.3) 70%,rgba(0,0,0,.6) 100%);z-index:41}.qaid-crosshair-h,.qaid-crosshair-v{position:fixed;pointer-events:none;z-index:42}.qaid-crosshair-h{left:0;right:0;height:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-crosshair-v{top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-type-up .qaid-crosshair-h,.qaid-type-up .qaid-crosshair-v{background:color-mix(in srgb,var(--qaid-positive) 60%,transparent)}.qaid-highlight-box{position:fixed;top:0;left:0;pointer-events:none;z-index:41;display:none;border:3px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:2px;background:color-mix(in srgb,var(--qaid-negative) 8%,transparent);will-change:transform,width,height}.qaid-type-up .qaid-highlight-box{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent);background:color-mix(in srgb,var(--qaid-positive) 8%,transparent)}.qaid-scope{position:fixed;width:80px;height:80px;pointer-events:none;z-index:43;transform:translate(-50%,-50%)}.qaid-scope-ring{position:absolute;inset:10px;border:2px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent)}.qaid-scope-ring-inner{position:absolute;inset:20px;border:1px solid color-mix(in srgb,var(--qaid-negative) 50%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring-inner{border-color:color-mix(in srgb,var(--qaid-positive) 50%,transparent)}.qaid-scope-dot{position:absolute;top:50%;left:50%;width:4px;height:4px;background:var(--qaid-negative);border-radius:50%;transform:translate(-50%,-50%)}.qaid-type-up .qaid-scope-dot{background:var(--qaid-positive)}.qaid-selected-marker{position:fixed;border:3px solid var(--qaid-marker, #6366f1);border-radius:50%;pointer-events:none;z-index:44;animation:qaid-markerPulse 1.5s ease-in-out infinite}@keyframes qaid-markerPulse{0%,to{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}.qaid-backdrop{position:fixed;inset:0;z-index:45;background:#0000004d}.qaid-modal-container{position:fixed;z-index:50;display:flex;flex-direction:column;align-items:flex-start;max-height:calc(100vh - 32px);font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-modal-container.qaid-above{flex-direction:column-reverse}.qaid-modal-arrow{width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;position:relative;align-self:flex-start}.qaid-modal-container.qaid-below .qaid-modal-arrow{border-bottom:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-container.qaid-above .qaid-modal-arrow{border-top:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5));width:var(--qaid-modal-width, 400px);max-width:calc(100vw - 32px);max-height:calc(100vh - 60px);overflow-y:auto}.qaid-modal-header{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1rem}button.qaid-type-toggle{border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;-webkit-appearance:none;appearance:none}button.qaid-type-toggle:hover{transform:scale(1.1)}button.qaid-type-toggle:not(.qaid-type-toggle-custom){width:2.5rem;height:2.5rem;border-radius:50%}button.qaid-type-toggle:not(.qaid-type-toggle-custom) svg{width:1.25rem;height:1.25rem}button.qaid-type-toggle.qaid-type-up{background:var(--qaid-positive);color:#fff}button.qaid-type-toggle.qaid-type-down{background:var(--qaid-negative);color:#fff}.qaid-type-static{width:2.5rem;height:2.5rem;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--qaid-marker, #6366f1);color:var(--qaid-marker-text, white)}.qaid-type-static svg{width:1.25rem;height:1.25rem}.qaid-modal-header-text{flex:1;min-width:0}.qaid-modal-title{font-size:1.125rem;font-weight:700;margin:0 0 .25rem;color:light-dark(#1f2937,#f9fafb)}.qaid-modal-subtitle{color:light-dark(#6b7280,#9ca3af);margin:0;font-size:.875rem}.qaid-textarea{width:100%;height:6rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:1rem;resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-btn-row{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-btn-submit{padding:.5rem 1rem;background:var(--qaid-marker);color:var(--qaid-marker-text, white);border:none;border-radius:.5rem;font-size:.875rem;font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-btn-submit:hover{filter:brightness(.85)}button.qaid-btn-submit:focus{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 30%,transparent)}.qaid-bottom-sheet{position:fixed;bottom:0;left:0;right:0;z-index:50;animation:qaid-slideUpSheet .3s ease-out;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-bottom-sheet-content{background:light-dark(#ffffff,#1f2937);border-radius:1rem 1rem 0 0;padding:1.5rem;padding-bottom:max(1.5rem,env(safe-area-inset-bottom))}.qaid-bottom-sheet-handle{width:36px;height:4px;background:light-dark(rgba(0,0,0,.2),rgba(255,255,255,.2));border-radius:2px;margin:0 auto 1rem}@keyframes qaid-slideUpSheet{0%{transform:translateY(100%)}to{transform:translateY(0)}}button.qaid-btn-record:hover{background:#dc2626;color:#fff}.qaid-recording-indicator{position:fixed;top:12px;left:50%;transform:translate(-50%);display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:light-dark(#1f2937,#374151);color:#fff;border-radius:9999px;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:.875rem;font-weight:500;box-shadow:0 4px 12px #0000004d;z-index:99999;animation:qaid-slideDown .2s ease-out}.qaid-recording-dot{width:10px;height:10px;background:#dc2626;border-radius:50%;animation:qaid-dotPulse 1.5s ease-in-out infinite}@keyframes qaid-dotPulse{0%,to{opacity:1}50%{opacity:.3}}.qaid-recording-time{font-variant-numeric:tabular-nums;min-width:2.5rem;text-align:center}button.qaid-recording-stop{padding:.25rem .75rem;background:#dc2626;color:#fff;border:none;border-radius:9999px;font-size:.75rem;font-weight:600;cursor:pointer;transition:background-color .2s;-webkit-appearance:none;appearance:none}button.qaid-recording-stop:hover{background:#b91c1c}.qaid-video-preview{position:fixed;inset:0 0 auto;height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#0009;z-index:99998;animation:qaid-fadeIn .2s ease-out}@keyframes qaid-fadeIn{0%{opacity:0}to{opacity:1}}.qaid-video-preview-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px #00000080;width:560px;max-width:100%;max-height:100%;overflow-y:auto;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-video-preview-box h3{font-size:1.125rem;font-weight:700;margin:0 0 1rem;color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box video{width:100%;max-height:50vh;max-height:50dvh;object-fit:contain;border-radius:.5rem;background:#000;margin-bottom:1rem}.qaid-video-preview-box textarea{width:100%;height:4rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:.875rem;resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-video-preview-actions{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-video-btn{padding:.5rem 1rem;border:none;border-radius:.5rem;font-size:.875rem;font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-video-btn-cancel{background:light-dark(#f3f4f6,#374151);color:light-dark(#374151,#d1d5db)}button.qaid-video-btn-cancel:hover{background:light-dark(#e5e7eb,#4b5563)}button.qaid-video-btn-rerecord{background:light-dark(#fef3c7,#78350f);color:light-dark(#92400e,#fde68a)}button.qaid-video-btn-rerecord:hover{filter:brightness(.9)}button.qaid-video-btn-send{background:var(--qaid-marker);color:var(--qaid-marker-text, white)}button.qaid-video-btn-send:hover{filter:brightness(.85)}button.qaid-video-btn-send:disabled{opacity:.5;cursor:not-allowed}.qaid-video-sending{display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:light-dark(#6b7280,#9ca3af)}.qaid-annotate{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;gap:.75rem;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#000000d9;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px);animation:qaid-fadeIn .2s ease-out}.qaid-annotate-title{margin:0;font-size:1rem;font-weight:700;text-align:center;color:#f9fafb}.qaid-annotate-desc{margin:0;font-size:.8125rem;line-height:1.4;text-align:center;color:#f9fafbbf}.qaid-annotate-stage{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;overflow:auto}.qaid-annotate-canvas{max-width:100%;max-height:100%;object-fit:contain;background:light-dark(#ffffff,#111827);border-radius:.5rem;box-shadow:0 10px 30px #00000080;touch-action:none;cursor:crosshair}.qaid-annotate-toolbar{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;justify-content:center;padding:.5rem .75rem;background:light-dark(#ffffff,#1f2937);border-radius:.75rem;box-shadow:0 10px 30px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5))}.qaid-annotate-tools,.qaid-annotate-actions{display:flex;gap:.375rem;align-items:center}button.qaid-annotate-tool,button.qaid-annotate-action{display:inline-flex;align-items:center;justify-content:center;gap:.375rem;min-width:44px;min-height:44px;padding:0 .75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;background:light-dark(#f9fafb,#111827);color:light-dark(#1f2937,#f9fafb);font-family:inherit;font-size:.8125rem;font-weight:600;cursor:pointer;-webkit-appearance:none;appearance:none;transition:background-color .15s,color .15s,border-color .15s,filter .15s}button.qaid-annotate-tool svg,button.qaid-annotate-action svg{width:20px;height:20px}.qaid-annotate-colors{display:flex;gap:.25rem;align-items:center}button.qaid-annotate-swatch{width:28px;height:28px;min-width:28px;padding:0;border-radius:9999px;border:2px solid light-dark(#d1d5db,#4b5563);background:var(--qaid-swatch, #000);cursor:pointer;-webkit-appearance:none;appearance:none;transition:transform .1s,box-shadow .15s,border-color .15s}button.qaid-annotate-swatch:hover{transform:scale(1.12)}button.qaid-annotate-swatch[aria-pressed=true]{border-color:light-dark(#111827,#f9fafb);box-shadow:0 0 0 2px var(--qaid-swatch)}@media(forced-colors:active){button.qaid-annotate-swatch[aria-pressed=true]{outline:2px solid Highlight;outline-offset:1px}}button.qaid-annotate-tool:hover,button.qaid-annotate-action:hover{background:light-dark(#eef2ff,#312e81)}button.qaid-annotate-tool[aria-pressed=true],button.qaid-annotate-done{background:var(--qaid-marker, #6366f1);color:var(--qaid-marker-text, #fff);border-color:var(--qaid-marker, #6366f1)}button.qaid-annotate-done:hover{filter:brightness(.9);background:var(--qaid-marker, #6366f1)}button.qaid-annotate-action:disabled{opacity:.45;cursor:not-allowed}@media(forced-colors:active){button.qaid-annotate-tool[aria-pressed=true],button.qaid-annotate-done{border:2px solid Highlight}.qaid-annotate-canvas{border:1px solid CanvasText}}button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible{outline:2px solid var(--qaid-marker, #6366f1);outline-offset:2px}.qaid-textarea:focus-visible,button.qaid-btn-submit:focus-visible,.qaid-video-preview-box textarea:focus-visible{outline:2px solid var(--qaid-marker, #6366f1);outline-offset:2px}.qaid-buttons.qaid-incognito:focus-within{opacity:1}.qaid-buttons:focus-within .qaid-dismiss-btn,.qaid-dismiss-btn:focus-visible{opacity:1}.qaid-dismiss-btn{min-width:24px;min-height:24px}button.qaid-recording-stop{min-height:24px}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}@media(forced-colors:active){button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible,.qaid-textarea:focus,button.qaid-btn-submit:focus,.qaid-video-preview-box textarea:focus{outline:2px solid CanvasText;outline-offset:2px}.qaid-selected-marker,.qaid-highlight-box{border-color:Highlight}}", mt = "body.qaid-targeting,body.qaid-targeting *{cursor:none!important}";
 let f = 0;
 const gt = "button.qaid-btn{width:var(--qaid-btn-size);height:var(--qaid-btn-size);border-radius:50%;border:none;background:#f3f4f6;color:#374151;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);transition:background-color .2s,color .2s,transform .2s;-webkit-appearance:none;appearance:none;--qaid-hover-up-bg:var(--qaid-positive);--qaid-hover-up-color:#fff;--qaid-hover-down-bg:var(--qaid-negative);--qaid-hover-down-color:#fff}button.qaid-btn:hover{transform:scale(1.05)}button.qaid-btn-up:hover{background:var(--qaid-hover-up-bg);color:var(--qaid-hover-up-color)}button.qaid-btn-down:hover{background:var(--qaid-hover-down-bg);color:var(--qaid-hover-down-color)}button.qaid-btn-feedback:hover{background:var(--qaid-marker,#6366f1);color:var(--qaid-marker-text,#fff)}button.qaid-btn svg{width:var(--qaid-icon-size);height:var(--qaid-icon-size)}", vt = {
@@ -11,16 +11,16 @@ const gt = "button.qaid-btn{width:var(--qaid-btn-size);height:var(--qaid-btn-siz
   large: 32
 };
 function wt(e, t, i) {
-  const [o, n, a] = [e, t, i].map((r) => (r = r / 255, r <= 0.03928 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4)));
-  return 0.2126 * o + 0.7152 * n + 0.0722 * a;
+  const [o, r, n] = [e, t, i].map((a) => (a = a / 255, a <= 0.03928 ? a / 12.92 : Math.pow((a + 0.055) / 1.055, 2.4)));
+  return 0.2126 * o + 0.7152 * r + 0.0722 * n;
 }
 function qt(e) {
   if (e.startsWith("#")) {
-    const i = e.slice(1), o = i.length === 3 ? i.split("").map((a) => a + a).join("") : i, n = parseInt(o, 16);
+    const i = e.slice(1), o = i.length === 3 ? i.split("").map((n) => n + n).join("") : i, r = parseInt(o, 16);
     return {
-      r: n >> 16 & 255,
-      g: n >> 8 & 255,
-      b: n & 255
+      r: r >> 16 & 255,
+      g: r >> 8 & 255,
+      b: r & 255
     };
   }
   const t = e.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
@@ -39,12 +39,12 @@ function kt(e = {}) {
     positiveColor: t = "rgb(0, 200, 83)",
     negativeColor: i = "rgb(255, 0, 0)",
     markerColor: o = "#6366f1",
-    buttonSize: n = "medium",
-    modalWidth: a = 400,
-    backdropOpacity: r = 0.3,
+    buttonSize: r = "medium",
+    modalWidth: n = 400,
+    backdropOpacity: a = 0.3,
     fontFamily: l = "system-ui, -apple-system, sans-serif",
     fontSize: c = 16
-  } = e, d = vt[n], s = yt[n], u = xt(o);
+  } = e, d = vt[r], s = yt[r], u = xt(o);
   return {
     "--qaid-positive": t,
     "--qaid-negative": i,
@@ -52,8 +52,8 @@ function kt(e = {}) {
     "--qaid-marker-text": u,
     "--qaid-btn-size": `${d}px`,
     "--qaid-icon-size": `${s}px`,
-    "--qaid-modal-width": `${a}px`,
-    "--qaid-backdrop-opacity": String(r),
+    "--qaid-modal-width": `${n}px`,
+    "--qaid-backdrop-opacity": String(a),
     "--qaid-font-family": l,
     "--qaid-font-size": `${c}px`
   };
@@ -89,8 +89,8 @@ function Dt(e, t) {
     `[${P}="${i}"]`
   );
   if (o) return o;
-  const a = It(e).createElement("div");
-  return a.setAttribute(P, i), a.setAttribute("role", t ? "alert" : "status"), a.setAttribute("aria-live", t ? "assertive" : "polite"), a.setAttribute("aria-atomic", "true"), a.style.cssText = Tt, e.appendChild(a), a;
+  const n = It(e).createElement("div");
+  return n.setAttribute(P, i), n.setAttribute("role", t ? "alert" : "status"), n.setAttribute("aria-live", t ? "assertive" : "polite"), n.setAttribute("aria-atomic", "true"), n.style.cssText = Tt, e.appendChild(n), n;
 }
 function Ht(e, t, i = {}) {
   const o = Dt(e, !!i.assertive);
@@ -124,19 +124,19 @@ function K(e) {
 function Mt(e) {
   const t = e.ownerDocument || document;
   let i = !1;
-  const o = (a) => {
-    if (a.key !== "Tab") return;
-    const r = F(e);
-    if (r.length === 0) {
-      a.preventDefault(), e.focus();
+  const o = (n) => {
+    if (n.key !== "Tab") return;
+    const a = F(e);
+    if (a.length === 0) {
+      n.preventDefault(), e.focus();
       return;
     }
-    const l = r[0], c = r[r.length - 1], d = K(t), s = d ? r.indexOf(d) !== -1 : !1;
-    a.shiftKey ? (!s || d === l) && (a.preventDefault(), c.focus()) : (!s || d === c) && (a.preventDefault(), l.focus());
+    const l = a[0], c = a[a.length - 1], d = K(t), s = d ? a.indexOf(d) !== -1 : !1;
+    n.shiftKey ? (!s || d === l) && (n.preventDefault(), c.focus()) : (!s || d === c) && (n.preventDefault(), l.focus());
   };
   e.addEventListener("keydown", o);
-  const n = F(e);
-  return n.length > 0 ? n[0].focus() : (e.hasAttribute("tabindex") || (e.setAttribute("tabindex", "-1"), i = !0), e.focus()), {
+  const r = F(e);
+  return r.length > 0 ? r[0].focus() : (e.hasAttribute("tabindex") || (e.setAttribute("tabindex", "-1"), i = !0), e.focus()), {
     release() {
       e.removeEventListener("keydown", o), i && (e.removeAttribute("tabindex"), i = !1);
     }
@@ -173,15 +173,15 @@ function Ft(e) {
   const i = (e.ownerDocument || document).body;
   if (!i) return () => {
   };
-  const o = Pt(e, i), n = [];
-  return Array.from(i.children).forEach((a) => {
-    if (!(a instanceof HTMLElement) || o && a === o) return;
-    const r = a.inert === !0, l = a.getAttribute("aria-hidden");
-    r && l === "true" || (a.inert = !0, a.setAttribute("aria-hidden", "true"), n.push({ el: a, prevInert: r, prevAriaHidden: l }));
+  const o = Pt(e, i), r = [];
+  return Array.from(i.children).forEach((n) => {
+    if (!(n instanceof HTMLElement) || o && n === o) return;
+    const a = n.inert === !0, l = n.getAttribute("aria-hidden");
+    a && l === "true" || (n.inert = !0, n.setAttribute("aria-hidden", "true"), r.push({ el: n, prevInert: a, prevAriaHidden: l }));
   }), function() {
-    for (; n.length; ) {
-      const r = n.pop();
-      r.el.inert = r.prevInert, r.prevAriaHidden === null ? r.el.removeAttribute("aria-hidden") : r.el.setAttribute("aria-hidden", r.prevAriaHidden);
+    for (; r.length; ) {
+      const a = r.pop();
+      a.el.inert = a.prevInert, a.prevAriaHidden === null ? a.el.removeAttribute("aria-hidden") : a.el.setAttribute("aria-hidden", a.prevAriaHidden);
     }
   };
 }
@@ -192,90 +192,90 @@ const N = {
   gap: 8,
   viewportPadding: 16
 };
-function Ut(e, t, i, o, n) {
-  const a = e.y, r = t - (e.y + e.height);
-  if (r >= i + o)
+function Ut(e, t, i, o, r) {
+  const n = e.y, a = t - (e.y + e.height);
+  if (a >= i + o)
     return {
       top: e.y + e.height + o,
       position: "below"
     };
-  if (a >= i + o)
+  if (n >= i + o)
     return {
       top: e.y - i - o,
       position: "above"
     };
-  const l = r > a ? "below" : "above";
+  const l = a > n ? "below" : "above";
   let c;
   return l === "below" ? c = Math.min(
     e.y + e.height + o,
-    t - i - n
-  ) : c = Math.max(n, e.y - i - o), { top: c, position: l };
+    t - i - r
+  ) : c = Math.max(r, e.y - i - o), { top: c, position: l };
 }
 function Vt(e, t, i, o) {
-  let a = e.x + e.width / 2 - i / 2;
-  return a = Math.max(o, Math.min(a, t - i - o)), a;
+  let n = e.x + e.width / 2 - i / 2;
+  return n = Math.max(o, Math.min(n, t - i - o)), n;
 }
-function _t(e, t, i, o = 24, n = 24) {
-  const r = e.clickX - t - n / 2;
-  return Math.max(o, Math.min(r, i - o - n / 2));
+function _t(e, t, i, o = 24, r = 24) {
+  const a = e.clickX - t - r / 2;
+  return Math.max(o, Math.min(a, i - o - r / 2));
 }
 function Kt(e, t, i, o = N) {
-  const n = o.height + o.arrowHeight, a = Ut(
+  const r = o.height + o.arrowHeight, n = Ut(
     e,
     i,
-    n,
+    r,
     o.gap,
     o.viewportPadding
-  ), r = Vt(
+  ), a = Vt(
     e,
     t,
     o.width,
     o.viewportPadding
   );
   return {
-    top: a.top,
-    left: r,
-    position: a.position
+    top: n.top,
+    left: a,
+    position: n.position
   };
 }
 function Nt(e, t, i, o = {}) {
-  const n = o.gap ?? 8;
-  let a = e.bottom + n;
-  a + t.height > i.height - n && (a = e.top - t.height - n);
-  let r = e.left;
-  return r < n ? r = n : r + t.width > i.width - n && (r = i.width - t.width - n), a < n ? a = n : a + t.height > i.height - n && (a = i.height - t.height - n), { top: a, left: r };
+  const r = o.gap ?? 8;
+  let n = e.bottom + r;
+  n + t.height > i.height - r && (n = e.top - t.height - r);
+  let a = e.left;
+  return a < r ? a = r : a + t.width > i.width - r && (a = i.width - t.width - r), n < r ? n = r : n + t.height > i.height - r && (n = i.height - t.height - r), { top: n, left: a };
 }
-function re(e, t, i, o = N) {
-  const n = Kt(e, t, i, o), a = _t(
+function se(e, t, i, o = N) {
+  const r = Kt(e, t, i, o), n = _t(
     e,
-    n.left,
+    r.left,
     o.width
   );
   return {
-    modal: n,
-    arrow: { left: a }
+    modal: r,
+    arrow: { left: n }
   };
 }
 const $t = 20;
 function jt(e) {
-  const t = [], i = console.error, o = console.warn, n = console.log, a = (r, l) => {
+  const t = [], i = console.error, o = console.warn, r = console.log, n = (a, l) => {
     const c = {
       message: l.map((d) => String(d)).join(" "),
       timestamp: Date.now(),
-      level: r
+      level: a
     };
     t.length >= $t && t.shift(), t.push(c), e && e(c);
   };
-  return console.error = function(...r) {
-    a("error", r), i.apply(console, r);
-  }, console.warn = function(...r) {
-    a("warn", r), o.apply(console, r);
-  }, console.log = function(...r) {
-    a("log", r), n.apply(console, r);
+  return console.error = function(...a) {
+    n("error", a), i.apply(console, a);
+  }, console.warn = function(...a) {
+    n("warn", a), o.apply(console, a);
+  }, console.log = function(...a) {
+    n("log", a), r.apply(console, a);
   }, {
     errors: t,
     restore: () => {
-      console.error = i, console.warn = o, console.log = n;
+      console.error = i, console.warn = o, console.log = r;
     }
   };
 }
@@ -536,13 +536,13 @@ class ie {
    * swallowed — a failed preload just falls back to an on-demand load.
    */
   prewarmVideo() {
-    this.videoPrewarmed || (this.videoPrewarmed = !0, import("./recording-BRvu1Vkh.js").catch(() => {
+    this.videoPrewarmed || (this.videoPrewarmed = !0, import("./recording-DhRZ6-tW.js").catch(() => {
     }), import("./video-BOYqf2Im.js").catch(() => {
     }));
   }
   prewarmScreenshot() {
     this.screenshotPrewarmed || (this.screenshotPrewarmed = !0, (this.shouldCaptureViaDom() ? import("./screenshot-dom-CME7tYRE.js") : import("./screenshot-BkOCLuS2.js")).catch(() => {
-    }), this.config.annotate && import("./annotate-pSxJNPPL.js").then((t) => t.f).catch(() => {
+    }), this.config.annotate && import("./annotate-NeITyYNe.js").then((t) => t.d).catch(() => {
     }));
   }
   /** Run fn when the main thread is idle; cancelled by destroy(). */
@@ -600,25 +600,25 @@ class ie {
     }), this.buttonsContainer.addEventListener("pointerdown", () => {
       this.keyboardActivation = !1;
     });
-    const n = !!this.config.buttonClass, a = n ? `qaid-btn-structural ${this.config.buttonClass}` : "qaid-btn", l = this.config.text.tooltip || "Feedback for us?", c = document.createElement("div");
+    const r = !!this.config.buttonClass, n = r ? `qaid-btn-structural ${this.config.buttonClass}` : "qaid-btn", l = this.config.text.tooltip || "Feedback for us?", c = document.createElement("div");
     if (c.className = "qaid-tooltip-text", c.textContent = l, this.applyVars(c), this.shadowRoot.appendChild(c), this.tooltipElement = c, this.config.singleButton) {
       const d = document.createElement("div");
       d.className = "qaid-tooltip-wrapper";
       const s = document.createElement("button");
-      s.type = "button", s.className = n ? `${a} qaid-btn-feedback` : "qaid-btn qaid-btn-feedback", s.setAttribute("aria-label", this.config.text.feedbackLabel), s.innerHTML = this.config.feedbackIcon || ut, s.addEventListener("click", (u) => this.handleThumbClick("neutral", u.currentTarget, u)), s.addEventListener("mouseenter", () => {
+      s.type = "button", s.className = r ? `${n} qaid-btn-feedback` : "qaid-btn qaid-btn-feedback", s.setAttribute("aria-label", this.config.text.feedbackLabel), s.innerHTML = this.config.feedbackIcon || ut, s.addEventListener("click", (u) => this.handleThumbClick("neutral", u.currentTarget, u)), s.addEventListener("mouseenter", () => {
         this.prewarmTargeting(), this.showTooltip(s);
       }), s.addEventListener("mouseleave", () => this.hideTooltip()), d.appendChild(s), this.buttonsContainer.appendChild(d);
     } else if (!this.config.hideThumbs) {
       const d = document.createElement("div");
       d.className = "qaid-tooltip-wrapper";
       const s = document.createElement("button");
-      s.type = "button", s.className = n ? `${a} qaid-btn-up` : "qaid-btn qaid-btn-up", s.setAttribute("aria-label", this.config.text.positiveLabel), s.innerHTML = this.config.positiveIcon || ht, s.addEventListener("click", (p) => this.handleThumbClick("up", p.currentTarget, p)), s.addEventListener("mouseenter", () => {
+      s.type = "button", s.className = r ? `${n} qaid-btn-up` : "qaid-btn qaid-btn-up", s.setAttribute("aria-label", this.config.text.positiveLabel), s.innerHTML = this.config.positiveIcon || ht, s.addEventListener("click", (p) => this.handleThumbClick("up", p.currentTarget, p)), s.addEventListener("mouseenter", () => {
         this.prewarmTargeting(), this.showTooltip(s);
       }), s.addEventListener("mouseleave", () => this.hideTooltip()), d.appendChild(s);
       const u = document.createElement("div");
       u.className = "qaid-tooltip-wrapper";
       const h = document.createElement("button");
-      h.type = "button", h.className = n ? `${a} qaid-btn-down` : "qaid-btn qaid-btn-down", h.setAttribute("aria-label", this.config.text.negativeLabel), h.innerHTML = this.config.negativeIcon || pt, h.addEventListener("click", (p) => this.handleThumbClick("down", p.currentTarget, p)), h.addEventListener("mouseenter", () => {
+      h.type = "button", h.className = r ? `${n} qaid-btn-down` : "qaid-btn qaid-btn-down", h.setAttribute("aria-label", this.config.text.negativeLabel), h.innerHTML = this.config.negativeIcon || pt, h.addEventListener("click", (p) => this.handleThumbClick("down", p.currentTarget, p)), h.addEventListener("mouseenter", () => {
         this.prewarmTargeting(), this.showTooltip(h);
       }), h.addEventListener("mouseleave", () => this.hideTooltip()), u.appendChild(h), this.buttonsContainer.appendChild(d), this.buttonsContainer.appendChild(u);
     }
@@ -626,7 +626,7 @@ class ie {
       const d = document.createElement("div");
       d.className = "qaid-tooltip-wrapper";
       const s = document.createElement("button");
-      s.type = "button", s.className = n ? `${a} qaid-btn-record` : "qaid-btn qaid-btn-record", s.setAttribute("aria-label", this.config.text.recordLabel), s.innerHTML = this.config.recordIcon || bt, s.addEventListener("click", () => {
+      s.type = "button", s.className = r ? `${n} qaid-btn-record` : "qaid-btn qaid-btn-record", s.setAttribute("aria-label", this.config.text.recordLabel), s.innerHTML = this.config.recordIcon || bt, s.addEventListener("click", () => {
         this.ensureRecording().then(
           (h) => this.config.videoOptions.redaction ? h.startPicking() : h.startRecording()
         );
@@ -660,12 +660,12 @@ class ie {
   showTooltip(t) {
     const i = this.tooltipElement;
     i.style.visibility = "hidden", i.classList.add("qaid-tooltip-visible");
-    const o = t.getBoundingClientRect(), n = i.getBoundingClientRect(), { top: a, left: r } = Nt(
+    const o = t.getBoundingClientRect(), r = i.getBoundingClientRect(), { top: n, left: a } = Nt(
       o,
-      n,
+      r,
       { width: window.innerWidth, height: window.innerHeight }
     );
-    i.style.top = `${a}px`, i.style.left = `${r}px`, i.style.visibility = "visible";
+    i.style.top = `${n}px`, i.style.left = `${a}px`, i.style.visibility = "visible";
   }
   hideTooltip() {
     this.tooltipElement.classList.remove("qaid-tooltip-visible");
@@ -678,9 +678,9 @@ class ie {
       this.submitDirectFeedback(t, i);
     else {
       this.activeThumbBtn = i, i.setAttribute("aria-pressed", "true");
-      const n = this.keyboardActivation;
-      this.keyboardActivation = !1, this.ensureTargeting().then((a) => {
-        this.destroyed || (n ? a.startKeyboard(t) : a.startPointer(t, o));
+      const r = this.keyboardActivation;
+      this.keyboardActivation = !1, this.ensureTargeting().then((n) => {
+        this.destroyed || (r ? n.startKeyboard(t) : n.startPointer(t, o));
       });
     }
   }
@@ -717,44 +717,49 @@ class ie {
    * enabled while the editor is open and restored on close.
    */
   async openAnnotationEditor(t) {
-    const i = this.ensureOverlayHost(), o = this.overlayShadowHost, n = o.style.pointerEvents;
+    const i = this.ensureOverlayHost(), o = this.overlayShadowHost, r = o.style.pointerEvents;
     o.style.pointerEvents = "auto";
     try {
-      const { openAnnotationEditor: a } = await import("./annotate-pSxJNPPL.js").then((r) => r.f);
-      return await a({
+      const { openAnnotationEditor: n } = await import("./annotate-NeITyYNe.js").then((a) => a.d);
+      return await n({
         dataUrl: t,
         root: i,
         quality: this.config.screenshotOptions.quality,
         color: this.config.annotationColor,
         palette: this.config.annotationPalette,
-        applyVars: (r) => this.applyVars(r),
-        announce: (r, l) => this.announceMsg(r, l),
-        openDialog: (r, l) => this.openDialogA11y(r, l),
+        applyVars: (a) => this.applyVars(a),
+        announce: (a, l) => this.announceMsg(a, l),
+        openDialog: (a, l) => this.openDialogA11y(a, l),
         closeDialog: () => this.closeDialogA11y()
       });
+    } catch (n) {
+      return console.error("Annotation editor failed to open:", n), null;
     } finally {
-      o.style.pointerEvents = n;
+      o.style.pointerEvents = r;
     }
   }
   async submitFeedback() {
     let t = null;
-    if (this.config.captureScreenshot || this.config.feedbackMode === "annotate") {
-      if (this.shouldCaptureViaDom()) {
-        const { captureDomScreenshot: l } = await import("./screenshot-dom-CME7tYRE.js");
-        t = await l(this.config.screenshotOptions);
-      } else {
-        const { captureScreenshot: l } = await import("./screenshot-BkOCLuS2.js");
-        t = await l(this.config.screenshotOptions);
+    if (this.config.captureScreenshot || this.config.feedbackMode === "annotate")
+      try {
+        if (this.shouldCaptureViaDom()) {
+          const { captureDomScreenshot: a } = await import("./screenshot-dom-CME7tYRE.js");
+          t = await a(this.config.screenshotOptions);
+        } else {
+          const { captureScreenshot: a } = await import("./screenshot-BkOCLuS2.js");
+          t = await a(this.config.screenshotOptions);
+        }
+        t && this.announceMsg("Screenshot captured");
+      } catch (a) {
+        console.error("Screenshot capture failed:", a), t = null;
       }
-      t && this.announceMsg("Screenshot captured");
-    }
     t && this.config.annotate && (t = await this.openAnnotationEditor(t) ?? t);
     const o = this.feedbackData.elementSelector ? {
       x: this.selectedBounds.x,
       y: this.selectedBounds.y,
       width: this.selectedBounds.width,
       height: this.selectedBounds.height
-    } : null, n = {
+    } : null, r = {
       feedbackType: this.feedbackData.feedbackType,
       pageUrl: window.location.href,
       apiKey: this.config.apiKey || void 0,
@@ -774,26 +779,31 @@ class ie {
       userAgent: navigator.userAgent
     };
     try {
-      const l = await fetch(this.config.endpoint, {
+      const a = await fetch(this.config.endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(n)
+        body: JSON.stringify(r)
       });
-      if (l.ok) {
-        const c = await l.json();
-        this.feedbackId = c.id, this.announceMsg("Feedback sent");
+      if (a.ok) {
+        const l = await a.json();
+        this.feedbackId = l.id, this.announceMsg("Feedback sent");
       }
-    } catch (l) {
-      console.error("Failed to submit feedback:", l), this.announceMsg("Failed to send feedback", !0);
+    } catch (a) {
+      console.error("Failed to submit feedback:", a), this.announceMsg("Failed to send feedback", !0);
     }
-    const a = this.feedbackData.feedbackType;
-    if (a && a !== "neutral" && await this.tryLaunchQuest(a, this.feedbackId)) {
+    const n = this.feedbackData.feedbackType;
+    if (n && n !== "neutral" && await this.tryLaunchQuest(n, this.feedbackId)) {
       this.resetFeedbackUi();
       return;
     }
     this.state = "MODAL_OPEN";
-    const r = await this.ensureModal();
-    this.destroyed || (r.open(), this.overlayShadowHost && (this.overlayShadowHost.style.pointerEvents = "auto"));
+    try {
+      const a = await this.ensureModal();
+      if (this.destroyed) return;
+      a.open(), this.overlayShadowHost && (this.overlayShadowHost.style.pointerEvents = "auto");
+    } catch (a) {
+      console.error("Failed to open the feedback modal:", a), this.announceMsg("Thank you for your feedback!", !0), this.resetFeedbackUi();
+    }
   }
   /**
    * Quest id linked to `type`, or "" when quest launching is disabled
@@ -824,8 +834,8 @@ class ie {
           this.activeQuest = null;
         }
       }), !0;
-    } catch (n) {
-      return console.error("Failed to launch quest:", n), this.activeQuest = null, !1;
+    } catch (r) {
+      return console.error("Failed to launch quest:", r), this.activeQuest = null, !1;
     }
   }
   /**
@@ -843,7 +853,7 @@ class ie {
    */
   async ensureModal() {
     if (!this.modal) {
-      const { ModalController: t } = await import("./modal-Br-8TcEE.js");
+      const { ModalController: t } = await import("./modal-C8Ca7E5j.js");
       this.modal = new t(this.makeModalHost());
     }
     return this.modal;
@@ -889,7 +899,7 @@ class ie {
   }
   /** Warm the modal chunk while the user is targeting, so it opens instantly. */
   prewarmModal() {
-    this.modalPrewarmed || (this.modalPrewarmed = !0, import("./modal-Br-8TcEE.js").catch(() => {
+    this.modalPrewarmed || (this.modalPrewarmed = !0, import("./modal-C8Ca7E5j.js").catch(() => {
     }));
   }
   /**
@@ -899,7 +909,7 @@ class ie {
    */
   async ensureTargeting() {
     if (!this.targeting) {
-      const { TargetingController: t } = await import("./targeting-_aii7qgw.js");
+      const { TargetingController: t } = await import("./targeting-BEQU2Ogo.js");
       this.targeting = new t(this.makeTargetingHost());
     }
     return this.targeting;
@@ -944,7 +954,7 @@ class ie {
   }
   /** Warm the targeting chunk on thumb-button hover, before the click. */
   prewarmTargeting() {
-    this.targetingPrewarmed || this.config.skipTargeting || (this.targetingPrewarmed = !0, import("./targeting-_aii7qgw.js").catch(() => {
+    this.targetingPrewarmed || this.config.skipTargeting || (this.targetingPrewarmed = !0, import("./targeting-BEQU2Ogo.js").catch(() => {
     }));
   }
   // ==================== Video Recording ====================
@@ -963,7 +973,7 @@ class ie {
    */
   async ensureRecording() {
     if (!this.recording) {
-      const { RecordingController: t } = await import("./recording-BRvu1Vkh.js");
+      const { RecordingController: t } = await import("./recording-DhRZ6-tW.js");
       this.recording = new t(this.makeRecordingHost());
     }
     return this.recording;
@@ -1042,7 +1052,7 @@ function oe() {
 function ae(e) {
   const t = e.getAttribute("data-endpoint");
   if (!t) return null;
-  const i = e.getAttribute("data-position"), o = e.getAttribute("data-zindex"), n = e.getAttribute("data-positive-color"), a = e.getAttribute("data-negative-color"), r = e.getAttribute("data-marker-color"), l = e.getAttribute("data-container"), c = e.getAttribute("data-button-class"), d = e.getAttribute("data-skip-targeting"), s = e.getAttribute("data-single-button"), u = e.getAttribute("data-feedback-mode"), h = e.getAttribute("data-incognito"), p = e.getAttribute("data-button-size"), m = e.getAttribute("data-offset-x"), g = e.getAttribute("data-offset-y"), S = e.getAttribute("data-modal-width"), C = e.getAttribute("data-backdrop-opacity"), j = e.getAttribute("data-font-family"), A = e.getAttribute("data-font-size"), T = e.getAttribute("data-tooltip"), E = e.getAttribute("data-modal-title"), I = e.getAttribute("data-modal-subtitle"), D = e.getAttribute("data-placeholder"), H = e.getAttribute("data-submit-button"), z = e.getAttribute("data-skip-button"), Q = e.getAttribute("data-positive-icon"), W = e.getAttribute("data-negative-icon"), Y = e.getAttribute("data-feedback-icon"), L = e.getAttribute("data-feedback-label"), X = e.getAttribute("data-api-key"), G = e.getAttribute("data-capture-screenshot"), J = e.getAttribute("data-annotate"), Z = e.getAttribute("data-annotation-color"), v = e.getAttribute("data-screenshot-quality"), y = e.getAttribute("data-screenshot-max-width"), w = e.getAttribute("data-screenshot-max-height"), tt = e.getAttribute("data-capture-video"), M = e.getAttribute("data-video-redaction"), et = e.getAttribute("data-hide-thumbs"), it = e.getAttribute("data-hide-dismiss"), q = e.getAttribute("data-video-max-duration"), ot = e.getAttribute("data-screenshot-method"), at = e.getAttribute("data-direction"), B = e.getAttribute("data-css-selector"), O = e.getAttribute("data-quest-base"), nt = e.getAttribute("data-quest-up"), rt = e.getAttribute("data-quest-down"), st = e.getAttribute("data-quest-video"), dt = e.getAttribute("data-quest-api-key"), lt = e.getAttribute("data-quest-module-url");
+  const i = e.getAttribute("data-position"), o = e.getAttribute("data-zindex"), r = e.getAttribute("data-positive-color"), n = e.getAttribute("data-negative-color"), a = e.getAttribute("data-marker-color"), l = e.getAttribute("data-container"), c = e.getAttribute("data-button-class"), d = e.getAttribute("data-skip-targeting"), s = e.getAttribute("data-single-button"), u = e.getAttribute("data-feedback-mode"), h = e.getAttribute("data-incognito"), p = e.getAttribute("data-button-size"), m = e.getAttribute("data-offset-x"), g = e.getAttribute("data-offset-y"), S = e.getAttribute("data-modal-width"), C = e.getAttribute("data-backdrop-opacity"), j = e.getAttribute("data-font-family"), A = e.getAttribute("data-font-size"), T = e.getAttribute("data-tooltip"), E = e.getAttribute("data-modal-title"), I = e.getAttribute("data-modal-subtitle"), D = e.getAttribute("data-placeholder"), H = e.getAttribute("data-submit-button"), z = e.getAttribute("data-skip-button"), Q = e.getAttribute("data-positive-icon"), W = e.getAttribute("data-negative-icon"), Y = e.getAttribute("data-feedback-icon"), L = e.getAttribute("data-feedback-label"), X = e.getAttribute("data-api-key"), G = e.getAttribute("data-capture-screenshot"), J = e.getAttribute("data-annotate"), Z = e.getAttribute("data-annotation-color"), v = e.getAttribute("data-screenshot-quality"), y = e.getAttribute("data-screenshot-max-width"), w = e.getAttribute("data-screenshot-max-height"), tt = e.getAttribute("data-capture-video"), M = e.getAttribute("data-video-redaction"), et = e.getAttribute("data-hide-thumbs"), it = e.getAttribute("data-hide-dismiss"), q = e.getAttribute("data-video-max-duration"), ot = e.getAttribute("data-screenshot-method"), at = e.getAttribute("data-direction"), B = e.getAttribute("data-css-selector"), O = e.getAttribute("data-quest-base"), nt = e.getAttribute("data-quest-up"), rt = e.getAttribute("data-quest-down"), st = e.getAttribute("data-quest-video"), dt = e.getAttribute("data-quest-api-key"), lt = e.getAttribute("data-quest-module-url");
   return {
     endpoint: t,
     css: B ? $(B) : void 0,
@@ -1075,9 +1085,9 @@ function ae(e) {
     fontFamily: j ?? void 0,
     fontSize: A ? parseInt(A, 10) : void 0,
     colors: {
-      positive: n ?? void 0,
-      negative: a ?? void 0,
-      marker: r ?? void 0
+      positive: r ?? void 0,
+      negative: n ?? void 0,
+      marker: a ?? void 0
     },
     text: T || E || I || D || H || z || L ? {
       tooltip: T ?? void 0,
@@ -1109,17 +1119,17 @@ function ae(e) {
     } : void 0
   };
 }
-function se() {
+function ne() {
   if (typeof document > "u") return;
   const e = () => {
-    const t = document.currentScript ?? document.querySelector("script[data-endpoint]"), i = oe(), o = t ? ae(t) : null, n = i ?? o;
-    n?.endpoint && new ie(n);
+    const t = document.currentScript ?? document.querySelector("script[data-endpoint]"), i = oe(), o = t ? ae(t) : null, r = i ?? o;
+    r?.endpoint && new ie(r);
   };
   document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", e) : e();
 }
+ne();
 export {
   ie as Q,
-  se as a,
-  re as c
+  se as c
 };
-//# sourceMappingURL=bootstrap-rINL2pCt.js.map
+//# sourceMappingURL=loader-DnJ3MHkt.js.map

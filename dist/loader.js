@@ -1,7 +1,5 @@
-import { a } from "./chunks/bootstrap-rINL2pCt.js";
-import { Q as e } from "./chunks/bootstrap-rINL2pCt.js";
-a();
+import { Q as d } from "./chunks/loader-DnJ3MHkt.js";
 export {
-  e as QaidFeedback
+  d as QaidFeedback
 };
 //# sourceMappingURL=loader.js.map

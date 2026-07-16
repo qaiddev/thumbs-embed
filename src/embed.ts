@@ -836,6 +836,11 @@ export class QaidFeedback {
         openDialog: (container, opts) => this.openDialogA11y(container, opts),
         closeDialog: () => this.closeDialogA11y(),
       });
+    } catch (err) {
+      // The annotate chunk failed to load / the editor threw — keep the
+      // original screenshot rather than aborting the whole submission.
+      console.error("Annotation editor failed to open:", err);
+      return null;
     } finally {
       host.style.pointerEvents = prevPointerEvents;
     }
@@ -849,15 +854,22 @@ export class QaidFeedback {
       this.config.captureScreenshot || this.config.feedbackMode === "annotate";
     if (wantScreenshot) {
       // Loaded on demand so visitors who never submit a screenshot never
-      // download the capture + annotation code.
-      if (this.shouldCaptureViaDom()) {
-        const { captureDomScreenshot } = await import("./screenshot-dom");
-        screenshot = await captureDomScreenshot(this.config.screenshotOptions);
-      } else {
-        const { captureScreenshot } = await import("./screenshot");
-        screenshot = await captureScreenshot(this.config.screenshotOptions);
+      // download the capture + annotation code. A capture failure (denied
+      // permission, chunk load error) must never abort the feedback — we just
+      // submit without a screenshot so the user still reaches the modal.
+      try {
+        if (this.shouldCaptureViaDom()) {
+          const { captureDomScreenshot } = await import("./screenshot-dom");
+          screenshot = await captureDomScreenshot(this.config.screenshotOptions);
+        } else {
+          const { captureScreenshot } = await import("./screenshot");
+          screenshot = await captureScreenshot(this.config.screenshotOptions);
+        }
+        if (screenshot) this.announceMsg("Screenshot captured");
+      } catch (err) {
+        console.error("Screenshot capture failed:", err);
+        screenshot = null;
       }
-      if (screenshot) this.announceMsg("Screenshot captured");
     }
 
     // Let the user mark up / redact the screenshot before it is submitted.
@@ -929,18 +941,27 @@ export class QaidFeedback {
       return;
     }
 
-    // Always show modal (even if API failed - useful for demos)
+    // Always show the message modal as the terminal state (even if the API
+    // failed — useful for demos).
     this.state = "MODAL_OPEN";
+    try {
+      // The modal chunk loads async; bail if the embed was destroyed meanwhile,
+      // so a raced modal never opens (and never leaks a listener) post-destroy.
+      const modal = await this.ensureModal();
+      if (this.destroyed) return;
+      modal.open();
 
-    // The modal chunk loads async; bail if the embed was destroyed meanwhile,
-    // so a raced modal never opens (and never leaks a listener) post-destroy.
-    const modal = await this.ensureModal();
-    if (this.destroyed) return;
-    modal.open();
-
-    // Enable pointer events on overlay host for modal
-    if (this.overlayShadowHost) {
-      this.overlayShadowHost.style.pointerEvents = "auto";
+      // Enable pointer events on overlay host for modal
+      if (this.overlayShadowHost) {
+        this.overlayShadowHost.style.pointerEvents = "auto";
+      }
+    } catch (err) {
+      // The modal chunk failed to load/open. Never leave the user stuck in a
+      // re-targetable limbo: thank them and reset to IDLE so a fresh click
+      // starts a clean flow (the feedback itself was already POSTed above).
+      console.error("Failed to open the feedback modal:", err);
+      this.announceMsg("Thank you for your feedback!", true);
+      this.resetFeedbackUi();
     }
   }
 

@@ -3965,4 +3965,56 @@ describe("QaidFeedback", () => {
       expect(opts.palette).toEqual(["#00ff00", "#ff0000"]);
     });
   });
+
+  describe("submit resilience (never a stuck target/click loop)", () => {
+    it("thanks the user and resets to IDLE when the modal fails to open", async () => {
+      const fetchMock = vi
+        .fn()
+        .mockResolvedValue({ ok: true, json: () => Promise.resolve({ id: 5 }) });
+      global.fetch = fetchMock;
+      embed = new QaidFeedback({ endpoint: "/api/feedback", skipTargeting: true });
+      // Force the lazy modal chunk to fail loading.
+      vi.spyOn(embed as unknown as { ensureModal: () => Promise<unknown> }, "ensureModal")
+        .mockRejectedValue(new Error("chunk load failed"));
+      const announce = vi.spyOn(
+        embed as unknown as { announceMsg: (m: string, a?: boolean) => void },
+        "announceMsg"
+      );
+
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+
+      // Wait until the modal-failure path thanks the user (only fires in the
+      // catch), proving the flow reached a terminal state rather than hanging.
+      await vi.waitFor(() =>
+        expect(announce).toHaveBeenCalledWith("Thank you for your feedback!", true)
+      );
+      // ...and reset to IDLE (not stuck in MODAL_OPEN → no re-targetable loop).
+      expect((embed as unknown as { state: string }).state).toBe("IDLE");
+      expect(fetchMock).toHaveBeenCalled();
+    });
+
+    it("still submits and opens the modal when screenshot capture throws", async () => {
+      screenshotMocks.captureScreenshot.mockRejectedValueOnce(new Error("denied"));
+      screenshotMocks.captureDomScreenshot.mockRejectedValueOnce(new Error("denied"));
+      const fetchMock = vi
+        .fn()
+        .mockResolvedValue({ ok: true, json: () => Promise.resolve({ id: 6 }) });
+      global.fetch = fetchMock;
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        skipTargeting: true,
+        captureScreenshot: true,
+      });
+
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+
+      // Capture failed but the flow continues to POST + the modal.
+      await vi.waitFor(() => {
+        expect(
+          getOverlayShadowRoot().querySelector(".qaid-modal-container, .qaid-bottom-sheet")
+        ).not.toBeNull();
+      });
+      expect(JSON.parse(fetchMock.mock.calls[0][1].body).screenshot).toBeNull();
+    });
+  });
 });

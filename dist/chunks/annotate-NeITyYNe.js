@@ -401,19 +401,14 @@ const Y = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   rectFromPoints: u
 }, Symbol.toStringTag, { value: "Module" }));
 export {
-  f as A,
   H as F,
   $ as R,
   j as T,
   W as a,
   z as b,
-  g as c,
-  p as d,
-  K as e,
-  Y as f,
+  K as c,
+  Y as d,
   V as g,
-  F as i,
-  U as o,
-  u as r
+  F as i
 };
-//# sourceMappingURL=annotate-pSxJNPPL.js.map
+//# sourceMappingURL=annotate-NeITyYNe.js.map
