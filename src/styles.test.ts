@@ -128,6 +128,16 @@ describe("styles", () => {
       expect(() => removeStyles()).not.toThrow();
     });
 
+    it("should survive the style element being removed by a client-side router", () => {
+      // Astro's view transitions (and any SPA router that swaps <head>) take
+      // the injected <style> with them, so the element the count still expects
+      // is already gone by the time the host destroys the embed.
+      injectStyles();
+      document.getElementById("qaid-styles")!.remove();
+
+      expect(() => removeStyles()).not.toThrow();
+    });
+
     it("should use reference counting — style stays when one of two instances is removed", () => {
       injectStyles();
       injectStyles();

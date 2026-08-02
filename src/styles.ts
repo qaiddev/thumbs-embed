@@ -164,7 +164,11 @@ export function removeStyles(): void {
   if (instanceCount <= 0) return;
   instanceCount--;
   if (instanceCount === 0) {
-    document.getElementById("qaid-styles")!.remove();
+    // Optional: a client-side router (Astro's view transitions, any SPA that
+    // swaps <head>) can remove this element out from under us, so by the time
+    // a later destroy() runs there may be nothing to remove. Asserting it here
+    // threw and took the rest of destroy() — and any re-mount after it — down.
+    document.getElementById("qaid-styles")?.remove();
   }
 }
 
