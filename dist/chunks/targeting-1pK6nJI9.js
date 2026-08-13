@@ -1,4 +1,4 @@
-import { g as k, c as T, b as m } from "./annotate-NeITyYNe.js";
+import { g as k, c as T, b as m } from "./annotate-CMq95aXG.js";
 const E = ["data-comp", "data-qa", "data-testid", "data-id"];
 function C(s, t = document.body) {
   let e = s;
@@ -175,6 +175,7 @@ class O {
   constructor(t) {
     this.host = t;
   }
+  host;
   mousePos = { x: 0, y: 0 };
   touchStartPos = null;
   overlayContainer = null;
@@ -292,4 +293,4 @@ class O {
 export {
   O as TargetingController
 };
-//# sourceMappingURL=targeting-BEQU2Ogo.js.map
+//# sourceMappingURL=targeting-1pK6nJI9.js.map

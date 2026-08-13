@@ -1,4 +1,4 @@
-import { b as v } from "./annotate-NeITyYNe.js";
+import { b as v } from "./annotate-CMq95aXG.js";
 const g = document;
 function r(n, t, ...o) {
   const e = g.createElement(n);
@@ -76,6 +76,7 @@ class w {
   constructor(t) {
     this.host = t;
   }
+  host;
   videoRecorder = null;
   networkCapture = null;
   recordedBlob = null;
@@ -312,4 +313,4 @@ class w {
 export {
   w as RecordingController
 };
-//# sourceMappingURL=recording-DhRZ6-tW.js.map
+//# sourceMappingURL=recording-BVFd_ryf.js.map

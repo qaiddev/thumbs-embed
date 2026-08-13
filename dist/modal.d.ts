@@ -46,4 +46,12 @@ export declare class ModalController {
     private getModalContent;
     private setupModalInteractions;
     private submitMessage;
+    /**
+     * Replace the modal's contents with a checkmark and a short acknowledgement.
+     *
+     * The submit button that had focus is gone by this point, so focus moves to
+     * the heading (WCAG 2.4.3) and the message is announced. Mirrors the quests
+     * embed's thank-you screen so the two products confirm the same way.
+     */
+    private showConfirmation;
 }

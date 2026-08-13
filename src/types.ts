@@ -73,7 +73,22 @@ export interface FeedbackConfig {
     dismissLabel?: string;
     /** Accessible name / tooltip for the single "Feedback" button (singleButton mode) */
     feedbackLabel?: string;
+    /** Heading on the success screen. Default: "Thank you!" */
+    confirmationTitle?: string;
+    /** Body copy on the success screen. Default: "Your feedback has been received." */
+    confirmationMessage?: string;
+    /** Dismiss button on the success screen. Default: "Close" */
+    confirmationClose?: string;
   };
+  /**
+   * Skip the success screen and dismiss immediately once a message is sent.
+   *
+   * Default: false. Before 1.7.0 the modal always vanished on submit with no
+   * acknowledgement, which reads as a failure — especially inline, where there
+   * is no overlay disappearing to signal anything happened. Set true to opt
+   * back out.
+   */
+  hideConfirmation?: boolean;
   /** Modal width in pixels. Default: 400 */
   modalWidth?: number;
   /** Backdrop opacity (0-1). Default: 0.3 */
@@ -315,7 +330,11 @@ export interface ResolvedFeedbackConfig {
     recordLabel: string;
     dismissLabel: string;
     feedbackLabel: string;
+    confirmationTitle: string;
+    confirmationMessage: string;
+    confirmationClose: string;
   };
+  hideConfirmation: boolean;
   modalWidth: number;
   backdropOpacity: number;
   fontFamily: string;

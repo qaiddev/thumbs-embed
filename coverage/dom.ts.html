@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">95.23% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/21</span>
+                <span class='fraction'>20/21</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">88.88% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>16/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>14/14</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -141,7 +141,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -169,23 +169,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">362x</span>
+<span class="cline-any cline-yes">362x</span>
+<span class="cline-any cline-yes">334x</span>
+<span class="cline-any cline-yes">334x</span>
+<span class="cline-any cline-yes">334x</span>
+<span class="cline-any cline-yes">334x</span>
+<span class="cline-any cline-yes">334x</span>
+<span class="cline-any cline-yes">200x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">334x</span>
+<span class="cline-any cline-yes">113x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">362x</span>
+<span class="cline-any cline-yes">308x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">362x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * Nano DOM factory — a purpose-built, construction-only helper for this embed.
@@ -203,7 +203,7 @@
  * can't be.
  */
 &nbsp;
-const d = <span class="cstat-no" title="statement not covered" >document;</span>
+const d = document;
 &nbsp;
 export interface ElProps {
   /** className */
@@ -226,28 +226,28 @@ type Child = Node | string | null | undefined | false;
  * Create an element, apply props, and append children. Falsy children are
  * skipped so conditional content reads cleanly (`cond &amp;&amp; h(...)`).
  */
-export function <span class="fstat-no" title="function not covered" >h&lt;K extends keyof HTMLElementTagNameMap&gt;(</span>
+export function h&lt;K extends keyof HTMLElementTagNameMap&gt;(
   tag: K,
   props?: ElProps | null,
   ...children: Child[]
 ): HTMLElementTagNameMap[K] {
-  const el = <span class="cstat-no" title="statement not covered" >d.createElement(tag);</span>
-<span class="cstat-no" title="statement not covered" >  if (props) {</span>
-<span class="cstat-no" title="statement not covered" >    if (props.class) <span class="cstat-no" title="statement not covered" >el.className = props.class;</span></span>
-<span class="cstat-no" title="statement not covered" >    if (props.style) <span class="cstat-no" title="statement not covered" >el.style.cssText = props.style;</span></span>
-<span class="cstat-no" title="statement not covered" >    if (props.html != null) <span class="cstat-no" title="statement not covered" >el.innerHTML = props.html;</span></span>
-<span class="cstat-no" title="statement not covered" >    if (props.text != null) <span class="cstat-no" title="statement not covered" >el.textContent = props.text;</span></span>
-<span class="cstat-no" title="statement not covered" >    if (props.attrs) {</span>
-<span class="cstat-no" title="statement not covered" >      for (const k in props.attrs) <span class="cstat-no" title="statement not covered" >el.setAttribute(k, props.attrs[k]);</span></span>
+  const el = d.createElement(tag);
+  if (props) {
+    if (props.class) el.className = props.class;
+    if (props.style) el.style.cssText = props.style;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (props.html != null) <span class="cstat-no" title="statement not covered" >el.innerHTML = props.html;</span>
+    if (props.text != null) el.textContent = props.text;
+    if (props.attrs) {
+      for (const k in props.attrs) el.setAttribute(k, props.attrs[k]);
     }
-<span class="cstat-no" title="statement not covered" >    if (props.on) {</span>
-<span class="cstat-no" title="statement not covered" >      for (const k in props.on) <span class="cstat-no" title="statement not covered" >el.addEventListener(k, props.on[k]);</span></span>
+    if (props.on) {
+      for (const k in props.on) el.addEventListener(k, props.on[k]);
     }
   }
-<span class="cstat-no" title="statement not covered" >  for (const child of children) {</span>
-<span class="cstat-no" title="statement not covered" >    if (child != null &amp;&amp; child !== false) <span class="cstat-no" title="statement not covered" >el.append(child);</span></span>
+  for (const child of children) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (child != null &amp;&amp; child !== false) el.append(child);
   }
-<span class="cstat-no" title="statement not covered" >  return el;</span>
+  return el;
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -256,7 +256,7 @@ export function <span class="fstat-no" title="function not covered" >h&lt;K exte
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-07-16T00:23:47.620Z
+                at 2026-08-13T23:07:15.806Z
             </div>
         <script src="prettify.js"></script>
         <script>

@@ -8,7 +8,7 @@
  */
 
 import { calculateModalAndArrowPosition } from "./modal-positioning";
-import { THUMBS_UP_ICON, THUMBS_DOWN_ICON, FEEDBACK_ICON } from "./icons";
+import { THUMBS_UP_ICON, THUMBS_DOWN_ICON, FEEDBACK_ICON, DONE_ICON } from "./icons";
 import type {
   ResolvedFeedbackConfig,
   EmbedState,
@@ -260,6 +260,8 @@ export class ModalController {
   }
 
   private async submitMessage(message: string | null): Promise<void> {
+    let sent = false;
+
     if (this.host.feedbackId) {
       try {
         await fetch(`${this.host.config.endpoint}/${this.host.feedbackId}`, {
@@ -267,6 +269,7 @@ export class ModalController {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ message }),
         });
+        sent = true;
       } catch (error) {
         console.error("Failed to submit feedback message:", error);
       }
@@ -274,6 +277,56 @@ export class ModalController {
       this.host.setFeedbackId(null);
     }
 
+    // A submit that simply removes the modal reads as a failure — nothing
+    // acknowledges that the message was sent. Show a success screen unless the
+    // host opted out.
+    //
+    // Only on a genuine success, though: with no feedbackId the initial POST
+    // never landed, and a failed PATCH means the message is gone. Telling
+    // someone their feedback was received in either case would be a lie, so
+    // those paths close exactly as they did before.
+    if (sent && !this.host.config.hideConfirmation) {
+      this.showConfirmation();
+      return;
+    }
     this.close();
+  }
+
+  /**
+   * Replace the modal's contents with a checkmark and a short acknowledgement.
+   *
+   * The submit button that had focus is gone by this point, so focus moves to
+   * the heading (WCAG 2.4.3) and the message is announced. Mirrors the quests
+   * embed's thank-you screen so the two products confirm the same way.
+   */
+  private showConfirmation(): void {
+    const box = this.modalContainer?.querySelector(".qaid-modal-box")
+      ?? this.modalContainer?.querySelector(".qaid-bottom-sheet-content")
+      ?? this.modalContainer;
+
+    if (!box) {
+      // Nothing to draw into — never strand the user with an open modal.
+      this.close();
+      return;
+    }
+
+    const text = this.host.config.text;
+    const titleId = `qaid-confirm-title-${this.host.uid}`;
+
+    box.innerHTML = `
+      <div class="qaid-confirm">
+        <span class="qaid-confirm-icon" aria-hidden="true">${DONE_ICON}</span>
+        <h3 class="qaid-confirm-title" id="${titleId}" tabindex="-1">${text.confirmationTitle}</h3>
+        <p class="qaid-confirm-message">${text.confirmationMessage}</p>
+        <button type="button" class="qaid-btn-submit qaid-confirm-close">${text.confirmationClose}</button>
+      </div>
+    `;
+
+    box.querySelector(".qaid-confirm-close")?.addEventListener("click", () => this.close());
+
+    const title = box.querySelector<HTMLElement>(`#${CSS.escape(titleId)}`);
+    // Focus after paint, matching the quests embed.
+    requestAnimationFrame(() => title?.focus());
+    this.host.announceMsg(`${text.confirmationTitle} ${text.confirmationMessage}`, true);
   }
 }

@@ -1,9 +1,10 @@
-import { c } from "./loader-DnJ3MHkt.js";
-import { T as d, a as h, F as r } from "./annotate-NeITyYNe.js";
-class g {
+import { c as h } from "./loader-CYM1rxDH.js";
+import { T as d, a as c, F as r, D as p } from "./annotate-CMq95aXG.js";
+class f {
   constructor(e) {
     this.host = e;
   }
+  host;
   modalContainer = null;
   backdrop = null;
   open() {
@@ -35,7 +36,7 @@ class g {
     `, this.host.applyVars(t), e.appendChild(t), this.modalContainer = t, this.setupModalInteractions();
   }
   showPositionedModal() {
-    const e = this.host.ensureOverlayHost(), { modal: t, arrow: s } = c(
+    const e = this.host.ensureOverlayHost(), { modal: t, arrow: i } = h(
       this.host.selectedBounds,
       window.innerWidth,
       window.innerHeight,
@@ -49,16 +50,16 @@ class g {
     );
     this.modalContainer = document.createElement("div"), this.modalContainer.className = `qaid-modal-container qaid-${t.position}`, this.modalContainer.style.top = `${t.top}px`, this.modalContainer.style.left = `${t.left}px`, this.modalContainer.style.zIndex = String(this.host.config.zIndex + 3);
     const o = document.createElement("div");
-    o.className = "qaid-modal-arrow", o.style.left = `${s.left}px`;
-    const i = document.createElement("div");
-    i.className = "qaid-modal-box", i.innerHTML = this.getModalContent(), this.modalContainer.appendChild(o), this.modalContainer.appendChild(i), this.host.applyVars(this.modalContainer), e.appendChild(this.modalContainer), this.setupModalInteractions();
+    o.className = "qaid-modal-arrow", o.style.left = `${i.left}px`;
+    const s = document.createElement("div");
+    s.className = "qaid-modal-box", s.innerHTML = this.getModalContent(), this.modalContainer.appendChild(o), this.modalContainer.appendChild(s), this.host.applyVars(this.modalContainer), e.appendChild(this.modalContainer), this.setupModalInteractions();
   }
   getModalContent() {
-    const e = this.host.feedbackData.feedbackType, t = e === "up", s = this.host.config.positiveIcon || d, o = this.host.config.negativeIcon || h, i = this.host.config.buttonClass ? `qaid-type-toggle qaid-type-toggle-custom ${this.host.config.buttonClass} ${t ? "qaid-btn-up" : "qaid-btn-down"}` : `qaid-type-toggle ${t ? "qaid-type-up" : "qaid-type-down"}`;
+    const e = this.host.feedbackData.feedbackType, t = e === "up", i = this.host.config.positiveIcon || d, o = this.host.config.negativeIcon || c, s = this.host.config.buttonClass ? `qaid-type-toggle qaid-type-toggle-custom ${this.host.config.buttonClass} ${t ? "qaid-btn-up" : "qaid-btn-down"}` : `qaid-type-toggle ${t ? "qaid-type-up" : "qaid-type-down"}`;
     return `
       <div class="qaid-modal-header">
-        ${e === "neutral" ? `<span class="qaid-type-static" aria-hidden="true">${this.host.config.feedbackIcon || r}</span>` : `<button type="button" class="${i}" title="Click to switch" aria-pressed="${t}" aria-label="${t ? "Feedback type: positive" : "Feedback type: negative"}">
-          ${t ? s : o}
+        ${e === "neutral" ? `<span class="qaid-type-static" aria-hidden="true">${this.host.config.feedbackIcon || r}</span>` : `<button type="button" class="${s}" title="Click to switch" aria-pressed="${t}" aria-label="${t ? "Feedback type: positive" : "Feedback type: negative"}">
+          ${t ? i : o}
         </button>`}
         <div class="qaid-modal-header-text">
           <h3 class="qaid-modal-title" id="qaid-modal-title-${this.host.uid}">${this.host.config.text.modalTitle}</h3>
@@ -83,14 +84,14 @@ class g {
       const o = e?.value.trim() || null;
       this.submitMessage(o);
     });
-    const s = this.modalContainer.querySelector(".qaid-type-toggle");
-    s && s.addEventListener("click", () => {
+    const i = this.modalContainer.querySelector(".qaid-type-toggle");
+    i && i.addEventListener("click", () => {
       const o = this.host.feedbackData.feedbackType === "up" ? "down" : "up";
-      this.host.feedbackData.feedbackType = o, this.host.config.buttonClass ? (s.classList.toggle("qaid-btn-up", o === "up"), s.classList.toggle("qaid-btn-down", o === "down")) : (s.classList.toggle("qaid-type-up", o === "up"), s.classList.toggle("qaid-type-down", o === "down"));
-      const i = this.host.config.positiveIcon || d, n = this.host.config.negativeIcon || h;
-      s.innerHTML = o === "up" ? i : n;
+      this.host.feedbackData.feedbackType = o, this.host.config.buttonClass ? (i.classList.toggle("qaid-btn-up", o === "up"), i.classList.toggle("qaid-btn-down", o === "down")) : (i.classList.toggle("qaid-type-up", o === "up"), i.classList.toggle("qaid-type-down", o === "down"));
+      const s = this.host.config.positiveIcon || d, n = this.host.config.negativeIcon || c;
+      i.innerHTML = o === "up" ? s : n;
       const a = o === "up" ? "Feedback type: positive" : "Feedback type: negative";
-      s.setAttribute("aria-pressed", String(o === "up")), s.setAttribute("aria-label", a), this.host.announceMsg(a), this.host.feedbackId && fetch(`${this.host.config.endpoint}/${this.host.feedbackId}`, {
+      i.setAttribute("aria-pressed", String(o === "up")), i.setAttribute("aria-label", a), this.host.announceMsg(a), this.host.feedbackId && fetch(`${this.host.config.endpoint}/${this.host.feedbackId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ feedbackType: o })
@@ -98,22 +99,52 @@ class g {
     });
   }
   async submitMessage(e) {
+    let t = !1;
     if (this.host.feedbackId) {
       try {
         await fetch(`${this.host.config.endpoint}/${this.host.feedbackId}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ message: e })
-        });
-      } catch (t) {
-        console.error("Failed to submit feedback message:", t);
+        }), t = !0;
+      } catch (i) {
+        console.error("Failed to submit feedback message:", i);
       }
       this.host.setFeedbackId(null);
     }
+    if (t && !this.host.config.hideConfirmation) {
+      this.showConfirmation();
+      return;
+    }
     this.close();
+  }
+  /**
+   * Replace the modal's contents with a checkmark and a short acknowledgement.
+   *
+   * The submit button that had focus is gone by this point, so focus moves to
+   * the heading (WCAG 2.4.3) and the message is announced. Mirrors the quests
+   * embed's thank-you screen so the two products confirm the same way.
+   */
+  showConfirmation() {
+    const e = this.modalContainer?.querySelector(".qaid-modal-box") ?? this.modalContainer?.querySelector(".qaid-bottom-sheet-content") ?? this.modalContainer;
+    if (!e) {
+      this.close();
+      return;
+    }
+    const t = this.host.config.text, i = `qaid-confirm-title-${this.host.uid}`;
+    e.innerHTML = `
+      <div class="qaid-confirm">
+        <span class="qaid-confirm-icon" aria-hidden="true">${p}</span>
+        <h3 class="qaid-confirm-title" id="${i}" tabindex="-1">${t.confirmationTitle}</h3>
+        <p class="qaid-confirm-message">${t.confirmationMessage}</p>
+        <button type="button" class="qaid-btn-submit qaid-confirm-close">${t.confirmationClose}</button>
+      </div>
+    `, e.querySelector(".qaid-confirm-close")?.addEventListener("click", () => this.close());
+    const o = e.querySelector(`#${CSS.escape(i)}`);
+    requestAnimationFrame(() => o?.focus()), this.host.announceMsg(`${t.confirmationTitle} ${t.confirmationMessage}`, !0);
   }
 }
 export {
-  g as ModalController
+  f as ModalController
 };
-//# sourceMappingURL=modal-C8Ca7E5j.js.map
+//# sourceMappingURL=modal-Br5x7m6f.js.map

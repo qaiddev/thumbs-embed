@@ -1,4 +1,4 @@
-import { Q as d } from "./chunks/loader-DnJ3MHkt.js";
+import { Q as d } from "./chunks/loader-CYM1rxDH.js";
 export {
   d as QaidFeedback
 };

@@ -7,6 +7,12 @@
  * re-export graph is what anchors screenshot/video/annotate into the main
  * chunk and defeats code-splitting.
  */
+import type { FeedbackConfig } from "./types";
+/**
+ * Parse config from data-* attributes (backward compatibility)
+ */
+/** Exported for tests: index.ts does not re-export it, so this is not public API. */
+export declare function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig> | null;
 /**
  * Initialize a QaidFeedback instance from the current `<script>` tag's JSON
  * config block or data-* attributes. Safe to call in any environment — it

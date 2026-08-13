@@ -222,7 +222,12 @@ export class QaidFeedback {
         recordLabel: config.text?.recordLabel ?? "Record a screen recording",
         dismissLabel: config.text?.dismissLabel ?? "Hide Feedback",
         feedbackLabel: config.text?.feedbackLabel ?? "Send feedback",
+        confirmationTitle: config.text?.confirmationTitle ?? "Thank you!",
+        confirmationMessage:
+          config.text?.confirmationMessage ?? "Your feedback has been received.",
+        confirmationClose: config.text?.confirmationClose ?? "Close",
       },
+      hideConfirmation: config.hideConfirmation ?? false,
       modalWidth: config.modalWidth ?? 400,
       backdropOpacity: config.backdropOpacity ?? 0.3,
       fontFamily: config.fontFamily ?? "system-ui, -apple-system, sans-serif",

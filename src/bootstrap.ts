@@ -49,7 +49,8 @@ function parseJsonConfig(): Partial<FeedbackConfig> | null {
 /**
  * Parse config from data-* attributes (backward compatibility)
  */
-function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig> | null {
+/** Exported for tests: index.ts does not re-export it, so this is not public API. */
+export function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig> | null {
   const endpoint = script.getAttribute("data-endpoint");
   if (!endpoint) return null;
 
@@ -66,6 +67,7 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
   const container = script.getAttribute("data-container");
   const buttonClass = script.getAttribute("data-button-class");
   const skipTargeting = script.getAttribute("data-skip-targeting");
+  const hideConfirmation = script.getAttribute("data-hide-confirmation");
   const singleButton = script.getAttribute("data-single-button");
   const feedbackMode = script.getAttribute("data-feedback-mode") as
     | "target"
@@ -85,6 +87,9 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
   const fontSize = script.getAttribute("data-font-size");
   const tooltip = script.getAttribute("data-tooltip");
   const modalTitle = script.getAttribute("data-modal-title");
+  const confirmationTitle = script.getAttribute("data-confirmation-title");
+  const confirmationMessage = script.getAttribute("data-confirmation-message");
+  const confirmationClose = script.getAttribute("data-confirmation-close");
   const modalSubtitle = script.getAttribute("data-modal-subtitle");
   const placeholder = script.getAttribute("data-placeholder");
   const submitButton = script.getAttribute("data-submit-button");
@@ -134,6 +139,7 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
     position: position ?? undefined,
     zIndex: zIndex ? parseInt(zIndex, 10) : undefined,
     skipTargeting: skipTargeting === "true" ? true : undefined,
+    hideConfirmation: hideConfirmation === "true" ? true : undefined,
     singleButton: singleButton === "true" ? true : undefined,
     feedbackMode: feedbackMode ?? undefined,
     incognito: incognito === "true" ? true : undefined,
@@ -151,7 +157,7 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
       negative: negativeColor ?? undefined,
       marker: markerColor ?? undefined,
     },
-    text: (tooltip || modalTitle || modalSubtitle || placeholder || submitButton || skipButton || feedbackLabel) ? {
+    text: (tooltip || modalTitle || modalSubtitle || placeholder || submitButton || skipButton || feedbackLabel || confirmationTitle || confirmationMessage || confirmationClose) ? {
       tooltip: tooltip ?? undefined,
       modalTitle: modalTitle ?? undefined,
       modalSubtitle: modalSubtitle ?? undefined,
@@ -159,6 +165,9 @@ function parseDataAttributes(script: HTMLScriptElement): Partial<FeedbackConfig>
       submitButton: submitButton ?? undefined,
       skipButton: skipButton ?? undefined,
       feedbackLabel: feedbackLabel ?? undefined,
+      confirmationTitle: confirmationTitle ?? undefined,
+      confirmationMessage: confirmationMessage ?? undefined,
+      confirmationClose: confirmationClose ?? undefined,
     } : undefined,
     positiveIcon: positiveIcon ?? undefined,
     negativeIcon: negativeIcon ?? undefined,

@@ -1,6 +1,6 @@
 {
   "name": "@qaiddev/thumbs-embed",
-  "version": "1.6.2",
+  "version": "1.7.0",
   "description": "Precision User Feedback",
   "type": "module",
   "main": "./dist/qaid.umd.cjs",
