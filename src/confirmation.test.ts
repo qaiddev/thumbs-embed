@@ -224,3 +224,100 @@ describe("script tag data attributes", () => {
     expect(overlay.querySelector(".qaid-confirm")).toBeNull();
   });
 });
+
+describe("destroyed mid-submit", () => {
+  afterEach(() => {
+    document
+      .querySelectorAll("script[data-endpoint], [data-qaid-embed], [data-qaid-embed-overlay]")
+      .forEach((el) => el.remove());
+    vi.restoreAllMocks();
+  });
+
+  it("does not try to draw a success screen into a torn-down modal", async () => {
+    // Hold the PATCH open so the embed can be destroyed while it is in flight.
+    let releasePatch: (v: unknown) => void = () => {};
+    let call = 0;
+    global.fetch = vi.fn().mockImplementation(() => {
+      call += 1;
+      if (call === 1) {
+        return Promise.resolve({ ok: true, status: 200, json: async () => ({ id: 7 }) });
+      }
+      return new Promise((resolve) => {
+        releasePatch = resolve;
+      });
+    }) as never;
+
+    const instance = new QaidFeedback({
+      endpoint: "/api/feedback",
+      skipTargeting: true,
+    });
+
+    const shadow = document.querySelector("[data-qaid-embed]")!.shadowRoot!;
+    shadow.querySelector<HTMLButtonElement>(".qaid-btn-up")!.click();
+
+    const overlay = () => document.querySelector("[data-qaid-embed-overlay]")!.shadowRoot!;
+    await vi.waitFor(() => {
+      expect(overlay().querySelector(".qaid-modal-container, .qaid-bottom-sheet")).not.toBeNull();
+    });
+    overlay().querySelector<HTMLButtonElement>(".qaid-btn-submit")!.click();
+
+    // The host tears the embed down before the request comes back.
+    instance.destroy();
+    releasePatch({ ok: true, status: 200, json: async () => ({}) });
+
+    await vi.waitFor(() => expect(call).toBe(2));
+    // No container to draw into, and nothing thrown.
+    expect(document.querySelector("[data-qaid-embed-overlay]")?.shadowRoot
+      ?.querySelector(".qaid-confirm") ?? null).toBeNull();
+  });
+});
+
+describe("ModalController.showConfirmation with no container", () => {
+  /**
+   * Reached when the modal is torn down while its PATCH is still in flight —
+   * the host destroys the embed, teardown nulls modalContainer, and the
+   * request then resolves. Driven directly here because the timing is not
+   * reliably reproducible through the click path.
+   */
+  it("closes instead of drawing into nothing", async () => {
+    const { ModalController } = await import("./modal");
+
+    const host = {
+      config: {
+        endpoint: "/api/feedback",
+        text: {
+          confirmationTitle: "Thank you!",
+          confirmationMessage: "Your feedback has been received.",
+          confirmationClose: "Close",
+        },
+        hideConfirmation: false,
+      },
+      uid: "u1",
+      isMobile: false,
+      state: "MODAL_OPEN",
+      boundKeyDown: () => {},
+      feedbackData: { feedbackType: "up" },
+      selectedBounds: {},
+      feedbackId: 7,
+      setFeedbackId: vi.fn(),
+      ensureOverlayHost: vi.fn(),
+      applyVars: vi.fn(),
+      announceMsg: vi.fn(),
+      openDialogA11y: vi.fn(),
+      closeDialogA11y: vi.fn(),
+      resetFeedbackUi: vi.fn(),
+    };
+
+    global.fetch = vi.fn().mockResolvedValue({ ok: true, status: 200 }) as never;
+
+    // Never opened, so modalContainer is null — the same state teardown leaves.
+    const controller = new ModalController(host as never);
+    await (
+      controller as unknown as { submitMessage(m: string | null): Promise<void> }
+    ).submitMessage("hi");
+
+    // It fell through to close() rather than throwing on a null container.
+    expect(host.resetFeedbackUi).toHaveBeenCalled();
+    expect(host.announceMsg).not.toHaveBeenCalled();
+  });
+});
