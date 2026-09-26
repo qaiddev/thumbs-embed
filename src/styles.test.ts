@@ -77,6 +77,15 @@ describe("styles", () => {
       expect(css).toContain(".qaid-buttons");
     });
 
+    it("sizes a themed button's unsized icon SVG, at element specificity", () => {
+      // A theme icon like <svg viewBox="0 0 24 24">…</svg> has no class and no
+      // width; without this it collapses inside a themed (structural) button.
+      const css = getEmbedStyles();
+      expect(css).toContain(
+        ":where(button.qaid-btn-structural) > svg:where(:not(.qaid-icon):not([width]))"
+      );
+    });
+
     it("should include button styles", () => {
       const css = getEmbedStyles();
       expect(css).toContain("width:var(--qaid-btn-size)");

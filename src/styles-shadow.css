@@ -105,6 +105,15 @@ button.qaid-btn-structural {
   height: 24px;
 }
 
+/* A theme's own icon SVG with no size of its own (no qaid-icon class, no
+   width). In a themed button nothing else sizes it, and an unsized SVG
+   collapses to almost nothing inside the inline-flex button. :where() keeps
+   this at element specificity, so a theme's own svg sizing still wins. */
+:where(button.qaid-btn-structural) > svg:where(:not(.qaid-icon):not([width])) {
+  width: var(--qaid-icon-size, 24px);
+  height: var(--qaid-icon-size, 24px);
+}
+
 /* Support for emoji/unicode icons */
 .qaid-btn-structural:not(:has(svg)),
 .qaid-btn:not(:has(svg)) {
