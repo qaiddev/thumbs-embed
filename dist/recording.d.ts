@@ -70,5 +70,11 @@ export declare class RecordingController {
     private cancelRecordingPreview;
     private removeVideoPreview;
     private submitVideoFeedback;
+    /**
+     * Keep the preview open and say the upload failed. Closing it, as a success
+     * does, told the visitor their recording had arrived when it had not. Send
+     * is re-enabled for another try; Cancel and Re-record still work.
+     */
+    private showSendError;
     private cleanupRecording;
 }

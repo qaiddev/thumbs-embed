@@ -1,5 +1,5 @@
 async function v(m = {}) {
-  const { quality: g = 1, maxWidth: w = 1280, maxHeight: p = 800 } = m;
+  const { quality: g = 0.8, maxWidth: w = 1280, maxHeight: p = 800 } = m;
   try {
     if (!navigator.mediaDevices?.getDisplayMedia)
       return console.warn("Screen Capture API not available"), null;
@@ -30,4 +30,4 @@ async function v(m = {}) {
 export {
   v as captureScreenshot
 };
-//# sourceMappingURL=screenshot-BkOCLuS2.js.map
+//# sourceMappingURL=screenshot-DYOKg2bS.js.map

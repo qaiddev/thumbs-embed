@@ -90,6 +90,8 @@ export function parseDataAttributes(script: HTMLScriptElement): Partial<Feedback
   const confirmationTitle = script.getAttribute("data-confirmation-title");
   const confirmationMessage = script.getAttribute("data-confirmation-message");
   const confirmationClose = script.getAttribute("data-confirmation-close");
+  const errorTitle = script.getAttribute("data-error-title");
+  const errorMessage = script.getAttribute("data-error-message");
   const modalSubtitle = script.getAttribute("data-modal-subtitle");
   const placeholder = script.getAttribute("data-placeholder");
   const submitButton = script.getAttribute("data-submit-button");
@@ -157,7 +159,7 @@ export function parseDataAttributes(script: HTMLScriptElement): Partial<Feedback
       negative: negativeColor ?? undefined,
       marker: markerColor ?? undefined,
     },
-    text: (tooltip || modalTitle || modalSubtitle || placeholder || submitButton || skipButton || feedbackLabel || confirmationTitle || confirmationMessage || confirmationClose) ? {
+    text: (tooltip || modalTitle || modalSubtitle || placeholder || submitButton || skipButton || feedbackLabel || confirmationTitle || confirmationMessage || confirmationClose || errorTitle || errorMessage) ? {
       tooltip: tooltip ?? undefined,
       modalTitle: modalTitle ?? undefined,
       modalSubtitle: modalSubtitle ?? undefined,
@@ -168,6 +170,8 @@ export function parseDataAttributes(script: HTMLScriptElement): Partial<Feedback
       confirmationTitle: confirmationTitle ?? undefined,
       confirmationMessage: confirmationMessage ?? undefined,
       confirmationClose: confirmationClose ?? undefined,
+      errorTitle: errorTitle ?? undefined,
+      errorMessage: errorMessage ?? undefined,
     } : undefined,
     positiveIcon: positiveIcon ?? undefined,
     negativeIcon: negativeIcon ?? undefined,

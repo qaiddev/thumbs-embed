@@ -43,15 +43,25 @@ export declare class ModalController {
     private teardown;
     private showBottomSheet;
     private showPositionedModal;
-    private getModalContent;
+    /**
+     * The modal's contents, built as nodes rather than an HTML string.
+     *
+     * Every piece of copy (title, subtitle, placeholder, button) goes in as
+     * text, so a `<`, `&` or `"` in a translation shows as written instead of
+     * being parsed as markup or cutting an attribute short. Only the icons are
+     * markup, because they are documented as SVG/HTML strings.
+     */
+    private buildModalContent;
     private setupModalInteractions;
     private submitMessage;
     /**
-     * Replace the modal's contents with a checkmark and a short acknowledgement.
+     * Replace the modal's contents with the outcome: a checkmark and a short
+     * acknowledgement, or an error mark and a "not sent" notice.
      *
      * The submit button that had focus is gone by this point, so focus moves to
      * the heading (WCAG 2.4.3) and the message is announced. Mirrors the quests
-     * embed's thank-you screen so the two products confirm the same way.
+     * embed's thank-you screen so the two products confirm the same way. Copy
+     * goes in as text, never markup.
      */
-    private showConfirmation;
+    private showResult;
 }

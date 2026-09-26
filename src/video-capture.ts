@@ -10,6 +10,14 @@ import {
 } from "./video-orientation";
 import { buildRedactedStream, type RedactedStream } from "./video-redaction";
 
+/**
+ * Thrown by `start()` when areas were picked for redaction but this browser
+ * cannot run the canvas pipeline that blurs them. The recording is refused
+ * rather than made without the blur.
+ */
+export const REDACTION_UNAVAILABLE =
+  "This browser cannot blur the areas you picked, so the recording was not started.";
+
 export interface VideoRecorderOptions {
   /** Max recording duration in seconds. Default: 15 */
   maxDuration?: number;
@@ -181,11 +189,16 @@ export function createVideoRecorder(options: VideoRecorderOptions = {}): VideoRe
         });
       }
 
-      // Route the raw capture through a canvas pipeline when needed. On
-      // iOS/iPadOS the captured file is rotated by the OS, so re-encode the live
-      // frames upright. Otherwise, if the user marked regions to redact, blur
-      // their live bounding boxes into the recording. Both fall back to the raw
-      // stream if the canvas pipeline isn't available.
+      // Route the raw capture through canvas pipelines when needed. On
+      // iOS/iPadOS the captured file is rotated by the OS, so first re-encode
+      // the live frames upright (falling back to the raw stream if the canvas
+      // pipeline isn't available). Then, if the user marked regions to redact,
+      // blur their live bounding boxes into whatever the first step produced.
+      //
+      // Redaction used to sit in an `else` of the iOS branch, so on an iPhone
+      // or iPad the picker drew its outlines and the recording went out
+      // unblurred. The upright frame matches the viewport, which is what the
+      // redaction mapping assumes, so the two chain cleanly.
       let recordStream: MediaStream = stream;
       if (isIOSDevice()) {
         const corrected = await buildOrientationCorrectedStream(stream);
@@ -193,14 +206,24 @@ export function createVideoRecorder(options: VideoRecorderOptions = {}): VideoRe
           orientationCorrection = corrected;
           recordStream = corrected.stream;
         }
-      } else if (redactionElements.length > 0) {
-        const redacted = await buildRedactedStream(stream, redactionElements, {
+      }
+      if (redactionElements.length > 0) {
+        const redacted = await buildRedactedStream(recordStream, redactionElements, {
           blurRadius: redactionBlurRadius,
         });
-        if (redacted) {
-          redaction = redacted;
-          recordStream = redacted.stream;
+        if (!redacted) {
+          // The visitor was promised a blur. Recording the areas in the clear
+          // would break that promise, so refuse to record instead.
+          if (orientationCorrection) {
+            orientationCorrection.stop();
+            orientationCorrection = null;
+          }
+          stream.getTracks().forEach((t) => t.stop());
+          stream = null;
+          throw new Error(REDACTION_UNAVAILABLE);
         }
+        redaction = redacted;
+        recordStream = redacted.stream;
       }
 
       recorder = new MediaRecorder(recordStream, {

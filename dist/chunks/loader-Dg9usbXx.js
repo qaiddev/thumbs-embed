@@ -1,20 +1,20 @@
-import { i as pt, F as bt, T as mt, a as gt, R as vt } from "./annotate-CMq95aXG.js";
-const yt = "button{cursor:pointer}.qaid-buttons{display:flex;gap:.5rem}.qaid-buttons.qaid-vertical{flex-direction:column}.qaid-buttons.qaid-auto-container{position:fixed;z-index:50}.qaid-buttons.qaid-auto-container.qaid-bottom-right{bottom:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-bottom-left{bottom:1rem;left:1rem}.qaid-buttons.qaid-auto-container.qaid-top-right{top:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-top-left{top:1rem;left:1rem}.qaid-buttons.qaid-incognito{opacity:0;transition:opacity .2s ease-in-out}.qaid-buttons.qaid-incognito:hover{opacity:1}.qaid-buttons.qaid-dismissed{display:none!important}.qaid-dismiss-btn{width:20px;height:20px;padding:0;border:none;border-radius:50%;background:#0006;color:#fff;display:flex;align-items:center;justify-content:center;align-self:center;opacity:0;transition:opacity .15s,background .15s;cursor:pointer;pointer-events:auto;-webkit-appearance:none;appearance:none}.qaid-dismiss-btn:hover{background:#0009}.qaid-buttons:hover .qaid-dismiss-btn{opacity:1}button.qaid-btn-structural{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;appearance:none}.qaid-icon{width:24px;height:24px}.qaid-btn-structural:not(:has(svg)),.qaid-btn:not(:has(svg)){font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-emoji-icon{font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-buttons,.qaid-buttons *,.qaid-modal-container,.qaid-modal-container *{cursor:pointer!important}.qaid-tooltip-wrapper{position:relative}.qaid-tooltip-text{position:fixed;padding:.5rem .75rem;background:#1f2937;color:#fff;font-size:1rem;font-weight:600;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:99999}.qaid-tooltip-text.qaid-tooltip-visible{opacity:1}.qaid-targeting-overlay{position:fixed;inset:0;z-index:40;pointer-events:none}.qaid-capture-layer{position:fixed;inset:0;pointer-events:none;z-index:9999}@keyframes qaid-slideDown{0%{transform:translateY(-100%)}to{transform:translateY(0)}}.qaid-vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.3) 70%,rgba(0,0,0,.6) 100%);z-index:41}.qaid-crosshair-h,.qaid-crosshair-v{position:fixed;pointer-events:none;z-index:42}.qaid-crosshair-h{left:0;right:0;height:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-crosshair-v{top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-type-up .qaid-crosshair-h,.qaid-type-up .qaid-crosshair-v{background:color-mix(in srgb,var(--qaid-positive) 60%,transparent)}.qaid-highlight-box{position:fixed;top:0;left:0;pointer-events:none;z-index:41;display:none;border:3px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:2px;background:color-mix(in srgb,var(--qaid-negative) 8%,transparent);will-change:transform,width,height}.qaid-type-up .qaid-highlight-box{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent);background:color-mix(in srgb,var(--qaid-positive) 8%,transparent)}.qaid-scope{position:fixed;width:80px;height:80px;pointer-events:none;z-index:43;transform:translate(-50%,-50%)}.qaid-scope-ring{position:absolute;inset:10px;border:2px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent)}.qaid-scope-ring-inner{position:absolute;inset:20px;border:1px solid color-mix(in srgb,var(--qaid-negative) 50%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring-inner{border-color:color-mix(in srgb,var(--qaid-positive) 50%,transparent)}.qaid-scope-dot{position:absolute;top:50%;left:50%;width:4px;height:4px;background:var(--qaid-negative);border-radius:50%;transform:translate(-50%,-50%)}.qaid-type-up .qaid-scope-dot{background:var(--qaid-positive)}.qaid-selected-marker{position:fixed;border:3px solid var(--qaid-marker, #6366f1);border-radius:50%;pointer-events:none;z-index:44;animation:qaid-markerPulse 1.5s ease-in-out infinite}@keyframes qaid-markerPulse{0%,to{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}.qaid-backdrop{position:fixed;inset:0;z-index:45;background:#0000004d}.qaid-modal-container{position:fixed;z-index:50;display:flex;flex-direction:column;align-items:flex-start;max-height:calc(100vh - 32px);font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-modal-container.qaid-above{flex-direction:column-reverse}.qaid-modal-arrow{width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;position:relative;align-self:flex-start}.qaid-modal-container.qaid-below .qaid-modal-arrow{border-bottom:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-container.qaid-above .qaid-modal-arrow{border-top:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5));width:var(--qaid-modal-width, 400px);max-width:calc(100vw - 32px);max-height:calc(100vh - 60px);overflow-y:auto}.qaid-modal-header{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1rem}button.qaid-type-toggle{border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;-webkit-appearance:none;appearance:none}button.qaid-type-toggle:hover{transform:scale(1.1)}button.qaid-type-toggle:not(.qaid-type-toggle-custom){width:2.5rem;height:2.5rem;border-radius:50%}button.qaid-type-toggle:not(.qaid-type-toggle-custom) svg{width:1.25rem;height:1.25rem}button.qaid-type-toggle.qaid-type-up{background:var(--qaid-positive);color:#fff}button.qaid-type-toggle.qaid-type-down{background:var(--qaid-negative);color:#fff}.qaid-type-static{width:2.5rem;height:2.5rem;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--qaid-marker, #6366f1);color:var(--qaid-marker-text, white)}.qaid-type-static svg{width:1.25rem;height:1.25rem}.qaid-modal-header-text{flex:1;min-width:0}.qaid-modal-title{font-size:1.125rem;font-weight:700;margin:0 0 .25rem;color:light-dark(#1f2937,#f9fafb)}.qaid-modal-subtitle{color:light-dark(#6b7280,#9ca3af);margin:0;font-size:.875rem}.qaid-textarea{width:100%;height:6rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:1rem;resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-btn-row{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-btn-submit{padding:.5rem 1rem;background:var(--qaid-marker);color:var(--qaid-marker-text, white);border:none;border-radius:.5rem;font-size:.875rem;font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-btn-submit:hover{filter:brightness(.85)}button.qaid-btn-submit:focus{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 30%,transparent)}.qaid-bottom-sheet{position:fixed;bottom:0;left:0;right:0;z-index:50;animation:qaid-slideUpSheet .3s ease-out;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-bottom-sheet-content{background:light-dark(#ffffff,#1f2937);border-radius:1rem 1rem 0 0;padding:1.5rem;padding-bottom:max(1.5rem,env(safe-area-inset-bottom))}.qaid-bottom-sheet-handle{width:36px;height:4px;background:light-dark(rgba(0,0,0,.2),rgba(255,255,255,.2));border-radius:2px;margin:0 auto 1rem}@keyframes qaid-slideUpSheet{0%{transform:translateY(100%)}to{transform:translateY(0)}}button.qaid-btn-record:hover{background:#dc2626;color:#fff}.qaid-recording-indicator{position:fixed;top:12px;left:50%;transform:translate(-50%);display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:light-dark(#1f2937,#374151);color:#fff;border-radius:9999px;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:.875rem;font-weight:500;box-shadow:0 4px 12px #0000004d;z-index:99999;animation:qaid-slideDown .2s ease-out}.qaid-recording-dot{width:10px;height:10px;background:#dc2626;border-radius:50%;animation:qaid-dotPulse 1.5s ease-in-out infinite}@keyframes qaid-dotPulse{0%,to{opacity:1}50%{opacity:.3}}.qaid-recording-time{font-variant-numeric:tabular-nums;min-width:2.5rem;text-align:center}button.qaid-recording-stop{padding:.25rem .75rem;background:#dc2626;color:#fff;border:none;border-radius:9999px;font-size:.75rem;font-weight:600;cursor:pointer;transition:background-color .2s;-webkit-appearance:none;appearance:none}button.qaid-recording-stop:hover{background:#b91c1c}.qaid-video-preview{position:fixed;inset:0 0 auto;height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#0009;z-index:99998;animation:qaid-fadeIn .2s ease-out}@keyframes qaid-fadeIn{0%{opacity:0}to{opacity:1}}.qaid-video-preview-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px #00000080;width:560px;max-width:100%;max-height:100%;overflow-y:auto;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-video-preview-box h3{font-size:1.125rem;font-weight:700;margin:0 0 1rem;color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box video{width:100%;max-height:50vh;max-height:50dvh;object-fit:contain;border-radius:.5rem;background:#000;margin-bottom:1rem}.qaid-video-preview-box textarea{width:100%;height:4rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:.875rem;resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-video-preview-actions{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-video-btn{padding:.5rem 1rem;border:none;border-radius:.5rem;font-size:.875rem;font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-video-btn-cancel{background:light-dark(#f3f4f6,#374151);color:light-dark(#374151,#d1d5db)}button.qaid-video-btn-cancel:hover{background:light-dark(#e5e7eb,#4b5563)}button.qaid-video-btn-rerecord{background:light-dark(#fef3c7,#78350f);color:light-dark(#92400e,#fde68a)}button.qaid-video-btn-rerecord:hover{filter:brightness(.9)}button.qaid-video-btn-send{background:var(--qaid-marker);color:var(--qaid-marker-text, white)}button.qaid-video-btn-send:hover{filter:brightness(.85)}button.qaid-video-btn-send:disabled{opacity:.5;cursor:not-allowed}.qaid-video-sending{display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:light-dark(#6b7280,#9ca3af)}.qaid-annotate{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;gap:.75rem;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#000000d9;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px);animation:qaid-fadeIn .2s ease-out}.qaid-annotate-title{margin:0;font-size:1rem;font-weight:700;text-align:center;color:#f9fafb}.qaid-annotate-desc{margin:0;font-size:.8125rem;line-height:1.4;text-align:center;color:#f9fafbbf}.qaid-annotate-stage{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;overflow:auto}.qaid-annotate-canvas{max-width:100%;max-height:100%;object-fit:contain;background:light-dark(#ffffff,#111827);border-radius:.5rem;box-shadow:0 10px 30px #00000080;touch-action:none;cursor:crosshair}.qaid-annotate-toolbar{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;justify-content:center;padding:.5rem .75rem;background:light-dark(#ffffff,#1f2937);border-radius:.75rem;box-shadow:0 10px 30px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5))}.qaid-annotate-tools,.qaid-annotate-actions{display:flex;gap:.375rem;align-items:center}button.qaid-annotate-tool,button.qaid-annotate-action{display:inline-flex;align-items:center;justify-content:center;gap:.375rem;min-width:44px;min-height:44px;padding:0 .75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;background:light-dark(#f9fafb,#111827);color:light-dark(#1f2937,#f9fafb);font-family:inherit;font-size:.8125rem;font-weight:600;cursor:pointer;-webkit-appearance:none;appearance:none;transition:background-color .15s,color .15s,border-color .15s,filter .15s}button.qaid-annotate-tool svg,button.qaid-annotate-action svg{width:20px;height:20px}.qaid-annotate-colors{display:flex;gap:.25rem;align-items:center}button.qaid-annotate-swatch{width:28px;height:28px;min-width:28px;padding:0;border-radius:9999px;border:2px solid light-dark(#d1d5db,#4b5563);background:var(--qaid-swatch, #000);cursor:pointer;-webkit-appearance:none;appearance:none;transition:transform .1s,box-shadow .15s,border-color .15s}button.qaid-annotate-swatch:hover{transform:scale(1.12)}button.qaid-annotate-swatch[aria-pressed=true]{border-color:light-dark(#111827,#f9fafb);box-shadow:0 0 0 2px var(--qaid-swatch)}@media(forced-colors:active){button.qaid-annotate-swatch[aria-pressed=true]{outline:2px solid Highlight;outline-offset:1px}}button.qaid-annotate-tool:hover,button.qaid-annotate-action:hover{background:light-dark(#eef2ff,#312e81)}button.qaid-annotate-tool[aria-pressed=true],button.qaid-annotate-done{background:var(--qaid-marker, #6366f1);color:var(--qaid-marker-text, #fff);border-color:var(--qaid-marker, #6366f1)}button.qaid-annotate-done:hover{filter:brightness(.9);background:var(--qaid-marker, #6366f1)}button.qaid-annotate-action:disabled{opacity:.45;cursor:not-allowed}@media(forced-colors:active){button.qaid-annotate-tool[aria-pressed=true],button.qaid-annotate-done{border:2px solid Highlight}.qaid-annotate-canvas{border:1px solid CanvasText}}button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible{outline:2px solid var(--qaid-marker, #6366f1);outline-offset:2px}.qaid-textarea:focus-visible,button.qaid-btn-submit:focus-visible,.qaid-video-preview-box textarea:focus-visible{outline:2px solid var(--qaid-marker, #6366f1);outline-offset:2px}.qaid-buttons.qaid-incognito:focus-within{opacity:1}.qaid-buttons:focus-within .qaid-dismiss-btn,.qaid-dismiss-btn:focus-visible{opacity:1}.qaid-dismiss-btn{min-width:24px;min-height:24px}button.qaid-recording-stop{min-height:24px}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}@media(forced-colors:active){button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible,.qaid-textarea:focus,button.qaid-btn-submit:focus,.qaid-video-preview-box textarea:focus{outline:2px solid CanvasText;outline-offset:2px}.qaid-selected-marker,.qaid-highlight-box{border-color:Highlight}}.qaid-confirm{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;padding:.5rem 0}.qaid-confirm-icon{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:9999px;color:#fff;background:var(--qaid-success, #22c55e);margin-bottom:.25rem;animation:qaid-confirm-pop .28s cubic-bezier(.34,1.56,.64,1)}.qaid-confirm-icon .qaid-icon{width:24px;height:24px}.qaid-confirm-title{margin:0;font-size:1rem;font-weight:600;color:var(--qaid-text, #111827)}.qaid-confirm-title:focus-visible{outline:2px solid var(--qaid-primary, #6366f1);outline-offset:3px;border-radius:4px}.qaid-confirm-message{margin:0;font-size:.875rem;color:var(--qaid-text-muted, #6b7280)}.qaid-confirm .qaid-confirm-close{margin-top:.5rem;min-width:96px}@keyframes qaid-confirm-pop{0%{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}@media(prefers-reduced-motion:reduce){.qaid-confirm-icon{animation:none}}", wt = "body.qaid-targeting,body.qaid-targeting *{cursor:none!important}";
+import { i as gt, F as vt, T as yt, a as qt, R as xt } from "./annotate-D-o8xCV9.js";
+const wt = "button{cursor:pointer}.qaid-buttons{display:flex;gap:.5rem}.qaid-buttons.qaid-vertical{flex-direction:column}.qaid-buttons.qaid-auto-container{position:fixed;z-index:50}.qaid-buttons.qaid-auto-container.qaid-bottom-right{bottom:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-bottom-left{bottom:1rem;left:1rem}.qaid-buttons.qaid-auto-container.qaid-top-right{top:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-top-left{top:1rem;left:1rem}.qaid-buttons.qaid-incognito{opacity:0;transition:opacity .2s ease-in-out}.qaid-buttons.qaid-incognito:hover{opacity:1}.qaid-buttons.qaid-dismissed{display:none!important}.qaid-dismiss-btn{width:20px;height:20px;padding:0;border:none;border-radius:50%;background:#0006;color:#fff;display:flex;align-items:center;justify-content:center;align-self:center;opacity:0;transition:opacity .15s,background .15s;cursor:pointer;pointer-events:auto;-webkit-appearance:none;appearance:none}.qaid-dismiss-btn:hover{background:#0009}.qaid-buttons:hover .qaid-dismiss-btn{opacity:1}button.qaid-btn-structural{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;appearance:none}.qaid-icon{width:24px;height:24px}.qaid-btn-structural:not(:has(svg)),.qaid-btn:not(:has(svg)){font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-emoji-icon{font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-buttons,.qaid-buttons *,.qaid-modal-container,.qaid-modal-container *{cursor:pointer!important}.qaid-tooltip-wrapper{position:relative}.qaid-tooltip-text{position:fixed;padding:.5rem .75rem;background:#1f2937;color:#fff;font-size:var(--qaid-font-size, 16px);font-weight:600;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:99999}.qaid-tooltip-text.qaid-tooltip-visible{opacity:1}.qaid-targeting-overlay{position:fixed;inset:0;z-index:40;pointer-events:none}.qaid-capture-layer{position:fixed;inset:0;pointer-events:none;z-index:9999}@keyframes qaid-slideDown{0%{transform:translateY(-100%)}to{transform:translateY(0)}}.qaid-vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.3) 70%,rgba(0,0,0,.6) 100%);z-index:41}.qaid-crosshair-h,.qaid-crosshair-v{position:fixed;pointer-events:none;z-index:42}.qaid-crosshair-h{left:0;right:0;height:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-crosshair-v{top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-type-up .qaid-crosshair-h,.qaid-type-up .qaid-crosshair-v{background:color-mix(in srgb,var(--qaid-positive) 60%,transparent)}.qaid-highlight-box{position:fixed;top:0;left:0;pointer-events:none;z-index:41;display:none;border:3px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:2px;background:color-mix(in srgb,var(--qaid-negative) 8%,transparent);will-change:transform,width,height}.qaid-type-up .qaid-highlight-box{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent);background:color-mix(in srgb,var(--qaid-positive) 8%,transparent)}.qaid-scope{position:fixed;width:80px;height:80px;pointer-events:none;z-index:43;transform:translate(-50%,-50%)}.qaid-scope-ring{position:absolute;inset:10px;border:2px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent)}.qaid-scope-ring-inner{position:absolute;inset:20px;border:1px solid color-mix(in srgb,var(--qaid-negative) 50%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring-inner{border-color:color-mix(in srgb,var(--qaid-positive) 50%,transparent)}.qaid-scope-dot{position:absolute;top:50%;left:50%;width:4px;height:4px;background:var(--qaid-negative);border-radius:50%;transform:translate(-50%,-50%)}.qaid-type-up .qaid-scope-dot{background:var(--qaid-positive)}.qaid-selected-marker{position:fixed;border:3px solid var(--qaid-marker, #6365f1);border-radius:50%;pointer-events:none;z-index:44;animation:qaid-markerPulse 1.5s ease-in-out infinite}@keyframes qaid-markerPulse{0%,to{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}.qaid-backdrop{position:fixed;inset:0;z-index:45;background:#0000004d}.qaid-modal-container{position:fixed;z-index:50;display:flex;flex-direction:column;align-items:flex-start;max-height:calc(100vh - 32px);font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-modal-container.qaid-above{flex-direction:column-reverse}.qaid-modal-arrow{width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;position:relative;align-self:flex-start}.qaid-modal-container.qaid-below .qaid-modal-arrow{border-bottom:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-container.qaid-above .qaid-modal-arrow{border-top:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5));width:var(--qaid-modal-width, 400px);max-width:calc(100vw - 32px);max-height:calc(100vh - 60px);overflow-y:auto}.qaid-modal-header{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1rem}button.qaid-type-toggle{border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;-webkit-appearance:none;appearance:none}button.qaid-type-toggle:hover{transform:scale(1.1)}button.qaid-type-toggle:not(.qaid-type-toggle-custom){width:2.5rem;height:2.5rem;border-radius:50%}button.qaid-type-toggle:not(.qaid-type-toggle-custom) svg{width:1.25rem;height:1.25rem}button.qaid-type-toggle.qaid-type-up{background:var(--qaid-positive);color:#fff}button.qaid-type-toggle.qaid-type-down{background:var(--qaid-negative);color:#fff}.qaid-type-static{width:2.5rem;height:2.5rem;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--qaid-marker, #6365f1);color:var(--qaid-marker-text, white)}.qaid-type-static svg{width:1.25rem;height:1.25rem}.qaid-modal-header-text{flex:1;min-width:0}.qaid-modal-title{font-size:calc(var(--qaid-font-size, 16px) * 1.125);font-weight:700;margin:0 0 .25rem;color:light-dark(#1f2937,#f9fafb)}.qaid-modal-subtitle{color:light-dark(#6b7280,#9ca3af);margin:0;font-size:calc(var(--qaid-font-size, 16px) * .875)}.qaid-textarea{width:100%;height:6rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:var(--qaid-font-size, 16px);resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-btn-row{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-btn-submit{padding:.5rem 1rem;background:var(--qaid-marker);color:var(--qaid-marker-text, white);border:none;border-radius:.5rem;font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-btn-submit:hover{filter:brightness(.85)}button.qaid-btn-submit:focus{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 30%,transparent)}.qaid-bottom-sheet{position:fixed;bottom:0;left:0;right:0;z-index:50;animation:qaid-slideUpSheet .3s ease-out;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-bottom-sheet-content{background:light-dark(#ffffff,#1f2937);border-radius:1rem 1rem 0 0;padding:1.5rem;padding-bottom:max(1.5rem,env(safe-area-inset-bottom))}.qaid-bottom-sheet-handle{width:36px;height:4px;background:light-dark(rgba(0,0,0,.2),rgba(255,255,255,.2));border-radius:2px;margin:0 auto 1rem}@keyframes qaid-slideUpSheet{0%{transform:translateY(100%)}to{transform:translateY(0)}}button.qaid-btn-record:hover{background:#dc2626;color:#fff}.qaid-recording-indicator{position:fixed;top:12px;left:50%;transform:translate(-50%);display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:light-dark(#1f2937,#374151);color:#fff;border-radius:9999px;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;box-shadow:0 4px 12px #0000004d;z-index:99999;animation:qaid-slideDown .2s ease-out}.qaid-recording-dot{width:10px;height:10px;background:#dc2626;border-radius:50%;animation:qaid-dotPulse 1.5s ease-in-out infinite}@keyframes qaid-dotPulse{0%,to{opacity:1}50%{opacity:.3}}.qaid-recording-time{font-variant-numeric:tabular-nums;min-width:2.5rem;text-align:center}button.qaid-recording-stop{padding:.25rem .75rem;background:#dc2626;color:#fff;border:none;border-radius:9999px;font-size:calc(var(--qaid-font-size, 16px) * .75);font-weight:600;cursor:pointer;transition:background-color .2s;-webkit-appearance:none;appearance:none}button.qaid-recording-stop:hover{background:#b91c1c}.qaid-video-preview{position:fixed;inset:0 0 auto;height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#0009;z-index:99998;animation:qaid-fadeIn .2s ease-out}@keyframes qaid-fadeIn{0%{opacity:0}to{opacity:1}}.qaid-video-preview-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px #00000080;width:560px;max-width:100%;max-height:100%;overflow-y:auto;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-video-preview-box h3{font-size:calc(var(--qaid-font-size, 16px) * 1.125);font-weight:700;margin:0 0 1rem;color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box video{width:100%;max-height:50vh;max-height:50dvh;object-fit:contain;border-radius:.5rem;background:#000;margin-bottom:1rem}.qaid-video-preview-box textarea{width:100%;height:4rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:calc(var(--qaid-font-size, 16px) * .875);resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-video-error{margin:0 0 .75rem;font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;color:light-dark(#b91c1c,#fca5a5)}.qaid-video-preview-actions{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-video-btn{padding:.5rem 1rem;border:none;border-radius:.5rem;font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-video-btn-cancel{background:light-dark(#f3f4f6,#374151);color:light-dark(#374151,#d1d5db)}button.qaid-video-btn-cancel:hover{background:light-dark(#e5e7eb,#4b5563)}button.qaid-video-btn-rerecord{background:light-dark(#fef3c7,#78350f);color:light-dark(#92400e,#fde68a)}button.qaid-video-btn-rerecord:hover{filter:brightness(.9)}button.qaid-video-btn-send{background:var(--qaid-marker);color:var(--qaid-marker-text, white)}button.qaid-video-btn-send:hover{filter:brightness(.85)}button.qaid-video-btn-send:disabled{opacity:.5;cursor:not-allowed}.qaid-video-sending{display:flex;align-items:center;gap:.5rem;font-size:calc(var(--qaid-font-size, 16px) * .875);color:light-dark(#6b7280,#9ca3af)}.qaid-annotate{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;gap:.75rem;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#000000d9;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px);animation:qaid-fadeIn .2s ease-out}.qaid-annotate-title{margin:0;font-size:var(--qaid-font-size, 16px);font-weight:700;text-align:center;color:#f9fafb}.qaid-annotate-desc{margin:0;font-size:calc(var(--qaid-font-size, 16px) * .8125);line-height:1.4;text-align:center;color:#f9fafbbf}.qaid-annotate-stage{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;overflow:auto}.qaid-annotate-canvas{max-width:100%;max-height:100%;object-fit:contain;background:light-dark(#ffffff,#111827);border-radius:.5rem;box-shadow:0 10px 30px #00000080;touch-action:none;cursor:crosshair}.qaid-annotate-toolbar{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;justify-content:center;padding:.5rem .75rem;background:light-dark(#ffffff,#1f2937);border-radius:.75rem;box-shadow:0 10px 30px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5))}.qaid-annotate-tools,.qaid-annotate-actions{display:flex;gap:.375rem;align-items:center}button.qaid-annotate-tool,button.qaid-annotate-action{display:inline-flex;align-items:center;justify-content:center;gap:.375rem;min-width:44px;min-height:44px;padding:0 .75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;background:light-dark(#f9fafb,#111827);color:light-dark(#1f2937,#f9fafb);font-family:inherit;font-size:calc(var(--qaid-font-size, 16px) * .8125);font-weight:600;cursor:pointer;-webkit-appearance:none;appearance:none;transition:background-color .15s,color .15s,border-color .15s,filter .15s}button.qaid-annotate-tool svg,button.qaid-annotate-action svg{width:20px;height:20px}.qaid-annotate-colors{display:flex;gap:.25rem;align-items:center}button.qaid-annotate-swatch{width:28px;height:28px;min-width:28px;padding:0;border-radius:9999px;border:2px solid light-dark(#d1d5db,#4b5563);background:var(--qaid-swatch, #000);cursor:pointer;-webkit-appearance:none;appearance:none;transition:transform .1s,box-shadow .15s,border-color .15s}button.qaid-annotate-swatch:hover{transform:scale(1.12)}button.qaid-annotate-swatch[aria-pressed=true]{border-color:light-dark(#111827,#f9fafb);box-shadow:0 0 0 2px var(--qaid-swatch)}@media(forced-colors:active){button.qaid-annotate-swatch[aria-pressed=true]{outline:2px solid Highlight;outline-offset:1px}}button.qaid-annotate-tool:hover,button.qaid-annotate-action:hover{background:light-dark(#eef2ff,#312e81)}button.qaid-annotate-tool[aria-pressed=true],button.qaid-annotate-done{background:var(--qaid-marker, #6365f1);color:var(--qaid-marker-text, #fff);border-color:var(--qaid-marker, #6365f1)}button.qaid-annotate-done:hover{filter:brightness(.9);background:var(--qaid-marker, #6365f1)}button.qaid-annotate-action:disabled{opacity:.45;cursor:not-allowed}@media(forced-colors:active){button.qaid-annotate-tool[aria-pressed=true],button.qaid-annotate-done{border:2px solid Highlight}.qaid-annotate-canvas{border:1px solid CanvasText}}button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible{outline:2px solid var(--qaid-marker, #6365f1);outline-offset:2px}.qaid-textarea:focus-visible,button.qaid-btn-submit:focus-visible,.qaid-video-preview-box textarea:focus-visible{outline:2px solid var(--qaid-marker, #6365f1);outline-offset:2px}.qaid-buttons.qaid-incognito:focus-within{opacity:1}.qaid-buttons:focus-within .qaid-dismiss-btn,.qaid-dismiss-btn:focus-visible{opacity:1}.qaid-dismiss-btn{min-width:24px;min-height:24px}button.qaid-recording-stop{min-height:24px}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}@media(forced-colors:active){button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible,.qaid-textarea:focus,button.qaid-btn-submit:focus,.qaid-video-preview-box textarea:focus{outline:2px solid CanvasText;outline-offset:2px}.qaid-selected-marker,.qaid-highlight-box{border-color:Highlight}}.qaid-confirm{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;padding:.5rem 0}.qaid-confirm-icon{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:9999px;color:#fff;background:var(--qaid-success, #22c55e);margin-bottom:.25rem;animation:qaid-confirm-pop .28s cubic-bezier(.34,1.56,.64,1)}.qaid-confirm-icon .qaid-icon{width:24px;height:24px}.qaid-confirm-error .qaid-confirm-icon{background:var(--qaid-error, #dc2626)}.qaid-confirm-title{margin:0;font-size:var(--qaid-font-size, 16px);font-weight:600;color:var(--qaid-text, light-dark(#111827, #f9fafb))}.qaid-confirm-title:focus-visible{outline:2px solid var(--qaid-primary, #6365f1);outline-offset:3px;border-radius:4px}.qaid-confirm-message{margin:0;font-size:calc(var(--qaid-font-size, 16px) * .875);color:var(--qaid-text-muted, light-dark(#6b7280, #9ca3af))}.qaid-confirm .qaid-confirm-close{margin-top:.5rem;min-width:96px}@keyframes qaid-confirm-pop{0%{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}@media(prefers-reduced-motion:reduce){.qaid-confirm-icon{animation:none}}", kt = "body.qaid-targeting,body.qaid-targeting *{cursor:none!important}";
 let b = 0;
-const qt = "button.qaid-btn{width:var(--qaid-btn-size);height:var(--qaid-btn-size);border-radius:50%;border:none;background:#f3f4f6;color:#374151;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);transition:background-color .2s,color .2s,transform .2s;-webkit-appearance:none;appearance:none;--qaid-hover-up-bg:var(--qaid-positive);--qaid-hover-up-color:#fff;--qaid-hover-down-bg:var(--qaid-negative);--qaid-hover-down-color:#fff}button.qaid-btn:hover{transform:scale(1.05)}button.qaid-btn-up:hover{background:var(--qaid-hover-up-bg);color:var(--qaid-hover-up-color)}button.qaid-btn-down:hover{background:var(--qaid-hover-down-bg);color:var(--qaid-hover-down-color)}button.qaid-btn-feedback:hover{background:var(--qaid-marker,#6366f1);color:var(--qaid-marker-text,#fff)}button.qaid-btn svg{width:var(--qaid-icon-size);height:var(--qaid-icon-size)}", xt = {
+const Ct = "button.qaid-btn{width:var(--qaid-btn-size);height:var(--qaid-btn-size);border-radius:50%;border:none;background:#f3f4f6;color:#374151;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);transition:background-color .2s,color .2s,transform .2s;-webkit-appearance:none;appearance:none;--qaid-hover-up-bg:var(--qaid-positive);--qaid-hover-up-color:#fff;--qaid-hover-down-bg:var(--qaid-negative);--qaid-hover-down-color:#fff}button.qaid-btn:hover{transform:scale(1.05)}button.qaid-btn-up:hover{background:var(--qaid-hover-up-bg);color:var(--qaid-hover-up-color)}button.qaid-btn-down:hover{background:var(--qaid-hover-down-bg);color:var(--qaid-hover-down-color)}button.qaid-btn-feedback:hover{background:var(--qaid-marker,#6365f1);color:var(--qaid-marker-text,#fff)}button.qaid-btn svg{width:var(--qaid-icon-size);height:var(--qaid-icon-size)}", St = {
   small: 36,
   medium: 48,
   large: 64
-}, kt = {
+}, At = {
   small: 18,
   medium: 24,
   large: 32
 };
-function Ct(e, t, i) {
+function Tt(e, t, i) {
   const [o, r, n] = [e, t, i].map((a) => (a = a / 255, a <= 0.03928 ? a / 12.92 : Math.pow((a + 0.055) / 1.055, 2.4)));
   return 0.2126 * o + 0.7152 * r + 0.0722 * n;
 }
-function St(e) {
+function Et(e) {
   if (e.startsWith("#")) {
     const i = e.slice(1), o = i.length === 3 ? i.split("").map((n) => n + n).join("") : i, r = parseInt(o, 16);
     return {
@@ -30,21 +30,21 @@ function St(e) {
     b: parseInt(t[3])
   } : null;
 }
-function At(e) {
-  const t = St(e);
-  return t && Ct(t.r, t.g, t.b) > 0.4 ? "black" : "white";
+function It(e) {
+  const t = Et(e);
+  return t && Tt(t.r, t.g, t.b) > 0.4 ? "black" : "white";
 }
-function Tt(e = {}) {
+function Dt(e = {}) {
   const {
     positiveColor: t = "rgb(0, 200, 83)",
     negativeColor: i = "rgb(255, 0, 0)",
-    markerColor: o = "#6366f1",
+    markerColor: o = "#6365f1",
     buttonSize: r = "medium",
     modalWidth: n = 400,
     backdropOpacity: a = 0.3,
     fontFamily: l = "system-ui, -apple-system, sans-serif",
     fontSize: c = 16
-  } = e, d = xt[r], s = kt[r], u = At(o);
+  } = e, d = St[r], s = At[r], u = It(o);
   return {
     "--qaid-positive": t,
     "--qaid-negative": i,
@@ -58,22 +58,22 @@ function Tt(e = {}) {
     "--qaid-font-size": `${c}px`
   };
 }
-function Et(e, t) {
+function zt(e, t) {
   for (const [i, o] of Object.entries(t))
     e.style.setProperty(i, o);
 }
-function U() {
-  return yt + qt;
+function _() {
+  return wt + Ct;
 }
-function It() {
+function Ht() {
   if (b++, b > 1) return;
   const e = document.createElement("style");
-  e.id = "qaid-styles", e.textContent = wt, document.head.appendChild(e);
+  e.id = "qaid-styles", e.textContent = kt, document.head.appendChild(e);
 }
-function Dt() {
+function Lt() {
   b <= 0 || (b--, b === 0 && document.getElementById("qaid-styles")?.remove());
 }
-const V = "data-qaid-a11y-live", Ht = "position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;", zt = [
+const K = "data-qaid-a11y-live", Mt = "position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;", Bt = [
   "a[href]",
   "button",
   "input",
@@ -81,25 +81,25 @@ const V = "data-qaid-a11y-live", Ht = "position:absolute;width:1px;height:1px;ma
   "select",
   "[tabindex]"
 ].join(",");
-function Lt(e) {
+function Ot(e) {
   return e.ownerDocument || document;
 }
-function Mt(e, t) {
+function Rt(e, t) {
   const i = t ? "assertive" : "polite", o = e.querySelector(
-    `[${V}="${i}"]`
+    `[${K}="${i}"]`
   );
   if (o) return o;
-  const n = Lt(e).createElement("div");
-  return n.setAttribute(V, i), n.setAttribute("role", t ? "alert" : "status"), n.setAttribute("aria-live", t ? "assertive" : "polite"), n.setAttribute("aria-atomic", "true"), n.style.cssText = Ht, e.appendChild(n), n;
+  const n = Ot(e).createElement("div");
+  return n.setAttribute(K, i), n.setAttribute("role", t ? "alert" : "status"), n.setAttribute("aria-live", t ? "assertive" : "polite"), n.setAttribute("aria-atomic", "true"), n.style.cssText = Mt, e.appendChild(n), n;
 }
-function Bt(e, t, i = {}) {
-  const o = Mt(e, !!i.assertive);
+function Pt(e, t, i = {}) {
+  const o = Rt(e, !!i.assertive);
   o.textContent = "", o.textContent = t;
 }
-function Ot(e) {
+function Ft(e) {
   return e.hasAttribute("disabled") ? !0 : e.disabled === !0;
 }
-function Rt(e) {
+function Ut(e) {
   let t = e;
   for (; t; ) {
     if (t.hasAttribute("hidden")) return !0;
@@ -110,52 +110,52 @@ function Rt(e) {
   }
   return !1;
 }
-function _(e) {
+function $(e) {
   return Array.from(
-    e.querySelectorAll(zt)
-  ).filter((i) => !(i.getAttribute("tabindex") === "-1" || i instanceof HTMLInputElement && i.type === "hidden" || i instanceof HTMLAnchorElement && !i.getAttribute("href") || Ot(i) || Rt(i)));
+    e.querySelectorAll(Bt)
+  ).filter((i) => !(i.getAttribute("tabindex") === "-1" || i instanceof HTMLInputElement && i.type === "hidden" || i instanceof HTMLAnchorElement && !i.getAttribute("href") || Ft(i) || Ut(i)));
 }
-function j(e) {
+function Y(e) {
   let t = e.activeElement;
   for (; t && t.shadowRoot && t.shadowRoot.activeElement; )
     t = t.shadowRoot.activeElement;
   return t instanceof HTMLElement ? t : null;
 }
-function Pt(e) {
+function Vt(e) {
   const t = e.ownerDocument || document;
   let i = !1;
   const o = (n) => {
     if (n.key !== "Tab") return;
-    const a = _(e);
+    const a = $(e);
     if (a.length === 0) {
       n.preventDefault(), e.focus();
       return;
     }
-    const l = a[0], c = a[a.length - 1], d = j(t), s = d ? a.indexOf(d) !== -1 : !1;
+    const l = a[0], c = a[a.length - 1], d = Y(t), s = d ? a.indexOf(d) !== -1 : !1;
     n.shiftKey ? (!s || d === l) && (n.preventDefault(), c.focus()) : (!s || d === c) && (n.preventDefault(), l.focus());
   };
   e.addEventListener("keydown", o);
-  const r = _(e);
+  const r = $(e);
   return r.length > 0 ? r[0].focus() : (e.hasAttribute("tabindex") || (e.setAttribute("tabindex", "-1"), i = !0), e.focus()), {
     release() {
       e.removeEventListener("keydown", o), i && (e.removeAttribute("tabindex"), i = !1);
     }
   };
 }
-function Ft() {
-  return j(document);
+function _t() {
+  return Y(document);
 }
-function Ut(e) {
+function Kt(e) {
   if (!(!e || typeof e.focus != "function"))
     try {
       e.focus();
     } catch {
     }
 }
-function Vt(e, t = {}) {
+function $t(e, t = {}) {
   e.setAttribute("role", "dialog"), e.setAttribute("aria-modal", "true"), t.labelledbyId && e.setAttribute("aria-labelledby", t.labelledbyId), t.describedbyId && e.setAttribute("aria-describedby", t.describedbyId), t.label && e.setAttribute("aria-label", t.label);
 }
-function _t(e, t) {
+function Nt(e, t) {
   let i = e;
   for (; i && i !== t; ) {
     const o = i.parentNode;
@@ -169,11 +169,11 @@ function _t(e, t) {
   }
   return null;
 }
-function Kt(e) {
+function jt(e) {
   const i = (e.ownerDocument || document).body;
   if (!i) return () => {
   };
-  const o = _t(e, i), r = [];
+  const o = Nt(e, i), r = [];
   return Array.from(i.children).forEach((n) => {
     if (!(n instanceof HTMLElement) || o && n === o) return;
     const a = n.inert === !0, l = n.getAttribute("aria-hidden");
@@ -185,14 +185,14 @@ function Kt(e) {
     }
   };
 }
-const Q = {
+const X = {
   width: 400,
   height: 280,
   arrowHeight: 12,
   gap: 8,
   viewportPadding: 16
 };
-function Nt(e, t, i, o, r) {
+function Qt(e, t, i, o, r) {
   const n = e.y, a = t - (e.y + e.height);
   if (a >= i + o)
     return {
@@ -211,22 +211,22 @@ function Nt(e, t, i, o, r) {
     t - i - r
   ) : c = Math.max(r, e.y - i - o), { top: c, position: l };
 }
-function $t(e, t, i, o) {
+function Wt(e, t, i, o) {
   let n = e.x + e.width / 2 - i / 2;
   return n = Math.max(o, Math.min(n, t - i - o)), n;
 }
-function jt(e, t, i, o = 24, r = 24) {
+function Yt(e, t, i, o = 24, r = 24) {
   const a = e.clickX - t - r / 2;
   return Math.max(o, Math.min(a, i - o - r / 2));
 }
-function Qt(e, t, i, o = Q) {
-  const r = o.height + o.arrowHeight, n = Nt(
+function Xt(e, t, i, o = X) {
+  const r = o.height + o.arrowHeight, n = Qt(
     e,
     i,
     r,
     o.gap,
     o.viewportPadding
-  ), a = $t(
+  ), a = Wt(
     e,
     t,
     o.width,
@@ -238,15 +238,15 @@ function Qt(e, t, i, o = Q) {
     position: n.position
   };
 }
-function Wt(e, t, i, o = {}) {
+function Gt(e, t, i, o = {}) {
   const r = o.gap ?? 8;
   let n = e.bottom + r;
   n + t.height > i.height - r && (n = e.top - t.height - r);
   let a = e.left;
   return a < r ? a = r : a + t.width > i.width - r && (a = i.width - t.width - r), n < r ? n = r : n + t.height > i.height - r && (n = i.height - t.height - r), { top: n, left: a };
 }
-function ue(e, t, i, o = Q) {
-  const r = Qt(e, t, i, o), n = jt(
+function pe(e, t, i, o = X) {
+  const r = Xt(e, t, i, o), n = Yt(
     e,
     r.left,
     o.width
@@ -256,15 +256,15 @@ function ue(e, t, i, o = Q) {
     arrow: { left: n }
   };
 }
-const Yt = 20;
-function Xt(e) {
+const Jt = 20;
+function Zt(e) {
   const t = [], i = console.error, o = console.warn, r = console.log, n = (a, l) => {
     const c = {
       message: l.map((d) => String(d)).join(" "),
       timestamp: Date.now(),
       level: a
     };
-    t.length >= Yt && t.shift(), t.push(c), e && e(c);
+    t.length >= Jt && t.shift(), t.push(c), e && e(c);
   };
   return console.error = function(...a) {
     n("error", a), i.apply(console, a);
@@ -279,7 +279,7 @@ function Xt(e) {
     }
   };
 }
-const Gt = "https://unpkg.com/@qaiddev/quests-embed@1/dist/qaid-quests.js", Jt = (e) => (
+const te = "https://unpkg.com/@qaiddev/quests-embed@1/dist/qaid-quests.js", ee = (e) => (
   // The URL is a runtime value, not a static specifier — keep Vite from
   // trying to analyze/bundle it.
   import(
@@ -287,19 +287,19 @@ const Gt = "https://unpkg.com/@qaiddev/quests-embed@1/dist/qaid-quests.js", Jt =
     e
   )
 );
-let Zt = Jt, p = null, x = null;
-function te(e) {
-  return p && x === e || (x = e, p = Promise.resolve(Zt(e)).then((t) => {
+let ie = ee, p = null, w = null;
+function oe(e) {
+  return p && w === e || (w = e, p = Promise.resolve(ie(e)).then((t) => {
     const i = t;
     if (!i || typeof i.QaidQuests != "function")
       throw new Error("quests module has no QaidQuests export");
     return i;
   }).catch((t) => {
-    throw p = null, x = null, t;
+    throw p = null, w = null, t;
   })), p;
 }
-async function ee(e) {
-  const t = await te(e.moduleUrl), i = e.base.replace(/\/+$/, ""), o = e.feedbackId != null ? { feedbackId: e.feedbackId } : void 0;
+async function ae(e) {
+  const t = await oe(e.moduleUrl), i = e.base.replace(/\/+$/, ""), o = e.feedbackId != null ? { feedbackId: e.feedbackId } : void 0;
   return new t.QaidQuests({
     endpoint: `${i}/responses`,
     configUrl: `${i}/${encodeURIComponent(e.questId)}/definition`,
@@ -308,7 +308,7 @@ async function ee(e) {
     onClose: e.onClose
   });
 }
-const K = "qaid_visitor_id", N = "qaid_hide_feedback", ie = [
+const N = "qaid_visitor_id", j = "qaid_hide_feedback", ne = [
   "#ef4444",
   "#f59e0b",
   "#22c55e",
@@ -316,34 +316,46 @@ const K = "qaid_visitor_id", N = "qaid_hide_feedback", ie = [
   "#111827",
   "#ffffff"
 ];
-function oe() {
+function re() {
   return typeof window.matchMedia == "function" && window.matchMedia("(pointer: coarse)").matches;
 }
 function k(e) {
-  return e ? `${N}_${e}` : N;
+  return e ? `${j}_${e}` : j;
 }
-function ae(e) {
+function se(e) {
   try {
     return localStorage.getItem(k(e)) === "1";
   } catch {
     return !1;
   }
 }
-function $(e, t = !0) {
+function Q(e, t = !0) {
   try {
     t ? localStorage.setItem(k(e), "1") : localStorage.removeItem(k(e));
   } catch {
   }
 }
-function ne() {
+function W() {
+  const e = typeof crypto < "u" ? crypto : void 0;
+  if (e && typeof e.randomUUID == "function") return e.randomUUID();
+  const t = new Uint8Array(16);
+  if (e && typeof e.getRandomValues == "function")
+    e.getRandomValues(t);
+  else
+    for (let o = 0; o < t.length; o++) t[o] = Math.floor(Math.random() * 256);
+  t[6] = t[6] & 15 | 64, t[8] = t[8] & 63 | 128;
+  const i = Array.from(t, (o) => o.toString(16).padStart(2, "0")).join("");
+  return `${i.slice(0, 8)}-${i.slice(8, 12)}-${i.slice(12, 16)}-${i.slice(16, 20)}-${i.slice(20)}`;
+}
+function de() {
   try {
-    let e = localStorage.getItem(K);
-    return e || (e = crypto.randomUUID(), localStorage.setItem(K, e)), e;
+    let e = localStorage.getItem(N);
+    return e || (e = W(), localStorage.setItem(N, e)), e;
   } catch {
-    return crypto.randomUUID();
+    return W();
   }
 }
-class re {
+class le {
   config;
   state = "IDLE";
   feedbackData = {
@@ -432,7 +444,7 @@ class re {
       colors: {
         positive: t.colors?.positive ?? "rgb(0, 200, 83)",
         negative: t.colors?.negative ?? "rgb(255, 0, 0)",
-        marker: t.colors?.marker ?? "#6366f1"
+        marker: t.colors?.marker ?? "#6365f1"
       },
       buttonSize: t.buttonSize ?? "medium",
       text: {
@@ -449,7 +461,9 @@ class re {
         feedbackLabel: t.text?.feedbackLabel ?? "Send feedback",
         confirmationTitle: t.text?.confirmationTitle ?? "Thank you!",
         confirmationMessage: t.text?.confirmationMessage ?? "Your feedback has been received.",
-        confirmationClose: t.text?.confirmationClose ?? "Close"
+        confirmationClose: t.text?.confirmationClose ?? "Close",
+        errorTitle: t.text?.errorTitle ?? "Message not sent",
+        errorMessage: t.text?.errorMessage ?? "Something went wrong, so we did not get your message. Please try again later."
       },
       hideConfirmation: t.hideConfirmation ?? !1,
       modalWidth: t.modalWidth ?? 400,
@@ -458,8 +472,8 @@ class re {
       fontSize: t.fontSize ?? 16,
       captureScreenshot: t.captureScreenshot ?? !1,
       annotate: t.annotate ?? !0,
-      annotationColor: t.annotationColor ?? t.colors?.marker ?? "#6366f1",
-      annotationPalette: t.annotationPalette ?? ie,
+      annotationColor: t.annotationColor ?? t.colors?.marker ?? "#6365f1",
+      annotationPalette: t.annotationPalette ?? ne,
       screenshotMethod: t.screenshotMethod ?? "permission",
       screenshotOptions: {
         quality: t.screenshotOptions?.quality ?? 0.8,
@@ -486,12 +500,12 @@ class re {
         video: t.quests?.video ?? "",
         // Quest service reuses the feedback API key unless overridden.
         apiKey: t.quests?.apiKey ?? t.apiKey ?? "",
-        moduleUrl: t.quests?.moduleUrl ?? Gt
+        moduleUrl: t.quests?.moduleUrl ?? te
       }
-    }, this.boundKeyDown = this.handleKeyDown.bind(this), this.boundResize = this.handleResize.bind(this), this.visitorId = ne(), this.init();
+    }, this.boundKeyDown = this.handleKeyDown.bind(this), this.boundResize = this.handleResize.bind(this), this.visitorId = de(), this.init();
   }
   applyVars(t) {
-    Et(t, this.cssVars);
+    zt(t, this.cssVars);
   }
   /**
    * Announce a message via the shared visually-hidden live regions.
@@ -501,7 +515,7 @@ class re {
    */
   announceMsg(t, i = !1) {
     const o = this.overlayShadowRoot ?? this.shadowRoot;
-    o && Bt(o, t, { assertive: i });
+    o && Pt(o, t, { assertive: i });
   }
   /**
    * Turn a transient surface into an accessible modal dialog: save the
@@ -509,16 +523,16 @@ class re {
    * background. Paired with closeDialogA11y() on every close path.
    */
   openDialogA11y(t, i) {
-    this.dialogTrigger = Ft(), Vt(t, i), this.dialogTrap = Pt(t), this.dialogRestoreInert = Kt(t);
+    this.dialogTrigger = _t(), $t(t, i), this.dialogTrap = Vt(t), this.dialogRestoreInert = jt(t);
   }
   closeDialogA11y() {
-    this.dialogTrap?.release(), this.dialogTrap = null, this.dialogRestoreInert && (this.dialogRestoreInert(), this.dialogRestoreInert = null), Ut(this.dialogTrigger), this.dialogTrigger = null;
+    this.dialogTrap?.release(), this.dialogTrap = null, this.dialogRestoreInert && (this.dialogRestoreInert(), this.dialogRestoreInert = null), Kt(this.dialogTrigger), this.dialogTrigger = null;
   }
   clearActiveThumb() {
     this.activeThumbBtn && (this.activeThumbBtn.setAttribute("aria-pressed", "false"), this.activeThumbBtn = null);
   }
   init() {
-    It(), this.cssVars = Tt({
+    Ht(), this.cssVars = Dt({
       positiveColor: this.config.colors.positive,
       negativeColor: this.config.colors.negative,
       markerColor: this.config.colors.marker,
@@ -527,7 +541,7 @@ class re {
       backdropOpacity: this.config.backdropOpacity,
       fontFamily: this.config.fontFamily,
       fontSize: this.config.fontSize
-    }), !this.config.hideDismiss && ae(this.config.apiKey) && (this._startDismissed = !0), this.checkMobile(), window.addEventListener("resize", this.boundResize), this.createEmbed(), this.consoleCapture = Xt((t) => {
+    }), !this.config.hideDismiss && se(this.config.apiKey) && (this._startDismissed = !0), this.checkMobile(), window.addEventListener("resize", this.boundResize), this.createEmbed(), this.consoleCapture = Zt((t) => {
       this.feedbackData.consoleErrors = this.consoleCapture?.errors ?? [];
     }), this.feedbackData.consoleErrors = this.consoleCapture.errors, this.observeDom(), (this.config.captureVideo && this.videoSupported() || this.config.captureScreenshot) && this.schedulePrewarm(() => {
       this.config.captureVideo && this.videoSupported() && this.prewarmVideo(), this.config.captureScreenshot && this.prewarmScreenshot();
@@ -540,13 +554,13 @@ class re {
    * swallowed — a failed preload just falls back to an on-demand load.
    */
   prewarmVideo() {
-    this.videoPrewarmed || (this.videoPrewarmed = !0, import("./recording-BVFd_ryf.js").catch(() => {
-    }), import("./video-BOYqf2Im.js").catch(() => {
+    this.videoPrewarmed || (this.videoPrewarmed = !0, import("./recording-Dx8AX-BC.js").catch(() => {
+    }), import("./video-Bd_29-rK.js").catch(() => {
     }));
   }
   prewarmScreenshot() {
-    this.screenshotPrewarmed || (this.screenshotPrewarmed = !0, (this.shouldCaptureViaDom() ? import("./screenshot-dom-CME7tYRE.js") : import("./screenshot-BkOCLuS2.js")).catch(() => {
-    }), this.config.annotate && import("./annotate-CMq95aXG.js").then((t) => t.d).catch(() => {
+    this.screenshotPrewarmed || (this.screenshotPrewarmed = !0, (this.shouldCaptureViaDom() ? import("./screenshot-dom-CME7tYRE.js") : import("./screenshot-DYOKg2bS.js")).catch(() => {
+    }), this.config.annotate && import("./annotate-D-o8xCV9.js").then((t) => t.d).catch(() => {
     }));
   }
   /** Run fn when the main thread is idle; cancelled by destroy(). */
@@ -575,7 +589,7 @@ class re {
     }), this.domObserver.observe(document.body, { childList: !0 });
   }
   checkMobile() {
-    this.isMobile = pt();
+    this.isMobile = gt();
   }
   handleResize() {
     this.checkMobile();
@@ -585,7 +599,7 @@ class re {
     let t = null;
     this.config.container && (t = document.querySelector(this.config.container)), t ? (t.appendChild(this.shadowHost), this.isUserProvidedContainer = !0, this.config.hideDismiss = !0) : (this.shadowHost.style.position = "fixed", this.shadowHost.style.display = "block", this.shadowHost.style.inset = "0", this.shadowHost.style.pointerEvents = "none", this.shadowHost.style.zIndex = String(this.config.zIndex), document.body.appendChild(this.shadowHost)), this.shadowRoot = this.shadowHost.attachShadow({ mode: "open" });
     const i = document.createElement("style");
-    if (i.textContent = U(), this.shadowRoot.appendChild(i), this.config.css) {
+    if (i.textContent = _(), this.shadowRoot.appendChild(i), this.config.css) {
       const d = document.createElement("style");
       d.textContent = this.config.css, this.shadowRoot.appendChild(d);
     }
@@ -609,20 +623,20 @@ class re {
       const d = document.createElement("div");
       d.className = "qaid-tooltip-wrapper";
       const s = document.createElement("button");
-      s.type = "button", s.className = r ? `${n} qaid-btn-feedback` : "qaid-btn qaid-btn-feedback", s.setAttribute("aria-label", this.config.text.feedbackLabel), s.innerHTML = this.config.feedbackIcon || bt, s.addEventListener("click", (u) => this.handleThumbClick("neutral", u.currentTarget, u)), s.addEventListener("mouseenter", () => {
+      s.type = "button", s.className = r ? `${n} qaid-btn-feedback` : "qaid-btn qaid-btn-feedback", s.setAttribute("aria-label", this.config.text.feedbackLabel), s.innerHTML = this.config.feedbackIcon || vt, s.addEventListener("click", (u) => this.handleThumbClick("neutral", u.currentTarget, u)), s.addEventListener("mouseenter", () => {
         this.prewarmTargeting(), this.showTooltip(s);
       }), s.addEventListener("mouseleave", () => this.hideTooltip()), d.appendChild(s), this.buttonsContainer.appendChild(d);
     } else if (!this.config.hideThumbs) {
       const d = document.createElement("div");
       d.className = "qaid-tooltip-wrapper";
       const s = document.createElement("button");
-      s.type = "button", s.className = r ? `${n} qaid-btn-up` : "qaid-btn qaid-btn-up", s.setAttribute("aria-label", this.config.text.positiveLabel), s.innerHTML = this.config.positiveIcon || mt, s.addEventListener("click", (f) => this.handleThumbClick("up", f.currentTarget, f)), s.addEventListener("mouseenter", () => {
+      s.type = "button", s.className = r ? `${n} qaid-btn-up` : "qaid-btn qaid-btn-up", s.setAttribute("aria-label", this.config.text.positiveLabel), s.innerHTML = this.config.positiveIcon || yt, s.addEventListener("click", (f) => this.handleThumbClick("up", f.currentTarget, f)), s.addEventListener("mouseenter", () => {
         this.prewarmTargeting(), this.showTooltip(s);
       }), s.addEventListener("mouseleave", () => this.hideTooltip()), d.appendChild(s);
       const u = document.createElement("div");
       u.className = "qaid-tooltip-wrapper";
       const h = document.createElement("button");
-      h.type = "button", h.className = r ? `${n} qaid-btn-down` : "qaid-btn qaid-btn-down", h.setAttribute("aria-label", this.config.text.negativeLabel), h.innerHTML = this.config.negativeIcon || gt, h.addEventListener("click", (f) => this.handleThumbClick("down", f.currentTarget, f)), h.addEventListener("mouseenter", () => {
+      h.type = "button", h.className = r ? `${n} qaid-btn-down` : "qaid-btn qaid-btn-down", h.setAttribute("aria-label", this.config.text.negativeLabel), h.innerHTML = this.config.negativeIcon || qt, h.addEventListener("click", (f) => this.handleThumbClick("down", f.currentTarget, f)), h.addEventListener("mouseenter", () => {
         this.prewarmTargeting(), this.showTooltip(h);
       }), h.addEventListener("mouseleave", () => this.hideTooltip()), u.appendChild(h), this.buttonsContainer.appendChild(d), this.buttonsContainer.appendChild(u);
     }
@@ -630,7 +644,7 @@ class re {
       const d = document.createElement("div");
       d.className = "qaid-tooltip-wrapper";
       const s = document.createElement("button");
-      s.type = "button", s.className = r ? `${n} qaid-btn-record` : "qaid-btn qaid-btn-record", s.setAttribute("aria-label", this.config.text.recordLabel), s.innerHTML = this.config.recordIcon || vt, s.addEventListener("click", () => {
+      s.type = "button", s.className = r ? `${n} qaid-btn-record` : "qaid-btn qaid-btn-record", s.setAttribute("aria-label", this.config.text.recordLabel), s.innerHTML = this.config.recordIcon || xt, s.addEventListener("click", () => {
         this.ensureRecording().then(
           (h) => this.config.videoOptions.redaction ? h.startPicking() : h.startRecording()
         );
@@ -654,7 +668,7 @@ class re {
     if (this.overlayShadowRoot) return this.overlayShadowRoot;
     this.overlayShadowHost = document.createElement("div"), this.overlayShadowHost.setAttribute("data-qaid-embed-overlay", ""), this.overlayShadowHost.style.position = "fixed", this.overlayShadowHost.style.inset = "0", this.overlayShadowHost.style.pointerEvents = "none", this.overlayShadowHost.style.zIndex = String(this.config.zIndex), document.body.appendChild(this.overlayShadowHost), this.overlayShadowRoot = this.overlayShadowHost.attachShadow({ mode: "open" });
     const t = document.createElement("style");
-    if (t.textContent = U(), this.overlayShadowRoot.appendChild(t), this.config.css) {
+    if (t.textContent = _(), this.overlayShadowRoot.appendChild(t), this.config.css) {
       const i = document.createElement("style");
       i.textContent = this.config.css, this.overlayShadowRoot.appendChild(i);
     }
@@ -664,7 +678,7 @@ class re {
   showTooltip(t) {
     const i = this.tooltipElement;
     i.style.visibility = "hidden", i.classList.add("qaid-tooltip-visible");
-    const o = t.getBoundingClientRect(), r = i.getBoundingClientRect(), { top: n, left: a } = Wt(
+    const o = t.getBoundingClientRect(), r = i.getBoundingClientRect(), { top: n, left: a } = Gt(
       o,
       r,
       { width: window.innerWidth, height: window.innerHeight }
@@ -675,10 +689,10 @@ class re {
     this.tooltipElement.classList.remove("qaid-tooltip-visible");
   }
   handleDismiss() {
-    this.buttonsContainer.classList.add("qaid-dismissed"), $(this.config.apiKey, !0);
+    this.buttonsContainer.classList.add("qaid-dismissed"), Q(this.config.apiKey, !0);
   }
   handleThumbClick(t, i, o) {
-    if (this.buttonsContainer?.classList.contains("qaid-incognito") && (this.buttonsContainer.classList.remove("qaid-incognito"), $(this.config.apiKey, !1)), this.prewarmModal(), this.config.skipTargeting || this.config.feedbackMode === "annotate")
+    if (this.buttonsContainer?.classList.contains("qaid-incognito") && (this.buttonsContainer.classList.remove("qaid-incognito"), Q(this.config.apiKey, !1)), this.prewarmModal(), this.config.skipTargeting || this.config.feedbackMode === "annotate")
       this.submitDirectFeedback(t, i);
     else {
       this.activeThumbBtn = i, i.setAttribute("aria-pressed", "true");
@@ -711,7 +725,7 @@ class re {
    *  instead of the permission-based Screen Capture API. Explicit "dom" wins;
    *  otherwise DOM is used on touch devices to avoid the getDisplayMedia prompt. */
   shouldCaptureViaDom() {
-    return this.config.screenshotMethod === "dom" || oe();
+    return this.config.screenshotMethod === "dom" || re();
   }
   /**
    * Open the full-screen annotation editor over the captured screenshot,
@@ -724,7 +738,7 @@ class re {
     const i = this.ensureOverlayHost(), o = this.overlayShadowHost, r = o.style.pointerEvents;
     o.style.pointerEvents = "auto";
     try {
-      const { openAnnotationEditor: n } = await import("./annotate-CMq95aXG.js").then((a) => a.d);
+      const { openAnnotationEditor: n } = await import("./annotate-D-o8xCV9.js").then((a) => a.d);
       return await n({
         dataUrl: t,
         root: i,
@@ -750,7 +764,7 @@ class re {
           const { captureDomScreenshot: a } = await import("./screenshot-dom-CME7tYRE.js");
           t = await a(this.config.screenshotOptions);
         } else {
-          const { captureScreenshot: a } = await import("./screenshot-BkOCLuS2.js");
+          const { captureScreenshot: a } = await import("./screenshot-DYOKg2bS.js");
           t = await a(this.config.screenshotOptions);
         }
         t && this.announceMsg("Screenshot captured");
@@ -828,7 +842,7 @@ class re {
     const o = this.questIdFor(t);
     if (!o) return !1;
     try {
-      return this.activeQuest?.destroy(), this.activeQuest = await ee({
+      return this.activeQuest?.destroy(), this.activeQuest = await ae({
         questId: o,
         base: this.config.quests.base,
         apiKey: this.config.quests.apiKey || void 0,
@@ -857,7 +871,7 @@ class re {
    */
   async ensureModal() {
     if (!this.modal) {
-      const { ModalController: t } = await import("./modal-Br5x7m6f.js");
+      const { ModalController: t } = await import("./modal-DAC92ZCu.js");
       this.modal = new t(this.makeModalHost());
     }
     return this.modal;
@@ -903,7 +917,7 @@ class re {
   }
   /** Warm the modal chunk while the user is targeting, so it opens instantly. */
   prewarmModal() {
-    this.modalPrewarmed || (this.modalPrewarmed = !0, import("./modal-Br5x7m6f.js").catch(() => {
+    this.modalPrewarmed || (this.modalPrewarmed = !0, import("./modal-DAC92ZCu.js").catch(() => {
     }));
   }
   /**
@@ -913,7 +927,7 @@ class re {
    */
   async ensureTargeting() {
     if (!this.targeting) {
-      const { TargetingController: t } = await import("./targeting-1pK6nJI9.js");
+      const { TargetingController: t } = await import("./targeting-Dz6z1BYl.js");
       this.targeting = new t(this.makeTargetingHost());
     }
     return this.targeting;
@@ -958,7 +972,7 @@ class re {
   }
   /** Warm the targeting chunk on thumb-button hover, before the click. */
   prewarmTargeting() {
-    this.targetingPrewarmed || this.config.skipTargeting || (this.targetingPrewarmed = !0, import("./targeting-1pK6nJI9.js").catch(() => {
+    this.targetingPrewarmed || this.config.skipTargeting || (this.targetingPrewarmed = !0, import("./targeting-Dz6z1BYl.js").catch(() => {
     }));
   }
   // ==================== Video Recording ====================
@@ -977,7 +991,7 @@ class re {
    */
   async ensureRecording() {
     if (!this.recording) {
-      const { RecordingController: t } = await import("./recording-BVFd_ryf.js");
+      const { RecordingController: t } = await import("./recording-Dx8AX-BC.js");
       this.recording = new t(this.makeRecordingHost());
     }
     return this.recording;
@@ -1033,13 +1047,13 @@ class re {
       const t = window;
       this.prewarmIsTimeout ? clearTimeout(this.prewarmHandle) : t.cancelIdleCallback?.(this.prewarmHandle), this.prewarmHandle = null;
     }
-    this.recording?.destroy(), this.recording = null, this.modal?.destroy(), this.modal = null, this.activeQuest?.destroy(), this.activeQuest = null, this.consoleCapture && (this.consoleCapture.restore(), this.consoleCapture = null), window.removeEventListener("resize", this.boundResize), document.removeEventListener("keydown", this.boundKeyDown), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.shadowHost && (this.shadowHost.remove(), this.shadowHost = null, this.shadowRoot = null), this.overlayShadowHost && (this.overlayShadowHost.remove(), this.overlayShadowHost = null, this.overlayShadowRoot = null), this.buttonsContainer = null, this.dismissBtn = null, this.tooltipElement = null, Dt();
+    this.recording?.destroy(), this.recording = null, this.modal?.destroy(), this.modal = null, this.activeQuest?.destroy(), this.activeQuest = null, this.consoleCapture && (this.consoleCapture.restore(), this.consoleCapture = null), window.removeEventListener("resize", this.boundResize), document.removeEventListener("keydown", this.boundKeyDown), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.shadowHost && (this.shadowHost.remove(), this.shadowHost = null, this.shadowRoot = null), this.overlayShadowHost && (this.overlayShadowHost.remove(), this.overlayShadowHost = null, this.overlayShadowRoot = null), this.buttonsContainer = null, this.dismissBtn = null, this.tooltipElement = null, Lt();
   }
 }
-function W(e) {
+function G(e) {
   return document.querySelector(e)?.textContent?.trim() ?? "";
 }
-function se() {
+function ce() {
   const e = document.querySelector(
     'script[type="application/json"][data-feedback-config]'
   );
@@ -1048,31 +1062,31 @@ function se() {
   if (!t) return null;
   try {
     const i = JSON.parse(t);
-    return i.cssSelector && !i.css && (i.css = W(i.cssSelector), delete i.cssSelector), i;
+    return i.cssSelector && !i.css && (i.css = G(i.cssSelector), delete i.cssSelector), i;
   } catch {
     return null;
   }
 }
-function de(e) {
+function ue(e) {
   const t = e.getAttribute("data-endpoint");
   if (!t) return null;
-  const i = e.getAttribute("data-position"), o = e.getAttribute("data-zindex"), r = e.getAttribute("data-positive-color"), n = e.getAttribute("data-negative-color"), a = e.getAttribute("data-marker-color"), l = e.getAttribute("data-container"), c = e.getAttribute("data-button-class"), d = e.getAttribute("data-skip-targeting"), s = e.getAttribute("data-hide-confirmation"), u = e.getAttribute("data-single-button"), h = e.getAttribute("data-feedback-mode"), f = e.getAttribute("data-incognito"), Y = e.getAttribute("data-button-size"), m = e.getAttribute("data-offset-x"), g = e.getAttribute("data-offset-y"), C = e.getAttribute("data-modal-width"), S = e.getAttribute("data-backdrop-opacity"), X = e.getAttribute("data-font-family"), A = e.getAttribute("data-font-size"), T = e.getAttribute("data-tooltip"), E = e.getAttribute("data-modal-title"), I = e.getAttribute("data-confirmation-title"), D = e.getAttribute("data-confirmation-message"), H = e.getAttribute("data-confirmation-close"), z = e.getAttribute("data-modal-subtitle"), L = e.getAttribute("data-placeholder"), M = e.getAttribute("data-submit-button"), B = e.getAttribute("data-skip-button"), G = e.getAttribute("data-positive-icon"), J = e.getAttribute("data-negative-icon"), Z = e.getAttribute("data-feedback-icon"), O = e.getAttribute("data-feedback-label"), tt = e.getAttribute("data-api-key"), et = e.getAttribute("data-capture-screenshot"), it = e.getAttribute("data-annotate"), ot = e.getAttribute("data-annotation-color"), v = e.getAttribute("data-screenshot-quality"), y = e.getAttribute("data-screenshot-max-width"), w = e.getAttribute("data-screenshot-max-height"), at = e.getAttribute("data-capture-video"), R = e.getAttribute("data-video-redaction"), nt = e.getAttribute("data-hide-thumbs"), rt = e.getAttribute("data-hide-dismiss"), q = e.getAttribute("data-video-max-duration"), st = e.getAttribute("data-screenshot-method"), dt = e.getAttribute("data-direction"), P = e.getAttribute("data-css-selector"), F = e.getAttribute("data-quest-base"), lt = e.getAttribute("data-quest-up"), ct = e.getAttribute("data-quest-down"), ut = e.getAttribute("data-quest-video"), ht = e.getAttribute("data-quest-api-key"), ft = e.getAttribute("data-quest-module-url");
+  const i = e.getAttribute("data-position"), o = e.getAttribute("data-zindex"), r = e.getAttribute("data-positive-color"), n = e.getAttribute("data-negative-color"), a = e.getAttribute("data-marker-color"), l = e.getAttribute("data-container"), c = e.getAttribute("data-button-class"), d = e.getAttribute("data-skip-targeting"), s = e.getAttribute("data-hide-confirmation"), u = e.getAttribute("data-single-button"), h = e.getAttribute("data-feedback-mode"), f = e.getAttribute("data-incognito"), J = e.getAttribute("data-button-size"), m = e.getAttribute("data-offset-x"), g = e.getAttribute("data-offset-y"), C = e.getAttribute("data-modal-width"), S = e.getAttribute("data-backdrop-opacity"), Z = e.getAttribute("data-font-family"), A = e.getAttribute("data-font-size"), T = e.getAttribute("data-tooltip"), E = e.getAttribute("data-modal-title"), I = e.getAttribute("data-confirmation-title"), D = e.getAttribute("data-confirmation-message"), z = e.getAttribute("data-confirmation-close"), H = e.getAttribute("data-error-title"), L = e.getAttribute("data-error-message"), M = e.getAttribute("data-modal-subtitle"), B = e.getAttribute("data-placeholder"), O = e.getAttribute("data-submit-button"), R = e.getAttribute("data-skip-button"), tt = e.getAttribute("data-positive-icon"), et = e.getAttribute("data-negative-icon"), it = e.getAttribute("data-feedback-icon"), P = e.getAttribute("data-feedback-label"), ot = e.getAttribute("data-api-key"), at = e.getAttribute("data-capture-screenshot"), nt = e.getAttribute("data-annotate"), rt = e.getAttribute("data-annotation-color"), v = e.getAttribute("data-screenshot-quality"), y = e.getAttribute("data-screenshot-max-width"), q = e.getAttribute("data-screenshot-max-height"), st = e.getAttribute("data-capture-video"), F = e.getAttribute("data-video-redaction"), dt = e.getAttribute("data-hide-thumbs"), lt = e.getAttribute("data-hide-dismiss"), x = e.getAttribute("data-video-max-duration"), ct = e.getAttribute("data-screenshot-method"), ut = e.getAttribute("data-direction"), U = e.getAttribute("data-css-selector"), V = e.getAttribute("data-quest-base"), ht = e.getAttribute("data-quest-up"), ft = e.getAttribute("data-quest-down"), pt = e.getAttribute("data-quest-video"), bt = e.getAttribute("data-quest-api-key"), mt = e.getAttribute("data-quest-module-url");
   return {
     endpoint: t,
-    css: P ? W(P) : void 0,
-    apiKey: tt ?? void 0,
-    captureScreenshot: et === "true" ? !0 : void 0,
+    css: U ? G(U) : void 0,
+    apiKey: ot ?? void 0,
+    captureScreenshot: at === "true" ? !0 : void 0,
     // Annotation is on by default; only an explicit "false" disables it.
-    annotate: it === "false" ? !1 : void 0,
-    annotationColor: ot ?? void 0,
-    screenshotOptions: v || y || w ? {
+    annotate: nt === "false" ? !1 : void 0,
+    annotationColor: rt ?? void 0,
+    screenshotOptions: v || y || q ? {
       quality: v ? parseFloat(v) : void 0,
       maxWidth: y ? parseInt(y, 10) : void 0,
-      maxHeight: w ? parseInt(w, 10) : void 0
+      maxHeight: q ? parseInt(q, 10) : void 0
     } : void 0,
     container: l ?? void 0,
     buttonClass: c ?? void 0,
-    direction: dt ?? void 0,
+    direction: ut ?? void 0,
     position: i ?? void 0,
     zIndex: o ? parseInt(o, 10) : void 0,
     skipTargeting: d === "true" ? !0 : void 0,
@@ -1080,64 +1094,66 @@ function de(e) {
     singleButton: u === "true" ? !0 : void 0,
     feedbackMode: h ?? void 0,
     incognito: f === "true" ? !0 : void 0,
-    buttonSize: Y ?? void 0,
+    buttonSize: J ?? void 0,
     offset: m || g ? {
       x: m ? parseInt(m, 10) : void 0,
       y: g ? parseInt(g, 10) : void 0
     } : void 0,
     modalWidth: C ? parseInt(C, 10) : void 0,
     backdropOpacity: S ? parseFloat(S) : void 0,
-    fontFamily: X ?? void 0,
+    fontFamily: Z ?? void 0,
     fontSize: A ? parseInt(A, 10) : void 0,
     colors: {
       positive: r ?? void 0,
       negative: n ?? void 0,
       marker: a ?? void 0
     },
-    text: T || E || z || L || M || B || O || I || D || H ? {
+    text: T || E || M || B || O || R || P || I || D || z || H || L ? {
       tooltip: T ?? void 0,
       modalTitle: E ?? void 0,
-      modalSubtitle: z ?? void 0,
-      placeholder: L ?? void 0,
-      submitButton: M ?? void 0,
-      skipButton: B ?? void 0,
-      feedbackLabel: O ?? void 0,
+      modalSubtitle: M ?? void 0,
+      placeholder: B ?? void 0,
+      submitButton: O ?? void 0,
+      skipButton: R ?? void 0,
+      feedbackLabel: P ?? void 0,
       confirmationTitle: I ?? void 0,
       confirmationMessage: D ?? void 0,
-      confirmationClose: H ?? void 0
+      confirmationClose: z ?? void 0,
+      errorTitle: H ?? void 0,
+      errorMessage: L ?? void 0
     } : void 0,
-    positiveIcon: G ?? void 0,
-    negativeIcon: J ?? void 0,
-    feedbackIcon: Z ?? void 0,
-    screenshotMethod: st ?? void 0,
-    captureVideo: at === "true" ? !0 : void 0,
-    hideThumbs: nt === "true" ? !0 : void 0,
-    hideDismiss: rt === "true" ? !0 : void 0,
-    videoOptions: q || R ? {
-      maxDuration: q ? parseInt(q, 10) : void 0,
-      redaction: R === "true" ? !0 : void 0
+    positiveIcon: tt ?? void 0,
+    negativeIcon: et ?? void 0,
+    feedbackIcon: it ?? void 0,
+    screenshotMethod: ct ?? void 0,
+    captureVideo: st === "true" ? !0 : void 0,
+    hideThumbs: dt === "true" ? !0 : void 0,
+    hideDismiss: lt === "true" ? !0 : void 0,
+    videoOptions: x || F ? {
+      maxDuration: x ? parseInt(x, 10) : void 0,
+      redaction: F === "true" ? !0 : void 0
     } : void 0,
-    quests: F ? {
-      base: F,
-      up: lt ?? void 0,
-      down: ct ?? void 0,
-      video: ut ?? void 0,
-      apiKey: ht ?? void 0,
-      moduleUrl: ft ?? void 0
+    quests: V ? {
+      base: V,
+      up: ht ?? void 0,
+      down: ft ?? void 0,
+      video: pt ?? void 0,
+      apiKey: bt ?? void 0,
+      moduleUrl: mt ?? void 0
     } : void 0
   };
 }
-function le() {
+function he() {
   if (typeof document > "u") return;
   const e = () => {
-    const t = document.currentScript ?? document.querySelector("script[data-endpoint]"), i = se(), o = t ? de(t) : null, r = i ?? o;
-    r?.endpoint && new re(r);
+    const t = document.currentScript ?? document.querySelector("script[data-endpoint]"), i = ce(), o = t ? ue(t) : null, r = i ?? o;
+    r?.endpoint && new le(r);
   };
   document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", e) : e();
 }
-le();
+he();
 export {
-  re as Q,
-  ue as c
+  le as Q,
+  pe as c
 };
-//# sourceMappingURL=loader-CYM1rxDH.js.map
+//# sourceMappingURL=loader-Dg9usbXx.js.map

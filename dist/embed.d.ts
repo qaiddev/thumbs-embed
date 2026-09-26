@@ -2,6 +2,17 @@ import type { FeedbackConfig } from "./types";
 export declare function isHiddenByUser(apiKey?: string): boolean;
 export declare function setHiddenByUser(apiKey?: string, hidden?: boolean): void;
 /**
+ * A random v4 UUID.
+ *
+ * `crypto.randomUUID` exists only in secure contexts (HTTPS and localhost). On
+ * a plain http:// page it is undefined, and calling it threw inside the
+ * constructor, so the widget never appeared. `crypto.getRandomValues` has no
+ * such restriction; `Math.random` covers a runtime with no `crypto` at all.
+ * The id only groups one browser's feedback, so it needs to be unique, not
+ * secret.
+ */
+export declare function randomId(): string;
+/**
  * Get or create a visitor ID stored in localStorage
  */
 export declare function getOrCreateVisitorId(): string;

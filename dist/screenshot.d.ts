@@ -2,7 +2,7 @@
  * Screenshot capture utility using native Screen Capture API
  */
 export interface ScreenshotOptions {
-    /** Quality of WebP compression (0-1). Default: 1.0 */
+    /** Quality of WebP compression (0-1). Default: 0.8 */
     quality?: number;
     /** Max width of the screenshot. Default: 1280 */
     maxWidth?: number;

@@ -132,9 +132,11 @@ export class RecordingController {
       document.addEventListener("keydown", this.host.boundKeyDown);
     } catch (error) {
       // User denied screen share, shared a disallowed surface (window / whole
-      // screen), or another error occurred. Surface the tab-only message so a
-      // rejected non-tab share isn't a silent no-op.
-      if (error instanceof Error && /current tab/i.test(error.message)) {
+      // screen), the browser cannot blur the picked areas, or another error
+      // occurred. Surface the tab-only and no-blur messages so neither is a
+      // silent no-op. (Matched by text: video-capture is a separate lazy
+      // chunk, so importing its constant here would merge the two.)
+      if (error instanceof Error && /current tab|cannot blur/i.test(error.message)) {
         this.host.announceMsg(error.message);
       }
       this.cleanupRecording();
@@ -465,6 +467,8 @@ export class RecordingController {
     }
 
     let videoFeedbackId: string | number | null = null;
+    // Set when the upload failed: the reason shown to the visitor.
+    let failure: string | null = null;
     try {
       const response = await fetch(`${this.host.config.endpoint}/video`, {
         method: "POST",
@@ -480,21 +484,53 @@ export class RecordingController {
           // Non-JSON / no id — the quest can still launch, just unlinked.
         }
       } else {
+        // A refusal (403 on a plan without video, 400, 413 too large, 429…)
+        // used to close the preview exactly like a success.
         console.error("Failed to submit video feedback:", await response.text());
-        this.host.announceMsg("Failed to send recording", true);
+        failure =
+          response.status === 413
+            ? "This recording is too large to send. Try a shorter one."
+            : "Your recording could not be sent.";
       }
     } catch (error) {
       console.error("Failed to submit video feedback:", error);
-      this.host.announceMsg("Failed to send recording", true);
+      failure = "Your recording could not be sent. Check your connection and try again.";
     }
 
     this.isSendingVideo = false;
+
+    if (failure) {
+      this.showSendError(failure, sendBtn);
+      return;
+    }
+
     this.removeVideoPreview();
     this.cleanupRecording();
 
     // Once the recording is safely sent, launch the linked quest (if any),
     // passing the new feedback record id so its response is joinable.
     await this.host.tryLaunchQuest("video", videoFeedbackId);
+  }
+
+  /**
+   * Keep the preview open and say the upload failed. Closing it, as a success
+   * does, told the visitor their recording had arrived when it had not. Send
+   * is re-enabled for another try; Cancel and Re-record still work.
+   */
+  private showSendError(message: string, sendBtn: HTMLButtonElement): void {
+    this.host.announceMsg(`Failed to send recording. ${message}`, true);
+    sendBtn.disabled = false;
+    sendBtn.textContent = "Send";
+
+    const actions = this.videoPreview?.querySelector(".qaid-video-preview-actions");
+    if (actions) {
+      let note = this.videoPreview!.querySelector<HTMLElement>(".qaid-video-error");
+      if (!note) {
+        note = h("p", { class: "qaid-video-error" });
+        actions.before(note);
+      }
+      note.textContent = message;
+    }
   }
 
   private cleanupRecording(): void {

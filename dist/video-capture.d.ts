@@ -2,6 +2,12 @@
  * Video capture utilities
  * Uses getDisplayMedia + MediaRecorder for screen recording
  */
+/**
+ * Thrown by `start()` when areas were picked for redaction but this browser
+ * cannot run the canvas pipeline that blurs them. The recording is refused
+ * rather than made without the blur.
+ */
+export declare const REDACTION_UNAVAILABLE = "This browser cannot blur the areas you picked, so the recording was not started.";
 export interface VideoRecorderOptions {
     /** Max recording duration in seconds. Default: 15 */
     maxDuration?: number;

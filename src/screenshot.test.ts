@@ -222,8 +222,8 @@ describe("captureScreenshot", () => {
     const result = await captureScreenshot();
 
     expect(result).toBe("data:image/webp;base64,default");
-    // Default quality is 1.0
-    expect(canvasToDataURLSpy).toHaveBeenCalledWith("image/webp", 1.0);
+    // Default quality is 0.8, the same as the DOM path and the widget
+    expect(canvasToDataURLSpy).toHaveBeenCalledWith("image/webp", 0.8);
   });
 
   it("should scale down when source dimensions exceed max", async () => {

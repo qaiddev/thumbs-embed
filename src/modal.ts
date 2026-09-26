@@ -8,7 +8,14 @@
  */
 
 import { calculateModalAndArrowPosition } from "./modal-positioning";
-import { THUMBS_UP_ICON, THUMBS_DOWN_ICON, FEEDBACK_ICON, DONE_ICON } from "./icons";
+import { h } from "./dom";
+import {
+  THUMBS_UP_ICON,
+  THUMBS_DOWN_ICON,
+  FEEDBACK_ICON,
+  DONE_ICON,
+  ERROR_ICON,
+} from "./icons";
 import type {
   ResolvedFeedbackConfig,
   EmbedState,
@@ -106,12 +113,14 @@ export class ModalController {
     sheet.className = "qaid-bottom-sheet";
     sheet.style.zIndex = String(this.host.config.zIndex + 3);
 
-    sheet.innerHTML = `
-      <div class="qaid-bottom-sheet-content">
-        <div class="qaid-bottom-sheet-handle"></div>
-        ${this.getModalContent()}
-      </div>
-    `;
+    sheet.appendChild(
+      h(
+        "div",
+        { class: "qaid-bottom-sheet-content" },
+        h("div", { class: "qaid-bottom-sheet-handle" }),
+        this.buildModalContent()
+      )
+    );
 
     this.host.applyVars(sheet);
     root.appendChild(sheet);
@@ -148,7 +157,7 @@ export class ModalController {
 
     const box = document.createElement("div");
     box.className = "qaid-modal-box";
-    box.innerHTML = this.getModalContent();
+    box.appendChild(this.buildModalContent());
 
     this.modalContainer.appendChild(arrowEl);
     this.modalContainer.appendChild(box);
@@ -158,36 +167,81 @@ export class ModalController {
     this.setupModalInteractions();
   }
 
-  private getModalContent(): string {
+  /**
+   * The modal's contents, built as nodes rather than an HTML string.
+   *
+   * Every piece of copy (title, subtitle, placeholder, button) goes in as
+   * text, so a `<`, `&` or `"` in a translation shows as written instead of
+   * being parsed as markup or cutting an attribute short. Only the icons are
+   * markup, because they are documented as SVG/HTML strings.
+   */
+  private buildModalContent(): DocumentFragment {
+    const { config, uid } = this.host;
+    const text = config.text;
     const type = this.host.feedbackData.feedbackType;
     const isUp = type === "up";
-    const positiveIcon = this.host.config.positiveIcon || THUMBS_UP_ICON;
-    const negativeIcon = this.host.config.negativeIcon || THUMBS_DOWN_ICON;
-    const toggleClass = this.host.config.buttonClass
-      ? `qaid-type-toggle qaid-type-toggle-custom ${this.host.config.buttonClass} ${isUp ? "qaid-btn-up" : "qaid-btn-down"}`
+    const positiveIcon = config.positiveIcon || THUMBS_UP_ICON;
+    const negativeIcon = config.negativeIcon || THUMBS_DOWN_ICON;
+    const toggleClass = config.buttonClass
+      ? `qaid-type-toggle qaid-type-toggle-custom ${config.buttonClass} ${isUp ? "qaid-btn-up" : "qaid-btn-down"}`
       : `qaid-type-toggle ${isUp ? "qaid-type-up" : "qaid-type-down"}`;
     const toggleLabel = isUp ? "Feedback type: positive" : "Feedback type: negative";
     // Neutral (single-button) feedback has no sentiment to toggle — show a
     // static feedback icon in place of the up/down toggle.
     const header =
       type === "neutral"
-        ? `<span class="qaid-type-static" aria-hidden="true">${this.host.config.feedbackIcon || FEEDBACK_ICON}</span>`
-        : `<button type="button" class="${toggleClass}" title="Click to switch" aria-pressed="${isUp}" aria-label="${toggleLabel}">
-          ${isUp ? positiveIcon : negativeIcon}
-        </button>`;
-    return `
-      <div class="qaid-modal-header">
-        ${header}
-        <div class="qaid-modal-header-text">
-          <h3 class="qaid-modal-title" id="qaid-modal-title-${this.host.uid}">${this.host.config.text.modalTitle}</h3>
-          <p class="qaid-modal-subtitle" id="qaid-modal-subtitle-${this.host.uid}">${this.host.config.text.modalSubtitle}</p>
-        </div>
-      </div>
-      <textarea class="qaid-textarea" aria-label="${this.host.config.text.modalSubtitle}" placeholder="${this.host.config.text.placeholder}"></textarea>
-      <div class="qaid-btn-row">
-        <button type="button" class="qaid-btn-submit">${this.host.config.text.skipButton}</button>
-      </div>
-    `;
+        ? h("span", {
+            class: "qaid-type-static",
+            html: config.feedbackIcon || FEEDBACK_ICON,
+            attrs: { "aria-hidden": "true" },
+          })
+        : h("button", {
+            class: toggleClass,
+            html: isUp ? positiveIcon : negativeIcon,
+            attrs: {
+              type: "button",
+              title: "Click to switch",
+              "aria-pressed": String(isUp),
+              "aria-label": toggleLabel,
+            },
+          });
+
+    const fragment = document.createDocumentFragment();
+    fragment.append(
+      h(
+        "div",
+        { class: "qaid-modal-header" },
+        header,
+        h(
+          "div",
+          { class: "qaid-modal-header-text" },
+          h("h3", {
+            class: "qaid-modal-title",
+            text: text.modalTitle,
+            attrs: { id: `qaid-modal-title-${uid}` },
+          }),
+          h("p", {
+            class: "qaid-modal-subtitle",
+            text: text.modalSubtitle,
+            attrs: { id: `qaid-modal-subtitle-${uid}` },
+          })
+        )
+      ),
+      h("textarea", {
+        class: "qaid-textarea",
+        attrs: { "aria-label": text.modalSubtitle, placeholder: text.placeholder },
+      }),
+      h(
+        "div",
+        { class: "qaid-btn-row" },
+        h("button", {
+          class: "qaid-btn-submit",
+          text: text.skipButton,
+          attrs: { type: "button" },
+        })
+      )
+    );
+    return fragment;
   }
 
   private setupModalInteractions(): void {
@@ -260,46 +314,61 @@ export class ModalController {
   }
 
   private async submitMessage(message: string | null): Promise<void> {
-    let sent = false;
+    // null = nothing was attempted (the initial POST never produced an id);
+    // otherwise whether the server accepted the PATCH.
+    let delivered: boolean | null = null;
 
     if (this.host.feedbackId) {
       try {
-        await fetch(`${this.host.config.endpoint}/${this.host.feedbackId}`, {
+        const response = await fetch(`${this.host.config.endpoint}/${this.host.feedbackId}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ message }),
         });
-        sent = true;
+        // fetch resolves on any HTTP reply. A 4xx/5xx means the server
+        // refused or lost the message, so it is not a success.
+        delivered = response.ok;
+        if (!response.ok) {
+          console.error("Failed to submit feedback message: HTTP", response.status);
+        }
       } catch (error) {
         console.error("Failed to submit feedback message:", error);
+        delivered = false;
       }
       // Clear feedbackId so close() doesn't send another PATCH.
       this.host.setFeedbackId(null);
+    }
+
+    // The message was lost. Closing quietly reads as success, so say so —
+    // even with hideConfirmation, which only opts out of the success screen.
+    if (delivered === false) {
+      this.showResult(false);
+      return;
     }
 
     // A submit that simply removes the modal reads as a failure — nothing
     // acknowledges that the message was sent. Show a success screen unless the
     // host opted out.
     //
-    // Only on a genuine success, though: with no feedbackId the initial POST
-    // never landed, and a failed PATCH means the message is gone. Telling
-    // someone their feedback was received in either case would be a lie, so
-    // those paths close exactly as they did before.
-    if (sent && !this.host.config.hideConfirmation) {
-      this.showConfirmation();
+    // With no feedbackId the initial POST never landed and there was nothing
+    // to send the message to; that path closes exactly as it did before.
+    if (delivered && !this.host.config.hideConfirmation) {
+      this.showResult(true);
       return;
     }
     this.close();
   }
 
   /**
-   * Replace the modal's contents with a checkmark and a short acknowledgement.
+   * Replace the modal's contents with the outcome: a checkmark and a short
+   * acknowledgement, or an error mark and a "not sent" notice.
    *
    * The submit button that had focus is gone by this point, so focus moves to
    * the heading (WCAG 2.4.3) and the message is announced. Mirrors the quests
-   * embed's thank-you screen so the two products confirm the same way.
+   * embed's thank-you screen so the two products confirm the same way. Copy
+   * goes in as text, never markup.
    */
-  private showConfirmation(): void {
+  private showResult(delivered: boolean): void {
     const box = this.modalContainer?.querySelector(".qaid-modal-box")
       ?? this.modalContainer?.querySelector(".qaid-bottom-sheet-content")
       ?? this.modalContainer;
@@ -311,22 +380,38 @@ export class ModalController {
     }
 
     const text = this.host.config.text;
-    const titleId = `qaid-confirm-title-${this.host.uid}`;
+    const heading = delivered ? text.confirmationTitle : text.errorTitle;
+    const body = delivered ? text.confirmationMessage : text.errorMessage;
 
-    box.innerHTML = `
-      <div class="qaid-confirm">
-        <span class="qaid-confirm-icon" aria-hidden="true">${DONE_ICON}</span>
-        <h3 class="qaid-confirm-title" id="${titleId}" tabindex="-1">${text.confirmationTitle}</h3>
-        <p class="qaid-confirm-message">${text.confirmationMessage}</p>
-        <button type="button" class="qaid-btn-submit qaid-confirm-close">${text.confirmationClose}</button>
-      </div>
-    `;
+    const title = h("h3", {
+      class: "qaid-confirm-title",
+      text: heading,
+      attrs: { id: `qaid-confirm-title-${this.host.uid}`, tabindex: "-1" },
+    });
 
-    box.querySelector(".qaid-confirm-close")?.addEventListener("click", () => this.close());
+    box.textContent = "";
+    box.appendChild(
+      h(
+        "div",
+        { class: delivered ? "qaid-confirm" : "qaid-confirm qaid-confirm-error" },
+        h("span", {
+          class: "qaid-confirm-icon",
+          html: delivered ? DONE_ICON : ERROR_ICON,
+          attrs: { "aria-hidden": "true" },
+        }),
+        title,
+        h("p", { class: "qaid-confirm-message", text: body }),
+        h("button", {
+          class: "qaid-btn-submit qaid-confirm-close",
+          text: text.confirmationClose,
+          attrs: { type: "button" },
+          on: { click: () => this.close() },
+        })
+      )
+    );
 
-    const title = box.querySelector<HTMLElement>(`#${CSS.escape(titleId)}`);
     // Focus after paint, matching the quests embed.
-    requestAnimationFrame(() => title?.focus());
-    this.host.announceMsg(`${text.confirmationTitle} ${text.confirmationMessage}`, true);
+    requestAnimationFrame(() => title.focus());
+    this.host.announceMsg(`${heading} ${body}`, true);
   }
 }

@@ -14,9 +14,9 @@ npm install @qaiddev/thumbs-embed
 ```
 
 ```typescript
-import { QaidEmbed } from '@qaiddev/thumbs-embed';
+import { QaidFeedback } from '@qaiddev/thumbs-embed';
 
-const feedback = new QaidEmbed({
+const feedback = new QaidFeedback({
   endpoint: 'https://qaid.dev/api/feedback',
   apiKey: 'YOUR_API_KEY',
 });
@@ -112,19 +112,19 @@ We offer a Free Plan for a compatible endpoint and a dashboard to manage your si
 | `modalWidth` | `number` | `400` | Width of the feedback modal in pixels |
 | `backdropOpacity` | `number` | `0.3` | Opacity of the dark backdrop behind the modal (0-1) |
 | `fontFamily` | `string` | `"system-ui, -apple-system, sans-serif"` | Font family for all text |
-| `fontSize` | `number` | `16` | Base font size in pixels |
+| `fontSize` | `number` | `16` | Base font size in pixels. Every text size in the modal, success screen, tooltip, recording and annotation screens is a multiple of it |
 
 ### Colors
 
 Pass a `colors` object to customize the color scheme:
 
 ```typescript
-new QaidEmbed({
+new QaidFeedback({
   endpoint: '/api/feedback',
   colors: {
     positive: 'rgb(0, 200, 83)',  // Thumbs up color (default: green)
     negative: 'rgb(255, 0, 0)',   // Thumbs down color (default: red)
-    marker: '#6366f1',            // Selected element outline & submit button (default: indigo)
+    marker: '#6365f1',            // Selected element outline & submit button (default: indigo)
   },
 });
 ```
@@ -136,7 +136,7 @@ Colors accept hex (`#ABC`, `#AABBCC`) or `rgb(r, g, b)` format.
 Replace the default thumb icons with SVG strings or emoji:
 
 ```typescript
-new QaidEmbed({
+new QaidFeedback({
   endpoint: '/api/feedback',
   positiveIcon: '<svg viewBox="0 0 24 24">...</svg>',
   negativeIcon: '<svg viewBox="0 0 24 24">...</svg>',
@@ -145,34 +145,41 @@ new QaidEmbed({
 
 ### Text Customization
 
-Every user-facing string can be overridden via the `text` object:
+The message box's strings can be overridden via the `text` object:
 
 ```typescript
-new QaidEmbed({
+new QaidFeedback({
   endpoint: '/api/feedback',
   text: {
     tooltip: 'Any feedback? Click to start, Esc to cancel',
-    bannerText: 'Click on any element to target it with your feedback',
-    bannerHint: '(Press Escape to cancel)',
     modalTitle: 'Thank you for your feedback!',
     modalSubtitle: 'Would you like to add a message to help us understand your feedback better?',
     placeholder: 'Optional: Tell us more about your experience...',
     submitButton: 'Submit',
     skipButton: 'Skip',
+    confirmationTitle: 'Thank you!',
+    confirmationMessage: 'Your feedback has been received.',
+    confirmationClose: 'Close',
+    // Shown instead of the success screen when the server refuses the message
+    // (any non-2xx reply) or cannot be reached.
+    errorTitle: 'Message not sent',
+    errorMessage: 'Something went wrong, so we did not get your message. Please try again later.',
   },
 });
 ```
+
+Strings are inserted as plain text, so `<`, `&` and quotes show exactly as written. Only the icon options (`positiveIcon`, `negativeIcon`, `feedbackIcon`, `recordIcon`) take markup.
 
 ### Screenshots
 
 Enable automatic screenshot capture with feedback submissions:
 
 ```typescript
-new QaidEmbed({
+new QaidFeedback({
   endpoint: '/api/feedback',
   captureScreenshot: true,
   screenshotOptions: {
-    quality: 0.8,      // WebP compression quality (0-1)
+    quality: 0.8,      // WebP compression quality (0-1, default 0.8)
     maxWidth: 1280,    // Max screenshot width in pixels
     maxHeight: 800,    // Max screenshot height in pixels
   },
@@ -186,7 +193,7 @@ Screenshots use the browser's Screen Capture API. The user will see a permission
 Instead of the optional message box, a button can open a **quest** — a short questionnaire powered by [`@qaiddev/quests-embed`](https://www.npmjs.com/package/@qaiddev/quests-embed). You can ask one set of questions after a thumbs-up, a different set after a thumbs-down, and another after a video recording is sent. The quest widget is loaded on demand from a CDN the first time it's needed, so the thumbs bundle stays zero-dependency; if it can't load, the classic message box is shown instead.
 
 ```typescript
-new QaidEmbed({
+new QaidFeedback({
   endpoint: 'https://qaid.dev/api/feedback',
   apiKey: 'YOUR_API_KEY',
   captureVideo: true,
@@ -229,13 +236,13 @@ When using the script tag method, all config options are available as `data-*` a
 | `data-font-family` | `fontFamily` |
 | `data-font-size` | `fontSize` |
 | `data-tooltip` | `text.tooltip` |
-| `data-banner-text` | `text.bannerText` |
-| `data-banner-hint` | `text.bannerHint` |
 | `data-modal-title` | `text.modalTitle` |
 | `data-modal-subtitle` | `text.modalSubtitle` |
 | `data-placeholder` | `text.placeholder` |
 | `data-submit-button` | `text.submitButton` |
 | `data-skip-button` | `text.skipButton` |
+| `data-error-title` | `text.errorTitle` |
+| `data-error-message` | `text.errorMessage` |
 | `data-positive-icon` | `positiveIcon` |
 | `data-negative-icon` | `negativeIcon` |
 | `data-quest-base` | `quests.base` |
@@ -252,8 +259,10 @@ By default, the embed creates a fixed-position container in the viewport corner.
 ```html
 <div id="my-feedback-spot"></div>
 
-<script>
-new QaidEmbed({
+<script type="module">
+import { QaidFeedback } from 'https://unpkg.com/@qaiddev/thumbs-embed/dist/loader.js';
+
+new QaidFeedback({
   endpoint: '/api/feedback',
   container: '#my-feedback-spot',
 });
@@ -267,7 +276,7 @@ When `container` is set, the `position`, `offset`, and `zIndex` options are igno
 Use `buttonClass` to apply your own CSS instead of the default button styles:
 
 ```typescript
-new QaidEmbed({
+new QaidFeedback({
   endpoint: '/api/feedback',
   buttonClass: 'my-feedback-btn',
 });
@@ -294,7 +303,7 @@ When `buttonClass` is provided, default button colors, sizing, and shadows are n
 ### Constructor
 
 ```typescript
-const feedback = new QaidEmbed(config: FeedbackConfig);
+const feedback = new QaidFeedback(config: FeedbackConfig);
 ```
 
 ### Methods
@@ -371,7 +380,7 @@ The embed injects CSS custom properties you can use or override:
 :root {
   --qaid-positive: rgb(0, 200, 83);
   --qaid-negative: rgb(255, 0, 0);
-  --qaid-marker: #6366f1;
+  --qaid-marker: #6365f1;
   --qaid-btn-size: 48px;
   --qaid-icon-size: 24px;
   --qaid-modal-width: 400px;
@@ -412,7 +421,7 @@ Sign up at [qaid.dev](https://qaid.dev). You can also self-host — the embed wo
 The embed is endpoint-agnostic. Point it at your own server:
 
 ```typescript
-new QaidEmbed({
+new QaidFeedback({
   endpoint: 'https://your-server.com/api/feedback',
 });
 ```
@@ -421,6 +430,8 @@ Your server needs to handle:
 
 1. `POST /api/feedback` — Accept the feedback payload, return `{ "id": number }`
 2. `PATCH /api/feedback/:id` — Accept `{ "message": string | null }` or `{ "feedbackType": "up" | "down" }`
+
+Answer the message `PATCH` with a 2xx status. Any other status shows the visitor the "Message not sent" screen instead of the success screen. Likewise, a non-2xx reply to the video upload (`POST {endpoint}/video`) keeps the recording preview open with an error.
 
 ## Project Badges
 

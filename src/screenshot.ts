@@ -3,7 +3,7 @@
  */
 
 export interface ScreenshotOptions {
-  /** Quality of WebP compression (0-1). Default: 1.0 */
+  /** Quality of WebP compression (0-1). Default: 0.8 */
   quality?: number;
   /** Max width of the screenshot. Default: 1280 */
   maxWidth?: number;
@@ -19,7 +19,7 @@ export interface ScreenshotOptions {
 export async function captureScreenshot(
   options: ScreenshotOptions = {}
 ): Promise<string | null> {
-  const { quality = 1.0, maxWidth = 1280, maxHeight = 800 } = options;
+  const { quality = 0.8, maxWidth = 1280, maxHeight = 800 } = options;
 
   try {
     // Check if API is available

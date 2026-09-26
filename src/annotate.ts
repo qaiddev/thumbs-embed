@@ -61,6 +61,9 @@ const COLOR_NAMES: Record<string, string> = {
   "#3b82f6": "blue",
   "#111827": "black",
   "#ffffff": "white",
+  // The default marker (nudged from #6366f1 so white text on it clears 4.5:1);
+  // the old value keeps its name for sites that pass it explicitly.
+  "#6365f1": "indigo",
   "#6366f1": "indigo",
 };
 /** Accessible name for a swatch colour — a friendly name, else the hex. */

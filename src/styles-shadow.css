@@ -1,5 +1,9 @@
 /* Shadow DOM styles — everything inside the shadow root */
 
+/* Type sizes are var(--qaid-font-size, 16px) or calc() multiples of it, never
+   rem. rem follows the host page's root font size, so the `fontSize` option
+   could not reach them. At the default 16px each one equals its old rem value. */
+
 button {
   cursor: pointer;
 }
@@ -131,7 +135,7 @@ button.qaid-btn-structural {
   padding: 0.5rem 0.75rem;
   background: #1f2937;
   color: white;
-  font-size: 1rem;
+  font-size: var(--qaid-font-size, 16px);
   font-weight: 600;
   border-radius: 0.5rem;
   white-space: nowrap;
@@ -275,7 +279,7 @@ button.qaid-btn-structural {
 /* Selected element marker */
 .qaid-selected-marker {
   position: fixed;
-  border: 3px solid var(--qaid-marker, #6366f1);
+  border: 3px solid var(--qaid-marker, #6365f1);
   border-radius: 50%;
   pointer-events: none;
   z-index: 44;
@@ -410,7 +414,7 @@ button.qaid-type-toggle.qaid-type-down {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  background: var(--qaid-marker, #6366f1);
+  background: var(--qaid-marker, #6365f1);
   color: var(--qaid-marker-text, white);
 }
 
@@ -425,7 +429,7 @@ button.qaid-type-toggle.qaid-type-down {
 }
 
 .qaid-modal-title {
-  font-size: 1.125rem;
+  font-size: calc(var(--qaid-font-size, 16px) * 1.125);
   font-weight: 700;
   margin: 0 0 0.25rem 0;
   color: light-dark(#1f2937, #f9fafb);
@@ -434,7 +438,7 @@ button.qaid-type-toggle.qaid-type-down {
 .qaid-modal-subtitle {
   color: light-dark(#6b7280, #9ca3af);
   margin: 0;
-  font-size: 0.875rem;
+  font-size: calc(var(--qaid-font-size, 16px) * 0.875);
 }
 
 .qaid-textarea {
@@ -444,7 +448,7 @@ button.qaid-type-toggle.qaid-type-down {
   border: 1px solid light-dark(#d1d5db, #374151);
   border-radius: 0.5rem;
   font-family: inherit;
-  font-size: 1rem;
+  font-size: var(--qaid-font-size, 16px);
   resize: vertical;
   margin-bottom: 1rem;
   box-sizing: border-box;
@@ -471,7 +475,7 @@ button.qaid-btn-submit {
   color: var(--qaid-marker-text, white);
   border: none;
   border-radius: 0.5rem;
-  font-size: 0.875rem;
+  font-size: calc(var(--qaid-font-size, 16px) * 0.875);
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s, filter 0.2s;
@@ -542,7 +546,7 @@ button.qaid-btn-record:hover {
   color: white;
   border-radius: 9999px;
   font-family: var(--qaid-font-family, system-ui, -apple-system, sans-serif);
-  font-size: 0.875rem;
+  font-size: calc(var(--qaid-font-size, 16px) * 0.875);
   font-weight: 500;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   z-index: 99999;
@@ -574,7 +578,7 @@ button.qaid-recording-stop {
   color: white;
   border: none;
   border-radius: 9999px;
-  font-size: 0.75rem;
+  font-size: calc(var(--qaid-font-size, 16px) * 0.75);
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
@@ -633,7 +637,7 @@ button.qaid-recording-stop:hover {
 }
 
 .qaid-video-preview-box h3 {
-  font-size: 1.125rem;
+  font-size: calc(var(--qaid-font-size, 16px) * 1.125);
   font-weight: 700;
   margin: 0 0 1rem 0;
   color: light-dark(#1f2937, #f9fafb);
@@ -660,7 +664,7 @@ button.qaid-recording-stop:hover {
   border: 1px solid light-dark(#d1d5db, #374151);
   border-radius: 0.5rem;
   font-family: inherit;
-  font-size: 0.875rem;
+  font-size: calc(var(--qaid-font-size, 16px) * 0.875);
   resize: vertical;
   margin-bottom: 1rem;
   box-sizing: border-box;
@@ -674,6 +678,14 @@ button.qaid-recording-stop:hover {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--qaid-marker) 20%, transparent);
 }
 
+/* Shown above the actions when an upload is refused or fails. */
+.qaid-video-error {
+  margin: 0 0 0.75rem 0;
+  font-size: calc(var(--qaid-font-size, 16px) * 0.875);
+  font-weight: 500;
+  color: light-dark(#b91c1c, #fca5a5);
+}
+
 .qaid-video-preview-actions {
   display: flex;
   gap: 0.5rem;
@@ -684,7 +696,7 @@ button.qaid-video-btn {
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 0.5rem;
-  font-size: 0.875rem;
+  font-size: calc(var(--qaid-font-size, 16px) * 0.875);
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s, filter 0.2s;
@@ -728,7 +740,7 @@ button.qaid-video-btn-send:disabled {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.875rem;
+  font-size: calc(var(--qaid-font-size, 16px) * 0.875);
   color: light-dark(#6b7280, #9ca3af);
 }
 
@@ -753,7 +765,7 @@ button.qaid-video-btn-send:disabled {
 
 .qaid-annotate-title {
   margin: 0;
-  font-size: 1rem;
+  font-size: var(--qaid-font-size, 16px);
   font-weight: 700;
   text-align: center;
   color: #f9fafb;
@@ -761,7 +773,7 @@ button.qaid-video-btn-send:disabled {
 
 .qaid-annotate-desc {
   margin: 0;
-  font-size: 0.8125rem;
+  font-size: calc(var(--qaid-font-size, 16px) * 0.8125);
   line-height: 1.4;
   text-align: center;
   color: rgba(249, 250, 251, 0.75);
@@ -821,7 +833,7 @@ button.qaid-annotate-action {
   background: light-dark(#f9fafb, #111827);
   color: light-dark(#1f2937, #f9fafb);
   font-family: inherit;
-  font-size: 0.8125rem;
+  font-size: calc(var(--qaid-font-size, 16px) * 0.8125);
   font-weight: 600;
   cursor: pointer;
   -webkit-appearance: none;
@@ -878,20 +890,20 @@ button.qaid-annotate-action:hover {
 }
 
 button.qaid-annotate-tool[aria-pressed="true"] {
-  background: var(--qaid-marker, #6366f1);
+  background: var(--qaid-marker, #6365f1);
   color: var(--qaid-marker-text, #fff);
-  border-color: var(--qaid-marker, #6366f1);
+  border-color: var(--qaid-marker, #6365f1);
 }
 
 button.qaid-annotate-done {
-  background: var(--qaid-marker, #6366f1);
+  background: var(--qaid-marker, #6365f1);
   color: var(--qaid-marker-text, #fff);
-  border-color: var(--qaid-marker, #6366f1);
+  border-color: var(--qaid-marker, #6365f1);
 }
 
 button.qaid-annotate-done:hover {
   filter: brightness(0.9);
-  background: var(--qaid-marker, #6366f1);
+  background: var(--qaid-marker, #6365f1);
 }
 
 button.qaid-annotate-action:disabled {
@@ -922,7 +934,7 @@ textarea:focus-visible,
 a:focus-visible,
 [tabindex]:focus-visible,
 [role="button"]:focus-visible {
-  outline: 2px solid var(--qaid-marker, #6366f1);
+  outline: 2px solid var(--qaid-marker, #6365f1);
   outline-offset: 2px;
 }
 
@@ -934,7 +946,7 @@ a:focus-visible,
 .qaid-textarea:focus-visible,
 button.qaid-btn-submit:focus-visible,
 .qaid-video-preview-box textarea:focus-visible {
-  outline: 2px solid var(--qaid-marker, #6366f1);
+  outline: 2px solid var(--qaid-marker, #6365f1);
   outline-offset: 2px;
 }
 
@@ -1034,25 +1046,33 @@ button.qaid-recording-stop {
   height: 24px;
 }
 
+/* The same screen when the message was refused or never arrived. */
+.qaid-confirm-error .qaid-confirm-icon {
+  background: var(--qaid-error, #dc2626);
+}
+
+/* The text follows the box's colour scheme through light-dark(), like the
+ * message step's title and subtitle. A plain #111827 stayed near-black on the
+ * dark box. --qaid-text / --qaid-text-muted still override both schemes. */
 .qaid-confirm-title {
   margin: 0;
-  font-size: 1rem;
+  font-size: var(--qaid-font-size, 16px);
   font-weight: 600;
-  color: var(--qaid-text, #111827);
+  color: var(--qaid-text, light-dark(#111827, #f9fafb));
 }
 
 /* Focus lands here when the screen appears; the ring would otherwise be
  * invisible on a heading with no default outline. */
 .qaid-confirm-title:focus-visible {
-  outline: 2px solid var(--qaid-primary, #6366f1);
+  outline: 2px solid var(--qaid-primary, #6365f1);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
 .qaid-confirm-message {
   margin: 0;
-  font-size: 0.875rem;
-  color: var(--qaid-text-muted, #6b7280);
+  font-size: calc(var(--qaid-font-size, 16px) * 0.875);
+  color: var(--qaid-text-muted, light-dark(#6b7280, #9ca3af));
 }
 
 .qaid-confirm .qaid-confirm-close {

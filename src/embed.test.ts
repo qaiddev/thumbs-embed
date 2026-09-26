@@ -2012,7 +2012,104 @@ describe("QaidFeedback", () => {
         expect(errorSpy).toHaveBeenCalledWith("Failed to submit video feedback:", "Server error");
       }, { timeout: 3000 });
 
-      // Preview should be cleaned up after submission completes
+      // A refused upload must not look like a sent one: the preview stays up
+      // with a visible error, and Send is usable again.
+      await vi.waitFor(() => {
+        expect(overlayShadow.querySelector(".qaid-video-error")?.textContent).toBe(
+          "Your recording could not be sent."
+        );
+      });
+      expect(overlayShadow.querySelector(".qaid-video-preview")).not.toBeNull();
+      const sendBtn = overlayShadow.querySelector<HTMLButtonElement>(".qaid-video-btn-send")!;
+      expect(sendBtn.disabled).toBe(false);
+      expect(sendBtn.textContent).toBe("Send");
+      expect(overlayShadow.querySelector('[role="alert"]')?.textContent).toContain(
+        "Failed to send recording"
+      );
+
+      errorSpy.mockRestore();
+    });
+
+    it.each([
+      [400, "Your recording could not be sent."],
+      [403, "Your recording could not be sent."],
+      [413, "This recording is too large to send. Try a shorter one."],
+      [500, "Your recording could not be sent."],
+    ])("keeps the preview open with an error on HTTP %i", async (status, message) => {
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: false,
+        status,
+        text: () => Promise.resolve("refused"),
+      });
+      const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+      const overlayShadow = await openVideoPreview();
+      overlayShadow.querySelector<HTMLButtonElement>(".qaid-video-btn-send")?.click();
+
+      await vi.waitFor(() => {
+        expect(overlayShadow.querySelector(".qaid-video-error")?.textContent).toBe(message);
+      });
+      expect(overlayShadow.querySelector(".qaid-video-preview")).not.toBeNull();
+      // The recording is kept so the visitor can try again.
+      expect(
+        (embed as unknown as { recording: { recordedBlob: Blob | null } }).recording.recordedBlob
+      ).not.toBeNull();
+
+      errorSpy.mockRestore();
+    });
+
+    it("sends again from the error state and closes once the upload succeeds", async () => {
+      const fetchMock = vi
+        .fn()
+        .mockResolvedValueOnce({ ok: false, status: 500, text: () => Promise.resolve("down") })
+        .mockResolvedValueOnce({ ok: false, status: 413, text: () => Promise.resolve("big") })
+        .mockResolvedValue({ ok: true, status: 200, json: () => Promise.resolve({ id: 3 }) });
+      global.fetch = fetchMock;
+      const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+      const overlayShadow = await openVideoPreview();
+      const sendBtn = overlayShadow.querySelector<HTMLButtonElement>(".qaid-video-btn-send")!;
+
+      sendBtn.click();
+      await vi.waitFor(() => {
+        expect(overlayShadow.querySelector(".qaid-video-error")?.textContent).toBe(
+          "Your recording could not be sent."
+        );
+      });
+
+      // A second failure updates the one note rather than stacking another.
+      sendBtn.click();
+      await vi.waitFor(() => {
+        expect(overlayShadow.querySelector(".qaid-video-error")?.textContent).toBe(
+          "This recording is too large to send. Try a shorter one."
+        );
+      });
+      expect(overlayShadow.querySelectorAll(".qaid-video-error")).toHaveLength(1);
+
+      sendBtn.click();
+      await vi.waitFor(() => {
+        expect(overlayShadow.querySelector(".qaid-video-preview")).toBeNull();
+      });
+      expect(fetchMock).toHaveBeenCalledTimes(3);
+
+      errorSpy.mockRestore();
+    });
+
+    it("can still be cancelled from the error state", async () => {
+      global.fetch = vi.fn().mockResolvedValue({
+        ok: false,
+        status: 403,
+        text: () => Promise.resolve("plan"),
+      });
+      const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+      const overlayShadow = await openVideoPreview();
+      overlayShadow.querySelector<HTMLButtonElement>(".qaid-video-btn-send")?.click();
+      await vi.waitFor(() => {
+        expect(overlayShadow.querySelector(".qaid-video-error")).not.toBeNull();
+      });
+
+      overlayShadow.querySelector<HTMLButtonElement>(".qaid-video-btn-cancel")?.click();
       expect(overlayShadow.querySelector(".qaid-video-preview")).toBeNull();
 
       errorSpy.mockRestore();
@@ -2036,8 +2133,13 @@ describe("QaidFeedback", () => {
         );
       }, { timeout: 3000 });
 
-      // Preview should be cleaned up after submission completes
-      expect(overlayShadow.querySelector(".qaid-video-preview")).toBeNull();
+      // The preview stays up and says the upload failed.
+      await vi.waitFor(() => {
+        expect(overlayShadow.querySelector(".qaid-video-error")?.textContent).toBe(
+          "Your recording could not be sent. Check your connection and try again."
+        );
+      });
+      expect(overlayShadow.querySelector(".qaid-video-preview")).not.toBeNull();
 
       errorSpy.mockRestore();
     });
@@ -2880,6 +2982,36 @@ describe("QaidFeedback", () => {
 
       const body = JSON.parse(fetchMock.mock.calls[0][1].body);
       expect(body.screenshot).toBe("data:image/webp;base64,dom");
+    });
+
+    it("sends the original screenshot when the annotation editor fails to open", async () => {
+      const fetchMock = vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ id: 1 }),
+      });
+      global.fetch = fetchMock;
+      annotateMock.openAnnotationEditor.mockRejectedValueOnce(new Error("chunk failed"));
+      const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        skipTargeting: true,
+        captureScreenshot: true,
+        screenshotMethod: "dom",
+      });
+
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+
+      await vi.waitFor(() => {
+        expect(fetchMock).toHaveBeenCalled();
+      });
+
+      expect(errorSpy).toHaveBeenCalledWith("Annotation editor failed to open:", expect.any(Error));
+      // The submission is not aborted; the unannotated capture goes through.
+      const body = JSON.parse(fetchMock.mock.calls[0][1].body);
+      expect(body.screenshot).toBe("data:image/webp;base64,dom");
+
+      errorSpy.mockRestore();
     });
 
     it("uses the DOM screenshot on touch devices even when method is permission", async () => {

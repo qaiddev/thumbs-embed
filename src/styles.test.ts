@@ -1,6 +1,22 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { injectStyles, removeStyles, buildCssVars, applyCssVars, getEmbedStyles, _resetStylesState } from "./styles";
 
+function escapeRegExp(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/**
+ * The declarations of the first rule in the shadow stylesheet whose selector
+ * is exactly `selector` (comments between rules are skipped).
+ */
+function ruleBody(selector: string): string {
+  const match = getEmbedStyles().match(
+    new RegExp(`(?:^|\\})\\s*(?:/\\*[\\s\\S]*?\\*/\\s*)*${escapeRegExp(selector)}\\s*\\{([^}]*)\\}`)
+  );
+  expect(match, `no rule for ${selector}`).not.toBeNull();
+  return match![1];
+}
+
 describe("styles", () => {
   beforeEach(() => {
     _resetStylesState();
@@ -158,7 +174,7 @@ describe("styles", () => {
 
       expect(vars["--qaid-positive"]).toBe("rgb(0, 200, 83)");
       expect(vars["--qaid-negative"]).toBe("rgb(255, 0, 0)");
-      expect(vars["--qaid-marker"]).toBe("#6366f1");
+      expect(vars["--qaid-marker"]).toBe("#6365f1");
       expect(vars["--qaid-btn-size"]).toBe("48px");
       expect(vars["--qaid-icon-size"]).toBe("24px");
       expect(vars["--qaid-modal-width"]).toBe("400px");
@@ -230,6 +246,84 @@ describe("styles", () => {
       expect(vars["--qaid-backdrop-opacity"]).toBe("0.5");
       expect(vars["--qaid-font-family"]).toBe("Arial, sans-serif");
       expect(vars["--qaid-font-size"]).toBe("14px");
+    });
+  });
+
+  describe("default marker contrast", () => {
+    /** WCAG 2.x relative luminance of a #rrggbb colour. */
+    function luminance(hex: string): number {
+      const n = parseInt(hex.slice(1), 16);
+      const [r, g, b] = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((c) => {
+        const s = c / 255;
+        return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+      });
+      return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    }
+    const contrastWithWhite = (hex: string) => 1.05 / (luminance(hex) + 0.05);
+
+    it("puts white text on the default marker at 4.5:1 or better (WCAG AA)", () => {
+      const vars = buildCssVars();
+      // The old #6366f1 was 4.47:1 against the white submit/Send label.
+      expect(vars["--qaid-marker-text"]).toBe("white");
+      expect(contrastWithWhite(vars["--qaid-marker"])).toBeGreaterThanOrEqual(4.5);
+      expect(contrastWithWhite("#6366f1")).toBeLessThan(4.5);
+    });
+
+    it("uses the same default as the stylesheet fallbacks", () => {
+      const css = getEmbedStyles();
+      expect(css).not.toContain("#6366f1");
+      expect(css).toContain("var(--qaid-marker, #6365f1)");
+    });
+  });
+
+  describe("success screen colour scheme", () => {
+    it("gives the title a dark-scheme colour, not a fixed near-black", () => {
+      expect(ruleBody(".qaid-confirm-title")).toMatch(
+        /color:\s*var\(--qaid-text,\s*light-dark\(#111827,\s*#f9fafb\)\)/
+      );
+    });
+
+    it("gives the message a dark-scheme colour, not a fixed grey", () => {
+      expect(ruleBody(".qaid-confirm-message")).toMatch(
+        /color:\s*var\(--qaid-text-muted,\s*light-dark\(#6b7280,\s*#9ca3af\)\)/
+      );
+    });
+
+    it("styles the not-sent variant's icon", () => {
+      expect(ruleBody(".qaid-confirm-error .qaid-confirm-icon")).toContain(
+        "var(--qaid-error, #dc2626)"
+      );
+    });
+  });
+
+  describe("font size", () => {
+    it("never sizes text in rem, which the fontSize option cannot reach", () => {
+      expect(getEmbedStyles()).not.toMatch(/font-size:\s*[\d.]+rem/);
+    });
+
+    it.each([
+      [".qaid-modal-title", "1.125"],
+      [".qaid-modal-subtitle", "0.875"],
+      ["button.qaid-btn-submit", "0.875"],
+      [".qaid-confirm-message", "0.875"],
+      [".qaid-video-preview-box h3", "1.125"],
+      [".qaid-annotate-desc", "0.8125"],
+    ])("scales %s from --qaid-font-size (x%s, so 16px keeps the old size)", (selector, factor) => {
+      const multiple = new RegExp(
+        `font-size:\\s*calc\\(var\\(--qaid-font-size,\\s*16px\\)\\s*\\*\\s*${escapeRegExp(factor)}\\)`
+      );
+      expect(ruleBody(selector)).toMatch(multiple);
+    });
+
+    it.each([".qaid-textarea", ".qaid-confirm-title", ".qaid-tooltip-text", ".qaid-annotate-title"])(
+      "sizes %s at exactly --qaid-font-size",
+      (selector) => {
+        expect(ruleBody(selector)).toMatch(/font-size:\s*var\(--qaid-font-size,\s*16px\)/);
+      }
+    );
+
+    it("puts the configured size on the variable the rules read", () => {
+      expect(buildCssVars({ fontSize: 20 })["--qaid-font-size"]).toBe("20px");
     });
   });
 

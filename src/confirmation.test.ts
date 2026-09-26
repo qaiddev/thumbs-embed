@@ -161,11 +161,131 @@ describe("success confirmation", () => {
     await submitFeedback();
 
     const overlay = getOverlayShadowRoot();
+    // Telling someone their feedback was received when it was not would be a
+    // lie, and closing quietly reads the same way. Say it was not sent.
     await vi.waitFor(() => {
-      expect(overlay.querySelector(".qaid-modal-container")).toBeNull();
+      expect(overlay.querySelector(".qaid-confirm-error")).not.toBeNull();
     });
-    // Telling someone their feedback was received when it was not would be a lie.
-    expect(overlay.querySelector(".qaid-confirm")).toBeNull();
+    expect(overlay.querySelector(".qaid-confirm-title")!.textContent).toBe("Message not sent");
+  });
+});
+
+describe("error screen when the server refuses the message", () => {
+  // Held here because the embed's console capture wraps console.error once it
+  // starts, so `console.error` itself is no longer the spy by assertion time.
+  let errorSpy: ReturnType<typeof vi.spyOn>;
+
+  /** POST yields an id so the modal opens; the PATCH answers `status`. */
+  function refusingFetch(status: number) {
+    let call = 0;
+    return vi.fn().mockImplementation(() => {
+      call += 1;
+      if (call === 1) {
+        return Promise.resolve({ ok: true, status: 200, json: async () => ({ id: 7 }) });
+      }
+      return Promise.resolve({ ok: false, status, json: async () => ({ error: "nope" }) });
+    });
+  }
+
+  beforeEach(() => {
+    document.body.innerHTML = "";
+    errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    embed?.destroy();
+    embed = null;
+    vi.restoreAllMocks();
+  });
+
+  it.each([400, 403, 404, 413, 429, 500, 503])(
+    "shows the error screen, not the success screen, on HTTP %i",
+    async (status) => {
+      global.fetch = refusingFetch(status) as never;
+      mount();
+      await submitFeedback();
+
+      const overlay = getOverlayShadowRoot();
+      await vi.waitFor(() => expect(overlay.querySelector(".qaid-confirm-error")).not.toBeNull());
+
+      expect(overlay.querySelector(".qaid-confirm-title")!.textContent).toBe("Message not sent");
+      expect(overlay.querySelector(".qaid-confirm-message")!.textContent).toBe(
+        "Something went wrong, so we did not get your message. Please try again later."
+      );
+      expect(overlay.querySelector(".qaid-confirm-icon svg")).not.toBeNull();
+      // Nothing on screen says it was received.
+      expect(overlay.textContent).not.toContain("Your feedback has been received.");
+      expect(errorSpy).toHaveBeenCalledWith(
+        "Failed to submit feedback message: HTTP",
+        status
+      );
+    }
+  );
+
+  it("announces the failure and moves focus to its heading", async () => {
+    global.fetch = refusingFetch(500) as never;
+    mount();
+    await submitFeedback();
+
+    const overlay = getOverlayShadowRoot();
+    await vi.waitFor(() => expect(overlay.querySelector(".qaid-confirm-error")).not.toBeNull());
+
+    const title = overlay.querySelector<HTMLElement>(".qaid-confirm-title")!;
+    await vi.waitFor(() => expect(overlay.activeElement).toBe(title));
+    await vi.waitFor(() =>
+      expect(overlay.querySelector('[role="alert"]')?.textContent).toContain("Message not sent")
+    );
+  });
+
+  it("shows even when hideConfirmation is set, which only hides the success screen", async () => {
+    global.fetch = refusingFetch(403) as never;
+    mount({ hideConfirmation: true });
+    await submitFeedback();
+
+    const overlay = getOverlayShadowRoot();
+    await vi.waitFor(() => expect(overlay.querySelector(".qaid-confirm-error")).not.toBeNull());
+  });
+
+  it("honours custom error copy", async () => {
+    global.fetch = refusingFetch(500) as never;
+    mount({ text: { errorTitle: "No luck", errorMessage: "Try later.", confirmationClose: "OK" } });
+    await submitFeedback();
+
+    const overlay = getOverlayShadowRoot();
+    await vi.waitFor(() => expect(overlay.querySelector(".qaid-confirm-error")).not.toBeNull());
+    expect(overlay.querySelector(".qaid-confirm-title")!.textContent).toBe("No luck");
+    expect(overlay.querySelector(".qaid-confirm-message")!.textContent).toBe("Try later.");
+    expect(overlay.querySelector(".qaid-confirm-close")!.textContent).toBe("OK");
+  });
+
+  it("closes from its button without sending another PATCH", async () => {
+    const fetchMock = refusingFetch(500);
+    global.fetch = fetchMock as never;
+    mount();
+    await submitFeedback();
+
+    const overlay = getOverlayShadowRoot();
+    await vi.waitFor(() => expect(overlay.querySelector(".qaid-confirm-error")).not.toBeNull());
+    overlay.querySelector<HTMLButtonElement>(".qaid-confirm-close")!.click();
+
+    await vi.waitFor(() => expect(overlay.querySelector(".qaid-modal-container")).toBeNull());
+    // One POST and the one refused PATCH; closing does not finalize again.
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+  });
+
+  it("still shows the success screen on a 2xx other than 200", async () => {
+    let call = 0;
+    global.fetch = vi.fn().mockImplementation(() => {
+      call += 1;
+      if (call === 1) return Promise.resolve({ ok: true, status: 201, json: async () => ({ id: 7 }) });
+      return Promise.resolve({ ok: true, status: 204, json: async () => ({}) });
+    }) as never;
+    mount();
+    await submitFeedback();
+
+    const overlay = getOverlayShadowRoot();
+    await vi.waitFor(() => expect(overlay.querySelector(".qaid-confirm")).not.toBeNull());
+    expect(overlay.querySelector(".qaid-confirm-error")).toBeNull();
   });
 });
 
@@ -201,6 +321,19 @@ describe("script tag data attributes", () => {
     expect(config?.text?.confirmationTitle).toBe("All set");
     expect(config?.text?.confirmationMessage).toBe("We got it.");
     expect(config?.text?.confirmationClose).toBe("Bye");
+  });
+
+  it("maps data-error-title and data-error-message onto config", async () => {
+    const { parseDataAttributes } = await import("./bootstrap");
+    const config = parseDataAttributes(
+      scriptWith({
+        "data-error-title": "Not sent",
+        "data-error-message": "Please retry.",
+      })
+    );
+
+    expect(config?.text?.errorTitle).toBe("Not sent");
+    expect(config?.text?.errorMessage).toBe("Please retry.");
   });
 
   it("leaves hideConfirmation unset when the attribute is absent", async () => {

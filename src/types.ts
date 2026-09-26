@@ -44,7 +44,7 @@ export interface FeedbackConfig {
     positive?: string;
     /** Color for negative feedback. Default: rgb(255, 0, 0) */
     negative?: string;
-    /** Color for selected element marker. Default: #6366f1 */
+    /** Color for selected element marker. Default: #6365f1 */
     marker?: string;
   };
   /** Button size. Default: 'medium' (48px). Small: 36px, Large: 64px */
@@ -79,6 +79,16 @@ export interface FeedbackConfig {
     confirmationMessage?: string;
     /** Dismiss button on the success screen. Default: "Close" */
     confirmationClose?: string;
+    /**
+     * Heading shown in place of the success screen when the server refuses the
+     * message or cannot be reached. Default: "Message not sent"
+     */
+    errorTitle?: string;
+    /**
+     * Body copy on that error screen. Default: "Something went wrong, so we
+     * did not get your message. Please try again later."
+     */
+    errorMessage?: string;
   };
   /**
    * Skip the success screen and dismiss immediately once a message is sent.
@@ -148,7 +158,7 @@ export interface FeedbackConfig {
   screenshotMethod?: "dom" | "permission";
   /** Screenshot options */
   screenshotOptions?: {
-    /** Quality of WebP compression (0-1). Default: 1.0 */
+    /** Quality of WebP compression (0-1). Default: 0.8 */
     quality?: number;
     /** Max width of the screenshot. Default: 1280 */
     maxWidth?: number;
@@ -333,6 +343,8 @@ export interface ResolvedFeedbackConfig {
     confirmationTitle: string;
     confirmationMessage: string;
     confirmationClose: string;
+    errorTitle: string;
+    errorMessage: string;
   };
   hideConfirmation: boolean;
   modalWidth: number;

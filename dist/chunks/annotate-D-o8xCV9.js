@@ -18,6 +18,8 @@ const j = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none"
   <path stroke-linecap="round" stroke-linejoin="round" d="M9 14L4 9l5-5M4 9h11a5 5 0 010 10h-4"/>
 </svg>`, L = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M20 6L9 17l-5-5"/>
+</svg>`, F = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v8m0 4h.01"/>
 </svg>`, M = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6L6 18"/>
 </svg>`;
@@ -28,19 +30,19 @@ function r(n, t, e) {
       s === "className" ? o.className = i : o.setAttribute(s, i);
   return o;
 }
-function F(n = 640) {
+function K(n = 640) {
   return typeof window < "u" && window.innerWidth < n;
 }
-function K(n, t, e) {
+function z(n, t, e) {
   const o = e.map((i) => i.style.visibility);
   e.forEach((i) => i.style.visibility = "hidden");
   const s = document.elementFromPoint(n, t);
   return e.forEach((i, a) => i.style.visibility = o[a]), s;
 }
-function z(n) {
+function V(n) {
   return n ? n.hasAttribute("data-qaid-embed") || n.hasAttribute("data-qaid-embed-overlay") ? !0 : !!n.closest("[data-qaid-embed], [data-qaid-embed-overlay]") : !1;
 }
-function V(n, t = 0) {
+function Y(n, t = 0) {
   const e = n.getBoundingClientRect();
   return {
     x: e.left - t,
@@ -49,19 +51,22 @@ function V(n, t = 0) {
     height: e.height + t * 2
   };
 }
-const h = 12, A = "#ef4444", B = ["#ef4444", "#f59e0b", "#22c55e", "#3b82f6", "#111827", "#ffffff"], T = {
+const h = 12, B = "#ef4444", A = ["#ef4444", "#f59e0b", "#22c55e", "#3b82f6", "#111827", "#ffffff"], I = {
   "#ef4444": "red",
   "#f59e0b": "amber",
   "#22c55e": "green",
   "#3b82f6": "blue",
   "#111827": "black",
   "#ffffff": "white",
+  // The default marker (nudged from #6366f1 so white text on it clears 4.5:1);
+  // the old value keeps its name for sites that pass it explicitly.
+  "#6365f1": "indigo",
   "#6366f1": "indigo"
 };
 function w(n) {
-  return T[n.toLowerCase()] ?? n;
+  return I[n.toLowerCase()] ?? n;
 }
-const I = 4, D = 0.8, P = {
+const T = 4, D = 0.8, x = {
   title: "Annotate screenshot",
   instructions: "Draw on the screenshot to highlight or hide details, then choose Done to attach it or Skip to send the original.",
   rectangle: "Rectangle",
@@ -81,7 +86,7 @@ function u(n, t) {
     h: Math.abs(n.y - t.y)
   };
 }
-function x(n) {
+function P(n) {
   if (n.type === "pen") return n.points.length < 2;
   const t = u(n.points[0], n.points[1]);
   return t.w < 3 && t.h < 3;
@@ -183,7 +188,7 @@ class f {
   // after the editor is mounted).
   resolveResult;
   constructor(t) {
-    this.opts = t, this.labels = { ...P, ...t.labels ?? {} }, this.color = t.color ?? A, this.palette = (t.palette && t.palette.length ? t.palette : B).slice(), this.palette.some((e) => e.toLowerCase() === this.color.toLowerCase()) || this.palette.unshift(this.color), this.strokeWidth = t.strokeWidth ?? I;
+    this.opts = t, this.labels = { ...x, ...t.labels ?? {} }, this.color = t.color ?? B, this.palette = (t.palette && t.palette.length ? t.palette : A).slice(), this.palette.some((e) => e.toLowerCase() === this.color.toLowerCase()) || this.palette.unshift(this.color), this.strokeWidth = t.strokeWidth ?? T;
   }
   /** Mount the editor and resolve when the user commits (Done) or skips. */
   open() {
@@ -338,7 +343,7 @@ class f {
     if (!this.drawing || !this.current) return;
     this.drawing = !1;
     const t = this.current;
-    if (this.current = null, x(t)) {
+    if (this.current = null, P(t)) {
       this.redraw();
       return;
     }
@@ -392,7 +397,7 @@ const S = {
 function U(n) {
   return new f(n).open();
 }
-const Y = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const X = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   AnnotationEditor: f,
   compositeAnnotations: g,
@@ -402,14 +407,15 @@ const Y = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
 }, Symbol.toStringTag, { value: "Module" }));
 export {
   L as D,
+  F as E,
   H as F,
   $ as R,
   j as T,
   W as a,
-  z as b,
-  K as c,
-  Y as d,
-  V as g,
-  F as i
+  V as b,
+  z as c,
+  X as d,
+  Y as g,
+  K as i
 };
-//# sourceMappingURL=annotate-CMq95aXG.js.map
+//# sourceMappingURL=annotate-D-o8xCV9.js.map

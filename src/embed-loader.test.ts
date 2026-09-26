@@ -109,6 +109,20 @@ describe("single-tag embed loader (embed-loader.ts)", () => {
     expect(injected!.src).toContain("/dist/loader.js");
   });
 
+  it("does nothing outside a browser, where there is no document", async () => {
+    setModuleSupport(true);
+    setCurrentScript(addLoaderTag(EMBED_SRC, { "data-endpoint": "/api/feedback" }));
+    vi.stubGlobal("document", undefined);
+    try {
+      await import("./embed-loader");
+    } finally {
+      vi.unstubAllGlobals();
+    }
+
+    expect(document.querySelector('script[type="module"]')).toBeNull();
+    expect(document.querySelector('script[src*="qaid.umd.cjs"]')).toBeNull();
+  });
+
   it("no-ops when it cannot find its own script tag", async () => {
     setModuleSupport(true);
     setCurrentScript(null); // and no embed.js tag in the DOM

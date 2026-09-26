@@ -3,14 +3,22 @@ import {
   isVideoRecordingSupported,
   getSupportedMimeType,
   createVideoRecorder,
+  REDACTION_UNAVAILABLE,
 } from "./video-capture";
 import { isIOSDevice, buildOrientationCorrectedStream } from "./video-orientation";
+import { buildRedactedStream } from "./video-redaction";
 
 // The orientation module is exercised in video-orientation.test.ts; here we
 // mock it to drive video-capture's iOS branch. Default: non-iOS (unchanged).
 vi.mock("./video-orientation", () => ({
   isIOSDevice: vi.fn(() => false),
   buildOrientationCorrectedStream: vi.fn(),
+}));
+
+// Likewise the redaction pipeline (video-redaction.test.ts); only the wiring
+// into the recorder is tested here.
+vi.mock("./video-redaction", () => ({
+  buildRedactedStream: vi.fn(),
 }));
 
 // Mock MediaRecorder
@@ -428,6 +436,121 @@ describe("createVideoRecorder", () => {
       recorder.destroy();
 
       expect(stop).toHaveBeenCalled();
+    });
+  });
+
+  describe("redaction", () => {
+    const picked = (): Element[] => [document.createElement("div")];
+
+    beforeEach(() => {
+      MockMediaRecorder.lastInstance = null;
+    });
+
+    afterEach(() => {
+      (isIOSDevice as Mock).mockReturnValue(false);
+      (buildOrientationCorrectedStream as Mock).mockReset();
+      (buildRedactedStream as Mock).mockReset();
+      MockMediaRecorder.lastInstance = null;
+    });
+
+    it("does not build a redaction pipeline when nothing was picked", async () => {
+      const recorder = createVideoRecorder();
+      await recorder.start();
+
+      expect(buildRedactedStream).not.toHaveBeenCalled();
+      recorder.destroy();
+    });
+
+    it("records the blurred stream on desktop", async () => {
+      const redacted = { id: "redacted" } as unknown as MediaStream;
+      const stop = vi.fn();
+      (buildRedactedStream as Mock).mockResolvedValue({ stream: redacted, stop });
+      const elements = picked();
+
+      const recorder = createVideoRecorder({ redactionElements: elements, redactionBlurRadius: 9 });
+      await recorder.start();
+
+      expect(buildRedactedStream).toHaveBeenCalledWith(mockStream, elements, { blurRadius: 9 });
+      expect(MockMediaRecorder.lastInstance!.stream).toBe(redacted);
+
+      await recorder.stop();
+      expect(stop).toHaveBeenCalled();
+      recorder.destroy();
+    });
+
+    it("still blurs on iPhone/iPad, on top of the orientation fix", async () => {
+      // Before the fix the iOS branch was an if/else with redaction, so the
+      // picker drew outlines and the recording went out unblurred.
+      const upright = { id: "upright" } as unknown as MediaStream;
+      const redacted = { id: "redacted" } as unknown as MediaStream;
+      const stopUpright = vi.fn();
+      const stopRedacted = vi.fn();
+      (isIOSDevice as Mock).mockReturnValue(true);
+      (buildOrientationCorrectedStream as Mock).mockResolvedValue({
+        stream: upright,
+        stop: stopUpright,
+      });
+      (buildRedactedStream as Mock).mockResolvedValue({ stream: redacted, stop: stopRedacted });
+      const elements = picked();
+
+      const recorder = createVideoRecorder({ redactionElements: elements });
+      await recorder.start();
+
+      // Redaction reads the upright frames, and the recorder gets the blurred ones.
+      expect(buildRedactedStream).toHaveBeenCalledWith(upright, elements, {
+        blurRadius: undefined,
+      });
+      expect(MockMediaRecorder.lastInstance!.stream).toBe(redacted);
+
+      await recorder.stop();
+      expect(stopUpright).toHaveBeenCalled();
+      expect(stopRedacted).toHaveBeenCalled();
+      recorder.destroy();
+    });
+
+    it("blurs the raw iOS capture when the orientation pipeline is unavailable", async () => {
+      const redacted = { id: "redacted" } as unknown as MediaStream;
+      (isIOSDevice as Mock).mockReturnValue(true);
+      (buildOrientationCorrectedStream as Mock).mockResolvedValue(null);
+      (buildRedactedStream as Mock).mockResolvedValue({ stream: redacted, stop: vi.fn() });
+
+      const recorder = createVideoRecorder({ redactionElements: picked() });
+      await recorder.start();
+
+      expect((buildRedactedStream as Mock).mock.calls[0][0]).toBe(mockStream);
+      expect(MockMediaRecorder.lastInstance!.stream).toBe(redacted);
+      recorder.destroy();
+    });
+
+    it("refuses to record rather than record the picked areas unblurred", async () => {
+      (buildRedactedStream as Mock).mockResolvedValue(null);
+
+      const recorder = createVideoRecorder({ redactionElements: picked() });
+      await expect(recorder.start()).rejects.toThrow(REDACTION_UNAVAILABLE);
+
+      // The capture is released and nothing was recorded.
+      expect(mockStream.getVideoTracks()[0].stop).toHaveBeenCalled();
+      expect(MockMediaRecorder.lastInstance).toBeNull();
+      recorder.destroy();
+    });
+
+    it("also releases the iOS orientation pipeline when it refuses", async () => {
+      const stopUpright = vi.fn();
+      (isIOSDevice as Mock).mockReturnValue(true);
+      (buildOrientationCorrectedStream as Mock).mockResolvedValue({
+        stream: { id: "upright" } as unknown as MediaStream,
+        stop: stopUpright,
+      });
+      (buildRedactedStream as Mock).mockResolvedValue(null);
+
+      const recorder = createVideoRecorder({ redactionElements: picked() });
+      await expect(recorder.start()).rejects.toThrow(REDACTION_UNAVAILABLE);
+
+      expect(stopUpright).toHaveBeenCalledTimes(1);
+      expect(mockStream.getVideoTracks()[0].stop).toHaveBeenCalled();
+      // A later destroy() has nothing left to stop twice.
+      recorder.destroy();
+      expect(stopUpright).toHaveBeenCalledTimes(1);
     });
   });
 });

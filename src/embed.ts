@@ -86,19 +86,46 @@ export function setHiddenByUser(apiKey?: string, hidden = true): void {
 }
 
 /**
+ * A random v4 UUID.
+ *
+ * `crypto.randomUUID` exists only in secure contexts (HTTPS and localhost). On
+ * a plain http:// page it is undefined, and calling it threw inside the
+ * constructor, so the widget never appeared. `crypto.getRandomValues` has no
+ * such restriction; `Math.random` covers a runtime with no `crypto` at all.
+ * The id only groups one browser's feedback, so it needs to be unique, not
+ * secret.
+ */
+export function randomId(): string {
+  const c = typeof crypto !== "undefined" ? crypto : undefined;
+  if (c && typeof c.randomUUID === "function") return c.randomUUID();
+
+  const bytes = new Uint8Array(16);
+  if (c && typeof c.getRandomValues === "function") {
+    c.getRandomValues(bytes);
+  } else {
+    for (let i = 0; i < bytes.length; i++) bytes[i] = Math.floor(Math.random() * 256);
+  }
+  // RFC 4122 version 4 / variant 1 bits, so the result reads as a real UUID.
+  bytes[6] = (bytes[6] & 0x0f) | 0x40;
+  bytes[8] = (bytes[8] & 0x3f) | 0x80;
+  const hex = Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+}
+
+/**
  * Get or create a visitor ID stored in localStorage
  */
 export function getOrCreateVisitorId(): string {
   try {
     let visitorId = localStorage.getItem(VISITOR_ID_KEY);
     if (!visitorId) {
-      visitorId = crypto.randomUUID();
+      visitorId = randomId();
       localStorage.setItem(VISITOR_ID_KEY, visitorId);
     }
     return visitorId;
   } catch {
     // localStorage not available, generate a session-only ID
-    return crypto.randomUUID();
+    return randomId();
   }
 }
 
@@ -207,7 +234,7 @@ export class QaidFeedback {
       colors: {
         positive: config.colors?.positive ?? "rgb(0, 200, 83)",
         negative: config.colors?.negative ?? "rgb(255, 0, 0)",
-        marker: config.colors?.marker ?? "#6366f1",
+        marker: config.colors?.marker ?? "#6365f1",
       },
       buttonSize: config.buttonSize ?? "medium",
       text: {
@@ -226,6 +253,10 @@ export class QaidFeedback {
         confirmationMessage:
           config.text?.confirmationMessage ?? "Your feedback has been received.",
         confirmationClose: config.text?.confirmationClose ?? "Close",
+        errorTitle: config.text?.errorTitle ?? "Message not sent",
+        errorMessage:
+          config.text?.errorMessage ??
+          "Something went wrong, so we did not get your message. Please try again later.",
       },
       hideConfirmation: config.hideConfirmation ?? false,
       modalWidth: config.modalWidth ?? 400,
@@ -234,7 +265,7 @@ export class QaidFeedback {
       fontSize: config.fontSize ?? 16,
       captureScreenshot: config.captureScreenshot ?? false,
       annotate: config.annotate ?? true,
-      annotationColor: config.annotationColor ?? config.colors?.marker ?? "#6366f1",
+      annotationColor: config.annotationColor ?? config.colors?.marker ?? "#6365f1",
       annotationPalette: config.annotationPalette ?? DEFAULT_ANNOTATION_PALETTE,
       screenshotMethod: config.screenshotMethod ?? "permission",
       screenshotOptions: {
