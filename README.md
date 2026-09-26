@@ -213,44 +213,77 @@ new QaidFeedback({
 
 ## Script Tag Data Attributes
 
-When using the script tag method, all config options are available as `data-*` attributes:
+Every config option has a `data-*` attribute, so the script tag alone can set anything. If a JSON config block is also on the page, the block wins and the attributes are not read.
+
+Boolean attributes turn on with `"true"`; any other value leaves the default. `data-annotate` is the exception: it is on by default, so only `"false"` changes it. Numbers are plain digits (`data-zindex="9001"`, `data-backdrop-opacity="0.5"`).
 
 | Attribute | Maps To |
 |-----------|---------|
-| `data-endpoint` | `endpoint` |
+| `data-endpoint` | `endpoint` (required) |
 | `data-api-key` | `apiKey` |
-| `data-position` | `position` |
-| `data-zindex` | `zIndex` |
-| `data-button-size` | `buttonSize` |
+| `data-container` | `container` |
 | `data-button-class` | `buttonClass` |
-| `data-modal-width` | `modalWidth` |
-| `data-backdrop-opacity` | `backdropOpacity` |
+| `data-direction` | `direction` |
+| `data-position` | `position` |
 | `data-offset-x` | `offset.x` |
 | `data-offset-y` | `offset.y` |
+| `data-zindex` | `zIndex` |
+| `data-skip-targeting` | `skipTargeting` |
+| `data-single-button` | `singleButton` |
+| `data-feedback-mode` | `feedbackMode` |
 | `data-positive-color` | `colors.positive` |
 | `data-negative-color` | `colors.negative` |
 | `data-marker-color` | `colors.marker` |
-| `data-container` | `container` |
-| `data-skip-targeting` | `skipTargeting` |
-| `data-incognito` | `incognito` |
-| `data-font-family` | `fontFamily` |
-| `data-font-size` | `fontSize` |
+| `data-button-size` | `buttonSize` |
 | `data-tooltip` | `text.tooltip` |
 | `data-modal-title` | `text.modalTitle` |
 | `data-modal-subtitle` | `text.modalSubtitle` |
 | `data-placeholder` | `text.placeholder` |
 | `data-submit-button` | `text.submitButton` |
 | `data-skip-button` | `text.skipButton` |
+| `data-positive-label` | `text.positiveLabel` |
+| `data-negative-label` | `text.negativeLabel` |
+| `data-record-label` | `text.recordLabel` |
+| `data-dismiss-label` | `text.dismissLabel` |
+| `data-feedback-label` | `text.feedbackLabel` |
+| `data-confirmation-title` | `text.confirmationTitle` |
+| `data-confirmation-message` | `text.confirmationMessage` |
+| `data-confirmation-close` | `text.confirmationClose` |
 | `data-error-title` | `text.errorTitle` |
 | `data-error-message` | `text.errorMessage` |
+| `data-hide-confirmation` | `hideConfirmation` |
+| `data-modal-width` | `modalWidth` |
+| `data-backdrop-opacity` | `backdropOpacity` |
+| `data-font-family` | `fontFamily` |
+| `data-font-size` | `fontSize` |
+| `data-capture-screenshot` | `captureScreenshot` |
+| `data-annotate` | `annotate` (`"false"` to turn off) |
+| `data-annotation-color` | `annotationColor` |
+| `data-annotation-palette` | `annotationPalette`: a JSON array (`'["#f00","#0f0"]'`) or a comma list (`"#f00, rgb(0, 128, 0), #00f"`) |
+| `data-capture-video` | `captureVideo` |
+| `data-video-max-duration` | `videoOptions.maxDuration` |
+| `data-video-redaction` | `videoOptions.redaction` |
+| `data-record-icon` | `recordIcon` |
+| `data-incognito` | `incognito` |
+| `data-hide-dismiss` | `hideDismiss` |
 | `data-positive-icon` | `positiveIcon` |
 | `data-negative-icon` | `negativeIcon` |
+| `data-feedback-icon` | `feedbackIcon` |
+| `data-hide-thumbs` | `hideThumbs` |
+| `data-css` | `css` (wins over `data-css-selector`) |
+| `data-css-selector` | `css`, taken from the `textContent` of the element this selector matches |
+| `data-screenshot-method` | `screenshotMethod` |
+| `data-screenshot-quality` | `screenshotOptions.quality` |
+| `data-screenshot-max-width` | `screenshotOptions.maxWidth` |
+| `data-screenshot-max-height` | `screenshotOptions.maxHeight` |
 | `data-quest-base` | `quests.base` |
 | `data-quest-up` | `quests.up` |
 | `data-quest-down` | `quests.down` |
 | `data-quest-video` | `quests.video` |
 | `data-quest-api-key` | `quests.apiKey` |
 | `data-quest-module-url` | `quests.moduleUrl` |
+
+A value the embed can't use is ignored with one `console.warn` naming the attribute, and the default stays. That covers a malformed `data-annotation-palette` and an empty screen-reader label (`data-positive-label=""` would leave the button with no accessible name).
 
 ## Custom Button Container
 

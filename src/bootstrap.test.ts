@@ -8,6 +8,8 @@
  */
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { autoInit, parseDataAttributes } from "./bootstrap";
+import { QaidFeedback } from "./embed";
+import type { FeedbackConfig } from "./types";
 
 function scriptWith(attrs: Record<string, string>): HTMLScriptElement {
   const script = document.createElement("script");
@@ -249,6 +251,132 @@ describe("parseDataAttributes", () => {
   });
 });
 
+/**
+ * The options that used to need the JSON config block. Every option that can
+ * be written as text now has an attribute.
+ */
+describe("attributes for the options that once needed the JSON block", () => {
+  const cases: Array<[string, string, Partial<FeedbackConfig>]> = [
+    ["data-positive-label", "Loved it", { text: { positiveLabel: "Loved it" } }],
+    ["data-negative-label", "Hated it", { text: { negativeLabel: "Hated it" } }],
+    ["data-record-label", "Record your screen", { text: { recordLabel: "Record your screen" } }],
+    ["data-dismiss-label", "Hide these buttons", { text: { dismissLabel: "Hide these buttons" } }],
+    ["data-annotation-palette", '["#f00","#0f0"]', { annotationPalette: ["#f00", "#0f0"] }],
+    [
+      "data-annotation-palette",
+      "#f00, rgb(0, 128, 0) ,#00f",
+      { annotationPalette: ["#f00", "rgb(0, 128, 0)", "#00f"] },
+    ],
+    ["data-annotation-palette", "#123456", { annotationPalette: ["#123456"] }],
+    ["data-record-icon", '<svg class="rec"></svg>', { recordIcon: '<svg class="rec"></svg>' }],
+    ["data-css", ".qaid-btn { color: red; }", { css: ".qaid-btn { color: red; }" }],
+  ];
+
+  it.each(cases)("%s=%s", (attr, value, expected) => {
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+    const config = parseDataAttributes(scriptWith({ "data-endpoint": "/e", [attr]: value }));
+
+    expect(config).toMatchObject(expected);
+    expect(warn).not.toHaveBeenCalled();
+  });
+
+  const invalid: Array<[string, string]> = [
+    ["data-annotation-palette", "[not json"],
+    ["data-annotation-palette", '{"a":"#f00"}'],
+    ["data-annotation-palette", "[]"],
+    ["data-annotation-palette", '["#f00", 3]'],
+    ["data-annotation-palette", '["#f00", " "]'],
+    ["data-annotation-palette", "#f00,,#0f0"],
+    ["data-annotation-palette", ""],
+    ["data-positive-label", ""],
+    ["data-negative-label", "   "],
+    ["data-record-label", ""],
+    ["data-dismiss-label", " "],
+  ];
+
+  it.each(invalid)("ignores %s=%j with one warning naming the attribute", (attr, value) => {
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+    const config = parseDataAttributes(scriptWith({ "data-endpoint": "/e", [attr]: value }));
+
+    expect(config?.annotationPalette).toBeUndefined();
+    expect(config?.text).toBeUndefined();
+    expect(warn).toHaveBeenCalledOnce();
+    expect(String(warn.mock.calls[0]![0])).toContain(attr);
+  });
+
+  it("keeps the good labels when one is empty", () => {
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+    const config = parseDataAttributes(
+      scriptWith({
+        "data-endpoint": "/e",
+        "data-positive-label": "Yes",
+        "data-negative-label": "",
+      })
+    );
+
+    expect(config?.text?.positiveLabel).toBe("Yes");
+    expect(config?.text?.negativeLabel).toBeUndefined();
+    expect(warn).toHaveBeenCalledOnce();
+  });
+
+  it("prefers data-css over data-css-selector, as the JSON block prefers css", () => {
+    const style = document.createElement("style");
+    style.id = "theme-css";
+    style.textContent = ".from-selector {}";
+    document.body.appendChild(style);
+
+    const config = parseDataAttributes(
+      scriptWith({
+        "data-endpoint": "/e",
+        "data-css": ".inline {}",
+        "data-css-selector": "#theme-css",
+      })
+    );
+
+    expect(config?.css).toBe(".inline {}");
+  });
+
+  it("falls back to data-css-selector when data-css is empty", () => {
+    const style = document.createElement("style");
+    style.id = "theme-css";
+    style.textContent = ".from-selector {}";
+    document.body.appendChild(style);
+
+    const config = parseDataAttributes(
+      scriptWith({ "data-endpoint": "/e", "data-css": "", "data-css-selector": "#theme-css" })
+    );
+
+    expect(config?.css).toBe(".from-selector {}");
+  });
+
+  it("carries the screen-reader labels all the way to the rendered buttons", () => {
+    const config = parseDataAttributes(
+      scriptWith({
+        "data-endpoint": "/api/feedback",
+        "data-positive-label": "Loved it",
+        "data-negative-label": "Hated it",
+        "data-dismiss-label": "Hide these buttons",
+      })
+    );
+    const embed = new QaidFeedback(config as FeedbackConfig);
+    try {
+      // Hosts from earlier tests can survive the DOM cleanup (the embed
+      // re-attaches its host), so find ours by what it rendered.
+      const shadow = Array.from(document.querySelectorAll("[data-qaid-embed]"))
+        .map((host) => host.shadowRoot)
+        .find((root) => root?.querySelector('.qaid-btn-up[aria-label="Loved it"]'));
+
+      expect(shadow).toBeTruthy();
+      expect(shadow!.querySelector(".qaid-btn-down")?.getAttribute("aria-label")).toBe("Hated it");
+      expect(shadow!.querySelector(".qaid-dismiss-btn")?.getAttribute("aria-label")).toBe(
+        "Hide these buttons"
+      );
+    } finally {
+      embed.destroy();
+    }
+  });
+});
+
 describe("autoInit with a JSON config block", () => {
   it("boots from the JSON block", async () => {
     jsonConfigBlock(JSON.stringify({ endpoint: "/api/feedback", skipTargeting: true }));
@@ -280,6 +408,18 @@ describe("autoInit with a JSON config block", () => {
       JSON.stringify({ endpoint: "/e", css: ".explicit {}", cssSelector: "#theme-css" })
     );
     expect(() => autoInit()).not.toThrow();
+  });
+
+  it("does not read (or warn about) attributes when a JSON block wins", async () => {
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+    jsonConfigBlock(JSON.stringify({ endpoint: "/api/feedback", skipTargeting: true }));
+    scriptWith({ "data-endpoint": "/api/feedback", "data-annotation-palette": "[bad" });
+
+    autoInit();
+
+    await vi.waitFor(() => expect(document.querySelector("[data-qaid-embed]")).not.toBeNull());
+    const ignored = warn.mock.calls.filter((c) => String(c[0]).includes("data-annotation-palette"));
+    expect(ignored).toHaveLength(0);
   });
 
   it("falls back to data attributes when the JSON is malformed", async () => {
