@@ -3842,6 +3842,104 @@ describe("QaidFeedback", () => {
     });
   });
 
+  describe("opening without waiting on the server", () => {
+    /** A fetch whose feedback POST stays out until the test answers it. */
+    function holdThePost() {
+      let answer!: (id: number | null) => void;
+      const post = new Promise<{ ok: boolean; json: () => Promise<unknown> }>((resolve) => {
+        answer = (id) =>
+          resolve(
+            id === null
+              ? { ok: false, json: () => Promise.resolve({}) }
+              : { ok: true, json: () => Promise.resolve({ id }) },
+          );
+      });
+      const fetchMock = vi.fn((url: string, opts?: RequestInit) =>
+        opts?.method === "POST" && url === "/api/feedback"
+          ? post
+          : Promise.resolve({ ok: true, status: 200, json: () => Promise.resolve({}) }),
+      );
+      global.fetch = fetchMock as never;
+      const patches = () =>
+        fetchMock.mock.calls
+          .filter(([, opts]) => opts?.method === "PATCH")
+          .map(([url, opts]) => ({ url, body: JSON.parse(String(opts!.body)) }));
+      return { answer, fetchMock, patches };
+    }
+
+    async function clickAndWaitForBox(): Promise<ShadowRoot> {
+      embed = new QaidFeedback({ endpoint: "/api/feedback", skipTargeting: true });
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-up")!.click();
+      await vi.waitFor(() =>
+        expect(getOverlayShadowRoot().querySelector(".qaid-modal-container")).not.toBeNull(),
+      );
+      return getOverlayShadowRoot();
+    }
+
+    it("opens the message box while the feedback POST is still out", async () => {
+      const { fetchMock, patches } = holdThePost();
+      const overlay = await clickAndWaitForBox();
+
+      expect(fetchMock).toHaveBeenCalledWith("/api/feedback", expect.objectContaining({ method: "POST" }));
+      expect(overlay.querySelector(".qaid-textarea")).not.toBeNull();
+      expect(patches()).toHaveLength(0);
+    });
+
+    it("sends a message typed before the POST answered, once, to the new record", async () => {
+      const { answer, patches } = holdThePost();
+      const overlay = await clickAndWaitForBox();
+
+      overlay.querySelector<HTMLTextAreaElement>(".qaid-textarea")!.value = "the save button spins";
+      overlay.querySelector<HTMLButtonElement>(".qaid-btn-submit")!.click();
+      // Escape while the POST is still out must not PATCH an empty message over it.
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+      expect(patches()).toHaveLength(0);
+
+      answer(41);
+      await vi.waitFor(() => expect(patches()).toHaveLength(1));
+      expect(patches()[0]).toEqual({
+        url: "/api/feedback/41",
+        body: { message: "the save button spins" },
+      });
+    });
+
+    it("finalizes a box closed before the POST answered, once the id lands", async () => {
+      const { answer, patches } = holdThePost();
+      const overlay = await clickAndWaitForBox();
+
+      overlay.querySelector<HTMLElement>(".qaid-backdrop")!.click();
+      expect(overlay.querySelector(".qaid-modal-container")).toBeNull();
+
+      answer(42);
+      await vi.waitFor(() => expect(patches()).toHaveLength(1));
+      expect(patches()[0]).toEqual({ url: "/api/feedback/42", body: { message: null } });
+    });
+
+    it("changes the type on the record once it exists", async () => {
+      const { answer, patches } = holdThePost();
+      const overlay = await clickAndWaitForBox();
+
+      overlay.querySelector<HTMLButtonElement>(".qaid-type-toggle")!.click();
+      expect(patches()).toHaveLength(0);
+
+      answer(43);
+      await vi.waitFor(() => expect(patches()).toHaveLength(1));
+      expect(patches()[0]).toEqual({ url: "/api/feedback/43", body: { feedbackType: "down" } });
+    });
+
+    it("sends nothing after a failed POST, whatever the box does", async () => {
+      const { answer, fetchMock, patches } = holdThePost();
+      const overlay = await clickAndWaitForBox();
+
+      overlay.querySelector<HTMLButtonElement>(".qaid-type-toggle")!.click();
+      overlay.querySelector<HTMLElement>(".qaid-backdrop")!.click();
+      answer(null);
+      await vi.waitFor(() => expect(fetchMock.mock.results.length).toBeGreaterThan(0));
+      await new Promise((r) => setTimeout(r, 0));
+      expect(patches()).toHaveLength(0);
+    });
+  });
+
   describe("quest launching", () => {
     let questConfigs: LaunchedQuestConfig[];
     let fakeInstances: { config: LaunchedQuestConfig; destroyed: boolean }[];
@@ -3904,6 +4002,38 @@ describe("QaidFeedback", () => {
       expect(cfg.configUrl).toBe("https://qaid.dev/api/quests/quest-up/definition");
       expect(cfg.apiKey).toBe("proj-key");
       expect(cfg.metadata).toEqual({ feedbackId: "fb-1" });
+    });
+
+    it("opens the quest while the POST is out, and gives it the id when it lands", async () => {
+      class AsyncQuest {
+        static supports = { asyncMetadata: true };
+        constructor(config: LaunchedQuestConfig) {
+          questConfigs.push(config);
+        }
+        destroy(): void {}
+      }
+      _setQuestsImporter(async () => ({ QaidQuests: AsyncQuest }));
+      let answer!: (id: string) => void;
+      global.fetch = vi.fn(
+        () =>
+          new Promise((resolve) => {
+            answer = (id) => resolve({ ok: true, json: () => Promise.resolve({ id }) });
+          }),
+      ) as never;
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        skipTargeting: true,
+        quests: { base: "https://qaid.dev/api/quests", up: "quest-up" },
+      });
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-up")!.click();
+
+      await vi.waitFor(() => expect(questConfigs.length).toBe(1));
+      const metadata = questConfigs[0]!.metadata;
+      expect(metadata).toBeInstanceOf(Promise);
+
+      answer("fb-5");
+      await expect(metadata).resolves.toEqual({ feedbackId: "fb-5" });
     });
 
     it("shows the message box for a button that has no linked quest", async () => {

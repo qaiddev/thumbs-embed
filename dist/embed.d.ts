@@ -24,7 +24,13 @@ export declare class QaidFeedback {
     private state;
     private feedbackData;
     private selectedBounds;
-    private feedbackId;
+    /**
+     * This feedback's record id, once its POST answers (null if it failed).
+     * The message box and a linked quest open without waiting for it; the
+     * PATCHes that need the id wait on this instead.
+     */
+    private feedbackIdPromise;
+    private questsPrewarmed;
     private activeQuest;
     private isMobile;
     private visitorId;
@@ -84,6 +90,14 @@ export declare class QaidFeedback {
      */
     private prewarmVideo;
     private prewarmScreenshot;
+    /** Quest ids linked to any button, when quest launching is on. */
+    private linkedQuestIds;
+    /**
+     * Load the quests module and fetch every linked quest's definition, so a
+     * click opens the quest with no network wait. Both are best-effort: a miss
+     * just means the quest loads on click, as it always did.
+     */
+    private prewarmQuests;
     /** Run fn when the main thread is idle; cancelled by destroy(). */
     private schedulePrewarm;
     /**
@@ -127,6 +141,8 @@ export declare class QaidFeedback {
      */
     private openAnnotationEditor;
     private submitFeedback;
+    /** POST the feedback. Resolves to the new record's id, or null if it failed. */
+    private postFeedback;
     /**
      * Quest id linked to `type`, or "" when quest launching is disabled
      * (no `base`) or this button has no quest configured.

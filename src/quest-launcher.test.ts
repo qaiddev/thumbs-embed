@@ -3,6 +3,8 @@ import {
   DEFAULT_QUESTS_MODULE_URL,
   launchQuest,
   loadQuestsModule,
+  prefetchQuestDefinition,
+  questDefinitionUrl,
   _setQuestsImporter,
   type LaunchedQuestConfig,
 } from "./quest-launcher";
@@ -25,6 +27,7 @@ afterEach(() => {
   _setQuestsImporter(null); // restore real import() + clear the module cache
   FakeQuest.instances = [];
   vi.restoreAllMocks();
+  vi.unstubAllGlobals();
 });
 
 describe("loadQuestsModule", () => {
@@ -152,6 +155,137 @@ describe("launchQuest", () => {
     });
 
     expect(FakeQuest.instances[0]!.config.apiKey).toBeUndefined();
+  });
+});
+
+describe("prefetchQuestDefinition", () => {
+  const url = questDefinitionUrl("https://x/api/quests/", "q 1");
+  const definition = { id: "q 1", questions: [{ id: "a", type: "text", label: "A?" }] };
+
+  function jsonResponse(body: unknown, ok = true) {
+    return { ok, json: () => Promise.resolve(body) };
+  }
+
+  it("builds the definition URL the quests widget uses", () => {
+    expect(url).toBe("https://x/api/quests/q%201/definition");
+  });
+
+  it("hands a fetched definition to the quest, so it opens without fetching", async () => {
+    _setQuestsImporter(async () => fakeModule);
+    const fetchMock = vi.fn().mockResolvedValue(jsonResponse(definition));
+    vi.stubGlobal("fetch", fetchMock);
+
+    await prefetchQuestDefinition(url);
+    await launchQuest({ questId: "q 1", base: "https://x/api/quests", moduleUrl: "m" });
+
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(FakeQuest.instances[0]!.config.questionnaire).toEqual(definition);
+  });
+
+  it("fetches each definition once, however often it is asked", async () => {
+    const fetchMock = vi.fn().mockResolvedValue(jsonResponse(definition));
+    vi.stubGlobal("fetch", fetchMock);
+
+    await Promise.all([prefetchQuestDefinition(url), prefetchQuestDefinition(url)]);
+    await prefetchQuestDefinition(url);
+
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it("forgets a refused fetch, so the widget loads it and a later prefetch retries", async () => {
+    _setQuestsImporter(async () => fakeModule);
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce(jsonResponse({ error: "Quest not found" }, false))
+      .mockRejectedValueOnce(new Error("offline"))
+      .mockResolvedValueOnce(jsonResponse(definition));
+    vi.stubGlobal("fetch", fetchMock);
+
+    await prefetchQuestDefinition(url);
+    await launchQuest({ questId: "q 1", base: "https://x/api/quests", moduleUrl: "m" });
+    expect(FakeQuest.instances[0]!.config.questionnaire).toBeUndefined();
+
+    await prefetchQuestDefinition(url);
+    await prefetchQuestDefinition(url);
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+  });
+
+  it("leaves a definition still loading to the widget instead of waiting on it", async () => {
+    _setQuestsImporter(async () => fakeModule);
+    vi.stubGlobal("fetch", vi.fn(() => new Promise(() => {})));
+
+    void prefetchQuestDefinition(url);
+    await launchQuest({ questId: "q 1", base: "https://x/api/quests", moduleUrl: "m" });
+
+    expect(FakeQuest.instances).toHaveLength(1);
+    expect(FakeQuest.instances[0]!.config.questionnaire).toBeUndefined();
+  });
+});
+
+describe("launchQuest with a feedback id still on its way", () => {
+  class AsyncQuest extends FakeQuest {
+    static supports = { asyncMetadata: true };
+  }
+
+  it("opens at once and passes a promise, when the widget takes one", async () => {
+    _setQuestsImporter(async () => ({ QaidQuests: AsyncQuest }));
+    let resolveId!: (id: string) => void;
+
+    await launchQuest({
+      questId: "q1",
+      base: "https://x/api/quests",
+      moduleUrl: "m",
+      feedbackId: new Promise((r) => (resolveId = r)),
+    });
+
+    const metadata = FakeQuest.instances[0]!.config.metadata;
+    expect(metadata).toBeInstanceOf(Promise);
+    resolveId("fb-late");
+    await expect(metadata).resolves.toEqual({ feedbackId: "fb-late" });
+  });
+
+  it("sends no metadata when the feedback POST failed", async () => {
+    _setQuestsImporter(async () => ({ QaidQuests: AsyncQuest }));
+
+    await launchQuest({
+      questId: "q1",
+      base: "https://x/api/quests",
+      moduleUrl: "m",
+      feedbackId: Promise.reject(new Error("POST failed")),
+    });
+
+    await expect(FakeQuest.instances[0]!.config.metadata).resolves.toBeUndefined();
+  });
+
+  it("waits for the id with an older widget, which would drop a promise", async () => {
+    _setQuestsImporter(async () => fakeModule);
+    let resolveId!: (id: number) => void;
+
+    const launched = launchQuest({
+      questId: "q1",
+      base: "https://x/api/quests",
+      moduleUrl: "m",
+      feedbackId: new Promise((r) => (resolveId = r)),
+    });
+    await Promise.resolve();
+    expect(FakeQuest.instances).toHaveLength(0);
+
+    resolveId(12);
+    await launched;
+    expect(FakeQuest.instances[0]!.config.metadata).toEqual({ feedbackId: 12 });
+  });
+
+  it("opens an older widget without metadata when the POST failed", async () => {
+    _setQuestsImporter(async () => fakeModule);
+
+    await launchQuest({
+      questId: "q1",
+      base: "https://x/api/quests",
+      moduleUrl: "m",
+      feedbackId: Promise.reject(new Error("POST failed")),
+    });
+
+    expect(FakeQuest.instances[0]!.config.metadata).toBeUndefined();
   });
 });
 

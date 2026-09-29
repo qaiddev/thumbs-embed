@@ -24,13 +24,20 @@ export interface QuestInstance {
 export interface LaunchedQuestConfig {
   endpoint: string;
   configUrl: string;
+  /** The definition, when it was fetched ahead of time (wins over configUrl). */
+  questionnaire?: unknown;
   apiKey?: string;
-  metadata?: Record<string, unknown>;
+  /** A promise only when the loaded module says it accepts one. */
+  metadata?: Record<string, unknown> | Promise<Record<string, unknown> | undefined>;
   onComplete?: (answers: Record<string, unknown>) => void;
   onClose?: () => void;
 }
 
-type QuestsConstructor = new (config: LaunchedQuestConfig) => QuestInstance;
+interface QuestsConstructor {
+  new (config: LaunchedQuestConfig): QuestInstance;
+  /** quests-embed 1.7+: `asyncMetadata` means `metadata` may be a promise. */
+  supports?: { asyncMetadata?: boolean };
+}
 
 /** Shape of the quests module's default/entry exports. */
 export interface QuestsModule {
@@ -48,6 +55,10 @@ let importer: Importer = defaultImporter;
 let modulePromise: Promise<QuestsModule> | null = null;
 let cachedUrl: string | null = null;
 
+/** Quest definitions fetched ahead of a click, by definition URL. */
+const definitions = new Map<string, unknown>();
+const definitionLoads = new Map<string, Promise<void>>();
+
 /**
  * @internal Test seam: swap the dynamic importer and clear the cache.
  * Pass `null` to restore the real dynamic `import()`. Not re-exported
@@ -57,6 +68,35 @@ export function _setQuestsImporter(fn: Importer | null): void {
   importer = fn ?? defaultImporter;
   modulePromise = null;
   cachedUrl = null;
+  definitions.clear();
+  definitionLoads.clear();
+}
+
+/** Where the quest service serves a quest's live definition. */
+export function questDefinitionUrl(base: string, questId: string): string {
+  return `${base.replace(/\/+$/, "")}/${encodeURIComponent(questId)}/definition`;
+}
+
+/**
+ * Fetch a quest's definition before anyone clicks, so the quest opens from
+ * memory. Never rejects: a failed fetch is forgotten, and the quests widget
+ * then loads the definition itself, the way it did before this existed.
+ */
+export function prefetchQuestDefinition(url: string): Promise<void> {
+  if (definitions.has(url)) return Promise.resolve();
+  const pending = definitionLoads.get(url);
+  if (pending) return pending;
+  const load = fetch(url, { headers: { Accept: "application/json" } })
+    .then((res) => (res.ok ? res.json() : null))
+    .then((def: unknown) => {
+      if (def) definitions.set(url, def);
+    })
+    .catch(() => {})
+    .finally(() => {
+      definitionLoads.delete(url);
+    });
+  definitionLoads.set(url, load);
+  return load;
 }
 
 /**
@@ -92,8 +132,11 @@ export interface LaunchQuestOptions {
   apiKey?: string;
   /** ES-module URL to load the quests widget from. */
   moduleUrl: string;
-  /** Feedback record id to correlate the response with (optional). */
-  feedbackId?: string | number | null;
+  /**
+   * Feedback record id to correlate the response with (optional). A promise
+   * lets the quest open before the feedback POST has answered.
+   */
+  feedbackId?: string | number | null | Promise<string | number | null>;
   /** Called when the quest embed is torn down. */
   onClose?: () => void;
 }
@@ -106,11 +149,29 @@ export interface LaunchQuestOptions {
 export async function launchQuest(opts: LaunchQuestOptions): Promise<QuestInstance> {
   const mod = await loadQuestsModule(opts.moduleUrl);
   const base = opts.base.replace(/\/+$/, "");
-  const metadata =
-    opts.feedbackId != null ? { feedbackId: opts.feedbackId } : undefined;
+  const configUrl = questDefinitionUrl(base, opts.questId);
+  const toMetadata = (id: string | number | null): Record<string, unknown> | undefined =>
+    id != null ? { feedbackId: id } : undefined;
+
+  let metadata: LaunchedQuestConfig["metadata"];
+  const id = opts.feedbackId;
+  if (id instanceof Promise) {
+    // A quests build that takes a promise opens now and sends the id when it
+    // lands. An older one (a pinned moduleUrl) would serialise the promise as
+    // {} and lose the id, so for it we wait, as before.
+    metadata = mod.QaidQuests.supports?.asyncMetadata
+      ? id.then(toMetadata, () => undefined)
+      : toMetadata(await id.catch(() => null));
+  } else {
+    metadata = toMetadata(id ?? null);
+  }
+
   return new mod.QaidQuests({
     endpoint: `${base}/responses`,
-    configUrl: `${base}/${encodeURIComponent(opts.questId)}/definition`,
+    configUrl,
+    // Only a definition already in hand. One still loading is left to the
+    // widget, which shows its own loading state instead of nothing.
+    questionnaire: definitions.get(configUrl),
     apiKey: opts.apiKey || undefined,
     metadata,
     onClose: opts.onClose,

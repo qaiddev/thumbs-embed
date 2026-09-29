@@ -72,8 +72,7 @@ For complex configurations, use a separate JSON config element:
 2. User clicks a thumb button
 3. A targeting overlay activates — the user clicks on any page element to attach their feedback to it
 4. Optional permission to save a screenshot of the current tab.
-4. A modal appears where the user can optionally leave a more detailed message
-5. Feedback is submitted to your endpoint as a JSON POST.
+5. Feedback is submitted to your endpoint as a JSON POST, and a modal opens at the same moment where the user can leave a more detailed message. The modal does not wait for the POST to answer; a message the user sends goes out as a PATCH once the POST has returned its id.
 
 If `skipTargeting` is `true`, step 3 is skipped and the modal opens immediately.
 
@@ -190,7 +189,7 @@ Screenshots use the browser's Screen Capture API. The user will see a permission
 
 ### Linking buttons to quests
 
-Instead of the optional message box, a button can open a **quest** — a short questionnaire powered by [`@qaiddev/quests-embed`](https://www.npmjs.com/package/@qaiddev/quests-embed). You can ask one set of questions after a thumbs-up, a different set after a thumbs-down, and another after a video recording is sent. The quest widget is loaded on demand from a CDN the first time it's needed, so the thumbs bundle stays zero-dependency; if it can't load, the classic message box is shown instead.
+Instead of the optional message box, a button can open a **quest** — a short questionnaire powered by [`@qaiddev/quests-embed`](https://www.npmjs.com/package/@qaiddev/quests-embed). You can ask one set of questions after a thumbs-up, a different set after a thumbs-down, and another after a video recording is sent. The quest widget is loaded from a CDN once the page is idle, along with each linked quest's definition, so a click opens the quest at once with no server round trip; the thumbs bundle itself stays zero-dependency. If it can't load, the classic message box is shown instead.
 
 ```typescript
 new QaidFeedback({

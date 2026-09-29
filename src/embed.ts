@@ -34,6 +34,9 @@ import { isMobileViewport } from "./dom-utils";
 // time a screenshot is taken — see submitFeedback() / openAnnotationEditor().
 import {
   launchQuest,
+  loadQuestsModule,
+  prefetchQuestDefinition,
+  questDefinitionUrl,
   DEFAULT_QUESTS_MODULE_URL,
   type QuestInstance,
 } from "./quest-launcher";
@@ -150,7 +153,13 @@ export class QaidFeedback {
     clickY: 0,
     visible: false,
   };
-  private feedbackId: number | null = null;
+  /**
+   * This feedback's record id, once its POST answers (null if it failed).
+   * The message box and a linked quest open without waiting for it; the
+   * PATCHes that need the id wait on this instead.
+   */
+  private feedbackIdPromise: Promise<number | null> = Promise.resolve(null);
+  private questsPrewarmed = false;
   // A quest launched from a button (in place of the message box), if any.
   private activeQuest: QuestInstance | null = null;
   private isMobile = false;
@@ -395,13 +404,17 @@ export class QaidFeedback {
     // Preload split feature chunks on idle when their config flags are set, so
     // the first screenshot / recording doesn't wait on a chunk fetch. Hovering
     // the record button also warms the video chunk (see createEmbed).
+    // Linked quests are warmed the same way — the quests module and each
+    // quest's definition — so a click opens the quest from memory.
     if (
       (this.config.captureVideo && this.videoSupported()) ||
-      this.config.captureScreenshot
+      this.config.captureScreenshot ||
+      this.linkedQuestIds().length > 0
     ) {
       this.schedulePrewarm(() => {
         if (this.config.captureVideo && this.videoSupported()) this.prewarmVideo();
         if (this.config.captureScreenshot) this.prewarmScreenshot();
+        this.prewarmQuests();
       });
     }
   }
@@ -429,6 +442,28 @@ export class QaidFeedback {
       : import("./screenshot")
     ).catch(() => {});
     if (this.config.annotate) import("./annotate").catch(() => {});
+  }
+
+  /** Quest ids linked to any button, when quest launching is on. */
+  private linkedQuestIds(): string[] {
+    const q = this.config.quests;
+    return q.base ? [q.up, q.down, q.video].filter((id) => id) : [];
+  }
+
+  /**
+   * Load the quests module and fetch every linked quest's definition, so a
+   * click opens the quest with no network wait. Both are best-effort: a miss
+   * just means the quest loads on click, as it always did.
+   */
+  private prewarmQuests(): void {
+    if (this.questsPrewarmed) return;
+    const ids = this.linkedQuestIds();
+    if (ids.length === 0) return;
+    this.questsPrewarmed = true;
+    loadQuestsModule(this.config.quests.moduleUrl).catch(() => {});
+    for (const id of ids) {
+      void prefetchQuestDefinition(questDefinitionUrl(this.config.quests.base, id));
+    }
   }
 
   /** Run fn when the main thread is idle; cancelled by destroy(). */
@@ -627,6 +662,7 @@ export class QaidFeedback {
       upBtn.addEventListener("click", (e) => this.handleThumbClick("up", e.currentTarget as HTMLElement, e));
       upBtn.addEventListener("mouseenter", () => {
         this.prewarmTargeting();
+        this.prewarmQuests();
         this.showTooltip(upBtn);
       });
       upBtn.addEventListener("mouseleave", () => this.hideTooltip());
@@ -644,6 +680,7 @@ export class QaidFeedback {
       downBtn.addEventListener("click", (e) => this.handleThumbClick("down", e.currentTarget as HTMLElement, e));
       downBtn.addEventListener("mouseenter", () => {
         this.prewarmTargeting();
+        this.prewarmQuests();
         this.showTooltip(downBtn);
       });
       downBtn.addEventListener("mouseleave", () => this.hideTooltip());
@@ -947,32 +984,19 @@ export class QaidFeedback {
       userAgent: navigator.userAgent,
     };
 
-    try {
-      const response = await fetch(this.config.endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (response.ok) {
-        const data: FeedbackResponse = await response.json();
-        this.feedbackId = data.id;
-        this.announceMsg("Feedback sent");
-      }
-    } catch (error) {
-      console.error("Failed to submit feedback:", error);
-      this.announceMsg("Failed to send feedback", true);
-    }
+    // The POST goes out in the background. The message box or linked quest
+    // opens now instead of a server round trip later; what needs the new
+    // record's id (the message PATCH, the quest's link back) waits on this.
+    this.feedbackIdPromise = this.postFeedback(payload);
 
     // If this button is linked to a quest, launch it in place of the
-    // message box. The feedback record already exists, so on success we
-    // just tear down the targeting UI and hand off. On any load failure we
-    // fall through to the classic message box so the user can still leave
-    // an optional message.
+    // message box, handing it the pending id. On success we just tear down
+    // the targeting UI and hand off. On any load failure we fall through to
+    // the classic message box so the user can still leave an optional message.
     const type = this.feedbackData.feedbackType;
     // Quest links are keyed by up/down/video; neutral single-button feedback
     // has no quest mapping, so it always falls through to the message box.
-    if (type && type !== "neutral" && (await this.tryLaunchQuest(type, this.feedbackId))) {
+    if (type && type !== "neutral" && (await this.tryLaunchQuest(type, this.feedbackIdPromise))) {
       this.resetFeedbackUi();
       return;
     }
@@ -1001,6 +1025,27 @@ export class QaidFeedback {
     }
   }
 
+  /** POST the feedback. Resolves to the new record's id, or null if it failed. */
+  private async postFeedback(payload: FeedbackPayload): Promise<number | null> {
+    try {
+      const response = await fetch(this.config.endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        const data: FeedbackResponse = await response.json();
+        this.announceMsg("Feedback sent");
+        return data.id;
+      }
+    } catch (error) {
+      console.error("Failed to submit feedback:", error);
+      this.announceMsg("Failed to send feedback", true);
+    }
+    return null;
+  }
+
   /**
    * Quest id linked to `type`, or "" when quest launching is disabled
    * (no `base`) or this button has no quest configured.
@@ -1019,7 +1064,7 @@ export class QaidFeedback {
    */
   private async tryLaunchQuest(
     type: "up" | "down" | "video",
-    feedbackId: number | string | null,
+    feedbackId: number | string | null | Promise<number | string | null>,
   ): Promise<boolean> {
     const questId = this.questIdFor(type);
     if (!questId) return false;
@@ -1054,7 +1099,7 @@ export class QaidFeedback {
       this.overlayShadowHost.style.pointerEvents = "none";
     }
     this.state = "IDLE";
-    this.feedbackId = null;
+    this.feedbackIdPromise = Promise.resolve(null);
     this.feedbackData.feedbackType = null;
     this.feedbackData.elementSelector = null;
     this.feedbackData.elementText = null;
@@ -1100,12 +1145,7 @@ export class QaidFeedback {
       get selectedBounds() {
         return self.selectedBounds;
       },
-      get feedbackId() {
-        return self.feedbackId;
-      },
-      setFeedbackId: (id) => {
-        self.feedbackId = id;
-      },
+      whenFeedbackId: () => self.feedbackIdPromise,
       ensureOverlayHost: () => self.ensureOverlayHost(),
       applyVars: (el) => self.applyVars(el),
       announceMsg: (message, assertive) => self.announceMsg(message, assertive),

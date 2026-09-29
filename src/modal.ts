@@ -33,8 +33,12 @@ export interface ModalHost {
   /** Live references — the toggle mutates feedbackType; positioning reads bounds. */
   readonly feedbackData: FeedbackData;
   readonly selectedBounds: SelectedBounds;
-  readonly feedbackId: number | null;
-  setFeedbackId(id: number | null): void;
+  /**
+   * The id of this feedback's record. The modal opens while the POST that
+   * creates it is still in flight, so every PATCH waits on this; null when
+   * the POST failed.
+   */
+  whenFeedbackId(): Promise<number | null>;
   ensureOverlayHost(): ShadowRoot;
   applyVars(el: HTMLElement): void;
   announceMsg(message: string, assertive?: boolean): void;
@@ -49,10 +53,13 @@ export interface ModalHost {
 export class ModalController {
   private modalContainer: HTMLDivElement | null = null;
   private backdrop: HTMLDivElement | null = null;
+  /** Set once the message is sent, so closing does not PATCH over it. */
+  private finalized = false;
 
   constructor(private host: ModalHost) {}
 
   open(): void {
+    this.finalized = false;
     const root = this.host.ensureOverlayHost();
 
     // Create backdrop
@@ -76,12 +83,17 @@ export class ModalController {
   /** Escape / external close. Runs the finalize-PATCH + teardown. */
   close(): void {
     // If the modal is open and we're closing without submitting, still finalize.
-    if (this.host.state === "MODAL_OPEN" && this.host.feedbackId) {
-      fetch(`${this.host.config.endpoint}/${this.host.feedbackId}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: null }),
-      }).catch((err) => console.error("Failed to finalize feedback:", err));
+    // Taken before the reset below, which starts the next feedback afresh.
+    if (this.host.state === "MODAL_OPEN" && !this.finalized) {
+      this.finalized = true;
+      void this.host.whenFeedbackId().then((id) => {
+        if (!id) return;
+        fetch(`${this.host.config.endpoint}/${id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: null }),
+        }).catch((err) => console.error("Failed to finalize feedback:", err));
+      });
     }
 
     this.teardown();
@@ -301,14 +313,15 @@ export class ModalController {
         typeToggle.setAttribute("aria-label", toggleLabel);
         this.host.announceMsg(toggleLabel);
 
-        // Update feedback on server
-        if (this.host.feedbackId) {
-          fetch(`${this.host.config.endpoint}/${this.host.feedbackId}`, {
+        // Update feedback on server, once the record exists
+        void this.host.whenFeedbackId().then((id) => {
+          if (!id) return;
+          fetch(`${this.host.config.endpoint}/${id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ feedbackType: newType }),
           }).catch((err) => console.error("Failed to update feedback type:", err));
-        }
+        });
       });
     }
   }
@@ -318,9 +331,13 @@ export class ModalController {
     // otherwise whether the server accepted the PATCH.
     let delivered: boolean | null = null;
 
-    if (this.host.feedbackId) {
+    // Before the await: an Escape while the POST is still out must not send
+    // a second, empty PATCH over this message.
+    this.finalized = true;
+    const id = await this.host.whenFeedbackId();
+    if (id) {
       try {
-        const response = await fetch(`${this.host.config.endpoint}/${this.host.feedbackId}`, {
+        const response = await fetch(`${this.host.config.endpoint}/${id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ message }),
@@ -335,8 +352,6 @@ export class ModalController {
         console.error("Failed to submit feedback message:", error);
         delivered = false;
       }
-      // Clear feedbackId so close() doesn't send another PATCH.
-      this.host.setFeedbackId(null);
     }
 
     // The message was lost. Closing quietly reads as success, so say so —

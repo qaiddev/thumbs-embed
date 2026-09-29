@@ -17,8 +17,12 @@ export interface ModalHost {
     /** Live references — the toggle mutates feedbackType; positioning reads bounds. */
     readonly feedbackData: FeedbackData;
     readonly selectedBounds: SelectedBounds;
-    readonly feedbackId: number | null;
-    setFeedbackId(id: number | null): void;
+    /**
+     * The id of this feedback's record. The modal opens while the POST that
+     * creates it is still in flight, so every PATCH waits on this; null when
+     * the POST failed.
+     */
+    whenFeedbackId(): Promise<number | null>;
     ensureOverlayHost(): ShadowRoot;
     applyVars(el: HTMLElement): void;
     announceMsg(message: string, assertive?: boolean): void;
@@ -34,6 +38,8 @@ export declare class ModalController {
     private host;
     private modalContainer;
     private backdrop;
+    /** Set once the message is sent, so closing does not PATCH over it. */
+    private finalized;
     constructor(host: ModalHost);
     open(): void;
     /** Escape / external close. Runs the finalize-PATCH + teardown. */

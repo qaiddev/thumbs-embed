@@ -20,12 +20,21 @@ export interface QuestInstance {
 export interface LaunchedQuestConfig {
     endpoint: string;
     configUrl: string;
+    /** The definition, when it was fetched ahead of time (wins over configUrl). */
+    questionnaire?: unknown;
     apiKey?: string;
-    metadata?: Record<string, unknown>;
+    /** A promise only when the loaded module says it accepts one. */
+    metadata?: Record<string, unknown> | Promise<Record<string, unknown> | undefined>;
     onComplete?: (answers: Record<string, unknown>) => void;
     onClose?: () => void;
 }
-type QuestsConstructor = new (config: LaunchedQuestConfig) => QuestInstance;
+interface QuestsConstructor {
+    new (config: LaunchedQuestConfig): QuestInstance;
+    /** quests-embed 1.7+: `asyncMetadata` means `metadata` may be a promise. */
+    supports?: {
+        asyncMetadata?: boolean;
+    };
+}
 /** Shape of the quests module's default/entry exports. */
 export interface QuestsModule {
     QaidQuests: QuestsConstructor;
@@ -37,6 +46,14 @@ type Importer = (url: string) => Promise<unknown>;
  * from the package entry, so it isn't public API.
  */
 export declare function _setQuestsImporter(fn: Importer | null): void;
+/** Where the quest service serves a quest's live definition. */
+export declare function questDefinitionUrl(base: string, questId: string): string;
+/**
+ * Fetch a quest's definition before anyone clicks, so the quest opens from
+ * memory. Never rejects: a failed fetch is forgotten, and the quests widget
+ * then loads the definition itself, the way it did before this existed.
+ */
+export declare function prefetchQuestDefinition(url: string): Promise<void>;
 /**
  * Import the quests module, caching the promise per URL. A failed load
  * clears the cache so a later trigger can retry (e.g. after a transient
@@ -52,8 +69,11 @@ export interface LaunchQuestOptions {
     apiKey?: string;
     /** ES-module URL to load the quests widget from. */
     moduleUrl: string;
-    /** Feedback record id to correlate the response with (optional). */
-    feedbackId?: string | number | null;
+    /**
+     * Feedback record id to correlate the response with (optional). A promise
+     * lets the quest open before the feedback POST has answered.
+     */
+    feedbackId?: string | number | null | Promise<string | number | null>;
     /** Called when the quest embed is torn down. */
     onClose?: () => void;
 }
