@@ -541,9 +541,12 @@ button.qaid-btn-record:hover {
   color: #fff;
 }
 
-/* Recording indicator pill - fixed top center */
+/* Recording indicator pill - fixed top center. The only part of the overlay
+   that takes clicks while recording: the host is pointer-events:none so the
+   page stays usable. */
 .qaid-recording-indicator {
   position: fixed;
+  pointer-events: auto;
   top: 12px;
   left: 50%;
   transform: translateX(-50%);

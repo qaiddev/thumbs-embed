@@ -305,6 +305,12 @@ describe("styles", () => {
     });
   });
 
+  describe("recording indicator", () => {
+    it("takes its own clicks, since the overlay host under it lets them through", () => {
+      expect(ruleBody(".qaid-recording-indicator")).toMatch(/pointer-events:\s*auto/);
+    });
+  });
+
   describe("font size", () => {
     it("never sizes text in rem, which the fontSize option cannot reach", () => {
       expect(getEmbedStyles()).not.toMatch(/font-size:\s*[\d.]+rem/);

@@ -1,5 +1,5 @@
 import { h as r } from "./dom-DvdtcUS8.js";
-import { b as f } from "./annotate-D-o8xCV9.js";
+import { b as v } from "./annotate-D-o8xCV9.js";
 const g = 20, u = 4096;
 function l(d) {
   const t = typeof d == "string" ? d : JSON.stringify(d);
@@ -24,14 +24,14 @@ function R() {
     s?.body && (a = l(s.body));
     const h = await t.apply(window, [o, s]);
     if (h.status >= 400) {
-      const v = await b(h);
+      const f = await b(h);
       p(d, {
         url: n,
         method: c.toUpperCase(),
         status: h.status,
         statusText: h.statusText,
         requestBody: a,
-        responseBody: v,
+        responseBody: f,
         timestamp: Date.now()
       });
     }
@@ -154,7 +154,7 @@ class m {
   }
   handleRedactPickClick(t) {
     const i = t.target instanceof Element ? t.target : null;
-    if (!i || f(i) || this.redactPickerRoot?.contains(i)) return;
+    if (!i || v(i) || this.redactPickerRoot?.contains(i)) return;
     t.preventDefault(), t.stopPropagation();
     const e = this.redactPicks.indexOf(i);
     e >= 0 ? this.redactPicks.splice(e, 1) : this.redactPicks.push(i);
@@ -196,7 +196,7 @@ class m {
         attrs: { type: "button" },
         on: { click: () => this.stopRecording() }
       })
-    ), this.host.applyVars(this.recordingIndicator), this.host.overlayShadowHost && (this.host.overlayShadowHost.style.pointerEvents = "auto"), t.appendChild(this.recordingIndicator);
+    ), this.host.applyVars(this.recordingIndicator), t.appendChild(this.recordingIndicator);
   }
   updateRecordingTimer(t) {
     if (!this.recordingIndicator) return;
@@ -318,4 +318,4 @@ class m {
 export {
   m as RecordingController
 };
-//# sourceMappingURL=recording-Dx8AX-BC.js.map
+//# sourceMappingURL=recording-CcfOfIC7.js.map

@@ -306,11 +306,11 @@ export class RecordingController {
 
     this.host.applyVars(this.recordingIndicator);
 
-    // Enable pointer events on the overlay host for the recording indicator.
-    if (this.host.overlayShadowHost) {
-      this.host.overlayShadowHost.style.pointerEvents = "auto";
-    }
-
+    // The overlay host stays pointer-events:none. It covers the whole viewport,
+    // so turning it on made a clear sheet over the page for the length of the
+    // recording and every click the visitor made to show the bug died on it.
+    // The pill takes its own clicks (pointer-events:auto in its CSS), the way
+    // the redaction picker's control bar does.
     root.appendChild(this.recordingIndicator);
   }
 

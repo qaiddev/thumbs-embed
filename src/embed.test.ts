@@ -1546,6 +1546,24 @@ describe("QaidFeedback", () => {
       expect(timer?.textContent).toBe("0:15"); // Default max duration
     });
 
+    it("leaves the page clickable while recording", async () => {
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        captureVideo: true,
+      });
+
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-record")?.click();
+
+      await vi.waitFor(() => {
+        expect(getOverlayShadowRoot().querySelector(".qaid-recording-indicator")).not.toBeNull();
+      });
+
+      // The overlay host spans the viewport; with pointer events on, it would
+      // swallow every click the visitor makes to show what went wrong.
+      const overlayHost = document.querySelector<HTMLElement>("[data-qaid-embed-overlay]");
+      expect(overlayHost?.style.pointerEvents).toBe("none");
+    });
+
     it("should disable thumb buttons while recording", async () => {
       embed = new QaidFeedback({
         endpoint: "/api/feedback",
