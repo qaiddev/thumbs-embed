@@ -14,9 +14,11 @@ export default defineConfig({
       reporter: ["text", "json", "json-summary", "html"],
       include: ["src/**/*.ts"],
       exclude: ["src/**/*.test.ts", "src/index.ts"],
+      // Measured 2026-10-03: lines 100, branches 95.7, functions 100, statements 100.
+      // Branches sit at the 95 floor every qaid package keeps; raise as it climbs.
       thresholds: {
         lines: 100,
-        branches: 90,
+        branches: 95,
         functions: 100,
         statements: 100,
       },
