@@ -3,7 +3,11 @@
 [![npm version](https://img.shields.io/npm/v/@qaiddev/thumbs-embed)](https://www.npmjs.com/package/@qaiddev/thumbs-embed)
 [![coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fqaiddev%2Fthumbs-embed%2Fprod%2Fcoverage-badge.json)](https://github.com/qaiddev/thumbs-embed)
 
-A zero-dependency, lightweight feedback embed that adds thumbs up/down buttons to any website. Users can optionally target specific page elements, leave messages, and capture screenshots — all submitted to your API endpoint or the [QAid.dev hosted dashboard](https://qaid.dev).
+A zero-dependency, lightweight feedback embed that adds thumbs up/down buttons to any website. Users can optionally target specific page elements, leave messages, capture screenshots, mark them up and record short videos — all submitted to your API endpoint or the [QAid.dev hosted dashboard](https://qaid.dev).
+
+It needs 11.5 KB (gzipped) to draw its buttons. The rest loads later, and only when needed — see [What loads when](#what-loads-when).
+
+![Thumbs up and down buttons in the corner of a shop page](https://raw.githubusercontent.com/qaiddev/thumbs-embed/prod/docs/screenshots/buttons.png)
 
 ## Install
 
@@ -34,13 +38,28 @@ const feedback = new QaidFeedback({
 
 `embed.js` is a tiny classic loader that works in every browser: it feature-detects
 ES-module support and pulls in the right build automatically — the **progressive
-loader** (`loader.js`, a small core with screenshot/video/annotation/targeting loading
-on demand) on modern browsers, or the all-in-one UMD bundle (`qaid.umd.cjs`) on older
-ones. The injected build auto-initializes when it detects a `data-endpoint` attribute.
+loader** (`loader.js`, a small core that only draws the buttons) on modern browsers,
+or the all-in-one UMD bundle (`qaid.umd.cjs`) on older ones. The injected build
+auto-initializes when it detects a `data-endpoint` attribute.
 
 > Prefer to skip the loader's feature-detect hop? Point straight at
 > `dist/loader.js` with `type="module"` (modern browsers only), or
 > `dist/qaid.umd.cjs` as a classic script (works everywhere, no code-splitting).
+
+### What loads when
+
+Sizes are gzipped, for 1.12. Times are rough estimates for a first visit on a typical 4G phone (100 ms round trip, 9 Mbps).
+
+| When | Size | What it brings | About |
+|------|------|----------------|-------|
+| Before paint | 0 KB | nothing; the tag waits (`defer`) | 0 s |
+| After paint | 11.5 KB | `embed.js`, `loader.js` and the core: draws the buttons | 0.7 s |
+| Pointer near the buttons, or browser idle | +11 KB | the message box, targeting and send code, so a click opens at once | 0.2 s |
+| Screenshot, as needed | +1 KB | the capture | 0.1 s |
+| Markup, as needed | +4.3 KB | the markup editor | 0.1 s |
+| Video, as needed | +6.9 KB | the recorder | 0.1 s |
+
+The buttons are ready about 0.9 s after paint, and 1.2 s with every add-on. Most of that is round trips, not bytes.
 
 ### JSON Config (Script Tag)
 
@@ -73,6 +92,14 @@ For complex configurations, use a separate JSON config element:
 3. A targeting overlay activates — the user clicks on any page element to attach their feedback to it
 4. Optional permission to save a screenshot of the current tab.
 5. Feedback is submitted to your endpoint as a JSON POST, and a modal opens at the same moment where the user can leave a more detailed message. The modal does not wait for the POST to answer; a message the user sends goes out as a PATCH once the POST has returned its id.
+
+Step 3, picking the part of the page the feedback is about:
+
+![Targeting overlay with crosshairs on the Add to cart button](https://raw.githubusercontent.com/qaiddev/thumbs-embed/prod/docs/screenshots/targeting.png)
+
+Step 5, the message box, pointing at the picked element:
+
+![Message box above the circled Add to cart button](https://raw.githubusercontent.com/qaiddev/thumbs-embed/prod/docs/screenshots/message.png)
 
 If `skipTargeting` is `true`, step 3 is skipped and the modal opens immediately.
 
@@ -437,16 +464,15 @@ The embed also supports dark mode automatically via the `light-dark()` CSS funct
 
 ### Plans
 
-| | Cadet (Free) | Commander ($9/mo) | Admiral (Enterprise) |
+| | Cadet (Free) | Commander ($9/seat/mo) | Admiral (Enterprise) |
 |---|---|---|---|
-| Projects | 1 | Unlimited | Unlimited |
-| Messages | 100/mo | Unlimited | Unlimited |
-| Data retention | 7 days | 1 year | Unlimited |
-| Screenshots | - | Yes | Yes |
-| Notifications | - | Email/Text | Email/Text |
-| Integrations | - | GitHub + more | Custom |
+| Projects | 1 | 10 | Unlimited |
+| Feedback | 100/mo per project | 10,000/mo per project | Unlimited |
+| Screenshots, console errors, video | - | Yes | Yes |
+| Notifications | Email | Email, webhooks, Slack | Email, webhooks, Slack |
+| Issues | GitHub, Linear, Jira | Plus AI PR fixes | Custom |
 
-Sign up at [qaid.dev](https://qaid.dev). You can also self-host — the embed works with any endpoint that accepts the payload format described above.
+Full details at [qaid.dev/pricing](https://qaid.dev/pricing). Sign up at [qaid.dev](https://qaid.dev). You can also self-host — the embed works with any endpoint that accepts the payload format described above.
 
 ## Self-Hosting
 
