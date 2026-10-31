@@ -48,18 +48,16 @@ auto-initializes when it detects a `data-endpoint` attribute.
 
 ### What loads when
 
-Sizes are gzipped, for 1.12. Times are rough estimates for a first visit on a typical 4G phone (100 ms round trip, 9 Mbps).
+Sizes are gzipped, for 1.12.
 
-| When | Size | What it brings | About |
-|------|------|----------------|-------|
-| Before paint | 0 KB | nothing; the tag waits (`defer`) | 0 s |
-| After paint | 11.5 KB | `embed.js`, `loader.js` and the core: draws the buttons | 0.7 s |
-| Pointer near the buttons, or browser idle | +11 KB | the message box, targeting and send code, so a click opens at once | 0.2 s |
-| Screenshot, as needed | +1 KB | the capture | 0.1 s |
-| Markup, as needed | +4.3 KB | the markup editor | 0.1 s |
-| Video, as needed | +6.9 KB | the recorder | 0.1 s |
-
-The buttons are ready about 0.9 s after paint, and 1.2 s with every add-on. Most of that is round trips, not bytes.
+| When | Size | What it brings |
+|------|------|----------------|
+| Before paint | 0 KB | nothing; the tag waits (`defer`) |
+| After paint | 11.5 KB | `embed.js`, `loader.js` and the core: draws the buttons |
+| Pointer near the buttons, or browser idle | +11 KB | the message box, targeting and send code, so a click opens at once |
+| Screenshot, as needed | +1 KB | the capture |
+| Markup, as needed | +4.3 KB | the markup editor |
+| Video, as needed | +6.9 KB | the recorder |
 
 ### JSON Config (Script Tag)
 
