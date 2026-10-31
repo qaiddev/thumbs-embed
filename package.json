@@ -1,6 +1,6 @@
 {
   "name": "@qaiddev/thumbs-embed",
-  "version": "1.12.0",
+  "version": "1.12.1",
   "description": "Precision User Feedback",
   "type": "module",
   "main": "./dist/qaid.umd.cjs",
@@ -43,7 +43,7 @@
   "devDependencies": {
     "@vitest/coverage-v8": "^5.0.3",
     "axe-core": "^4.12.1",
-    "happy-dom": "^20.5.1",
+    "happy-dom": "^21.0.4",
     "typescript": "^5.3.3",
     "vite": "^7.3.1",
     "vitest": "^5.0.3"
