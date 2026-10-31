@@ -5,24 +5,17 @@ import type {
   FeedbackType,
   SelectedBounds,
   EmbedState,
-  FeedbackPayload,
-  FeedbackResponse,
 } from "./types";
 import { THUMBS_UP_ICON, THUMBS_DOWN_ICON, RECORD_ICON, FEEDBACK_ICON } from "./icons";
 import { injectStyles, removeStyles, buildCssVars, applyCssVars, getEmbedStyles } from "./styles";
 // The element-targeting subsystem (with element-selector, ~14 KB) lives in a
 // lazily-loaded chunk (targeting.ts), pulled in the first time the user targets.
 import type { TargetingController, TargetingHost } from "./targeting";
-import {
-  announce,
-  createFocusTrap,
-  saveFocus,
-  restoreFocus,
-  applyDialog,
-  setBackgroundInert,
-  type FocusTrap,
-} from "./a11y";
-import { calculateTooltipPosition } from "./modal-positioning";
+// Only live-region announcements are needed at startup. The dialog helpers
+// (focus trap, inert background) load with the click path (a11y-dialog.ts).
+import { announce } from "./a11y";
+import type { DialogOptions } from "./a11y-dialog";
+import { calculateTooltipPosition } from "./tooltip-positioning";
 import type { ModalController, ModalHost } from "./modal";
 import { captureConsoleErrors, type ConsoleCapture } from "./console-capture";
 // The whole video-recording subsystem lives in a lazily-loaded chunk
@@ -30,16 +23,12 @@ import { captureConsoleErrors, type ConsoleCapture } from "./console-capture";
 // types are imported eagerly (erased at build time).
 import type { RecordingController, RecordingHost } from "./recording";
 import { isMobileViewport } from "./dom-utils";
-// Screenshot capture and the annotation editor are loaded on demand the first
-// time a screenshot is taken — see submitFeedback() / openAnnotationEditor().
-import {
-  launchQuest,
-  loadQuestsModule,
-  prefetchQuestDefinition,
-  questDefinitionUrl,
-  DEFAULT_QUESTS_MODULE_URL,
-  type QuestInstance,
-} from "./quest-launcher";
+// The send flow (screenshot, markup, POST, quest or message box) is its own
+// lazily-loaded chunk (send.ts), as is the quests loader it uses; both are
+// pre-warmed before the click (see prewarmClickPath / prewarmQuests).
+import type { SendHost } from "./send";
+import type { QuestInstance } from "./quest-launcher";
+import { DEFAULT_QUESTS_MODULE_URL } from "./quest-config";
 
 const VISITOR_ID_KEY = "qaid_visitor_id";
 const HIDE_FEEDBACK_KEY = "qaid_hide_feedback";
@@ -187,8 +176,10 @@ export class QaidFeedback {
   private recording: RecordingController | null = null;
   // Element targeting — also a lazily-loaded chunk (targeting.ts).
   private targeting: TargetingController | null = null;
-  private targetingPrewarmed = false;
   // Preload-on-intent: warm the lazily-split feature chunks before first use.
+  // The click path (send, message box, targeting) warms when the pointer or
+  // focus reaches the buttons, or on idle, whichever comes first.
+  private clickPathPrewarmed = false;
   private prewarmHandle: number | null = null;
   private prewarmIsTimeout = false;
   private videoPrewarmed = false;
@@ -207,7 +198,6 @@ export class QaidFeedback {
   private isUserProvidedContainer = false;
   // The message modal lives in a lazily-loaded chunk (modal.ts).
   private modal: ModalController | null = null;
-  private modalPrewarmed = false;
   private dismissBtn: HTMLButtonElement | null = null;
 
   // Per-instance CSS variables
@@ -218,10 +208,10 @@ export class QaidFeedback {
   // rather than a pointer, so targeting can avoid elementFromPoint(0,0).
   private keyboardActivation = false;
 
-  // Accessibility: dialog focus management
-  private dialogTrigger: HTMLElement | null = null;
-  private dialogTrap: FocusTrap | null = null;
-  private dialogRestoreInert: (() => void) | null = null;
+  // Accessibility: dialog focus management. The helpers load with the click
+  // path; `dialogClose` undoes the open dialog (trap, inert, focus).
+  private dialogModule: typeof import("./a11y-dialog") | null = null;
+  private dialogClose: (() => void) | null = null;
 
   // Unique id suffix for aria-labelledby/describedby references
   private readonly uid = Math.random().toString(36).slice(2, 9);
@@ -345,30 +335,25 @@ export class QaidFeedback {
     if (root) announce(root, message, { assertive });
   }
 
+  /** Load the dialog a11y helpers; every surface that opens a dialog awaits this first. */
+  private async loadDialogA11y(): Promise<void> {
+    this.dialogModule ??= await import("./a11y-dialog");
+  }
+
   /**
    * Turn a transient surface into an accessible modal dialog: save the
    * invoking control, apply dialog semantics, trap focus, and inert the
-   * background. Paired with closeDialogA11y() on every close path.
+   * background. Paired with closeDialogA11y() on every close path. Callers
+   * reach it only after loadDialogA11y() has resolved.
    */
-  private openDialogA11y(
-    container: HTMLElement,
-    opts: { labelledbyId?: string; describedbyId?: string; label?: string }
-  ): void {
-    this.dialogTrigger = saveFocus();
-    applyDialog(container, opts);
-    this.dialogTrap = createFocusTrap(container);
-    this.dialogRestoreInert = setBackgroundInert(container);
+  private openDialogA11y(container: HTMLElement, opts: DialogOptions): void {
+    this.dialogClose = this.dialogModule!.openDialog(container, opts);
   }
 
   private closeDialogA11y(): void {
-    this.dialogTrap?.release();
-    this.dialogTrap = null;
-    if (this.dialogRestoreInert) {
-      this.dialogRestoreInert();
-      this.dialogRestoreInert = null;
-    }
-    restoreFocus(this.dialogTrigger);
-    this.dialogTrigger = null;
+    const close = this.dialogClose;
+    this.dialogClose = null;
+    close?.();
   }
 
   private clearActiveThumb(): void {
@@ -420,17 +405,33 @@ export class QaidFeedback {
     // the record button also warms the video chunk (see createEmbed).
     // Linked quests are warmed the same way — the quests module and each
     // quest's definition — so a click opens the quest from memory.
-    if (
-      (this.config.captureVideo && this.videoSupported()) ||
-      this.config.captureScreenshot ||
-      this.linkedQuestIds().length > 0
-    ) {
-      this.schedulePrewarm(() => {
-        if (this.config.captureVideo && this.videoSupported()) this.prewarmVideo();
-        if (this.config.captureScreenshot) this.prewarmScreenshot();
-        this.prewarmQuests();
-      });
-    }
+    // The click path (send flow, message box, targeting) warms here too, if
+    // the pointer or focus has not reached the buttons first.
+    this.schedulePrewarm(() => {
+      this.prewarmClickPath();
+      if (this.config.captureVideo && this.videoSupported()) this.prewarmVideo();
+      if (this.config.captureScreenshot) this.prewarmScreenshot();
+      this.prewarmQuests();
+    });
+  }
+
+  /**
+   * Warm everything a thumb click needs: the send flow, the dialog helpers,
+   * the message box, and targeting (unless it is skipped). Runs once, on the
+   * first of: pointer or focus entering the buttons, or the idle callback.
+   */
+  private prewarmClickPath(): void {
+    if (this.clickPathPrewarmed) return;
+    this.clickPathPrewarmed = true;
+    import("./send").catch(() => {});
+    import("./a11y-dialog").catch(() => {});
+    import("./modal").catch(() => {});
+    if (!this.skipsTargeting()) import("./targeting").catch(() => {});
+  }
+
+  /** "annotate" mode and skipTargeting both go straight to the send flow. */
+  private skipsTargeting(): boolean {
+    return this.config.skipTargeting || this.config.feedbackMode === "annotate";
   }
 
   /**
@@ -474,10 +475,13 @@ export class QaidFeedback {
     const ids = this.linkedQuestIds();
     if (ids.length === 0) return;
     this.questsPrewarmed = true;
-    loadQuestsModule(this.config.quests.moduleUrl).catch(() => {});
-    for (const id of ids) {
-      void prefetchQuestDefinition(questDefinitionUrl(this.config.quests.base, id));
-    }
+    const { base, moduleUrl } = this.config.quests;
+    import("./quest-launcher")
+      .then((q) => {
+        q.loadQuestsModule(moduleUrl).catch(() => {});
+        for (const id of ids) void q.prefetchQuestDefinition(q.questDefinitionUrl(base, id));
+      })
+      .catch(() => {});
   }
 
   /** Run fn when the main thread is idle; cancelled by destroy(). */
@@ -626,6 +630,11 @@ export class QaidFeedback {
     this.buttonsContainer.addEventListener("pointerdown", () => {
       this.keyboardActivation = false;
     });
+    // The pointer or keyboard focus reaching the buttons is the moment before
+    // a click: warm the click path now, unless idle got there first.
+    const warmClickPath = (): void => this.prewarmClickPath();
+    this.buttonsContainer.addEventListener("pointerenter", warmClickPath);
+    this.buttonsContainer.addEventListener("focusin", warmClickPath);
 
     // Determine button classes
     const useCustomClass = !!this.config.buttonClass;
@@ -656,10 +665,7 @@ export class QaidFeedback {
       fbBtn.setAttribute("aria-label", this.config.text.feedbackLabel);
       fbBtn.innerHTML = this.config.feedbackIcon || FEEDBACK_ICON;
       fbBtn.addEventListener("click", (e) => this.handleThumbClick("neutral", e.currentTarget as HTMLElement, e));
-      fbBtn.addEventListener("mouseenter", () => {
-        this.prewarmTargeting();
-        this.showTooltip(fbBtn);
-      });
+      fbBtn.addEventListener("mouseenter", () => this.showTooltip(fbBtn));
       fbBtn.addEventListener("mouseleave", () => this.hideTooltip());
       fbWrapper.appendChild(fbBtn);
 
@@ -676,7 +682,6 @@ export class QaidFeedback {
       upBtn.innerHTML = this.config.positiveIcon || THUMBS_UP_ICON;
       upBtn.addEventListener("click", (e) => this.handleThumbClick("up", e.currentTarget as HTMLElement, e));
       upBtn.addEventListener("mouseenter", () => {
-        this.prewarmTargeting();
         this.prewarmQuests();
         this.showTooltip(upBtn);
       });
@@ -694,7 +699,6 @@ export class QaidFeedback {
       downBtn.innerHTML = this.config.negativeIcon || THUMBS_DOWN_ICON;
       downBtn.addEventListener("click", (e) => this.handleThumbClick("down", e.currentTarget as HTMLElement, e));
       downBtn.addEventListener("mouseenter", () => {
-        this.prewarmTargeting();
         this.prewarmQuests();
         this.showTooltip(downBtn);
       });
@@ -853,11 +857,12 @@ export class QaidFeedback {
       this.buttonsContainer.classList.remove("qaid-incognito");
       setHiddenByUser(this.config.apiKey, false);
     }
-    // A message modal follows this feedback flow — warm its chunk now.
-    this.prewarmModal();
+    // Usually warm already (pointer/focus on the buttons, or idle); a
+    // programmatic click is the exception.
+    this.prewarmClickPath();
     // "annotate" mode and skipTargeting both bypass element targeting and go
     // straight to the (screenshot →) modal flow.
-    if (this.config.skipTargeting || this.config.feedbackMode === "annotate") {
+    if (this.skipsTargeting()) {
       this.submitDirectFeedback(type, buttonEl);
     } else {
       // Expose targeting on/off state on the trigger
@@ -869,7 +874,7 @@ export class QaidFeedback {
       // Enter/Space keydown and cleared by any pointerdown/mousedown.
       const keyboard = this.keyboardActivation;
       this.keyboardActivation = false;
-      // Load the targeting chunk (pre-warmed on hover) then start it.
+      // Load the targeting chunk (pre-warmed before the click) then start it.
       void this.ensureTargeting().then((t) => {
         if (this.destroyed) return;
         if (keyboard) t.startKeyboard(type);
@@ -894,7 +899,7 @@ export class QaidFeedback {
       clickY: rect.top + rect.height / 2,
       visible: false,
     };
-    this.submitFeedback();
+    void this.submitFeedback();
   }
 
 
@@ -920,208 +925,83 @@ export class QaidFeedback {
   }
 
   /**
-   * Open the full-screen annotation editor over the captured screenshot,
-   * reusing the overlay shadow host and the shared dialog a11y helpers.
-   * Resolves with the composited WebP data URL, or null when the user skips
-   * (caller keeps the original). Pointer events on the overlay host are
-   * enabled while the editor is open and restored on close.
+   * Run the send flow (send.ts, loaded on demand and pre-warmed before the
+   * click): screenshot, markup, POST, then a linked quest or the message box.
+   * If its chunk will not load, say so and reset rather than leave the
+   * visitor stuck mid-flow.
    */
-  private async openAnnotationEditor(screenshot: string): Promise<string | null> {
-    const root = this.ensureOverlayHost();
-    const host = this.overlayShadowHost!;
-    const prevPointerEvents = host.style.pointerEvents;
-    host.style.pointerEvents = "auto";
-    try {
-      const { openAnnotationEditor, styles } = await import("./annotate");
-      this.addFeatureStyles(styles);
-      return await openAnnotationEditor({
-        dataUrl: screenshot,
-        root,
-        quality: this.config.screenshotOptions.quality,
-        color: this.config.annotationColor,
-        palette: this.config.annotationPalette,
-        applyVars: (el) => this.applyVars(el),
-        announce: (msg, assertive) => this.announceMsg(msg, assertive),
-        openDialog: (container, opts) => this.openDialogA11y(container, opts),
-        closeDialog: () => this.closeDialogA11y(),
-      });
-    } catch (err) {
-      // The annotate chunk failed to load / the editor threw — keep the
-      // original screenshot rather than aborting the whole submission.
-      console.error("Annotation editor failed to open:", err);
-      return null;
-    } finally {
-      host.style.pointerEvents = prevPointerEvents;
-    }
-  }
-
   private async submitFeedback(): Promise<void> {
-    // Capture screenshot if enabled (server will gate by plan). "annotate" mode
-    // always captures one to mark up, even without captureScreenshot set.
-    let screenshot: string | null = null;
-    const wantScreenshot =
-      this.config.captureScreenshot || this.config.feedbackMode === "annotate";
-    if (wantScreenshot) {
-      // Loaded on demand so visitors who never submit a screenshot never
-      // download the capture + annotation code. A capture failure (denied
-      // permission, chunk load error) must never abort the feedback — we just
-      // submit without a screenshot so the user still reaches the modal.
-      try {
-        if (this.shouldCaptureViaDom()) {
-          const { captureDomScreenshot } = await import("./screenshot-dom");
-          screenshot = await captureDomScreenshot(this.config.screenshotOptions);
-        } else {
-          const { captureScreenshot } = await import("./screenshot");
-          screenshot = await captureScreenshot(this.config.screenshotOptions);
-        }
-        if (screenshot) this.announceMsg("Screenshot captured");
-      } catch (err) {
-        console.error("Screenshot capture failed:", err);
-        screenshot = null;
-      }
-    }
-
-    // Let the user mark up / redact the screenshot before it is submitted.
-    // The message modal only opens after the POST below, so the composited
-    // result lands in the same request — no backend change needed. On skip
-    // the editor resolves null and the original screenshot is kept.
-    if (screenshot && this.config.annotate) {
-      screenshot = (await this.openAnnotationEditor(screenshot)) ?? screenshot;
-    }
-
-    // Include element bounds for server-side screenshot fallback
-    // Only include if we have an element selector (element was targeted)
-    const elementBounds = this.feedbackData.elementSelector
-      ? {
-          x: this.selectedBounds.x,
-          y: this.selectedBounds.y,
-          width: this.selectedBounds.width,
-          height: this.selectedBounds.height,
-        }
-      : null;
-
-    const payload: FeedbackPayload = {
-      feedbackType: this.feedbackData.feedbackType!,
-      pageUrl: window.location.href,
-      apiKey: this.config.apiKey || undefined,
-      elementSelector: this.feedbackData.elementSelector,
-      elementText: this.feedbackData.elementText,
-      consoleErrors: [...this.feedbackData.consoleErrors],
-      screenWidth: window.innerWidth,
-      screenHeight: window.innerHeight,
-      clickX: this.selectedBounds.clickX,
-      clickY: this.selectedBounds.clickY,
-      scrollX: window.scrollX,
-      scrollY: window.scrollY,
-      screenshot,
-      visitorId: this.visitorId,
-      // Include element bounds and user agent for server-side screenshot fallback
-      elementBounds,
-      userAgent: navigator.userAgent,
-    };
-
-    // The POST goes out in the background. The message box or linked quest
-    // opens now instead of a server round trip later; what needs the new
-    // record's id (the message PATCH, the quest's link back) waits on this.
-    this.feedbackIdPromise = this.postFeedback(payload);
-
-    // If this button is linked to a quest, launch it in place of the
-    // message box, handing it the pending id. On success we just tear down
-    // the targeting UI and hand off. On any load failure we fall through to
-    // the classic message box so the user can still leave an optional message.
-    const type = this.feedbackData.feedbackType;
-    // Quest links are keyed by up/down/video; neutral single-button feedback
-    // has no quest mapping, so it always falls through to the message box.
-    if (type && type !== "neutral" && (await this.tryLaunchQuest(type, this.feedbackIdPromise))) {
-      this.resetFeedbackUi();
-      return;
-    }
-
-    // Always show the message modal as the terminal state (even if the API
-    // failed — useful for demos).
-    this.state = "MODAL_OPEN";
     try {
-      // The modal chunk loads async; bail if the embed was destroyed meanwhile,
-      // so a raced modal never opens (and never leaks a listener) post-destroy.
-      const modal = await this.ensureModal();
-      if (this.destroyed) return;
-      modal.open();
-
-      // Enable pointer events on overlay host for modal
-      if (this.overlayShadowHost) {
-        this.overlayShadowHost.style.pointerEvents = "auto";
-      }
+      const [send] = await Promise.all([import("./send"), this.loadDialogA11y()]);
+      await send.submitFeedback(this.makeSendHost());
     } catch (err) {
-      // The modal chunk failed to load/open. Never leave the user stuck in a
-      // re-targetable limbo: thank them and reset to IDLE so a fresh click
-      // starts a clean flow (the feedback itself was already POSTed above).
-      console.error("Failed to open the feedback modal:", err);
-      this.announceMsg("Thank you for your feedback!", true);
+      console.error("Failed to send feedback:", err);
+      this.announceMsg("Failed to send feedback", true);
       this.resetFeedbackUi();
     }
   }
 
-  /** POST the feedback. Resolves to the new record's id, or null if it failed. */
-  private async postFeedback(payload: FeedbackPayload): Promise<number | null> {
-    try {
-      const response = await fetch(this.config.endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (response.ok) {
-        const data: FeedbackResponse = await response.json();
-        this.announceMsg("Feedback sent");
-        return data.id;
-      }
-    } catch (error) {
-      console.error("Failed to submit feedback:", error);
-      this.announceMsg("Failed to send feedback", true);
-    }
-    return null;
-  }
-
   /**
-   * Quest id linked to `type`, or "" when quest launching is disabled
-   * (no `base`) or this button has no quest configured.
-   */
-  private questIdFor(type: "up" | "down" | "video"): string {
-    const q = this.config.quests;
-    return q.base ? q[type] || "" : "";
-  }
-
-  /**
-   * Launch the quest linked to `type`, if any. Resolves `true` when a quest
-   * was configured and the widget launched; `false` when no quest is
-   * configured or the widget failed to load (caller falls back to its
-   * normal UI). The created feedback record id is passed through so the
-   * quest response can be joined back to it server-side.
+   * Launch the quest linked to `type` through the send chunk. Resolves false
+   * when none is linked, or when the chunk or the quest will not load.
    */
   private async tryLaunchQuest(
     type: "up" | "down" | "video",
-    feedbackId: number | string | null | Promise<number | string | null>,
+    feedbackId: number | string | null,
   ): Promise<boolean> {
-    const questId = this.questIdFor(type);
-    if (!questId) return false;
     try {
-      this.activeQuest?.destroy();
-      this.activeQuest = await launchQuest({
-        questId,
-        base: this.config.quests.base,
-        apiKey: this.config.quests.apiKey || undefined,
-        moduleUrl: this.config.quests.moduleUrl,
-        feedbackId,
-        onClose: () => {
-          this.activeQuest = null;
-        },
-      });
-      return true;
-    } catch (error) {
-      console.error("Failed to launch quest:", error);
-      this.activeQuest = null;
+      const send = await import("./send");
+      return await send.tryLaunchQuest(this.makeSendHost(), type, feedbackId);
+    } catch (err) {
+      console.error("Failed to launch quest:", err);
       return false;
     }
+  }
+
+  /** Narrow view of the embed the send flow talks back through. */
+  private makeSendHost(): SendHost {
+    const self = this;
+    return {
+      get config() {
+        return self.config;
+      },
+      get visitorId() {
+        return self.visitorId;
+      },
+      get feedbackData() {
+        return self.feedbackData;
+      },
+      get selectedBounds() {
+        return self.selectedBounds;
+      },
+      get destroyed() {
+        return self.destroyed;
+      },
+      get overlayShadowHost() {
+        return self.overlayShadowHost;
+      },
+      get activeQuest() {
+        return self.activeQuest;
+      },
+      set activeQuest(quest) {
+        self.activeQuest = quest;
+      },
+      setState: (state) => {
+        self.state = state;
+      },
+      setFeedbackId: (id) => {
+        self.feedbackIdPromise = id;
+      },
+      shouldCaptureViaDom: () => self.shouldCaptureViaDom(),
+      ensureOverlayHost: () => self.ensureOverlayHost(),
+      ensureModal: () => self.ensureModal(),
+      addFeatureStyles: (css) => self.addFeatureStyles(css),
+      applyVars: (el) => self.applyVars(el),
+      announceMsg: (message, assertive) => self.announceMsg(message, assertive),
+      openDialogA11y: (container, opts) => self.openDialogA11y(container, opts),
+      closeDialogA11y: () => self.closeDialogA11y(),
+      resetFeedbackUi: () => self.resetFeedbackUi(),
+    };
   }
 
   /**
@@ -1145,12 +1025,15 @@ export class QaidFeedback {
 
   /**
    * Lazily load and instantiate the modal controller. The message modal lives
-   * in a separate chunk, fetched the first time it opens (and pre-warmed while
-   * the user targets an element — see prewarmModal).
+   * in a separate chunk, fetched the first time it opens (and pre-warmed
+   * before the click — see prewarmClickPath).
    */
   private async ensureModal(): Promise<ModalController> {
     if (!this.modal) {
-      const { ModalController, styles } = await import("./modal");
+      const [{ ModalController, styles }] = await Promise.all([
+        import("./modal"),
+        this.loadDialogA11y(),
+      ]);
       this.addFeatureStyles(styles);
       this.modal = new ModalController(this.makeModalHost());
     }
@@ -1192,17 +1075,10 @@ export class QaidFeedback {
     };
   }
 
-  /** Warm the modal chunk while the user is targeting, so it opens instantly. */
-  private prewarmModal(): void {
-    if (this.modalPrewarmed) return;
-    this.modalPrewarmed = true;
-    import("./modal").catch(() => {});
-  }
-
   /**
    * Lazily load and instantiate the targeting controller. The subsystem (with
    * element-selector) lives in a separate chunk, fetched the first time the
-   * user targets — pre-warmed on thumb-button hover (see prewarmTargeting).
+   * user targets — pre-warmed before the click (see prewarmClickPath).
    */
   private async ensureTargeting(): Promise<TargetingController> {
     if (!this.targeting) {
@@ -1252,13 +1128,6 @@ export class QaidFeedback {
     };
   }
 
-  /** Warm the targeting chunk on thumb-button hover, before the click. */
-  private prewarmTargeting(): void {
-    if (this.targetingPrewarmed || this.config.skipTargeting) return;
-    this.targetingPrewarmed = true;
-    import("./targeting").catch(() => {});
-  }
-
   // ==================== Video Recording ====================
 
   /**
@@ -1283,7 +1152,10 @@ export class QaidFeedback {
    */
   private async ensureRecording(): Promise<RecordingController> {
     if (!this.recording) {
-      const { RecordingController, styles } = await import("./recording");
+      const [{ RecordingController, styles }] = await Promise.all([
+        import("./recording"),
+        this.loadDialogA11y(),
+      ]);
       this.addFeatureStyles(styles);
       this.recording = new RecordingController(this.makeRecordingHost());
     }

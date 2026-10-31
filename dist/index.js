@@ -1,328 +1,168 @@
-const U = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+const K = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/>
-</svg>`, j = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, W = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.737 3h4.018a2 2 0 01.485.06l3.76.94m-7 10v5a2 2 0 002 2h.095c.5 0 .905-.405.905-.905 0-.714.211-1.412.608-2.006L17 13V4m-7 10h2m5-10h2a2 2 0 012 2v6a2 2 0 01-2 2h-2.5"/>
-</svg>`, ue = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, Se = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/>
-</svg>`, At = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, Tt = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5m-9 6l3.5-3.5H18a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v14z"/>
-</svg>`, pe = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, Ee = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <rect x="4" y="6" width="16" height="12" rx="1" stroke-linejoin="round"/>
-</svg>`, fe = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, Te = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M5 19L19 5m0 0h-8m8 0v8"/>
-</svg>`, me = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, Ae = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
-</svg>`, be = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, Le = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M12 3s6 6.4 6 10a6 6 0 01-12 0c0-3.6 6-10 6-10z"/>
-</svg>`, ge = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, De = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M9 14L4 9l5-5M4 9h11a5 5 0 010 10h-4"/>
-</svg>`, Lt = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, At = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M20 6L9 17l-5-5"/>
-</svg>`, ve = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, Ie = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v8m0 4h.01"/>
-</svg>`, ye = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, Me = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6L6 18"/>
-</svg>`, we = "button{cursor:pointer}.qaid-buttons{display:flex;gap:.5rem}.qaid-buttons.qaid-vertical{flex-direction:column}.qaid-buttons.qaid-auto-container{position:fixed;z-index:50}.qaid-buttons.qaid-auto-container.qaid-bottom-right{bottom:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-bottom-left{bottom:1rem;left:1rem}.qaid-buttons.qaid-auto-container.qaid-top-right{top:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-top-left{top:1rem;left:1rem}.qaid-buttons.qaid-incognito{opacity:0;transition:opacity .2s ease-in-out}.qaid-buttons.qaid-incognito:hover{opacity:1}.qaid-buttons.qaid-dismissed{display:none!important}.qaid-dismiss-btn{width:20px;height:20px;padding:0;border:none;border-radius:50%;background:#0006;color:#fff;display:flex;align-items:center;justify-content:center;align-self:center;opacity:0;transition:opacity .15s,background .15s;cursor:pointer;pointer-events:auto;-webkit-appearance:none;appearance:none}.qaid-dismiss-btn:hover{background:#0009}.qaid-buttons:hover .qaid-dismiss-btn{opacity:1}button.qaid-btn-structural{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;appearance:none}.qaid-icon{width:24px;height:24px}:where(button.qaid-btn-structural)>svg:where(:not(.qaid-icon):not([width])){width:var(--qaid-icon-size, 24px);height:var(--qaid-icon-size, 24px)}.qaid-btn-structural:not(:has(svg)),.qaid-btn:not(:has(svg)){font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-emoji-icon{font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-buttons,.qaid-buttons *,.qaid-modal-container,.qaid-modal-container *{cursor:pointer!important}.qaid-tooltip-wrapper{position:relative}.qaid-tooltip-text{position:fixed;padding:.5rem .75rem;background:#1f2937;color:#fff;font-size:var(--qaid-font-size, 16px);font-weight:600;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:99999}.qaid-tooltip-text.qaid-tooltip-visible{opacity:1}button.qaid-btn-record:hover{background:#dc2626;color:#fff}button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible{outline:2px solid var(--qaid-marker, #6365f1);outline-offset:2px}.qaid-buttons.qaid-incognito:focus-within{opacity:1}.qaid-buttons:focus-within .qaid-dismiss-btn,.qaid-dismiss-btn:focus-visible{opacity:1}.qaid-dismiss-btn{min-width:24px;min-height:24px}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}@media(forced-colors:active){button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible{outline:2px solid CanvasText;outline-offset:2px}}", ke = "body.qaid-targeting,body.qaid-targeting *{cursor:none!important}";
-let D = 0;
-const xe = "button.qaid-btn{width:var(--qaid-btn-size);height:var(--qaid-btn-size);border-radius:50%;border:none;background:#f3f4f6;color:#374151;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);transition:background-color .2s,color .2s,transform .2s;-webkit-appearance:none;appearance:none;--qaid-hover-up-bg:var(--qaid-positive);--qaid-hover-up-color:#fff;--qaid-hover-down-bg:var(--qaid-negative);--qaid-hover-down-color:#fff}button.qaid-btn:hover{transform:scale(1.05)}button.qaid-btn-up:hover{background:var(--qaid-hover-up-bg);color:var(--qaid-hover-up-color)}button.qaid-btn-down:hover{background:var(--qaid-hover-down-bg);color:var(--qaid-hover-down-color)}button.qaid-btn-feedback:hover{background:var(--qaid-marker,#6365f1);color:var(--qaid-marker-text,#fff)}button.qaid-btn svg{width:var(--qaid-icon-size);height:var(--qaid-icon-size)}", qe = {
+</svg>`, Pe = "button{cursor:pointer}.qaid-buttons{display:flex;gap:.5rem}.qaid-buttons.qaid-vertical{flex-direction:column}.qaid-buttons.qaid-auto-container{position:fixed;z-index:50}.qaid-buttons.qaid-auto-container.qaid-bottom-right{bottom:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-bottom-left{bottom:1rem;left:1rem}.qaid-buttons.qaid-auto-container.qaid-top-right{top:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-top-left{top:1rem;left:1rem}.qaid-buttons.qaid-incognito{opacity:0;transition:opacity .2s ease-in-out}.qaid-buttons.qaid-incognito:hover{opacity:1}.qaid-buttons.qaid-dismissed{display:none!important}.qaid-dismiss-btn{width:20px;height:20px;padding:0;border:none;border-radius:50%;background:#0006;color:#fff;display:flex;align-items:center;justify-content:center;align-self:center;opacity:0;transition:opacity .15s,background .15s;cursor:pointer;pointer-events:auto;-webkit-appearance:none;appearance:none}.qaid-dismiss-btn:hover{background:#0009}.qaid-buttons:hover .qaid-dismiss-btn{opacity:1}button.qaid-btn-structural{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;appearance:none}.qaid-icon{width:24px;height:24px}:where(button.qaid-btn-structural)>svg:where(:not(.qaid-icon):not([width])){width:var(--qaid-icon-size, 24px);height:var(--qaid-icon-size, 24px)}.qaid-btn-structural:not(:has(svg)),.qaid-btn:not(:has(svg)){font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-emoji-icon{font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-buttons,.qaid-buttons *,.qaid-modal-container,.qaid-modal-container *{cursor:pointer!important}.qaid-tooltip-wrapper{position:relative}.qaid-tooltip-text{position:fixed;padding:.5rem .75rem;background:#1f2937;color:#fff;font-size:var(--qaid-font-size, 16px);font-weight:600;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:99999}.qaid-tooltip-text.qaid-tooltip-visible{opacity:1}button.qaid-btn-record:hover{background:#dc2626;color:#fff}button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible{outline:2px solid var(--qaid-marker, #6365f1);outline-offset:2px}.qaid-buttons.qaid-incognito:focus-within{opacity:1}.qaid-buttons:focus-within .qaid-dismiss-btn,.qaid-dismiss-btn:focus-visible{opacity:1}.qaid-dismiss-btn{min-width:24px;min-height:24px}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}@media(forced-colors:active){button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible{outline:2px solid CanvasText;outline-offset:2px}}", Re = "body.qaid-targeting,body.qaid-targeting *{cursor:none!important}";
+let I = 0;
+const Be = "button.qaid-btn{width:var(--qaid-btn-size);height:var(--qaid-btn-size);border-radius:50%;border:none;background:#f3f4f6;color:#374151;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);transition:background-color .2s,color .2s,transform .2s;-webkit-appearance:none;appearance:none;--qaid-hover-up-bg:var(--qaid-positive);--qaid-hover-up-color:#fff;--qaid-hover-down-bg:var(--qaid-negative);--qaid-hover-down-color:#fff}button.qaid-btn:hover{transform:scale(1.05)}button.qaid-btn-up:hover{background:var(--qaid-hover-up-bg);color:var(--qaid-hover-up-color)}button.qaid-btn-down:hover{background:var(--qaid-hover-down-bg);color:var(--qaid-hover-down-color)}button.qaid-btn-feedback:hover{background:var(--qaid-marker,#6365f1);color:var(--qaid-marker-text,#fff)}button.qaid-btn svg{width:var(--qaid-icon-size);height:var(--qaid-icon-size)}", He = {
   small: 36,
   medium: 48,
   large: 64
-}, Ce = {
+}, Oe = {
   small: 18,
   medium: 24,
   large: 32
 };
-function Se(i, t, e) {
-  const [o, n, s] = [i, t, e].map((a) => (a = a / 255, a <= 0.03928 ? a / 12.92 : Math.pow((a + 0.055) / 1.055, 2.4)));
-  return 0.2126 * o + 0.7152 * n + 0.0722 * s;
+function ze(o, t, e) {
+  const [i, n, a] = [o, t, e].map((s) => (s = s / 255, s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4)));
+  return 0.2126 * i + 0.7152 * n + 0.0722 * a;
 }
-function Te(i) {
-  if (i.startsWith("#")) {
-    const e = i.slice(1), o = e.length === 3 ? e.split("").map((s) => s + s).join("") : e, n = parseInt(o, 16);
+function $e(o) {
+  if (o.startsWith("#")) {
+    const e = o.slice(1), i = e.length === 3 ? e.split("").map((a) => a + a).join("") : e, n = parseInt(i, 16);
     return {
       r: n >> 16 & 255,
       g: n >> 8 & 255,
       b: n & 255
     };
   }
-  const t = i.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+  const t = o.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
   return t ? {
     r: parseInt(t[1]),
     g: parseInt(t[2]),
     b: parseInt(t[3])
   } : null;
 }
-function Ee(i) {
-  const t = Te(i);
-  return t && Se(t.r, t.g, t.b) > 0.4 ? "black" : "white";
+function _e(o) {
+  const t = $e(o);
+  return t && ze(t.r, t.g, t.b) > 0.4 ? "black" : "white";
 }
-function Ae(i = {}) {
+function Fe(o = {}) {
   const {
     positiveColor: t = "rgb(0, 200, 83)",
     negativeColor: e = "rgb(255, 0, 0)",
-    markerColor: o = "#6365f1",
+    markerColor: i = "#6365f1",
     buttonSize: n = "medium",
-    modalWidth: s = 400,
-    backdropOpacity: a = 0.3,
-    fontFamily: c = "system-ui, -apple-system, sans-serif",
-    fontSize: l = 16
-  } = i, d = qe[n], r = Ce[n], h = Ee(o);
+    modalWidth: a = 400,
+    backdropOpacity: s = 0.3,
+    fontFamily: d = "system-ui, -apple-system, sans-serif",
+    fontSize: c = 16
+  } = o, l = He[n], r = Oe[n], h = _e(i);
   return {
     "--qaid-positive": t,
     "--qaid-negative": e,
-    "--qaid-marker": o,
+    "--qaid-marker": i,
     "--qaid-marker-text": h,
-    "--qaid-btn-size": `${d}px`,
+    "--qaid-btn-size": `${l}px`,
     "--qaid-icon-size": `${r}px`,
-    "--qaid-modal-width": `${s}px`,
-    "--qaid-backdrop-opacity": String(a),
-    "--qaid-font-family": c,
-    "--qaid-font-size": `${l}px`
+    "--qaid-modal-width": `${a}px`,
+    "--qaid-backdrop-opacity": String(s),
+    "--qaid-font-family": d,
+    "--qaid-font-size": `${c}px`
   };
 }
-function Le(i, t) {
-  for (const [e, o] of Object.entries(t))
-    i.style.setProperty(e, o);
+function Ve(o, t) {
+  for (const [e, i] of Object.entries(t))
+    o.style.setProperty(e, i);
 }
-function dt() {
-  return we + xe;
+function lt() {
+  return Pe + Be;
 }
-function Ie() {
-  if (D++, D > 1) return;
-  const i = document.createElement("style");
-  i.id = "qaid-styles", i.textContent = ke, document.head.appendChild(i);
+function Ne() {
+  if (I++, I > 1) return;
+  const o = document.createElement("style");
+  o.id = "qaid-styles", o.textContent = Re, document.head.appendChild(o);
 }
-function De() {
-  D <= 0 || (D--, D === 0 && document.getElementById("qaid-styles")?.remove());
+function Ue() {
+  I <= 0 || (I--, I === 0 && document.getElementById("qaid-styles")?.remove());
 }
-const ct = "data-qaid-a11y-live", Me = "position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;", Re = [
-  "a[href]",
-  "button",
-  "input",
-  "textarea",
-  "select",
-  "[tabindex]"
-].join(",");
-function Pe(i) {
-  return i.ownerDocument || document;
+const ht = "data-qaid-a11y-live", je = "position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;";
+function Ke(o) {
+  return o.ownerDocument || document;
 }
-function Be(i, t) {
-  const e = t ? "assertive" : "polite", o = i.querySelector(
-    `[${ct}="${e}"]`
+function We(o, t) {
+  const e = t ? "assertive" : "polite", i = o.querySelector(
+    `[${ht}="${e}"]`
   );
-  if (o) return o;
-  const s = Pe(i).createElement("div");
-  return s.setAttribute(ct, e), s.setAttribute("role", t ? "alert" : "status"), s.setAttribute("aria-live", t ? "assertive" : "polite"), s.setAttribute("aria-atomic", "true"), s.style.cssText = Me, i.appendChild(s), s;
+  if (i) return i;
+  const a = Ke(o).createElement("div");
+  return a.setAttribute(ht, e), a.setAttribute("role", t ? "alert" : "status"), a.setAttribute("aria-live", t ? "assertive" : "polite"), a.setAttribute("aria-atomic", "true"), a.style.cssText = je, o.appendChild(a), a;
 }
-function He(i, t, e = {}) {
-  const o = Be(i, !!e.assertive);
-  o.textContent = "", o.textContent = t;
+function Qe(o, t, e = {}) {
+  const i = We(o, !!e.assertive);
+  i.textContent = "", i.textContent = t;
 }
-function Oe(i) {
-  return i.hasAttribute("disabled") ? !0 : i.disabled === !0;
+function Xe(o, t, e, i = {}) {
+  const n = i.gap ?? 8;
+  let a = o.bottom + n;
+  a + t.height > e.height - n && (a = o.top - t.height - n);
+  let s = o.left;
+  return s < n ? s = n : s + t.width > e.width - n && (s = e.width - t.width - n), a < n ? a = n : a + t.height > e.height - n && (a = e.height - t.height - n), { top: a, left: s };
 }
-function ze(i) {
-  let t = i;
-  for (; t; ) {
-    if (t.hasAttribute("hidden")) return !0;
-    const e = t.style;
-    if (e && (e.display === "none" || e.visibility === "hidden" || e.visibility === "collapse"))
-      return !0;
-    t = t.parentElement;
-  }
-  return !1;
-}
-function lt(i) {
-  return Array.from(
-    i.querySelectorAll(Re)
-  ).filter((e) => !(e.getAttribute("tabindex") === "-1" || e instanceof HTMLInputElement && e.type === "hidden" || e instanceof HTMLAnchorElement && !e.getAttribute("href") || Oe(e) || ze(e)));
-}
-function It(i) {
-  let t = i.activeElement;
-  for (; t && t.shadowRoot && t.shadowRoot.activeElement; )
-    t = t.shadowRoot.activeElement;
-  return t instanceof HTMLElement ? t : null;
-}
-function $e(i) {
-  const t = i.ownerDocument || document;
-  let e = !1;
-  const o = (s) => {
-    if (s.key !== "Tab") return;
-    const a = lt(i);
-    if (a.length === 0) {
-      s.preventDefault(), i.focus();
-      return;
-    }
-    const c = a[0], l = a[a.length - 1], d = It(t), r = d ? a.indexOf(d) !== -1 : !1;
-    s.shiftKey ? (!r || d === c) && (s.preventDefault(), l.focus()) : (!r || d === l) && (s.preventDefault(), c.focus());
-  };
-  i.addEventListener("keydown", o);
-  const n = lt(i);
-  return n.length > 0 ? n[0].focus() : (i.hasAttribute("tabindex") || (i.setAttribute("tabindex", "-1"), e = !0), i.focus()), {
-    release() {
-      i.removeEventListener("keydown", o), e && (i.removeAttribute("tabindex"), e = !1);
-    }
-  };
-}
-function _e() {
-  return It(document);
-}
-function Fe(i) {
-  if (!(!i || typeof i.focus != "function"))
-    try {
-      i.focus();
-    } catch {
-    }
-}
-function Ne(i, t = {}) {
-  i.setAttribute("role", "dialog"), i.setAttribute("aria-modal", "true"), t.labelledbyId && i.setAttribute("aria-labelledby", t.labelledbyId), t.describedbyId && i.setAttribute("aria-describedby", t.describedbyId), t.label && i.setAttribute("aria-label", t.label);
-}
-function Ve(i, t) {
-  let e = i;
-  for (; e && e !== t; ) {
-    const o = e.parentNode;
-    if (o === t) return e;
-    if (o && o.host) {
-      e = o.host;
-      continue;
-    }
-    if (!o) return null;
-    e = o;
-  }
-  return null;
-}
-function Ue(i) {
-  const e = (i.ownerDocument || document).body;
-  if (!e) return () => {
-  };
-  const o = Ve(i, e), n = [];
-  return Array.from(e.children).forEach((s) => {
-    if (!(s instanceof HTMLElement) || o && s === o) return;
-    const a = s.inert === !0, c = s.getAttribute("aria-hidden");
-    a && c === "true" || (s.inert = !0, s.setAttribute("aria-hidden", "true"), n.push({ el: s, prevInert: a, prevAriaHidden: c }));
-  }), function() {
-    for (; n.length; ) {
-      const a = n.pop();
-      a.el.inert = a.prevInert, a.prevAriaHidden === null ? a.el.removeAttribute("aria-hidden") : a.el.setAttribute("aria-hidden", a.prevAriaHidden);
-    }
-  };
-}
-const Dt = {
-  width: 400,
-  height: 280,
-  arrowHeight: 12,
-  gap: 8,
-  viewportPadding: 16
-};
-function je(i, t, e, o, n) {
-  const s = i.y, a = t - (i.y + i.height);
-  if (a >= e + o)
-    return {
-      top: i.y + i.height + o,
-      position: "below"
-    };
-  if (s >= e + o)
-    return {
-      top: i.y - e - o,
-      position: "above"
-    };
-  const c = a > s ? "below" : "above";
-  let l;
-  return c === "below" ? l = Math.min(
-    i.y + i.height + o,
-    t - e - n
-  ) : l = Math.max(n, i.y - e - o), { top: l, position: c };
-}
-function Ke(i, t, e, o) {
-  let s = i.x + i.width / 2 - e / 2;
-  return s = Math.max(o, Math.min(s, t - e - o)), s;
-}
-function We(i, t, e, o = 24, n = 24) {
-  const a = i.clickX - t - n / 2;
-  return Math.max(o, Math.min(a, e - o - n / 2));
-}
-function Xe(i, t, e, o = Dt) {
-  const n = o.height + o.arrowHeight, s = je(
-    i,
-    e,
-    n,
-    o.gap,
-    o.viewportPadding
-  ), a = Ke(
-    i,
-    t,
-    o.width,
-    o.viewportPadding
-  );
-  return {
-    top: s.top,
-    left: a,
-    position: s.position
-  };
-}
-function Ye(i, t, e, o = {}) {
-  const n = o.gap ?? 8;
-  let s = i.bottom + n;
-  s + t.height > e.height - n && (s = i.top - t.height - n);
-  let a = i.left;
-  return a < n ? a = n : a + t.width > e.width - n && (a = e.width - t.width - n), s < n ? s = n : s + t.height > e.height - n && (s = e.height - t.height - n), { top: s, left: a };
-}
-function Qe(i, t, e, o = Dt) {
-  const n = Xe(i, t, e, o), s = We(
-    i,
-    n.left,
-    o.width
-  );
-  return {
-    modal: n,
-    arrow: { left: s }
-  };
-}
-const Je = 20;
-function Ge(i) {
-  const t = [], e = console.error, o = console.warn, n = console.log, s = (a, c) => {
-    const l = {
-      message: c.map((d) => String(d)).join(" "),
+const Ye = 20;
+function Je(o) {
+  const t = [], e = console.error, i = console.warn, n = console.log, a = (s, d) => {
+    const c = {
+      message: d.map((l) => String(l)).join(" "),
       timestamp: Date.now(),
-      level: a
+      level: s
     };
-    t.length >= Je && t.shift(), t.push(l), i && i(l);
+    t.length >= Ye && t.shift(), t.push(c), o && o(c);
   };
-  return console.error = function(...a) {
-    s("error", a), e.apply(console, a);
-  }, console.warn = function(...a) {
-    s("warn", a), o.apply(console, a);
-  }, console.log = function(...a) {
-    s("log", a), n.apply(console, a);
+  return console.error = function(...s) {
+    a("error", s), e.apply(console, s);
+  }, console.warn = function(...s) {
+    a("warn", s), i.apply(console, s);
+  }, console.log = function(...s) {
+    a("log", s), n.apply(console, s);
   }, {
     errors: t,
     restore: () => {
-      console.error = e, console.warn = o, console.log = n;
+      console.error = e, console.warn = i, console.log = n;
     }
   };
 }
-function q(i, t, e) {
-  const o = document.createElement(i);
+function q(o, t, e) {
+  const i = document.createElement(o);
   if (t)
-    for (const [n, s] of Object.entries(t))
-      n === "className" ? o.className = s : o.setAttribute(n, s);
-  return o;
+    for (const [n, a] of Object.entries(t))
+      n === "className" ? i.className = a : i.setAttribute(n, a);
+  return i;
 }
-function Ze(i = 640) {
-  return typeof window < "u" && window.innerWidth < i;
+function Ge(o = 640) {
+  return typeof window < "u" && window.innerWidth < o;
 }
-function ht(i, t, e) {
-  const o = e.map((s) => s.style.visibility);
-  e.forEach((s) => s.style.visibility = "hidden");
-  const n = document.elementFromPoint(i, t);
-  return e.forEach((s, a) => s.style.visibility = o[a]), n;
+function ut(o, t, e) {
+  const i = e.map((a) => a.style.visibility);
+  e.forEach((a) => a.style.visibility = "hidden");
+  const n = document.elementFromPoint(o, t);
+  return e.forEach((a, s) => a.style.visibility = i[s]), n;
 }
-function R(i) {
-  return i ? i.hasAttribute("data-qaid-embed") || i.hasAttribute("data-qaid-embed-overlay") ? !0 : !!i.closest("[data-qaid-embed], [data-qaid-embed-overlay]") : !1;
+function P(o) {
+  return o ? o.hasAttribute("data-qaid-embed") || o.hasAttribute("data-qaid-embed-overlay") ? !0 : !!o.closest("[data-qaid-embed], [data-qaid-embed-overlay]") : !1;
 }
-function ut(i, t = 0) {
-  const e = i.getBoundingClientRect();
+function pt(o, t = 0) {
+  const e = o.getBoundingClientRect();
   return {
     x: e.left - t,
     y: e.top - t,
@@ -330,58 +170,7 @@ function ut(i, t = 0) {
     height: e.height + t * 2
   };
 }
-const ti = "https://unpkg.com/@qaiddev/quests-embed@1/dist/qaid-quests.js", ei = (i) => (
-  // The URL is a runtime value, not a static specifier — keep Vite from
-  // trying to analyze/bundle it.
-  import(
-    /* @vite-ignore */
-    i
-  )
-);
-let ii = ei, L = null, F = null;
-const K = /* @__PURE__ */ new Map(), N = /* @__PURE__ */ new Map();
-function Mt(i, t) {
-  return `${i.replace(/\/+$/, "")}/${encodeURIComponent(t)}/definition`;
-}
-function oi(i) {
-  if (K.has(i)) return Promise.resolve();
-  const t = N.get(i);
-  if (t) return t;
-  const e = fetch(i, { headers: { Accept: "application/json" } }).then((o) => o.ok ? o.json() : null).then((o) => {
-    o && K.set(i, o);
-  }).catch(() => {
-  }).finally(() => {
-    N.delete(i);
-  });
-  return N.set(i, e), e;
-}
-function Rt(i) {
-  return L && F === i || (F = i, L = Promise.resolve(ii(i)).then((t) => {
-    const e = t;
-    if (!e || typeof e.QaidQuests != "function")
-      throw new Error("quests module has no QaidQuests export");
-    return e;
-  }).catch((t) => {
-    throw L = null, F = null, t;
-  })), L;
-}
-async function ni(i) {
-  const t = await Rt(i.moduleUrl), e = i.base.replace(/\/+$/, ""), o = Mt(e, i.questId), n = (c) => c != null ? { feedbackId: c } : void 0;
-  let s;
-  const a = i.feedbackId;
-  return a instanceof Promise ? s = t.QaidQuests.supports?.asyncMetadata ? a.then(n, () => {
-  }) : n(await a.catch(() => null)) : s = n(a ?? null), new t.QaidQuests({
-    endpoint: `${e}/responses`,
-    configUrl: o,
-    // Only a definition already in hand. One still loading is left to the
-    // widget, which shows its own loading state instead of nothing.
-    questionnaire: K.get(o),
-    apiKey: i.apiKey || void 0,
-    metadata: s,
-    onClose: i.onClose
-  });
-}
-const pt = "qaid_visitor_id", ft = "qaid_hide_feedback", si = [
+const Lt = "https://unpkg.com/@qaiddev/quests-embed@1/dist/qaid-quests.js", ft = "qaid_visitor_id", mt = "qaid_hide_feedback", Ze = [
   "#ef4444",
   "#f59e0b",
   "#22c55e",
@@ -389,52 +178,52 @@ const pt = "qaid_visitor_id", ft = "qaid_hide_feedback", si = [
   "#111827",
   "#ffffff"
 ];
-function ai() {
+function to() {
   return typeof window.matchMedia == "function" && window.matchMedia("(pointer: coarse)").matches;
 }
-function W(i) {
-  return i ? `${ft}_${i}` : ft;
+function Q(o) {
+  return o ? `${mt}_${o}` : mt;
 }
-function ri(i) {
+function eo(o) {
   try {
-    return localStorage.getItem(W(i)) === "1";
+    return localStorage.getItem(Q(o)) === "1";
   } catch {
     return !1;
   }
 }
-function mt(i, t = !0) {
+function bt(o, t = !0) {
   try {
-    t ? localStorage.setItem(W(i), "1") : localStorage.removeItem(W(i));
+    t ? localStorage.setItem(Q(o), "1") : localStorage.removeItem(Q(o));
   } catch {
   }
 }
-function bt() {
-  const i = typeof crypto < "u" ? crypto : void 0;
-  if (i && typeof i.randomUUID == "function") return i.randomUUID();
+function gt() {
+  const o = typeof crypto < "u" ? crypto : void 0;
+  if (o && typeof o.randomUUID == "function") return o.randomUUID();
   const t = new Uint8Array(16);
-  if (i && typeof i.getRandomValues == "function")
-    i.getRandomValues(t);
+  if (o && typeof o.getRandomValues == "function")
+    o.getRandomValues(t);
   else
-    for (let o = 0; o < t.length; o++) t[o] = Math.floor(Math.random() * 256);
+    for (let i = 0; i < t.length; i++) t[i] = Math.floor(Math.random() * 256);
   t[6] = t[6] & 15 | 64, t[8] = t[8] & 63 | 128;
-  const e = Array.from(t, (o) => o.toString(16).padStart(2, "0")).join("");
+  const e = Array.from(t, (i) => i.toString(16).padStart(2, "0")).join("");
   return `${e.slice(0, 8)}-${e.slice(8, 12)}-${e.slice(12, 16)}-${e.slice(16, 20)}-${e.slice(20)}`;
 }
-function di() {
+function oo() {
   try {
-    let i = localStorage.getItem(pt);
-    return i || (i = bt(), localStorage.setItem(pt, i)), i;
+    let o = localStorage.getItem(ft);
+    return o || (o = gt(), localStorage.setItem(ft, o)), o;
   } catch {
-    return bt();
+    return gt();
   }
 }
-function gt(i, t) {
+function vt(o, t) {
   const e = document.createElement("style");
   e.setAttribute("data-qaid-feature", ""), e.textContent = t;
-  const o = i.querySelectorAll("style[data-qaid-base], style[data-qaid-feature]"), n = o[o.length - 1];
-  i.insertBefore(e, n ? n.nextSibling : i.firstChild);
+  const i = o.querySelectorAll("style[data-qaid-base], style[data-qaid-feature]"), n = i[i.length - 1];
+  o.insertBefore(e, n ? n.nextSibling : o.firstChild);
 }
-class ci {
+class io {
   config;
   state = "IDLE";
   feedbackData = {
@@ -470,8 +259,10 @@ class ci {
   recording = null;
   // Element targeting — also a lazily-loaded chunk (targeting.ts).
   targeting = null;
-  targetingPrewarmed = !1;
   // Preload-on-intent: warm the lazily-split feature chunks before first use.
+  // The click path (send, message box, targeting) warms when the pointer or
+  // focus reaches the buttons, or on idle, whichever comes first.
+  clickPathPrewarmed = !1;
   prewarmHandle = null;
   prewarmIsTimeout = !1;
   videoPrewarmed = !1;
@@ -487,7 +278,6 @@ class ci {
   isUserProvidedContainer = !1;
   // The message modal lives in a lazily-loaded chunk (modal.ts).
   modal = null;
-  modalPrewarmed = !1;
   dismissBtn = null;
   // Per-instance CSS variables
   cssVars = {};
@@ -495,10 +285,10 @@ class ci {
   // Tracks whether the pending activation came from the keyboard (Enter/Space)
   // rather than a pointer, so targeting can avoid elementFromPoint(0,0).
   keyboardActivation = !1;
-  // Accessibility: dialog focus management
-  dialogTrigger = null;
-  dialogTrap = null;
-  dialogRestoreInert = null;
+  // Accessibility: dialog focus management. The helpers load with the click
+  // path; `dialogClose` undoes the open dialog (trap, inert, focus).
+  dialogModule = null;
+  dialogClose = null;
   // Unique id suffix for aria-labelledby/describedby references
   uid = Math.random().toString(36).slice(2, 9);
   // Bound event handlers
@@ -558,7 +348,7 @@ class ci {
       captureScreenshot: t.captureScreenshot ?? !1,
       annotate: t.annotate ?? !0,
       annotationColor: t.annotationColor ?? t.colors?.marker ?? "#6365f1",
-      annotationPalette: t.annotationPalette ?? si,
+      annotationPalette: t.annotationPalette ?? Ze,
       screenshotMethod: t.screenshotMethod ?? "permission",
       screenshotOptions: {
         quality: t.screenshotOptions?.quality ?? 0.8,
@@ -585,12 +375,12 @@ class ci {
         video: t.quests?.video ?? "",
         // Quest service reuses the feedback API key unless overridden.
         apiKey: t.quests?.apiKey ?? t.apiKey ?? "",
-        moduleUrl: t.quests?.moduleUrl ?? ti
+        moduleUrl: t.quests?.moduleUrl ?? Lt
       }
-    }, this.boundKeyDown = this.handleKeyDown.bind(this), this.boundResize = this.handleResize.bind(this), this.visitorId = di(), this.init();
+    }, this.boundKeyDown = this.handleKeyDown.bind(this), this.boundResize = this.handleResize.bind(this), this.visitorId = oo(), this.init();
   }
   applyVars(t) {
-    Le(t, this.cssVars);
+    Ve(t, this.cssVars);
   }
   /**
    * Announce a message via the shared visually-hidden live regions.
@@ -599,25 +389,31 @@ class ci {
    * while a dialog aria-hides the main button host.
    */
   announceMsg(t, e = !1) {
-    const o = this.overlayShadowRoot ?? this.shadowRoot;
-    o && He(o, t, { assertive: e });
+    const i = this.overlayShadowRoot ?? this.shadowRoot;
+    i && Qe(i, t, { assertive: e });
+  }
+  /** Load the dialog a11y helpers; every surface that opens a dialog awaits this first. */
+  async loadDialogA11y() {
+    this.dialogModule ??= await Promise.resolve().then(() => qt);
   }
   /**
    * Turn a transient surface into an accessible modal dialog: save the
    * invoking control, apply dialog semantics, trap focus, and inert the
-   * background. Paired with closeDialogA11y() on every close path.
+   * background. Paired with closeDialogA11y() on every close path. Callers
+   * reach it only after loadDialogA11y() has resolved.
    */
   openDialogA11y(t, e) {
-    this.dialogTrigger = _e(), Ne(t, e), this.dialogTrap = $e(t), this.dialogRestoreInert = Ue(t);
+    this.dialogClose = this.dialogModule.openDialog(t, e);
   }
   closeDialogA11y() {
-    this.dialogTrap?.release(), this.dialogTrap = null, this.dialogRestoreInert && (this.dialogRestoreInert(), this.dialogRestoreInert = null), Fe(this.dialogTrigger), this.dialogTrigger = null;
+    const t = this.dialogClose;
+    this.dialogClose = null, t?.();
   }
   clearActiveThumb() {
     this.activeThumbBtn && (this.activeThumbBtn.setAttribute("aria-pressed", "false"), this.activeThumbBtn = null);
   }
   init() {
-    Ie(), this.cssVars = Ae({
+    Ne(), this.cssVars = Fe({
       positiveColor: this.config.colors.positive,
       negativeColor: this.config.colors.negative,
       markerColor: this.config.colors.marker,
@@ -626,11 +422,27 @@ class ci {
       backdropOpacity: this.config.backdropOpacity,
       fontFamily: this.config.fontFamily,
       fontSize: this.config.fontSize
-    }), !this.config.hideDismiss && ri(this.config.apiKey) && (this._startDismissed = !0), this.checkMobile(), window.addEventListener("resize", this.boundResize), this.createEmbed(), this.consoleCapture = Ge((t) => {
+    }), !this.config.hideDismiss && eo(this.config.apiKey) && (this._startDismissed = !0), this.checkMobile(), window.addEventListener("resize", this.boundResize), this.createEmbed(), this.consoleCapture = Je((t) => {
       this.feedbackData.consoleErrors = this.consoleCapture?.errors ?? [];
-    }), this.feedbackData.consoleErrors = this.consoleCapture.errors, this.observeDom(), (this.config.captureVideo && this.videoSupported() || this.config.captureScreenshot || this.linkedQuestIds().length > 0) && this.schedulePrewarm(() => {
-      this.config.captureVideo && this.videoSupported() && this.prewarmVideo(), this.config.captureScreenshot && this.prewarmScreenshot(), this.prewarmQuests();
+    }), this.feedbackData.consoleErrors = this.consoleCapture.errors, this.observeDom(), this.schedulePrewarm(() => {
+      this.prewarmClickPath(), this.config.captureVideo && this.videoSupported() && this.prewarmVideo(), this.config.captureScreenshot && this.prewarmScreenshot(), this.prewarmQuests();
     });
+  }
+  /**
+   * Warm everything a thumb click needs: the send flow, the dialog helpers,
+   * the message box, and targeting (unless it is skipped). Runs once, on the
+   * first of: pointer or focus entering the buttons, or the idle callback.
+   */
+  prewarmClickPath() {
+    this.clickPathPrewarmed || (this.clickPathPrewarmed = !0, Promise.resolve().then(() => U).catch(() => {
+    }), Promise.resolve().then(() => qt).catch(() => {
+    }), Promise.resolve().then(() => Ct).catch(() => {
+    }), this.skipsTargeting() || Promise.resolve().then(() => St).catch(() => {
+    }));
+  }
+  /** "annotate" mode and skipTargeting both go straight to the send flow. */
+  skipsTargeting() {
+    return this.config.skipTargeting || this.config.feedbackMode === "annotate";
   }
   /**
    * Best-effort preload of a lazily-split feature chunk so its first use is
@@ -639,13 +451,13 @@ class ci {
    * swallowed — a failed preload just falls back to an on-demand load.
    */
   prewarmVideo() {
-    this.videoPrewarmed || (this.videoPrewarmed = !0, Promise.resolve().then(() => Ct).catch(() => {
-    }), Promise.resolve().then(() => _t).catch(() => {
+    this.videoPrewarmed || (this.videoPrewarmed = !0, Promise.resolve().then(() => Et).catch(() => {
+    }), Promise.resolve().then(() => Ht).catch(() => {
     }));
   }
   prewarmScreenshot() {
-    this.screenshotPrewarmed || (this.screenshotPrewarmed = !0, (this.shouldCaptureViaDom() ? Promise.resolve().then(() => kt) : Promise.resolve().then(() => St)).catch(() => {
-    }), this.config.annotate && Promise.resolve().then(() => qt).catch(() => {
+    this.screenshotPrewarmed || (this.screenshotPrewarmed = !0, (this.shouldCaptureViaDom() ? Promise.resolve().then(() => Ot) : Promise.resolve().then(() => ne)).catch(() => {
+    }), this.config.annotate && Promise.resolve().then(() => Ft).catch(() => {
     }));
   }
   /** Quest ids linked to any button, when quest launching is on. */
@@ -661,19 +473,22 @@ class ci {
   prewarmQuests() {
     if (this.questsPrewarmed) return;
     const t = this.linkedQuestIds();
-    if (t.length !== 0) {
-      this.questsPrewarmed = !0, Rt(this.config.quests.moduleUrl).catch(() => {
+    if (t.length === 0) return;
+    this.questsPrewarmed = !0;
+    const { base: e, moduleUrl: i } = this.config.quests;
+    Promise.resolve().then(() => Yo).then((n) => {
+      n.loadQuestsModule(i).catch(() => {
       });
-      for (const e of t)
-        oi(Mt(this.config.quests.base, e));
-    }
+      for (const a of t) n.prefetchQuestDefinition(n.questDefinitionUrl(e, a));
+    }).catch(() => {
+    });
   }
   /** Run fn when the main thread is idle; cancelled by destroy(). */
   schedulePrewarm(t) {
-    const e = window, o = () => {
+    const e = window, i = () => {
       this.destroyed || t();
     };
-    typeof e.requestIdleCallback == "function" ? (this.prewarmIsTimeout = !1, this.prewarmHandle = e.requestIdleCallback(o, { timeout: 2e3 })) : (this.prewarmIsTimeout = !0, this.prewarmHandle = window.setTimeout(o, 1200));
+    typeof e.requestIdleCallback == "function" ? (this.prewarmIsTimeout = !1, this.prewarmHandle = e.requestIdleCallback(i, { timeout: 2e3 })) : (this.prewarmIsTimeout = !0, this.prewarmHandle = window.setTimeout(i, 1200));
   }
   /**
    * Watch for the shadow hosts being removed from the DOM by framework
@@ -694,7 +509,7 @@ class ci {
     }), this.domObserver.observe(document.body, { childList: !0 });
   }
   checkMobile() {
-    this.isMobile = Ze();
+    this.isMobile = Ge();
   }
   handleResize() {
     this.checkMobile();
@@ -704,63 +519,63 @@ class ci {
     let t = null;
     this.config.container && (t = document.querySelector(this.config.container)), t ? (t.appendChild(this.shadowHost), this.isUserProvidedContainer = !0, this.config.hideDismiss = !0) : (this.shadowHost.style.position = "fixed", this.shadowHost.style.display = "block", this.shadowHost.style.inset = "0", this.shadowHost.style.pointerEvents = "none", this.shadowHost.style.zIndex = String(this.config.zIndex), document.body.appendChild(this.shadowHost)), this.shadowRoot = this.shadowHost.attachShadow({ mode: "open" });
     const e = document.createElement("style");
-    if (e.setAttribute("data-qaid-base", ""), e.textContent = dt(), this.shadowRoot.appendChild(e), this.config.css) {
-      const d = document.createElement("style");
-      d.textContent = this.config.css, this.shadowRoot.appendChild(d);
+    if (e.setAttribute("data-qaid-base", ""), e.textContent = lt(), this.shadowRoot.appendChild(e), this.config.css) {
+      const r = document.createElement("style");
+      r.textContent = this.config.css, this.shadowRoot.appendChild(r);
     }
-    const o = this.config.direction === "vertical" ? "qaid-vertical" : "";
+    const i = this.config.direction === "vertical" ? "qaid-vertical" : "";
     if (this.isUserProvidedContainer)
-      this.buttonsContainer = document.createElement("div"), this.buttonsContainer.className = `qaid-buttons qaid-${this.config.position} ${o}`.trim(), this.config.incognito && this.buttonsContainer.classList.add("qaid-incognito");
+      this.buttonsContainer = document.createElement("div"), this.buttonsContainer.className = `qaid-buttons qaid-${this.config.position} ${i}`.trim(), this.config.incognito && this.buttonsContainer.classList.add("qaid-incognito");
     else {
-      this.buttonsContainer = document.createElement("div"), this.buttonsContainer.className = `qaid-buttons qaid-auto-container qaid-${this.config.position} ${o}${this.config.incognito ? " qaid-incognito" : ""}`.trim(), this.buttonsContainer.style.pointerEvents = "auto";
-      const { x: d, y: r } = this.config.offset;
-      this.config.position.includes("right") ? this.buttonsContainer.style.right = `${d}px` : this.buttonsContainer.style.left = `${d}px`, this.config.position.includes("bottom") ? this.buttonsContainer.style.bottom = `${r}px` : this.buttonsContainer.style.top = `${r}px`;
+      this.buttonsContainer = document.createElement("div"), this.buttonsContainer.className = `qaid-buttons qaid-auto-container qaid-${this.config.position} ${i}${this.config.incognito ? " qaid-incognito" : ""}`.trim(), this.buttonsContainer.style.pointerEvents = "auto";
+      const { x: r, y: h } = this.config.offset;
+      this.config.position.includes("right") ? this.buttonsContainer.style.right = `${r}px` : this.buttonsContainer.style.left = `${r}px`, this.config.position.includes("bottom") ? this.buttonsContainer.style.bottom = `${h}px` : this.buttonsContainer.style.top = `${h}px`;
     }
-    this.applyVars(this.buttonsContainer), this.shadowRoot.appendChild(this.buttonsContainer), this.buttonsContainer.addEventListener("keydown", (d) => {
-      (d.key === "Enter" || d.key === " " || d.key === "Spacebar") && (this.keyboardActivation = !0);
+    this.applyVars(this.buttonsContainer), this.shadowRoot.appendChild(this.buttonsContainer), this.buttonsContainer.addEventListener("keydown", (r) => {
+      (r.key === "Enter" || r.key === " " || r.key === "Spacebar") && (this.keyboardActivation = !0);
     }), this.buttonsContainer.addEventListener("mousedown", () => {
       this.keyboardActivation = !1;
     }), this.buttonsContainer.addEventListener("pointerdown", () => {
       this.keyboardActivation = !1;
     });
-    const n = !!this.config.buttonClass, s = n ? `qaid-btn-structural ${this.config.buttonClass}` : "qaid-btn", c = this.config.text.tooltip || "Feedback for us?", l = document.createElement("div");
+    const n = () => this.prewarmClickPath();
+    this.buttonsContainer.addEventListener("pointerenter", n), this.buttonsContainer.addEventListener("focusin", n);
+    const a = !!this.config.buttonClass, s = a ? `qaid-btn-structural ${this.config.buttonClass}` : "qaid-btn", c = this.config.text.tooltip || "Feedback for us?", l = document.createElement("div");
     if (l.className = "qaid-tooltip-text", l.textContent = c, this.applyVars(l), this.shadowRoot.appendChild(l), this.tooltipElement = l, this.config.singleButton) {
-      const d = document.createElement("div");
-      d.className = "qaid-tooltip-wrapper";
-      const r = document.createElement("button");
-      r.type = "button", r.className = n ? `${s} qaid-btn-feedback` : "qaid-btn qaid-btn-feedback", r.setAttribute("aria-label", this.config.text.feedbackLabel), r.innerHTML = this.config.feedbackIcon || At, r.addEventListener("click", (h) => this.handleThumbClick("neutral", h.currentTarget, h)), r.addEventListener("mouseenter", () => {
-        this.prewarmTargeting(), this.showTooltip(r);
-      }), r.addEventListener("mouseleave", () => this.hideTooltip()), d.appendChild(r), this.buttonsContainer.appendChild(d);
+      const r = document.createElement("div");
+      r.className = "qaid-tooltip-wrapper";
+      const h = document.createElement("button");
+      h.type = "button", h.className = a ? `${s} qaid-btn-feedback` : "qaid-btn qaid-btn-feedback", h.setAttribute("aria-label", this.config.text.feedbackLabel), h.innerHTML = this.config.feedbackIcon || Tt, h.addEventListener("click", (f) => this.handleThumbClick("neutral", f.currentTarget, f)), h.addEventListener("mouseenter", () => this.showTooltip(h)), h.addEventListener("mouseleave", () => this.hideTooltip()), r.appendChild(h), this.buttonsContainer.appendChild(r);
     } else if (!this.config.hideThumbs) {
-      const d = document.createElement("div");
-      d.className = "qaid-tooltip-wrapper";
-      const r = document.createElement("button");
-      r.type = "button", r.className = n ? `${s} qaid-btn-up` : "qaid-btn qaid-btn-up", r.setAttribute("aria-label", this.config.text.positiveLabel), r.innerHTML = this.config.positiveIcon || U, r.addEventListener("click", (b) => this.handleThumbClick("up", b.currentTarget, b)), r.addEventListener("mouseenter", () => {
-        this.prewarmTargeting(), this.prewarmQuests(), this.showTooltip(r);
-      }), r.addEventListener("mouseleave", () => this.hideTooltip()), d.appendChild(r);
-      const h = document.createElement("div");
-      h.className = "qaid-tooltip-wrapper";
-      const f = document.createElement("button");
-      f.type = "button", f.className = n ? `${s} qaid-btn-down` : "qaid-btn qaid-btn-down", f.setAttribute("aria-label", this.config.text.negativeLabel), f.innerHTML = this.config.negativeIcon || j, f.addEventListener("click", (b) => this.handleThumbClick("down", b.currentTarget, b)), f.addEventListener("mouseenter", () => {
-        this.prewarmTargeting(), this.prewarmQuests(), this.showTooltip(f);
-      }), f.addEventListener("mouseleave", () => this.hideTooltip()), h.appendChild(f), this.buttonsContainer.appendChild(d), this.buttonsContainer.appendChild(h);
+      const r = document.createElement("div");
+      r.className = "qaid-tooltip-wrapper";
+      const h = document.createElement("button");
+      h.type = "button", h.className = a ? `${s} qaid-btn-up` : "qaid-btn qaid-btn-up", h.setAttribute("aria-label", this.config.text.positiveLabel), h.innerHTML = this.config.positiveIcon || K, h.addEventListener("click", (g) => this.handleThumbClick("up", g.currentTarget, g)), h.addEventListener("mouseenter", () => {
+        this.prewarmQuests(), this.showTooltip(h);
+      }), h.addEventListener("mouseleave", () => this.hideTooltip()), r.appendChild(h);
+      const f = document.createElement("div");
+      f.className = "qaid-tooltip-wrapper";
+      const m = document.createElement("button");
+      m.type = "button", m.className = a ? `${s} qaid-btn-down` : "qaid-btn qaid-btn-down", m.setAttribute("aria-label", this.config.text.negativeLabel), m.innerHTML = this.config.negativeIcon || W, m.addEventListener("click", (g) => this.handleThumbClick("down", g.currentTarget, g)), m.addEventListener("mouseenter", () => {
+        this.prewarmQuests(), this.showTooltip(m);
+      }), m.addEventListener("mouseleave", () => this.hideTooltip()), f.appendChild(m), this.buttonsContainer.appendChild(r), this.buttonsContainer.appendChild(f);
     }
     if (this.config.captureVideo && this.videoSupported()) {
-      const d = document.createElement("div");
-      d.className = "qaid-tooltip-wrapper";
-      const r = document.createElement("button");
-      r.type = "button", r.className = n ? `${s} qaid-btn-record` : "qaid-btn qaid-btn-record", r.setAttribute("aria-label", this.config.text.recordLabel), r.innerHTML = this.config.recordIcon || ue, r.addEventListener("click", () => {
+      const r = document.createElement("div");
+      r.className = "qaid-tooltip-wrapper";
+      const h = document.createElement("button");
+      h.type = "button", h.className = a ? `${s} qaid-btn-record` : "qaid-btn qaid-btn-record", h.setAttribute("aria-label", this.config.text.recordLabel), h.innerHTML = this.config.recordIcon || Se, h.addEventListener("click", () => {
         this.ensureRecording().then(
-          (f) => this.config.videoOptions.redaction ? f.startPicking() : f.startRecording()
+          (m) => this.config.videoOptions.redaction ? m.startPicking() : m.startRecording()
         );
       });
-      const h = () => this.prewarmVideo();
-      r.addEventListener("mouseenter", () => {
-        h(), this.showTooltip(r);
-      }), r.addEventListener("focus", h), r.addEventListener("touchstart", h, { passive: !0 }), r.addEventListener("mouseleave", () => this.hideTooltip()), d.appendChild(r), this.buttonsContainer.appendChild(d);
+      const f = () => this.prewarmVideo();
+      h.addEventListener("mouseenter", () => {
+        f(), this.showTooltip(h);
+      }), h.addEventListener("focus", f), h.addEventListener("touchstart", f, { passive: !0 }), h.addEventListener("mouseleave", () => this.hideTooltip()), r.appendChild(h), this.buttonsContainer.appendChild(r);
     }
-    this.config.hideDismiss || (this.dismissBtn = document.createElement("button"), this.dismissBtn.type = "button", this.dismissBtn.className = "qaid-dismiss-btn", this.dismissBtn.setAttribute("aria-label", this.config.text.dismissLabel), this.dismissBtn.title = this.config.text.dismissLabel, this.dismissBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>', this.dismissBtn.addEventListener("click", (d) => {
-      d.stopPropagation(), this.handleDismiss();
+    this.config.hideDismiss || (this.dismissBtn = document.createElement("button"), this.dismissBtn.type = "button", this.dismissBtn.className = "qaid-dismiss-btn", this.dismissBtn.setAttribute("aria-label", this.config.text.dismissLabel), this.dismissBtn.title = this.config.text.dismissLabel, this.dismissBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>', this.dismissBtn.addEventListener("click", (r) => {
+      r.stopPropagation(), this.handleDismiss();
     }), this.buttonsContainer.insertBefore(this.dismissBtn, this.buttonsContainer.firstChild), this._startDismissed && this.buttonsContainer.classList.add("qaid-dismissed"));
   }
   /**
@@ -773,8 +588,8 @@ class ci {
     if (this.overlayShadowRoot) return this.overlayShadowRoot;
     this.overlayShadowHost = document.createElement("div"), this.overlayShadowHost.setAttribute("data-qaid-embed-overlay", ""), this.overlayShadowHost.style.position = "fixed", this.overlayShadowHost.style.inset = "0", this.overlayShadowHost.style.pointerEvents = "none", this.overlayShadowHost.style.zIndex = String(this.config.zIndex), document.body.appendChild(this.overlayShadowHost), this.overlayShadowRoot = this.overlayShadowHost.attachShadow({ mode: "open" });
     const t = document.createElement("style");
-    t.setAttribute("data-qaid-base", ""), t.textContent = dt(), this.overlayShadowRoot.appendChild(t);
-    for (const e of this.featureStyles) gt(this.overlayShadowRoot, e);
+    t.setAttribute("data-qaid-base", ""), t.textContent = lt(), this.overlayShadowRoot.appendChild(t);
+    for (const e of this.featureStyles) vt(this.overlayShadowRoot, e);
     if (this.config.css) {
       const e = document.createElement("style");
       e.textContent = this.config.css, this.overlayShadowRoot.appendChild(e);
@@ -793,47 +608,47 @@ class ci {
     if (!this.featureStyles.includes(t)) {
       this.featureStyles.push(t);
       for (const e of [this.shadowRoot, this.overlayShadowRoot])
-        e && gt(e, t);
+        e && vt(e, t);
     }
   }
   tooltipElement = null;
   showTooltip(t) {
     const e = this.tooltipElement;
     e.style.visibility = "hidden", e.classList.add("qaid-tooltip-visible");
-    const o = t.getBoundingClientRect(), n = e.getBoundingClientRect(), { top: s, left: a } = Ye(
-      o,
+    const i = t.getBoundingClientRect(), n = e.getBoundingClientRect(), { top: a, left: s } = Xe(
+      i,
       n,
       { width: window.innerWidth, height: window.innerHeight }
     );
-    e.style.top = `${s}px`, e.style.left = `${a}px`, e.style.visibility = "visible";
+    e.style.top = `${a}px`, e.style.left = `${s}px`, e.style.visibility = "visible";
   }
   hideTooltip() {
     this.tooltipElement.classList.remove("qaid-tooltip-visible");
   }
   handleDismiss() {
-    this.buttonsContainer.classList.add("qaid-dismissed"), mt(this.config.apiKey, !0);
+    this.buttonsContainer.classList.add("qaid-dismissed"), bt(this.config.apiKey, !0);
   }
-  handleThumbClick(t, e, o) {
-    if (this.buttonsContainer?.classList.contains("qaid-incognito") && (this.buttonsContainer.classList.remove("qaid-incognito"), mt(this.config.apiKey, !1)), this.prewarmModal(), this.config.skipTargeting || this.config.feedbackMode === "annotate")
+  handleThumbClick(t, e, i) {
+    if (this.buttonsContainer?.classList.contains("qaid-incognito") && (this.buttonsContainer.classList.remove("qaid-incognito"), bt(this.config.apiKey, !1)), this.prewarmClickPath(), this.skipsTargeting())
       this.submitDirectFeedback(t, e);
     else {
       this.activeThumbBtn = e, e.setAttribute("aria-pressed", "true");
       const n = this.keyboardActivation;
-      this.keyboardActivation = !1, this.ensureTargeting().then((s) => {
-        this.destroyed || (n ? s.startKeyboard(t) : s.startPointer(t, o));
+      this.keyboardActivation = !1, this.ensureTargeting().then((a) => {
+        this.destroyed || (n ? a.startKeyboard(t) : a.startPointer(t, i));
       });
     }
   }
   submitDirectFeedback(t, e) {
     this.feedbackData.feedbackType = t, this.feedbackData.elementSelector = null, this.feedbackData.elementText = null;
-    const o = e.getBoundingClientRect();
+    const i = e.getBoundingClientRect();
     this.selectedBounds = {
-      x: o.left,
-      y: o.top,
-      width: o.width,
-      height: o.height,
-      clickX: o.left + o.width / 2,
-      clickY: o.top + o.height / 2,
+      x: i.left,
+      y: i.top,
+      width: i.width,
+      height: i.height,
+      clickX: i.left + i.width / 2,
+      clickY: i.top + i.height / 2,
       visible: !1
     }, this.submitFeedback();
   }
@@ -847,141 +662,77 @@ class ci {
    *  instead of the permission-based Screen Capture API. Explicit "dom" wins;
    *  otherwise DOM is used on touch devices to avoid the getDisplayMedia prompt. */
   shouldCaptureViaDom() {
-    return this.config.screenshotMethod === "dom" || ai();
+    return this.config.screenshotMethod === "dom" || to();
   }
   /**
-   * Open the full-screen annotation editor over the captured screenshot,
-   * reusing the overlay shadow host and the shared dialog a11y helpers.
-   * Resolves with the composited WebP data URL, or null when the user skips
-   * (caller keeps the original). Pointer events on the overlay host are
-   * enabled while the editor is open and restored on close.
+   * Run the send flow (send.ts, loaded on demand and pre-warmed before the
+   * click): screenshot, markup, POST, then a linked quest or the message box.
+   * If its chunk will not load, say so and reset rather than leave the
+   * visitor stuck mid-flow.
    */
-  async openAnnotationEditor(t) {
-    const e = this.ensureOverlayHost(), o = this.overlayShadowHost, n = o.style.pointerEvents;
-    o.style.pointerEvents = "auto";
-    try {
-      const { openAnnotationEditor: s, styles: a } = await Promise.resolve().then(() => qt);
-      return this.addFeatureStyles(a), await s({
-        dataUrl: t,
-        root: e,
-        quality: this.config.screenshotOptions.quality,
-        color: this.config.annotationColor,
-        palette: this.config.annotationPalette,
-        applyVars: (c) => this.applyVars(c),
-        announce: (c, l) => this.announceMsg(c, l),
-        openDialog: (c, l) => this.openDialogA11y(c, l),
-        closeDialog: () => this.closeDialogA11y()
-      });
-    } catch (s) {
-      return console.error("Annotation editor failed to open:", s), null;
-    } finally {
-      o.style.pointerEvents = n;
-    }
-  }
   async submitFeedback() {
-    let t = null;
-    if (this.config.captureScreenshot || this.config.feedbackMode === "annotate")
-      try {
-        if (this.shouldCaptureViaDom()) {
-          const { captureDomScreenshot: a } = await Promise.resolve().then(() => kt);
-          t = await a(this.config.screenshotOptions);
-        } else {
-          const { captureScreenshot: a } = await Promise.resolve().then(() => St);
-          t = await a(this.config.screenshotOptions);
-        }
-        t && this.announceMsg("Screenshot captured");
-      } catch (a) {
-        console.error("Screenshot capture failed:", a), t = null;
-      }
-    t && this.config.annotate && (t = await this.openAnnotationEditor(t) ?? t);
-    const o = this.feedbackData.elementSelector ? {
-      x: this.selectedBounds.x,
-      y: this.selectedBounds.y,
-      width: this.selectedBounds.width,
-      height: this.selectedBounds.height
-    } : null, n = {
-      feedbackType: this.feedbackData.feedbackType,
-      pageUrl: window.location.href,
-      apiKey: this.config.apiKey || void 0,
-      elementSelector: this.feedbackData.elementSelector,
-      elementText: this.feedbackData.elementText,
-      consoleErrors: [...this.feedbackData.consoleErrors],
-      screenWidth: window.innerWidth,
-      screenHeight: window.innerHeight,
-      clickX: this.selectedBounds.clickX,
-      clickY: this.selectedBounds.clickY,
-      scrollX: window.scrollX,
-      scrollY: window.scrollY,
-      screenshot: t,
-      visitorId: this.visitorId,
-      // Include element bounds and user agent for server-side screenshot fallback
-      elementBounds: o,
-      userAgent: navigator.userAgent
-    };
-    this.feedbackIdPromise = this.postFeedback(n);
-    const s = this.feedbackData.feedbackType;
-    if (s && s !== "neutral" && await this.tryLaunchQuest(s, this.feedbackIdPromise)) {
-      this.resetFeedbackUi();
-      return;
-    }
-    this.state = "MODAL_OPEN";
     try {
-      const a = await this.ensureModal();
-      if (this.destroyed) return;
-      a.open(), this.overlayShadowHost && (this.overlayShadowHost.style.pointerEvents = "auto");
-    } catch (a) {
-      console.error("Failed to open the feedback modal:", a), this.announceMsg("Thank you for your feedback!", !0), this.resetFeedbackUi();
+      const [t] = await Promise.all([Promise.resolve().then(() => U), this.loadDialogA11y()]);
+      await t.submitFeedback(this.makeSendHost());
+    } catch (t) {
+      console.error("Failed to send feedback:", t), this.announceMsg("Failed to send feedback", !0), this.resetFeedbackUi();
     }
-  }
-  /** POST the feedback. Resolves to the new record's id, or null if it failed. */
-  async postFeedback(t) {
-    try {
-      const e = await fetch(this.config.endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(t)
-      });
-      if (e.ok) {
-        const o = await e.json();
-        return this.announceMsg("Feedback sent"), o.id;
-      }
-    } catch (e) {
-      console.error("Failed to submit feedback:", e), this.announceMsg("Failed to send feedback", !0);
-    }
-    return null;
   }
   /**
-   * Quest id linked to `type`, or "" when quest launching is disabled
-   * (no `base`) or this button has no quest configured.
-   */
-  questIdFor(t) {
-    const e = this.config.quests;
-    return e.base && e[t] || "";
-  }
-  /**
-   * Launch the quest linked to `type`, if any. Resolves `true` when a quest
-   * was configured and the widget launched; `false` when no quest is
-   * configured or the widget failed to load (caller falls back to its
-   * normal UI). The created feedback record id is passed through so the
-   * quest response can be joined back to it server-side.
+   * Launch the quest linked to `type` through the send chunk. Resolves false
+   * when none is linked, or when the chunk or the quest will not load.
    */
   async tryLaunchQuest(t, e) {
-    const o = this.questIdFor(t);
-    if (!o) return !1;
     try {
-      return this.activeQuest?.destroy(), this.activeQuest = await ni({
-        questId: o,
-        base: this.config.quests.base,
-        apiKey: this.config.quests.apiKey || void 0,
-        moduleUrl: this.config.quests.moduleUrl,
-        feedbackId: e,
-        onClose: () => {
-          this.activeQuest = null;
-        }
-      }), !0;
-    } catch (n) {
-      return console.error("Failed to launch quest:", n), this.activeQuest = null, !1;
+      return await (await Promise.resolve().then(() => U)).tryLaunchQuest(this.makeSendHost(), t, e);
+    } catch (i) {
+      return console.error("Failed to launch quest:", i), !1;
     }
+  }
+  /** Narrow view of the embed the send flow talks back through. */
+  makeSendHost() {
+    const t = this;
+    return {
+      get config() {
+        return t.config;
+      },
+      get visitorId() {
+        return t.visitorId;
+      },
+      get feedbackData() {
+        return t.feedbackData;
+      },
+      get selectedBounds() {
+        return t.selectedBounds;
+      },
+      get destroyed() {
+        return t.destroyed;
+      },
+      get overlayShadowHost() {
+        return t.overlayShadowHost;
+      },
+      get activeQuest() {
+        return t.activeQuest;
+      },
+      set activeQuest(e) {
+        t.activeQuest = e;
+      },
+      setState: (e) => {
+        t.state = e;
+      },
+      setFeedbackId: (e) => {
+        t.feedbackIdPromise = e;
+      },
+      shouldCaptureViaDom: () => t.shouldCaptureViaDom(),
+      ensureOverlayHost: () => t.ensureOverlayHost(),
+      ensureModal: () => t.ensureModal(),
+      addFeatureStyles: (e) => t.addFeatureStyles(e),
+      applyVars: (e) => t.applyVars(e),
+      announceMsg: (e, i) => t.announceMsg(e, i),
+      openDialogA11y: (e, i) => t.openDialogA11y(e, i),
+      closeDialogA11y: () => t.closeDialogA11y(),
+      resetFeedbackUi: () => t.resetFeedbackUi()
+    };
   }
   /**
    * Reset the thumbs targeting/marker UI back to idle without opening or
@@ -993,12 +744,15 @@ class ci {
   }
   /**
    * Lazily load and instantiate the modal controller. The message modal lives
-   * in a separate chunk, fetched the first time it opens (and pre-warmed while
-   * the user targets an element — see prewarmModal).
+   * in a separate chunk, fetched the first time it opens (and pre-warmed
+   * before the click — see prewarmClickPath).
    */
   async ensureModal() {
     if (!this.modal) {
-      const { ModalController: t, styles: e } = await Promise.resolve().then(() => Tt);
+      const [{ ModalController: t, styles: e }] = await Promise.all([
+        Promise.resolve().then(() => Ct),
+        this.loadDialogA11y()
+      ]);
       this.addFeatureStyles(e), this.modal = new t(this.makeModalHost());
     }
     return this.modal;
@@ -1031,25 +785,20 @@ class ci {
       whenFeedbackId: () => t.feedbackIdPromise,
       ensureOverlayHost: () => t.ensureOverlayHost(),
       applyVars: (e) => t.applyVars(e),
-      announceMsg: (e, o) => t.announceMsg(e, o),
-      openDialogA11y: (e, o) => t.openDialogA11y(e, o),
+      announceMsg: (e, i) => t.announceMsg(e, i),
+      openDialogA11y: (e, i) => t.openDialogA11y(e, i),
       closeDialogA11y: () => t.closeDialogA11y(),
       resetFeedbackUi: () => t.resetFeedbackUi()
     };
   }
-  /** Warm the modal chunk while the user is targeting, so it opens instantly. */
-  prewarmModal() {
-    this.modalPrewarmed || (this.modalPrewarmed = !0, Promise.resolve().then(() => Tt).catch(() => {
-    }));
-  }
   /**
    * Lazily load and instantiate the targeting controller. The subsystem (with
    * element-selector) lives in a separate chunk, fetched the first time the
-   * user targets — pre-warmed on thumb-button hover (see prewarmTargeting).
+   * user targets — pre-warmed before the click (see prewarmClickPath).
    */
   async ensureTargeting() {
     if (!this.targeting) {
-      const { TargetingController: t, styles: e } = await Promise.resolve().then(() => Et);
+      const { TargetingController: t, styles: e } = await Promise.resolve().then(() => St);
       this.addFeatureStyles(e), this.targeting = new t(this.makeTargetingHost());
     }
     return this.targeting;
@@ -1087,15 +836,10 @@ class ci {
       },
       ensureOverlayHost: () => t.ensureOverlayHost(),
       applyVars: (e) => t.applyVars(e),
-      announceMsg: (e, o) => t.announceMsg(e, o),
+      announceMsg: (e, i) => t.announceMsg(e, i),
       clearActiveThumb: () => t.clearActiveThumb(),
       submitFeedback: () => t.submitFeedback()
     };
-  }
-  /** Warm the targeting chunk on thumb-button hover, before the click. */
-  prewarmTargeting() {
-    this.targetingPrewarmed || this.config.skipTargeting || (this.targetingPrewarmed = !0, Promise.resolve().then(() => Et).catch(() => {
-    }));
   }
   // ==================== Video Recording ====================
   /**
@@ -1113,7 +857,10 @@ class ci {
    */
   async ensureRecording() {
     if (!this.recording) {
-      const { RecordingController: t, styles: e } = await Promise.resolve().then(() => Ct);
+      const [{ RecordingController: t, styles: e }] = await Promise.all([
+        Promise.resolve().then(() => Et),
+        this.loadDialogA11y()
+      ]);
       this.addFeatureStyles(e), this.recording = new t(this.makeRecordingHost());
     }
     return this.recording;
@@ -1148,17 +895,17 @@ class ci {
       },
       ensureOverlayHost: () => t.ensureOverlayHost(),
       applyVars: (e) => t.applyVars(e),
-      announceMsg: (e, o) => t.announceMsg(e, o),
-      openDialogA11y: (e, o) => t.openDialogA11y(e, o),
+      announceMsg: (e, i) => t.announceMsg(e, i),
+      openDialogA11y: (e, i) => t.openDialogA11y(e, i),
       closeDialogA11y: () => t.closeDialogA11y(),
       setButtonsDisabled: (e) => t.setButtonsDisabled(e),
-      tryLaunchQuest: (e, o) => t.tryLaunchQuest(e, o)
+      tryLaunchQuest: (e, i) => t.tryLaunchQuest(e, i)
     };
   }
   setButtonsDisabled(t) {
     if (!this.buttonsContainer) return;
-    this.buttonsContainer.querySelectorAll("button.qaid-btn, button.qaid-btn-structural").forEach((o) => {
-      t ? o.classList.contains("qaid-btn-record") || (o.disabled = !0, o.style.opacity = "0.5") : (o.disabled = !1, o.style.opacity = "");
+    this.buttonsContainer.querySelectorAll("button.qaid-btn, button.qaid-btn-structural").forEach((i) => {
+      t ? i.classList.contains("qaid-btn-record") || (i.disabled = !0, i.style.opacity = "0.5") : (i.disabled = !1, i.style.opacity = "");
     });
   }
   /**
@@ -1169,358 +916,358 @@ class ci {
       const t = window;
       this.prewarmIsTimeout ? clearTimeout(this.prewarmHandle) : t.cancelIdleCallback?.(this.prewarmHandle), this.prewarmHandle = null;
     }
-    this.recording?.destroy(), this.recording = null, this.modal?.destroy(), this.modal = null, this.activeQuest?.destroy(), this.activeQuest = null, this.consoleCapture && (this.consoleCapture.restore(), this.consoleCapture = null), window.removeEventListener("resize", this.boundResize), document.removeEventListener("keydown", this.boundKeyDown), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.shadowHost && (this.shadowHost.remove(), this.shadowHost = null, this.shadowRoot = null), this.overlayShadowHost && (this.overlayShadowHost.remove(), this.overlayShadowHost = null, this.overlayShadowRoot = null), this.buttonsContainer = null, this.dismissBtn = null, this.tooltipElement = null, De();
+    this.recording?.destroy(), this.recording = null, this.modal?.destroy(), this.modal = null, this.activeQuest?.destroy(), this.activeQuest = null, this.consoleCapture && (this.consoleCapture.restore(), this.consoleCapture = null), window.removeEventListener("resize", this.boundResize), document.removeEventListener("keydown", this.boundKeyDown), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.shadowHost && (this.shadowHost.remove(), this.shadowHost = null, this.shadowRoot = null), this.overlayShadowHost && (this.overlayShadowHost.remove(), this.overlayShadowHost = null, this.overlayShadowRoot = null), this.buttonsContainer = null, this.dismissBtn = null, this.tooltipElement = null, Ue();
   }
 }
-function Pt(i) {
-  return document.querySelector(i)?.textContent?.trim() ?? "";
+function Dt(o) {
+  return document.querySelector(o)?.textContent?.trim() ?? "";
 }
-function li() {
-  const i = document.querySelector(
+function no() {
+  const o = document.querySelector(
     'script[type="application/json"][data-feedback-config]'
   );
-  if (!i) return null;
-  const t = i.textContent?.trim();
+  if (!o) return null;
+  const t = o.textContent?.trim();
   if (!t) return null;
   try {
     const e = JSON.parse(t);
-    return e.cssSelector && !e.css && (e.css = Pt(e.cssSelector), delete e.cssSelector), e;
+    return e.cssSelector && !e.css && (e.css = Dt(e.cssSelector), delete e.cssSelector), e;
   } catch {
     return null;
   }
 }
-function Bt(i, t, e) {
-  console.warn(`[thumbs-embed] Ignoring ${i}="${t}": expected ${e}.`);
+function It(o, t, e) {
+  console.warn(`[thumbs-embed] Ignoring ${o}="${t}": expected ${e}.`);
 }
-function hi(i) {
+function ao(o) {
   const t = [];
-  let e = 0, o = "";
-  for (const n of i)
-    n === "(" && e++, n === ")" && (e = Math.max(0, e - 1)), n === "," && e === 0 ? (t.push(o.trim()), o = "") : o += n;
-  return t.push(o.trim()), t;
+  let e = 0, i = "";
+  for (const n of o)
+    n === "(" && e++, n === ")" && (e = Math.max(0, e - 1)), n === "," && e === 0 ? (t.push(i.trim()), i = "") : i += n;
+  return t.push(i.trim()), t;
 }
-function ui(i, t) {
+function so(o, t) {
   if (t === null) return;
   const e = t.trim();
-  let o = null;
+  let i = null;
   if (e.startsWith("[") || e.startsWith("{"))
     try {
-      o = JSON.parse(e);
+      i = JSON.parse(e);
     } catch {
-      o = null;
+      i = null;
     }
   else
-    o = hi(e);
-  if (Array.isArray(o) && o.length > 0 && o.every((n) => typeof n == "string" && n.trim() !== ""))
-    return o.map((n) => n.trim());
-  Bt(i, t, "a JSON array of colours or a comma-separated list");
+    i = ao(e);
+  if (Array.isArray(i) && i.length > 0 && i.every((n) => typeof n == "string" && n.trim() !== ""))
+    return i.map((n) => n.trim());
+  It(o, t, "a JSON array of colours or a comma-separated list");
 }
-function M(i, t) {
+function M(o, t) {
   if (t !== null) {
     if (t.trim() === "") {
-      Bt(i, t, "a non-empty label");
+      It(o, t, "a non-empty label");
       return;
     }
     return t;
   }
 }
-function pi(i) {
-  const t = i.getAttribute("data-endpoint");
+function ro(o) {
+  const t = o.getAttribute("data-endpoint");
   if (!t) return null;
-  const e = i.getAttribute("data-position"), o = i.getAttribute("data-zindex"), n = i.getAttribute("data-positive-color"), s = i.getAttribute("data-negative-color"), a = i.getAttribute("data-marker-color"), c = i.getAttribute("data-container"), l = i.getAttribute("data-button-class"), d = i.getAttribute("data-skip-targeting"), r = i.getAttribute("data-hide-confirmation"), h = i.getAttribute("data-single-button"), f = i.getAttribute("data-feedback-mode"), b = i.getAttribute("data-incognito"), y = i.getAttribute("data-button-size"), g = i.getAttribute("data-offset-x"), w = i.getAttribute("data-offset-y"), x = i.getAttribute("data-modal-width"), u = i.getAttribute("data-backdrop-opacity"), k = i.getAttribute("data-font-family"), v = i.getAttribute("data-font-size"), C = i.getAttribute("data-tooltip"), A = i.getAttribute("data-modal-title"), S = i.getAttribute("data-confirmation-title"), m = i.getAttribute("data-confirmation-message"), T = i.getAttribute("data-confirmation-close"), X = i.getAttribute("data-error-title"), Y = i.getAttribute("data-error-message"), Q = i.getAttribute("data-modal-subtitle"), J = i.getAttribute("data-placeholder"), G = i.getAttribute("data-submit-button"), Z = i.getAttribute("data-skip-button"), Kt = i.getAttribute("data-positive-icon"), Wt = i.getAttribute("data-negative-icon"), Xt = i.getAttribute("data-feedback-icon"), tt = i.getAttribute("data-feedback-label"), Yt = i.getAttribute("data-api-key"), Qt = i.getAttribute("data-capture-screenshot"), Jt = i.getAttribute("data-annotate"), Gt = i.getAttribute("data-annotation-color"), O = i.getAttribute("data-screenshot-quality"), z = i.getAttribute("data-screenshot-max-width"), $ = i.getAttribute("data-screenshot-max-height"), Zt = i.getAttribute("data-capture-video"), et = i.getAttribute("data-video-redaction"), te = i.getAttribute("data-hide-thumbs"), ee = i.getAttribute("data-hide-dismiss"), _ = i.getAttribute("data-video-max-duration"), ie = i.getAttribute("data-screenshot-method"), oe = i.getAttribute("data-direction"), it = i.getAttribute("data-css-selector"), ne = i.getAttribute("data-css"), ot = M("data-positive-label", i.getAttribute("data-positive-label")), nt = M("data-negative-label", i.getAttribute("data-negative-label")), st = M("data-record-label", i.getAttribute("data-record-label")), at = M("data-dismiss-label", i.getAttribute("data-dismiss-label")), se = ui(
+  const e = o.getAttribute("data-position"), i = o.getAttribute("data-zindex"), n = o.getAttribute("data-positive-color"), a = o.getAttribute("data-negative-color"), s = o.getAttribute("data-marker-color"), d = o.getAttribute("data-container"), c = o.getAttribute("data-button-class"), l = o.getAttribute("data-skip-targeting"), r = o.getAttribute("data-hide-confirmation"), h = o.getAttribute("data-single-button"), f = o.getAttribute("data-feedback-mode"), m = o.getAttribute("data-incognito"), g = o.getAttribute("data-button-size"), v = o.getAttribute("data-offset-x"), w = o.getAttribute("data-offset-y"), x = o.getAttribute("data-modal-width"), u = o.getAttribute("data-backdrop-opacity"), k = o.getAttribute("data-font-family"), y = o.getAttribute("data-font-size"), C = o.getAttribute("data-tooltip"), L = o.getAttribute("data-modal-title"), S = o.getAttribute("data-confirmation-title"), b = o.getAttribute("data-confirmation-message"), E = o.getAttribute("data-confirmation-close"), Y = o.getAttribute("data-error-title"), J = o.getAttribute("data-error-message"), G = o.getAttribute("data-modal-subtitle"), Z = o.getAttribute("data-placeholder"), tt = o.getAttribute("data-submit-button"), et = o.getAttribute("data-skip-button"), ae = o.getAttribute("data-positive-icon"), se = o.getAttribute("data-negative-icon"), re = o.getAttribute("data-feedback-icon"), ot = o.getAttribute("data-feedback-label"), de = o.getAttribute("data-api-key"), ce = o.getAttribute("data-capture-screenshot"), le = o.getAttribute("data-annotate"), he = o.getAttribute("data-annotation-color"), _ = o.getAttribute("data-screenshot-quality"), F = o.getAttribute("data-screenshot-max-width"), V = o.getAttribute("data-screenshot-max-height"), ue = o.getAttribute("data-capture-video"), it = o.getAttribute("data-video-redaction"), pe = o.getAttribute("data-hide-thumbs"), fe = o.getAttribute("data-hide-dismiss"), N = o.getAttribute("data-video-max-duration"), me = o.getAttribute("data-screenshot-method"), be = o.getAttribute("data-direction"), nt = o.getAttribute("data-css-selector"), ge = o.getAttribute("data-css"), at = M("data-positive-label", o.getAttribute("data-positive-label")), st = M("data-negative-label", o.getAttribute("data-negative-label")), rt = M("data-record-label", o.getAttribute("data-record-label")), dt = M("data-dismiss-label", o.getAttribute("data-dismiss-label")), ve = so(
     "data-annotation-palette",
-    i.getAttribute("data-annotation-palette")
-  ), ae = i.getAttribute("data-record-icon"), rt = i.getAttribute("data-quest-base"), re = i.getAttribute("data-quest-up"), de = i.getAttribute("data-quest-down"), ce = i.getAttribute("data-quest-video"), le = i.getAttribute("data-quest-api-key"), he = i.getAttribute("data-quest-module-url");
+    o.getAttribute("data-annotation-palette")
+  ), ye = o.getAttribute("data-record-icon"), ct = o.getAttribute("data-quest-base"), we = o.getAttribute("data-quest-up"), ke = o.getAttribute("data-quest-down"), xe = o.getAttribute("data-quest-video"), qe = o.getAttribute("data-quest-api-key"), Ce = o.getAttribute("data-quest-module-url");
   return {
     endpoint: t,
     // Inline CSS wins over a selector, as `css` wins over `cssSelector` in
     // the JSON block.
-    css: ne || (it ? Pt(it) : void 0),
-    apiKey: Yt ?? void 0,
-    captureScreenshot: Qt === "true" ? !0 : void 0,
+    css: ge || (nt ? Dt(nt) : void 0),
+    apiKey: de ?? void 0,
+    captureScreenshot: ce === "true" ? !0 : void 0,
     // Annotation is on by default; only an explicit "false" disables it.
-    annotate: Jt === "false" ? !1 : void 0,
-    annotationColor: Gt ?? void 0,
-    annotationPalette: se,
-    screenshotOptions: O || z || $ ? {
-      quality: O ? parseFloat(O) : void 0,
-      maxWidth: z ? parseInt(z, 10) : void 0,
-      maxHeight: $ ? parseInt($, 10) : void 0
+    annotate: le === "false" ? !1 : void 0,
+    annotationColor: he ?? void 0,
+    annotationPalette: ve,
+    screenshotOptions: _ || F || V ? {
+      quality: _ ? parseFloat(_) : void 0,
+      maxWidth: F ? parseInt(F, 10) : void 0,
+      maxHeight: V ? parseInt(V, 10) : void 0
     } : void 0,
-    container: c ?? void 0,
-    buttonClass: l ?? void 0,
-    direction: oe ?? void 0,
+    container: d ?? void 0,
+    buttonClass: c ?? void 0,
+    direction: be ?? void 0,
     position: e ?? void 0,
-    zIndex: o ? parseInt(o, 10) : void 0,
-    skipTargeting: d === "true" ? !0 : void 0,
+    zIndex: i ? parseInt(i, 10) : void 0,
+    skipTargeting: l === "true" ? !0 : void 0,
     hideConfirmation: r === "true" ? !0 : void 0,
     singleButton: h === "true" ? !0 : void 0,
     feedbackMode: f ?? void 0,
-    incognito: b === "true" ? !0 : void 0,
-    buttonSize: y ?? void 0,
-    offset: g || w ? {
-      x: g ? parseInt(g, 10) : void 0,
+    incognito: m === "true" ? !0 : void 0,
+    buttonSize: g ?? void 0,
+    offset: v || w ? {
+      x: v ? parseInt(v, 10) : void 0,
       y: w ? parseInt(w, 10) : void 0
     } : void 0,
     modalWidth: x ? parseInt(x, 10) : void 0,
     backdropOpacity: u ? parseFloat(u) : void 0,
     fontFamily: k ?? void 0,
-    fontSize: v ? parseInt(v, 10) : void 0,
+    fontSize: y ? parseInt(y, 10) : void 0,
     colors: {
       positive: n ?? void 0,
-      negative: s ?? void 0,
-      marker: a ?? void 0
+      negative: a ?? void 0,
+      marker: s ?? void 0
     },
-    text: C || A || Q || J || G || Z || tt || S || m || T || X || Y || ot || nt || st || at ? {
+    text: C || L || G || Z || tt || et || ot || S || b || E || Y || J || at || st || rt || dt ? {
       tooltip: C ?? void 0,
-      modalTitle: A ?? void 0,
-      modalSubtitle: Q ?? void 0,
-      placeholder: J ?? void 0,
-      submitButton: G ?? void 0,
-      skipButton: Z ?? void 0,
-      feedbackLabel: tt ?? void 0,
+      modalTitle: L ?? void 0,
+      modalSubtitle: G ?? void 0,
+      placeholder: Z ?? void 0,
+      submitButton: tt ?? void 0,
+      skipButton: et ?? void 0,
+      feedbackLabel: ot ?? void 0,
       confirmationTitle: S ?? void 0,
-      confirmationMessage: m ?? void 0,
-      confirmationClose: T ?? void 0,
-      errorTitle: X ?? void 0,
-      errorMessage: Y ?? void 0,
-      positiveLabel: ot,
-      negativeLabel: nt,
-      recordLabel: st,
-      dismissLabel: at
+      confirmationMessage: b ?? void 0,
+      confirmationClose: E ?? void 0,
+      errorTitle: Y ?? void 0,
+      errorMessage: J ?? void 0,
+      positiveLabel: at,
+      negativeLabel: st,
+      recordLabel: rt,
+      dismissLabel: dt
     } : void 0,
-    positiveIcon: Kt ?? void 0,
-    recordIcon: ae ?? void 0,
-    negativeIcon: Wt ?? void 0,
-    feedbackIcon: Xt ?? void 0,
-    screenshotMethod: ie ?? void 0,
-    captureVideo: Zt === "true" ? !0 : void 0,
-    hideThumbs: te === "true" ? !0 : void 0,
-    hideDismiss: ee === "true" ? !0 : void 0,
-    videoOptions: _ || et ? {
-      maxDuration: _ ? parseInt(_, 10) : void 0,
-      redaction: et === "true" ? !0 : void 0
+    positiveIcon: ae ?? void 0,
+    recordIcon: ye ?? void 0,
+    negativeIcon: se ?? void 0,
+    feedbackIcon: re ?? void 0,
+    screenshotMethod: me ?? void 0,
+    captureVideo: ue === "true" ? !0 : void 0,
+    hideThumbs: pe === "true" ? !0 : void 0,
+    hideDismiss: fe === "true" ? !0 : void 0,
+    videoOptions: N || it ? {
+      maxDuration: N ? parseInt(N, 10) : void 0,
+      redaction: it === "true" ? !0 : void 0
     } : void 0,
-    quests: rt ? {
-      base: rt,
-      up: re ?? void 0,
-      down: de ?? void 0,
-      video: ce ?? void 0,
-      apiKey: le ?? void 0,
-      moduleUrl: he ?? void 0
+    quests: ct ? {
+      base: ct,
+      up: we ?? void 0,
+      down: ke ?? void 0,
+      video: xe ?? void 0,
+      apiKey: qe ?? void 0,
+      moduleUrl: Ce ?? void 0
     } : void 0
   };
 }
-function fi() {
+function co() {
   if (typeof document > "u") return;
-  const i = () => {
-    const t = document.currentScript ?? document.querySelector("script[data-endpoint]"), e = li() ?? (t ? pi(t) : null);
-    e?.endpoint && new ci(e);
+  const o = () => {
+    const t = document.currentScript ?? document.querySelector("script[data-endpoint]"), e = no() ?? (t ? ro(t) : null);
+    e?.endpoint && new io(e);
   };
-  document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", i) : i();
+  document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", o) : o();
 }
-const mi = 20, vt = 4096;
-function P(i) {
-  const t = typeof i == "string" ? i : JSON.stringify(i);
-  return t.length > vt ? t.slice(0, vt) + "…[truncated]" : t;
+const lo = 20, yt = 4096;
+function R(o) {
+  const t = typeof o == "string" ? o : JSON.stringify(o);
+  return t.length > yt ? t.slice(0, yt) + "…[truncated]" : t;
 }
-function yt(i, t) {
-  i.length >= mi && i.shift(), i.push(t);
+function wt(o, t) {
+  o.length >= lo && o.shift(), o.push(t);
 }
-async function bi(i) {
+async function ho(o) {
   try {
-    const t = await i.clone().text();
-    return P(t);
+    const t = await o.clone().text();
+    return R(t);
   } catch {
     return;
   }
 }
-function gi() {
-  const i = [], t = window.fetch;
-  window.fetch = async function(n, s) {
-    const a = typeof n == "string" ? n : n instanceof URL ? n.toString() : n.url, c = s?.method ?? (typeof n == "object" && "method" in n ? n.method : "GET");
-    let l;
-    s?.body && (l = P(s.body));
-    const d = await t.apply(window, [n, s]);
-    if (d.status >= 400) {
-      const r = await bi(d);
-      yt(i, {
-        url: a,
-        method: c.toUpperCase(),
-        status: d.status,
-        statusText: d.statusText,
-        requestBody: l,
+function uo() {
+  const o = [], t = window.fetch;
+  window.fetch = async function(n, a) {
+    const s = typeof n == "string" ? n : n instanceof URL ? n.toString() : n.url, d = a?.method ?? (typeof n == "object" && "method" in n ? n.method : "GET");
+    let c;
+    a?.body && (c = R(a.body));
+    const l = await t.apply(window, [n, a]);
+    if (l.status >= 400) {
+      const r = await ho(l);
+      wt(o, {
+        url: s,
+        method: d.toUpperCase(),
+        status: l.status,
+        statusText: l.statusText,
+        requestBody: c,
         responseBody: r,
         timestamp: Date.now()
       });
     }
-    return d;
+    return l;
   };
-  const e = XMLHttpRequest.prototype.open, o = XMLHttpRequest.prototype.send;
-  return XMLHttpRequest.prototype.open = function(n, s, ...a) {
-    return this._qaid_method = n, this._qaid_url = typeof s == "string" ? s : s.toString(), e.apply(this, [n, s, ...a]);
+  const e = XMLHttpRequest.prototype.open, i = XMLHttpRequest.prototype.send;
+  return XMLHttpRequest.prototype.open = function(n, a, ...s) {
+    return this._qaid_method = n, this._qaid_url = typeof a == "string" ? a : a.toString(), e.apply(this, [n, a, ...s]);
   }, XMLHttpRequest.prototype.send = function(n) {
-    const s = this, a = n ? P(n) : void 0;
-    return s.addEventListener("load", function() {
-      s.status >= 400 && yt(i, {
-        url: s._qaid_url,
-        method: s._qaid_method.toUpperCase(),
-        status: s.status,
-        statusText: s.statusText,
-        requestBody: a,
-        responseBody: P(s.responseText),
+    const a = this, s = n ? R(n) : void 0;
+    return a.addEventListener("load", function() {
+      a.status >= 400 && wt(o, {
+        url: a._qaid_url,
+        method: a._qaid_method.toUpperCase(),
+        status: a.status,
+        statusText: a.statusText,
+        requestBody: s,
+        responseBody: R(a.responseText),
         timestamp: Date.now()
       });
-    }), o.apply(this, [n]);
+    }), i.apply(this, [n]);
   }, {
-    errors: i,
+    errors: o,
     restore: () => {
-      window.fetch = t, XMLHttpRequest.prototype.open = e, XMLHttpRequest.prototype.send = o;
+      window.fetch = t, XMLHttpRequest.prototype.open = e, XMLHttpRequest.prototype.send = i;
     }
   };
 }
-function vi() {
-  const i = navigator.userAgent || "";
-  return /iP(hone|ad|od)/.test(i) || // iPadOS 13+ masquerades as "MacIntel" but is a multi-touch device.
+function po() {
+  const o = navigator.userAgent || "";
+  return /iP(hone|ad|od)/.test(o) || // iPadOS 13+ masquerades as "MacIntel" but is a multi-touch device.
   navigator.platform === "MacIntel" && (navigator.maxTouchPoints || 0) > 1;
 }
-function yi(i, t, e, o, n) {
-  const s = i >= t, a = e >= o;
-  return s === a ? { width: i, height: t, rotate: 0 } : { width: t, height: i, rotate: n === 270 ? -90 : 90 };
+function fo(o, t, e, i, n) {
+  const a = o >= t, s = e >= i;
+  return a === s ? { width: o, height: t, rotate: 0 } : { width: t, height: o, rotate: n === 270 ? -90 : 90 };
 }
-function wi(i, t, e) {
+function mo(o, t, e) {
   if (e.rotate === 0) {
-    i.drawImage(t, 0, 0, e.width, e.height);
+    o.drawImage(t, 0, 0, e.width, e.height);
     return;
   }
-  i.save(), e.rotate === 90 ? (i.translate(e.width, 0), i.rotate(Math.PI / 2)) : (i.translate(0, e.height), i.rotate(-Math.PI / 2)), i.drawImage(t, 0, 0, e.height, e.width), i.restore();
+  o.save(), e.rotate === 90 ? (o.translate(e.width, 0), o.rotate(Math.PI / 2)) : (o.translate(0, e.height), o.rotate(-Math.PI / 2)), o.drawImage(t, 0, 0, e.height, e.width), o.restore();
 }
-function ki() {
-  const i = typeof screen < "u" ? screen.orientation : void 0;
-  return i && typeof i.angle == "number" ? i.angle : 0;
+function bo() {
+  const o = typeof screen < "u" ? screen.orientation : void 0;
+  return o && typeof o.angle == "number" ? o.angle : 0;
 }
-function Ht(i) {
+function Mt(o) {
   return new Promise((t) => {
-    if (i.videoWidth > 0) {
+    if (o.videoWidth > 0) {
       t();
       return;
     }
-    i.addEventListener("loadedmetadata", () => t(), { once: !0 });
+    o.addEventListener("loadedmetadata", () => t(), { once: !0 });
   });
 }
-async function Ot(i) {
+async function Pt(o) {
   try {
-    await i.play();
+    await o.play();
   } catch {
   }
 }
-async function xi(i, t = 15) {
+async function go(o, t = 15) {
   const e = document.createElement("canvas");
   if (typeof e.captureStream != "function") return null;
-  const o = e.getContext("2d");
-  if (!o) return null;
+  const i = e.getContext("2d");
+  if (!i) return null;
   const n = document.createElement("video");
-  n.muted = !0, n.playsInline = !0, n.srcObject = i, await Ht(n);
-  const s = yi(
+  n.muted = !0, n.playsInline = !0, n.srcObject = o, await Mt(n);
+  const a = fo(
     n.videoWidth,
     n.videoHeight,
     window.innerWidth,
     window.innerHeight,
-    ki()
+    bo()
   );
-  e.width = s.width, e.height = s.height, await Ot(n);
-  let a = 0;
-  const c = () => {
-    wi(o, n, s), a = requestAnimationFrame(c);
+  e.width = a.width, e.height = a.height, await Pt(n);
+  let s = 0;
+  const d = () => {
+    mo(i, n, a), s = requestAnimationFrame(d);
   };
-  c();
-  const l = e.captureStream(t);
+  d();
+  const c = e.captureStream(t);
   return {
-    stream: l,
+    stream: c,
     stop: () => {
-      a && cancelAnimationFrame(a), a = 0, l.getTracks().forEach((d) => d.stop()), n.pause(), n.srcObject = null;
+      s && cancelAnimationFrame(s), s = 0, c.getTracks().forEach((l) => l.stop()), n.pause(), n.srcObject = null;
     }
   };
 }
-function qi(i, t, e, o, n) {
-  const s = Math.max(0, Math.min(o, i.left * t)), a = Math.max(0, Math.min(n, i.top * e)), c = Math.max(0, Math.min(o, (i.left + i.width) * t)), l = Math.max(0, Math.min(n, (i.top + i.height) * e)), d = c - s, r = l - a;
-  return d <= 0 || r <= 0 ? null : { x: s, y: a, w: d, h: r };
+function vo(o, t, e, i, n) {
+  const a = Math.max(0, Math.min(i, o.left * t)), s = Math.max(0, Math.min(n, o.top * e)), d = Math.max(0, Math.min(i, (o.left + o.width) * t)), c = Math.max(0, Math.min(n, (o.top + o.height) * e)), l = d - a, r = c - s;
+  return l <= 0 || r <= 0 ? null : { x: a, y: s, w: l, h: r };
 }
-function Ci(i, t, e, o, n, s, a) {
-  i.drawImage(t, 0, 0, o, n);
-  const c = o / Math.max(1, window.innerWidth), l = n / Math.max(1, window.innerHeight);
-  for (const d of e) {
-    const r = qi(
-      d.getBoundingClientRect(),
+function yo(o, t, e, i, n, a, s) {
+  o.drawImage(t, 0, 0, i, n);
+  const d = i / Math.max(1, window.innerWidth), c = n / Math.max(1, window.innerHeight);
+  for (const l of e) {
+    const r = vo(
+      l.getBoundingClientRect(),
+      d,
       c,
-      l,
-      o,
+      i,
       n
     );
-    r && (i.save(), a ? (i.filter = `blur(${s}px)`, i.drawImage(t, r.x, r.y, r.w, r.h, r.x, r.y, r.w, r.h)) : (i.fillStyle = "#0b0b0b", i.fillRect(r.x, r.y, r.w, r.h)), i.restore());
+    r && (o.save(), s ? (o.filter = `blur(${a}px)`, o.drawImage(t, r.x, r.y, r.w, r.h, r.x, r.y, r.w, r.h)) : (o.fillStyle = "#0b0b0b", o.fillRect(r.x, r.y, r.w, r.h)), o.restore());
   }
 }
-async function Si(i, t, e = {}) {
-  const o = e.frameRate ?? 15, n = e.blurRadius ?? 12, s = document.createElement("canvas");
-  if (typeof s.captureStream != "function") return null;
-  const a = s.getContext("2d");
-  if (!a) return null;
-  const c = "filter" in a, l = document.createElement("video");
-  l.muted = !0, l.playsInline = !0, l.srcObject = i, await Ht(l), s.width = l.videoWidth, s.height = l.videoHeight, await Ot(l);
-  let d = 0;
+async function wo(o, t, e = {}) {
+  const i = e.frameRate ?? 15, n = e.blurRadius ?? 12, a = document.createElement("canvas");
+  if (typeof a.captureStream != "function") return null;
+  const s = a.getContext("2d");
+  if (!s) return null;
+  const d = "filter" in s, c = document.createElement("video");
+  c.muted = !0, c.playsInline = !0, c.srcObject = o, await Mt(c), a.width = c.videoWidth, a.height = c.videoHeight, await Pt(c);
+  let l = 0;
   const r = () => {
-    Ci(
-      a,
-      l,
+    yo(
+      s,
+      c,
       t,
-      s.width,
-      s.height,
+      a.width,
+      a.height,
       n,
-      c
-    ), d = requestAnimationFrame(r);
+      d
+    ), l = requestAnimationFrame(r);
   };
   r();
-  const h = s.captureStream(o);
+  const h = a.captureStream(i);
   return {
     stream: h,
     stop: () => {
-      d && cancelAnimationFrame(d), d = 0, h.getTracks().forEach((f) => f.stop()), l.pause(), l.srcObject = null;
+      l && cancelAnimationFrame(l), l = 0, h.getTracks().forEach((f) => f.stop()), c.pause(), c.srcObject = null;
     }
   };
 }
-const zt = "This browser cannot blur the areas you picked, so the recording was not started.";
-function Ti() {
+const Rt = "This browser cannot blur the areas you picked, so the recording was not started.";
+function ko() {
   return typeof navigator < "u" && !!navigator.mediaDevices && typeof navigator.mediaDevices.getDisplayMedia == "function" && typeof MediaRecorder < "u";
 }
-function $t() {
+function Bt() {
   if (typeof MediaRecorder > "u") return "";
-  const i = [
+  const o = [
     "video/webm;codecs=vp9",
     "video/webm;codecs=vp8",
     "video/webm",
     "video/mp4"
   ];
-  for (const t of i)
+  for (const t of o)
     if (MediaRecorder.isTypeSupported(t))
       return t;
   return "";
 }
-function Ei(i = {}) {
-  const t = i.maxDuration ?? 15, e = i.videoBitsPerSecond ?? 8e5, o = i.redactionElements ?? [], n = i.redactionBlurRadius;
-  let s = null, a = null, c = null, l = null, d = [], r = null, h = null, f = null, b = 0, y = null, g = null, w = !1, x = null;
+function xo(o = {}) {
+  const t = o.maxDuration ?? 15, e = o.videoBitsPerSecond ?? 8e5, i = o.redactionElements ?? [], n = o.redactionBlurRadius;
+  let a = null, s = null, d = null, c = null, l = [], r = null, h = null, f = null, m = 0, g = null, v = null, w = !1, x = null;
   function u() {
-    f !== null && (clearInterval(f), f = null), x !== null && (clearTimeout(x), x = null), a && (a.stop(), a = null), c && (c.stop(), c = null), s && (s.getTracks().forEach((v) => v.stop()), s = null), l = null, d = [], r = null, h = null, y = null, g = null;
+    f !== null && (clearInterval(f), f = null), x !== null && (clearTimeout(x), x = null), s && (s.stop(), s = null), d && (d.stop(), d = null), a && (a.getTracks().forEach((y) => y.stop()), a = null), c = null, l = [], r = null, h = null, g = null, v = null;
   }
   function k() {
-    w || (w = !0, l && l.state !== "inactive" && l.stop());
+    w || (w = !0, c && c.state !== "inactive" && c.stop());
   }
   return {
     async start() {
-      w = !1, d = [];
-      const v = $t();
-      if (!v)
+      w = !1, l = [];
+      const y = Bt();
+      if (!y)
         throw new Error("No supported video MIME type found");
-      s = await navigator.mediaDevices.getDisplayMedia({
+      a = await navigator.mediaDevices.getDisplayMedia({
         video: {
           frameRate: 15,
           displaySurface: "browser"
@@ -1532,102 +1279,102 @@ function Ei(i = {}) {
         monitorTypeSurfaces: "exclude",
         surfaceSwitching: "exclude"
       });
-      const C = s.getVideoTracks()[0], A = C?.getSettings?.()?.displaySurface;
-      if (A === "monitor" || A === "window")
-        throw s.getTracks().forEach((m) => m.stop()), s = null, new Error(
+      const C = a.getVideoTracks()[0], L = C?.getSettings?.()?.displaySurface;
+      if (L === "monitor" || L === "window")
+        throw a.getTracks().forEach((b) => b.stop()), a = null, new Error(
           "qaid records only the current tab — please share this tab, not a window or your whole screen."
         );
       C && C.addEventListener("ended", () => {
         k();
       });
-      let S = s;
-      if (vi()) {
-        const m = await xi(s);
-        m && (a = m, S = m.stream);
+      let S = a;
+      if (po()) {
+        const b = await go(a);
+        b && (s = b, S = b.stream);
       }
-      if (o.length > 0) {
-        const m = await Si(S, o, {
+      if (i.length > 0) {
+        const b = await wo(S, i, {
           blurRadius: n
         });
-        if (!m)
-          throw a && (a.stop(), a = null), s.getTracks().forEach((T) => T.stop()), s = null, new Error(zt);
-        c = m, S = m.stream;
+        if (!b)
+          throw s && (s.stop(), s = null), a.getTracks().forEach((E) => E.stop()), a = null, new Error(Rt);
+        d = b, S = b.stream;
       }
-      l = new MediaRecorder(S, {
-        mimeType: v,
+      c = new MediaRecorder(S, {
+        mimeType: y,
         videoBitsPerSecond: e
-      }), l.ondataavailable = (m) => {
-        m.data.size > 0 && d.push(m.data);
-      }, l.onstop = () => {
-        const m = new Blob(d, { type: v });
-        y && y(m), h && h(m), a && (a.stop(), a = null), c && (c.stop(), c = null), s && s.getTracks().forEach((T) => T.stop());
-      }, l.onerror = () => {
-        g && g(new Error("MediaRecorder error"));
-      }, l.start(1e3), b = Date.now(), f = setInterval(() => {
-        const m = Math.floor((Date.now() - b) / 1e3);
-        r && r(m);
+      }), c.ondataavailable = (b) => {
+        b.data.size > 0 && l.push(b.data);
+      }, c.onstop = () => {
+        const b = new Blob(l, { type: y });
+        g && g(b), h && h(b), s && (s.stop(), s = null), d && (d.stop(), d = null), a && a.getTracks().forEach((E) => E.stop());
+      }, c.onerror = () => {
+        v && v(new Error("MediaRecorder error"));
+      }, c.start(1e3), m = Date.now(), f = setInterval(() => {
+        const b = Math.floor((Date.now() - m) / 1e3);
+        r && r(b);
       }, 1e3), x = setTimeout(() => {
         k();
       }, t * 1e3);
     },
     stop() {
-      return new Promise((v, C) => {
-        y = v, g = C, k();
+      return new Promise((y, C) => {
+        g = y, v = C, k();
       });
     },
-    onTick(v) {
-      r = v;
+    onTick(y) {
+      r = y;
     },
-    onStop(v) {
-      h = v;
+    onStop(y) {
+      h = y;
     },
     destroy() {
       k(), u();
     }
   };
 }
-const _t = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const Ht = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  REDACTION_UNAVAILABLE: zt,
-  createVideoRecorder: Ei,
-  getSupportedMimeType: $t,
-  isVideoRecordingSupported: Ti
-}, Symbol.toStringTag, { value: "Module" })), wt = "https://qaid.dev/lib/html2canvas.min.js", Ai = 1e4, Li = 50;
-let I = null;
-function Ii() {
+  REDACTION_UNAVAILABLE: Rt,
+  createVideoRecorder: xo,
+  getSupportedMimeType: Bt,
+  isVideoRecordingSupported: ko
+}, Symbol.toStringTag, { value: "Module" })), kt = "https://qaid.dev/lib/html2canvas.min.js", qo = 1e4, Co = 50;
+let D = null;
+function So() {
   if (typeof document > "u" || typeof window > "u")
     return !1;
-  const i = document.createElement("canvas");
-  return typeof i.getContext == "function" && !!i.getContext("2d");
+  const o = document.createElement("canvas");
+  return typeof o.getContext == "function" && !!o.getContext("2d");
 }
-function Di() {
-  return window.html2canvas ? Promise.resolve(!0) : I || (I = new Promise((i) => {
+function Eo() {
+  return window.html2canvas ? Promise.resolve(!0) : D || (D = new Promise((o) => {
     if (!document.querySelector(
-      `script[src="${wt}"]`
+      `script[src="${kt}"]`
     )) {
       const n = document.createElement("script");
-      n.src = wt, n.async = !0, document.head.appendChild(n);
+      n.src = kt, n.async = !0, document.head.appendChild(n);
     }
-    const e = Date.now(), o = () => {
+    const e = Date.now(), i = () => {
       if (window.html2canvas) {
-        i(!0);
+        o(!0);
         return;
       }
-      if (Date.now() - e > Ai) {
-        I = null, i(!1);
+      if (Date.now() - e > qo) {
+        D = null, o(!1);
         return;
       }
-      setTimeout(o, Li);
+      setTimeout(i, Co);
     };
-    o();
-  }), I);
+    i();
+  }), D);
 }
-async function Mi(i = {}) {
-  const { quality: t = 0.8, maxWidth: e = 1280, maxHeight: o = 800 } = i;
+async function To(o = {}) {
+  const { quality: t = 0.8, maxWidth: e = 1280, maxHeight: i = 800 } = o;
   try {
-    if (!await Di() || !window.html2canvas)
+    if (!await Eo() || !window.html2canvas)
       return console.warn("html2canvas failed to load"), null;
-    const s = await window.html2canvas(document.body, {
+    const a = await window.html2canvas(document.body, {
       useCORS: !0,
       allowTaint: !1,
       logging: !1,
@@ -1637,24 +1384,24 @@ async function Mi(i = {}) {
       height: document.documentElement.clientHeight,
       x: window.scrollX,
       y: window.scrollY,
-      ignoreElements: (d) => d instanceof HTMLElement ? d.classList.contains("qaid-buttons") || d.classList.contains("qaid-targeting-overlay") || d.classList.contains("qaid-modal-container") || d.classList.contains("qaid-bottom-sheet") || d.classList.contains("qaid-backdrop") || d.classList.contains("qaid-selected-marker") || d.classList.contains("qaid-tooltip-text") || d.classList.contains("qaid-recording-indicator") || d.classList.contains("qaid-video-preview") || d.className?.toString().startsWith?.("qaid-") : !1
-    }), a = s.width, c = s.height, l = Math.min(e / a, o / c, 1);
-    if (l < 1) {
-      const d = Math.round(a * l), r = Math.round(c * l), h = document.createElement("canvas");
-      h.width = d, h.height = r;
+      ignoreElements: (l) => l instanceof HTMLElement ? l.classList.contains("qaid-buttons") || l.classList.contains("qaid-targeting-overlay") || l.classList.contains("qaid-modal-container") || l.classList.contains("qaid-bottom-sheet") || l.classList.contains("qaid-backdrop") || l.classList.contains("qaid-selected-marker") || l.classList.contains("qaid-tooltip-text") || l.classList.contains("qaid-recording-indicator") || l.classList.contains("qaid-video-preview") || l.className?.toString().startsWith?.("qaid-") : !1
+    }), s = a.width, d = a.height, c = Math.min(e / s, i / d, 1);
+    if (c < 1) {
+      const l = Math.round(s * c), r = Math.round(d * c), h = document.createElement("canvas");
+      h.width = l, h.height = r;
       const f = h.getContext("2d");
-      return f ? (f.drawImage(s, 0, 0, d, r), h.toDataURL("image/webp", t)) : null;
+      return f ? (f.drawImage(a, 0, 0, l, r), h.toDataURL("image/webp", t)) : null;
     }
-    return s.toDataURL("image/webp", t);
+    return a.toDataURL("image/webp", t);
   } catch (n) {
     return console.warn("DOM screenshot capture failed:", n), null;
   }
 }
-const kt = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const Ot = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  captureDomScreenshot: Mi,
-  isDomScreenshotSupported: Ii
-}, Symbol.toStringTag, { value: "Module" })), Ri = ".qaid-annotate{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;gap:.75rem;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#000000d9;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px);animation:qaid-fadeIn .2s ease-out}.qaid-annotate-title{margin:0;font-size:var(--qaid-font-size, 16px);font-weight:700;text-align:center;color:#f9fafb}.qaid-annotate-desc{margin:0;font-size:calc(var(--qaid-font-size, 16px) * .8125);line-height:1.4;text-align:center;color:#f9fafbbf}.qaid-annotate-stage{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;overflow:auto}.qaid-annotate-canvas{max-width:100%;max-height:100%;object-fit:contain;background:light-dark(#ffffff,#111827);border-radius:.5rem;box-shadow:0 10px 30px #00000080;touch-action:none;cursor:crosshair}.qaid-annotate-toolbar{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;justify-content:center;padding:.5rem .75rem;background:light-dark(#ffffff,#1f2937);border-radius:.75rem;box-shadow:0 10px 30px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5))}.qaid-annotate-tools,.qaid-annotate-actions{display:flex;gap:.375rem;align-items:center}button.qaid-annotate-tool,button.qaid-annotate-action{display:inline-flex;align-items:center;justify-content:center;gap:.375rem;min-width:44px;min-height:44px;padding:0 .75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;background:light-dark(#f9fafb,#111827);color:light-dark(#1f2937,#f9fafb);font-family:inherit;font-size:calc(var(--qaid-font-size, 16px) * .8125);font-weight:600;cursor:pointer;-webkit-appearance:none;appearance:none;transition:background-color .15s,color .15s,border-color .15s,filter .15s}button.qaid-annotate-tool svg,button.qaid-annotate-action svg{width:20px;height:20px}.qaid-annotate-colors{display:flex;gap:.25rem;align-items:center}button.qaid-annotate-swatch{width:28px;height:28px;min-width:28px;padding:0;border-radius:9999px;border:2px solid light-dark(#d1d5db,#4b5563);background:var(--qaid-swatch, #000);cursor:pointer;-webkit-appearance:none;appearance:none;transition:transform .1s,box-shadow .15s,border-color .15s}button.qaid-annotate-swatch:hover{transform:scale(1.12)}button.qaid-annotate-swatch[aria-pressed=true]{border-color:light-dark(#111827,#f9fafb);box-shadow:0 0 0 2px var(--qaid-swatch)}@media(forced-colors:active){button.qaid-annotate-swatch[aria-pressed=true]{outline:2px solid Highlight;outline-offset:1px}}button.qaid-annotate-tool:hover,button.qaid-annotate-action:hover{background:light-dark(#eef2ff,#312e81)}button.qaid-annotate-tool[aria-pressed=true],button.qaid-annotate-done{background:var(--qaid-marker, #6365f1);color:var(--qaid-marker-text, #fff);border-color:var(--qaid-marker, #6365f1)}button.qaid-annotate-done:hover{filter:brightness(.9);background:var(--qaid-marker, #6365f1)}button.qaid-annotate-action:disabled{opacity:.45;cursor:not-allowed}@media(forced-colors:active){button.qaid-annotate-tool[aria-pressed=true],button.qaid-annotate-done{border:2px solid Highlight}.qaid-annotate-canvas{border:1px solid CanvasText}}@keyframes qaid-fadeIn{0%{opacity:0}to{opacity:1}}", E = 12, Pi = "#ef4444", Bi = ["#ef4444", "#f59e0b", "#22c55e", "#3b82f6", "#111827", "#ffffff"], Hi = {
+  captureDomScreenshot: To,
+  isDomScreenshotSupported: So
+}, Symbol.toStringTag, { value: "Module" })), Ao = ".qaid-annotate{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;gap:.75rem;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#000000d9;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px);animation:qaid-fadeIn .2s ease-out}.qaid-annotate-title{margin:0;font-size:var(--qaid-font-size, 16px);font-weight:700;text-align:center;color:#f9fafb}.qaid-annotate-desc{margin:0;font-size:calc(var(--qaid-font-size, 16px) * .8125);line-height:1.4;text-align:center;color:#f9fafbbf}.qaid-annotate-stage{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;overflow:auto}.qaid-annotate-canvas{max-width:100%;max-height:100%;object-fit:contain;background:light-dark(#ffffff,#111827);border-radius:.5rem;box-shadow:0 10px 30px #00000080;touch-action:none;cursor:crosshair}.qaid-annotate-toolbar{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;justify-content:center;padding:.5rem .75rem;background:light-dark(#ffffff,#1f2937);border-radius:.75rem;box-shadow:0 10px 30px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5))}.qaid-annotate-tools,.qaid-annotate-actions{display:flex;gap:.375rem;align-items:center}button.qaid-annotate-tool,button.qaid-annotate-action{display:inline-flex;align-items:center;justify-content:center;gap:.375rem;min-width:44px;min-height:44px;padding:0 .75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;background:light-dark(#f9fafb,#111827);color:light-dark(#1f2937,#f9fafb);font-family:inherit;font-size:calc(var(--qaid-font-size, 16px) * .8125);font-weight:600;cursor:pointer;-webkit-appearance:none;appearance:none;transition:background-color .15s,color .15s,border-color .15s,filter .15s}button.qaid-annotate-tool svg,button.qaid-annotate-action svg{width:20px;height:20px}.qaid-annotate-colors{display:flex;gap:.25rem;align-items:center}button.qaid-annotate-swatch{width:28px;height:28px;min-width:28px;padding:0;border-radius:9999px;border:2px solid light-dark(#d1d5db,#4b5563);background:var(--qaid-swatch, #000);cursor:pointer;-webkit-appearance:none;appearance:none;transition:transform .1s,box-shadow .15s,border-color .15s}button.qaid-annotate-swatch:hover{transform:scale(1.12)}button.qaid-annotate-swatch[aria-pressed=true]{border-color:light-dark(#111827,#f9fafb);box-shadow:0 0 0 2px var(--qaid-swatch)}@media(forced-colors:active){button.qaid-annotate-swatch[aria-pressed=true]{outline:2px solid Highlight;outline-offset:1px}}button.qaid-annotate-tool:hover,button.qaid-annotate-action:hover{background:light-dark(#eef2ff,#312e81)}button.qaid-annotate-tool[aria-pressed=true],button.qaid-annotate-done{background:var(--qaid-marker, #6365f1);color:var(--qaid-marker-text, #fff);border-color:var(--qaid-marker, #6365f1)}button.qaid-annotate-done:hover{filter:brightness(.9);background:var(--qaid-marker, #6365f1)}button.qaid-annotate-action:disabled{opacity:.45;cursor:not-allowed}@media(forced-colors:active){button.qaid-annotate-tool[aria-pressed=true],button.qaid-annotate-done{border:2px solid Highlight}.qaid-annotate-canvas{border:1px solid CanvasText}}@keyframes qaid-fadeIn{0%{opacity:0}to{opacity:1}}", T = 12, Lo = "#ef4444", Do = ["#ef4444", "#f59e0b", "#22c55e", "#3b82f6", "#111827", "#ffffff"], Io = {
   "#ef4444": "red",
   "#f59e0b": "amber",
   "#22c55e": "green",
@@ -1666,10 +1413,10 @@ const kt = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   "#6365f1": "indigo",
   "#6366f1": "indigo"
 };
-function xt(i) {
-  return Hi[i.toLowerCase()] ?? i;
+function xt(o) {
+  return Io[o.toLowerCase()] ?? o;
 }
-const Oi = 4, zi = 0.8, $i = {
+const Mo = 4, Po = 0.8, Ro = {
   title: "Annotate screenshot",
   instructions: "Draw on the screenshot to highlight or hide details, then choose Done to attach it or Skip to send the original.",
   rectangle: "Rectangle",
@@ -1681,95 +1428,95 @@ const Oi = 4, zi = 0.8, $i = {
   done: "Done",
   colors: "Drawing colour"
 };
-function B(i, t) {
+function O(o, t) {
   return {
-    x: Math.min(i.x, t.x),
-    y: Math.min(i.y, t.y),
-    w: Math.abs(i.x - t.x),
-    h: Math.abs(i.y - t.y)
+    x: Math.min(o.x, t.x),
+    y: Math.min(o.y, t.y),
+    w: Math.abs(o.x - t.x),
+    h: Math.abs(o.y - t.y)
   };
 }
-function _i(i) {
-  if (i.type === "pen") return i.points.length < 2;
-  const t = B(i.points[0], i.points[1]);
+function Bo(o) {
+  if (o.type === "pen") return o.points.length < 2;
+  const t = O(o.points[0], o.points[1]);
   return t.w < 3 && t.h < 3;
 }
-function Fi(i, t, e, o) {
-  i.beginPath(), i.moveTo(t.x, t.y), i.lineTo(e.x, e.y), i.stroke();
-  const n = Math.atan2(e.y - t.y, e.x - t.x), s = Math.max(10, o * 3);
-  i.beginPath(), i.moveTo(e.x, e.y), i.lineTo(
-    e.x - s * Math.cos(n - Math.PI / 6),
-    e.y - s * Math.sin(n - Math.PI / 6)
-  ), i.moveTo(e.x, e.y), i.lineTo(
-    e.x - s * Math.cos(n + Math.PI / 6),
-    e.y - s * Math.sin(n + Math.PI / 6)
-  ), i.stroke();
+function Ho(o, t, e, i) {
+  o.beginPath(), o.moveTo(t.x, t.y), o.lineTo(e.x, e.y), o.stroke();
+  const n = Math.atan2(e.y - t.y, e.x - t.x), a = Math.max(10, i * 3);
+  o.beginPath(), o.moveTo(e.x, e.y), o.lineTo(
+    e.x - a * Math.cos(n - Math.PI / 6),
+    e.y - a * Math.sin(n - Math.PI / 6)
+  ), o.moveTo(e.x, e.y), o.lineTo(
+    e.x - a * Math.cos(n + Math.PI / 6),
+    e.y - a * Math.sin(n + Math.PI / 6)
+  ), o.stroke();
 }
-function Ni(i, t) {
+function Oo(o, t) {
   if (t.length !== 0) {
-    i.beginPath(), i.moveTo(t[0].x, t[0].y);
+    o.beginPath(), o.moveTo(t[0].x, t[0].y);
     for (let e = 1; e < t.length; e++)
-      i.lineTo(t[e].x, t[e].y);
-    i.stroke();
+      o.lineTo(t[e].x, t[e].y);
+    o.stroke();
   }
 }
-function Vi(i, t, e, o, n) {
-  i.fillStyle = "rgb(15, 23, 42)", i.fillRect(t, e, o, n), i.fillStyle = "rgb(37, 47, 63)";
-  for (let s = e; s < e + n; s += E)
-    for (let a = t; a < t + o; a += E)
-      (Math.floor((a - t) / E) + Math.floor((s - e) / E)) % 2 === 0 && i.fillRect(
-        a,
+function zo(o, t, e, i, n) {
+  o.fillStyle = "rgb(15, 23, 42)", o.fillRect(t, e, i, n), o.fillStyle = "rgb(37, 47, 63)";
+  for (let a = e; a < e + n; a += T)
+    for (let s = t; s < t + i; s += T)
+      (Math.floor((s - t) / T) + Math.floor((a - e) / T)) % 2 === 0 && o.fillRect(
         s,
-        Math.min(E, t + o - a),
-        Math.min(E, e + n - s)
+        a,
+        Math.min(T, t + i - s),
+        Math.min(T, e + n - a)
       );
 }
-function H(i, t) {
-  switch (i.save(), i.strokeStyle = t.color, i.fillStyle = t.color, i.lineWidth = t.strokeWidth, i.lineJoin = "round", i.lineCap = "round", t.type) {
+function z(o, t) {
+  switch (o.save(), o.strokeStyle = t.color, o.fillStyle = t.color, o.lineWidth = t.strokeWidth, o.lineJoin = "round", o.lineCap = "round", t.type) {
     case "rect": {
-      const e = B(t.points[0], t.points[1]);
-      i.strokeRect(e.x, e.y, e.w, e.h);
+      const e = O(t.points[0], t.points[1]);
+      o.strokeRect(e.x, e.y, e.w, e.h);
       break;
     }
     case "arrow":
-      Fi(i, t.points[0], t.points[1], t.strokeWidth);
+      Ho(o, t.points[0], t.points[1], t.strokeWidth);
       break;
     case "pen":
-      Ni(i, t.points);
+      Oo(o, t.points);
       break;
     case "blur": {
-      const e = B(t.points[0], t.points[1]);
-      Vi(i, e.x, e.y, e.w, e.h);
+      const e = O(t.points[0], t.points[1]);
+      zo(o, e.x, e.y, e.w, e.h);
       break;
     }
   }
-  i.restore();
+  o.restore();
 }
-function Ft(i) {
+function zt(o) {
   return new Promise((t, e) => {
-    const o = new Image();
-    o.onload = () => t(o), o.onerror = () => e(new Error("Failed to load screenshot")), o.src = i;
+    const i = new Image();
+    i.onload = () => t(i), i.onerror = () => e(new Error("Failed to load screenshot")), i.src = o;
   });
 }
-async function Nt(i, t, e = {}) {
-  const o = e.quality ?? zi;
+async function $t(o, t, e = {}) {
+  const i = e.quality ?? Po;
   let n;
   try {
-    n = await Ft(i);
+    n = await zt(o);
   } catch {
-    return i;
+    return o;
   }
-  const s = document.createElement("canvas");
-  s.width = n.naturalWidth || n.width || 1, s.height = n.naturalHeight || n.height || 1;
-  const a = s.getContext("2d");
-  if (!a) return i;
-  a.drawImage(n, 0, 0, s.width, s.height);
-  for (const c of t)
-    H(a, c);
-  return s.toDataURL("image/webp", o);
+  const a = document.createElement("canvas");
+  a.width = n.naturalWidth || n.width || 1, a.height = n.naturalHeight || n.height || 1;
+  const s = a.getContext("2d");
+  if (!s) return o;
+  s.drawImage(n, 0, 0, a.width, a.height);
+  for (const d of t)
+    z(s, d);
+  return a.toDataURL("image/webp", i);
 }
-let Ui = 0;
-class Vt {
+let $o = 0;
+class _t {
   shapes = [];
   tool = "rect";
   opts;
@@ -1777,7 +1524,7 @@ class Vt {
   color;
   palette;
   strokeWidth;
-  uid = `qaid-annotate-${++Ui}`;
+  uid = `qaid-annotate-${++$o}`;
   container;
   canvas;
   ctx = null;
@@ -1791,7 +1538,7 @@ class Vt {
   // after the editor is mounted).
   resolveResult;
   constructor(t) {
-    this.opts = t, this.labels = { ...$i, ...t.labels ?? {} }, this.color = t.color ?? Pi, this.palette = (t.palette && t.palette.length ? t.palette : Bi).slice(), this.palette.some((e) => e.toLowerCase() === this.color.toLowerCase()) || this.palette.unshift(this.color), this.strokeWidth = t.strokeWidth ?? Oi;
+    this.opts = t, this.labels = { ...Ro, ...t.labels ?? {} }, this.color = t.color ?? Lo, this.palette = (t.palette && t.palette.length ? t.palette : Do).slice(), this.palette.some((e) => e.toLowerCase() === this.color.toLowerCase()) || this.palette.unshift(this.color), this.strokeWidth = t.strokeWidth ?? Mo;
   }
   /** Mount the editor and resolve when the user commits (Done) or skips. */
   open() {
@@ -1800,20 +1547,20 @@ class Vt {
     });
     return this.mount(), t;
   }
-  toolButton(t, e, o) {
+  toolButton(t, e, i) {
     const n = q("button", {
       type: "button",
       class: "qaid-annotate-tool",
       "data-qaid-tool": t,
       "aria-pressed": t === this.tool ? "true" : "false",
-      "aria-label": `${o} tool`,
-      title: o
+      "aria-label": `${i} tool`,
+      title: i
     });
-    return n.innerHTML = `${e}<span class="qaid-annotate-btn-text">${o}</span>`, n;
+    return n.innerHTML = `${e}<span class="qaid-annotate-btn-text">${i}</span>`, n;
   }
   /** A round colour swatch button for the toolbar's colour group. */
   swatchButton(t) {
-    const e = xt(t), o = q("button", {
+    const e = xt(t), i = q("button", {
       type: "button",
       class: "qaid-annotate-swatch",
       "data-qaid-color": t,
@@ -1821,51 +1568,51 @@ class Vt {
       "aria-label": `Draw in ${e}`,
       title: e
     });
-    return o.style.setProperty("--qaid-swatch", t), o;
+    return i.style.setProperty("--qaid-swatch", t), i;
   }
-  actionButton(t, e, o, n) {
-    const s = q("button", {
+  actionButton(t, e, i, n) {
+    const a = q("button", {
       type: "button",
       class: `qaid-annotate-action ${n}`,
       "data-qaid-action": t,
-      "aria-label": o,
-      title: o
+      "aria-label": i,
+      title: i
     });
-    return s.innerHTML = `${e}<span class="qaid-annotate-btn-text">${o}</span>`, s;
+    return a.innerHTML = `${e}<span class="qaid-annotate-btn-text">${i}</span>`, a;
   }
   mount() {
     const t = `${this.uid}-title`, e = `${this.uid}-desc`;
     this.container = q("div", { class: "qaid-annotate" }), this.opts.applyVars?.(this.container);
-    const o = q("h2", {
+    const i = q("h2", {
       id: t,
       class: "qaid-annotate-title"
     });
-    o.textContent = this.labels.title;
+    i.textContent = this.labels.title;
     const n = q("p", {
       id: e,
       class: "qaid-annotate-desc"
     });
     n.textContent = this.labels.instructions;
-    const s = q("div", { class: "qaid-annotate-stage" });
-    this.canvas = document.createElement("canvas"), this.canvas.className = "qaid-annotate-canvas", this.canvas.width = 1, this.canvas.height = 1, this.canvas.setAttribute("role", "img"), this.canvas.setAttribute("aria-label", this.labels.title), this.ctx = this.canvas.getContext("2d"), s.appendChild(this.canvas), this.toolbar = q("div", {
+    const a = q("div", { class: "qaid-annotate-stage" });
+    this.canvas = document.createElement("canvas"), this.canvas.className = "qaid-annotate-canvas", this.canvas.width = 1, this.canvas.height = 1, this.canvas.setAttribute("role", "img"), this.canvas.setAttribute("aria-label", this.labels.title), this.ctx = this.canvas.getContext("2d"), a.appendChild(this.canvas), this.toolbar = q("div", {
       class: "qaid-annotate-toolbar",
       role: "toolbar",
       "aria-label": this.labels.title
     });
-    const a = q("div", { class: "qaid-annotate-tools" });
-    a.appendChild(this.toolButton("rect", pe, this.labels.rectangle)), a.appendChild(this.toolButton("arrow", fe, this.labels.arrow)), a.appendChild(this.toolButton("pen", me, this.labels.pen)), a.appendChild(this.toolButton("blur", be, this.labels.blur));
-    const c = q("div", {
+    const s = q("div", { class: "qaid-annotate-tools" });
+    s.appendChild(this.toolButton("rect", Ee, this.labels.rectangle)), s.appendChild(this.toolButton("arrow", Te, this.labels.arrow)), s.appendChild(this.toolButton("pen", Ae, this.labels.pen)), s.appendChild(this.toolButton("blur", Le, this.labels.blur));
+    const d = q("div", {
       class: "qaid-annotate-colors",
       role: "group",
       "aria-label": this.labels.colors
     });
-    for (const h of this.palette) c.appendChild(this.swatchButton(h));
-    this.undoBtn = this.actionButton("undo", ge, this.labels.undo, "qaid-annotate-undo"), this.undoBtn.disabled = !0;
-    const l = this.actionButton("skip", ye, this.labels.skip, "qaid-annotate-skip"), d = this.actionButton("done", Lt, this.labels.done, "qaid-annotate-done"), r = q("div", { class: "qaid-annotate-actions" });
-    r.appendChild(this.undoBtn), r.appendChild(l), r.appendChild(d), this.toolbar.appendChild(a), this.toolbar.appendChild(c), this.toolbar.appendChild(r), this.container.appendChild(o), this.container.appendChild(n), this.container.appendChild(s), this.container.appendChild(this.toolbar), this.opts.root.appendChild(this.container), this.toolbar.addEventListener("click", this.onToolbarClick), this.canvas.addEventListener("pointerdown", this.onPointerDown), this.container.addEventListener("pointermove", this.onPointerMove), this.container.addEventListener("pointerup", this.onPointerUp), this.container.addEventListener("keydown", this.onKeyDown), this.opts.openDialog?.(this.container, {
+    for (const h of this.palette) d.appendChild(this.swatchButton(h));
+    this.undoBtn = this.actionButton("undo", De, this.labels.undo, "qaid-annotate-undo"), this.undoBtn.disabled = !0;
+    const c = this.actionButton("skip", Me, this.labels.skip, "qaid-annotate-skip"), l = this.actionButton("done", At, this.labels.done, "qaid-annotate-done"), r = q("div", { class: "qaid-annotate-actions" });
+    r.appendChild(this.undoBtn), r.appendChild(c), r.appendChild(l), this.toolbar.appendChild(s), this.toolbar.appendChild(d), this.toolbar.appendChild(r), this.container.appendChild(i), this.container.appendChild(n), this.container.appendChild(a), this.container.appendChild(this.toolbar), this.opts.root.appendChild(this.container), this.toolbar.addEventListener("click", this.onToolbarClick), this.canvas.addEventListener("pointerdown", this.onPointerDown), this.container.addEventListener("pointermove", this.onPointerMove), this.container.addEventListener("pointerup", this.onPointerUp), this.container.addEventListener("keydown", this.onKeyDown), this.opts.openDialog?.(this.container, {
       labelledbyId: t,
       describedbyId: e
-    }), this.opts.announce?.(this.labels.instructions), Ft(this.opts.dataUrl).then((h) => {
+    }), this.opts.announce?.(this.labels.instructions), zt(this.opts.dataUrl).then((h) => {
       this.img = h, this.canvas.width = h.naturalWidth || h.width || 1, this.canvas.height = h.naturalHeight || h.height || 1, this.redraw();
     }).catch(() => {
       this.img = null, this.redraw();
@@ -1873,9 +1620,9 @@ class Vt {
   }
   /** Convert a pointer event's client coordinates into natural image pixels. */
   toImageCoords(t) {
-    const e = this.canvas.getBoundingClientRect(), o = this.canvas.width / (e.width || this.canvas.width), n = this.canvas.height / (e.height || this.canvas.height);
+    const e = this.canvas.getBoundingClientRect(), i = this.canvas.width / (e.width || this.canvas.width), n = this.canvas.height / (e.height || this.canvas.height);
     return {
-      x: (t.clientX - e.left) * o,
+      x: (t.clientX - e.left) * i,
       y: (t.clientY - e.top) * n
     };
   }
@@ -1885,8 +1632,8 @@ class Vt {
     if (t) {
       t.clearRect(0, 0, this.canvas.width, this.canvas.height), this.img && t.drawImage(this.img, 0, 0, this.canvas.width, this.canvas.height);
       for (const e of this.shapes)
-        H(t, e);
-      this.current && H(t, this.current);
+        z(t, e);
+      this.current && z(t, this.current);
     }
   }
   /** Select the active drawing tool and reflect it on the toolbar. */
@@ -1897,35 +1644,35 @@ class Vt {
         n.getAttribute("data-qaid-tool") === t ? "true" : "false"
       );
     });
-    const o = this.labels[ji[t]];
-    this.opts.announce?.(`${o} tool selected`);
+    const i = this.labels[_o[t]];
+    this.opts.announce?.(`${i} tool selected`);
   }
   /** Set the active drawing colour; subsequent shapes use it. */
   selectColor(t) {
-    this.color = t, this.toolbar.querySelectorAll("[data-qaid-color]").forEach((o) => {
-      o.setAttribute(
+    this.color = t, this.toolbar.querySelectorAll("[data-qaid-color]").forEach((i) => {
+      i.setAttribute(
         "aria-pressed",
-        (o.getAttribute("data-qaid-color") ?? "").toLowerCase() === t.toLowerCase() ? "true" : "false"
+        (i.getAttribute("data-qaid-color") ?? "").toLowerCase() === t.toLowerCase() ? "true" : "false"
       );
     }), this.opts.announce?.(`${xt(t)} colour selected`);
   }
   onToolbarClick = (t) => {
-    const o = t.target?.closest(
+    const i = t.target?.closest(
       "[data-qaid-tool],[data-qaid-action],[data-qaid-color]"
     );
-    if (!o) return;
-    const n = o.getAttribute("data-qaid-color");
+    if (!i) return;
+    const n = i.getAttribute("data-qaid-color");
     if (n) {
       this.selectColor(n);
       return;
     }
-    const s = o.getAttribute("data-qaid-tool");
-    if (s) {
-      this.selectTool(s);
+    const a = i.getAttribute("data-qaid-tool");
+    if (a) {
+      this.selectTool(a);
       return;
     }
-    const a = o.getAttribute("data-qaid-action");
-    a === "undo" ? this.undo() : a === "skip" ? this.skip() : a === "done" && this.done();
+    const s = i.getAttribute("data-qaid-action");
+    s === "undo" ? this.undo() : s === "skip" ? this.skip() : s === "done" && this.done();
   };
   onPointerDown = (t) => {
     t.preventDefault?.(), this.drawing = !0;
@@ -1946,7 +1693,7 @@ class Vt {
     if (!this.drawing || !this.current) return;
     this.drawing = !1;
     const t = this.current;
-    if (this.current = null, _i(t)) {
+    if (this.current = null, Bo(t)) {
       this.redraw();
       return;
     }
@@ -1975,7 +1722,7 @@ class Vt {
   /** Composite the annotations and resolve with the new WebP data URL. */
   async done() {
     if (this.settled) return;
-    const t = await Nt(this.opts.dataUrl, this.shapes, {
+    const t = await $t(this.opts.dataUrl, this.shapes, {
       quality: this.opts.quality
     });
     this.opts.announce?.("Annotated screenshot attached"), this.settle(t);
@@ -1991,333 +1738,398 @@ class Vt {
     this.toolbar.removeEventListener("click", this.onToolbarClick), this.canvas.removeEventListener("pointerdown", this.onPointerDown), this.container.removeEventListener("pointermove", this.onPointerMove), this.container.removeEventListener("pointerup", this.onPointerUp), this.container.removeEventListener("keydown", this.onKeyDown), this.opts.closeDialog?.(), this.container.remove();
   }
 }
-const ji = {
+const _o = {
   rect: "rectangle",
   arrow: "arrow",
   pen: "pen",
   blur: "blur"
 };
-function Ki(i) {
-  return new Vt(i).open();
+function Fo(o) {
+  return new _t(o).open();
 }
-const Wi = Ri, qt = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const Vo = Ao, Ft = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  AnnotationEditor: Vt,
-  compositeAnnotations: Nt,
-  drawShape: H,
-  openAnnotationEditor: Ki,
-  rectFromPoints: B,
-  styles: Wi
+  AnnotationEditor: _t,
+  compositeAnnotations: $t,
+  drawShape: z,
+  openAnnotationEditor: Fo,
+  rectFromPoints: O,
+  styles: Vo
 }, Symbol.toStringTag, { value: "Module" }));
-fi();
-const Xi = document;
-function p(i, t, ...e) {
-  const o = Xi.createElement(i);
-  if (t) {
-    if (t.class && (o.className = t.class), t.style && (o.style.cssText = t.style), t.html != null && (o.innerHTML = t.html), t.text != null && (o.textContent = t.text), t.attrs)
-      for (const n in t.attrs) o.setAttribute(n, t.attrs[n]);
-    if (t.on)
-      for (const n in t.on) o.addEventListener(n, t.on[n]);
-  }
-  for (const n of e)
-    n != null && n !== !1 && o.append(n);
-  return o;
+co();
+const No = [
+  "a[href]",
+  "button",
+  "input",
+  "textarea",
+  "select",
+  "[tabindex]"
+].join(",");
+function Uo(o) {
+  return o.hasAttribute("disabled") ? !0 : o.disabled === !0;
 }
-const Yi = ".qaid-recording-indicator{position:fixed;pointer-events:auto;top:12px;left:50%;transform:translate(-50%);display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:light-dark(#1f2937,#374151);color:#fff;border-radius:9999px;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;box-shadow:0 4px 12px #0000004d;z-index:99999;animation:qaid-slideDown .2s ease-out}.qaid-recording-dot{width:10px;height:10px;background:#dc2626;border-radius:50%;animation:qaid-dotPulse 1.5s ease-in-out infinite}@keyframes qaid-dotPulse{0%,to{opacity:1}50%{opacity:.3}}.qaid-recording-time{font-variant-numeric:tabular-nums;min-width:2.5rem;text-align:center}button.qaid-recording-stop{padding:.25rem .75rem;background:#dc2626;color:#fff;border:none;border-radius:9999px;font-size:calc(var(--qaid-font-size, 16px) * .75);font-weight:600;cursor:pointer;transition:background-color .2s;-webkit-appearance:none;appearance:none}button.qaid-recording-stop:hover{background:#b91c1c}.qaid-video-preview{position:fixed;inset:0 0 auto;height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#0009;z-index:99998;animation:qaid-fadeIn .2s ease-out}@keyframes qaid-fadeIn{0%{opacity:0}to{opacity:1}}.qaid-video-preview-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px #00000080;width:560px;max-width:100%;max-height:100%;overflow-y:auto;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-video-preview-box h3{font-size:calc(var(--qaid-font-size, 16px) * 1.125);font-weight:700;margin:0 0 1rem;color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box video{width:100%;max-height:50vh;max-height:50dvh;object-fit:contain;border-radius:.5rem;background:#000;margin-bottom:1rem}.qaid-video-preview-box textarea{width:100%;height:4rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:calc(var(--qaid-font-size, 16px) * .875);resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-video-error{margin:0 0 .75rem;font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;color:light-dark(#b91c1c,#fca5a5)}.qaid-video-preview-actions{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-video-btn{padding:.5rem 1rem;border:none;border-radius:.5rem;font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-video-btn-cancel{background:light-dark(#f3f4f6,#374151);color:light-dark(#374151,#d1d5db)}button.qaid-video-btn-cancel:hover{background:light-dark(#e5e7eb,#4b5563)}button.qaid-video-btn-rerecord{background:light-dark(#fef3c7,#78350f);color:light-dark(#92400e,#fde68a)}button.qaid-video-btn-rerecord:hover{filter:brightness(.9)}button.qaid-video-btn-send{background:var(--qaid-marker);color:var(--qaid-marker-text, white)}button.qaid-video-btn-send:hover{filter:brightness(.85)}button.qaid-video-btn-send:disabled{opacity:.5;cursor:not-allowed}.qaid-video-sending{display:flex;align-items:center;gap:.5rem;font-size:calc(var(--qaid-font-size, 16px) * .875);color:light-dark(#6b7280,#9ca3af)}@keyframes qaid-slideDown{0%{transform:translateY(-100%)}to{transform:translateY(0)}}button.qaid-recording-stop{min-height:24px}.qaid-video-preview-box textarea:focus-visible{outline:2px solid var(--qaid-marker, #6365f1);outline-offset:2px}@media(forced-colors:active){.qaid-video-preview-box textarea:focus{outline:2px solid CanvasText;outline-offset:2px}}";
-class Qi {
-  constructor(t) {
-    this.host = t;
+function jo(o) {
+  let t = o;
+  for (; t; ) {
+    if (t.hasAttribute("hidden")) return !0;
+    const e = t.style;
+    if (e && (e.display === "none" || e.visibility === "hidden" || e.visibility === "collapse"))
+      return !0;
+    t = t.parentElement;
   }
-  host;
-  videoRecorder = null;
-  networkCapture = null;
-  recordedBlob = null;
-  recordingIndicator = null;
-  videoPreview = null;
-  isRecording = !1;
-  isSendingVideo = !1;
-  // Pre-recording redaction picking.
-  redactPicks = [];
-  redactPickerRoot = null;
-  redactRafId = 0;
-  boundRedactClick = (t) => this.handleRedactPickClick(t);
-  /** Escape-key handler; returns true when it consumed the key. */
-  handleEscape() {
-    return this.isRecording ? (this.stopRecording(), !0) : this.videoPreview ? (this.cancelRecordingPreview(), !0) : this.redactPickerRoot ? (this.finishRedactionPicking(!1), !0) : !1;
-  }
-  destroy() {
-    this.redactRafId && cancelAnimationFrame(this.redactRafId), this.redactRafId = 0, document.removeEventListener("click", this.boundRedactClick, !0), this.redactPickerRoot && (this.redactPickerRoot.remove(), this.redactPickerRoot = null), this.redactPicks = [], this.cleanupRecording(), this.removeVideoPreview();
-  }
-  async startRecording(t = []) {
-    if (!(this.isRecording || this.host.state !== "IDLE"))
-      try {
-        this.networkCapture = gi();
-        const { createVideoRecorder: e } = await Promise.resolve().then(() => _t);
-        this.videoRecorder = e({
-          maxDuration: this.host.config.videoOptions.maxDuration,
-          redactionElements: t
-        }), this.videoRecorder.onTick((o) => {
-          this.updateRecordingTimer(o);
-        }), this.videoRecorder.onStop((o) => {
-          this.isRecording && (this.recordedBlob = o, this.isRecording = !1, this.host.announceMsg("Recording stopped"), this.removeRecordingIndicator(), document.removeEventListener("keydown", this.host.boundKeyDown), this.host.setButtonsDisabled(!1), o && o.size > 0 ? this.showRecordingPreview() : this.cleanupRecording());
-        }), await this.videoRecorder.start(), this.isRecording = !0, this.host.announceMsg("Recording started"), this.host.setButtonsDisabled(!0), this.showRecordingIndicator(), document.addEventListener("keydown", this.host.boundKeyDown);
-      } catch (e) {
-        e instanceof Error && /current tab|cannot blur/i.test(e.message) && this.host.announceMsg(e.message), this.cleanupRecording();
-      }
-  }
-  async stopRecording() {
-    try {
-      this.recordedBlob = await this.videoRecorder.stop();
-    } catch {
-      this.recordedBlob = null;
-    }
-    this.isRecording = !1, this.host.announceMsg("Recording stopped"), this.removeRecordingIndicator(), document.removeEventListener("keydown", this.host.boundKeyDown), this.recordedBlob && this.recordedBlob.size > 0 ? this.showRecordingPreview() : this.cleanupRecording();
-  }
-  /**
-   * Pre-recording redaction picker. The user clicks page areas to blur; each
-   * gets an outline that tracks its position, then "Start recording" hands the
-   * picks to the recorder, which blurs their live bounding boxes so the
-   * redaction follows the content as the page scrolls. "Cancel"/Escape aborts.
-   */
-  startPicking() {
-    if (this.isRecording || this.host.state !== "IDLE") return;
-    this.host.setState("REDACT_PICKING"), this.redactPicks = [];
-    const t = this.host.ensureOverlayHost(), e = p("div", { style: "position:absolute;inset:0;" }), o = p(
-      "div",
-      { class: "qaid-redact-picker", style: "position:fixed;inset:0;pointer-events:none;" },
-      e,
-      // Control bar — the only pointer-interactive part of the overlay.
-      p(
-        "div",
-        {
-          style: "position:fixed;left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:12px;align-items:center;pointer-events:auto;background:#0b1220;color:#fff;border:1px solid #ff6b6b;border-radius:9999px;padding:10px 16px;font:600 13px system-ui,sans-serif;box-shadow:0 8px 30px rgba(0,0,0,.5);"
-        },
-        p("span", {
-          text: "Click sensitive areas to blur",
-          attrs: { "data-qaid-redact-label": "" }
-        }),
-        p("button", {
-          text: "Start recording",
-          attrs: { type: "button" },
-          style: "cursor:pointer;border:0;border-radius:9999px;padding:8px 14px;background:#ff6b6b;color:#0b1220;font:inherit;",
-          on: { click: () => this.finishRedactionPicking(!0) }
-        }),
-        p("button", {
-          text: "Cancel",
-          attrs: { type: "button" },
-          style: "cursor:pointer;border:0;background:transparent;color:#9fb3c8;font:inherit;",
-          on: { click: () => this.finishRedactionPicking(!1) }
-        })
-      )
-    );
-    t.appendChild(o), this.redactPickerRoot = o;
-    const n = () => {
-      this.renderRedactPicks(e), this.redactRafId = requestAnimationFrame(n);
-    };
-    n(), document.addEventListener("click", this.boundRedactClick, !0), document.addEventListener("keydown", this.host.boundKeyDown), this.host.announceMsg("Click sensitive areas to blur, then start recording");
-  }
-  handleRedactPickClick(t) {
-    const e = t.target instanceof Element ? t.target : null;
-    if (!e || R(e) || this.redactPickerRoot?.contains(e)) return;
-    t.preventDefault(), t.stopPropagation();
-    const o = this.redactPicks.indexOf(e);
-    o >= 0 ? this.redactPicks.splice(o, 1) : this.redactPicks.push(e);
-    const n = this.redactPickerRoot?.querySelector("[data-qaid-redact-label]");
-    if (n) {
-      const s = this.redactPicks.length;
-      n.textContent = s === 0 ? "Click sensitive areas to blur" : `${s} area${s === 1 ? "" : "s"} will be blurred`;
-    }
-  }
-  renderRedactPicks(t) {
-    t.textContent = "";
-    for (const e of this.redactPicks) {
-      const o = e.getBoundingClientRect();
-      o.width <= 0 || o.height <= 0 || t.appendChild(
-        p("div", {
-          style: `position:fixed;left:${o.left}px;top:${o.top}px;width:${o.width}px;height:${o.height}px;border:2px solid #ff6b6b;border-radius:4px;background:rgba(255,107,107,.18);pointer-events:none;`
-        })
-      );
-    }
-  }
-  finishRedactionPicking(t) {
-    this.redactRafId && cancelAnimationFrame(this.redactRafId), this.redactRafId = 0, document.removeEventListener("click", this.boundRedactClick, !0), document.removeEventListener("keydown", this.host.boundKeyDown), this.redactPickerRoot && (this.redactPickerRoot.remove(), this.redactPickerRoot = null);
-    const e = this.redactPicks;
-    this.redactPicks = [], this.host.setState("IDLE"), t && this.startRecording(e);
-  }
-  showRecordingIndicator() {
-    const t = this.host.ensureOverlayHost();
-    this.recordingIndicator = p(
-      "div",
-      { class: "qaid-recording-indicator", style: `z-index:${this.host.config.zIndex + 100}` },
-      p("div", { class: "qaid-recording-dot" }),
-      p("span", {
-        class: "qaid-recording-time",
-        text: this.formatTime(this.host.config.videoOptions.maxDuration)
-      }),
-      p("button", {
-        class: "qaid-recording-stop",
-        text: "Stop",
-        attrs: { type: "button" },
-        on: { click: () => this.stopRecording() }
-      })
-    ), this.host.applyVars(this.recordingIndicator), t.appendChild(this.recordingIndicator);
-  }
-  updateRecordingTimer(t) {
-    if (!this.recordingIndicator) return;
-    const e = this.recordingIndicator.querySelector(".qaid-recording-time");
-    if (e) {
-      const o = Math.max(0, this.host.config.videoOptions.maxDuration - t);
-      e.textContent = this.formatTime(o), o > 0 && o <= 5 && this.host.announceMsg(`${o} second${o === 1 ? "" : "s"} remaining`);
-    }
-  }
-  formatTime(t) {
-    const e = Math.floor(t / 60), o = t % 60;
-    return `${e}:${o.toString().padStart(2, "0")}`;
-  }
-  removeRecordingIndicator() {
-    this.recordingIndicator && (this.recordingIndicator.remove(), this.recordingIndicator = null);
-  }
-  showRecordingPreview() {
-    const t = this.host.ensureOverlayHost(), e = URL.createObjectURL(this.recordedBlob), o = `qaid-video-title-${this.host.uid}`, n = p("h3", { text: "Review your recording", attrs: { id: o } }), s = p("video");
-    s.src = e, s.controls = !0, s.autoplay = !0, s.muted = !0;
-    const a = p("textarea", {
-      attrs: {
-        placeholder: "Optional: Describe the issue you recorded...",
-        "aria-label": "Describe the issue you recorded"
-      }
-    }), c = p("button", {
-      class: "qaid-video-btn qaid-video-btn-send",
-      text: "Send",
-      attrs: { type: "button" },
-      on: { click: () => this.submitVideoFeedback(a.value.trim() || null, c) }
-    }), l = p(
-      "div",
-      { class: "qaid-video-preview-box" },
-      n,
-      s,
-      a,
-      p(
-        "div",
-        { class: "qaid-video-preview-actions" },
-        p("button", {
-          class: "qaid-video-btn qaid-video-btn-cancel",
-          text: "Cancel",
-          attrs: { type: "button" },
-          on: { click: () => this.cancelRecordingPreview() }
-        }),
-        p("button", {
-          class: "qaid-video-btn qaid-video-btn-rerecord",
-          text: "Re-record",
-          attrs: { type: "button" },
-          on: {
-            click: () => {
-              this.cancelRecordingPreview(), this.startRecording();
-            }
-          }
-        }),
-        c
-      )
-    );
-    this.videoPreview = p(
-      "div",
-      { class: "qaid-video-preview", style: `z-index:${this.host.config.zIndex + 100}` },
-      l
-    ), this.host.applyVars(this.videoPreview), this.host.overlayShadowHost && (this.host.overlayShadowHost.style.pointerEvents = "auto"), t.appendChild(this.videoPreview), this.host.openDialogA11y(l, { labelledbyId: n.id }), document.addEventListener("keydown", this.host.boundKeyDown);
-  }
-  cancelRecordingPreview() {
-    this.removeVideoPreview(), this.cleanupRecording();
-  }
-  removeVideoPreview() {
-    if (this.host.closeDialogA11y(), this.videoPreview) {
-      const t = this.videoPreview.querySelector("video");
-      t?.src && URL.revokeObjectURL(t.src), this.videoPreview.remove(), this.videoPreview = null;
-    }
-    document.removeEventListener("keydown", this.host.boundKeyDown);
-  }
-  async submitVideoFeedback(t, e) {
-    if (!this.recordedBlob || this.isSendingVideo) return;
-    this.isSendingVideo = !0, e.disabled = !0, e.textContent = "Sending...";
-    const o = new FormData();
-    o.append("video", this.recordedBlob, `recording.${this.recordedBlob.type.includes("mp4") ? "mp4" : "webm"}`), o.append("pageUrl", window.location.href), o.append("visitorId", this.host.visitorId), this.host.config.apiKey && o.append("apiKey", this.host.config.apiKey), t && o.append("message", t), this.host.consoleCapture && o.append("consoleErrors", JSON.stringify(this.host.consoleCapture.errors)), this.networkCapture && o.append("networkErrors", JSON.stringify(this.networkCapture.errors));
-    let n = null, s = null;
-    try {
-      const a = await fetch(`${this.host.config.endpoint}/video`, {
-        method: "POST",
-        body: o
-      });
-      if (a.ok) {
-        this.host.announceMsg("Recording sent");
-        try {
-          n = (await a.json())?.id ?? null;
-        } catch {
-        }
-      } else
-        console.error("Failed to submit video feedback:", await a.text()), s = a.status === 413 ? "This recording is too large to send. Try a shorter one." : "Your recording could not be sent.";
-    } catch (a) {
-      console.error("Failed to submit video feedback:", a), s = "Your recording could not be sent. Check your connection and try again.";
-    }
-    if (this.isSendingVideo = !1, s) {
-      this.showSendError(s, e);
+  return !1;
+}
+function X(o) {
+  return Array.from(
+    o.querySelectorAll(No)
+  ).filter((e) => !(e.getAttribute("tabindex") === "-1" || e instanceof HTMLInputElement && e.type === "hidden" || e instanceof HTMLAnchorElement && !e.getAttribute("href") || Uo(e) || jo(e)));
+}
+function Vt(o) {
+  let t = o.activeElement;
+  for (; t && t.shadowRoot && t.shadowRoot.activeElement; )
+    t = t.shadowRoot.activeElement;
+  return t instanceof HTMLElement ? t : null;
+}
+function Nt(o) {
+  const t = o.ownerDocument || document;
+  let e = !1;
+  const i = (a) => {
+    if (a.key !== "Tab") return;
+    const s = X(o);
+    if (s.length === 0) {
+      a.preventDefault(), o.focus();
       return;
     }
-    this.removeVideoPreview(), this.cleanupRecording(), await this.host.tryLaunchQuest("video", n);
-  }
-  /**
-   * Keep the preview open and say the upload failed. Closing it, as a success
-   * does, told the visitor their recording had arrived when it had not. Send
-   * is re-enabled for another try; Cancel and Re-record still work.
-   */
-  showSendError(t, e) {
-    this.host.announceMsg(`Failed to send recording. ${t}`, !0), e.disabled = !1, e.textContent = "Send";
-    const o = this.videoPreview?.querySelector(".qaid-video-preview-actions");
-    if (o) {
-      let n = this.videoPreview.querySelector(".qaid-video-error");
-      n || (n = p("p", { class: "qaid-video-error" }), o.before(n)), n.textContent = t;
+    const d = s[0], c = s[s.length - 1], l = Vt(t), r = l ? s.indexOf(l) !== -1 : !1;
+    a.shiftKey ? (!r || l === d) && (a.preventDefault(), c.focus()) : (!r || l === c) && (a.preventDefault(), d.focus());
+  };
+  o.addEventListener("keydown", i);
+  const n = X(o);
+  return n.length > 0 ? n[0].focus() : (o.hasAttribute("tabindex") || (o.setAttribute("tabindex", "-1"), e = !0), o.focus()), {
+    release() {
+      o.removeEventListener("keydown", i), e && (o.removeAttribute("tabindex"), e = !1);
     }
-  }
-  cleanupRecording() {
-    this.isRecording = !1, this.removeRecordingIndicator(), this.videoRecorder && (this.videoRecorder.destroy(), this.videoRecorder = null), this.networkCapture && (this.networkCapture.restore(), this.networkCapture = null), this.recordedBlob && (this.recordedBlob = null), this.host.setButtonsDisabled(!1), this.host.overlayShadowHost && this.host.state === "IDLE" && (this.host.overlayShadowHost.style.pointerEvents = "none");
-  }
+  };
 }
-const Ji = Yi, Ct = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+function Ut() {
+  return Vt(document);
+}
+function jt(o) {
+  if (!(!o || typeof o.focus != "function"))
+    try {
+      o.focus();
+    } catch {
+    }
+}
+function Kt(o, t = {}) {
+  o.setAttribute("role", "dialog"), o.setAttribute("aria-modal", "true"), t.labelledbyId && o.setAttribute("aria-labelledby", t.labelledbyId), t.describedbyId && o.setAttribute("aria-describedby", t.describedbyId), t.label && o.setAttribute("aria-label", t.label);
+}
+function Ko(o, t) {
+  let e = o;
+  for (; e && e !== t; ) {
+    const i = e.parentNode;
+    if (i === t) return e;
+    if (i && i.host) {
+      e = i.host;
+      continue;
+    }
+    if (!i) return null;
+    e = i;
+  }
+  return null;
+}
+function Wt(o) {
+  const e = (o.ownerDocument || document).body;
+  if (!e) return () => {
+  };
+  const i = Ko(o, e), n = [];
+  return Array.from(e.children).forEach((a) => {
+    if (!(a instanceof HTMLElement) || i && a === i) return;
+    const s = a.inert === !0, d = a.getAttribute("aria-hidden");
+    s && d === "true" || (a.inert = !0, a.setAttribute("aria-hidden", "true"), n.push({ el: a, prevInert: s, prevAriaHidden: d }));
+  }), function() {
+    for (; n.length; ) {
+      const s = n.pop();
+      s.el.inert = s.prevInert, s.prevAriaHidden === null ? s.el.removeAttribute("aria-hidden") : s.el.setAttribute("aria-hidden", s.prevAriaHidden);
+    }
+  };
+}
+function Wo(o, t) {
+  const e = Ut();
+  Kt(o, t);
+  const i = Nt(o), n = Wt(o);
+  return () => {
+    i.release(), n(), jt(e);
+  };
+}
+const qt = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  RecordingController: Qi,
-  styles: Ji
+  applyDialog: Kt,
+  createFocusTrap: Nt,
+  getFocusable: X,
+  openDialog: Wo,
+  restoreFocus: jt,
+  saveFocus: Ut,
+  setBackgroundInert: Wt
+}, Symbol.toStringTag, { value: "Module" })), Qt = (o) => (
+  // The URL is a runtime value, not a static specifier — keep Vite from
+  // trying to analyze/bundle it.
+  import(
+    /* @vite-ignore */
+    o
+  )
+);
+let Xt = Qt, A = null, B = null;
+const $ = /* @__PURE__ */ new Map(), H = /* @__PURE__ */ new Map();
+function Qo(o) {
+  Xt = o ?? Qt, A = null, B = null, $.clear(), H.clear();
+}
+function Yt(o, t) {
+  return `${o.replace(/\/+$/, "")}/${encodeURIComponent(t)}/definition`;
+}
+function Xo(o) {
+  if ($.has(o)) return Promise.resolve();
+  const t = H.get(o);
+  if (t) return t;
+  const e = fetch(o, { headers: { Accept: "application/json" } }).then((i) => i.ok ? i.json() : null).then((i) => {
+    i && $.set(o, i);
+  }).catch(() => {
+  }).finally(() => {
+    H.delete(o);
+  });
+  return H.set(o, e), e;
+}
+function Jt(o) {
+  return A && B === o || (B = o, A = Promise.resolve(Xt(o)).then((t) => {
+    const e = t;
+    if (!e || typeof e.QaidQuests != "function")
+      throw new Error("quests module has no QaidQuests export");
+    return e;
+  }).catch((t) => {
+    throw A = null, B = null, t;
+  })), A;
+}
+async function Gt(o) {
+  const t = await Jt(o.moduleUrl), e = o.base.replace(/\/+$/, ""), i = Yt(e, o.questId), n = (d) => d != null ? { feedbackId: d } : void 0;
+  let a;
+  const s = o.feedbackId;
+  return s instanceof Promise ? a = t.QaidQuests.supports?.asyncMetadata ? s.then(n, () => {
+  }) : n(await s.catch(() => null)) : a = n(s ?? null), new t.QaidQuests({
+    endpoint: `${e}/responses`,
+    configUrl: i,
+    // Only a definition already in hand. One still loading is left to the
+    // widget, which shows its own loading state instead of nothing.
+    questionnaire: $.get(i),
+    apiKey: o.apiKey || void 0,
+    metadata: a,
+    onClose: o.onClose
+  });
+}
+const Yo = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  DEFAULT_QUESTS_MODULE_URL: Lt,
+  _setQuestsImporter: Qo,
+  launchQuest: Gt,
+  loadQuestsModule: Jt,
+  prefetchQuestDefinition: Xo,
+  questDefinitionUrl: Yt
 }, Symbol.toStringTag, { value: "Module" }));
-async function Gi(i = {}) {
-  const { quality: t = 0.8, maxWidth: e = 1280, maxHeight: o = 800 } = i;
+async function Zt(o, t) {
+  const e = o.ensureOverlayHost(), i = o.overlayShadowHost, n = i.style.pointerEvents;
+  i.style.pointerEvents = "auto";
   try {
-    if (!navigator.mediaDevices?.getDisplayMedia)
-      return console.warn("Screen Capture API not available"), null;
-    const n = await navigator.mediaDevices.getDisplayMedia({
-      preferCurrentTab: !0,
-      video: {
-        displaySurface: "browser"
-      }
-    }), s = n.getVideoTracks()[0], a = s.getSettings(), c = document.createElement("video");
-    c.srcObject = n, c.muted = !0, await new Promise((g) => {
-      c.onloadedmetadata = () => {
-        c.play(), g();
-      };
-    }), await new Promise((g) => {
-      const w = () => {
-        c.readyState >= 2 ? g() : requestAnimationFrame(w);
-      };
-      w();
-    }), await new Promise((g) => setTimeout(g, 100));
-    const l = a.width || c.videoWidth, d = a.height || c.videoHeight, r = Math.min(e / l, o / d, 1), h = Math.round(l * r), f = Math.round(d * r), b = document.createElement("canvas");
-    b.width = h, b.height = f;
-    const y = b.getContext("2d");
-    return y ? (y.drawImage(c, 0, 0, h, f), s.stop(), b.toDataURL("image/webp", t)) : (s.stop(), null);
-  } catch (n) {
-    return console.warn("Screenshot capture failed:", n), null;
+    const { openAnnotationEditor: a, styles: s } = await Promise.resolve().then(() => Ft);
+    return o.addFeatureStyles(s), await a({
+      dataUrl: t,
+      root: e,
+      quality: o.config.screenshotOptions.quality,
+      color: o.config.annotationColor,
+      palette: o.config.annotationPalette,
+      applyVars: (d) => o.applyVars(d),
+      announce: (d, c) => o.announceMsg(d, c),
+      openDialog: (d, c) => o.openDialogA11y(d, c),
+      closeDialog: () => o.closeDialogA11y()
+    });
+  } catch (a) {
+    return console.error("Annotation editor failed to open:", a), null;
+  } finally {
+    i.style.pointerEvents = n;
   }
 }
-const St = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+async function Jo(o) {
+  const { config: t, feedbackData: e, selectedBounds: i } = o;
+  let n = null;
+  if (t.captureScreenshot || t.feedbackMode === "annotate")
+    try {
+      if (o.shouldCaptureViaDom()) {
+        const { captureDomScreenshot: r } = await Promise.resolve().then(() => Ot);
+        n = await r(t.screenshotOptions);
+      } else {
+        const { captureScreenshot: r } = await Promise.resolve().then(() => ne);
+        n = await r(t.screenshotOptions);
+      }
+      n && o.announceMsg("Screenshot captured");
+    } catch (r) {
+      console.error("Screenshot capture failed:", r), n = null;
+    }
+  n && t.annotate && (n = await Zt(o, n) ?? n);
+  const s = e.elementSelector ? {
+    x: i.x,
+    y: i.y,
+    width: i.width,
+    height: i.height
+  } : null, d = {
+    feedbackType: e.feedbackType,
+    pageUrl: window.location.href,
+    apiKey: t.apiKey || void 0,
+    elementSelector: e.elementSelector,
+    elementText: e.elementText,
+    consoleErrors: [...e.consoleErrors],
+    screenWidth: window.innerWidth,
+    screenHeight: window.innerHeight,
+    clickX: i.clickX,
+    clickY: i.clickY,
+    scrollX: window.scrollX,
+    scrollY: window.scrollY,
+    screenshot: n,
+    visitorId: o.visitorId,
+    // Include element bounds and user agent for server-side screenshot fallback
+    elementBounds: s,
+    userAgent: navigator.userAgent
+  }, c = Go(o, d);
+  o.setFeedbackId(c);
+  const l = e.feedbackType;
+  if (l && l !== "neutral" && await te(o, l, c)) {
+    o.resetFeedbackUi();
+    return;
+  }
+  o.setState("MODAL_OPEN");
+  try {
+    const r = await o.ensureModal();
+    if (o.destroyed) return;
+    r.open(), o.overlayShadowHost && (o.overlayShadowHost.style.pointerEvents = "auto");
+  } catch (r) {
+    console.error("Failed to open the feedback modal:", r), o.announceMsg("Thank you for your feedback!", !0), o.resetFeedbackUi();
+  }
+}
+async function Go(o, t) {
+  try {
+    const e = await fetch(o.config.endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(t)
+    });
+    if (e.ok) {
+      const i = await e.json();
+      return o.announceMsg("Feedback sent"), i.id;
+    }
+  } catch (e) {
+    console.error("Failed to submit feedback:", e), o.announceMsg("Failed to send feedback", !0);
+  }
+  return null;
+}
+async function te(o, t, e) {
+  const i = o.config.quests, n = i.base && i[t] || "";
+  if (!n) return !1;
+  try {
+    return o.activeQuest?.destroy(), o.activeQuest = await Gt({
+      questId: n,
+      base: i.base,
+      apiKey: i.apiKey || void 0,
+      moduleUrl: i.moduleUrl,
+      feedbackId: e,
+      onClose: () => {
+        o.activeQuest = null;
+      }
+    }), !0;
+  } catch (a) {
+    return console.error("Failed to launch quest:", a), o.activeQuest = null, !1;
+  }
+}
+const U = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  captureScreenshot: Gi
-}, Symbol.toStringTag, { value: "Module" })), Zi = ".qaid-backdrop{position:fixed;inset:0;z-index:45;background:#0000004d}.qaid-modal-container{position:fixed;z-index:50;display:flex;flex-direction:column;align-items:flex-start;max-height:calc(100vh - 32px);font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-modal-container.qaid-above{flex-direction:column-reverse}.qaid-modal-arrow{width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;position:relative;align-self:flex-start}.qaid-modal-container.qaid-below .qaid-modal-arrow{border-bottom:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-container.qaid-above .qaid-modal-arrow{border-top:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5));width:var(--qaid-modal-width, 400px);max-width:calc(100vw - 32px);max-height:calc(100vh - 60px);overflow-y:auto}.qaid-modal-header{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1rem}button.qaid-type-toggle{border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;-webkit-appearance:none;appearance:none}button.qaid-type-toggle:hover{transform:scale(1.1)}button.qaid-type-toggle:not(.qaid-type-toggle-custom){width:2.5rem;height:2.5rem;border-radius:50%}button.qaid-type-toggle:not(.qaid-type-toggle-custom) svg{width:1.25rem;height:1.25rem}button.qaid-type-toggle.qaid-type-up{background:var(--qaid-positive);color:#fff}button.qaid-type-toggle.qaid-type-down{background:var(--qaid-negative);color:#fff}.qaid-type-static{width:2.5rem;height:2.5rem;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--qaid-marker, #6365f1);color:var(--qaid-marker-text, white)}.qaid-type-static svg{width:1.25rem;height:1.25rem}.qaid-modal-header-text{flex:1;min-width:0}.qaid-modal-title{font-size:calc(var(--qaid-font-size, 16px) * 1.125);font-weight:700;margin:0 0 .25rem;color:light-dark(#1f2937,#f9fafb)}.qaid-modal-subtitle{color:light-dark(#6b7280,#9ca3af);margin:0;font-size:calc(var(--qaid-font-size, 16px) * .875)}.qaid-textarea{width:100%;height:6rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:var(--qaid-font-size, 16px);resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-btn-row{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-btn-submit{padding:.5rem 1rem;background:var(--qaid-marker);color:var(--qaid-marker-text, white);border:none;border-radius:.5rem;font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-btn-submit:hover{filter:brightness(.85)}button.qaid-btn-submit:focus{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 30%,transparent)}.qaid-bottom-sheet{position:fixed;bottom:0;left:0;right:0;z-index:50;animation:qaid-slideUpSheet .3s ease-out;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-bottom-sheet-content{background:light-dark(#ffffff,#1f2937);border-radius:1rem 1rem 0 0;padding:1.5rem;padding-bottom:max(1.5rem,env(safe-area-inset-bottom))}.qaid-bottom-sheet-handle{width:36px;height:4px;background:light-dark(rgba(0,0,0,.2),rgba(255,255,255,.2));border-radius:2px;margin:0 auto 1rem}@keyframes qaid-slideUpSheet{0%{transform:translateY(100%)}to{transform:translateY(0)}}.qaid-confirm{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;padding:.5rem 0}.qaid-confirm-icon{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:9999px;color:#fff;background:var(--qaid-success, #22c55e);margin-bottom:.25rem;animation:qaid-confirm-pop .28s cubic-bezier(.34,1.56,.64,1)}.qaid-confirm-icon .qaid-icon{width:24px;height:24px}.qaid-confirm-error .qaid-confirm-icon{background:var(--qaid-error, #dc2626)}.qaid-confirm-title{margin:0;font-size:var(--qaid-font-size, 16px);font-weight:600;color:var(--qaid-text, light-dark(#111827, #f9fafb))}.qaid-confirm-title:focus-visible{outline:2px solid var(--qaid-primary, #6365f1);outline-offset:3px;border-radius:4px}.qaid-confirm-message{margin:0;font-size:calc(var(--qaid-font-size, 16px) * .875);color:var(--qaid-text-muted, light-dark(#6b7280, #9ca3af))}.qaid-confirm .qaid-confirm-close{margin-top:.5rem;min-width:96px}@keyframes qaid-confirm-pop{0%{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}@media(prefers-reduced-motion:reduce){.qaid-confirm-icon{animation:none}}.qaid-textarea:focus-visible,button.qaid-btn-submit:focus-visible{outline:2px solid var(--qaid-marker, #6365f1);outline-offset:2px}@media(forced-colors:active){.qaid-textarea:focus,button.qaid-btn-submit:focus{outline:2px solid CanvasText;outline-offset:2px}}";
-class to {
+  openAnnotationEditor: Zt,
+  submitFeedback: Jo,
+  tryLaunchQuest: te
+}, Symbol.toStringTag, { value: "Module" })), ee = {
+  width: 400,
+  height: 280,
+  arrowHeight: 12,
+  gap: 8,
+  viewportPadding: 16
+};
+function Zo(o, t, e, i, n) {
+  const a = o.y, s = t - (o.y + o.height);
+  if (s >= e + i)
+    return {
+      top: o.y + o.height + i,
+      position: "below"
+    };
+  if (a >= e + i)
+    return {
+      top: o.y - e - i,
+      position: "above"
+    };
+  const d = s > a ? "below" : "above";
+  let c;
+  return d === "below" ? c = Math.min(
+    o.y + o.height + i,
+    t - e - n
+  ) : c = Math.max(n, o.y - e - i), { top: c, position: d };
+}
+function ti(o, t, e, i) {
+  let a = o.x + o.width / 2 - e / 2;
+  return a = Math.max(i, Math.min(a, t - e - i)), a;
+}
+function ei(o, t, e, i = 24, n = 24) {
+  const s = o.clickX - t - n / 2;
+  return Math.max(i, Math.min(s, e - i - n / 2));
+}
+function oi(o, t, e, i = ee) {
+  const n = i.height + i.arrowHeight, a = Zo(
+    o,
+    e,
+    n,
+    i.gap,
+    i.viewportPadding
+  ), s = ti(
+    o,
+    t,
+    i.width,
+    i.viewportPadding
+  );
+  return {
+    top: a.top,
+    left: s,
+    position: a.position
+  };
+}
+function ii(o, t, e, i = ee) {
+  const n = oi(o, t, e, i), a = ei(
+    o,
+    n.left,
+    i.width
+  );
+  return {
+    modal: n,
+    arrow: { left: a }
+  };
+}
+const ni = document;
+function p(o, t, ...e) {
+  const i = ni.createElement(o);
+  if (t) {
+    if (t.class && (i.className = t.class), t.style && (i.style.cssText = t.style), t.html != null && (i.innerHTML = t.html), t.text != null && (i.textContent = t.text), t.attrs)
+      for (const n in t.attrs) i.setAttribute(n, t.attrs[n]);
+    if (t.on)
+      for (const n in t.on) i.addEventListener(n, t.on[n]);
+  }
+  for (const n of e)
+    n != null && n !== !1 && i.append(n);
+  return i;
+}
+const ai = ".qaid-backdrop{position:fixed;inset:0;z-index:45;background:#0000004d}.qaid-modal-container{position:fixed;z-index:50;display:flex;flex-direction:column;align-items:flex-start;max-height:calc(100vh - 32px);font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-modal-container.qaid-above{flex-direction:column-reverse}.qaid-modal-arrow{width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;position:relative;align-self:flex-start}.qaid-modal-container.qaid-below .qaid-modal-arrow{border-bottom:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-container.qaid-above .qaid-modal-arrow{border-top:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5));width:var(--qaid-modal-width, 400px);max-width:calc(100vw - 32px);max-height:calc(100vh - 60px);overflow-y:auto}.qaid-modal-header{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1rem}button.qaid-type-toggle{border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;-webkit-appearance:none;appearance:none}button.qaid-type-toggle:hover{transform:scale(1.1)}button.qaid-type-toggle:not(.qaid-type-toggle-custom){width:2.5rem;height:2.5rem;border-radius:50%}button.qaid-type-toggle:not(.qaid-type-toggle-custom) svg{width:1.25rem;height:1.25rem}button.qaid-type-toggle.qaid-type-up{background:var(--qaid-positive);color:#fff}button.qaid-type-toggle.qaid-type-down{background:var(--qaid-negative);color:#fff}.qaid-type-static{width:2.5rem;height:2.5rem;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--qaid-marker, #6365f1);color:var(--qaid-marker-text, white)}.qaid-type-static svg{width:1.25rem;height:1.25rem}.qaid-modal-header-text{flex:1;min-width:0}.qaid-modal-title{font-size:calc(var(--qaid-font-size, 16px) * 1.125);font-weight:700;margin:0 0 .25rem;color:light-dark(#1f2937,#f9fafb)}.qaid-modal-subtitle{color:light-dark(#6b7280,#9ca3af);margin:0;font-size:calc(var(--qaid-font-size, 16px) * .875)}.qaid-textarea{width:100%;height:6rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:var(--qaid-font-size, 16px);resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-btn-row{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-btn-submit{padding:.5rem 1rem;background:var(--qaid-marker);color:var(--qaid-marker-text, white);border:none;border-radius:.5rem;font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-btn-submit:hover{filter:brightness(.85)}button.qaid-btn-submit:focus{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 30%,transparent)}.qaid-bottom-sheet{position:fixed;bottom:0;left:0;right:0;z-index:50;animation:qaid-slideUpSheet .3s ease-out;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-bottom-sheet-content{background:light-dark(#ffffff,#1f2937);border-radius:1rem 1rem 0 0;padding:1.5rem;padding-bottom:max(1.5rem,env(safe-area-inset-bottom))}.qaid-bottom-sheet-handle{width:36px;height:4px;background:light-dark(rgba(0,0,0,.2),rgba(255,255,255,.2));border-radius:2px;margin:0 auto 1rem}@keyframes qaid-slideUpSheet{0%{transform:translateY(100%)}to{transform:translateY(0)}}.qaid-confirm{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;padding:.5rem 0}.qaid-confirm-icon{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:9999px;color:#fff;background:var(--qaid-success, #22c55e);margin-bottom:.25rem;animation:qaid-confirm-pop .28s cubic-bezier(.34,1.56,.64,1)}.qaid-confirm-icon .qaid-icon{width:24px;height:24px}.qaid-confirm-error .qaid-confirm-icon{background:var(--qaid-error, #dc2626)}.qaid-confirm-title{margin:0;font-size:var(--qaid-font-size, 16px);font-weight:600;color:var(--qaid-text, light-dark(#111827, #f9fafb))}.qaid-confirm-title:focus-visible{outline:2px solid var(--qaid-primary, #6365f1);outline-offset:3px;border-radius:4px}.qaid-confirm-message{margin:0;font-size:calc(var(--qaid-font-size, 16px) * .875);color:var(--qaid-text-muted, light-dark(#6b7280, #9ca3af))}.qaid-confirm .qaid-confirm-close{margin-top:.5rem;min-width:96px}@keyframes qaid-confirm-pop{0%{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}@media(prefers-reduced-motion:reduce){.qaid-confirm-icon{animation:none}}.qaid-textarea:focus-visible,button.qaid-btn-submit:focus-visible{outline:2px solid var(--qaid-marker, #6365f1);outline-offset:2px}@media(forced-colors:active){.qaid-textarea:focus,button.qaid-btn-submit:focus{outline:2px solid CanvasText;outline-offset:2px}}";
+class si {
   constructor(t) {
     this.host = t;
   }
@@ -2360,7 +2172,7 @@ class to {
     ), this.host.applyVars(e), t.appendChild(e), this.modalContainer = e, this.setupModalInteractions();
   }
   showPositionedModal() {
-    const t = this.host.ensureOverlayHost(), { modal: e, arrow: o } = Qe(
+    const t = this.host.ensureOverlayHost(), { modal: e, arrow: i } = ii(
       this.host.selectedBounds,
       window.innerWidth,
       window.innerHeight,
@@ -2374,9 +2186,9 @@ class to {
     );
     this.modalContainer = document.createElement("div"), this.modalContainer.className = `qaid-modal-container qaid-${e.position}`, this.modalContainer.style.top = `${e.top}px`, this.modalContainer.style.left = `${e.left}px`, this.modalContainer.style.zIndex = String(this.host.config.zIndex + 3);
     const n = document.createElement("div");
-    n.className = "qaid-modal-arrow", n.style.left = `${o.left}px`;
-    const s = document.createElement("div");
-    s.className = "qaid-modal-box", s.appendChild(this.buildModalContent()), this.modalContainer.appendChild(n), this.modalContainer.appendChild(s), this.host.applyVars(this.modalContainer), t.appendChild(this.modalContainer), this.setupModalInteractions();
+    n.className = "qaid-modal-arrow", n.style.left = `${i.left}px`;
+    const a = document.createElement("div");
+    a.className = "qaid-modal-box", a.appendChild(this.buildModalContent()), this.modalContainer.appendChild(n), this.modalContainer.appendChild(a), this.host.applyVars(this.modalContainer), t.appendChild(this.modalContainer), this.setupModalInteractions();
   }
   /**
    * The modal's contents, built as nodes rather than an HTML string.
@@ -2387,18 +2199,18 @@ class to {
    * markup, because they are documented as SVG/HTML strings.
    */
   buildModalContent() {
-    const { config: t, uid: e } = this.host, o = t.text, n = this.host.feedbackData.feedbackType, s = n === "up", a = t.positiveIcon || U, c = t.negativeIcon || j, l = t.buttonClass ? `qaid-type-toggle qaid-type-toggle-custom ${t.buttonClass} ${s ? "qaid-btn-up" : "qaid-btn-down"}` : `qaid-type-toggle ${s ? "qaid-type-up" : "qaid-type-down"}`, d = s ? "Feedback type: positive" : "Feedback type: negative", r = n === "neutral" ? p("span", {
+    const { config: t, uid: e } = this.host, i = t.text, n = this.host.feedbackData.feedbackType, a = n === "up", s = t.positiveIcon || K, d = t.negativeIcon || W, c = t.buttonClass ? `qaid-type-toggle qaid-type-toggle-custom ${t.buttonClass} ${a ? "qaid-btn-up" : "qaid-btn-down"}` : `qaid-type-toggle ${a ? "qaid-type-up" : "qaid-type-down"}`, l = a ? "Feedback type: positive" : "Feedback type: negative", r = n === "neutral" ? p("span", {
       class: "qaid-type-static",
-      html: t.feedbackIcon || At,
+      html: t.feedbackIcon || Tt,
       attrs: { "aria-hidden": "true" }
     }) : p("button", {
-      class: l,
-      html: s ? a : c,
+      class: c,
+      html: a ? s : d,
       attrs: {
         type: "button",
         title: "Click to switch",
-        "aria-pressed": String(s),
-        "aria-label": d
+        "aria-pressed": String(a),
+        "aria-label": l
       }
     }), h = document.createDocumentFragment();
     return h.append(
@@ -2411,26 +2223,26 @@ class to {
           { class: "qaid-modal-header-text" },
           p("h3", {
             class: "qaid-modal-title",
-            text: o.modalTitle,
+            text: i.modalTitle,
             attrs: { id: `qaid-modal-title-${e}` }
           }),
           p("p", {
             class: "qaid-modal-subtitle",
-            text: o.modalSubtitle,
+            text: i.modalSubtitle,
             attrs: { id: `qaid-modal-subtitle-${e}` }
           })
         )
       ),
       p("textarea", {
         class: "qaid-textarea",
-        attrs: { "aria-label": o.modalSubtitle, placeholder: o.placeholder }
+        attrs: { "aria-label": i.modalSubtitle, placeholder: i.placeholder }
       }),
       p(
         "div",
         { class: "qaid-btn-row" },
         p("button", {
           class: "qaid-btn-submit",
-          text: o.skipButton,
+          text: i.skipButton,
           attrs: { type: "button" }
         })
       )
@@ -2448,29 +2260,29 @@ class to {
       const n = t?.value.trim() || null;
       this.submitMessage(n);
     });
-    const o = this.modalContainer.querySelector(".qaid-type-toggle");
-    o && o.addEventListener("click", () => {
+    const i = this.modalContainer.querySelector(".qaid-type-toggle");
+    i && i.addEventListener("click", () => {
       const n = this.host.feedbackData.feedbackType === "up" ? "down" : "up";
-      this.host.feedbackData.feedbackType = n, this.host.config.buttonClass ? (o.classList.toggle("qaid-btn-up", n === "up"), o.classList.toggle("qaid-btn-down", n === "down")) : (o.classList.toggle("qaid-type-up", n === "up"), o.classList.toggle("qaid-type-down", n === "down"));
-      const s = this.host.config.positiveIcon || U, a = this.host.config.negativeIcon || j;
-      o.innerHTML = n === "up" ? s : a;
-      const c = n === "up" ? "Feedback type: positive" : "Feedback type: negative";
-      o.setAttribute("aria-pressed", String(n === "up")), o.setAttribute("aria-label", c), this.host.announceMsg(c), this.host.whenFeedbackId().then((l) => {
-        l && fetch(`${this.host.config.endpoint}/${l}`, {
+      this.host.feedbackData.feedbackType = n, this.host.config.buttonClass ? (i.classList.toggle("qaid-btn-up", n === "up"), i.classList.toggle("qaid-btn-down", n === "down")) : (i.classList.toggle("qaid-type-up", n === "up"), i.classList.toggle("qaid-type-down", n === "down"));
+      const a = this.host.config.positiveIcon || K, s = this.host.config.negativeIcon || W;
+      i.innerHTML = n === "up" ? a : s;
+      const d = n === "up" ? "Feedback type: positive" : "Feedback type: negative";
+      i.setAttribute("aria-pressed", String(n === "up")), i.setAttribute("aria-label", d), this.host.announceMsg(d), this.host.whenFeedbackId().then((c) => {
+        c && fetch(`${this.host.config.endpoint}/${c}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ feedbackType: n })
-        }).catch((d) => console.error("Failed to update feedback type:", d));
+        }).catch((l) => console.error("Failed to update feedback type:", l));
       });
     });
   }
   async submitMessage(t) {
     let e = null;
     this.finalized = !0;
-    const o = await this.host.whenFeedbackId();
-    if (o)
+    const i = await this.host.whenFeedbackId();
+    if (i)
       try {
-        const n = await fetch(`${this.host.config.endpoint}/${o}`, {
+        const n = await fetch(`${this.host.config.endpoint}/${i}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ message: t })
@@ -2504,7 +2316,7 @@ class to {
       this.close();
       return;
     }
-    const o = this.host.config.text, n = t ? o.confirmationTitle : o.errorTitle, s = t ? o.confirmationMessage : o.errorMessage, a = p("h3", {
+    const i = this.host.config.text, n = t ? i.confirmationTitle : i.errorTitle, a = t ? i.confirmationMessage : i.errorMessage, s = p("h3", {
       class: "qaid-confirm-title",
       text: n,
       attrs: { id: `qaid-confirm-title-${this.host.uid}`, tabindex: "-1" }
@@ -2515,69 +2327,69 @@ class to {
         { class: t ? "qaid-confirm" : "qaid-confirm qaid-confirm-error" },
         p("span", {
           class: "qaid-confirm-icon",
-          html: t ? Lt : ve,
+          html: t ? At : Ie,
           attrs: { "aria-hidden": "true" }
         }),
-        a,
-        p("p", { class: "qaid-confirm-message", text: s }),
+        s,
+        p("p", { class: "qaid-confirm-message", text: a }),
         p("button", {
           class: "qaid-btn-submit qaid-confirm-close",
-          text: o.confirmationClose,
+          text: i.confirmationClose,
           attrs: { type: "button" },
           on: { click: () => this.close() }
         })
       )
-    ), requestAnimationFrame(() => a.focus()), this.host.announceMsg(`${n} ${s}`, !0);
+    ), requestAnimationFrame(() => s.focus()), this.host.announceMsg(`${n} ${a}`, !0);
   }
 }
-const eo = Zi, Tt = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const ri = ai, Ct = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  ModalController: to,
-  styles: eo
-}, Symbol.toStringTag, { value: "Module" })), Ut = ["data-comp", "data-qa", "data-testid", "data-id"];
-function jt(i, t = document.body) {
-  let e = i;
+  ModalController: si,
+  styles: ri
+}, Symbol.toStringTag, { value: "Module" })), oe = ["data-comp", "data-qa", "data-testid", "data-id"];
+function ie(o, t = document.body) {
+  let e = o;
   for (; e && e !== t; ) {
-    for (const o of Ut) {
-      const n = e.getAttribute(o);
+    for (const i of oe) {
+      const n = e.getAttribute(i);
       if (n)
-        return `${o}="${n}"`;
+        return `${i}="${n}"`;
     }
     e = e.parentElement;
   }
   return null;
 }
-function io(i, t = 100) {
-  const e = i.textContent?.trim().slice(0, t) || "";
+function di(o, t = 100) {
+  const e = o.textContent?.trim().slice(0, t) || "";
   return e.length === t ? e + "..." : e;
 }
-function oo(i) {
-  let t = 1, e = i.previousElementSibling;
+function ci(o) {
+  let t = 1, e = o.previousElementSibling;
   for (; e; )
     t++, e = e.previousElementSibling;
   return t;
 }
-function no(i) {
+function li(o) {
   const t = [];
-  let e = i;
+  let e = o;
   for (; e && e !== document.body && e !== document.documentElement; ) {
-    const o = e.tagName.toLowerCase(), n = oo(e);
-    t.unshift(`${o}:nth-child(${n})`), e = e.parentElement;
+    const i = e.tagName.toLowerCase(), n = ci(e);
+    t.unshift(`${i}:nth-child(${n})`), e = e.parentElement;
   }
   return t.length > 0 ? `body > ${t.join(" > ")}` : "body";
 }
-function so(i) {
-  return i.replace(/([!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, "\\$1");
+function hi(o) {
+  return o.replace(/([!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, "\\$1");
 }
-function ao(i) {
-  const t = jt(i);
-  return t ? `[${t}]` : i.id ? `#${so(i.id)}` : no(i);
+function ui(o) {
+  const t = ie(o);
+  return t ? `[${t}]` : o.id ? `#${hi(o.id)}` : li(o);
 }
-function V(i) {
-  const t = io(i), e = jt(i);
-  return { selector: ao(i), text: t, dataAttr: e };
+function j(o) {
+  const t = di(o), e = ie(o);
+  return { selector: ui(o), text: t, dataAttr: e };
 }
-const ro = [
+const pi = [
   "a[href]",
   "button",
   "input:not([type=hidden])",
@@ -2596,79 +2408,79 @@ const ro = [
   "p",
   "li",
   "label",
-  ...Ut.map((i) => `[${i}]`)
-].join(","), co = /^(?:A|BUTTON|INPUT|SELECT|TEXTAREA|SUMMARY)$/;
-function lo(i) {
-  if (i.hasAttribute("hidden") || i.getAttribute("aria-hidden") === "true") return !1;
-  const t = i.ownerDocument?.defaultView;
+  ...oe.map((o) => `[${o}]`)
+].join(","), fi = /^(?:A|BUTTON|INPUT|SELECT|TEXTAREA|SUMMARY)$/;
+function mi(o) {
+  if (o.hasAttribute("hidden") || o.getAttribute("aria-hidden") === "true") return !1;
+  const t = o.ownerDocument?.defaultView;
   if (t && typeof t.getComputedStyle == "function") {
-    const e = t.getComputedStyle(i);
+    const e = t.getComputedStyle(o);
     if (e.display === "none" || e.visibility === "hidden") return !1;
   }
   return !0;
 }
-function ho(i = {}) {
-  const t = i.root ?? document.body, e = i.selector ?? ro, o = i.isExcluded ?? (() => !1), n = i.isVisible ?? lo;
+function bi(o = {}) {
+  const t = o.root ?? document.body, e = o.selector ?? pi, i = o.isExcluded ?? (() => !1), n = o.isVisible ?? mi;
   return Array.from(t.querySelectorAll(e)).filter(
-    (s) => !o(s) && n(s)
+    (a) => !i(a) && n(a)
   );
 }
-function uo(i) {
-  const t = i.candidates ?? ho({
-    root: i.root,
-    selector: i.selector,
-    isExcluded: i.isExcluded,
-    isVisible: i.isVisible
-  }), e = i.moveFocus ?? !0, o = i.eventTarget ?? document, n = /* @__PURE__ */ new Set();
-  let s = -1, a = !1;
-  const c = i.initial !== void 0 ? i.initial : typeof document < "u" ? document.activeElement : null;
-  if (c) {
-    const u = t.indexOf(c);
-    u >= 0 && (s = u);
+function gi(o) {
+  const t = o.candidates ?? bi({
+    root: o.root,
+    selector: o.selector,
+    isExcluded: o.isExcluded,
+    isVisible: o.isVisible
+  }), e = o.moveFocus ?? !0, i = o.eventTarget ?? document, n = /* @__PURE__ */ new Set();
+  let a = -1, s = !1;
+  const d = o.initial !== void 0 ? o.initial : typeof document < "u" ? document.activeElement : null;
+  if (d) {
+    const u = t.indexOf(d);
+    u >= 0 && (a = u);
   }
-  s < 0 && t.length > 0 && (s = 0);
-  function l(u) {
+  a < 0 && t.length > 0 && (a = 0);
+  function c(u) {
     if (!e) return;
     const k = u;
     if (typeof k.focus == "function") {
-      u.getAttribute("tabindex") === null && !co.test(u.tagName) && (u.setAttribute("tabindex", "-1"), n.add(u));
+      u.getAttribute("tabindex") === null && !fi.test(u.tagName) && (u.setAttribute("tabindex", "-1"), n.add(u));
       try {
         k.focus();
       } catch {
       }
     }
   }
-  function d() {
-    const u = t[s];
-    u && (l(u), i.onHighlight?.(u, s));
+  function l() {
+    const u = t[a];
+    u && (c(u), o.onHighlight?.(u, a));
   }
   function r(u) {
-    if (a || t.length === 0) return;
+    if (s || t.length === 0) return;
     const k = t.length;
-    s = (u % k + k) % k, d();
+    a = (u % k + k) % k, l();
   }
   function h() {
-    r(s + 1);
+    r(a + 1);
   }
   function f() {
-    r(s - 1);
+    r(a - 1);
   }
-  function b() {
-    return t[s] ?? null;
-  }
-  function y() {
-    a || (a = !0, o.removeEventListener("keydown", x, !0), n.forEach((u) => u.removeAttribute("tabindex")), n.clear());
+  function m() {
+    return t[a] ?? null;
   }
   function g() {
-    if (a) return;
-    const u = b();
-    y(), u && i.onSelect(u);
+    s || (s = !0, i.removeEventListener("keydown", x, !0), n.forEach((u) => u.removeAttribute("tabindex")), n.clear());
+  }
+  function v() {
+    if (s) return;
+    const u = m();
+    g(), u && o.onSelect(u);
   }
   function w() {
-    a || (y(), i.onCancel?.());
+    s || (g(), o.onCancel?.());
   }
   function x(u) {
-    if (!a)
+    if (!s)
       switch (u.key) {
         case "Tab":
           u.preventDefault(), u.stopPropagation(), u.shiftKey ? f() : h();
@@ -2684,7 +2496,7 @@ function uo(i) {
         case "Enter":
         case " ":
         case "Spacebar":
-          u.preventDefault(), u.stopPropagation(), g();
+          u.preventDefault(), u.stopPropagation(), v();
           break;
         case "Escape":
         case "Esc":
@@ -2692,21 +2504,21 @@ function uo(i) {
           break;
       }
   }
-  return o.addEventListener("keydown", x, !0), s >= 0 && d(), {
+  return i.addEventListener("keydown", x, !0), a >= 0 && l(), {
     candidates: t,
-    getIndex: () => s,
-    getCurrent: b,
+    getIndex: () => a,
+    getCurrent: m,
     next: h,
     prev: f,
     moveTo: r,
-    select: g,
+    select: v,
     cancel: w,
     handleKey: x,
-    stop: y
+    stop: g
   };
 }
-const po = ".qaid-targeting-overlay{position:fixed;inset:0;z-index:40;pointer-events:none}.qaid-capture-layer{position:fixed;inset:0;pointer-events:none;z-index:9999}.qaid-vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.3) 70%,rgba(0,0,0,.6) 100%);z-index:41}.qaid-crosshair-h,.qaid-crosshair-v{position:fixed;pointer-events:none;z-index:42}.qaid-crosshair-h{left:0;right:0;height:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-crosshair-v{top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-type-up .qaid-crosshair-h,.qaid-type-up .qaid-crosshair-v{background:color-mix(in srgb,var(--qaid-positive) 60%,transparent)}.qaid-highlight-box{position:fixed;top:0;left:0;pointer-events:none;z-index:41;display:none;border:3px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:2px;background:color-mix(in srgb,var(--qaid-negative) 8%,transparent);will-change:transform,width,height}.qaid-type-up .qaid-highlight-box{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent);background:color-mix(in srgb,var(--qaid-positive) 8%,transparent)}.qaid-scope{position:fixed;width:80px;height:80px;pointer-events:none;z-index:43;transform:translate(-50%,-50%)}.qaid-scope-ring{position:absolute;inset:10px;border:2px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent)}.qaid-scope-ring-inner{position:absolute;inset:20px;border:1px solid color-mix(in srgb,var(--qaid-negative) 50%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring-inner{border-color:color-mix(in srgb,var(--qaid-positive) 50%,transparent)}.qaid-scope-dot{position:absolute;top:50%;left:50%;width:4px;height:4px;background:var(--qaid-negative);border-radius:50%;transform:translate(-50%,-50%)}.qaid-type-up .qaid-scope-dot{background:var(--qaid-positive)}.qaid-selected-marker{position:fixed;border:3px solid var(--qaid-marker, #6365f1);border-radius:50%;pointer-events:none;z-index:44;animation:qaid-markerPulse 1.5s ease-in-out infinite}@keyframes qaid-markerPulse{0%,to{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}@media(forced-colors:active){.qaid-selected-marker,.qaid-highlight-box{border-color:Highlight}}", fo = 12;
-class mo {
+const vi = ".qaid-targeting-overlay{position:fixed;inset:0;z-index:40;pointer-events:none}.qaid-capture-layer{position:fixed;inset:0;pointer-events:none;z-index:9999}.qaid-vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.3) 70%,rgba(0,0,0,.6) 100%);z-index:41}.qaid-crosshair-h,.qaid-crosshair-v{position:fixed;pointer-events:none;z-index:42}.qaid-crosshair-h{left:0;right:0;height:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-crosshair-v{top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-type-up .qaid-crosshair-h,.qaid-type-up .qaid-crosshair-v{background:color-mix(in srgb,var(--qaid-positive) 60%,transparent)}.qaid-highlight-box{position:fixed;top:0;left:0;pointer-events:none;z-index:41;display:none;border:3px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:2px;background:color-mix(in srgb,var(--qaid-negative) 8%,transparent);will-change:transform,width,height}.qaid-type-up .qaid-highlight-box{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent);background:color-mix(in srgb,var(--qaid-positive) 8%,transparent)}.qaid-scope{position:fixed;width:80px;height:80px;pointer-events:none;z-index:43;transform:translate(-50%,-50%)}.qaid-scope-ring{position:absolute;inset:10px;border:2px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent)}.qaid-scope-ring-inner{position:absolute;inset:20px;border:1px solid color-mix(in srgb,var(--qaid-negative) 50%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring-inner{border-color:color-mix(in srgb,var(--qaid-positive) 50%,transparent)}.qaid-scope-dot{position:absolute;top:50%;left:50%;width:4px;height:4px;background:var(--qaid-negative);border-radius:50%;transform:translate(-50%,-50%)}.qaid-type-up .qaid-scope-dot{background:var(--qaid-positive)}.qaid-selected-marker{position:fixed;border:3px solid var(--qaid-marker, #6365f1);border-radius:50%;pointer-events:none;z-index:44;animation:qaid-markerPulse 1.5s ease-in-out infinite}@keyframes qaid-markerPulse{0%,to{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}@media(forced-colors:active){.qaid-selected-marker,.qaid-highlight-box{border-color:Highlight}}", yi = 12;
+class wi {
   constructor(t) {
     this.host = t;
   }
@@ -2735,27 +2547,27 @@ class mo {
    * KeyboardTargetingController owns Tab/Arrow/Enter/Space/Escape.
    */
   startKeyboard(t) {
-    this.host.setState("TARGETING"), this.host.feedbackData.feedbackType = t, this.host.feedbackData.elementSelector = null, this.host.feedbackData.elementText = null, this.host.selectedBounds.visible = !1, document.body.style.setProperty("--qaid-positive", this.host.cssVars["--qaid-positive"]), document.body.style.setProperty("--qaid-negative", this.host.cssVars["--qaid-negative"]), this.createTargetingOverlay(), this.crosshairH && (this.crosshairH.style.display = "none"), this.crosshairV && (this.crosshairV.style.display = "none"), this.scope && (this.scope.style.display = "none"), this.keyboardController = uo({
-      isExcluded: (e) => R(e),
+    this.host.setState("TARGETING"), this.host.feedbackData.feedbackType = t, this.host.feedbackData.elementSelector = null, this.host.feedbackData.elementText = null, this.host.selectedBounds.visible = !1, document.body.style.setProperty("--qaid-positive", this.host.cssVars["--qaid-positive"]), document.body.style.setProperty("--qaid-negative", this.host.cssVars["--qaid-negative"]), this.createTargetingOverlay(), this.crosshairH && (this.crosshairH.style.display = "none"), this.crosshairV && (this.crosshairV.style.display = "none"), this.scope && (this.scope.style.display = "none"), this.keyboardController = gi({
+      isExcluded: (e) => P(e),
       onHighlight: (e) => {
-        const o = e.getBoundingClientRect(), n = this.highlightBox;
-        n && (n.style.transform = `translate(${o.left}px, ${o.top}px)`, n.style.width = `${o.width}px`, n.style.height = `${o.height}px`, n.style.display = "block");
-        const { text: s } = V(e);
-        this.host.announceMsg(`Targeting ${s || e.tagName.toLowerCase()}`);
+        const i = e.getBoundingClientRect(), n = this.highlightBox;
+        n && (n.style.transform = `translate(${i.left}px, ${i.top}px)`, n.style.width = `${i.width}px`, n.style.height = `${i.height}px`, n.style.display = "block");
+        const { text: a } = j(e);
+        this.host.announceMsg(`Targeting ${a || e.tagName.toLowerCase()}`);
       },
       onSelect: (e) => this.selectKeyboardTarget(e),
       onCancel: () => this.cancel()
     });
   }
   selectKeyboardTarget(t) {
-    const e = ut(t, 8);
+    const e = pt(t, 8);
     Object.assign(this.host.selectedBounds, e, {
       clickX: e.x + e.width / 2,
       clickY: e.y + e.height / 2,
       visible: !0
     });
-    const { selector: o, text: n } = V(t);
-    this.host.feedbackData.elementSelector = o, this.host.feedbackData.elementText = n, this.removeTargetingOverlay(), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.keyboardController = null, this.host.clearActiveThumb(), this.host.setState("SELECTED"), this.showSelectedMarker(), this.host.submitFeedback();
+    const { selector: i, text: n } = j(t);
+    this.host.feedbackData.elementSelector = i, this.host.feedbackData.elementText = n, this.removeTargetingOverlay(), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.keyboardController = null, this.host.clearActiveThumb(), this.host.setState("SELECTED"), this.showSelectedMarker(), this.host.submitFeedback();
   }
   createTargetingOverlay() {
     const t = this.host.ensureOverlayHost();
@@ -2773,11 +2585,11 @@ class mo {
   /** Move the crosshair/scope reticle and highlight the element under (x, y). */
   updateReticleAt(t, e) {
     if (this.mousePos.x = t, this.mousePos.y = e, this.crosshairH && (this.crosshairH.style.top = `${e}px`), this.crosshairV && (this.crosshairV.style.left = `${t}px`), this.scope && (this.scope.style.left = `${t}px`, this.scope.style.top = `${e}px`), this.captureLayer && this.host.shadowHost) {
-      const o = [this.host.shadowHost, this.host.overlayShadowHost].filter(Boolean), n = ht(t, e, o);
-      if (n && !R(n)) {
+      const i = [this.host.shadowHost, this.host.overlayShadowHost].filter(Boolean), n = ut(t, e, i);
+      if (n && !P(n)) {
         if (this.highlightBox) {
-          const s = n.getBoundingClientRect();
-          this.highlightBox.style.transform = `translate(${s.left}px, ${s.top}px)`, this.highlightBox.style.width = `${s.width}px`, this.highlightBox.style.height = `${s.height}px`, this.highlightBox.style.display = "block";
+          const a = n.getBoundingClientRect();
+          this.highlightBox.style.transform = `translate(${a.left}px, ${a.top}px)`, this.highlightBox.style.width = `${a.width}px`, this.highlightBox.style.height = `${a.height}px`, this.highlightBox.style.display = "block";
         }
       } else this.highlightBox && (this.highlightBox.style.display = "none");
     }
@@ -2791,18 +2603,18 @@ class mo {
     e && (this.touchStartPos = { x: e.clientX, y: e.clientY }, this.updateReticleAt(e.clientX, e.clientY));
   }
   handleTouchEnd(t) {
-    const e = t.changedTouches[0], o = this.touchStartPos;
-    this.touchStartPos = null, !(!e || !o || Math.hypot(e.clientX - o.x, e.clientY - o.y) > fo) && (t.preventDefault(), this.selectAt(e.clientX, e.clientY));
+    const e = t.changedTouches[0], i = this.touchStartPos;
+    this.touchStartPos = null, !(!e || !i || Math.hypot(e.clientX - i.x, e.clientY - i.y) > yi) && (t.preventDefault(), this.selectAt(e.clientX, e.clientY));
   }
   /** Select the element under (x, y) and tear down targeting. */
   selectAt(t, e) {
-    const o = [this.host.shadowHost, this.host.overlayShadowHost].filter(Boolean), n = ht(t, e, o);
-    if (!n || R(n))
+    const i = [this.host.shadowHost, this.host.overlayShadowHost].filter(Boolean), n = ut(t, e, i);
+    if (!n || P(n))
       return;
-    const s = ut(n, 8);
-    Object.assign(this.host.selectedBounds, s, { clickX: t, clickY: e, visible: !0 });
-    const { selector: a, text: c } = V(n);
-    this.host.feedbackData.elementSelector = a, this.host.feedbackData.elementText = c, this.stopTargetingListeners(), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.host.setState("SELECTED"), this.host.clearActiveThumb(), this.showSelectedMarker(), this.host.submitFeedback();
+    const a = pt(n, 8);
+    Object.assign(this.host.selectedBounds, a, { clickX: t, clickY: e, visible: !0 });
+    const { selector: s, text: d } = j(n);
+    this.host.feedbackData.elementSelector = s, this.host.feedbackData.elementText = d, this.stopTargetingListeners(), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.host.setState("SELECTED"), this.host.clearActiveThumb(), this.showSelectedMarker(), this.host.submitFeedback();
   }
   stopTargetingListeners() {
     this.removeTargetingOverlay(), this.touchStartPos = null, document.removeEventListener("mousemove", this.boundMouseMove), document.removeEventListener("click", this.boundClick, !0), document.removeEventListener("touchstart", this.boundTouchStart), document.removeEventListener("touchend", this.boundTouchEnd), document.removeEventListener("keydown", this.host.boundKeyDown);
@@ -2825,23 +2637,316 @@ class mo {
     this.keyboardController?.stop(), this.keyboardController = null, this.stopTargetingListeners(), this.hideMarker();
   }
 }
-const bo = po, Et = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const ki = vi, St = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  TargetingController: mo,
-  styles: bo
+  TargetingController: wi,
+  styles: ki
+}, Symbol.toStringTag, { value: "Module" })), xi = ".qaid-recording-indicator{position:fixed;pointer-events:auto;top:12px;left:50%;transform:translate(-50%);display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:light-dark(#1f2937,#374151);color:#fff;border-radius:9999px;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;box-shadow:0 4px 12px #0000004d;z-index:99999;animation:qaid-slideDown .2s ease-out}.qaid-recording-dot{width:10px;height:10px;background:#dc2626;border-radius:50%;animation:qaid-dotPulse 1.5s ease-in-out infinite}@keyframes qaid-dotPulse{0%,to{opacity:1}50%{opacity:.3}}.qaid-recording-time{font-variant-numeric:tabular-nums;min-width:2.5rem;text-align:center}button.qaid-recording-stop{padding:.25rem .75rem;background:#dc2626;color:#fff;border:none;border-radius:9999px;font-size:calc(var(--qaid-font-size, 16px) * .75);font-weight:600;cursor:pointer;transition:background-color .2s;-webkit-appearance:none;appearance:none}button.qaid-recording-stop:hover{background:#b91c1c}.qaid-video-preview{position:fixed;inset:0 0 auto;height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#0009;z-index:99998;animation:qaid-fadeIn .2s ease-out}@keyframes qaid-fadeIn{0%{opacity:0}to{opacity:1}}.qaid-video-preview-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px #00000080;width:560px;max-width:100%;max-height:100%;overflow-y:auto;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-video-preview-box h3{font-size:calc(var(--qaid-font-size, 16px) * 1.125);font-weight:700;margin:0 0 1rem;color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box video{width:100%;max-height:50vh;max-height:50dvh;object-fit:contain;border-radius:.5rem;background:#000;margin-bottom:1rem}.qaid-video-preview-box textarea{width:100%;height:4rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:calc(var(--qaid-font-size, 16px) * .875);resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-video-error{margin:0 0 .75rem;font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;color:light-dark(#b91c1c,#fca5a5)}.qaid-video-preview-actions{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-video-btn{padding:.5rem 1rem;border:none;border-radius:.5rem;font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-video-btn-cancel{background:light-dark(#f3f4f6,#374151);color:light-dark(#374151,#d1d5db)}button.qaid-video-btn-cancel:hover{background:light-dark(#e5e7eb,#4b5563)}button.qaid-video-btn-rerecord{background:light-dark(#fef3c7,#78350f);color:light-dark(#92400e,#fde68a)}button.qaid-video-btn-rerecord:hover{filter:brightness(.9)}button.qaid-video-btn-send{background:var(--qaid-marker);color:var(--qaid-marker-text, white)}button.qaid-video-btn-send:hover{filter:brightness(.85)}button.qaid-video-btn-send:disabled{opacity:.5;cursor:not-allowed}.qaid-video-sending{display:flex;align-items:center;gap:.5rem;font-size:calc(var(--qaid-font-size, 16px) * .875);color:light-dark(#6b7280,#9ca3af)}@keyframes qaid-slideDown{0%{transform:translateY(-100%)}to{transform:translateY(0)}}button.qaid-recording-stop{min-height:24px}.qaid-video-preview-box textarea:focus-visible{outline:2px solid var(--qaid-marker, #6365f1);outline-offset:2px}@media(forced-colors:active){.qaid-video-preview-box textarea:focus{outline:2px solid CanvasText;outline-offset:2px}}";
+class qi {
+  constructor(t) {
+    this.host = t;
+  }
+  host;
+  videoRecorder = null;
+  networkCapture = null;
+  recordedBlob = null;
+  recordingIndicator = null;
+  videoPreview = null;
+  isRecording = !1;
+  isSendingVideo = !1;
+  // Pre-recording redaction picking.
+  redactPicks = [];
+  redactPickerRoot = null;
+  redactRafId = 0;
+  boundRedactClick = (t) => this.handleRedactPickClick(t);
+  /** Escape-key handler; returns true when it consumed the key. */
+  handleEscape() {
+    return this.isRecording ? (this.stopRecording(), !0) : this.videoPreview ? (this.cancelRecordingPreview(), !0) : this.redactPickerRoot ? (this.finishRedactionPicking(!1), !0) : !1;
+  }
+  destroy() {
+    this.redactRafId && cancelAnimationFrame(this.redactRafId), this.redactRafId = 0, document.removeEventListener("click", this.boundRedactClick, !0), this.redactPickerRoot && (this.redactPickerRoot.remove(), this.redactPickerRoot = null), this.redactPicks = [], this.cleanupRecording(), this.removeVideoPreview();
+  }
+  async startRecording(t = []) {
+    if (!(this.isRecording || this.host.state !== "IDLE"))
+      try {
+        this.networkCapture = uo();
+        const { createVideoRecorder: e } = await Promise.resolve().then(() => Ht);
+        this.videoRecorder = e({
+          maxDuration: this.host.config.videoOptions.maxDuration,
+          redactionElements: t
+        }), this.videoRecorder.onTick((i) => {
+          this.updateRecordingTimer(i);
+        }), this.videoRecorder.onStop((i) => {
+          this.isRecording && (this.recordedBlob = i, this.isRecording = !1, this.host.announceMsg("Recording stopped"), this.removeRecordingIndicator(), document.removeEventListener("keydown", this.host.boundKeyDown), this.host.setButtonsDisabled(!1), i && i.size > 0 ? this.showRecordingPreview() : this.cleanupRecording());
+        }), await this.videoRecorder.start(), this.isRecording = !0, this.host.announceMsg("Recording started"), this.host.setButtonsDisabled(!0), this.showRecordingIndicator(), document.addEventListener("keydown", this.host.boundKeyDown);
+      } catch (e) {
+        e instanceof Error && /current tab|cannot blur/i.test(e.message) && this.host.announceMsg(e.message), this.cleanupRecording();
+      }
+  }
+  async stopRecording() {
+    try {
+      this.recordedBlob = await this.videoRecorder.stop();
+    } catch {
+      this.recordedBlob = null;
+    }
+    this.isRecording = !1, this.host.announceMsg("Recording stopped"), this.removeRecordingIndicator(), document.removeEventListener("keydown", this.host.boundKeyDown), this.recordedBlob && this.recordedBlob.size > 0 ? this.showRecordingPreview() : this.cleanupRecording();
+  }
+  /**
+   * Pre-recording redaction picker. The user clicks page areas to blur; each
+   * gets an outline that tracks its position, then "Start recording" hands the
+   * picks to the recorder, which blurs their live bounding boxes so the
+   * redaction follows the content as the page scrolls. "Cancel"/Escape aborts.
+   */
+  startPicking() {
+    if (this.isRecording || this.host.state !== "IDLE") return;
+    this.host.setState("REDACT_PICKING"), this.redactPicks = [];
+    const t = this.host.ensureOverlayHost(), e = p("div", { style: "position:absolute;inset:0;" }), i = p(
+      "div",
+      { class: "qaid-redact-picker", style: "position:fixed;inset:0;pointer-events:none;" },
+      e,
+      // Control bar — the only pointer-interactive part of the overlay.
+      p(
+        "div",
+        {
+          style: "position:fixed;left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:12px;align-items:center;pointer-events:auto;background:#0b1220;color:#fff;border:1px solid #ff6b6b;border-radius:9999px;padding:10px 16px;font:600 13px system-ui,sans-serif;box-shadow:0 8px 30px rgba(0,0,0,.5);"
+        },
+        p("span", {
+          text: "Click sensitive areas to blur",
+          attrs: { "data-qaid-redact-label": "" }
+        }),
+        p("button", {
+          text: "Start recording",
+          attrs: { type: "button" },
+          style: "cursor:pointer;border:0;border-radius:9999px;padding:8px 14px;background:#ff6b6b;color:#0b1220;font:inherit;",
+          on: { click: () => this.finishRedactionPicking(!0) }
+        }),
+        p("button", {
+          text: "Cancel",
+          attrs: { type: "button" },
+          style: "cursor:pointer;border:0;background:transparent;color:#9fb3c8;font:inherit;",
+          on: { click: () => this.finishRedactionPicking(!1) }
+        })
+      )
+    );
+    t.appendChild(i), this.redactPickerRoot = i;
+    const n = () => {
+      this.renderRedactPicks(e), this.redactRafId = requestAnimationFrame(n);
+    };
+    n(), document.addEventListener("click", this.boundRedactClick, !0), document.addEventListener("keydown", this.host.boundKeyDown), this.host.announceMsg("Click sensitive areas to blur, then start recording");
+  }
+  handleRedactPickClick(t) {
+    const e = t.target instanceof Element ? t.target : null;
+    if (!e || P(e) || this.redactPickerRoot?.contains(e)) return;
+    t.preventDefault(), t.stopPropagation();
+    const i = this.redactPicks.indexOf(e);
+    i >= 0 ? this.redactPicks.splice(i, 1) : this.redactPicks.push(e);
+    const n = this.redactPickerRoot?.querySelector("[data-qaid-redact-label]");
+    if (n) {
+      const a = this.redactPicks.length;
+      n.textContent = a === 0 ? "Click sensitive areas to blur" : `${a} area${a === 1 ? "" : "s"} will be blurred`;
+    }
+  }
+  renderRedactPicks(t) {
+    t.textContent = "";
+    for (const e of this.redactPicks) {
+      const i = e.getBoundingClientRect();
+      i.width <= 0 || i.height <= 0 || t.appendChild(
+        p("div", {
+          style: `position:fixed;left:${i.left}px;top:${i.top}px;width:${i.width}px;height:${i.height}px;border:2px solid #ff6b6b;border-radius:4px;background:rgba(255,107,107,.18);pointer-events:none;`
+        })
+      );
+    }
+  }
+  finishRedactionPicking(t) {
+    this.redactRafId && cancelAnimationFrame(this.redactRafId), this.redactRafId = 0, document.removeEventListener("click", this.boundRedactClick, !0), document.removeEventListener("keydown", this.host.boundKeyDown), this.redactPickerRoot && (this.redactPickerRoot.remove(), this.redactPickerRoot = null);
+    const e = this.redactPicks;
+    this.redactPicks = [], this.host.setState("IDLE"), t && this.startRecording(e);
+  }
+  showRecordingIndicator() {
+    const t = this.host.ensureOverlayHost();
+    this.recordingIndicator = p(
+      "div",
+      { class: "qaid-recording-indicator", style: `z-index:${this.host.config.zIndex + 100}` },
+      p("div", { class: "qaid-recording-dot" }),
+      p("span", {
+        class: "qaid-recording-time",
+        text: this.formatTime(this.host.config.videoOptions.maxDuration)
+      }),
+      p("button", {
+        class: "qaid-recording-stop",
+        text: "Stop",
+        attrs: { type: "button" },
+        on: { click: () => this.stopRecording() }
+      })
+    ), this.host.applyVars(this.recordingIndicator), t.appendChild(this.recordingIndicator);
+  }
+  updateRecordingTimer(t) {
+    if (!this.recordingIndicator) return;
+    const e = this.recordingIndicator.querySelector(".qaid-recording-time");
+    if (e) {
+      const i = Math.max(0, this.host.config.videoOptions.maxDuration - t);
+      e.textContent = this.formatTime(i), i > 0 && i <= 5 && this.host.announceMsg(`${i} second${i === 1 ? "" : "s"} remaining`);
+    }
+  }
+  formatTime(t) {
+    const e = Math.floor(t / 60), i = t % 60;
+    return `${e}:${i.toString().padStart(2, "0")}`;
+  }
+  removeRecordingIndicator() {
+    this.recordingIndicator && (this.recordingIndicator.remove(), this.recordingIndicator = null);
+  }
+  showRecordingPreview() {
+    const t = this.host.ensureOverlayHost(), e = URL.createObjectURL(this.recordedBlob), i = `qaid-video-title-${this.host.uid}`, n = p("h3", { text: "Review your recording", attrs: { id: i } }), a = p("video");
+    a.src = e, a.controls = !0, a.autoplay = !0, a.muted = !0;
+    const s = p("textarea", {
+      attrs: {
+        placeholder: "Optional: Describe the issue you recorded...",
+        "aria-label": "Describe the issue you recorded"
+      }
+    }), d = p("button", {
+      class: "qaid-video-btn qaid-video-btn-send",
+      text: "Send",
+      attrs: { type: "button" },
+      on: { click: () => this.submitVideoFeedback(s.value.trim() || null, d) }
+    }), c = p(
+      "div",
+      { class: "qaid-video-preview-box" },
+      n,
+      a,
+      s,
+      p(
+        "div",
+        { class: "qaid-video-preview-actions" },
+        p("button", {
+          class: "qaid-video-btn qaid-video-btn-cancel",
+          text: "Cancel",
+          attrs: { type: "button" },
+          on: { click: () => this.cancelRecordingPreview() }
+        }),
+        p("button", {
+          class: "qaid-video-btn qaid-video-btn-rerecord",
+          text: "Re-record",
+          attrs: { type: "button" },
+          on: {
+            click: () => {
+              this.cancelRecordingPreview(), this.startRecording();
+            }
+          }
+        }),
+        d
+      )
+    );
+    this.videoPreview = p(
+      "div",
+      { class: "qaid-video-preview", style: `z-index:${this.host.config.zIndex + 100}` },
+      c
+    ), this.host.applyVars(this.videoPreview), this.host.overlayShadowHost && (this.host.overlayShadowHost.style.pointerEvents = "auto"), t.appendChild(this.videoPreview), this.host.openDialogA11y(c, { labelledbyId: n.id }), document.addEventListener("keydown", this.host.boundKeyDown);
+  }
+  cancelRecordingPreview() {
+    this.removeVideoPreview(), this.cleanupRecording();
+  }
+  removeVideoPreview() {
+    if (this.host.closeDialogA11y(), this.videoPreview) {
+      const t = this.videoPreview.querySelector("video");
+      t?.src && URL.revokeObjectURL(t.src), this.videoPreview.remove(), this.videoPreview = null;
+    }
+    document.removeEventListener("keydown", this.host.boundKeyDown);
+  }
+  async submitVideoFeedback(t, e) {
+    if (!this.recordedBlob || this.isSendingVideo) return;
+    this.isSendingVideo = !0, e.disabled = !0, e.textContent = "Sending...";
+    const i = new FormData();
+    i.append("video", this.recordedBlob, `recording.${this.recordedBlob.type.includes("mp4") ? "mp4" : "webm"}`), i.append("pageUrl", window.location.href), i.append("visitorId", this.host.visitorId), this.host.config.apiKey && i.append("apiKey", this.host.config.apiKey), t && i.append("message", t), this.host.consoleCapture && i.append("consoleErrors", JSON.stringify(this.host.consoleCapture.errors)), this.networkCapture && i.append("networkErrors", JSON.stringify(this.networkCapture.errors));
+    let n = null, a = null;
+    try {
+      const s = await fetch(`${this.host.config.endpoint}/video`, {
+        method: "POST",
+        body: i
+      });
+      if (s.ok) {
+        this.host.announceMsg("Recording sent");
+        try {
+          n = (await s.json())?.id ?? null;
+        } catch {
+        }
+      } else
+        console.error("Failed to submit video feedback:", await s.text()), a = s.status === 413 ? "This recording is too large to send. Try a shorter one." : "Your recording could not be sent.";
+    } catch (s) {
+      console.error("Failed to submit video feedback:", s), a = "Your recording could not be sent. Check your connection and try again.";
+    }
+    if (this.isSendingVideo = !1, a) {
+      this.showSendError(a, e);
+      return;
+    }
+    this.removeVideoPreview(), this.cleanupRecording(), await this.host.tryLaunchQuest("video", n);
+  }
+  /**
+   * Keep the preview open and say the upload failed. Closing it, as a success
+   * does, told the visitor their recording had arrived when it had not. Send
+   * is re-enabled for another try; Cancel and Re-record still work.
+   */
+  showSendError(t, e) {
+    this.host.announceMsg(`Failed to send recording. ${t}`, !0), e.disabled = !1, e.textContent = "Send";
+    const i = this.videoPreview?.querySelector(".qaid-video-preview-actions");
+    if (i) {
+      let n = this.videoPreview.querySelector(".qaid-video-error");
+      n || (n = p("p", { class: "qaid-video-error" }), i.before(n)), n.textContent = t;
+    }
+  }
+  cleanupRecording() {
+    this.isRecording = !1, this.removeRecordingIndicator(), this.videoRecorder && (this.videoRecorder.destroy(), this.videoRecorder = null), this.networkCapture && (this.networkCapture.restore(), this.networkCapture = null), this.recordedBlob && (this.recordedBlob = null), this.host.setButtonsDisabled(!1), this.host.overlayShadowHost && this.host.state === "IDLE" && (this.host.overlayShadowHost.style.pointerEvents = "none");
+  }
+}
+const Ci = xi, Et = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  RecordingController: qi,
+  styles: Ci
+}, Symbol.toStringTag, { value: "Module" }));
+async function Si(o = {}) {
+  const { quality: t = 0.8, maxWidth: e = 1280, maxHeight: i = 800 } = o;
+  try {
+    if (!navigator.mediaDevices?.getDisplayMedia)
+      return console.warn("Screen Capture API not available"), null;
+    const n = await navigator.mediaDevices.getDisplayMedia({
+      preferCurrentTab: !0,
+      video: {
+        displaySurface: "browser"
+      }
+    }), a = n.getVideoTracks()[0], s = a.getSettings(), d = document.createElement("video");
+    d.srcObject = n, d.muted = !0, await new Promise((v) => {
+      d.onloadedmetadata = () => {
+        d.play(), v();
+      };
+    }), await new Promise((v) => {
+      const w = () => {
+        d.readyState >= 2 ? v() : requestAnimationFrame(w);
+      };
+      w();
+    }), await new Promise((v) => setTimeout(v, 100));
+    const c = s.width || d.videoWidth, l = s.height || d.videoHeight, r = Math.min(e / c, i / l, 1), h = Math.round(c * r), f = Math.round(l * r), m = document.createElement("canvas");
+    m.width = h, m.height = f;
+    const g = m.getContext("2d");
+    return g ? (g.drawImage(d, 0, 0, h, f), a.stop(), m.toDataURL("image/webp", t)) : (a.stop(), null);
+  } catch (n) {
+    return console.warn("Screenshot capture failed:", n), null;
+  }
+}
+const ne = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  captureScreenshot: Si
 }, Symbol.toStringTag, { value: "Module" }));
 export {
-  Vt as AnnotationEditor,
-  ci as QaidFeedback,
-  Mi as captureDomScreenshot,
-  gi as captureNetworkErrors,
-  Nt as compositeAnnotations,
-  Ei as createVideoRecorder,
-  H as drawShape,
-  $t as getSupportedMimeType,
-  Ii as isDomScreenshotSupported,
-  Ti as isVideoRecordingSupported,
-  Ki as openAnnotationEditor,
-  B as rectFromPoints
+  _t as AnnotationEditor,
+  io as QaidFeedback,
+  To as captureDomScreenshot,
+  uo as captureNetworkErrors,
+  $t as compositeAnnotations,
+  xo as createVideoRecorder,
+  z as drawShape,
+  Bt as getSupportedMimeType,
+  So as isDomScreenshotSupported,
+  ko as isVideoRecordingSupported,
+  Fo as openAnnotationEditor,
+  O as rectFromPoints
 };
 //# sourceMappingURL=index.js.map

@@ -11,9 +11,9 @@
  * keeps this surface stable needs no change in thumbs-embed.
  */
 
-/** Default ES-module URL, pinned to a compatible major on unpkg. */
-export const DEFAULT_QUESTS_MODULE_URL =
-  "https://unpkg.com/@qaiddev/quests-embed@1/dist/qaid-quests.js";
+// The default module URL lives apart so the startup chunk can fill in the
+// config default without carrying this loader.
+export { DEFAULT_QUESTS_MODULE_URL } from "./quest-config";
 
 /** The bit of a QaidQuests instance we hold onto. */
 export interface QuestInstance {

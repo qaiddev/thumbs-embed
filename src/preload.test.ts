@@ -58,7 +58,9 @@ describe("preload-on-intent", () => {
     expect(ric).toHaveBeenCalledTimes(1);
     ric.mock.calls[0]![0]();
 
-    expect(importer).toHaveBeenCalledTimes(1);
+    // The quests loader is its own lazy chunk, so the warm-up lands a tick later.
+    await vi.waitFor(() => expect(importer).toHaveBeenCalledTimes(1));
+    await vi.waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(2));
     const urls = fetchMock.mock.calls.map((c) => c[0]);
     expect(urls).toEqual([
       "https://qaid.dev/api/quests/quest-up/definition",
@@ -91,14 +93,24 @@ describe("preload-on-intent", () => {
     _setQuestsImporter(null);
   });
 
-  it("does not warm quests when no base is set", () => {
+  it("does not warm quests when no base is set", async () => {
+    const importer = vi.fn(async () => ({ QaidQuests: class {} }));
+    _setQuestsImporter(importer);
+    const fetchMock = vi.fn();
+    vi.stubGlobal("fetch", fetchMock);
+
     embed = new QaidFeedback({ endpoint: "/api/feedback", quests: { up: "quest-up" } });
-    expect(ric).not.toHaveBeenCalled();
+    ric.mock.calls[0]![0]();
+    await new Promise((r) => setTimeout(r, 0));
+
+    expect(importer).not.toHaveBeenCalled();
+    expect(fetchMock).not.toHaveBeenCalled();
+    _setQuestsImporter(null);
   });
 
-  it("does not schedule a preload for a plain thumbs embed", () => {
+  it("schedules the click-path preload for a plain thumbs embed", () => {
     embed = new QaidFeedback({ endpoint: "/api/feedback" });
-    expect(ric).not.toHaveBeenCalled();
+    expect(ric).toHaveBeenCalledTimes(1);
   });
 
   it("cancels the pending idle preload on destroy", () => {

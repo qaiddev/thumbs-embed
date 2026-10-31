@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { QaidFeedback } from "./embed";
-import { saveFocus } from "./a11y";
+import { saveFocus } from "./a11y-dialog";
 import { _resetStylesState } from "./styles";
 
 /**

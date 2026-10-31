@@ -1,7 +1,2 @@
-import { a } from "./chunks/core-CL1dwdaN.js";
-import { Q as e } from "./chunks/core-CL1dwdaN.js";
-a();
-export {
-  e as QaidFeedback
-};
+import{b as o}from"./chunks/core-BsR7oV99.js";import{Q as a}from"./chunks/core-BsR7oV99.js";o();export{a as QaidFeedback};
 //# sourceMappingURL=loader.js.map

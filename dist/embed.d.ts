@@ -34,7 +34,7 @@ export declare class QaidFeedback {
     private consoleCapture;
     private recording;
     private targeting;
-    private targetingPrewarmed;
+    private clickPathPrewarmed;
     private prewarmHandle;
     private prewarmIsTimeout;
     private videoPrewarmed;
@@ -46,14 +46,12 @@ export declare class QaidFeedback {
     private buttonsContainer;
     private isUserProvidedContainer;
     private modal;
-    private modalPrewarmed;
     private dismissBtn;
     private cssVars;
     private activeThumbBtn;
     private keyboardActivation;
-    private dialogTrigger;
-    private dialogTrap;
-    private dialogRestoreInert;
+    private dialogModule;
+    private dialogClose;
     private readonly uid;
     private boundKeyDown;
     private boundResize;
@@ -70,15 +68,26 @@ export declare class QaidFeedback {
      * while a dialog aria-hides the main button host.
      */
     private announceMsg;
+    /** Load the dialog a11y helpers; every surface that opens a dialog awaits this first. */
+    private loadDialogA11y;
     /**
      * Turn a transient surface into an accessible modal dialog: save the
      * invoking control, apply dialog semantics, trap focus, and inert the
-     * background. Paired with closeDialogA11y() on every close path.
+     * background. Paired with closeDialogA11y() on every close path. Callers
+     * reach it only after loadDialogA11y() has resolved.
      */
     private openDialogA11y;
     private closeDialogA11y;
     private clearActiveThumb;
     private init;
+    /**
+     * Warm everything a thumb click needs: the send flow, the dialog helpers,
+     * the message box, and targeting (unless it is skipped). Runs once, on the
+     * first of: pointer or focus entering the buttons, or the idle callback.
+     */
+    private prewarmClickPath;
+    /** "annotate" mode and skipTargeting both go straight to the send flow. */
+    private skipsTargeting;
     /**
      * Best-effort preload of a lazily-split feature chunk so its first use is
      * instant. Warming fetches + compiles (and defines) the module; the feature
@@ -139,29 +148,19 @@ export declare class QaidFeedback {
      *  otherwise DOM is used on touch devices to avoid the getDisplayMedia prompt. */
     private shouldCaptureViaDom;
     /**
-     * Open the full-screen annotation editor over the captured screenshot,
-     * reusing the overlay shadow host and the shared dialog a11y helpers.
-     * Resolves with the composited WebP data URL, or null when the user skips
-     * (caller keeps the original). Pointer events on the overlay host are
-     * enabled while the editor is open and restored on close.
+     * Run the send flow (send.ts, loaded on demand and pre-warmed before the
+     * click): screenshot, markup, POST, then a linked quest or the message box.
+     * If its chunk will not load, say so and reset rather than leave the
+     * visitor stuck mid-flow.
      */
-    private openAnnotationEditor;
     private submitFeedback;
-    /** POST the feedback. Resolves to the new record's id, or null if it failed. */
-    private postFeedback;
     /**
-     * Quest id linked to `type`, or "" when quest launching is disabled
-     * (no `base`) or this button has no quest configured.
-     */
-    private questIdFor;
-    /**
-     * Launch the quest linked to `type`, if any. Resolves `true` when a quest
-     * was configured and the widget launched; `false` when no quest is
-     * configured or the widget failed to load (caller falls back to its
-     * normal UI). The created feedback record id is passed through so the
-     * quest response can be joined back to it server-side.
+     * Launch the quest linked to `type` through the send chunk. Resolves false
+     * when none is linked, or when the chunk or the quest will not load.
      */
     private tryLaunchQuest;
+    /** Narrow view of the embed the send flow talks back through. */
+    private makeSendHost;
     /**
      * Reset the thumbs targeting/marker UI back to idle without opening or
      * closing the message modal. Shared by closeModal() and the quest-launch
@@ -170,24 +169,20 @@ export declare class QaidFeedback {
     private resetFeedbackUi;
     /**
      * Lazily load and instantiate the modal controller. The message modal lives
-     * in a separate chunk, fetched the first time it opens (and pre-warmed while
-     * the user targets an element — see prewarmModal).
+     * in a separate chunk, fetched the first time it opens (and pre-warmed
+     * before the click — see prewarmClickPath).
      */
     private ensureModal;
     /** Narrow view of the embed the modal controller talks back through. */
     private makeModalHost;
-    /** Warm the modal chunk while the user is targeting, so it opens instantly. */
-    private prewarmModal;
     /**
      * Lazily load and instantiate the targeting controller. The subsystem (with
      * element-selector) lives in a separate chunk, fetched the first time the
-     * user targets — pre-warmed on thumb-button hover (see prewarmTargeting).
+     * user targets — pre-warmed before the click (see prewarmClickPath).
      */
     private ensureTargeting;
     /** Narrow view of the embed the targeting controller talks back through. */
     private makeTargetingHost;
-    /** Warm the targeting chunk on thumb-button hover, before the click. */
-    private prewarmTargeting;
     /**
      * Cheap synchronous capability check so the record button can render without
      * pulling in the (lazily-loaded) video subsystem. Mirrors

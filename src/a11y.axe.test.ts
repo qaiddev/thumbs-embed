@@ -3,7 +3,7 @@ import axe from "axe-core";
 import { QaidFeedback } from "./embed";
 import { _resetStylesState } from "./styles";
 import { AnnotationEditor } from "./annotate";
-import { applyDialog } from "./a11y";
+import { applyDialog } from "./a11y-dialog";
 
 /**
  * Automated axe-core regression net for the thumbs embed.

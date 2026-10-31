@@ -108,14 +108,15 @@ describe("feature chunks that fail to load", () => {
     expect(tooltip.classList.contains("qaid-tooltip-visible")).toBe(false);
   });
 
-  it("does not preload targeting on hover when targeting is skipped", async () => {
-    embed = new QaidFeedback({ endpoint: "/api/feedback", skipTargeting: true });
-    const up = mainRoot().querySelector<HTMLButtonElement>(".qaid-btn-up")!;
+  it("swallows failed click-path preloads when the pointer or focus reaches the buttons", async () => {
+    embed = new QaidFeedback({ endpoint: "/api/feedback" });
+    const buttons = mainRoot().querySelector<HTMLElement>(".qaid-buttons")!;
 
-    up.dispatchEvent(new MouseEvent("mouseenter"));
+    buttons.dispatchEvent(new Event("pointerenter"));
+    buttons.dispatchEvent(new FocusEvent("focusin", { bubbles: true }));
     await settle();
 
-    expect((embed as unknown as { targetingPrewarmed: boolean }).targetingPrewarmed).toBe(false);
+    expect(mainRoot().querySelector(".qaid-btn-up")).not.toBeNull();
   });
 
   it("thanks the visitor and resets when the message modal chunk cannot load", async () => {

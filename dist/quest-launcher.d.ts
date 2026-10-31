@@ -10,8 +10,7 @@
  * modelled here structurally, so a version bump of the quests package that
  * keeps this surface stable needs no change in thumbs-embed.
  */
-/** Default ES-module URL, pinned to a compatible major on unpkg. */
-export declare const DEFAULT_QUESTS_MODULE_URL = "https://unpkg.com/@qaiddev/quests-embed@1/dist/qaid-quests.js";
+export { DEFAULT_QUESTS_MODULE_URL } from "./quest-config";
 /** The bit of a QaidQuests instance we hold onto. */
 export interface QuestInstance {
     destroy(): void;
@@ -83,4 +82,3 @@ export interface LaunchQuestOptions {
  * caller should fall back to its normal UI.
  */
 export declare function launchQuest(opts: LaunchQuestOptions): Promise<QuestInstance>;
-export {};

@@ -5,8 +5,8 @@ import {
   calculateArrowPosition,
   calculateModalPosition,
   calculateModalAndArrowPosition,
-  calculateTooltipPosition,
 } from "./modal-positioning";
+import { calculateTooltipPosition } from "./tooltip-positioning";
 import type { SelectedBounds } from "./types";
 
 describe("modal-positioning", () => {

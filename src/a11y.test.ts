@@ -1,13 +1,13 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import {
-  announce,
   getFocusable,
   createFocusTrap,
   saveFocus,
   restoreFocus,
   applyDialog,
   setBackgroundInert,
-} from "./a11y";
+} from "./a11y-dialog";
+import { announce } from "./a11y";
 
 function makeButton(label: string): HTMLButtonElement {
   const b = document.createElement("button");
