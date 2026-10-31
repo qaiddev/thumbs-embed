@@ -1,4 +1,4 @@
-import { g as k, c as T, b as m } from "./annotate-D-o8xCV9.js";
+import { g as k, e as T, i as m } from "./core-2nGsCcZq.js";
 const E = ["data-comp", "data-qa", "data-testid", "data-id"];
 function C(s, t = document.body) {
   let e = s;
@@ -293,4 +293,4 @@ class O {
 export {
   O as TargetingController
 };
-//# sourceMappingURL=targeting-Dz6z1BYl.js.map
+//# sourceMappingURL=targeting-DaBmGVk5.js.map

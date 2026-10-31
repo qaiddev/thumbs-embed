@@ -1,26 +1,49 @@
-import { i as Dt, F as zt, T as Ht, a as Lt, R as Mt } from "./annotate-D-o8xCV9.js";
-const Bt = "button{cursor:pointer}.qaid-buttons{display:flex;gap:.5rem}.qaid-buttons.qaid-vertical{flex-direction:column}.qaid-buttons.qaid-auto-container{position:fixed;z-index:50}.qaid-buttons.qaid-auto-container.qaid-bottom-right{bottom:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-bottom-left{bottom:1rem;left:1rem}.qaid-buttons.qaid-auto-container.qaid-top-right{top:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-top-left{top:1rem;left:1rem}.qaid-buttons.qaid-incognito{opacity:0;transition:opacity .2s ease-in-out}.qaid-buttons.qaid-incognito:hover{opacity:1}.qaid-buttons.qaid-dismissed{display:none!important}.qaid-dismiss-btn{width:20px;height:20px;padding:0;border:none;border-radius:50%;background:#0006;color:#fff;display:flex;align-items:center;justify-content:center;align-self:center;opacity:0;transition:opacity .15s,background .15s;cursor:pointer;pointer-events:auto;-webkit-appearance:none;appearance:none}.qaid-dismiss-btn:hover{background:#0009}.qaid-buttons:hover .qaid-dismiss-btn{opacity:1}button.qaid-btn-structural{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;appearance:none}.qaid-icon{width:24px;height:24px}:where(button.qaid-btn-structural)>svg:where(:not(.qaid-icon):not([width])){width:var(--qaid-icon-size, 24px);height:var(--qaid-icon-size, 24px)}.qaid-btn-structural:not(:has(svg)),.qaid-btn:not(:has(svg)){font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-emoji-icon{font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-buttons,.qaid-buttons *,.qaid-modal-container,.qaid-modal-container *{cursor:pointer!important}.qaid-tooltip-wrapper{position:relative}.qaid-tooltip-text{position:fixed;padding:.5rem .75rem;background:#1f2937;color:#fff;font-size:var(--qaid-font-size, 16px);font-weight:600;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:99999}.qaid-tooltip-text.qaid-tooltip-visible{opacity:1}.qaid-targeting-overlay{position:fixed;inset:0;z-index:40;pointer-events:none}.qaid-capture-layer{position:fixed;inset:0;pointer-events:none;z-index:9999}@keyframes qaid-slideDown{0%{transform:translateY(-100%)}to{transform:translateY(0)}}.qaid-vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.3) 70%,rgba(0,0,0,.6) 100%);z-index:41}.qaid-crosshair-h,.qaid-crosshair-v{position:fixed;pointer-events:none;z-index:42}.qaid-crosshair-h{left:0;right:0;height:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-crosshair-v{top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-type-up .qaid-crosshair-h,.qaid-type-up .qaid-crosshair-v{background:color-mix(in srgb,var(--qaid-positive) 60%,transparent)}.qaid-highlight-box{position:fixed;top:0;left:0;pointer-events:none;z-index:41;display:none;border:3px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:2px;background:color-mix(in srgb,var(--qaid-negative) 8%,transparent);will-change:transform,width,height}.qaid-type-up .qaid-highlight-box{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent);background:color-mix(in srgb,var(--qaid-positive) 8%,transparent)}.qaid-scope{position:fixed;width:80px;height:80px;pointer-events:none;z-index:43;transform:translate(-50%,-50%)}.qaid-scope-ring{position:absolute;inset:10px;border:2px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent)}.qaid-scope-ring-inner{position:absolute;inset:20px;border:1px solid color-mix(in srgb,var(--qaid-negative) 50%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring-inner{border-color:color-mix(in srgb,var(--qaid-positive) 50%,transparent)}.qaid-scope-dot{position:absolute;top:50%;left:50%;width:4px;height:4px;background:var(--qaid-negative);border-radius:50%;transform:translate(-50%,-50%)}.qaid-type-up .qaid-scope-dot{background:var(--qaid-positive)}.qaid-selected-marker{position:fixed;border:3px solid var(--qaid-marker, #6365f1);border-radius:50%;pointer-events:none;z-index:44;animation:qaid-markerPulse 1.5s ease-in-out infinite}@keyframes qaid-markerPulse{0%,to{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}.qaid-backdrop{position:fixed;inset:0;z-index:45;background:#0000004d}.qaid-modal-container{position:fixed;z-index:50;display:flex;flex-direction:column;align-items:flex-start;max-height:calc(100vh - 32px);font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-modal-container.qaid-above{flex-direction:column-reverse}.qaid-modal-arrow{width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;position:relative;align-self:flex-start}.qaid-modal-container.qaid-below .qaid-modal-arrow{border-bottom:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-container.qaid-above .qaid-modal-arrow{border-top:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5));width:var(--qaid-modal-width, 400px);max-width:calc(100vw - 32px);max-height:calc(100vh - 60px);overflow-y:auto}.qaid-modal-header{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1rem}button.qaid-type-toggle{border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;-webkit-appearance:none;appearance:none}button.qaid-type-toggle:hover{transform:scale(1.1)}button.qaid-type-toggle:not(.qaid-type-toggle-custom){width:2.5rem;height:2.5rem;border-radius:50%}button.qaid-type-toggle:not(.qaid-type-toggle-custom) svg{width:1.25rem;height:1.25rem}button.qaid-type-toggle.qaid-type-up{background:var(--qaid-positive);color:#fff}button.qaid-type-toggle.qaid-type-down{background:var(--qaid-negative);color:#fff}.qaid-type-static{width:2.5rem;height:2.5rem;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--qaid-marker, #6365f1);color:var(--qaid-marker-text, white)}.qaid-type-static svg{width:1.25rem;height:1.25rem}.qaid-modal-header-text{flex:1;min-width:0}.qaid-modal-title{font-size:calc(var(--qaid-font-size, 16px) * 1.125);font-weight:700;margin:0 0 .25rem;color:light-dark(#1f2937,#f9fafb)}.qaid-modal-subtitle{color:light-dark(#6b7280,#9ca3af);margin:0;font-size:calc(var(--qaid-font-size, 16px) * .875)}.qaid-textarea{width:100%;height:6rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:var(--qaid-font-size, 16px);resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-btn-row{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-btn-submit{padding:.5rem 1rem;background:var(--qaid-marker);color:var(--qaid-marker-text, white);border:none;border-radius:.5rem;font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-btn-submit:hover{filter:brightness(.85)}button.qaid-btn-submit:focus{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 30%,transparent)}.qaid-bottom-sheet{position:fixed;bottom:0;left:0;right:0;z-index:50;animation:qaid-slideUpSheet .3s ease-out;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-bottom-sheet-content{background:light-dark(#ffffff,#1f2937);border-radius:1rem 1rem 0 0;padding:1.5rem;padding-bottom:max(1.5rem,env(safe-area-inset-bottom))}.qaid-bottom-sheet-handle{width:36px;height:4px;background:light-dark(rgba(0,0,0,.2),rgba(255,255,255,.2));border-radius:2px;margin:0 auto 1rem}@keyframes qaid-slideUpSheet{0%{transform:translateY(100%)}to{transform:translateY(0)}}button.qaid-btn-record:hover{background:#dc2626;color:#fff}.qaid-recording-indicator{position:fixed;pointer-events:auto;top:12px;left:50%;transform:translate(-50%);display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:light-dark(#1f2937,#374151);color:#fff;border-radius:9999px;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;box-shadow:0 4px 12px #0000004d;z-index:99999;animation:qaid-slideDown .2s ease-out}.qaid-recording-dot{width:10px;height:10px;background:#dc2626;border-radius:50%;animation:qaid-dotPulse 1.5s ease-in-out infinite}@keyframes qaid-dotPulse{0%,to{opacity:1}50%{opacity:.3}}.qaid-recording-time{font-variant-numeric:tabular-nums;min-width:2.5rem;text-align:center}button.qaid-recording-stop{padding:.25rem .75rem;background:#dc2626;color:#fff;border:none;border-radius:9999px;font-size:calc(var(--qaid-font-size, 16px) * .75);font-weight:600;cursor:pointer;transition:background-color .2s;-webkit-appearance:none;appearance:none}button.qaid-recording-stop:hover{background:#b91c1c}.qaid-video-preview{position:fixed;inset:0 0 auto;height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#0009;z-index:99998;animation:qaid-fadeIn .2s ease-out}@keyframes qaid-fadeIn{0%{opacity:0}to{opacity:1}}.qaid-video-preview-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px #00000080;width:560px;max-width:100%;max-height:100%;overflow-y:auto;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-video-preview-box h3{font-size:calc(var(--qaid-font-size, 16px) * 1.125);font-weight:700;margin:0 0 1rem;color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box video{width:100%;max-height:50vh;max-height:50dvh;object-fit:contain;border-radius:.5rem;background:#000;margin-bottom:1rem}.qaid-video-preview-box textarea{width:100%;height:4rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:calc(var(--qaid-font-size, 16px) * .875);resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-video-error{margin:0 0 .75rem;font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;color:light-dark(#b91c1c,#fca5a5)}.qaid-video-preview-actions{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-video-btn{padding:.5rem 1rem;border:none;border-radius:.5rem;font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-video-btn-cancel{background:light-dark(#f3f4f6,#374151);color:light-dark(#374151,#d1d5db)}button.qaid-video-btn-cancel:hover{background:light-dark(#e5e7eb,#4b5563)}button.qaid-video-btn-rerecord{background:light-dark(#fef3c7,#78350f);color:light-dark(#92400e,#fde68a)}button.qaid-video-btn-rerecord:hover{filter:brightness(.9)}button.qaid-video-btn-send{background:var(--qaid-marker);color:var(--qaid-marker-text, white)}button.qaid-video-btn-send:hover{filter:brightness(.85)}button.qaid-video-btn-send:disabled{opacity:.5;cursor:not-allowed}.qaid-video-sending{display:flex;align-items:center;gap:.5rem;font-size:calc(var(--qaid-font-size, 16px) * .875);color:light-dark(#6b7280,#9ca3af)}.qaid-annotate{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;gap:.75rem;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#000000d9;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px);animation:qaid-fadeIn .2s ease-out}.qaid-annotate-title{margin:0;font-size:var(--qaid-font-size, 16px);font-weight:700;text-align:center;color:#f9fafb}.qaid-annotate-desc{margin:0;font-size:calc(var(--qaid-font-size, 16px) * .8125);line-height:1.4;text-align:center;color:#f9fafbbf}.qaid-annotate-stage{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;overflow:auto}.qaid-annotate-canvas{max-width:100%;max-height:100%;object-fit:contain;background:light-dark(#ffffff,#111827);border-radius:.5rem;box-shadow:0 10px 30px #00000080;touch-action:none;cursor:crosshair}.qaid-annotate-toolbar{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;justify-content:center;padding:.5rem .75rem;background:light-dark(#ffffff,#1f2937);border-radius:.75rem;box-shadow:0 10px 30px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5))}.qaid-annotate-tools,.qaid-annotate-actions{display:flex;gap:.375rem;align-items:center}button.qaid-annotate-tool,button.qaid-annotate-action{display:inline-flex;align-items:center;justify-content:center;gap:.375rem;min-width:44px;min-height:44px;padding:0 .75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;background:light-dark(#f9fafb,#111827);color:light-dark(#1f2937,#f9fafb);font-family:inherit;font-size:calc(var(--qaid-font-size, 16px) * .8125);font-weight:600;cursor:pointer;-webkit-appearance:none;appearance:none;transition:background-color .15s,color .15s,border-color .15s,filter .15s}button.qaid-annotate-tool svg,button.qaid-annotate-action svg{width:20px;height:20px}.qaid-annotate-colors{display:flex;gap:.25rem;align-items:center}button.qaid-annotate-swatch{width:28px;height:28px;min-width:28px;padding:0;border-radius:9999px;border:2px solid light-dark(#d1d5db,#4b5563);background:var(--qaid-swatch, #000);cursor:pointer;-webkit-appearance:none;appearance:none;transition:transform .1s,box-shadow .15s,border-color .15s}button.qaid-annotate-swatch:hover{transform:scale(1.12)}button.qaid-annotate-swatch[aria-pressed=true]{border-color:light-dark(#111827,#f9fafb);box-shadow:0 0 0 2px var(--qaid-swatch)}@media(forced-colors:active){button.qaid-annotate-swatch[aria-pressed=true]{outline:2px solid Highlight;outline-offset:1px}}button.qaid-annotate-tool:hover,button.qaid-annotate-action:hover{background:light-dark(#eef2ff,#312e81)}button.qaid-annotate-tool[aria-pressed=true],button.qaid-annotate-done{background:var(--qaid-marker, #6365f1);color:var(--qaid-marker-text, #fff);border-color:var(--qaid-marker, #6365f1)}button.qaid-annotate-done:hover{filter:brightness(.9);background:var(--qaid-marker, #6365f1)}button.qaid-annotate-action:disabled{opacity:.45;cursor:not-allowed}@media(forced-colors:active){button.qaid-annotate-tool[aria-pressed=true],button.qaid-annotate-done{border:2px solid Highlight}.qaid-annotate-canvas{border:1px solid CanvasText}}button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible{outline:2px solid var(--qaid-marker, #6365f1);outline-offset:2px}.qaid-textarea:focus-visible,button.qaid-btn-submit:focus-visible,.qaid-video-preview-box textarea:focus-visible{outline:2px solid var(--qaid-marker, #6365f1);outline-offset:2px}.qaid-buttons.qaid-incognito:focus-within{opacity:1}.qaid-buttons:focus-within .qaid-dismiss-btn,.qaid-dismiss-btn:focus-visible{opacity:1}.qaid-dismiss-btn{min-width:24px;min-height:24px}button.qaid-recording-stop{min-height:24px}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}@media(forced-colors:active){button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible,.qaid-textarea:focus,button.qaid-btn-submit:focus,.qaid-video-preview-box textarea:focus{outline:2px solid CanvasText;outline-offset:2px}.qaid-selected-marker,.qaid-highlight-box{border-color:Highlight}}.qaid-confirm{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;padding:.5rem 0}.qaid-confirm-icon{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:9999px;color:#fff;background:var(--qaid-success, #22c55e);margin-bottom:.25rem;animation:qaid-confirm-pop .28s cubic-bezier(.34,1.56,.64,1)}.qaid-confirm-icon .qaid-icon{width:24px;height:24px}.qaid-confirm-error .qaid-confirm-icon{background:var(--qaid-error, #dc2626)}.qaid-confirm-title{margin:0;font-size:var(--qaid-font-size, 16px);font-weight:600;color:var(--qaid-text, light-dark(#111827, #f9fafb))}.qaid-confirm-title:focus-visible{outline:2px solid var(--qaid-primary, #6365f1);outline-offset:3px;border-radius:4px}.qaid-confirm-message{margin:0;font-size:calc(var(--qaid-font-size, 16px) * .875);color:var(--qaid-text-muted, light-dark(#6b7280, #9ca3af))}.qaid-confirm .qaid-confirm-close{margin-top:.5rem;min-width:96px}@keyframes qaid-confirm-pop{0%{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}@media(prefers-reduced-motion:reduce){.qaid-confirm-icon{animation:none}}", Ot = "body.qaid-targeting,body.qaid-targeting *{cursor:none!important}";
+const Dt = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/>
+</svg>`, zt = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.737 3h4.018a2 2 0 01.485.06l3.76.94m-7 10v5a2 2 0 002 2h.095c.5 0 .905-.405.905-.905 0-.714.211-1.412.608-2.006L17 13V4m-7 10h2m5-10h2a2 2 0 012 2v6a2 2 0 01-2 2h-2.5"/>
+</svg>`, Mt = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/>
+</svg>`, Lt = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5m-9 6l3.5-3.5H18a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v14z"/>
+</svg>`, Te = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <rect x="4" y="6" width="16" height="12" rx="1" stroke-linejoin="round"/>
+</svg>`, Ee = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M5 19L19 5m0 0h-8m8 0v8"/>
+</svg>`, Ie = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+</svg>`, De = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 3s6 6.4 6 10a6 6 0 01-12 0c0-3.6 6-10 6-10z"/>
+</svg>`, ze = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9 14L4 9l5-5M4 9h11a5 5 0 010 10h-4"/>
+</svg>`, Me = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M20 6L9 17l-5-5"/>
+</svg>`, Le = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v8m0 4h.01"/>
+</svg>`, He = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6L6 18"/>
+</svg>`, Ht = "button{cursor:pointer}.qaid-buttons{display:flex;gap:.5rem}.qaid-buttons.qaid-vertical{flex-direction:column}.qaid-buttons.qaid-auto-container{position:fixed;z-index:50}.qaid-buttons.qaid-auto-container.qaid-bottom-right{bottom:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-bottom-left{bottom:1rem;left:1rem}.qaid-buttons.qaid-auto-container.qaid-top-right{top:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-top-left{top:1rem;left:1rem}.qaid-buttons.qaid-incognito{opacity:0;transition:opacity .2s ease-in-out}.qaid-buttons.qaid-incognito:hover{opacity:1}.qaid-buttons.qaid-dismissed{display:none!important}.qaid-dismiss-btn{width:20px;height:20px;padding:0;border:none;border-radius:50%;background:#0006;color:#fff;display:flex;align-items:center;justify-content:center;align-self:center;opacity:0;transition:opacity .15s,background .15s;cursor:pointer;pointer-events:auto;-webkit-appearance:none;appearance:none}.qaid-dismiss-btn:hover{background:#0009}.qaid-buttons:hover .qaid-dismiss-btn{opacity:1}button.qaid-btn-structural{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;appearance:none}.qaid-icon{width:24px;height:24px}:where(button.qaid-btn-structural)>svg:where(:not(.qaid-icon):not([width])){width:var(--qaid-icon-size, 24px);height:var(--qaid-icon-size, 24px)}.qaid-btn-structural:not(:has(svg)),.qaid-btn:not(:has(svg)){font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-emoji-icon{font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-buttons,.qaid-buttons *,.qaid-modal-container,.qaid-modal-container *{cursor:pointer!important}.qaid-tooltip-wrapper{position:relative}.qaid-tooltip-text{position:fixed;padding:.5rem .75rem;background:#1f2937;color:#fff;font-size:var(--qaid-font-size, 16px);font-weight:600;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:99999}.qaid-tooltip-text.qaid-tooltip-visible{opacity:1}.qaid-targeting-overlay{position:fixed;inset:0;z-index:40;pointer-events:none}.qaid-capture-layer{position:fixed;inset:0;pointer-events:none;z-index:9999}@keyframes qaid-slideDown{0%{transform:translateY(-100%)}to{transform:translateY(0)}}.qaid-vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.3) 70%,rgba(0,0,0,.6) 100%);z-index:41}.qaid-crosshair-h,.qaid-crosshair-v{position:fixed;pointer-events:none;z-index:42}.qaid-crosshair-h{left:0;right:0;height:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-crosshair-v{top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-type-up .qaid-crosshair-h,.qaid-type-up .qaid-crosshair-v{background:color-mix(in srgb,var(--qaid-positive) 60%,transparent)}.qaid-highlight-box{position:fixed;top:0;left:0;pointer-events:none;z-index:41;display:none;border:3px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:2px;background:color-mix(in srgb,var(--qaid-negative) 8%,transparent);will-change:transform,width,height}.qaid-type-up .qaid-highlight-box{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent);background:color-mix(in srgb,var(--qaid-positive) 8%,transparent)}.qaid-scope{position:fixed;width:80px;height:80px;pointer-events:none;z-index:43;transform:translate(-50%,-50%)}.qaid-scope-ring{position:absolute;inset:10px;border:2px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent)}.qaid-scope-ring-inner{position:absolute;inset:20px;border:1px solid color-mix(in srgb,var(--qaid-negative) 50%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring-inner{border-color:color-mix(in srgb,var(--qaid-positive) 50%,transparent)}.qaid-scope-dot{position:absolute;top:50%;left:50%;width:4px;height:4px;background:var(--qaid-negative);border-radius:50%;transform:translate(-50%,-50%)}.qaid-type-up .qaid-scope-dot{background:var(--qaid-positive)}.qaid-selected-marker{position:fixed;border:3px solid var(--qaid-marker, #6365f1);border-radius:50%;pointer-events:none;z-index:44;animation:qaid-markerPulse 1.5s ease-in-out infinite}@keyframes qaid-markerPulse{0%,to{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}.qaid-backdrop{position:fixed;inset:0;z-index:45;background:#0000004d}.qaid-modal-container{position:fixed;z-index:50;display:flex;flex-direction:column;align-items:flex-start;max-height:calc(100vh - 32px);font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-modal-container.qaid-above{flex-direction:column-reverse}.qaid-modal-arrow{width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;position:relative;align-self:flex-start}.qaid-modal-container.qaid-below .qaid-modal-arrow{border-bottom:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-container.qaid-above .qaid-modal-arrow{border-top:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5));width:var(--qaid-modal-width, 400px);max-width:calc(100vw - 32px);max-height:calc(100vh - 60px);overflow-y:auto}.qaid-modal-header{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1rem}button.qaid-type-toggle{border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;-webkit-appearance:none;appearance:none}button.qaid-type-toggle:hover{transform:scale(1.1)}button.qaid-type-toggle:not(.qaid-type-toggle-custom){width:2.5rem;height:2.5rem;border-radius:50%}button.qaid-type-toggle:not(.qaid-type-toggle-custom) svg{width:1.25rem;height:1.25rem}button.qaid-type-toggle.qaid-type-up{background:var(--qaid-positive);color:#fff}button.qaid-type-toggle.qaid-type-down{background:var(--qaid-negative);color:#fff}.qaid-type-static{width:2.5rem;height:2.5rem;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--qaid-marker, #6365f1);color:var(--qaid-marker-text, white)}.qaid-type-static svg{width:1.25rem;height:1.25rem}.qaid-modal-header-text{flex:1;min-width:0}.qaid-modal-title{font-size:calc(var(--qaid-font-size, 16px) * 1.125);font-weight:700;margin:0 0 .25rem;color:light-dark(#1f2937,#f9fafb)}.qaid-modal-subtitle{color:light-dark(#6b7280,#9ca3af);margin:0;font-size:calc(var(--qaid-font-size, 16px) * .875)}.qaid-textarea{width:100%;height:6rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:var(--qaid-font-size, 16px);resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-btn-row{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-btn-submit{padding:.5rem 1rem;background:var(--qaid-marker);color:var(--qaid-marker-text, white);border:none;border-radius:.5rem;font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-btn-submit:hover{filter:brightness(.85)}button.qaid-btn-submit:focus{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 30%,transparent)}.qaid-bottom-sheet{position:fixed;bottom:0;left:0;right:0;z-index:50;animation:qaid-slideUpSheet .3s ease-out;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-bottom-sheet-content{background:light-dark(#ffffff,#1f2937);border-radius:1rem 1rem 0 0;padding:1.5rem;padding-bottom:max(1.5rem,env(safe-area-inset-bottom))}.qaid-bottom-sheet-handle{width:36px;height:4px;background:light-dark(rgba(0,0,0,.2),rgba(255,255,255,.2));border-radius:2px;margin:0 auto 1rem}@keyframes qaid-slideUpSheet{0%{transform:translateY(100%)}to{transform:translateY(0)}}button.qaid-btn-record:hover{background:#dc2626;color:#fff}.qaid-recording-indicator{position:fixed;pointer-events:auto;top:12px;left:50%;transform:translate(-50%);display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:light-dark(#1f2937,#374151);color:#fff;border-radius:9999px;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;box-shadow:0 4px 12px #0000004d;z-index:99999;animation:qaid-slideDown .2s ease-out}.qaid-recording-dot{width:10px;height:10px;background:#dc2626;border-radius:50%;animation:qaid-dotPulse 1.5s ease-in-out infinite}@keyframes qaid-dotPulse{0%,to{opacity:1}50%{opacity:.3}}.qaid-recording-time{font-variant-numeric:tabular-nums;min-width:2.5rem;text-align:center}button.qaid-recording-stop{padding:.25rem .75rem;background:#dc2626;color:#fff;border:none;border-radius:9999px;font-size:calc(var(--qaid-font-size, 16px) * .75);font-weight:600;cursor:pointer;transition:background-color .2s;-webkit-appearance:none;appearance:none}button.qaid-recording-stop:hover{background:#b91c1c}.qaid-video-preview{position:fixed;inset:0 0 auto;height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#0009;z-index:99998;animation:qaid-fadeIn .2s ease-out}@keyframes qaid-fadeIn{0%{opacity:0}to{opacity:1}}.qaid-video-preview-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px #00000080;width:560px;max-width:100%;max-height:100%;overflow-y:auto;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-video-preview-box h3{font-size:calc(var(--qaid-font-size, 16px) * 1.125);font-weight:700;margin:0 0 1rem;color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box video{width:100%;max-height:50vh;max-height:50dvh;object-fit:contain;border-radius:.5rem;background:#000;margin-bottom:1rem}.qaid-video-preview-box textarea{width:100%;height:4rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:calc(var(--qaid-font-size, 16px) * .875);resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-video-error{margin:0 0 .75rem;font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;color:light-dark(#b91c1c,#fca5a5)}.qaid-video-preview-actions{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-video-btn{padding:.5rem 1rem;border:none;border-radius:.5rem;font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-video-btn-cancel{background:light-dark(#f3f4f6,#374151);color:light-dark(#374151,#d1d5db)}button.qaid-video-btn-cancel:hover{background:light-dark(#e5e7eb,#4b5563)}button.qaid-video-btn-rerecord{background:light-dark(#fef3c7,#78350f);color:light-dark(#92400e,#fde68a)}button.qaid-video-btn-rerecord:hover{filter:brightness(.9)}button.qaid-video-btn-send{background:var(--qaid-marker);color:var(--qaid-marker-text, white)}button.qaid-video-btn-send:hover{filter:brightness(.85)}button.qaid-video-btn-send:disabled{opacity:.5;cursor:not-allowed}.qaid-video-sending{display:flex;align-items:center;gap:.5rem;font-size:calc(var(--qaid-font-size, 16px) * .875);color:light-dark(#6b7280,#9ca3af)}.qaid-annotate{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;gap:.75rem;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#000000d9;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px);animation:qaid-fadeIn .2s ease-out}.qaid-annotate-title{margin:0;font-size:var(--qaid-font-size, 16px);font-weight:700;text-align:center;color:#f9fafb}.qaid-annotate-desc{margin:0;font-size:calc(var(--qaid-font-size, 16px) * .8125);line-height:1.4;text-align:center;color:#f9fafbbf}.qaid-annotate-stage{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;overflow:auto}.qaid-annotate-canvas{max-width:100%;max-height:100%;object-fit:contain;background:light-dark(#ffffff,#111827);border-radius:.5rem;box-shadow:0 10px 30px #00000080;touch-action:none;cursor:crosshair}.qaid-annotate-toolbar{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;justify-content:center;padding:.5rem .75rem;background:light-dark(#ffffff,#1f2937);border-radius:.75rem;box-shadow:0 10px 30px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5))}.qaid-annotate-tools,.qaid-annotate-actions{display:flex;gap:.375rem;align-items:center}button.qaid-annotate-tool,button.qaid-annotate-action{display:inline-flex;align-items:center;justify-content:center;gap:.375rem;min-width:44px;min-height:44px;padding:0 .75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;background:light-dark(#f9fafb,#111827);color:light-dark(#1f2937,#f9fafb);font-family:inherit;font-size:calc(var(--qaid-font-size, 16px) * .8125);font-weight:600;cursor:pointer;-webkit-appearance:none;appearance:none;transition:background-color .15s,color .15s,border-color .15s,filter .15s}button.qaid-annotate-tool svg,button.qaid-annotate-action svg{width:20px;height:20px}.qaid-annotate-colors{display:flex;gap:.25rem;align-items:center}button.qaid-annotate-swatch{width:28px;height:28px;min-width:28px;padding:0;border-radius:9999px;border:2px solid light-dark(#d1d5db,#4b5563);background:var(--qaid-swatch, #000);cursor:pointer;-webkit-appearance:none;appearance:none;transition:transform .1s,box-shadow .15s,border-color .15s}button.qaid-annotate-swatch:hover{transform:scale(1.12)}button.qaid-annotate-swatch[aria-pressed=true]{border-color:light-dark(#111827,#f9fafb);box-shadow:0 0 0 2px var(--qaid-swatch)}@media(forced-colors:active){button.qaid-annotate-swatch[aria-pressed=true]{outline:2px solid Highlight;outline-offset:1px}}button.qaid-annotate-tool:hover,button.qaid-annotate-action:hover{background:light-dark(#eef2ff,#312e81)}button.qaid-annotate-tool[aria-pressed=true],button.qaid-annotate-done{background:var(--qaid-marker, #6365f1);color:var(--qaid-marker-text, #fff);border-color:var(--qaid-marker, #6365f1)}button.qaid-annotate-done:hover{filter:brightness(.9);background:var(--qaid-marker, #6365f1)}button.qaid-annotate-action:disabled{opacity:.45;cursor:not-allowed}@media(forced-colors:active){button.qaid-annotate-tool[aria-pressed=true],button.qaid-annotate-done{border:2px solid Highlight}.qaid-annotate-canvas{border:1px solid CanvasText}}button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible{outline:2px solid var(--qaid-marker, #6365f1);outline-offset:2px}.qaid-textarea:focus-visible,button.qaid-btn-submit:focus-visible,.qaid-video-preview-box textarea:focus-visible{outline:2px solid var(--qaid-marker, #6365f1);outline-offset:2px}.qaid-buttons.qaid-incognito:focus-within{opacity:1}.qaid-buttons:focus-within .qaid-dismiss-btn,.qaid-dismiss-btn:focus-visible{opacity:1}.qaid-dismiss-btn{min-width:24px;min-height:24px}button.qaid-recording-stop{min-height:24px}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}@media(forced-colors:active){button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible,.qaid-textarea:focus,button.qaid-btn-submit:focus,.qaid-video-preview-box textarea:focus{outline:2px solid CanvasText;outline-offset:2px}.qaid-selected-marker,.qaid-highlight-box{border-color:Highlight}}.qaid-confirm{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;padding:.5rem 0}.qaid-confirm-icon{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:9999px;color:#fff;background:var(--qaid-success, #22c55e);margin-bottom:.25rem;animation:qaid-confirm-pop .28s cubic-bezier(.34,1.56,.64,1)}.qaid-confirm-icon .qaid-icon{width:24px;height:24px}.qaid-confirm-error .qaid-confirm-icon{background:var(--qaid-error, #dc2626)}.qaid-confirm-title{margin:0;font-size:var(--qaid-font-size, 16px);font-weight:600;color:var(--qaid-text, light-dark(#111827, #f9fafb))}.qaid-confirm-title:focus-visible{outline:2px solid var(--qaid-primary, #6365f1);outline-offset:3px;border-radius:4px}.qaid-confirm-message{margin:0;font-size:calc(var(--qaid-font-size, 16px) * .875);color:var(--qaid-text-muted, light-dark(#6b7280, #9ca3af))}.qaid-confirm .qaid-confirm-close{margin-top:.5rem;min-width:96px}@keyframes qaid-confirm-pop{0%{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}@media(prefers-reduced-motion:reduce){.qaid-confirm-icon{animation:none}}", Bt = "body.qaid-targeting,body.qaid-targeting *{cursor:none!important}";
 let b = 0;
-const Pt = "button.qaid-btn{width:var(--qaid-btn-size);height:var(--qaid-btn-size);border-radius:50%;border:none;background:#f3f4f6;color:#374151;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);transition:background-color .2s,color .2s,transform .2s;-webkit-appearance:none;appearance:none;--qaid-hover-up-bg:var(--qaid-positive);--qaid-hover-up-color:#fff;--qaid-hover-down-bg:var(--qaid-negative);--qaid-hover-down-color:#fff}button.qaid-btn:hover{transform:scale(1.05)}button.qaid-btn-up:hover{background:var(--qaid-hover-up-bg);color:var(--qaid-hover-up-color)}button.qaid-btn-down:hover{background:var(--qaid-hover-down-bg);color:var(--qaid-hover-down-color)}button.qaid-btn-feedback:hover{background:var(--qaid-marker,#6365f1);color:var(--qaid-marker-text,#fff)}button.qaid-btn svg{width:var(--qaid-icon-size);height:var(--qaid-icon-size)}", Rt = {
+const Ot = "button.qaid-btn{width:var(--qaid-btn-size);height:var(--qaid-btn-size);border-radius:50%;border:none;background:#f3f4f6;color:#374151;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);transition:background-color .2s,color .2s,transform .2s;-webkit-appearance:none;appearance:none;--qaid-hover-up-bg:var(--qaid-positive);--qaid-hover-up-color:#fff;--qaid-hover-down-bg:var(--qaid-negative);--qaid-hover-down-color:#fff}button.qaid-btn:hover{transform:scale(1.05)}button.qaid-btn-up:hover{background:var(--qaid-hover-up-bg);color:var(--qaid-hover-up-color)}button.qaid-btn-down:hover{background:var(--qaid-hover-down-bg);color:var(--qaid-hover-down-color)}button.qaid-btn-feedback:hover{background:var(--qaid-marker,#6365f1);color:var(--qaid-marker-text,#fff)}button.qaid-btn svg{width:var(--qaid-icon-size);height:var(--qaid-icon-size)}", Pt = {
   small: 36,
   medium: 48,
   large: 64
-}, Ft = {
+}, Rt = {
   small: 18,
   medium: 24,
   large: 32
 };
-function Ut(e, t, i) {
-  const [o, n, a] = [e, t, i].map((r) => (r = r / 255, r <= 0.03928 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4)));
-  return 0.2126 * o + 0.7152 * n + 0.0722 * a;
+function Nt(e, t, i) {
+  const [o, a, n] = [e, t, i].map((r) => (r = r / 255, r <= 0.03928 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4)));
+  return 0.2126 * o + 0.7152 * a + 0.0722 * n;
 }
-function Vt(e) {
+function Ut(e) {
   if (e.startsWith("#")) {
-    const i = e.slice(1), o = i.length === 3 ? i.split("").map((a) => a + a).join("") : i, n = parseInt(o, 16);
+    const i = e.slice(1), o = i.length === 3 ? i.split("").map((n) => n + n).join("") : i, a = parseInt(o, 16);
     return {
-      r: n >> 16 & 255,
-      g: n >> 8 & 255,
-      b: n & 255
+      r: a >> 16 & 255,
+      g: a >> 8 & 255,
+      b: a & 255
     };
   }
   const t = e.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
@@ -30,21 +53,21 @@ function Vt(e) {
     b: parseInt(t[3])
   } : null;
 }
-function $t(e) {
-  const t = Vt(e);
-  return t && Ut(t.r, t.g, t.b) > 0.4 ? "black" : "white";
+function Ft(e) {
+  const t = Ut(e);
+  return t && Nt(t.r, t.g, t.b) > 0.4 ? "black" : "white";
 }
 function _t(e = {}) {
   const {
     positiveColor: t = "rgb(0, 200, 83)",
     negativeColor: i = "rgb(255, 0, 0)",
     markerColor: o = "#6365f1",
-    buttonSize: n = "medium",
-    modalWidth: a = 400,
+    buttonSize: a = "medium",
+    modalWidth: n = 400,
     backdropOpacity: r = 0.3,
     fontFamily: l = "system-ui, -apple-system, sans-serif",
     fontSize: c = 16
-  } = e, d = Rt[n], s = Ft[n], u = $t(o);
+  } = e, d = Pt[a], s = Rt[a], u = Ft(o);
   return {
     "--qaid-positive": t,
     "--qaid-negative": i,
@@ -52,28 +75,28 @@ function _t(e = {}) {
     "--qaid-marker-text": u,
     "--qaid-btn-size": `${d}px`,
     "--qaid-icon-size": `${s}px`,
-    "--qaid-modal-width": `${a}px`,
+    "--qaid-modal-width": `${n}px`,
     "--qaid-backdrop-opacity": String(r),
     "--qaid-font-family": l,
     "--qaid-font-size": `${c}px`
   };
 }
-function Kt(e, t) {
+function Vt(e, t) {
   for (const [i, o] of Object.entries(t))
     e.style.setProperty(i, o);
 }
 function Y() {
-  return Bt + Pt;
+  return Ht + Ot;
 }
-function Nt() {
+function jt() {
   if (b++, b > 1) return;
   const e = document.createElement("style");
-  e.id = "qaid-styles", e.textContent = Ot, document.head.appendChild(e);
+  e.id = "qaid-styles", e.textContent = Bt, document.head.appendChild(e);
 }
-function Qt() {
+function $t() {
   b <= 0 || (b--, b === 0 && document.getElementById("qaid-styles")?.remove());
 }
-const X = "data-qaid-a11y-live", jt = "position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;", Wt = [
+const X = "data-qaid-a11y-live", Kt = "position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;", Qt = [
   "a[href]",
   "button",
   "input",
@@ -81,25 +104,25 @@ const X = "data-qaid-a11y-live", jt = "position:absolute;width:1px;height:1px;ma
   "select",
   "[tabindex]"
 ].join(",");
-function Yt(e) {
+function Wt(e) {
   return e.ownerDocument || document;
 }
-function Xt(e, t) {
+function Yt(e, t) {
   const i = t ? "assertive" : "polite", o = e.querySelector(
     `[${X}="${i}"]`
   );
   if (o) return o;
-  const a = Yt(e).createElement("div");
-  return a.setAttribute(X, i), a.setAttribute("role", t ? "alert" : "status"), a.setAttribute("aria-live", t ? "assertive" : "polite"), a.setAttribute("aria-atomic", "true"), a.style.cssText = jt, e.appendChild(a), a;
+  const n = Wt(e).createElement("div");
+  return n.setAttribute(X, i), n.setAttribute("role", t ? "alert" : "status"), n.setAttribute("aria-live", t ? "assertive" : "polite"), n.setAttribute("aria-atomic", "true"), n.style.cssText = Kt, e.appendChild(n), n;
 }
-function Jt(e, t, i = {}) {
-  const o = Xt(e, !!i.assertive);
+function Xt(e, t, i = {}) {
+  const o = Yt(e, !!i.assertive);
   o.textContent = "", o.textContent = t;
 }
-function Gt(e) {
+function Jt(e) {
   return e.hasAttribute("disabled") ? !0 : e.disabled === !0;
 }
-function Zt(e) {
+function Gt(e) {
   let t = e;
   for (; t; ) {
     if (t.hasAttribute("hidden")) return !0;
@@ -112,8 +135,8 @@ function Zt(e) {
 }
 function J(e) {
   return Array.from(
-    e.querySelectorAll(Wt)
-  ).filter((i) => !(i.getAttribute("tabindex") === "-1" || i instanceof HTMLInputElement && i.type === "hidden" || i instanceof HTMLAnchorElement && !i.getAttribute("href") || Gt(i) || Zt(i)));
+    e.querySelectorAll(Qt)
+  ).filter((i) => !(i.getAttribute("tabindex") === "-1" || i instanceof HTMLInputElement && i.type === "hidden" || i instanceof HTMLAnchorElement && !i.getAttribute("href") || Jt(i) || Gt(i)));
 }
 function it(e) {
   let t = e.activeElement;
@@ -121,41 +144,41 @@ function it(e) {
     t = t.shadowRoot.activeElement;
   return t instanceof HTMLElement ? t : null;
 }
-function te(e) {
+function Zt(e) {
   const t = e.ownerDocument || document;
   let i = !1;
-  const o = (a) => {
-    if (a.key !== "Tab") return;
+  const o = (n) => {
+    if (n.key !== "Tab") return;
     const r = J(e);
     if (r.length === 0) {
-      a.preventDefault(), e.focus();
+      n.preventDefault(), e.focus();
       return;
     }
     const l = r[0], c = r[r.length - 1], d = it(t), s = d ? r.indexOf(d) !== -1 : !1;
-    a.shiftKey ? (!s || d === l) && (a.preventDefault(), c.focus()) : (!s || d === c) && (a.preventDefault(), l.focus());
+    n.shiftKey ? (!s || d === l) && (n.preventDefault(), c.focus()) : (!s || d === c) && (n.preventDefault(), l.focus());
   };
   e.addEventListener("keydown", o);
-  const n = J(e);
-  return n.length > 0 ? n[0].focus() : (e.hasAttribute("tabindex") || (e.setAttribute("tabindex", "-1"), i = !0), e.focus()), {
+  const a = J(e);
+  return a.length > 0 ? a[0].focus() : (e.hasAttribute("tabindex") || (e.setAttribute("tabindex", "-1"), i = !0), e.focus()), {
     release() {
       e.removeEventListener("keydown", o), i && (e.removeAttribute("tabindex"), i = !1);
     }
   };
 }
-function ee() {
+function te() {
   return it(document);
 }
-function ie(e) {
+function ee(e) {
   if (!(!e || typeof e.focus != "function"))
     try {
       e.focus();
     } catch {
     }
 }
-function oe(e, t = {}) {
+function ie(e, t = {}) {
   e.setAttribute("role", "dialog"), e.setAttribute("aria-modal", "true"), t.labelledbyId && e.setAttribute("aria-labelledby", t.labelledbyId), t.describedbyId && e.setAttribute("aria-describedby", t.describedbyId), t.label && e.setAttribute("aria-label", t.label);
 }
-function ae(e, t) {
+function oe(e, t) {
   let i = e;
   for (; i && i !== t; ) {
     const o = i.parentNode;
@@ -173,14 +196,14 @@ function ne(e) {
   const i = (e.ownerDocument || document).body;
   if (!i) return () => {
   };
-  const o = ae(e, i), n = [];
-  return Array.from(i.children).forEach((a) => {
-    if (!(a instanceof HTMLElement) || o && a === o) return;
-    const r = a.inert === !0, l = a.getAttribute("aria-hidden");
-    r && l === "true" || (a.inert = !0, a.setAttribute("aria-hidden", "true"), n.push({ el: a, prevInert: r, prevAriaHidden: l }));
+  const o = oe(e, i), a = [];
+  return Array.from(i.children).forEach((n) => {
+    if (!(n instanceof HTMLElement) || o && n === o) return;
+    const r = n.inert === !0, l = n.getAttribute("aria-hidden");
+    r && l === "true" || (n.inert = !0, n.setAttribute("aria-hidden", "true"), a.push({ el: n, prevInert: r, prevAriaHidden: l }));
   }), function() {
-    for (; n.length; ) {
-      const r = n.pop();
+    for (; a.length; ) {
+      const r = a.pop();
       r.el.inert = r.prevInert, r.prevAriaHidden === null ? r.el.removeAttribute("aria-hidden") : r.el.setAttribute("aria-hidden", r.prevAriaHidden);
     }
   };
@@ -192,91 +215,119 @@ const ot = {
   gap: 8,
   viewportPadding: 16
 };
-function re(e, t, i, o, n) {
-  const a = e.y, r = t - (e.y + e.height);
+function ae(e, t, i, o, a) {
+  const n = e.y, r = t - (e.y + e.height);
   if (r >= i + o)
     return {
       top: e.y + e.height + o,
       position: "below"
     };
-  if (a >= i + o)
+  if (n >= i + o)
     return {
       top: e.y - i - o,
       position: "above"
     };
-  const l = r > a ? "below" : "above";
+  const l = r > n ? "below" : "above";
   let c;
   return l === "below" ? c = Math.min(
     e.y + e.height + o,
-    t - i - n
-  ) : c = Math.max(n, e.y - i - o), { top: c, position: l };
+    t - i - a
+  ) : c = Math.max(a, e.y - i - o), { top: c, position: l };
 }
-function se(e, t, i, o) {
-  let a = e.x + e.width / 2 - i / 2;
-  return a = Math.max(o, Math.min(a, t - i - o)), a;
+function re(e, t, i, o) {
+  let n = e.x + e.width / 2 - i / 2;
+  return n = Math.max(o, Math.min(n, t - i - o)), n;
 }
-function de(e, t, i, o = 24, n = 24) {
-  const r = e.clickX - t - n / 2;
-  return Math.max(o, Math.min(r, i - o - n / 2));
+function se(e, t, i, o = 24, a = 24) {
+  const r = e.clickX - t - a / 2;
+  return Math.max(o, Math.min(r, i - o - a / 2));
 }
-function le(e, t, i, o = ot) {
-  const n = o.height + o.arrowHeight, a = re(
+function de(e, t, i, o = ot) {
+  const a = o.height + o.arrowHeight, n = ae(
     e,
     i,
-    n,
+    a,
     o.gap,
     o.viewportPadding
-  ), r = se(
+  ), r = re(
     e,
     t,
     o.width,
     o.viewportPadding
   );
   return {
-    top: a.top,
+    top: n.top,
     left: r,
-    position: a.position
+    position: n.position
   };
 }
-function ce(e, t, i, o = {}) {
-  const n = o.gap ?? 8;
-  let a = e.bottom + n;
-  a + t.height > i.height - n && (a = e.top - t.height - n);
+function le(e, t, i, o = {}) {
+  const a = o.gap ?? 8;
+  let n = e.bottom + a;
+  n + t.height > i.height - a && (n = e.top - t.height - a);
   let r = e.left;
-  return r < n ? r = n : r + t.width > i.width - n && (r = i.width - t.width - n), a < n ? a = n : a + t.height > i.height - n && (a = i.height - t.height - n), { top: a, left: r };
+  return r < a ? r = a : r + t.width > i.width - a && (r = i.width - t.width - a), n < a ? n = a : n + t.height > i.height - a && (n = i.height - t.height - a), { top: n, left: r };
 }
-function Ee(e, t, i, o = ot) {
-  const n = le(e, t, i, o), a = de(
+function Be(e, t, i, o = ot) {
+  const a = de(e, t, i, o), n = se(
     e,
-    n.left,
+    a.left,
     o.width
   );
   return {
-    modal: n,
-    arrow: { left: a }
+    modal: a,
+    arrow: { left: n }
   };
 }
-const ue = 20;
-function he(e) {
-  const t = [], i = console.error, o = console.warn, n = console.log, a = (r, l) => {
+const ce = 20;
+function ue(e) {
+  const t = [], i = console.error, o = console.warn, a = console.log, n = (r, l) => {
     const c = {
       message: l.map((d) => String(d)).join(" "),
       timestamp: Date.now(),
       level: r
     };
-    t.length >= ue && t.shift(), t.push(c), e && e(c);
+    t.length >= ce && t.shift(), t.push(c), e && e(c);
   };
   return console.error = function(...r) {
-    a("error", r), i.apply(console, r);
+    n("error", r), i.apply(console, r);
   }, console.warn = function(...r) {
-    a("warn", r), o.apply(console, r);
+    n("warn", r), o.apply(console, r);
   }, console.log = function(...r) {
-    a("log", r), n.apply(console, r);
+    n("log", r), a.apply(console, r);
   }, {
     errors: t,
     restore: () => {
-      console.error = i, console.warn = o, console.log = n;
+      console.error = i, console.warn = o, console.log = a;
     }
+  };
+}
+function Oe(e, t, i) {
+  const o = document.createElement(e);
+  if (t)
+    for (const [a, n] of Object.entries(t))
+      a === "className" ? o.className = n : o.setAttribute(a, n);
+  return o;
+}
+function he(e = 640) {
+  return typeof window < "u" && window.innerWidth < e;
+}
+function Pe(e, t, i) {
+  const o = i.map((n) => n.style.visibility);
+  i.forEach((n) => n.style.visibility = "hidden");
+  const a = document.elementFromPoint(e, t);
+  return i.forEach((n, r) => n.style.visibility = o[r]), a;
+}
+function Re(e) {
+  return e ? e.hasAttribute("data-qaid-embed") || e.hasAttribute("data-qaid-embed-overlay") ? !0 : !!e.closest("[data-qaid-embed], [data-qaid-embed-overlay]") : !1;
+}
+function Ne(e, t = 0) {
+  const i = e.getBoundingClientRect();
+  return {
+    x: i.left - t,
+    y: i.top - t,
+    width: i.width + t * 2,
+    height: i.height + t * 2
   };
 }
 const fe = "https://unpkg.com/@qaiddev/quests-embed@1/dist/qaid-quests.js", pe = (e) => (
@@ -288,23 +339,23 @@ const fe = "https://unpkg.com/@qaiddev/quests-embed@1/dist/qaid-quests.js", pe =
   )
 );
 let be = pe, p = null, k = null;
-const C = /* @__PURE__ */ new Map(), S = /* @__PURE__ */ new Map();
-function at(e, t) {
+const A = /* @__PURE__ */ new Map(), C = /* @__PURE__ */ new Map();
+function nt(e, t) {
   return `${e.replace(/\/+$/, "")}/${encodeURIComponent(t)}/definition`;
 }
 function me(e) {
-  if (C.has(e)) return Promise.resolve();
-  const t = S.get(e);
+  if (A.has(e)) return Promise.resolve();
+  const t = C.get(e);
   if (t) return t;
   const i = fetch(e, { headers: { Accept: "application/json" } }).then((o) => o.ok ? o.json() : null).then((o) => {
-    o && C.set(e, o);
+    o && A.set(e, o);
   }).catch(() => {
   }).finally(() => {
-    S.delete(e);
+    C.delete(e);
   });
-  return S.set(e, i), i;
+  return C.set(e, i), i;
 }
-function nt(e) {
+function at(e) {
   return p && k === e || (k = e, p = Promise.resolve(be(e)).then((t) => {
     const i = t;
     if (!i || typeof i.QaidQuests != "function")
@@ -315,18 +366,18 @@ function nt(e) {
   })), p;
 }
 async function ge(e) {
-  const t = await nt(e.moduleUrl), i = e.base.replace(/\/+$/, ""), o = at(i, e.questId), n = (l) => l != null ? { feedbackId: l } : void 0;
-  let a;
+  const t = await at(e.moduleUrl), i = e.base.replace(/\/+$/, ""), o = nt(i, e.questId), a = (l) => l != null ? { feedbackId: l } : void 0;
+  let n;
   const r = e.feedbackId;
-  return r instanceof Promise ? a = t.QaidQuests.supports?.asyncMetadata ? r.then(n, () => {
-  }) : n(await r.catch(() => null)) : a = n(r ?? null), new t.QaidQuests({
+  return r instanceof Promise ? n = t.QaidQuests.supports?.asyncMetadata ? r.then(a, () => {
+  }) : a(await r.catch(() => null)) : n = a(r ?? null), new t.QaidQuests({
     endpoint: `${i}/responses`,
     configUrl: o,
     // Only a definition already in hand. One still loading is left to the
     // widget, which shows its own loading state instead of nothing.
-    questionnaire: C.get(o),
+    questionnaire: A.get(o),
     apiKey: e.apiKey || void 0,
-    metadata: a,
+    metadata: n,
     onClose: e.onClose
   });
 }
@@ -341,19 +392,19 @@ const G = "qaid_visitor_id", Z = "qaid_hide_feedback", ve = [
 function ye() {
   return typeof window.matchMedia == "function" && window.matchMedia("(pointer: coarse)").matches;
 }
-function A(e) {
+function S(e) {
   return e ? `${Z}_${e}` : Z;
 }
-function qe(e) {
+function we(e) {
   try {
-    return localStorage.getItem(A(e)) === "1";
+    return localStorage.getItem(S(e)) === "1";
   } catch {
     return !1;
   }
 }
 function tt(e, t = !0) {
   try {
-    t ? localStorage.setItem(A(e), "1") : localStorage.removeItem(A(e));
+    t ? localStorage.setItem(S(e), "1") : localStorage.removeItem(S(e));
   } catch {
   }
 }
@@ -369,7 +420,7 @@ function et() {
   const i = Array.from(t, (o) => o.toString(16).padStart(2, "0")).join("");
   return `${i.slice(0, 8)}-${i.slice(8, 12)}-${i.slice(12, 16)}-${i.slice(16, 20)}-${i.slice(20)}`;
 }
-function we() {
+function qe() {
   try {
     let e = localStorage.getItem(G);
     return e || (e = et(), localStorage.setItem(G, e)), e;
@@ -530,10 +581,10 @@ class xe {
         apiKey: t.quests?.apiKey ?? t.apiKey ?? "",
         moduleUrl: t.quests?.moduleUrl ?? fe
       }
-    }, this.boundKeyDown = this.handleKeyDown.bind(this), this.boundResize = this.handleResize.bind(this), this.visitorId = we(), this.init();
+    }, this.boundKeyDown = this.handleKeyDown.bind(this), this.boundResize = this.handleResize.bind(this), this.visitorId = qe(), this.init();
   }
   applyVars(t) {
-    Kt(t, this.cssVars);
+    Vt(t, this.cssVars);
   }
   /**
    * Announce a message via the shared visually-hidden live regions.
@@ -543,7 +594,7 @@ class xe {
    */
   announceMsg(t, i = !1) {
     const o = this.overlayShadowRoot ?? this.shadowRoot;
-    o && Jt(o, t, { assertive: i });
+    o && Xt(o, t, { assertive: i });
   }
   /**
    * Turn a transient surface into an accessible modal dialog: save the
@@ -551,16 +602,16 @@ class xe {
    * background. Paired with closeDialogA11y() on every close path.
    */
   openDialogA11y(t, i) {
-    this.dialogTrigger = ee(), oe(t, i), this.dialogTrap = te(t), this.dialogRestoreInert = ne(t);
+    this.dialogTrigger = te(), ie(t, i), this.dialogTrap = Zt(t), this.dialogRestoreInert = ne(t);
   }
   closeDialogA11y() {
-    this.dialogTrap?.release(), this.dialogTrap = null, this.dialogRestoreInert && (this.dialogRestoreInert(), this.dialogRestoreInert = null), ie(this.dialogTrigger), this.dialogTrigger = null;
+    this.dialogTrap?.release(), this.dialogTrap = null, this.dialogRestoreInert && (this.dialogRestoreInert(), this.dialogRestoreInert = null), ee(this.dialogTrigger), this.dialogTrigger = null;
   }
   clearActiveThumb() {
     this.activeThumbBtn && (this.activeThumbBtn.setAttribute("aria-pressed", "false"), this.activeThumbBtn = null);
   }
   init() {
-    Nt(), this.cssVars = _t({
+    jt(), this.cssVars = _t({
       positiveColor: this.config.colors.positive,
       negativeColor: this.config.colors.negative,
       markerColor: this.config.colors.marker,
@@ -569,7 +620,7 @@ class xe {
       backdropOpacity: this.config.backdropOpacity,
       fontFamily: this.config.fontFamily,
       fontSize: this.config.fontSize
-    }), !this.config.hideDismiss && qe(this.config.apiKey) && (this._startDismissed = !0), this.checkMobile(), window.addEventListener("resize", this.boundResize), this.createEmbed(), this.consoleCapture = he((t) => {
+    }), !this.config.hideDismiss && we(this.config.apiKey) && (this._startDismissed = !0), this.checkMobile(), window.addEventListener("resize", this.boundResize), this.createEmbed(), this.consoleCapture = ue((t) => {
       this.feedbackData.consoleErrors = this.consoleCapture?.errors ?? [];
     }), this.feedbackData.consoleErrors = this.consoleCapture.errors, this.observeDom(), (this.config.captureVideo && this.videoSupported() || this.config.captureScreenshot || this.linkedQuestIds().length > 0) && this.schedulePrewarm(() => {
       this.config.captureVideo && this.videoSupported() && this.prewarmVideo(), this.config.captureScreenshot && this.prewarmScreenshot(), this.prewarmQuests();
@@ -582,13 +633,13 @@ class xe {
    * swallowed — a failed preload just falls back to an on-demand load.
    */
   prewarmVideo() {
-    this.videoPrewarmed || (this.videoPrewarmed = !0, import("./recording-CcfOfIC7.js").catch(() => {
+    this.videoPrewarmed || (this.videoPrewarmed = !0, import("./recording-DNngIGr2.js").catch(() => {
     }), import("./video-Bd_29-rK.js").catch(() => {
     }));
   }
   prewarmScreenshot() {
     this.screenshotPrewarmed || (this.screenshotPrewarmed = !0, (this.shouldCaptureViaDom() ? import("./screenshot-dom-CME7tYRE.js") : import("./screenshot-DYOKg2bS.js")).catch(() => {
-    }), this.config.annotate && import("./annotate-D-o8xCV9.js").then((t) => t.d).catch(() => {
+    }), this.config.annotate && import("./annotate-BTLeFQa0.js").catch(() => {
     }));
   }
   /** Quest ids linked to any button, when quest launching is on. */
@@ -605,10 +656,10 @@ class xe {
     if (this.questsPrewarmed) return;
     const t = this.linkedQuestIds();
     if (t.length !== 0) {
-      this.questsPrewarmed = !0, nt(this.config.quests.moduleUrl).catch(() => {
+      this.questsPrewarmed = !0, at(this.config.quests.moduleUrl).catch(() => {
       });
       for (const i of t)
-        me(at(this.config.quests.base, i));
+        me(nt(this.config.quests.base, i));
     }
   }
   /** Run fn when the main thread is idle; cancelled by destroy(). */
@@ -637,7 +688,7 @@ class xe {
     }), this.domObserver.observe(document.body, { childList: !0 });
   }
   checkMobile() {
-    this.isMobile = Dt();
+    this.isMobile = he();
   }
   handleResize() {
     this.checkMobile();
@@ -666,25 +717,25 @@ class xe {
     }), this.buttonsContainer.addEventListener("pointerdown", () => {
       this.keyboardActivation = !1;
     });
-    const n = !!this.config.buttonClass, a = n ? `qaid-btn-structural ${this.config.buttonClass}` : "qaid-btn", l = this.config.text.tooltip || "Feedback for us?", c = document.createElement("div");
+    const a = !!this.config.buttonClass, n = a ? `qaid-btn-structural ${this.config.buttonClass}` : "qaid-btn", l = this.config.text.tooltip || "Feedback for us?", c = document.createElement("div");
     if (c.className = "qaid-tooltip-text", c.textContent = l, this.applyVars(c), this.shadowRoot.appendChild(c), this.tooltipElement = c, this.config.singleButton) {
       const d = document.createElement("div");
       d.className = "qaid-tooltip-wrapper";
       const s = document.createElement("button");
-      s.type = "button", s.className = n ? `${a} qaid-btn-feedback` : "qaid-btn qaid-btn-feedback", s.setAttribute("aria-label", this.config.text.feedbackLabel), s.innerHTML = this.config.feedbackIcon || zt, s.addEventListener("click", (u) => this.handleThumbClick("neutral", u.currentTarget, u)), s.addEventListener("mouseenter", () => {
+      s.type = "button", s.className = a ? `${n} qaid-btn-feedback` : "qaid-btn qaid-btn-feedback", s.setAttribute("aria-label", this.config.text.feedbackLabel), s.innerHTML = this.config.feedbackIcon || Lt, s.addEventListener("click", (u) => this.handleThumbClick("neutral", u.currentTarget, u)), s.addEventListener("mouseenter", () => {
         this.prewarmTargeting(), this.showTooltip(s);
       }), s.addEventListener("mouseleave", () => this.hideTooltip()), d.appendChild(s), this.buttonsContainer.appendChild(d);
     } else if (!this.config.hideThumbs) {
       const d = document.createElement("div");
       d.className = "qaid-tooltip-wrapper";
       const s = document.createElement("button");
-      s.type = "button", s.className = n ? `${a} qaid-btn-up` : "qaid-btn qaid-btn-up", s.setAttribute("aria-label", this.config.text.positiveLabel), s.innerHTML = this.config.positiveIcon || Ht, s.addEventListener("click", (f) => this.handleThumbClick("up", f.currentTarget, f)), s.addEventListener("mouseenter", () => {
+      s.type = "button", s.className = a ? `${n} qaid-btn-up` : "qaid-btn qaid-btn-up", s.setAttribute("aria-label", this.config.text.positiveLabel), s.innerHTML = this.config.positiveIcon || Dt, s.addEventListener("click", (f) => this.handleThumbClick("up", f.currentTarget, f)), s.addEventListener("mouseenter", () => {
         this.prewarmTargeting(), this.prewarmQuests(), this.showTooltip(s);
       }), s.addEventListener("mouseleave", () => this.hideTooltip()), d.appendChild(s);
       const u = document.createElement("div");
       u.className = "qaid-tooltip-wrapper";
       const h = document.createElement("button");
-      h.type = "button", h.className = n ? `${a} qaid-btn-down` : "qaid-btn qaid-btn-down", h.setAttribute("aria-label", this.config.text.negativeLabel), h.innerHTML = this.config.negativeIcon || Lt, h.addEventListener("click", (f) => this.handleThumbClick("down", f.currentTarget, f)), h.addEventListener("mouseenter", () => {
+      h.type = "button", h.className = a ? `${n} qaid-btn-down` : "qaid-btn qaid-btn-down", h.setAttribute("aria-label", this.config.text.negativeLabel), h.innerHTML = this.config.negativeIcon || zt, h.addEventListener("click", (f) => this.handleThumbClick("down", f.currentTarget, f)), h.addEventListener("mouseenter", () => {
         this.prewarmTargeting(), this.prewarmQuests(), this.showTooltip(h);
       }), h.addEventListener("mouseleave", () => this.hideTooltip()), u.appendChild(h), this.buttonsContainer.appendChild(d), this.buttonsContainer.appendChild(u);
     }
@@ -692,7 +743,7 @@ class xe {
       const d = document.createElement("div");
       d.className = "qaid-tooltip-wrapper";
       const s = document.createElement("button");
-      s.type = "button", s.className = n ? `${a} qaid-btn-record` : "qaid-btn qaid-btn-record", s.setAttribute("aria-label", this.config.text.recordLabel), s.innerHTML = this.config.recordIcon || Mt, s.addEventListener("click", () => {
+      s.type = "button", s.className = a ? `${n} qaid-btn-record` : "qaid-btn qaid-btn-record", s.setAttribute("aria-label", this.config.text.recordLabel), s.innerHTML = this.config.recordIcon || Mt, s.addEventListener("click", () => {
         this.ensureRecording().then(
           (h) => this.config.videoOptions.redaction ? h.startPicking() : h.startRecording()
         );
@@ -726,12 +777,12 @@ class xe {
   showTooltip(t) {
     const i = this.tooltipElement;
     i.style.visibility = "hidden", i.classList.add("qaid-tooltip-visible");
-    const o = t.getBoundingClientRect(), n = i.getBoundingClientRect(), { top: a, left: r } = ce(
+    const o = t.getBoundingClientRect(), a = i.getBoundingClientRect(), { top: n, left: r } = le(
       o,
-      n,
+      a,
       { width: window.innerWidth, height: window.innerHeight }
     );
-    i.style.top = `${a}px`, i.style.left = `${r}px`, i.style.visibility = "visible";
+    i.style.top = `${n}px`, i.style.left = `${r}px`, i.style.visibility = "visible";
   }
   hideTooltip() {
     this.tooltipElement.classList.remove("qaid-tooltip-visible");
@@ -744,9 +795,9 @@ class xe {
       this.submitDirectFeedback(t, i);
     else {
       this.activeThumbBtn = i, i.setAttribute("aria-pressed", "true");
-      const n = this.keyboardActivation;
-      this.keyboardActivation = !1, this.ensureTargeting().then((a) => {
-        this.destroyed || (n ? a.startKeyboard(t) : a.startPointer(t, o));
+      const a = this.keyboardActivation;
+      this.keyboardActivation = !1, this.ensureTargeting().then((n) => {
+        this.destroyed || (a ? n.startKeyboard(t) : n.startPointer(t, o));
       });
     }
   }
@@ -783,11 +834,11 @@ class xe {
    * enabled while the editor is open and restored on close.
    */
   async openAnnotationEditor(t) {
-    const i = this.ensureOverlayHost(), o = this.overlayShadowHost, n = o.style.pointerEvents;
+    const i = this.ensureOverlayHost(), o = this.overlayShadowHost, a = o.style.pointerEvents;
     o.style.pointerEvents = "auto";
     try {
-      const { openAnnotationEditor: a } = await import("./annotate-D-o8xCV9.js").then((r) => r.d);
-      return await a({
+      const { openAnnotationEditor: n } = await import("./annotate-BTLeFQa0.js");
+      return await n({
         dataUrl: t,
         root: i,
         quality: this.config.screenshotOptions.quality,
@@ -798,10 +849,10 @@ class xe {
         openDialog: (r, l) => this.openDialogA11y(r, l),
         closeDialog: () => this.closeDialogA11y()
       });
-    } catch (a) {
-      return console.error("Annotation editor failed to open:", a), null;
+    } catch (n) {
+      return console.error("Annotation editor failed to open:", n), null;
     } finally {
-      o.style.pointerEvents = n;
+      o.style.pointerEvents = a;
     }
   }
   async submitFeedback() {
@@ -825,7 +876,7 @@ class xe {
       y: this.selectedBounds.y,
       width: this.selectedBounds.width,
       height: this.selectedBounds.height
-    } : null, n = {
+    } : null, a = {
       feedbackType: this.feedbackData.feedbackType,
       pageUrl: window.location.href,
       apiKey: this.config.apiKey || void 0,
@@ -844,9 +895,9 @@ class xe {
       elementBounds: o,
       userAgent: navigator.userAgent
     };
-    this.feedbackIdPromise = this.postFeedback(n);
-    const a = this.feedbackData.feedbackType;
-    if (a && a !== "neutral" && await this.tryLaunchQuest(a, this.feedbackIdPromise)) {
+    this.feedbackIdPromise = this.postFeedback(a);
+    const n = this.feedbackData.feedbackType;
+    if (n && n !== "neutral" && await this.tryLaunchQuest(n, this.feedbackIdPromise)) {
       this.resetFeedbackUi();
       return;
     }
@@ -905,8 +956,8 @@ class xe {
           this.activeQuest = null;
         }
       }), !0;
-    } catch (n) {
-      return console.error("Failed to launch quest:", n), this.activeQuest = null, !1;
+    } catch (a) {
+      return console.error("Failed to launch quest:", a), this.activeQuest = null, !1;
     }
   }
   /**
@@ -924,7 +975,7 @@ class xe {
    */
   async ensureModal() {
     if (!this.modal) {
-      const { ModalController: t } = await import("./modal-DwwbWQ-F.js");
+      const { ModalController: t } = await import("./modal-zwBhxWO0.js");
       this.modal = new t(this.makeModalHost());
     }
     return this.modal;
@@ -965,7 +1016,7 @@ class xe {
   }
   /** Warm the modal chunk while the user is targeting, so it opens instantly. */
   prewarmModal() {
-    this.modalPrewarmed || (this.modalPrewarmed = !0, import("./modal-DwwbWQ-F.js").catch(() => {
+    this.modalPrewarmed || (this.modalPrewarmed = !0, import("./modal-zwBhxWO0.js").catch(() => {
     }));
   }
   /**
@@ -975,7 +1026,7 @@ class xe {
    */
   async ensureTargeting() {
     if (!this.targeting) {
-      const { TargetingController: t } = await import("./targeting-Dz6z1BYl.js");
+      const { TargetingController: t } = await import("./targeting-DaBmGVk5.js");
       this.targeting = new t(this.makeTargetingHost());
     }
     return this.targeting;
@@ -1020,7 +1071,7 @@ class xe {
   }
   /** Warm the targeting chunk on thumb-button hover, before the click. */
   prewarmTargeting() {
-    this.targetingPrewarmed || this.config.skipTargeting || (this.targetingPrewarmed = !0, import("./targeting-Dz6z1BYl.js").catch(() => {
+    this.targetingPrewarmed || this.config.skipTargeting || (this.targetingPrewarmed = !0, import("./targeting-DaBmGVk5.js").catch(() => {
     }));
   }
   // ==================== Video Recording ====================
@@ -1039,7 +1090,7 @@ class xe {
    */
   async ensureRecording() {
     if (!this.recording) {
-      const { RecordingController: t } = await import("./recording-CcfOfIC7.js");
+      const { RecordingController: t } = await import("./recording-DNngIGr2.js");
       this.recording = new t(this.makeRecordingHost());
     }
     return this.recording;
@@ -1095,7 +1146,7 @@ class xe {
       const t = window;
       this.prewarmIsTimeout ? clearTimeout(this.prewarmHandle) : t.cancelIdleCallback?.(this.prewarmHandle), this.prewarmHandle = null;
     }
-    this.recording?.destroy(), this.recording = null, this.modal?.destroy(), this.modal = null, this.activeQuest?.destroy(), this.activeQuest = null, this.consoleCapture && (this.consoleCapture.restore(), this.consoleCapture = null), window.removeEventListener("resize", this.boundResize), document.removeEventListener("keydown", this.boundKeyDown), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.shadowHost && (this.shadowHost.remove(), this.shadowHost = null, this.shadowRoot = null), this.overlayShadowHost && (this.overlayShadowHost.remove(), this.overlayShadowHost = null, this.overlayShadowRoot = null), this.buttonsContainer = null, this.dismissBtn = null, this.tooltipElement = null, Qt();
+    this.recording?.destroy(), this.recording = null, this.modal?.destroy(), this.modal = null, this.activeQuest?.destroy(), this.activeQuest = null, this.consoleCapture && (this.consoleCapture.restore(), this.consoleCapture = null), window.removeEventListener("resize", this.boundResize), document.removeEventListener("keydown", this.boundKeyDown), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.shadowHost && (this.shadowHost.remove(), this.shadowHost = null, this.shadowRoot = null), this.overlayShadowHost && (this.overlayShadowHost.remove(), this.overlayShadowHost = null, this.overlayShadowRoot = null), this.buttonsContainer = null, this.dismissBtn = null, this.tooltipElement = null, $t();
   }
 }
 function rt(e) {
@@ -1118,14 +1169,14 @@ function ke() {
 function st(e, t, i) {
   console.warn(`[thumbs-embed] Ignoring ${e}="${t}": expected ${i}.`);
 }
-function Se(e) {
+function Ce(e) {
   const t = [];
   let i = 0, o = "";
-  for (const n of e)
-    n === "(" && i++, n === ")" && (i = Math.max(0, i - 1)), n === "," && i === 0 ? (t.push(o.trim()), o = "") : o += n;
+  for (const a of e)
+    a === "(" && i++, a === ")" && (i = Math.max(0, i - 1)), a === "," && i === 0 ? (t.push(o.trim()), o = "") : o += a;
   return t.push(o.trim()), t;
 }
-function Ce(e, t) {
+function Ae(e, t) {
   if (t === null) return;
   const i = t.trim();
   let o = null;
@@ -1136,9 +1187,9 @@ function Ce(e, t) {
       o = null;
     }
   else
-    o = Se(i);
-  if (Array.isArray(o) && o.length > 0 && o.every((n) => typeof n == "string" && n.trim() !== ""))
-    return o.map((n) => n.trim());
+    o = Ce(i);
+  if (Array.isArray(o) && o.length > 0 && o.every((a) => typeof a == "string" && a.trim() !== ""))
+    return o.map((a) => a.trim());
   st(e, t, "a JSON array of colours or a comma-separated list");
 }
 function m(e, t) {
@@ -1150,32 +1201,32 @@ function m(e, t) {
     return t;
   }
 }
-function Ae(e) {
+function Se(e) {
   const t = e.getAttribute("data-endpoint");
   if (!t) return null;
-  const i = e.getAttribute("data-position"), o = e.getAttribute("data-zindex"), n = e.getAttribute("data-positive-color"), a = e.getAttribute("data-negative-color"), r = e.getAttribute("data-marker-color"), l = e.getAttribute("data-container"), c = e.getAttribute("data-button-class"), d = e.getAttribute("data-skip-targeting"), s = e.getAttribute("data-hide-confirmation"), u = e.getAttribute("data-single-button"), h = e.getAttribute("data-feedback-mode"), f = e.getAttribute("data-incognito"), dt = e.getAttribute("data-button-size"), g = e.getAttribute("data-offset-x"), v = e.getAttribute("data-offset-y"), T = e.getAttribute("data-modal-width"), I = e.getAttribute("data-backdrop-opacity"), lt = e.getAttribute("data-font-family"), E = e.getAttribute("data-font-size"), D = e.getAttribute("data-tooltip"), z = e.getAttribute("data-modal-title"), H = e.getAttribute("data-confirmation-title"), L = e.getAttribute("data-confirmation-message"), M = e.getAttribute("data-confirmation-close"), B = e.getAttribute("data-error-title"), O = e.getAttribute("data-error-message"), P = e.getAttribute("data-modal-subtitle"), R = e.getAttribute("data-placeholder"), F = e.getAttribute("data-submit-button"), U = e.getAttribute("data-skip-button"), ct = e.getAttribute("data-positive-icon"), ut = e.getAttribute("data-negative-icon"), ht = e.getAttribute("data-feedback-icon"), V = e.getAttribute("data-feedback-label"), ft = e.getAttribute("data-api-key"), pt = e.getAttribute("data-capture-screenshot"), bt = e.getAttribute("data-annotate"), mt = e.getAttribute("data-annotation-color"), y = e.getAttribute("data-screenshot-quality"), q = e.getAttribute("data-screenshot-max-width"), w = e.getAttribute("data-screenshot-max-height"), gt = e.getAttribute("data-capture-video"), $ = e.getAttribute("data-video-redaction"), vt = e.getAttribute("data-hide-thumbs"), yt = e.getAttribute("data-hide-dismiss"), x = e.getAttribute("data-video-max-duration"), qt = e.getAttribute("data-screenshot-method"), wt = e.getAttribute("data-direction"), _ = e.getAttribute("data-css-selector"), xt = e.getAttribute("data-css"), K = m("data-positive-label", e.getAttribute("data-positive-label")), N = m("data-negative-label", e.getAttribute("data-negative-label")), Q = m("data-record-label", e.getAttribute("data-record-label")), j = m("data-dismiss-label", e.getAttribute("data-dismiss-label")), kt = Ce(
+  const i = e.getAttribute("data-position"), o = e.getAttribute("data-zindex"), a = e.getAttribute("data-positive-color"), n = e.getAttribute("data-negative-color"), r = e.getAttribute("data-marker-color"), l = e.getAttribute("data-container"), c = e.getAttribute("data-button-class"), d = e.getAttribute("data-skip-targeting"), s = e.getAttribute("data-hide-confirmation"), u = e.getAttribute("data-single-button"), h = e.getAttribute("data-feedback-mode"), f = e.getAttribute("data-incognito"), dt = e.getAttribute("data-button-size"), g = e.getAttribute("data-offset-x"), v = e.getAttribute("data-offset-y"), T = e.getAttribute("data-modal-width"), E = e.getAttribute("data-backdrop-opacity"), lt = e.getAttribute("data-font-family"), I = e.getAttribute("data-font-size"), D = e.getAttribute("data-tooltip"), z = e.getAttribute("data-modal-title"), M = e.getAttribute("data-confirmation-title"), L = e.getAttribute("data-confirmation-message"), H = e.getAttribute("data-confirmation-close"), B = e.getAttribute("data-error-title"), O = e.getAttribute("data-error-message"), P = e.getAttribute("data-modal-subtitle"), R = e.getAttribute("data-placeholder"), N = e.getAttribute("data-submit-button"), U = e.getAttribute("data-skip-button"), ct = e.getAttribute("data-positive-icon"), ut = e.getAttribute("data-negative-icon"), ht = e.getAttribute("data-feedback-icon"), F = e.getAttribute("data-feedback-label"), ft = e.getAttribute("data-api-key"), pt = e.getAttribute("data-capture-screenshot"), bt = e.getAttribute("data-annotate"), mt = e.getAttribute("data-annotation-color"), y = e.getAttribute("data-screenshot-quality"), w = e.getAttribute("data-screenshot-max-width"), q = e.getAttribute("data-screenshot-max-height"), gt = e.getAttribute("data-capture-video"), _ = e.getAttribute("data-video-redaction"), vt = e.getAttribute("data-hide-thumbs"), yt = e.getAttribute("data-hide-dismiss"), x = e.getAttribute("data-video-max-duration"), wt = e.getAttribute("data-screenshot-method"), qt = e.getAttribute("data-direction"), V = e.getAttribute("data-css-selector"), xt = e.getAttribute("data-css"), j = m("data-positive-label", e.getAttribute("data-positive-label")), $ = m("data-negative-label", e.getAttribute("data-negative-label")), K = m("data-record-label", e.getAttribute("data-record-label")), Q = m("data-dismiss-label", e.getAttribute("data-dismiss-label")), kt = Ae(
     "data-annotation-palette",
     e.getAttribute("data-annotation-palette")
-  ), St = e.getAttribute("data-record-icon"), W = e.getAttribute("data-quest-base"), Ct = e.getAttribute("data-quest-up"), At = e.getAttribute("data-quest-down"), Tt = e.getAttribute("data-quest-video"), It = e.getAttribute("data-quest-api-key"), Et = e.getAttribute("data-quest-module-url");
+  ), Ct = e.getAttribute("data-record-icon"), W = e.getAttribute("data-quest-base"), At = e.getAttribute("data-quest-up"), St = e.getAttribute("data-quest-down"), Tt = e.getAttribute("data-quest-video"), Et = e.getAttribute("data-quest-api-key"), It = e.getAttribute("data-quest-module-url");
   return {
     endpoint: t,
     // Inline CSS wins over a selector, as `css` wins over `cssSelector` in
     // the JSON block.
-    css: xt || (_ ? rt(_) : void 0),
+    css: xt || (V ? rt(V) : void 0),
     apiKey: ft ?? void 0,
     captureScreenshot: pt === "true" ? !0 : void 0,
     // Annotation is on by default; only an explicit "false" disables it.
     annotate: bt === "false" ? !1 : void 0,
     annotationColor: mt ?? void 0,
     annotationPalette: kt,
-    screenshotOptions: y || q || w ? {
+    screenshotOptions: y || w || q ? {
       quality: y ? parseFloat(y) : void 0,
-      maxWidth: q ? parseInt(q, 10) : void 0,
-      maxHeight: w ? parseInt(w, 10) : void 0
+      maxWidth: w ? parseInt(w, 10) : void 0,
+      maxHeight: q ? parseInt(q, 10) : void 0
     } : void 0,
     container: l ?? void 0,
     buttonClass: c ?? void 0,
-    direction: wt ?? void 0,
+    direction: qt ?? void 0,
     position: i ?? void 0,
     zIndex: o ? parseInt(o, 10) : void 0,
     skipTargeting: d === "true" ? !0 : void 0,
@@ -1189,65 +1240,80 @@ function Ae(e) {
       y: v ? parseInt(v, 10) : void 0
     } : void 0,
     modalWidth: T ? parseInt(T, 10) : void 0,
-    backdropOpacity: I ? parseFloat(I) : void 0,
+    backdropOpacity: E ? parseFloat(E) : void 0,
     fontFamily: lt ?? void 0,
-    fontSize: E ? parseInt(E, 10) : void 0,
+    fontSize: I ? parseInt(I, 10) : void 0,
     colors: {
-      positive: n ?? void 0,
-      negative: a ?? void 0,
+      positive: a ?? void 0,
+      negative: n ?? void 0,
       marker: r ?? void 0
     },
-    text: D || z || P || R || F || U || V || H || L || M || B || O || K || N || Q || j ? {
+    text: D || z || P || R || N || U || F || M || L || H || B || O || j || $ || K || Q ? {
       tooltip: D ?? void 0,
       modalTitle: z ?? void 0,
       modalSubtitle: P ?? void 0,
       placeholder: R ?? void 0,
-      submitButton: F ?? void 0,
+      submitButton: N ?? void 0,
       skipButton: U ?? void 0,
-      feedbackLabel: V ?? void 0,
-      confirmationTitle: H ?? void 0,
+      feedbackLabel: F ?? void 0,
+      confirmationTitle: M ?? void 0,
       confirmationMessage: L ?? void 0,
-      confirmationClose: M ?? void 0,
+      confirmationClose: H ?? void 0,
       errorTitle: B ?? void 0,
       errorMessage: O ?? void 0,
-      positiveLabel: K,
-      negativeLabel: N,
-      recordLabel: Q,
-      dismissLabel: j
+      positiveLabel: j,
+      negativeLabel: $,
+      recordLabel: K,
+      dismissLabel: Q
     } : void 0,
     positiveIcon: ct ?? void 0,
-    recordIcon: St ?? void 0,
+    recordIcon: Ct ?? void 0,
     negativeIcon: ut ?? void 0,
     feedbackIcon: ht ?? void 0,
-    screenshotMethod: qt ?? void 0,
+    screenshotMethod: wt ?? void 0,
     captureVideo: gt === "true" ? !0 : void 0,
     hideThumbs: vt === "true" ? !0 : void 0,
     hideDismiss: yt === "true" ? !0 : void 0,
-    videoOptions: x || $ ? {
+    videoOptions: x || _ ? {
       maxDuration: x ? parseInt(x, 10) : void 0,
-      redaction: $ === "true" ? !0 : void 0
+      redaction: _ === "true" ? !0 : void 0
     } : void 0,
     quests: W ? {
       base: W,
-      up: Ct ?? void 0,
-      down: At ?? void 0,
+      up: At ?? void 0,
+      down: St ?? void 0,
       video: Tt ?? void 0,
-      apiKey: It ?? void 0,
-      moduleUrl: Et ?? void 0
+      apiKey: Et ?? void 0,
+      moduleUrl: It ?? void 0
     } : void 0
   };
 }
-function Te() {
+function Ue() {
   if (typeof document > "u") return;
   const e = () => {
-    const t = document.currentScript ?? document.querySelector("script[data-endpoint]"), i = ke() ?? (t ? Ae(t) : null);
+    const t = document.currentScript ?? document.querySelector("script[data-endpoint]"), i = ke() ?? (t ? Se(t) : null);
     i?.endpoint && new xe(i);
   };
   document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", e) : e();
 }
-Te();
 export {
+  Ee as A,
+  De as B,
+  Me as D,
+  Le as E,
+  Lt as F,
+  Ie as P,
   xe as Q,
-  Ee as c
+  Te as R,
+  He as S,
+  Dt as T,
+  ze as U,
+  Ue as a,
+  Be as b,
+  Oe as c,
+  zt as d,
+  Pe as e,
+  Ne as g,
+  Re as i
 };
-//# sourceMappingURL=loader-BVNyi56k.js.map
+//# sourceMappingURL=core-2nGsCcZq.js.map

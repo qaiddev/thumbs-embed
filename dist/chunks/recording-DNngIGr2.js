@@ -1,5 +1,5 @@
 import { h as r } from "./dom-DvdtcUS8.js";
-import { b as v } from "./annotate-D-o8xCV9.js";
+import { i as v } from "./core-2nGsCcZq.js";
 const g = 20, u = 4096;
 function l(d) {
   const t = typeof d == "string" ? d : JSON.stringify(d);
@@ -8,7 +8,7 @@ function l(d) {
 function p(d, t) {
   d.length >= g && d.shift(), d.push(t);
 }
-async function b(d) {
+async function R(d) {
   try {
     const t = await d.clone().text();
     return l(t);
@@ -16,7 +16,7 @@ async function b(d) {
     return;
   }
 }
-function R() {
+function b() {
   const d = [], t = window.fetch;
   window.fetch = async function(o, s) {
     const n = typeof o == "string" ? o : o instanceof URL ? o.toString() : o.url, c = s?.method ?? (typeof o == "object" && "method" in o ? o.method : "GET");
@@ -24,7 +24,7 @@ function R() {
     s?.body && (a = l(s.body));
     const h = await t.apply(window, [o, s]);
     if (h.status >= 400) {
-      const f = await b(h);
+      const f = await R(h);
       p(d, {
         url: n,
         method: c.toUpperCase(),
@@ -87,7 +87,7 @@ class m {
   async startRecording(t = []) {
     if (!(this.isRecording || this.host.state !== "IDLE"))
       try {
-        this.networkCapture = R();
+        this.networkCapture = b();
         const { createVideoRecorder: i } = await import("./video-Bd_29-rK.js");
         this.videoRecorder = i({
           maxDuration: this.host.config.videoOptions.maxDuration,
@@ -318,4 +318,4 @@ class m {
 export {
   m as RecordingController
 };
-//# sourceMappingURL=recording-CcfOfIC7.js.map
+//# sourceMappingURL=recording-DNngIGr2.js.map

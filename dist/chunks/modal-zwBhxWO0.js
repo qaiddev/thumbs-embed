@@ -1,7 +1,6 @@
-import { c as u } from "./loader-BVNyi56k.js";
-import { h as s } from "./dom-DvdtcUS8.js";
-import { T as h, a as p, F as b, D as f, E as g } from "./annotate-D-o8xCV9.js";
-class w {
+import { b as u, T as h, d as p, F as b, D as f, E as g } from "./core-2nGsCcZq.js";
+import { h as i } from "./dom-DvdtcUS8.js";
+class k {
   constructor(t) {
     this.host = t;
   }
@@ -35,16 +34,16 @@ class w {
   showBottomSheet() {
     const t = this.host.ensureOverlayHost(), e = document.createElement("div");
     e.className = "qaid-bottom-sheet", e.style.zIndex = String(this.host.config.zIndex + 3), e.appendChild(
-      s(
+      i(
         "div",
         { class: "qaid-bottom-sheet-content" },
-        s("div", { class: "qaid-bottom-sheet-handle" }),
+        i("div", { class: "qaid-bottom-sheet-handle" }),
         this.buildModalContent()
       )
     ), this.host.applyVars(e), t.appendChild(e), this.modalContainer = e, this.setupModalInteractions();
   }
   showPositionedModal() {
-    const t = this.host.ensureOverlayHost(), { modal: e, arrow: i } = u(
+    const t = this.host.ensureOverlayHost(), { modal: e, arrow: s } = u(
       this.host.selectedBounds,
       window.innerWidth,
       window.innerHeight,
@@ -58,7 +57,7 @@ class w {
     );
     this.modalContainer = document.createElement("div"), this.modalContainer.className = `qaid-modal-container qaid-${e.position}`, this.modalContainer.style.top = `${e.top}px`, this.modalContainer.style.left = `${e.left}px`, this.modalContainer.style.zIndex = String(this.host.config.zIndex + 3);
     const o = document.createElement("div");
-    o.className = "qaid-modal-arrow", o.style.left = `${i.left}px`;
+    o.className = "qaid-modal-arrow", o.style.left = `${s.left}px`;
     const a = document.createElement("div");
     a.className = "qaid-modal-box", a.appendChild(this.buildModalContent()), this.modalContainer.appendChild(o), this.modalContainer.appendChild(a), this.host.applyVars(this.modalContainer), t.appendChild(this.modalContainer), this.setupModalInteractions();
   }
@@ -71,11 +70,11 @@ class w {
    * markup, because they are documented as SVG/HTML strings.
    */
   buildModalContent() {
-    const { config: t, uid: e } = this.host, i = t.text, o = this.host.feedbackData.feedbackType, a = o === "up", n = t.positiveIcon || h, d = t.negativeIcon || p, l = t.buttonClass ? `qaid-type-toggle qaid-type-toggle-custom ${t.buttonClass} ${a ? "qaid-btn-up" : "qaid-btn-down"}` : `qaid-type-toggle ${a ? "qaid-type-up" : "qaid-type-down"}`, r = a ? "Feedback type: positive" : "Feedback type: negative", m = o === "neutral" ? s("span", {
+    const { config: t, uid: e } = this.host, s = t.text, o = this.host.feedbackData.feedbackType, a = o === "up", n = t.positiveIcon || h, d = t.negativeIcon || p, l = t.buttonClass ? `qaid-type-toggle qaid-type-toggle-custom ${t.buttonClass} ${a ? "qaid-btn-up" : "qaid-btn-down"}` : `qaid-type-toggle ${a ? "qaid-type-up" : "qaid-type-down"}`, r = a ? "Feedback type: positive" : "Feedback type: negative", m = o === "neutral" ? i("span", {
       class: "qaid-type-static",
       html: t.feedbackIcon || b,
       attrs: { "aria-hidden": "true" }
-    }) : s("button", {
+    }) : i("button", {
       class: l,
       html: a ? n : d,
       attrs: {
@@ -86,35 +85,35 @@ class w {
       }
     }), c = document.createDocumentFragment();
     return c.append(
-      s(
+      i(
         "div",
         { class: "qaid-modal-header" },
         m,
-        s(
+        i(
           "div",
           { class: "qaid-modal-header-text" },
-          s("h3", {
+          i("h3", {
             class: "qaid-modal-title",
-            text: i.modalTitle,
+            text: s.modalTitle,
             attrs: { id: `qaid-modal-title-${e}` }
           }),
-          s("p", {
+          i("p", {
             class: "qaid-modal-subtitle",
-            text: i.modalSubtitle,
+            text: s.modalSubtitle,
             attrs: { id: `qaid-modal-subtitle-${e}` }
           })
         )
       ),
-      s("textarea", {
+      i("textarea", {
         class: "qaid-textarea",
-        attrs: { "aria-label": i.modalSubtitle, placeholder: i.placeholder }
+        attrs: { "aria-label": s.modalSubtitle, placeholder: s.placeholder }
       }),
-      s(
+      i(
         "div",
         { class: "qaid-btn-row" },
-        s("button", {
+        i("button", {
           class: "qaid-btn-submit",
-          text: i.skipButton,
+          text: s.skipButton,
           attrs: { type: "button" }
         })
       )
@@ -132,14 +131,14 @@ class w {
       const o = t?.value.trim() || null;
       this.submitMessage(o);
     });
-    const i = this.modalContainer.querySelector(".qaid-type-toggle");
-    i && i.addEventListener("click", () => {
+    const s = this.modalContainer.querySelector(".qaid-type-toggle");
+    s && s.addEventListener("click", () => {
       const o = this.host.feedbackData.feedbackType === "up" ? "down" : "up";
-      this.host.feedbackData.feedbackType = o, this.host.config.buttonClass ? (i.classList.toggle("qaid-btn-up", o === "up"), i.classList.toggle("qaid-btn-down", o === "down")) : (i.classList.toggle("qaid-type-up", o === "up"), i.classList.toggle("qaid-type-down", o === "down"));
+      this.host.feedbackData.feedbackType = o, this.host.config.buttonClass ? (s.classList.toggle("qaid-btn-up", o === "up"), s.classList.toggle("qaid-btn-down", o === "down")) : (s.classList.toggle("qaid-type-up", o === "up"), s.classList.toggle("qaid-type-down", o === "down"));
       const a = this.host.config.positiveIcon || h, n = this.host.config.negativeIcon || p;
-      i.innerHTML = o === "up" ? a : n;
+      s.innerHTML = o === "up" ? a : n;
       const d = o === "up" ? "Feedback type: positive" : "Feedback type: negative";
-      i.setAttribute("aria-pressed", String(o === "up")), i.setAttribute("aria-label", d), this.host.announceMsg(d), this.host.whenFeedbackId().then((l) => {
+      s.setAttribute("aria-pressed", String(o === "up")), s.setAttribute("aria-label", d), this.host.announceMsg(d), this.host.whenFeedbackId().then((l) => {
         l && fetch(`${this.host.config.endpoint}/${l}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -151,10 +150,10 @@ class w {
   async submitMessage(t) {
     let e = null;
     this.finalized = !0;
-    const i = await this.host.whenFeedbackId();
-    if (i)
+    const s = await this.host.whenFeedbackId();
+    if (s)
       try {
-        const o = await fetch(`${this.host.config.endpoint}/${i}`, {
+        const o = await fetch(`${this.host.config.endpoint}/${s}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ message: t })
@@ -188,25 +187,25 @@ class w {
       this.close();
       return;
     }
-    const i = this.host.config.text, o = t ? i.confirmationTitle : i.errorTitle, a = t ? i.confirmationMessage : i.errorMessage, n = s("h3", {
+    const s = this.host.config.text, o = t ? s.confirmationTitle : s.errorTitle, a = t ? s.confirmationMessage : s.errorMessage, n = i("h3", {
       class: "qaid-confirm-title",
       text: o,
       attrs: { id: `qaid-confirm-title-${this.host.uid}`, tabindex: "-1" }
     });
     e.textContent = "", e.appendChild(
-      s(
+      i(
         "div",
         { class: t ? "qaid-confirm" : "qaid-confirm qaid-confirm-error" },
-        s("span", {
+        i("span", {
           class: "qaid-confirm-icon",
           html: t ? f : g,
           attrs: { "aria-hidden": "true" }
         }),
         n,
-        s("p", { class: "qaid-confirm-message", text: a }),
-        s("button", {
+        i("p", { class: "qaid-confirm-message", text: a }),
+        i("button", {
           class: "qaid-btn-submit qaid-confirm-close",
-          text: i.confirmationClose,
+          text: s.confirmationClose,
           attrs: { type: "button" },
           on: { click: () => this.close() }
         })
@@ -215,6 +214,6 @@ class w {
   }
 }
 export {
-  w as ModalController
+  k as ModalController
 };
-//# sourceMappingURL=modal-DwwbWQ-F.js.map
+//# sourceMappingURL=modal-zwBhxWO0.js.map

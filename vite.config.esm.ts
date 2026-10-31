@@ -7,6 +7,15 @@ import { resolve } from "path";
 //               on-demand chunks under dist/chunks/.
 // Runs after the UMD build with emptyOutDir:false so it adds to dist/ rather
 // than wiping the UMD bundle.
+/**
+ * What the loader needs at startup, in one core chunk. The helpers it shares
+ * with annotate (icons, dom-utils) must be named here: left to Rollup they
+ * landed in the annotate chunk, and the core imported all of annotate (5 KB)
+ * at startup to reach them. Re-check this list when the loader's static
+ * imports change; anything left off lands in whichever chunk Rollup picks.
+ */
+const CORE = /\/src\/(embed|bootstrap|styles|a11y|modal-positioning|console-capture|quest-launcher|icons|dom-utils)\.ts$/;
+
 export default defineConfig({
   build: {
     emptyOutDir: false,
@@ -37,6 +46,7 @@ export default defineConfig({
           if (id.includes("/src/screenshot-dom")) return "screenshot-dom";
           if (id.includes("/src/screenshot")) return "screenshot";
           if (id.includes("/src/video-")) return "video"; // capture + orientation + redaction
+          if (CORE.test(id)) return "core";
           return undefined;
         },
       },
