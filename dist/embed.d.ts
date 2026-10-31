@@ -16,9 +16,6 @@ export declare function randomId(): string;
  * Get or create a visitor ID stored in localStorage
  */
 export declare function getOrCreateVisitorId(): string;
-/**
- * QaidFeedback - Standalone feedback collection embed
- */
 export declare class QaidFeedback {
     private config;
     private state;
@@ -121,6 +118,15 @@ export declare class QaidFeedback {
      * clip-path / transform containing blocks in user containers.
      */
     private ensureOverlayHost;
+    /** The styles of every feature chunk loaded so far, in load order. */
+    private featureStyles;
+    /**
+     * Add a feature chunk's styles to both shadow roots. The core stylesheet
+     * styles only the buttons; the message box, targeting, video and markup
+     * editor bring their own CSS with their chunk, so a page that never opens
+     * them never downloads it.
+     */
+    private addFeatureStyles;
     private tooltipElement;
     private showTooltip;
     private hideTooltip;

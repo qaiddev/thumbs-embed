@@ -1,0 +1,321 @@
+/* Shadow DOM styles for the modal feature. The embed adds them to its shadow
+   roots when the modal chunk loads, under any theme CSS (see addFeatureStyles). */
+
+/* Modal backdrop */
+.qaid-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Modal container */
+.qaid-modal-container {
+  position: fixed;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-height: calc(100vh - 32px);
+  font-family: var(--qaid-font-family, system-ui, -apple-system, sans-serif);
+  font-size: var(--qaid-font-size, 16px);
+}
+
+.qaid-modal-container.qaid-above {
+  flex-direction: column-reverse;
+}
+
+/* Modal arrow */
+.qaid-modal-arrow {
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  position: relative;
+  align-self: flex-start;
+}
+
+.qaid-modal-container.qaid-below .qaid-modal-arrow {
+  border-bottom: 12px solid light-dark(#ffffff, #1f2937);
+}
+
+.qaid-modal-container.qaid-above .qaid-modal-arrow {
+  border-top: 12px solid light-dark(#ffffff, #1f2937);
+}
+
+/* Modal box */
+.qaid-modal-box {
+  color-scheme: inherit;
+  background: light-dark(#ffffff, #1f2937);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 25px 50px -12px light-dark(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.5));
+  width: var(--qaid-modal-width, 400px);
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
+}
+
+/* Modal header with feedback type toggle */
+.qaid-modal-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+/* Base toggle styles (structural only) */
+button.qaid-type-toggle {
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+button.qaid-type-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Default toggle styles (when no custom buttonClass) */
+button.qaid-type-toggle:not(.qaid-type-toggle-custom) {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+}
+
+button.qaid-type-toggle:not(.qaid-type-toggle-custom) svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+button.qaid-type-toggle.qaid-type-up {
+  background: var(--qaid-positive);
+  color: white;
+}
+
+button.qaid-type-toggle.qaid-type-down {
+  background: var(--qaid-negative);
+  color: white;
+}
+
+/* Custom toggle inherits theme styles - no background override */
+.qaid-type-toggle-custom {
+  /* Background controlled by custom buttonClass */
+}
+
+/* Static neutral icon shown in the modal header for single-button feedback
+   (no up/down to toggle). Mirrors the default toggle's circle. */
+.qaid-type-static {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--qaid-marker, #6365f1);
+  color: var(--qaid-marker-text, white);
+}
+
+.qaid-type-static svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.qaid-modal-header-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.qaid-modal-title {
+  font-size: calc(var(--qaid-font-size, 16px) * 1.125);
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+  color: light-dark(#1f2937, #f9fafb);
+}
+
+.qaid-modal-subtitle {
+  color: light-dark(#6b7280, #9ca3af);
+  margin: 0;
+  font-size: calc(var(--qaid-font-size, 16px) * 0.875);
+}
+
+.qaid-textarea {
+  width: 100%;
+  height: 6rem;
+  padding: 0.75rem;
+  border: 1px solid light-dark(#d1d5db, #374151);
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: var(--qaid-font-size, 16px);
+  resize: vertical;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+  background: light-dark(#ffffff, #111827);
+  color: light-dark(#1f2937, #f9fafb);
+}
+
+.qaid-textarea:focus {
+  outline: none;
+  border-color: var(--qaid-marker);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--qaid-marker) 20%, transparent);
+}
+
+
+.qaid-btn-row {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+button.qaid-btn-submit {
+  padding: 0.5rem 1rem;
+  background: var(--qaid-marker);
+  color: var(--qaid-marker-text, white);
+  border: none;
+  border-radius: 0.5rem;
+  font-size: calc(var(--qaid-font-size, 16px) * 0.875);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, filter 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+button.qaid-btn-submit:hover {
+  filter: brightness(0.85);
+}
+
+button.qaid-btn-submit:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--qaid-marker) 30%, transparent);
+}
+
+/* Mobile bottom sheet */
+.qaid-bottom-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  animation: qaid-slideUpSheet 0.3s ease-out;
+  font-family: var(--qaid-font-family, system-ui, -apple-system, sans-serif);
+  font-size: var(--qaid-font-size, 16px);
+}
+
+.qaid-bottom-sheet-content {
+  background: light-dark(#ffffff, #1f2937);
+  border-radius: 1rem 1rem 0 0;
+  padding: 1.5rem;
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+}
+
+.qaid-bottom-sheet-handle {
+  width: 36px;
+  height: 4px;
+  background: light-dark(rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2));
+  border-radius: 2px;
+  margin: 0 auto 1rem;
+}
+
+@keyframes qaid-slideUpSheet {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* ==================== Success confirmation ====================
+ * Shown after a message is sent, unless `hideConfirmation` is set. Before
+ * this the modal simply vanished on submit, which reads as a failure —
+ * there was nothing to say the message had been received. */
+.qaid-confirm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.qaid-confirm-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  color: #fff;
+  background: var(--qaid-success, #22c55e);
+  margin-bottom: 0.25rem;
+  animation: qaid-confirm-pop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.qaid-confirm-icon .qaid-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* The same screen when the message was refused or never arrived. */
+.qaid-confirm-error .qaid-confirm-icon {
+  background: var(--qaid-error, #dc2626);
+}
+
+/* The text follows the box's colour scheme through light-dark(), like the
+ * message step's title and subtitle. A plain #111827 stayed near-black on the
+ * dark box. --qaid-text / --qaid-text-muted still override both schemes. */
+.qaid-confirm-title {
+  margin: 0;
+  font-size: var(--qaid-font-size, 16px);
+  font-weight: 600;
+  color: var(--qaid-text, light-dark(#111827, #f9fafb));
+}
+
+/* Focus lands here when the screen appears; the ring would otherwise be
+ * invisible on a heading with no default outline. */
+.qaid-confirm-title:focus-visible {
+  outline: 2px solid var(--qaid-primary, #6365f1);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.qaid-confirm-message {
+  margin: 0;
+  font-size: calc(var(--qaid-font-size, 16px) * 0.875);
+  color: var(--qaid-text-muted, light-dark(#6b7280, #9ca3af));
+}
+
+.qaid-confirm .qaid-confirm-close {
+  margin-top: 0.5rem;
+  min-width: 96px;
+}
+
+@keyframes qaid-confirm-pop {
+  from { transform: scale(0.6); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qaid-confirm-icon { animation: none; }
+}
+
+/* The textarea and submit button set `outline: none` on :focus (they draw a
+   box-shadow ring). Re-assert a real outline for keyboard focus so the ring
+   survives forced-colors mode, which drops box-shadow. Last in this file so
+   it wins on source order. WCAG 2.4.7. */
+.qaid-textarea:focus-visible,
+button.qaid-btn-submit:focus-visible {
+  outline: 2px solid var(--qaid-marker, #6365f1);
+  outline-offset: 2px;
+}
+
+@media (forced-colors: active) {
+  .qaid-textarea:focus,
+  button.qaid-btn-submit:focus {
+    outline: 2px solid CanvasText;
+    outline-offset: 2px;
+  }
+}

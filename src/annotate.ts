@@ -16,6 +16,7 @@
  */
 
 import { createElement } from "./dom-utils";
+import featureStyles from "./styles-annotate.css?inline";
 import {
   RECTANGLE_ICON,
   ARROW_ICON,
@@ -697,3 +698,6 @@ export function openAnnotationEditor(
 ): Promise<string | null> {
   return new AnnotationEditor(opts).open();
 }
+
+/** This feature's shadow-DOM styles; the embed adds them when it loads the chunk. */
+export const styles = featureStyles;

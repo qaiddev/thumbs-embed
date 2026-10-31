@@ -11,6 +11,7 @@
  */
 
 import { h } from "./dom";
+import featureStyles from "./styles-video.css?inline";
 import { isEmbedElement } from "./dom-utils";
 import { captureNetworkErrors, type NetworkCapture } from "./network-capture";
 import type { VideoRecorder } from "./video-capture";
@@ -557,3 +558,6 @@ export class RecordingController {
     }
   }
 }
+
+/** This feature's shadow-DOM styles; the embed adds them when it loads the chunk. */
+export const styles = featureStyles;

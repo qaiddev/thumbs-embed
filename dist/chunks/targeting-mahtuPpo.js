@@ -1,46 +1,46 @@
-import { g as k, e as T, i as m } from "./core-2nGsCcZq.js";
-const E = ["data-comp", "data-qa", "data-testid", "data-id"];
-function C(s, t = document.body) {
-  let e = s;
+import { g as k, e as q, i as m } from "./core-CL1dwdaN.js";
+const T = ["data-comp", "data-qa", "data-testid", "data-id"];
+function E(i, t = document.body) {
+  let e = i;
   for (; e && e !== t; ) {
-    for (const n of E) {
-      const o = e.getAttribute(n);
+    for (const r of T) {
+      const o = e.getAttribute(r);
       if (o)
-        return `${n}="${o}"`;
+        return `${r}="${o}"`;
     }
     e = e.parentElement;
   }
   return null;
 }
-function L(s, t = 100) {
-  const e = s.textContent?.trim().slice(0, t) || "";
+function S(i, t = 100) {
+  const e = i.textContent?.trim().slice(0, t) || "";
   return e.length === t ? e + "..." : e;
 }
-function A(s) {
-  let t = 1, e = s.previousElementSibling;
+function w(i) {
+  let t = 1, e = i.previousElementSibling;
   for (; e; )
     t++, e = e.previousElementSibling;
   return t;
 }
-function q(s) {
+function L(i) {
   const t = [];
-  let e = s;
+  let e = i;
   for (; e && e !== document.body && e !== document.documentElement; ) {
-    const n = e.tagName.toLowerCase(), o = A(e);
-    t.unshift(`${n}:nth-child(${o})`), e = e.parentElement;
+    const r = e.tagName.toLowerCase(), o = w(e);
+    t.unshift(`${r}:nth-child(${o})`), e = e.parentElement;
   }
   return t.length > 0 ? `body > ${t.join(" > ")}` : "body";
 }
-function w(s) {
-  return s.replace(/([!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, "\\$1");
+function A(i) {
+  return i.replace(/([!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, "\\$1");
 }
-function P(s) {
-  const t = C(s);
-  return t ? `[${t}]` : s.id ? `#${w(s.id)}` : q(s);
+function P(i) {
+  const t = E(i);
+  return t ? `[${t}]` : i.id ? `#${A(i.id)}` : L(i);
 }
-function g(s) {
-  const t = L(s), e = C(s);
-  return { selector: P(s), text: t, dataAttr: e };
+function y(i) {
+  const t = S(i), e = E(i);
+  return { selector: P(i), text: t, dataAttr: e };
 }
 const $ = [
   "a[href]",
@@ -61,117 +61,117 @@ const $ = [
   "p",
   "li",
   "label",
-  ...E.map((s) => `[${s}]`)
+  ...T.map((i) => `[${i}]`)
 ].join(","), D = /^(?:A|BUTTON|INPUT|SELECT|TEXTAREA|SUMMARY)$/;
-function B(s) {
-  if (s.hasAttribute("hidden") || s.getAttribute("aria-hidden") === "true") return !1;
-  const t = s.ownerDocument?.defaultView;
+function B(i) {
+  if (i.hasAttribute("hidden") || i.getAttribute("aria-hidden") === "true") return !1;
+  const t = i.ownerDocument?.defaultView;
   if (t && typeof t.getComputedStyle == "function") {
-    const e = t.getComputedStyle(s);
+    const e = t.getComputedStyle(i);
     if (e.display === "none" || e.visibility === "hidden") return !1;
   }
   return !0;
 }
-function V(s = {}) {
-  const t = s.root ?? document.body, e = s.selector ?? $, n = s.isExcluded ?? (() => !1), o = s.isVisible ?? B;
+function H(i = {}) {
+  const t = i.root ?? document.body, e = i.selector ?? $, r = i.isExcluded ?? (() => !1), o = i.isVisible ?? B;
   return Array.from(t.querySelectorAll(e)).filter(
-    (r) => !n(r) && o(r)
+    (a) => !r(a) && o(a)
   );
 }
-function H(s) {
-  const t = s.candidates ?? V({
-    root: s.root,
-    selector: s.selector,
-    isExcluded: s.isExcluded,
-    isVisible: s.isVisible
-  }), e = s.moveFocus ?? !0, n = s.eventTarget ?? document, o = /* @__PURE__ */ new Set();
-  let r = -1, a = !1;
-  const l = s.initial !== void 0 ? s.initial : typeof document < "u" ? document.activeElement : null;
-  if (l) {
-    const i = t.indexOf(l);
-    i >= 0 && (r = i);
+function V(i) {
+  const t = i.candidates ?? H({
+    root: i.root,
+    selector: i.selector,
+    isExcluded: i.isExcluded,
+    isVisible: i.isVisible
+  }), e = i.moveFocus ?? !0, r = i.eventTarget ?? document, o = /* @__PURE__ */ new Set();
+  let a = -1, n = !1;
+  const h = i.initial !== void 0 ? i.initial : typeof document < "u" ? document.activeElement : null;
+  if (h) {
+    const s = t.indexOf(h);
+    s >= 0 && (a = s);
   }
-  r < 0 && t.length > 0 && (r = 0);
-  function S(i) {
+  a < 0 && t.length > 0 && (a = 0);
+  function C(s) {
     if (!e) return;
-    const h = i;
-    if (typeof h.focus == "function") {
-      i.getAttribute("tabindex") === null && !D.test(i.tagName) && (i.setAttribute("tabindex", "-1"), o.add(i));
+    const d = s;
+    if (typeof d.focus == "function") {
+      s.getAttribute("tabindex") === null && !D.test(s.tagName) && (s.setAttribute("tabindex", "-1"), o.add(s));
       try {
-        h.focus();
+        d.focus();
       } catch {
       }
     }
   }
-  function f() {
-    const i = t[r];
-    i && (S(i), s.onHighlight?.(i, r));
+  function v() {
+    const s = t[a];
+    s && (C(s), i.onHighlight?.(s, a));
   }
-  function c(i) {
-    if (a || t.length === 0) return;
-    const h = t.length;
-    r = (i % h + h) % h, f();
+  function l(s) {
+    if (n || t.length === 0) return;
+    const d = t.length;
+    a = (s % d + d) % d, v();
   }
-  function d() {
-    c(r + 1);
+  function c() {
+    l(a + 1);
   }
   function u() {
-    c(r - 1);
-  }
-  function v() {
-    return t[r] ?? null;
-  }
-  function y() {
-    a || (a = !0, n.removeEventListener("keydown", p, !0), o.forEach((i) => i.removeAttribute("tabindex")), o.clear());
+    l(a - 1);
   }
   function b() {
-    if (a) return;
-    const i = v();
-    y(), i && s.onSelect(i);
+    return t[a] ?? null;
+  }
+  function p() {
+    n || (n = !0, r.removeEventListener("keydown", g, !0), o.forEach((s) => s.removeAttribute("tabindex")), o.clear());
+  }
+  function f() {
+    if (n) return;
+    const s = b();
+    p(), s && i.onSelect(s);
   }
   function x() {
-    a || (y(), s.onCancel?.());
+    n || (p(), i.onCancel?.());
   }
-  function p(i) {
-    if (!a)
-      switch (i.key) {
+  function g(s) {
+    if (!n)
+      switch (s.key) {
         case "Tab":
-          i.preventDefault(), i.stopPropagation(), i.shiftKey ? u() : d();
+          s.preventDefault(), s.stopPropagation(), s.shiftKey ? u() : c();
           break;
         case "ArrowDown":
         case "ArrowRight":
-          i.preventDefault(), i.stopPropagation(), d();
+          s.preventDefault(), s.stopPropagation(), c();
           break;
         case "ArrowUp":
         case "ArrowLeft":
-          i.preventDefault(), i.stopPropagation(), u();
+          s.preventDefault(), s.stopPropagation(), u();
           break;
         case "Enter":
         case " ":
         case "Spacebar":
-          i.preventDefault(), i.stopPropagation(), b();
+          s.preventDefault(), s.stopPropagation(), f();
           break;
         case "Escape":
         case "Esc":
-          i.preventDefault(), i.stopPropagation(), x();
+          s.preventDefault(), s.stopPropagation(), x();
           break;
       }
   }
-  return n.addEventListener("keydown", p, !0), r >= 0 && f(), {
+  return r.addEventListener("keydown", g, !0), a >= 0 && v(), {
     candidates: t,
-    getIndex: () => r,
-    getCurrent: v,
-    next: d,
+    getIndex: () => a,
+    getCurrent: b,
+    next: c,
     prev: u,
-    moveTo: c,
-    select: b,
+    moveTo: l,
+    select: f,
     cancel: x,
-    handleKey: p,
-    stop: y
+    handleKey: g,
+    stop: p
   };
 }
-const M = 12;
-class O {
+const M = ".qaid-targeting-overlay{position:fixed;inset:0;z-index:40;pointer-events:none}.qaid-capture-layer{position:fixed;inset:0;pointer-events:none;z-index:9999}.qaid-vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.3) 70%,rgba(0,0,0,.6) 100%);z-index:41}.qaid-crosshair-h,.qaid-crosshair-v{position:fixed;pointer-events:none;z-index:42}.qaid-crosshair-h{left:0;right:0;height:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-crosshair-v{top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-type-up .qaid-crosshair-h,.qaid-type-up .qaid-crosshair-v{background:color-mix(in srgb,var(--qaid-positive) 60%,transparent)}.qaid-highlight-box{position:fixed;top:0;left:0;pointer-events:none;z-index:41;display:none;border:3px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:2px;background:color-mix(in srgb,var(--qaid-negative) 8%,transparent);will-change:transform,width,height}.qaid-type-up .qaid-highlight-box{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent);background:color-mix(in srgb,var(--qaid-positive) 8%,transparent)}.qaid-scope{position:fixed;width:80px;height:80px;pointer-events:none;z-index:43;transform:translate(-50%,-50%)}.qaid-scope-ring{position:absolute;inset:10px;border:2px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent)}.qaid-scope-ring-inner{position:absolute;inset:20px;border:1px solid color-mix(in srgb,var(--qaid-negative) 50%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring-inner{border-color:color-mix(in srgb,var(--qaid-positive) 50%,transparent)}.qaid-scope-dot{position:absolute;top:50%;left:50%;width:4px;height:4px;background:var(--qaid-negative);border-radius:50%;transform:translate(-50%,-50%)}.qaid-type-up .qaid-scope-dot{background:var(--qaid-positive)}.qaid-selected-marker{position:fixed;border:3px solid var(--qaid-marker, #6365f1);border-radius:50%;pointer-events:none;z-index:44;animation:qaid-markerPulse 1.5s ease-in-out infinite}@keyframes qaid-markerPulse{0%,to{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}@media(forced-colors:active){.qaid-selected-marker,.qaid-highlight-box{border-color:Highlight}}", N = 12;
+class R {
   constructor(t) {
     this.host = t;
   }
@@ -200,13 +200,13 @@ class O {
    * KeyboardTargetingController owns Tab/Arrow/Enter/Space/Escape.
    */
   startKeyboard(t) {
-    this.host.setState("TARGETING"), this.host.feedbackData.feedbackType = t, this.host.feedbackData.elementSelector = null, this.host.feedbackData.elementText = null, this.host.selectedBounds.visible = !1, document.body.style.setProperty("--qaid-positive", this.host.cssVars["--qaid-positive"]), document.body.style.setProperty("--qaid-negative", this.host.cssVars["--qaid-negative"]), this.createTargetingOverlay(), this.crosshairH && (this.crosshairH.style.display = "none"), this.crosshairV && (this.crosshairV.style.display = "none"), this.scope && (this.scope.style.display = "none"), this.keyboardController = H({
+    this.host.setState("TARGETING"), this.host.feedbackData.feedbackType = t, this.host.feedbackData.elementSelector = null, this.host.feedbackData.elementText = null, this.host.selectedBounds.visible = !1, document.body.style.setProperty("--qaid-positive", this.host.cssVars["--qaid-positive"]), document.body.style.setProperty("--qaid-negative", this.host.cssVars["--qaid-negative"]), this.createTargetingOverlay(), this.crosshairH && (this.crosshairH.style.display = "none"), this.crosshairV && (this.crosshairV.style.display = "none"), this.scope && (this.scope.style.display = "none"), this.keyboardController = V({
       isExcluded: (e) => m(e),
       onHighlight: (e) => {
-        const n = e.getBoundingClientRect(), o = this.highlightBox;
-        o && (o.style.transform = `translate(${n.left}px, ${n.top}px)`, o.style.width = `${n.width}px`, o.style.height = `${n.height}px`, o.style.display = "block");
-        const { text: r } = g(e);
-        this.host.announceMsg(`Targeting ${r || e.tagName.toLowerCase()}`);
+        const r = e.getBoundingClientRect(), o = this.highlightBox;
+        o && (o.style.transform = `translate(${r.left}px, ${r.top}px)`, o.style.width = `${r.width}px`, o.style.height = `${r.height}px`, o.style.display = "block");
+        const { text: a } = y(e);
+        this.host.announceMsg(`Targeting ${a || e.tagName.toLowerCase()}`);
       },
       onSelect: (e) => this.selectKeyboardTarget(e),
       onCancel: () => this.cancel()
@@ -219,8 +219,8 @@ class O {
       clickY: e.y + e.height / 2,
       visible: !0
     });
-    const { selector: n, text: o } = g(t);
-    this.host.feedbackData.elementSelector = n, this.host.feedbackData.elementText = o, this.removeTargetingOverlay(), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.keyboardController = null, this.host.clearActiveThumb(), this.host.setState("SELECTED"), this.showSelectedMarker(), this.host.submitFeedback();
+    const { selector: r, text: o } = y(t);
+    this.host.feedbackData.elementSelector = r, this.host.feedbackData.elementText = o, this.removeTargetingOverlay(), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.keyboardController = null, this.host.clearActiveThumb(), this.host.setState("SELECTED"), this.showSelectedMarker(), this.host.submitFeedback();
   }
   createTargetingOverlay() {
     const t = this.host.ensureOverlayHost();
@@ -238,11 +238,11 @@ class O {
   /** Move the crosshair/scope reticle and highlight the element under (x, y). */
   updateReticleAt(t, e) {
     if (this.mousePos.x = t, this.mousePos.y = e, this.crosshairH && (this.crosshairH.style.top = `${e}px`), this.crosshairV && (this.crosshairV.style.left = `${t}px`), this.scope && (this.scope.style.left = `${t}px`, this.scope.style.top = `${e}px`), this.captureLayer && this.host.shadowHost) {
-      const n = [this.host.shadowHost, this.host.overlayShadowHost].filter(Boolean), o = T(t, e, n);
+      const r = [this.host.shadowHost, this.host.overlayShadowHost].filter(Boolean), o = q(t, e, r);
       if (o && !m(o)) {
         if (this.highlightBox) {
-          const r = o.getBoundingClientRect();
-          this.highlightBox.style.transform = `translate(${r.left}px, ${r.top}px)`, this.highlightBox.style.width = `${r.width}px`, this.highlightBox.style.height = `${r.height}px`, this.highlightBox.style.display = "block";
+          const a = o.getBoundingClientRect();
+          this.highlightBox.style.transform = `translate(${a.left}px, ${a.top}px)`, this.highlightBox.style.width = `${a.width}px`, this.highlightBox.style.height = `${a.height}px`, this.highlightBox.style.display = "block";
         }
       } else this.highlightBox && (this.highlightBox.style.display = "none");
     }
@@ -256,18 +256,18 @@ class O {
     e && (this.touchStartPos = { x: e.clientX, y: e.clientY }, this.updateReticleAt(e.clientX, e.clientY));
   }
   handleTouchEnd(t) {
-    const e = t.changedTouches[0], n = this.touchStartPos;
-    this.touchStartPos = null, !(!e || !n || Math.hypot(e.clientX - n.x, e.clientY - n.y) > M) && (t.preventDefault(), this.selectAt(e.clientX, e.clientY));
+    const e = t.changedTouches[0], r = this.touchStartPos;
+    this.touchStartPos = null, !(!e || !r || Math.hypot(e.clientX - r.x, e.clientY - r.y) > N) && (t.preventDefault(), this.selectAt(e.clientX, e.clientY));
   }
   /** Select the element under (x, y) and tear down targeting. */
   selectAt(t, e) {
-    const n = [this.host.shadowHost, this.host.overlayShadowHost].filter(Boolean), o = T(t, e, n);
+    const r = [this.host.shadowHost, this.host.overlayShadowHost].filter(Boolean), o = q(t, e, r);
     if (!o || m(o))
       return;
-    const r = k(o, 8);
-    Object.assign(this.host.selectedBounds, r, { clickX: t, clickY: e, visible: !0 });
-    const { selector: a, text: l } = g(o);
-    this.host.feedbackData.elementSelector = a, this.host.feedbackData.elementText = l, this.stopTargetingListeners(), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.host.setState("SELECTED"), this.host.clearActiveThumb(), this.showSelectedMarker(), this.host.submitFeedback();
+    const a = k(o, 8);
+    Object.assign(this.host.selectedBounds, a, { clickX: t, clickY: e, visible: !0 });
+    const { selector: n, text: h } = y(o);
+    this.host.feedbackData.elementSelector = n, this.host.feedbackData.elementText = h, this.stopTargetingListeners(), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.host.setState("SELECTED"), this.host.clearActiveThumb(), this.showSelectedMarker(), this.host.submitFeedback();
   }
   stopTargetingListeners() {
     this.removeTargetingOverlay(), this.touchStartPos = null, document.removeEventListener("mousemove", this.boundMouseMove), document.removeEventListener("click", this.boundClick, !0), document.removeEventListener("touchstart", this.boundTouchStart), document.removeEventListener("touchend", this.boundTouchEnd), document.removeEventListener("keydown", this.host.boundKeyDown);
@@ -290,7 +290,9 @@ class O {
     this.keyboardController?.stop(), this.keyboardController = null, this.stopTargetingListeners(), this.hideMarker();
   }
 }
+const I = M;
 export {
-  O as TargetingController
+  R as TargetingController,
+  I as styles
 };
-//# sourceMappingURL=targeting-DaBmGVk5.js.map
+//# sourceMappingURL=targeting-mahtuPpo.js.map

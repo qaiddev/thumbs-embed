@@ -78,3 +78,5 @@ export declare class RecordingController {
     private showSendError;
     private cleanupRecording;
 }
+/** This feature's shadow-DOM styles; the embed adds them when it loads the chunk. */
+export declare const styles: string;

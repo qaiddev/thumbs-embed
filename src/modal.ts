@@ -9,6 +9,7 @@
 
 import { calculateModalAndArrowPosition } from "./modal-positioning";
 import { h } from "./dom";
+import featureStyles from "./styles-modal.css?inline";
 import {
   THUMBS_UP_ICON,
   THUMBS_DOWN_ICON,
@@ -430,3 +431,6 @@ export class ModalController {
     this.host.announceMsg(`${heading} ${body}`, true);
   }
 }
+
+/** This feature's shadow-DOM styles; the embed adds them when it loads the chunk. */
+export const styles = featureStyles;

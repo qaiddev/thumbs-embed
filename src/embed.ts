@@ -135,6 +135,20 @@ export function getOrCreateVisitorId(): string {
 /**
  * QaidFeedback - Standalone feedback collection embed
  */
+
+/**
+ * Put a feature's <style> after the base styles and any earlier feature's,
+ * but before the theme's, so a theme still overrides the feature defaults.
+ */
+function insertFeatureStyle(root: ShadowRoot, css: string): void {
+  const style = document.createElement("style");
+  style.setAttribute("data-qaid-feature", "");
+  style.textContent = css;
+  const marks = root.querySelectorAll("style[data-qaid-base], style[data-qaid-feature]");
+  const after = marks[marks.length - 1];
+  root.insertBefore(style, after ? after.nextSibling : root.firstChild);
+}
+
 export class QaidFeedback {
   private config: ResolvedFeedbackConfig;
   private state: EmbedState = "IDLE";
@@ -557,6 +571,7 @@ export class QaidFeedback {
 
     // Inject base styles into shadow root
     const baseStyle = document.createElement("style");
+    baseStyle.setAttribute("data-qaid-base", "");
     baseStyle.textContent = getEmbedStyles();
     this.shadowRoot.appendChild(baseStyle);
 
@@ -762,10 +777,13 @@ export class QaidFeedback {
 
     this.overlayShadowRoot = this.overlayShadowHost.attachShadow({ mode: "open" });
 
-    // Inject base styles into overlay shadow root
+    // Inject base styles into overlay shadow root, plus the styles of any
+    // feature that loaded before this root existed.
     const baseStyle = document.createElement("style");
+    baseStyle.setAttribute("data-qaid-base", "");
     baseStyle.textContent = getEmbedStyles();
     this.overlayShadowRoot.appendChild(baseStyle);
+    for (const css of this.featureStyles) insertFeatureStyle(this.overlayShadowRoot, css);
 
     // Inject theme CSS if provided
     if (this.config.css) {
@@ -775,6 +793,23 @@ export class QaidFeedback {
     }
 
     return this.overlayShadowRoot;
+  }
+
+  /** The styles of every feature chunk loaded so far, in load order. */
+  private featureStyles: string[] = [];
+
+  /**
+   * Add a feature chunk's styles to both shadow roots. The core stylesheet
+   * styles only the buttons; the message box, targeting, video and markup
+   * editor bring their own CSS with their chunk, so a page that never opens
+   * them never downloads it.
+   */
+  private addFeatureStyles(css: string): void {
+    if (this.featureStyles.includes(css)) return;
+    this.featureStyles.push(css);
+    for (const root of [this.shadowRoot, this.overlayShadowRoot]) {
+      if (root) insertFeatureStyle(root, css);
+    }
   }
 
   private tooltipElement: HTMLElement | null = null;
@@ -897,7 +932,8 @@ export class QaidFeedback {
     const prevPointerEvents = host.style.pointerEvents;
     host.style.pointerEvents = "auto";
     try {
-      const { openAnnotationEditor } = await import("./annotate");
+      const { openAnnotationEditor, styles } = await import("./annotate");
+      this.addFeatureStyles(styles);
       return await openAnnotationEditor({
         dataUrl: screenshot,
         root,
@@ -1114,7 +1150,8 @@ export class QaidFeedback {
    */
   private async ensureModal(): Promise<ModalController> {
     if (!this.modal) {
-      const { ModalController } = await import("./modal");
+      const { ModalController, styles } = await import("./modal");
+      this.addFeatureStyles(styles);
       this.modal = new ModalController(this.makeModalHost());
     }
     return this.modal;
@@ -1169,7 +1206,8 @@ export class QaidFeedback {
    */
   private async ensureTargeting(): Promise<TargetingController> {
     if (!this.targeting) {
-      const { TargetingController } = await import("./targeting");
+      const { TargetingController, styles } = await import("./targeting");
+      this.addFeatureStyles(styles);
       this.targeting = new TargetingController(this.makeTargetingHost());
     }
     return this.targeting;
@@ -1245,7 +1283,8 @@ export class QaidFeedback {
    */
   private async ensureRecording(): Promise<RecordingController> {
     if (!this.recording) {
-      const { RecordingController } = await import("./recording");
+      const { RecordingController, styles } = await import("./recording");
+      this.addFeatureStyles(styles);
       this.recording = new RecordingController(this.makeRecordingHost());
     }
     return this.recording;

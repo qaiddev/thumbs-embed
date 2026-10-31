@@ -26,6 +26,7 @@ import type {
   FeedbackType,
   SelectedBounds,
 } from "./types";
+import featureStyles from "./styles-targeting.css?inline";
 
 /** A touch that moves more than this (px) is a scroll, not a tap-to-select. */
 const TOUCH_TAP_SLOP = 12;
@@ -381,3 +382,6 @@ export class TargetingController {
     this.hideMarker();
   }
 }
+
+/** This feature's shadow-DOM styles; the embed adds them when it loads the chunk. */
+export const styles = featureStyles;

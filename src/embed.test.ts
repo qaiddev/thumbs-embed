@@ -23,6 +23,7 @@ const annotateMock = vi.hoisted(() => ({
 
 vi.mock("./annotate", () => ({
   openAnnotationEditor: annotateMock.openAnnotationEditor,
+  styles: ".qaid-annotate-test{}",
 }));
 
 import {
@@ -1153,6 +1154,41 @@ describe("QaidFeedback", () => {
         (s) => s.textContent?.includes("theme-style")
       );
       expect(themeStyle).not.toBeNull();
+    });
+
+    it("adds a feature's styles when its chunk loads, after the base and before the theme", async () => {
+      global.fetch = vi.fn().mockResolvedValue({ ok: true, json: () => Promise.resolve({ id: 1 }) });
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        css: ".theme-style { color: blue; }",
+        skipTargeting: true,
+      });
+      const kinds = (root: ShadowRoot) =>
+        Array.from(root.querySelectorAll("style")).map((s) =>
+          s.hasAttribute("data-qaid-base") ? "base"
+          : s.hasAttribute("data-qaid-feature") ? (s.textContent?.includes(".qaid-modal-box") ? "modal" : "feature")
+          : "theme",
+        );
+      // Before any feature loads, the buttons root has only the base and the theme.
+      expect(kinds(getShadowRoot())).toEqual(["base", "theme"]);
+
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-up")?.click();
+      await vi.waitFor(() => {
+        expect(kinds(getOverlayShadowRoot())).toContain("modal");
+      });
+      // The theme stays last in both roots, so it still overrides the feature.
+      expect(kinds(getOverlayShadowRoot())).toEqual(["base", "modal", "theme"]);
+      expect(kinds(getShadowRoot())).toEqual(["base", "modal", "theme"]);
+    });
+
+    it("adds a feature's styles once, however often its chunk is imported", () => {
+      // The markup editor imports its chunk each time it opens.
+      embed = new QaidFeedback({ endpoint: "/api/feedback" });
+      const add = (embed as unknown as { addFeatureStyles(css: string): void }).addFeatureStyles.bind(embed);
+      add(".qaid-x{}");
+      add(".qaid-x{}");
+      const features = getShadowRoot().querySelectorAll("style[data-qaid-feature]");
+      expect(features).toHaveLength(1);
     });
   });
 

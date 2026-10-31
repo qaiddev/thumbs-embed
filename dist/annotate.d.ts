@@ -156,3 +156,5 @@ export declare class AnnotationEditor {
  * `null` if the user skipped. Thin entry point used by the embed.
  */
 export declare function openAnnotationEditor(opts: AnnotationEditorOptions): Promise<string | null>;
+/** This feature's shadow-DOM styles; the embed adds them when it loads the chunk. */
+export declare const styles: string;

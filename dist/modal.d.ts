@@ -71,3 +71,5 @@ export declare class ModalController {
      */
     private showResult;
 }
+/** This feature's shadow-DOM styles; the embed adds them when it loads the chunk. */
+export declare const styles: string;

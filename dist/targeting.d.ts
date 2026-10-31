@@ -70,3 +70,5 @@ export declare class TargetingController {
     /** Full teardown for embed.destroy(). */
     destroy(): void;
 }
+/** This feature's shadow-DOM styles; the embed adds them when it loads the chunk. */
+export declare const styles: string;

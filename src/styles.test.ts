@@ -1,5 +1,16 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { injectStyles, removeStyles, buildCssVars, applyCssVars, getEmbedStyles, _resetStylesState } from "./styles";
+import modalStyles from "./styles-modal.css?inline";
+import targetingStyles from "./styles-targeting.css?inline";
+import videoStyles from "./styles-video.css?inline";
+import annotateStyles from "./styles-annotate.css?inline";
+
+const FEATURE_STYLES = [modalStyles, targetingStyles, videoStyles, annotateStyles];
+
+/** The core stylesheet plus every feature's, as a page that used them all has. */
+function allStyles(): string {
+  return [getEmbedStyles(), ...FEATURE_STYLES].join("\n");
+}
 
 function escapeRegExp(s: string): string {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -10,7 +21,7 @@ function escapeRegExp(s: string): string {
  * is exactly `selector` (comments between rules are skipped).
  */
 function ruleBody(selector: string): string {
-  const match = getEmbedStyles().match(
+  const match = allStyles().match(
     new RegExp(`(?:^|\\})\\s*(?:/\\*[\\s\\S]*?\\*/\\s*)*${escapeRegExp(selector)}\\s*\\{([^}]*)\\}`)
   );
   expect(match, `no rule for ${selector}`).not.toBeNull();
@@ -92,13 +103,31 @@ describe("styles", () => {
       expect(css).toContain("border-radius:50%");
     });
 
-    it("should include modal styles", () => {
+    it("leaves the message box, targeting, video and markup styles to their chunks", () => {
       const css = getEmbedStyles();
-      expect(css).toContain(".qaid-modal");
+      for (const cls of [".qaid-modal-box", ".qaid-targeting-overlay", ".qaid-recording-indicator", ".qaid-annotate-canvas", ".qaid-confirm-title"]) {
+        expect(css).not.toContain(cls);
+      }
+      expect(modalStyles).toContain(".qaid-modal-box");
+      expect(targetingStyles).toContain(".qaid-targeting-overlay");
+      expect(videoStyles).toContain(".qaid-recording-indicator");
+      expect(annotateStyles).toContain(".qaid-annotate-canvas");
+    });
+
+    it("keeps the record button's hover with the buttons", () => {
+      expect(getEmbedStyles()).toContain("button.qaid-btn-record:hover");
+    });
+
+    it("re-asserts each feature's keyboard focus ring at the end of its own stylesheet", () => {
+      // Feature styles arrive after the core's, so a feature rule setting
+      // outline:none on :focus would beat a core :focus-visible rule of the
+      // same specificity. Each feature restores its own ring, last.
+      expect(modalStyles.trimEnd()).toMatch(/button\.qaid-btn-submit:focus[\s\S]*CanvasText[\s\S]*\}\s*\}$/);
+      expect(videoStyles).toContain(".qaid-video-preview-box textarea:focus-visible");
     });
 
     it("should include animations", () => {
-      const css = getEmbedStyles();
+      const css = allStyles();
       expect(css).toContain("@keyframes");
       expect(css).toContain("qaid-slideDown");
       expect(css).toContain("qaid-markerPulse");
@@ -279,7 +308,7 @@ describe("styles", () => {
     });
 
     it("uses the same default as the stylesheet fallbacks", () => {
-      const css = getEmbedStyles();
+      const css = allStyles();
       expect(css).not.toContain("#6366f1");
       expect(css).toContain("var(--qaid-marker, #6365f1)");
     });
@@ -313,7 +342,7 @@ describe("styles", () => {
 
   describe("font size", () => {
     it("never sizes text in rem, which the fontSize option cannot reach", () => {
-      expect(getEmbedStyles()).not.toMatch(/font-size:\s*[\d.]+rem/);
+      expect(allStyles()).not.toMatch(/font-size:\s*[\d.]+rem/);
     });
 
     it.each([
