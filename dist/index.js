@@ -381,10 +381,10 @@ const Ro = "1.11.0", zA = `https://unpkg.com/@qaiddev/quests-embed@${Ro}/dist/qa
 let Pr = !1;
 function No(e) {
   if (!e) return zA;
-  if (e === zA || Vo.test(e)) return e;
+  if (e === zA) return e;
   try {
     const A = typeof location < "u" ? location.href : void 0, t = new URL(e, A);
-    if (A && t.origin === new URL(A).origin && (t.protocol === "https:" || t.protocol === "http:"))
+    if (Vo.test(t.href) && !/%2e|%2f|%5c/i.test(t.pathname) || A && t.origin === new URL(A).origin && (t.protocol === "https:" || t.protocol === "http:"))
       return t.href;
   } catch {
   }

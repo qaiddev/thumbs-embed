@@ -36,10 +36,13 @@ let warned = false;
 export function resolveQuestsModuleUrl(moduleUrl: string | null | undefined): string {
   if (!moduleUrl) return DEFAULT_QUESTS_MODULE_URL;
   if (moduleUrl === DEFAULT_QUESTS_MODULE_URL) return moduleUrl;
-  if (PINNED_UNPKG.test(moduleUrl)) return moduleUrl;
   try {
     const page = typeof location !== "undefined" ? location.href : undefined;
+    // Judge the URL the browser will actually fetch: resolving first turns
+    // `…@1.11.0/../../other-pkg/x.js` (or its %2e%2e spelling) into
+    // `https://unpkg.com/other-pkg/x.js`, which the pin must refuse.
     const url = new URL(moduleUrl, page);
+    if (PINNED_UNPKG.test(url.href) && !/%2e|%2f|%5c/i.test(url.pathname)) return url.href;
     if (
       page &&
       url.origin === new URL(page).origin &&
