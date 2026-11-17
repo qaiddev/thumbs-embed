@@ -23,7 +23,16 @@ import type {
   EmbedState,
   FeedbackData,
   SelectedBounds,
+  FeedbackRecord,
 } from "./types";
+
+/**
+ * A PATCH body for `record`: `fields`, plus `editToken` when the server sent
+ * one with the create response. Older servers send none, and get none back.
+ */
+export function patchBody(record: FeedbackRecord, fields: Record<string, unknown>): string {
+  return JSON.stringify(record.editToken ? { ...fields, editToken: record.editToken } : fields);
+}
 
 /** The slice of the embed the modal needs. */
 export interface ModalHost {
@@ -40,7 +49,7 @@ export interface ModalHost {
    * creates it is still in flight, so every PATCH waits on this; null when
    * the POST failed.
    */
-  whenFeedbackId(): Promise<number | null>;
+  whenFeedbackRecord(): Promise<FeedbackRecord | null>;
   ensureOverlayHost(): ShadowRoot;
   applyVars(el: HTMLElement): void;
   announceMsg(message: string, assertive?: boolean): void;
@@ -88,12 +97,12 @@ export class ModalController {
     // Taken before the reset below, which starts the next feedback afresh.
     if (this.host.state === "MODAL_OPEN" && !this.finalized) {
       this.finalized = true;
-      void this.host.whenFeedbackId().then((id) => {
-        if (!id) return;
-        fetch(`${this.host.config.endpoint}/${id}`, {
+      void this.host.whenFeedbackRecord().then((record) => {
+        if (!record?.id) return;
+        fetch(`${this.host.config.endpoint}/${record.id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: null }),
+          body: patchBody(record, { message: null }),
         }).catch((err) => console.error("Failed to finalize feedback:", err));
       });
     }
@@ -318,12 +327,12 @@ export class ModalController {
         this.host.announceMsg(toggleLabel);
 
         // Update feedback on server, once the record exists
-        void this.host.whenFeedbackId().then((id) => {
-          if (!id) return;
-          fetch(`${this.host.config.endpoint}/${id}`, {
+        void this.host.whenFeedbackRecord().then((record) => {
+          if (!record?.id) return;
+          fetch(`${this.host.config.endpoint}/${record.id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ feedbackType: newType }),
+            body: patchBody(record, { feedbackType: newType }),
           }).catch((err) => console.error("Failed to update feedback type:", err));
         });
       });
@@ -338,13 +347,13 @@ export class ModalController {
     // Before the await: an Escape while the POST is still out must not send
     // a second, empty PATCH over this message.
     this.finalized = true;
-    const id = await this.host.whenFeedbackId();
-    if (id) {
+    const record = await this.host.whenFeedbackRecord();
+    if (record?.id) {
       try {
-        const response = await fetch(`${this.host.config.endpoint}/${id}`, {
+        const response = await fetch(`${this.host.config.endpoint}/${record.id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message }),
+          body: patchBody(record, { message }),
         });
         // fetch resolves on any HTTP reply. A 4xx/5xx means the server
         // refused or lost the message, so it is not a success.

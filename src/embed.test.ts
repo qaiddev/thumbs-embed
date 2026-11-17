@@ -572,11 +572,12 @@ describe("QaidFeedback", () => {
   describe("modal", () => {
     async function openModalViaSkipTargeting(
       type: "up" | "down" = "up",
-      config: Record<string, unknown> = {}
+      config: Record<string, unknown> = {},
+      created: Record<string, unknown> = { id: 99 }
     ) {
       const fetchMock = vi.fn().mockResolvedValue({
         ok: true,
-        json: () => Promise.resolve({ id: 99 }),
+        json: () => Promise.resolve(created),
       });
       global.fetch = fetchMock;
 
@@ -809,6 +810,50 @@ describe("QaidFeedback", () => {
           (c: unknown[]) => c[1] && (c[1] as RequestInit).method === "PATCH"
         );
         expect(patchCalls.length).toBeGreaterThan(0);
+      });
+    });
+
+    describe("editToken from the create response", () => {
+      function patchBodies(fetchMock: ReturnType<typeof vi.fn>): Record<string, unknown>[] {
+        return fetchMock.mock.calls
+          .filter((c: unknown[]) => c[1] && (c[1] as RequestInit).method === "PATCH")
+          .map((c: unknown[]) => JSON.parse((c[1] as RequestInit).body as string));
+      }
+
+      it("goes back on the type-toggle PATCH and the message PATCH", async () => {
+        const fetchMock = await openModalViaSkipTargeting("up", {}, { id: 99, editToken: "et_abc" });
+        const overlayShadow = getOverlayShadowRoot();
+        overlayShadow.querySelector<HTMLButtonElement>(".qaid-type-toggle")?.click();
+        const textarea = overlayShadow.querySelector<HTMLTextAreaElement>(".qaid-textarea")!;
+        textarea.value = "hi";
+        overlayShadow.querySelector<HTMLButtonElement>(".qaid-btn-submit")?.click();
+
+        await vi.waitFor(() => {
+          expect(patchBodies(fetchMock)).toEqual([
+            { feedbackType: "down", editToken: "et_abc" },
+            { message: "hi", editToken: "et_abc" },
+          ]);
+        });
+        const urls = fetchMock.mock.calls
+          .filter((c: unknown[]) => (c[1] as RequestInit)?.method === "PATCH")
+          .map((c: unknown[]) => c[0]);
+        expect(urls).toEqual(["/api/feedback/99", "/api/feedback/99"]);
+      });
+
+      it("goes back on the finalize PATCH when the box is closed", async () => {
+        const fetchMock = await openModalViaSkipTargeting("up", {}, { id: 99, editToken: "et_abc" });
+        getOverlayShadowRoot().querySelector<HTMLElement>(".qaid-backdrop")?.click();
+        await vi.waitFor(() => {
+          expect(patchBodies(fetchMock)).toEqual([{ message: null, editToken: "et_abc" }]);
+        });
+      });
+
+      it("is left out when an older server sends none (or not a string)", async () => {
+        const fetchMock = await openModalViaSkipTargeting("up", {}, { id: 99, editToken: 5 });
+        getOverlayShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-submit")?.click();
+        await vi.waitFor(() => {
+          expect(patchBodies(fetchMock)).toEqual([{ message: null }]);
+        });
       });
     });
 

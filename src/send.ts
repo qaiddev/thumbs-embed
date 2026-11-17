@@ -18,6 +18,7 @@ import type {
   SelectedBounds,
   FeedbackPayload,
   FeedbackResponse,
+  FeedbackRecord,
 } from "./types";
 
 /** The slice of the embed the send flow needs. */
@@ -33,7 +34,7 @@ export interface SendHost {
   activeQuest: QuestInstance | null;
   setState(state: EmbedState): void;
   /** Record the pending POST, which the message box's PATCHes wait on. */
-  setFeedbackId(id: Promise<number | null>): void;
+  setFeedbackRecord(record: Promise<FeedbackRecord | null>): void;
   shouldCaptureViaDom(): boolean;
   ensureOverlayHost(): ShadowRoot;
   ensureModal(): Promise<ModalController>;
@@ -156,8 +157,9 @@ export async function submitFeedback(host: SendHost): Promise<void> {
   // The POST goes out in the background. The message box or linked quest
   // opens now instead of a server round trip later; what needs the new
   // record's id (the message PATCH, the quest's link back) waits on this.
-  const feedbackId = postFeedback(host, payload);
-  host.setFeedbackId(feedbackId);
+  const record = postFeedback(host, payload);
+  host.setFeedbackRecord(record);
+  const feedbackId = record.then((r) => r?.id ?? null);
 
   // If this button is linked to a quest, launch it in place of the
   // message box, handing it the pending id. On success we just tear down
@@ -195,8 +197,11 @@ export async function submitFeedback(host: SendHost): Promise<void> {
   }
 }
 
-/** POST the feedback. Resolves to the new record's id, or null if it failed. */
-async function postFeedback(host: SendHost, payload: FeedbackPayload): Promise<number | null> {
+/**
+ * POST the feedback. Resolves to the new record's id and edit token (when the
+ * server sends one), or null if it failed.
+ */
+async function postFeedback(host: SendHost, payload: FeedbackPayload): Promise<FeedbackRecord | null> {
   try {
     const response = await fetch(host.config.endpoint, {
       method: "POST",
@@ -207,7 +212,9 @@ async function postFeedback(host: SendHost, payload: FeedbackPayload): Promise<n
     if (response.ok) {
       const data: FeedbackResponse = await response.json();
       host.announceMsg("Feedback sent");
-      return data.id;
+      return typeof data.editToken === "string" && data.editToken !== ""
+        ? { id: data.id, editToken: data.editToken }
+        : { id: data.id };
     }
   } catch (error) {
     console.error("Failed to submit feedback:", error);

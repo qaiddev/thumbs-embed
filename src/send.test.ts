@@ -22,7 +22,7 @@ function makeHost(overrides: Partial<SendHost> = {}): SendHost {
     overlayShadowHost: null,
     activeQuest: null,
     setState: vi.fn(),
-    setFeedbackId: vi.fn(),
+    setFeedbackRecord: vi.fn(),
     shouldCaptureViaDom: () => false,
     ensureOverlayHost: vi.fn(),
     ensureModal: vi.fn(),
@@ -68,7 +68,7 @@ describe("send flow", () => {
     await submitFeedback(host);
 
     expect(open).toHaveBeenCalledTimes(1);
-    const pending = (host.setFeedbackId as ReturnType<typeof vi.fn>).mock.calls[0]![0];
-    await expect(pending).resolves.toBe(9);
+    const pending = (host.setFeedbackRecord as ReturnType<typeof vi.fn>).mock.calls[0]![0];
+    await expect(pending).resolves.toEqual({ id: 9 });
   });
 });

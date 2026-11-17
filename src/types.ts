@@ -299,6 +299,18 @@ export interface FeedbackPayload {
  */
 export interface FeedbackResponse {
   id: number;
+  /**
+   * Proof that this visitor created the record. Newer servers send it with
+   * the create response and require it on every PATCH to `endpoint/{id}`;
+   * older servers omit it.
+   */
+  editToken?: string;
+}
+
+/** The record a feedback POST created: what its follow-up PATCHes need. */
+export interface FeedbackRecord {
+  id: number;
+  editToken?: string;
 }
 
 /**

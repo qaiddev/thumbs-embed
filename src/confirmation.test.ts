@@ -437,7 +437,7 @@ describe("ModalController.showConfirmation with no container", () => {
       boundKeyDown: () => {},
       feedbackData: { feedbackType: "up" },
       selectedBounds: {},
-      whenFeedbackId: () => Promise.resolve(7),
+      whenFeedbackRecord: () => Promise.resolve({ id: 7 }),
       ensureOverlayHost: vi.fn(),
       applyVars: vi.fn(),
       announceMsg: vi.fn(),

@@ -5,6 +5,7 @@ import type {
   FeedbackType,
   SelectedBounds,
   EmbedState,
+  FeedbackRecord,
 } from "./types";
 import { THUMBS_UP_ICON, THUMBS_DOWN_ICON, RECORD_ICON, FEEDBACK_ICON, DISMISS_ICON } from "./icons";
 import { setIcon } from "./svg-sanitize";
@@ -158,11 +159,11 @@ export class QaidFeedback {
     visible: false,
   };
   /**
-   * This feedback's record id, once its POST answers (null if it failed).
-   * The message box and a linked quest open without waiting for it; the
-   * PATCHes that need the id wait on this instead.
+   * This feedback's record (id + edit token), once its POST answers (null
+   * if it failed). The message box and a linked quest open without waiting
+   * for it; the PATCHes that need it wait on this instead.
    */
-  private feedbackIdPromise: Promise<number | null> = Promise.resolve(null);
+  private feedbackRecordPromise: Promise<FeedbackRecord | null> = Promise.resolve(null);
   private questsPrewarmed = false;
   // A quest launched from a button (in place of the message box), if any.
   private activeQuest: QuestInstance | null = null;
@@ -990,8 +991,8 @@ export class QaidFeedback {
       setState: (state) => {
         self.state = state;
       },
-      setFeedbackId: (id) => {
-        self.feedbackIdPromise = id;
+      setFeedbackRecord: (record) => {
+        self.feedbackRecordPromise = record;
       },
       shouldCaptureViaDom: () => self.shouldCaptureViaDom(),
       ensureOverlayHost: () => self.ensureOverlayHost(),
@@ -1016,7 +1017,7 @@ export class QaidFeedback {
       this.overlayShadowHost.style.pointerEvents = "none";
     }
     this.state = "IDLE";
-    this.feedbackIdPromise = Promise.resolve(null);
+    this.feedbackRecordPromise = Promise.resolve(null);
     this.feedbackData.feedbackType = null;
     this.feedbackData.elementSelector = null;
     this.feedbackData.elementText = null;
@@ -1066,7 +1067,7 @@ export class QaidFeedback {
       get selectedBounds() {
         return self.selectedBounds;
       },
-      whenFeedbackId: () => self.feedbackIdPromise,
+      whenFeedbackRecord: () => self.feedbackRecordPromise,
       ensureOverlayHost: () => self.ensureOverlayHost(),
       applyVars: (el) => self.applyVars(el),
       announceMsg: (message, assertive) => self.announceMsg(message, assertive),
