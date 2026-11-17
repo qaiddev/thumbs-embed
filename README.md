@@ -454,19 +454,22 @@ The embed submits feedback in two steps:
 }
 ```
 
-Your endpoint should return `{ "id": 123 }`.
+Your endpoint should return `{ "id": 123 }`. It may also return `"editToken": "<random string>"`: the embed then sends it back on every PATCH for that record, so your server can refuse a PATCH from anyone who did not create it.
 
 **2. Message update** — `PATCH` to `{endpoint}/{id}`:
 
 ```json
 {
-  "message": "The submit button doesn't work on mobile"
+  "message": "The submit button doesn't work on mobile",
+  "editToken": "<the token from the POST, when there was one>"
 }
 ```
 
 ## Console Capture
 
-The embed automatically captures up to 20 recent `console.error`, `console.warn`, and `console.log` calls during the user's session. These are included in the feedback payload as `consoleErrors`, giving you context about what went wrong before the user submitted feedback.
+The embed automatically captures up to 20 recent `console.error`, `console.warn`, and `console.log` calls during the user's session. These are included in the feedback payload as `consoleErrors`, giving you context about what went wrong before the user submitted feedback. Obvious secrets in them (Bearer tokens, JWTs, `password=…` pairs, long API keys, card numbers) are replaced with `[redacted]`, and each message is capped at 1,000 characters.
+
+During a video recording the embed also notes failed network calls (4xx/5xx). It never keeps request bodies; it drops response bodies for 401/403 and for sign-in, auth, token, password, session and OAuth URLs; and it replaces credential-like query parameters (`token`, `key`, `secret`, `password`, `code`, `session`, `auth`, `sig` and similar) in the URLs it keeps.
 
 Console methods are restored to their originals when `destroy()` is called.
 
@@ -540,8 +543,8 @@ new QaidFeedback({
 
 Your server needs to handle:
 
-1. `POST /api/feedback` — Accept the feedback payload, return `{ "id": number }`
-2. `PATCH /api/feedback/:id` — Accept `{ "message": string | null }` or `{ "feedbackType": "up" | "down" }`
+1. `POST /api/feedback` — Accept the feedback payload, return `{ "id": number }` (optionally with `"editToken": string`)
+2. `PATCH /api/feedback/:id` — Accept `{ "message": string | null }` or `{ "feedbackType": "up" | "down" }`, plus `editToken` if the POST returned one
 
 Answer the message `PATCH` with a 2xx status. Any other status shows the visitor the "Message not sent" screen instead of the success screen. Likewise, a non-2xx reply to the video upload (`POST {endpoint}/video`) keeps the recording preview open with an error.
 
