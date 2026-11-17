@@ -200,6 +200,150 @@ describe("single-tag embed loader (embed-loader.ts)", () => {
     });
   });
 
+  describe("pinned, where the browser enforces import-map integrity", () => {
+    const UMD_HASH = "sha384-umdhashumdhashumdhashumdhashumdhashumdhashumdhashumdhashumdhash";
+    const LOADER_HASH = "sha384-loaderloaderloaderloaderloaderloaderloaderloaderloaderloaderload";
+    const CHUNK_HASH = "sha384-chunkchunkchunkchunkchunkchunkchunkchunkchunkchunkchunkchunkchun";
+    const MISMATCH = "sha384-nevernevernevernevernevernevernevernevernevernevernevernevernev";
+    const PINNED = "https://unpkg.com/@qaiddev/thumbs-embed@1.14.0/dist/embed.js";
+    const BASE = "https://unpkg.com/@qaiddev/thumbs-embed@1.14.0/dist/";
+    const S = HTMLScriptElement as unknown as { supports?: (t: string) => boolean };
+    let supportsDesc: PropertyDescriptor | undefined;
+
+    beforeEach(() => {
+      supportsDesc = Object.getOwnPropertyDescriptor(HTMLScriptElement, "supports");
+      vi.stubGlobal("__QAID_UMD_INTEGRITY__", UMD_HASH);
+      vi.stubGlobal("__QAID_MODULE_INTEGRITY__", { "loader.js": LOADER_HASH, "chunks/core-x.js": CHUNK_HASH });
+      vi.stubGlobal("__QAID_PROBE_MISMATCH__", MISMATCH);
+      setModuleSupport(true);
+    });
+
+    afterEach(() => {
+      if (supportsDesc) Object.defineProperty(HTMLScriptElement, "supports", supportsDesc);
+      else delete S.supports;
+      delete (window as unknown as Record<string, unknown>).__qaidEmbedTrustedTypes;
+      vi.unstubAllGlobals();
+    });
+
+    function mapsImports(yes: boolean): void {
+      Object.defineProperty(HTMLScriptElement, "supports", {
+        value: (t: string) => yes && t === "importmap",
+        configurable: true,
+        writable: true,
+      });
+    }
+
+    // happy-dom can't fetch, so it would fail the probe on its own. Keep the
+    // probe out of the document and answer for the browser instead.
+    async function boot(): Promise<HTMLScriptElement | null> {
+      setCurrentScript(
+        addLoaderTag(PINNED, { "data-endpoint": "/api/feedback", integrity: "sha384-customer", crossorigin: "anonymous" })
+      );
+      let probe: HTMLScriptElement | null = null;
+      const real = Node.prototype.appendChild;
+      const spy = vi.spyOn(Node.prototype, "appendChild").mockImplementation(function (this: Node, child: Node) {
+        if (child instanceof HTMLScriptElement && /integrity-probe\.js$/.test(child.src)) {
+          probe = child;
+          return child;
+        }
+        return real.call(this, child);
+      } as typeof Node.prototype.appendChild);
+      try {
+        await import("./embed-loader");
+      } finally {
+        spy.mockRestore();
+      }
+      return probe;
+    }
+
+    it("maps a hash for loader.js, every chunk, and a never-matching probe", async () => {
+      mapsImports(true);
+      const probe = await boot();
+      const map = document.querySelector('script[type="importmap"]') as HTMLScriptElement;
+      expect(JSON.parse(map.text)).toEqual({
+        integrity: {
+          [BASE + "loader.js"]: LOADER_HASH,
+          [BASE + "chunks/core-x.js"]: CHUNK_HASH,
+          [BASE + "integrity-probe.js"]: MISMATCH,
+        },
+      });
+      expect(probe!.type).toBe("module");
+      // Nothing that runs the embed loads until the probe has answered.
+      expect(document.querySelector('script[src$="loader.js"]')).toBeNull();
+      expect(document.querySelector('script[src*="qaid.umd.cjs"]')).toBeNull();
+    });
+
+    it("a refused probe means the map is enforced: the progressive build, hash on loader.js", async () => {
+      mapsImports(true);
+      const probe = await boot();
+      probe!.dispatchEvent(new Event("error"));
+      const injected = document.querySelector('script[src$="loader.js"]') as HTMLScriptElement;
+      expect(injected.type).toBe("module");
+      expect(injected.integrity).toBe(LOADER_HASH);
+      expect(injected.getAttribute("data-endpoint")).toBe("/api/feedback");
+      expect(document.querySelector('script[src*="qaid.umd.cjs"]')).toBeNull();
+    });
+
+    it("a probe that runs means the map is ignored: the hashed UMD bundle, never unchecked chunks", async () => {
+      mapsImports(true);
+      const probe = await boot();
+      probe!.dispatchEvent(new Event("load"));
+      const injected = document.querySelector('script[src*="qaid.umd.cjs"]') as HTMLScriptElement;
+      expect(injected.integrity).toBe(UMD_HASH);
+      expect(document.querySelector('script[src$="loader.js"]')).toBeNull();
+    });
+
+    it("only one answer counts", async () => {
+      mapsImports(true);
+      const probe = await boot();
+      probe!.dispatchEvent(new Event("load"));
+      probe!.dispatchEvent(new Event("error"));
+      expect(document.querySelectorAll('script[src*="qaid.umd.cjs"], script[src$="loader.js"]')).toHaveLength(1);
+    });
+
+    it("no import maps at all: straight to the hashed UMD bundle, no probe", async () => {
+      mapsImports(false);
+      const probe = await boot();
+      expect(probe).toBeNull();
+      expect(document.querySelector('script[type="importmap"]')).toBeNull();
+      expect((document.querySelector('script[src*="qaid.umd.cjs"]') as HTMLScriptElement).integrity).toBe(UMD_HASH);
+    });
+
+    it("an unpinned tag never writes an import map", async () => {
+      mapsImports(true);
+      setCurrentScript(addLoaderTag(EMBED_SRC, { "data-endpoint": "/api/feedback" }));
+      await import("./embed-loader");
+      expect(document.querySelector('script[type="importmap"]')).toBeNull();
+      expect((document.querySelector('script[type="module"]') as HTMLScriptElement).integrity).toBe("");
+    });
+
+    it("a Trusted Types policy from an older release that can't sign the map: hashed UMD", async () => {
+      mapsImports(true);
+      vi.stubGlobal("trustedTypes", { createPolicy: vi.fn() });
+      (window as unknown as Record<string, unknown>).__qaidEmbedTrustedTypes = {
+        policy: { createScriptURL: (u: string) => u },
+        allowed: {},
+      };
+      const probe = await boot();
+      expect(probe).toBeNull();
+      expect(document.querySelector('script[type="importmap"]')).toBeNull();
+      expect((document.querySelector('script[src*="qaid.umd.cjs"]') as HTMLScriptElement).integrity).toBe(UMD_HASH);
+    });
+
+    it("signs the map through the qaid-embed policy", async () => {
+      mapsImports(true);
+      const createPolicy = vi.fn(
+        (_n: string, rules: { createScriptURL: (u: string) => string; createScript: (t: string) => string }) => ({
+          createScriptURL: (u: string) => rules.createScriptURL(u),
+          createScript: (t: string) => rules.createScript(t),
+        })
+      );
+      vi.stubGlobal("trustedTypes", { createPolicy });
+      await boot();
+      expect(document.querySelector('script[type="importmap"]')).not.toBeNull();
+    });
+  });
+
   describe("Trusted Types", () => {
     afterEach(() => {
       delete (window as unknown as Record<string, unknown>).__qaidEmbedTrustedTypes;
