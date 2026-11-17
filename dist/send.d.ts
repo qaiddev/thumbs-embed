@@ -10,7 +10,7 @@
  */
 import { type QuestInstance } from "./quest-launcher";
 import type { ModalController } from "./modal";
-import type { ResolvedFeedbackConfig, EmbedState, FeedbackData, SelectedBounds } from "./types";
+import type { ResolvedFeedbackConfig, EmbedState, FeedbackData, SelectedBounds, FeedbackRecord } from "./types";
 /** The slice of the embed the send flow needs. */
 export interface SendHost {
     readonly config: ResolvedFeedbackConfig;
@@ -24,7 +24,7 @@ export interface SendHost {
     activeQuest: QuestInstance | null;
     setState(state: EmbedState): void;
     /** Record the pending POST, which the message box's PATCHes wait on. */
-    setFeedbackId(id: Promise<number | null>): void;
+    setFeedbackRecord(record: Promise<FeedbackRecord | null>): void;
     shouldCaptureViaDom(): boolean;
     ensureOverlayHost(): ShadowRoot;
     ensureModal(): Promise<ModalController>;

@@ -22,11 +22,11 @@ export declare class QaidFeedback {
     private feedbackData;
     private selectedBounds;
     /**
-     * This feedback's record id, once its POST answers (null if it failed).
-     * The message box and a linked quest open without waiting for it; the
-     * PATCHes that need the id wait on this instead.
+     * This feedback's record (id + edit token), once its POST answers (null
+     * if it failed). The message box and a linked quest open without waiting
+     * for it; the PATCHes that need it wait on this instead.
      */
-    private feedbackIdPromise;
+    private feedbackRecordPromise;
     private questsPrewarmed;
     private activeQuest;
     private isMobile;

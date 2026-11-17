@@ -1,6 +1,10 @@
 /**
  * Network capture utilities
  * Intercepts fetch() and XMLHttpRequest to capture 4xx/5xx errors
+ *
+ * What is kept goes to qaid's server with a report, so (see redact.ts):
+ * request bodies are never captured, credential-like URL parameters are
+ * replaced, and a response body is dropped for 401/403 and sign-in-ish URLs.
  */
 import type { NetworkError } from "./types";
 export interface NetworkCapture {

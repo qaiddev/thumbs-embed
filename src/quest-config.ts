@@ -8,7 +8,7 @@
  */
 
 /** The quests-embed release this thumbs-embed release opens quests with. */
-export const QUESTS_VERSION = "1.11.0";
+export const QUESTS_VERSION = "1.12.0";
 
 /** Default ES-module URL for the quests embed: one exact release on unpkg. */
 export const DEFAULT_QUESTS_MODULE_URL =
@@ -20,7 +20,7 @@ export const DEFAULT_QUESTS_MODULE_URL =
  * two together.
  */
 export const DEFAULT_QUESTS_MODULE_INTEGRITY =
-  "sha384-w5xVbyvdrJUM+he0J0AFPtdzfem3CLSbVKUydXWcMAP28z2anhQmlNgWGulyY7kl";
+  "sha384-oM2IICRGTBJ5EmRM+mZIB0Pe8vlwoYOch6taqlZ3+k+1Zptxqwigi+5mwLOQprtj";
 
 const PINNED_UNPKG =
   /^https:\/\/unpkg\.com\/@qaiddev\/quests-embed@\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?\//;

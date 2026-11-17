@@ -6,7 +6,12 @@
  * The controller owns the modal/backdrop DOM and the message PATCH flow, and
  * talks back to the embed through the narrow `ModalHost` interface.
  */
-import type { ResolvedFeedbackConfig, EmbedState, FeedbackData, SelectedBounds } from "./types";
+import type { ResolvedFeedbackConfig, EmbedState, FeedbackData, SelectedBounds, FeedbackRecord } from "./types";
+/**
+ * A PATCH body for `record`: `fields`, plus `editToken` when the server sent
+ * one with the create response. Older servers send none, and get none back.
+ */
+export declare function patchBody(record: FeedbackRecord, fields: Record<string, unknown>): string;
 /** The slice of the embed the modal needs. */
 export interface ModalHost {
     readonly config: ResolvedFeedbackConfig;
@@ -22,7 +27,7 @@ export interface ModalHost {
      * creates it is still in flight, so every PATCH waits on this; null when
      * the POST failed.
      */
-    whenFeedbackId(): Promise<number | null>;
+    whenFeedbackRecord(): Promise<FeedbackRecord | null>;
     ensureOverlayHost(): ShadowRoot;
     applyVars(el: HTMLElement): void;
     announceMsg(message: string, assertive?: boolean): void;

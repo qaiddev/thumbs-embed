@@ -213,7 +213,9 @@ export interface NetworkError {
     method: string;
     status: number;
     statusText: string;
+    /** Never set since 2026-11: a request body can hold a password. Kept for old readers. */
     requestBody?: string;
+    /** Absent or "[redacted]" for 401/403 and sign-in-ish URLs; secrets replaced otherwise. */
     responseBody?: string;
     timestamp: number;
 }
@@ -290,6 +292,17 @@ export interface FeedbackPayload {
  */
 export interface FeedbackResponse {
     id: number;
+    /**
+     * Proof that this visitor created the record. Newer servers send it with
+     * the create response and require it on every PATCH to `endpoint/{id}`;
+     * older servers omit it.
+     */
+    editToken?: string;
+}
+/** The record a feedback POST created: what its follow-up PATCHes need. */
+export interface FeedbackRecord {
+    id: number;
+    editToken?: string;
 }
 /**
  * Payload for updating feedback with a message
