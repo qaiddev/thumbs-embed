@@ -57,7 +57,8 @@ describe("captureNetworkErrors", () => {
     expect(capture.errors).toHaveLength(1);
     expect(capture.errors[0].status).toBe(500);
     expect(capture.errors[0].method).toBe("POST");
-    expect(capture.errors[0].requestBody).toBe('{"key":"val"}');
+    // Request bodies are never captured: a login form's would hold a password.
+    expect(capture.errors[0].requestBody).toBeUndefined();
   });
 
   it("should not capture successful responses", async () => {
@@ -92,16 +93,63 @@ describe("captureNetworkErrors", () => {
     expect(capture.errors[19].url).toBe("/api/error/24");
   });
 
-  it("should truncate large request bodies to 4KB", async () => {
-    const mockResponse = new Response("Error", { status: 400, statusText: "Bad Request" });
+  it("should truncate large response bodies to 4KB", async () => {
+    const mockResponse = new Response("x".repeat(8000), { status: 400, statusText: "Bad Request" });
     mockFetch.mockResolvedValue(mockResponse);
 
-    const largeBody = "x".repeat(8000);
-    await window.fetch("/api/large", { method: "POST", body: largeBody });
+    await window.fetch("/api/large", { method: "POST", body: "y".repeat(8000) });
 
     expect(capture.errors).toHaveLength(1);
-    expect(capture.errors[0].requestBody!.length).toBeLessThan(8000);
-    expect(capture.errors[0].requestBody).toContain("…[truncated]");
+    expect(capture.errors[0].requestBody).toBeUndefined();
+    expect(capture.errors[0].responseBody!.length).toBeLessThan(8000);
+    expect(capture.errors[0].responseBody).toContain("…[truncated]");
+  });
+
+  it("never captures a login's request body, and drops a 401 response body", async () => {
+    mockFetch.mockResolvedValue(
+      new Response('{"error":"bad password","echo":"hunter2"}', { status: 401, statusText: "Unauthorized" }),
+    );
+    await window.fetch("/api/login", {
+      method: "POST",
+      body: JSON.stringify({ email: "a@b.c", password: "hunter2" }),
+    });
+    const entry = capture.errors[0];
+    expect(entry.status).toBe(401);
+    expect(entry.requestBody).toBeUndefined();
+    expect(entry.responseBody).toBe("[redacted]");
+    expect(JSON.stringify(capture.errors)).not.toContain("hunter2");
+  });
+
+  it("drops a 403 body and the body of any sign-in-ish URL", async () => {
+    mockFetch.mockResolvedValueOnce(new Response("secret 403 body", { status: 403 }));
+    await window.fetch("/api/things");
+    mockFetch.mockResolvedValueOnce(new Response("session dump", { status: 500 }));
+    await window.fetch("https://id.example/oauth/token");
+    mockFetch.mockResolvedValueOnce(new Response("plain failure", { status: 500 }));
+    await window.fetch("/api/report");
+    expect(capture.errors.map((e) => e.responseBody)).toEqual(["[redacted]", "[redacted]", "plain failure"]);
+  });
+
+  it("replaces credential-like query parameters in the captured URL", async () => {
+    mockFetch.mockResolvedValue(new Response("x", { status: 500 }));
+    await window.fetch("/api/data?page=2&access_token=abc123&api_key=k&sig=s&code=c&q=shoes");
+    const url = capture.errors[0].url;
+    expect(url).toBe(
+      "/api/data?page=2&access_token=[redacted]&api_key=[redacted]&sig=[redacted]&code=[redacted]&q=shoes",
+    );
+  });
+
+  it("replaces secrets left in a kept response body", async () => {
+    mockFetch.mockResolvedValue(
+      new Response('{"error":"boom","token":"abc.def","jwt":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIn0.sig"}', {
+        status: 500,
+      }),
+    );
+    await window.fetch("/api/report");
+    const body = capture.errors[0].responseBody!;
+    expect(body).toContain('"error":"boom"');
+    expect(body).not.toContain("abc.def");
+    expect(body).not.toContain("eyJhbGci");
   });
 
   it("should capture response body", async () => {
@@ -171,7 +219,7 @@ describe("captureNetworkErrors", () => {
     expect(capture.errors[0].responseBody).toBe("Not Found");
   });
 
-  it("should capture XHR 5xx errors with request body", async () => {
+  it("should capture XHR 5xx errors without the request body", async () => {
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "/api/xhr-broken");
     xhr.send('{"data":"test"}');
@@ -184,7 +232,25 @@ describe("captureNetworkErrors", () => {
     expect(capture.errors).toHaveLength(1);
     expect(capture.errors[0].method).toBe("POST");
     expect(capture.errors[0].status).toBe(500);
-    expect(capture.errors[0].requestBody).toBe('{"data":"test"}');
+    expect(capture.errors[0].requestBody).toBeUndefined();
+    expect(capture.errors[0].responseBody).toBe("Server Error");
+  });
+
+  it("redacts an XHR 401: no request body, no response body, no token in the URL", async () => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/api/signin?session=s1&next=/cart");
+    xhr.send("username=a&password=hunter2");
+
+    Object.defineProperty(xhr, "status", { value: 401, writable: true, configurable: true });
+    Object.defineProperty(xhr, "statusText", { value: "Unauthorized", writable: true, configurable: true });
+    Object.defineProperty(xhr, "responseText", { value: "wrong password hunter2", writable: true, configurable: true });
+    xhr.dispatchEvent(new Event("load"));
+
+    const entry = capture.errors[0];
+    expect(entry.requestBody).toBeUndefined();
+    expect(entry.responseBody).toBe("[redacted]");
+    expect(entry.url).toBe("/api/signin?session=[redacted]&next=%2Fcart");
+    expect(JSON.stringify(capture.errors)).not.toMatch(/hunter2|s1/);
   });
 
   it("should not capture successful XHR responses", async () => {

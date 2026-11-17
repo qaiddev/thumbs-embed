@@ -1,9 +1,14 @@
 /**
  * Network capture utilities
  * Intercepts fetch() and XMLHttpRequest to capture 4xx/5xx errors
+ *
+ * What is kept goes to qaid's server with a report, so (see redact.ts):
+ * request bodies are never captured, credential-like URL parameters are
+ * replaced, and a response body is dropped for 401/403 and sign-in-ish URLs.
  */
 
 import type { NetworkError } from "./types";
+import { redactResponseBody, redactUrl } from "./redact";
 
 const MAX_ENTRIES = 20;
 const MAX_BODY_SIZE = 4096; // 4KB
@@ -57,21 +62,16 @@ export function captureNetworkErrors(): NetworkCapture {
   window.fetch = async function (input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
     const url = typeof input === "string" ? input : input instanceof URL ? input.toString() : input.url;
     const method = init?.method ?? (typeof input === "object" && "method" in input ? input.method : "GET");
-    let requestBody: string | undefined;
-    if (init?.body) {
-      requestBody = truncateBody(init.body);
-    }
 
     const response = await originalFetch.apply(window, [input, init]);
 
     if (response.status >= 400) {
-      const responseBody = await safeReadBody(response);
+      const responseBody = redactResponseBody(url, response.status, await safeReadBody(response));
       addEntry(errors, {
-        url,
+        url: redactUrl(url),
         method: method.toUpperCase(),
         status: response.status,
         statusText: response.statusText,
-        requestBody,
         responseBody,
         timestamp: Date.now(),
       });
@@ -92,17 +92,15 @@ export function captureNetworkErrors(): NetworkCapture {
 
   XMLHttpRequest.prototype.send = function (body?: Document | XMLHttpRequestBodyInit | null) {
     const xhr = this as XMLHttpRequest & { _qaid_method: string; _qaid_url: string };
-    const requestBody = body ? truncateBody(body) : undefined;
 
     xhr.addEventListener("load", function () {
       if (xhr.status >= 400) {
         addEntry(errors, {
-          url: xhr._qaid_url,
+          url: redactUrl(xhr._qaid_url),
           method: xhr._qaid_method.toUpperCase(),
           status: xhr.status,
           statusText: xhr.statusText,
-          requestBody,
-          responseBody: truncateBody(xhr.responseText),
+          responseBody: redactResponseBody(xhr._qaid_url, xhr.status, truncateBody(xhr.responseText)),
           timestamp: Date.now(),
         });
       }

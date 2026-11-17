@@ -213,7 +213,9 @@ export interface NetworkError {
   method: string;
   status: number;
   statusText: string;
+  /** Never set since 2026-11: a request body can hold a password. Kept for old readers. */
   requestBody?: string;
+  /** Absent or "[redacted]" for 401/403 and sign-in-ish URLs; secrets replaced otherwise. */
   responseBody?: string;
   timestamp: number;
 }

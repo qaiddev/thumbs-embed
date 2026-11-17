@@ -43,6 +43,31 @@ describe("console-capture", () => {
       capture.restore();
     });
 
+    it("redacts secrets in captured messages but passes the original through", () => {
+      const mockError = vi.fn();
+      console.error = mockError;
+      const capture = captureConsoleErrors();
+      const jwt = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjMifQ.c2lnbmF0dXJl";
+
+      console.error("auth failed", `Authorization: Bearer ${jwt}`, "password=hunter2");
+
+      expect(capture.errors[0].message).toBe("auth failed Authorization: Bearer [redacted] password=[redacted]");
+      // The page's own console is untouched.
+      expect(mockError).toHaveBeenCalledWith("auth failed", `Authorization: Bearer ${jwt}`, "password=hunter2");
+      capture.restore();
+    });
+
+    it("caps a captured message's length", () => {
+      const originalLog = console.log;
+      console.log = vi.fn();
+      const capture = captureConsoleErrors();
+      console.log("x ".repeat(5000));
+      capture.restore();
+      console.log = originalLog;
+      expect(capture.errors[0].message.length).toBeLessThan(1100);
+      expect(capture.errors[0].message).toContain("…[truncated]");
+    });
+
     it("should call original console.error", () => {
       const mockError = vi.fn();
       console.error = mockError;

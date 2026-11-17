@@ -3,6 +3,7 @@
  */
 
 import type { ConsoleError } from "./types";
+import { redactConsoleMessage } from "./redact";
 
 const MAX_MESSAGES = 20;
 
@@ -26,7 +27,8 @@ export function captureConsoleErrors(
 
   const capture = (level: ConsoleLevel, args: unknown[]) => {
     const error: ConsoleError = {
-      message: args.map((arg) => String(arg)).join(" "),
+      // Sent with the report: secrets replaced, length capped (see redact.ts).
+      message: redactConsoleMessage(args.map((arg) => String(arg)).join(" ")),
       timestamp: Date.now(),
       level,
     };
