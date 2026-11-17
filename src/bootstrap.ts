@@ -10,6 +10,7 @@
 
 import { QaidFeedback } from "./embed";
 import type { FeedbackConfig } from "./types";
+import { ORIGIN_KEY_NAME } from "./origin-key";
 
 /**
  * Find theme CSS from an element matched by a CSS selector.
@@ -20,14 +21,74 @@ function findCssFromSelector(selector: string): string {
   return el?.textContent?.trim() ?? "";
 }
 
+const ORIGIN_KEY = ORIGIN_KEY_NAME;
+
+function fileName(url: string): string {
+  const path = url.split(/[?#]/)[0];
+  return path.substring(path.lastIndexOf("/") + 1);
+}
+
 /**
- * Parse JSON config from a separate script tag with type="application/json"
- * Looks for: <script type="application/json" data-feedback-config>{ ... }</script>
+ * The `<script>` tag that loaded this copy of the embed, or null.
+ *
+ * A classic script has `document.currentScript`. A module has its own URL
+ * (`import.meta.url`, passed in as `selfUrl`) instead: the tag whose `src` is
+ * that URL. A CDN redirect (unpkg's `@1` → `@1.13.0`) changes the URL, so
+ * failing an exact match we take the one tag embed.js injected, then the one
+ * tag with the same file name. More than one candidate is ambiguous and
+ * finds nothing: the embed never guesses which tag's config to trust.
  */
-function parseJsonConfig(): Partial<FeedbackConfig> | null {
-  const configScript = document.querySelector(
-    'script[type="application/json"][data-feedback-config]'
+export function findOwnScript(selfUrl?: string): HTMLScriptElement | null {
+  const cur = document.currentScript;
+  if (cur && cur.tagName === "SCRIPT") return cur as HTMLScriptElement;
+  if (!selfUrl) return null;
+  const scripts = Array.from(document.getElementsByTagName("script")).filter((s) => s.src);
+  const exact = scripts.find((s) => s.src === selfUrl);
+  if (exact) return exact;
+  const injected = scripts.filter((s) => (s as unknown as Record<string, unknown>)[ORIGIN_KEY]);
+  if (injected.length === 1) return injected[0];
+  const file = fileName(selfUrl);
+  const same = scripts.filter((s) => fileName(s.src) === file);
+  return same.length === 1 ? same[0] : null;
+}
+
+function isJsonBlock(el: Element | null): el is HTMLScriptElement {
+  return (
+    !!el &&
+    el.tagName === "SCRIPT" &&
+    (el.getAttribute("type") || "").trim().toLowerCase() === "application/json"
   );
+}
+
+/**
+ * The JSON config block that belongs to this embed's tag: the element its
+ * `data-config-id` names, else a `data-feedback-config` block right before or
+ * right after the tag. A block anywhere else on the page is ignored, so
+ * markup injected elsewhere can't swap the endpoint, icons or module URL.
+ *
+ * For the embed.js install the tag that counts is the customer's own
+ * `embed.js` tag, not the one it injected into `<head>`.
+ */
+export function findConfigBlock(own: HTMLScriptElement): HTMLScriptElement | null {
+  const origin = (own as unknown as Record<string, unknown>)[ORIGIN_KEY];
+  const anchor = origin && (origin as Element).tagName === "SCRIPT" ? (origin as HTMLScriptElement) : own;
+  const id = anchor.getAttribute("data-config-id") || own.getAttribute("data-config-id");
+  if (id) {
+    const named = document.getElementById(id);
+    return isJsonBlock(named) ? named : null;
+  }
+  for (const sib of [anchor.previousElementSibling, anchor.nextElementSibling]) {
+    if (isJsonBlock(sib) && sib.hasAttribute("data-feedback-config")) return sib;
+  }
+  return null;
+}
+
+/**
+ * Parse JSON config from the embed's own config block (see findConfigBlock):
+ * <script type="application/json" data-feedback-config>{ ... }</script>
+ */
+function parseJsonConfig(own: HTMLScriptElement): Partial<FeedbackConfig> | null {
+  const configScript = findConfigBlock(own);
   if (!configScript) return null;
 
   const textContent = configScript.textContent?.trim();
@@ -290,23 +351,26 @@ export function parseDataAttributes(script: HTMLScriptElement): Partial<Feedback
 }
 
 /**
- * Initialize a QaidFeedback instance from the current `<script>` tag's JSON
- * config block or data-* attributes. Safe to call in any environment — it
- * no-ops when there is no document or no endpoint config.
+ * Initialize a QaidFeedback instance from the embed's own `<script>` tag: its
+ * JSON config block or its data-* attributes. Safe to call in any
+ * environment — it no-ops when there is no document, when the embed's own tag
+ * can't be found (an npm import in a bundle), or when there is no endpoint.
+ *
+ * @param selfUrl the running module's URL (`import.meta.url`), used to find
+ *   the tag when `document.currentScript` is null (ES modules).
  */
-export function autoInit(): void {
+export function autoInit(selfUrl?: string): void {
   if (typeof document === "undefined") return;
 
+  // currentScript is only set while the tag's code first runs, so find the
+  // tag now, not after DOMContentLoaded.
+  const script = findOwnScript(selfUrl);
+  if (!script) return;
+
   const run = (): void => {
-    // `document.currentScript` is null inside an ES module (the loader entry),
-    // so fall back to locating the embed's own script tag by its data-endpoint.
-    const script =
-      (document.currentScript as HTMLScriptElement | null) ??
-      document.querySelector<HTMLScriptElement>("script[data-endpoint]");
-    // Try JSON config from a separate script tag first, fall back to data-* attrs.
     // The JSON block wins. The attributes are only read without one, so a
     // bad attribute beside a block doesn't warn about a value never used.
-    const config = parseJsonConfig() ?? (script ? parseDataAttributes(script) : null);
+    const config = parseJsonConfig(script) ?? parseDataAttributes(script);
 
     if (config?.endpoint) {
       new QaidFeedback(config as FeedbackConfig);

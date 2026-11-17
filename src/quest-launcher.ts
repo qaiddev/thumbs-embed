@@ -14,6 +14,8 @@
 // The default module URL lives apart so the startup chunk can fill in the
 // config default without carrying this loader.
 export { DEFAULT_QUESTS_MODULE_URL } from "./quest-config";
+import { DEFAULT_QUESTS_MODULE_URL, DEFAULT_QUESTS_MODULE_INTEGRITY } from "./quest-config";
+import { trustedScriptUrl } from "./trusted-types";
 
 /** The bit of a QaidQuests instance we hold onto. */
 export interface QuestInstance {
@@ -46,10 +48,51 @@ export interface QuestsModule {
 
 type Importer = (url: string) => Promise<unknown>;
 
-const defaultImporter: Importer = (url) =>
+/**
+ * Fetch and run `url` as a module script carrying `integrity`, resolving once
+ * it has run and rejecting when the browser refuses it (a hash mismatch, a
+ * CSP block, a network error). A module runs once per URL per page: the
+ * `import()` that follows gets this verified instance from the module map
+ * instead of fetching the file again.
+ *
+ * Resolves `false`, without loading anything, when the tag can't be made at
+ * all (a Trusted Types page that doesn't allow the `qaid-embed` policy); the
+ * caller then imports the pinned URL without the hash check.
+ */
+export function preloadVerifiedModule(url: string, integrity: string): Promise<boolean> {
+  return new Promise<boolean>((resolve, reject) => {
+    const script = document.createElement("script");
+    script.type = "module";
+    script.integrity = integrity;
+    script.crossOrigin = "anonymous";
+    try {
+      script.src = trustedScriptUrl(url);
+    } catch {
+      console.warn("[thumbs-embed] Trusted Types refused the quests module; add `trusted-types qaid-embed` to the page's CSP to check its hash.");
+      resolve(false);
+      return;
+    }
+    script.addEventListener("load", () => {
+      script.remove();
+      resolve(true);
+    });
+    script.addEventListener("error", () => {
+      script.remove();
+      reject(new Error(`quests module failed to load or failed its integrity check: ${url}`));
+    });
+    (document.head || document.documentElement).appendChild(script);
+  });
+}
+
+const defaultImporter: Importer = async (url) => {
+  // The default URL's hash is known, so check it before the module runs.
+  if (url === DEFAULT_QUESTS_MODULE_URL) {
+    await preloadVerifiedModule(url, DEFAULT_QUESTS_MODULE_INTEGRITY);
+  }
   // The URL is a runtime value, not a static specifier — keep Vite from
   // trying to analyze/bundle it.
-  import(/* @vite-ignore */ url);
+  return import(/* @vite-ignore */ url);
+};
 
 let importer: Importer = defaultImporter;
 let modulePromise: Promise<QuestsModule> | null = null;

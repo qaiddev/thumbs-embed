@@ -20,11 +20,23 @@
  * (Distinct from `loader.ts`/`loader.js`, the ESM-only progressive entry this
  * one delegates to on modern browsers.)
  *
+ * Pinned with Subresource Integrity (`integrity="sha384-…"` on this tag), it
+ * loads the single-file UMD bundle instead, with that file's own sha384 baked
+ * in at build time (vite.config.embed.ts). `import()` can't carry a hash, so
+ * the code-split ESM build's lazy chunks could not be checked; the one-file
+ * bundle can, so every byte of the embed's JavaScript is verified.
+ *
  * IMPORTANT: this file must stay ES5-clean and dependency-free. It is the one
  * script that also runs on the legacy browsers we fall back for, so it can't
  * use syntax (arrow fns, const/let, template literals) they'd choke on before
  * the fallback ever loads. Written with var/function on purpose.
  */
+
+import { trustedScriptUrl } from "./trusted-types";
+import { ORIGIN_KEY_NAME } from "./origin-key";
+
+/** sha384 of qaid.umd.cjs, set by vite.config.embed.ts. Empty in tests. */
+declare const __QAID_UMD_INTEGRITY__: string | undefined;
 
 (function () {
   if (typeof document === "undefined") return;
@@ -63,14 +75,36 @@
     if (a.name.indexOf("data-") === 0) entry.setAttribute(a.name, a.value);
   }
 
-  if (supportsModules) {
+  // Lets the injected build find this tag, for the JSON config block beside
+  // it. A property, not an attribute, so page markup can't fake it.
+  (entry as unknown as Record<string, unknown>)[ORIGIN_KEY_NAME] = self;
+
+  var umdIntegrity = typeof __QAID_UMD_INTEGRITY__ === "string" ? __QAID_UMD_INTEGRITY__ : "";
+  var pinned = !!self.getAttribute("integrity") && !!umdIntegrity;
+
+  var url: string;
+  if (supportsModules && !pinned) {
     entry.type = "module";
-    entry.src = base + "loader.js";
+    url = base + "loader.js";
   } else {
     // Classic bundle: defer so it runs after the document is parsed, matching
     // the module entry's deferred timing.
     entry.defer = true;
-    entry.src = base + "qaid.umd.cjs";
+    url = base + "qaid.umd.cjs";
+    if (pinned) {
+      entry.integrity = umdIntegrity;
+      entry.crossOrigin = "anonymous";
+    }
+  }
+
+  try {
+    entry.src = trustedScriptUrl(url);
+  } catch (e) {
+    // A Trusted Types page that doesn't allow the qaid-embed policy.
+    if (typeof console !== "undefined") {
+      console.warn("[thumbs-embed] Trusted Types blocked " + url + ". Add `trusted-types qaid-embed` to the page's CSP.");
+    }
+    return;
   }
 
   (document.head || document.documentElement).appendChild(entry);

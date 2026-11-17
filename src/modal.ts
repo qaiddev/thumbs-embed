@@ -9,6 +9,7 @@
 
 import { calculateModalAndArrowPosition } from "./modal-positioning";
 import { h } from "./dom";
+import { iconNode, setIcon } from "./svg-sanitize";
 import featureStyles from "./styles-modal.css?inline";
 import {
   THUMBS_UP_ICON,
@@ -193,8 +194,6 @@ export class ModalController {
     const text = config.text;
     const type = this.host.feedbackData.feedbackType;
     const isUp = type === "up";
-    const positiveIcon = config.positiveIcon || THUMBS_UP_ICON;
-    const negativeIcon = config.negativeIcon || THUMBS_DOWN_ICON;
     const toggleClass = config.buttonClass
       ? `qaid-type-toggle qaid-type-toggle-custom ${config.buttonClass} ${isUp ? "qaid-btn-up" : "qaid-btn-down"}`
       : `qaid-type-toggle ${isUp ? "qaid-type-up" : "qaid-type-down"}`;
@@ -203,21 +202,26 @@ export class ModalController {
     // static feedback icon in place of the up/down toggle.
     const header =
       type === "neutral"
-        ? h("span", {
-            class: "qaid-type-static",
-            html: config.feedbackIcon || FEEDBACK_ICON,
-            attrs: { "aria-hidden": "true" },
-          })
-        : h("button", {
-            class: toggleClass,
-            html: isUp ? positiveIcon : negativeIcon,
-            attrs: {
-              type: "button",
-              title: "Click to switch",
-              "aria-pressed": String(isUp),
-              "aria-label": toggleLabel,
+        ? h(
+            "span",
+            { class: "qaid-type-static", attrs: { "aria-hidden": "true" } },
+            iconNode(config.feedbackIcon, FEEDBACK_ICON)
+          )
+        : h(
+            "button",
+            {
+              class: toggleClass,
+              attrs: {
+                type: "button",
+                title: "Click to switch",
+                "aria-pressed": String(isUp),
+                "aria-label": toggleLabel,
+              },
             },
-          });
+            isUp
+              ? iconNode(config.positiveIcon, THUMBS_UP_ICON)
+              : iconNode(config.negativeIcon, THUMBS_DOWN_ICON)
+          );
 
     const fragment = document.createDocumentFragment();
     fragment.append(
@@ -304,9 +308,8 @@ export class ModalController {
           typeToggle.classList.toggle("qaid-type-up", newType === "up");
           typeToggle.classList.toggle("qaid-type-down", newType === "down");
         }
-        const positiveIcon = this.host.config.positiveIcon || THUMBS_UP_ICON;
-        const negativeIcon = this.host.config.negativeIcon || THUMBS_DOWN_ICON;
-        typeToggle.innerHTML = newType === "up" ? positiveIcon : negativeIcon;
+        if (newType === "up") setIcon(typeToggle, this.host.config.positiveIcon, THUMBS_UP_ICON);
+        else setIcon(typeToggle, this.host.config.negativeIcon, THUMBS_DOWN_ICON);
 
         // Update accessible state and announce the change
         const toggleLabel = newType === "up" ? "Feedback type: positive" : "Feedback type: negative";
@@ -410,11 +413,11 @@ export class ModalController {
       h(
         "div",
         { class: delivered ? "qaid-confirm" : "qaid-confirm qaid-confirm-error" },
-        h("span", {
-          class: "qaid-confirm-icon",
-          html: delivered ? DONE_ICON : ERROR_ICON,
-          attrs: { "aria-hidden": "true" },
-        }),
+        h(
+          "span",
+          { class: "qaid-confirm-icon", attrs: { "aria-hidden": "true" } },
+          iconNode(null, delivered ? DONE_ICON : ERROR_ICON)
+        ),
         title,
         h("p", { class: "qaid-confirm-message", text: body }),
         h("button", {

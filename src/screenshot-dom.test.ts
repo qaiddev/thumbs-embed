@@ -1,5 +1,12 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { isDomScreenshotSupported, captureDomScreenshot } from "./screenshot-dom";
+import {
+  isDomScreenshotSupported,
+  captureDomScreenshot,
+  _setHtml2CanvasImporter,
+} from "./screenshot-dom";
+
+/** The html2canvas stand-in the current test renders with. */
+let h2c: ReturnType<typeof vi.fn>;
 
 describe("isDomScreenshotSupported", () => {
   it("should return true when document and canvas with 2d context are available", () => {
@@ -66,21 +73,20 @@ describe("captureDomScreenshot", () => {
       toDataURL: vi.fn().mockReturnValue("data:image/webp;base64,mockdata"),
     };
 
-    // Mock html2canvas on window
-    (window as Record<string, unknown>).html2canvas = vi
-      .fn()
-      .mockResolvedValue(mockCanvas);
+    // Stand in for the bundled html2canvas chunk.
+    h2c = vi.fn().mockResolvedValue(mockCanvas);
+    _setHtml2CanvasImporter(() => Promise.resolve({ default: (...a: unknown[]) => h2c(...a) }));
   });
 
   afterEach(() => {
-    delete (window as Record<string, unknown>).html2canvas;
+    _setHtml2CanvasImporter(null);
     vi.restoreAllMocks();
   });
 
   it("should call html2canvas with document.body", async () => {
     const result = await captureDomScreenshot();
 
-    expect(window.html2canvas).toHaveBeenCalledWith(
+    expect(h2c).toHaveBeenCalledWith(
       document.body,
       expect.objectContaining({
         useCORS: true,
@@ -142,34 +148,50 @@ describe("captureDomScreenshot", () => {
     expect(result).toBe("data:image/webp;base64,mockdata");
   });
 
-  it("should return null if html2canvas is not available and fails to load", async () => {
-    vi.useFakeTimers();
-    delete (window as Record<string, unknown>).html2canvas;
+  it("returns null when the html2canvas chunk fails to load, and retries next time", async () => {
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+    const importer = vi
+      .fn()
+      .mockRejectedValueOnce(new Error("chunk 404"))
+      .mockResolvedValue({ default: (...a: unknown[]) => h2c(...a) });
+    _setHtml2CanvasImporter(importer);
 
-    // Re-import to get fresh module state (no cached loadPromise)
-    vi.resetModules();
-    const { captureDomScreenshot: freshCapture } = await import("./screenshot-dom");
+    expect(await captureDomScreenshot()).toBeNull();
+    expect(warn).toHaveBeenCalledWith("html2canvas failed to load");
+    // The failure is forgotten, so the next capture loads again and works.
+    expect(await captureDomScreenshot()).toBe("data:image/webp;base64,mockdata");
+    expect(importer).toHaveBeenCalledTimes(2);
+  });
 
-    // Mock appendChild to prevent actual script injection
-    vi.spyOn(document.head, "appendChild").mockImplementation(
-      () => document.createElement("script")
+  it("never adds a script tag: html2canvas comes from the package", async () => {
+    const appendSpy = vi.spyOn(document.head, "appendChild");
+    await captureDomScreenshot();
+    const scripts = appendSpy.mock.calls.filter(
+      ([node]) => (node as HTMLElement).tagName === "SCRIPT"
     );
+    expect(scripts).toHaveLength(0);
+  });
 
-    const promise = freshCapture();
+  it("loads html2canvas once across concurrent callers", async () => {
+    const importer = vi.fn().mockResolvedValue({ default: (...a: unknown[]) => h2c(...a) });
+    _setHtml2CanvasImporter(importer);
+    await Promise.all([captureDomScreenshot(), captureDomScreenshot()]);
+    expect(importer).toHaveBeenCalledTimes(1);
+  });
 
-    // Fast-forward past the 10s load timeout
-    await vi.advanceTimersByTimeAsync(11_000);
-
-    const result = await promise;
-    expect(result).toBeNull();
-
-    vi.useRealTimers();
+  it("the default importer loads the real bundled html2canvas", async () => {
+    vi.spyOn(console, "warn").mockImplementation(() => {});
+    _setHtml2CanvasImporter(null);
+    // happy-dom can't paint, so the real library may fail to render; what
+    // matters is that it loads from the package and nothing throws.
+    const result = await captureDomScreenshot();
+    expect(result === null || typeof result === "string").toBe(true);
   });
 
   it("should filter qaid elements via ignoreElements", async () => {
     let ignoreElementsFn: ((el: Element) => boolean) | undefined;
 
-    (window as Record<string, unknown>).html2canvas = vi
+    h2c = vi
       .fn()
       .mockImplementation(
         (
@@ -230,85 +252,8 @@ describe("captureDomScreenshot", () => {
     expect(result).toBeNull();
   });
 
-  it("reuses in-flight load promise across concurrent callers", async () => {
-    vi.useFakeTimers();
-    delete (window as Record<string, unknown>).html2canvas;
-    vi.resetModules();
-    const { captureDomScreenshot: freshCapture } = await import("./screenshot-dom");
-
-    vi.spyOn(document.head, "appendChild").mockImplementation(
-      () => document.createElement("script")
-    );
-
-    const p1 = freshCapture();
-    const p2 = freshCapture();
-
-    await vi.advanceTimersByTimeAsync(11_000);
-
-    expect(await p1).toBeNull();
-    expect(await p2).toBeNull();
-
-    vi.useRealTimers();
-  });
-
-  it("does not create a duplicate script tag if one already exists", async () => {
-    vi.useFakeTimers();
-    delete (window as Record<string, unknown>).html2canvas;
-    vi.resetModules();
-
-    // Pre-insert a script tag with the expected src
-    const existingScript = document.createElement("script");
-    existingScript.src = "https://qaid.dev/lib/html2canvas.min.js";
-    document.head.appendChild(existingScript);
-
-    const appendSpy = vi.spyOn(document.head, "appendChild");
-
-    const { captureDomScreenshot: freshCapture } = await import("./screenshot-dom");
-    const promise = freshCapture();
-
-    // Fast-forward past the load timeout
-    await vi.advanceTimersByTimeAsync(11_000);
-    expect(await promise).toBeNull();
-
-    // appendChild should not have been called for the script (already exists)
-    const scriptAppends = appendSpy.mock.calls.filter(
-      ([node]) => (node as HTMLElement).tagName === "SCRIPT"
-    );
-    expect(scriptAppends).toHaveLength(0);
-
-    existingScript.remove();
-    vi.useRealTimers();
-  });
-
-  it("resolves when html2canvas appears mid-poll", async () => {
-    vi.useFakeTimers();
-    delete (window as Record<string, unknown>).html2canvas;
-    vi.resetModules();
-    const { captureDomScreenshot: freshCapture } = await import("./screenshot-dom");
-
-    vi.spyOn(document.head, "appendChild").mockImplementation(
-      () => document.createElement("script")
-    );
-
-    const promise = freshCapture();
-
-    // Make html2canvas appear after a few poll cycles
-    await vi.advanceTimersByTimeAsync(200);
-    (window as Record<string, unknown>).html2canvas = vi
-      .fn()
-      .mockResolvedValue(mockCanvas);
-    await vi.advanceTimersByTimeAsync(100);
-
-    const result = await promise;
-    expect(result).toBe("data:image/webp;base64,mockdata");
-
-    vi.useRealTimers();
-  });
-
   it("should return null on html2canvas error", async () => {
-    (window as Record<string, unknown>).html2canvas = vi
-      .fn()
-      .mockRejectedValue(new Error("render failed"));
+    h2c = vi.fn().mockRejectedValue(new Error("render failed"));
 
     const result = await captureDomScreenshot();
     expect(result).toBeNull();

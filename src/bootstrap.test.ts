@@ -7,7 +7,7 @@
  * the embed tests happen to use.
  */
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import { autoInit, parseDataAttributes } from "./bootstrap";
+import { autoInit, parseDataAttributes, findOwnScript, findConfigBlock } from "./bootstrap";
 import { QaidFeedback } from "./embed";
 import type { FeedbackConfig } from "./types";
 
@@ -18,12 +18,24 @@ function scriptWith(attrs: Record<string, string>): HTMLScriptElement {
   return script;
 }
 
-function jsonConfigBlock(body: string): void {
+function jsonConfigBlock(body: string): HTMLScriptElement {
   const script = document.createElement("script");
   script.setAttribute("type", "application/json");
   script.setAttribute("data-feedback-config", "");
   script.textContent = body;
   document.body.appendChild(script);
+  return script;
+}
+
+function setCurrentScript(el: Element | null): void {
+  Object.defineProperty(document, "currentScript", { value: el, configurable: true });
+}
+
+/** The embed's own classic tag: appended last, and document.currentScript. */
+function ownTag(attrs: Record<string, string> = {}): HTMLScriptElement {
+  const script = scriptWith(attrs);
+  setCurrentScript(script);
+  return script;
 }
 
 /** Every host the embed may have attached, plus our script tags. */
@@ -46,6 +58,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
+  setCurrentScript(null);
   cleanDom();
   vi.restoreAllMocks();
 });
@@ -380,6 +393,7 @@ describe("attributes for the options that once needed the JSON block", () => {
 describe("autoInit with a JSON config block", () => {
   it("boots from the JSON block", async () => {
     jsonConfigBlock(JSON.stringify({ endpoint: "/api/feedback", skipTargeting: true }));
+    ownTag();
 
     autoInit();
 
@@ -393,6 +407,7 @@ describe("autoInit with a JSON config block", () => {
     document.body.appendChild(style);
 
     jsonConfigBlock(JSON.stringify({ endpoint: "/e", cssSelector: "#theme-css" }));
+    ownTag();
     // Nothing throws and the embed mounts; the resolution itself is asserted
     // through parseDataAttributes' equivalent above.
     expect(() => autoInit()).not.toThrow();
@@ -407,13 +422,14 @@ describe("autoInit with a JSON config block", () => {
     jsonConfigBlock(
       JSON.stringify({ endpoint: "/e", css: ".explicit {}", cssSelector: "#theme-css" })
     );
+    ownTag();
     expect(() => autoInit()).not.toThrow();
   });
 
   it("does not read (or warn about) attributes when a JSON block wins", async () => {
     const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
     jsonConfigBlock(JSON.stringify({ endpoint: "/api/feedback", skipTargeting: true }));
-    scriptWith({ "data-endpoint": "/api/feedback", "data-annotation-palette": "[bad" });
+    ownTag({ "data-endpoint": "/api/feedback", "data-annotation-palette": "[bad" });
 
     autoInit();
 
@@ -424,7 +440,7 @@ describe("autoInit with a JSON config block", () => {
 
   it("falls back to data attributes when the JSON is malformed", async () => {
     jsonConfigBlock("{ not json");
-    scriptWith({ "data-endpoint": "/api/feedback", "data-skip-targeting": "true" });
+    ownTag({ "data-endpoint": "/api/feedback", "data-skip-targeting": "true" });
 
     autoInit();
 
@@ -433,7 +449,7 @@ describe("autoInit with a JSON config block", () => {
 
   it("falls back to data attributes when the JSON block is empty", async () => {
     jsonConfigBlock("   ");
-    scriptWith({ "data-endpoint": "/api/feedback", "data-skip-targeting": "true" });
+    ownTag({ "data-endpoint": "/api/feedback", "data-skip-targeting": "true" });
 
     autoInit();
 
@@ -457,6 +473,7 @@ describe("autoInit", () => {
 
   it("does nothing when the config has no endpoint", () => {
     jsonConfigBlock(JSON.stringify({ position: "top-left" }));
+    ownTag();
     const before = hostCount();
     autoInit();
     expect(hostCount()).toBe(before);
@@ -464,10 +481,12 @@ describe("autoInit", () => {
 
   it("waits for DOMContentLoaded when the document is still loading", async () => {
     const readyState = vi.spyOn(document, "readyState", "get").mockReturnValue("loading");
-    scriptWith({ "data-endpoint": "/api/feedback", "data-skip-targeting": "true" });
+    ownTag({ "data-endpoint": "/api/feedback", "data-skip-targeting": "true" });
     const before = hostCount();
 
     autoInit();
+    // currentScript is gone by DOMContentLoaded; the tag was found already.
+    setCurrentScript(null);
     // Deferred: nothing is mounted while the document is parsing.
     expect(hostCount()).toBe(before);
 
@@ -475,6 +494,130 @@ describe("autoInit", () => {
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
     await vi.waitFor(() => expect(hostCount()).toBe(before + 1));
+  });
+});
+
+describe("finding the embed's own tag", () => {
+  it("is document.currentScript for a classic script", () => {
+    const tag = ownTag();
+    expect(findOwnScript()).toBe(tag);
+  });
+
+  it("is nothing without currentScript or a module URL", () => {
+    scriptWith({ "data-endpoint": "/api/feedback" });
+    expect(findOwnScript()).toBeNull();
+  });
+
+  it("is the tag whose src is the module's own URL", () => {
+    const other = scriptWith({ src: "https://cdn.example/other.js" });
+    const mine = scriptWith({ src: "https://unpkg.com/@qaiddev/thumbs-embed@1.13.0/dist/loader.js" });
+    expect(findOwnScript("https://unpkg.com/@qaiddev/thumbs-embed@1.13.0/dist/loader.js")).toBe(mine);
+    expect(findOwnScript("https://unpkg.com/@qaiddev/thumbs-embed@1.13.0/dist/loader.js")).not.toBe(other);
+  });
+
+  it("after a CDN redirect, is the one tag embed.js injected", () => {
+    const origin = scriptWith({ src: "https://unpkg.com/@qaiddev/thumbs-embed/dist/embed.js" });
+    const injected = scriptWith({ src: "https://unpkg.com/@qaiddev/thumbs-embed/dist/loader.js" });
+    (injected as unknown as Record<string, unknown>).__qaidThumbsOrigin = origin;
+    // A second loader.js tag would make the file-name match ambiguous.
+    scriptWith({ src: "https://elsewhere.example/loader.js" });
+    expect(findOwnScript("https://unpkg.com/@qaiddev/thumbs-embed@1.13.0/dist/loader.js")).toBe(injected);
+  });
+
+  it("after a redirect without embed.js, is the one tag with the same file name", () => {
+    const mine = scriptWith({ src: "https://unpkg.com/@qaiddev/thumbs-embed@1/dist/loader.js?v=1" });
+    expect(findOwnScript("https://unpkg.com/@qaiddev/thumbs-embed@1.13.0/dist/loader.js")).toBe(mine);
+  });
+
+  it("is nothing when two tags could be it", () => {
+    scriptWith({ src: "https://unpkg.com/@qaiddev/thumbs-embed@1/dist/loader.js" });
+    scriptWith({ src: "https://attacker.example/loader.js", "data-endpoint": "https://attacker.example" });
+    expect(findOwnScript("https://unpkg.com/@qaiddev/thumbs-embed@1.13.0/dist/loader.js")).toBeNull();
+  });
+});
+
+describe("finding the embed's JSON config block", () => {
+  it("takes the block right before the tag", () => {
+    const block = jsonConfigBlock("{}");
+    const tag = scriptWith({});
+    expect(findConfigBlock(tag)).toBe(block);
+  });
+
+  it("takes the block right after the tag", () => {
+    const tag = scriptWith({});
+    const block = jsonConfigBlock("{}");
+    expect(findConfigBlock(tag)).toBe(block);
+  });
+
+  it("ignores a decoy block elsewhere on the page", () => {
+    const decoy = jsonConfigBlock(JSON.stringify({ endpoint: "https://attacker.example/collect" }));
+    document.body.appendChild(document.createElement("p"));
+    const tag = scriptWith({ "data-endpoint": "/api/feedback" });
+    expect(findConfigBlock(tag)).toBeNull();
+    expect(decoy.isConnected).toBe(true);
+  });
+
+  it("ignores an adjacent JSON block that is not marked data-feedback-config", () => {
+    const block = document.createElement("script");
+    block.type = "application/json";
+    block.textContent = "{}";
+    document.body.appendChild(block);
+    const tag = scriptWith({});
+    expect(findConfigBlock(tag)).toBeNull();
+  });
+
+  it("takes the element data-config-id names, wherever it is", () => {
+    const named = document.createElement("script");
+    named.type = "application/json";
+    named.id = "my-qaid-config";
+    named.textContent = "{}";
+    document.body.appendChild(named);
+    document.body.appendChild(document.createElement("p"));
+    jsonConfigBlock("{}"); // adjacent, but the name wins
+    const tag = scriptWith({ "data-config-id": "my-qaid-config" });
+    expect(findConfigBlock(tag)).toBe(named);
+  });
+
+  it("refuses a data-config-id that names something other than a JSON block", () => {
+    const div = document.createElement("div");
+    div.id = "not-json";
+    document.body.appendChild(div);
+    const tag = scriptWith({ "data-config-id": "not-json" });
+    expect(findConfigBlock(tag)).toBeNull();
+    expect(findConfigBlock(scriptWith({ "data-config-id": "missing" }))).toBeNull();
+  });
+
+  it("looks beside the customer's embed.js tag, not the tag it injected", () => {
+    const block = jsonConfigBlock("{}");
+    const origin = scriptWith({ src: "https://unpkg.com/@qaiddev/thumbs-embed/dist/embed.js" });
+    const injected = document.createElement("script");
+    document.head.appendChild(injected);
+    (injected as unknown as Record<string, unknown>).__qaidThumbsOrigin = origin;
+    expect(findConfigBlock(injected)).toBe(block);
+  });
+
+  it("autoInit boots from the tag's attributes when only a decoy block exists", async () => {
+    const decoy = jsonConfigBlock(JSON.stringify({ endpoint: "https://attacker.example/collect" }));
+    document.body.appendChild(document.createElement("p"));
+    ownTag({ "data-endpoint": "/api/feedback", "data-skip-targeting": "true" });
+    const fetchMock = global.fetch as unknown as ReturnType<typeof vi.fn>;
+    const before = hostCount();
+
+    autoInit();
+
+    await vi.waitFor(() => expect(hostCount()).toBe(before + 1));
+    expect(decoy.isConnected).toBe(true);
+    const urls = fetchMock.mock.calls.map((c) => String(c[0]));
+    expect(urls.some((u) => u.includes("attacker.example"))).toBe(false);
+  });
+
+  it("autoInit does nothing from a decoy block when its own tag has no config", () => {
+    jsonConfigBlock(JSON.stringify({ endpoint: "https://attacker.example/collect" }));
+    document.body.appendChild(document.createElement("p"));
+    ownTag();
+    const before = hostCount();
+    autoInit();
+    expect(hostCount()).toBe(before);
   });
 });
 

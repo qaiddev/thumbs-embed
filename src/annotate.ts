@@ -16,6 +16,7 @@
  */
 
 import { createElement } from "./dom-utils";
+import { iconNode } from "./svg-sanitize";
 import featureStyles from "./styles-annotate.css?inline";
 import {
   RECTANGLE_ICON,
@@ -371,7 +372,10 @@ export class AnnotationEditor {
       "aria-label": `${label} tool`,
       title: label,
     });
-    btn.innerHTML = `${icon}<span class="qaid-annotate-btn-text">${label}</span>`;
+    btn.append(
+      iconNode(null, icon),
+      createElement("span", { class: "qaid-annotate-btn-text" }, [label])
+    );
     return btn;
   }
 
@@ -403,7 +407,10 @@ export class AnnotationEditor {
       "aria-label": label,
       title: label,
     });
-    btn.innerHTML = `${icon}<span class="qaid-annotate-btn-text">${label}</span>`;
+    btn.append(
+      iconNode(null, icon),
+      createElement("span", { class: "qaid-annotate-btn-text" }, [label])
+    );
     return btn;
   }
 

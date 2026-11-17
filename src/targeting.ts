@@ -196,11 +196,11 @@ export class TargetingController {
     // Scope
     this.scope = document.createElement("div");
     this.scope.className = "qaid-scope";
-    this.scope.innerHTML = `
-      <div class="qaid-scope-ring"></div>
-      <div class="qaid-scope-ring-inner"></div>
-      <div class="qaid-scope-dot"></div>
-    `;
+    for (const part of ["qaid-scope-ring", "qaid-scope-ring-inner", "qaid-scope-dot"]) {
+      const div = document.createElement("div");
+      div.className = part;
+      this.scope.appendChild(div);
+    }
 
     // Highlight box overlay (positioned over hovered elements)
     this.highlightBox = document.createElement("div");

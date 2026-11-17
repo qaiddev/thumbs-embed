@@ -12,20 +12,31 @@ export interface DomScreenshotOptions {
   maxHeight?: number;
 }
 
-declare global {
-  interface Window {
-    html2canvas?: (
-      element: HTMLElement,
-      options?: Record<string, unknown>
-    ) => Promise<HTMLCanvasElement>;
-  }
+type Html2Canvas = (
+  element: HTMLElement,
+  options?: Record<string, unknown>
+) => Promise<HTMLCanvasElement>;
+
+/**
+ * html2canvas ships inside the package: a lazy chunk of the ESM build,
+ * inlined in the UMD bundle. It used to be fetched from qaid.dev at run time,
+ * which put a third-party script on every partner page that no pinned
+ * version or `integrity` attribute could check.
+ */
+let loadPromise: Promise<Html2Canvas | null> | null = null;
+
+type Html2CanvasModule = { default: Html2Canvas };
+
+const realImport = (): Promise<Html2CanvasModule> =>
+  import("html2canvas") as unknown as Promise<Html2CanvasModule>;
+
+let importHtml2Canvas = realImport;
+
+/** @internal Test seam: swap the html2canvas import. Pass null to restore it. */
+export function _setHtml2CanvasImporter(fn: (() => Promise<Html2CanvasModule>) | null): void {
+  importHtml2Canvas = fn ?? realImport;
+  loadPromise = null;
 }
-
-const SCRIPT_URL = "https://qaid.dev/lib/html2canvas.min.js";
-const LOAD_TIMEOUT = 10_000;
-const POLL_INTERVAL = 50;
-
-let loadPromise: Promise<boolean> | null = null;
 
 /**
  * Check if DOM screenshot capture is supported
@@ -40,44 +51,17 @@ export function isDomScreenshotSupported(): boolean {
   return typeof canvas.getContext === "function" && !!canvas.getContext("2d");
 }
 
-/**
- * Load html2canvas script if not already loaded
- */
-function loadHtml2Canvas(): Promise<boolean> {
-  if (window.html2canvas) return Promise.resolve(true);
-
+/** Load the bundled html2canvas; null when its chunk fails to load. */
+function loadHtml2Canvas(): Promise<Html2Canvas | null> {
   if (loadPromise) return loadPromise;
-
-  loadPromise = new Promise<boolean>((resolve) => {
-    // Check if script tag already exists
-    const existing = document.querySelector(
-      `script[src="${SCRIPT_URL}"]`
-    ) as HTMLScriptElement | null;
-
-    if (!existing) {
-      const script = document.createElement("script");
-      script.src = SCRIPT_URL;
-      script.async = true;
-      document.head.appendChild(script);
+  loadPromise = importHtml2Canvas().then(
+    (mod) => mod.default,
+    () => {
+      // A failed chunk fetch: let the next capture try again.
+      loadPromise = null;
+      return null;
     }
-
-    // Poll for window.html2canvas availability
-    const start = Date.now();
-    const poll = () => {
-      if (window.html2canvas) {
-        resolve(true);
-        return;
-      }
-      if (Date.now() - start > LOAD_TIMEOUT) {
-        loadPromise = null;
-        resolve(false);
-        return;
-      }
-      setTimeout(poll, POLL_INTERVAL);
-    };
-    poll();
-  });
-
+  );
   return loadPromise;
 }
 
@@ -91,13 +75,13 @@ export async function captureDomScreenshot(
   const { quality = 0.8, maxWidth = 1280, maxHeight = 800 } = options;
 
   try {
-    const loaded = await loadHtml2Canvas();
-    if (!loaded || !window.html2canvas) {
+    const html2canvas = await loadHtml2Canvas();
+    if (!html2canvas) {
       console.warn("html2canvas failed to load");
       return null;
     }
 
-    const canvas = await window.html2canvas(document.body, {
+    const canvas = await html2canvas(document.body, {
       useCORS: true,
       allowTaint: false,
       logging: false,

@@ -22,7 +22,7 @@ import { resolve } from "path";
  * whichever chunk Rollup picks. Check the build: dist/chunks/core-*.js must not
  * statically import any feature chunk (`from "./send-…"` and the like).
  */
-const CORE = /\/src\/(embed|bootstrap|styles|a11y|tooltip-positioning|console-capture|quest-config|icons|dom-utils)\.ts$/;
+const CORE = /\/src\/(embed|bootstrap|styles|a11y|tooltip-positioning|console-capture|quest-config|icons|dom-utils|svg-sanitize|trusted-types|origin-key)\.ts$/;
 
 /**
  * The click path's own code, in one chunk: the send flow, the quests loader it

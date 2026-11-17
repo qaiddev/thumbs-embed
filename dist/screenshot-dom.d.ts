@@ -10,11 +10,12 @@ export interface DomScreenshotOptions {
     /** Max height of the screenshot. Default: 800 */
     maxHeight?: number;
 }
-declare global {
-    interface Window {
-        html2canvas?: (element: HTMLElement, options?: Record<string, unknown>) => Promise<HTMLCanvasElement>;
-    }
-}
+type Html2Canvas = (element: HTMLElement, options?: Record<string, unknown>) => Promise<HTMLCanvasElement>;
+type Html2CanvasModule = {
+    default: Html2Canvas;
+};
+/** @internal Test seam: swap the html2canvas import. Pass null to restore it. */
+export declare function _setHtml2CanvasImporter(fn: (() => Promise<Html2CanvasModule>) | null): void;
 /**
  * Check if DOM screenshot capture is supported
  * Requires canvas and basic DOM APIs
@@ -25,3 +26,4 @@ export declare function isDomScreenshotSupported(): boolean;
  * Returns a base64-encoded WebP data URL, or null on failure
  */
 export declare function captureDomScreenshot(options?: DomScreenshotOptions): Promise<string | null>;
+export {};

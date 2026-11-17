@@ -22,4 +22,4 @@ import { autoInit } from "./bootstrap";
 export { QaidFeedback };
 export type { FeedbackConfig } from "./types";
 
-autoInit();
+autoInit(import.meta.url);

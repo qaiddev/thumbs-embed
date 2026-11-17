@@ -64,4 +64,4 @@ export type {
 } from "./annotate";
 
 // Auto-initialize from a script tag (legacy UMD / full-bundle path).
-autoInit();
+autoInit(import.meta.url);

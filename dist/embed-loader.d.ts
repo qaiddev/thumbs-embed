@@ -20,8 +20,15 @@
  * (Distinct from `loader.ts`/`loader.js`, the ESM-only progressive entry this
  * one delegates to on modern browsers.)
  *
+ * Pinned with Subresource Integrity (`integrity="sha384-…"` on this tag), it
+ * loads the single-file UMD bundle instead, with that file's own sha384 baked
+ * in at build time (vite.config.embed.ts). `import()` can't carry a hash, so
+ * the code-split ESM build's lazy chunks could not be checked; the one-file
+ * bundle can, so every byte of the embed's JavaScript is verified.
+ *
  * IMPORTANT: this file must stay ES5-clean and dependency-free. It is the one
  * script that also runs on the legacy browsers we fall back for, so it can't
  * use syntax (arrow fns, const/let, template literals) they'd choke on before
  * the fallback ever loads. Written with var/function on purpose.
  */
+export {};

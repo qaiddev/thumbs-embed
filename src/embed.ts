@@ -6,7 +6,8 @@ import type {
   SelectedBounds,
   EmbedState,
 } from "./types";
-import { THUMBS_UP_ICON, THUMBS_DOWN_ICON, RECORD_ICON, FEEDBACK_ICON } from "./icons";
+import { THUMBS_UP_ICON, THUMBS_DOWN_ICON, RECORD_ICON, FEEDBACK_ICON, DISMISS_ICON } from "./icons";
+import { setIcon } from "./svg-sanitize";
 import { injectStyles, removeStyles, buildCssVars, applyCssVars, getEmbedStyles } from "./styles";
 // The element-targeting subsystem (with element-selector, ~14 KB) lives in a
 // lazily-loaded chunk (targeting.ts), pulled in the first time the user targets.
@@ -28,7 +29,7 @@ import { isMobileViewport } from "./dom-utils";
 // pre-warmed before the click (see prewarmClickPath / prewarmQuests).
 import type { SendHost } from "./send";
 import type { QuestInstance } from "./quest-launcher";
-import { DEFAULT_QUESTS_MODULE_URL } from "./quest-config";
+import { resolveQuestsModuleUrl } from "./quest-config";
 
 const VISITOR_ID_KEY = "qaid_visitor_id";
 const HIDE_FEEDBACK_KEY = "qaid_hide_feedback";
@@ -306,7 +307,7 @@ export class QaidFeedback {
         video: config.quests?.video ?? "",
         // Quest service reuses the feedback API key unless overridden.
         apiKey: config.quests?.apiKey ?? config.apiKey ?? "",
-        moduleUrl: config.quests?.moduleUrl ?? DEFAULT_QUESTS_MODULE_URL,
+        moduleUrl: resolveQuestsModuleUrl(config.quests?.moduleUrl),
       },
     };
 
@@ -663,7 +664,7 @@ export class QaidFeedback {
       fbBtn.type = "button";
       fbBtn.className = useCustomClass ? `${btnBaseClass} qaid-btn-feedback` : "qaid-btn qaid-btn-feedback";
       fbBtn.setAttribute("aria-label", this.config.text.feedbackLabel);
-      fbBtn.innerHTML = this.config.feedbackIcon || FEEDBACK_ICON;
+      setIcon(fbBtn, this.config.feedbackIcon, FEEDBACK_ICON);
       fbBtn.addEventListener("click", (e) => this.handleThumbClick("neutral", e.currentTarget as HTMLElement, e));
       fbBtn.addEventListener("mouseenter", () => this.showTooltip(fbBtn));
       fbBtn.addEventListener("mouseleave", () => this.hideTooltip());
@@ -679,7 +680,7 @@ export class QaidFeedback {
       upBtn.type = "button";
       upBtn.className = useCustomClass ? `${btnBaseClass} qaid-btn-up` : "qaid-btn qaid-btn-up";
       upBtn.setAttribute("aria-label", this.config.text.positiveLabel);
-      upBtn.innerHTML = this.config.positiveIcon || THUMBS_UP_ICON;
+      setIcon(upBtn, this.config.positiveIcon, THUMBS_UP_ICON);
       upBtn.addEventListener("click", (e) => this.handleThumbClick("up", e.currentTarget as HTMLElement, e));
       upBtn.addEventListener("mouseenter", () => {
         this.prewarmQuests();
@@ -696,7 +697,7 @@ export class QaidFeedback {
       downBtn.type = "button";
       downBtn.className = useCustomClass ? `${btnBaseClass} qaid-btn-down` : "qaid-btn qaid-btn-down";
       downBtn.setAttribute("aria-label", this.config.text.negativeLabel);
-      downBtn.innerHTML = this.config.negativeIcon || THUMBS_DOWN_ICON;
+      setIcon(downBtn, this.config.negativeIcon, THUMBS_DOWN_ICON);
       downBtn.addEventListener("click", (e) => this.handleThumbClick("down", e.currentTarget as HTMLElement, e));
       downBtn.addEventListener("mouseenter", () => {
         this.prewarmQuests();
@@ -718,7 +719,7 @@ export class QaidFeedback {
       recordBtn.type = "button";
       recordBtn.className = useCustomClass ? `${btnBaseClass} qaid-btn-record` : "qaid-btn qaid-btn-record";
       recordBtn.setAttribute("aria-label", this.config.text.recordLabel);
-      recordBtn.innerHTML = this.config.recordIcon || RECORD_ICON;
+      setIcon(recordBtn, this.config.recordIcon, RECORD_ICON);
       recordBtn.addEventListener("click", () => {
         void this.ensureRecording().then((rec) =>
           this.config.videoOptions.redaction ? rec.startPicking() : rec.startRecording()
@@ -746,7 +747,7 @@ export class QaidFeedback {
       this.dismissBtn.className = "qaid-dismiss-btn";
       this.dismissBtn.setAttribute("aria-label", this.config.text.dismissLabel);
       this.dismissBtn.title = this.config.text.dismissLabel;
-      this.dismissBtn.innerHTML = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
+      setIcon(this.dismissBtn, null, DISMISS_ICON);
       this.dismissBtn.addEventListener("click", (e) => {
         e.stopPropagation();
         this.handleDismiss();

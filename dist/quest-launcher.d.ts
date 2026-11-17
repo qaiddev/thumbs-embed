@@ -40,6 +40,18 @@ export interface QuestsModule {
 }
 type Importer = (url: string) => Promise<unknown>;
 /**
+ * Fetch and run `url` as a module script carrying `integrity`, resolving once
+ * it has run and rejecting when the browser refuses it (a hash mismatch, a
+ * CSP block, a network error). A module runs once per URL per page: the
+ * `import()` that follows gets this verified instance from the module map
+ * instead of fetching the file again.
+ *
+ * Resolves `false`, without loading anything, when the tag can't be made at
+ * all (a Trusted Types page that doesn't allow the `qaid-embed` policy); the
+ * caller then imports the pinned URL without the hash check.
+ */
+export declare function preloadVerifiedModule(url: string, integrity: string): Promise<boolean>;
+/**
  * @internal Test seam: swap the dynamic importer and clear the cache.
  * Pass `null` to restore the real dynamic `import()`. Not re-exported
  * from the package entry, so it isn't public API.

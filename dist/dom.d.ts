@@ -18,8 +18,6 @@ export interface ElProps {
     class?: string;
     /** Inline styles as a cssText string. */
     style?: string;
-    /** innerHTML — for icons / trusted SVG markup. */
-    html?: string;
     /** textContent. */
     text?: string;
     /** Attributes set via setAttribute (aria-*, data-*, type, role, …). */

@@ -344,10 +344,16 @@ describe("script tag data attributes", () => {
 
   it("opts out end-to-end through auto-init", async () => {
     global.fetch = okFetch() as never;
-    scriptWith({ "data-skip-targeting": "true", "data-hide-confirmation": "true" });
+    const tag = scriptWith({ "data-skip-targeting": "true", "data-hide-confirmation": "true" });
 
     const { autoInit } = await import("./bootstrap");
-    autoInit();
+    // A classic tag is found through document.currentScript.
+    Object.defineProperty(document, "currentScript", { value: tag, configurable: true });
+    try {
+      autoInit();
+    } finally {
+      Object.defineProperty(document, "currentScript", { value: null, configurable: true });
+    }
     await vi.waitFor(() => expect(document.querySelector("[data-qaid-embed]")).not.toBeNull());
 
     await submitFeedback();

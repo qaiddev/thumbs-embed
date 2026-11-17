@@ -19,6 +19,9 @@ export const FEEDBACK_ICON = `<svg xmlns="http://www.w3.org/2000/svg" class="qai
   <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5m-9 6l3.5-3.5H18a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v14z"/>
 </svg>`;
 
+/** The small X that hides the buttons. */
+export const DISMISS_ICON = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
+
 /* ---------------------------------------------------------------------------
  * Screenshot annotation toolbar icons. Same 24×24 stroked style as the thumbs
  * icons above so they inherit `.qaid-icon` sizing and `currentColor`.

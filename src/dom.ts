@@ -21,8 +21,6 @@ export interface ElProps {
   class?: string;
   /** Inline styles as a cssText string. */
   style?: string;
-  /** innerHTML — for icons / trusted SVG markup. */
-  html?: string;
   /** textContent. */
   text?: string;
   /** Attributes set via setAttribute (aria-*, data-*, type, role, …). */
@@ -46,7 +44,6 @@ export function h<K extends keyof HTMLElementTagNameMap>(
   if (props) {
     if (props.class) el.className = props.class;
     if (props.style) el.style.cssText = props.style;
-    if (props.html != null) el.innerHTML = props.html;
     if (props.text != null) el.textContent = props.text;
     if (props.attrs) {
       for (const k in props.attrs) el.setAttribute(k, props.attrs[k]);

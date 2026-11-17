@@ -6,8 +6,11 @@ import {
   prefetchQuestDefinition,
   questDefinitionUrl,
   _setQuestsImporter,
+  preloadVerifiedModule,
   type LaunchedQuestConfig,
 } from "./quest-launcher";
+import { DEFAULT_QUESTS_MODULE_INTEGRITY } from "./quest-config";
+import { _resetTrustedTypes } from "./trusted-types";
 
 class FakeQuest {
   static instances: FakeQuest[] = [];
@@ -293,5 +296,68 @@ describe("DEFAULT_QUESTS_MODULE_URL", () => {
   it("points at the pinned unpkg quests build", () => {
     expect(DEFAULT_QUESTS_MODULE_URL).toContain("unpkg.com/@qaiddev/quests-embed");
     expect(DEFAULT_QUESTS_MODULE_URL).toMatch(/\.js$/);
+  });
+});
+
+describe("preloadVerifiedModule", () => {
+  afterEach(() => {
+    _resetTrustedTypes();
+    document.head.querySelectorAll("script").forEach((s) => s.remove());
+  });
+
+  /** Catch the module tag instead of letting happy-dom try to load it. */
+  function catchTag(): { tag: () => HTMLScriptElement } {
+    let caught: HTMLScriptElement | null = null;
+    vi.spyOn(document.head, "appendChild").mockImplementation((node) => {
+      caught = node as HTMLScriptElement;
+      return node;
+    });
+    return { tag: () => caught! };
+  }
+
+  it("runs the module through a tag carrying integrity and CORS, then removes it", async () => {
+    const { tag } = catchTag();
+    const done = preloadVerifiedModule("https://cdn.example/q.js", "sha384-abc");
+    const el = tag();
+    expect(el.type).toBe("module");
+    expect(el.integrity).toBe("sha384-abc");
+    expect(el.crossOrigin).toBe("anonymous");
+    expect(el.src).toBe("https://cdn.example/q.js");
+    const remove = vi.spyOn(el, "remove");
+    el.dispatchEvent(new Event("load"));
+    await expect(done).resolves.toBe(true);
+    expect(remove).toHaveBeenCalled();
+  });
+
+  it("rejects when the browser refuses the file (hash mismatch, CSP, network)", async () => {
+    const { tag } = catchTag();
+    const done = preloadVerifiedModule("https://cdn.example/q.js", "sha384-abc");
+    tag().dispatchEvent(new Event("error"));
+    await expect(done).rejects.toThrow(/integrity/);
+  });
+
+  it("resolves false without loading when Trusted Types refuses the URL", async () => {
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+    vi.stubGlobal("trustedTypes", {
+      createPolicy: () => ({
+        createScriptURL: () => {
+          throw new TypeError("refused");
+        },
+      }),
+    });
+    const append = vi.spyOn(document.head, "appendChild");
+    await expect(preloadVerifiedModule("https://cdn.example/q.js", "sha384-abc")).resolves.toBe(false);
+    expect(append).not.toHaveBeenCalled();
+    expect(warn).toHaveBeenCalled();
+  });
+
+  it("the default importer checks the default URL's hash before importing it", async () => {
+    const { tag } = catchTag();
+    _setQuestsImporter(null);
+    const load = loadQuestsModule(DEFAULT_QUESTS_MODULE_URL);
+    await vi.waitFor(() => expect(tag()).toBeTruthy());
+    expect(tag().integrity).toBe(DEFAULT_QUESTS_MODULE_INTEGRITY);
+    tag().dispatchEvent(new Event("error"));
+    await expect(load).rejects.toThrow(/integrity/);
   });
 });
