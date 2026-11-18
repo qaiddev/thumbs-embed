@@ -7,15 +7,15 @@
  * changed file on the CDN refuses to load instead of running.
  */
 /** The quests-embed release this thumbs-embed release opens quests with. */
-export declare const QUESTS_VERSION = "1.12.0";
+export declare const QUESTS_VERSION = "1.12.1";
 /** Default ES-module URL for the quests embed: one exact release on unpkg. */
-export declare const DEFAULT_QUESTS_MODULE_URL = "https://unpkg.com/@qaiddev/quests-embed@1.12.0/dist/qaid-quests.js";
+export declare const DEFAULT_QUESTS_MODULE_URL = "https://unpkg.com/@qaiddev/quests-embed@1.12.1/dist/qaid-quests.js";
 /**
  * Subresource Integrity of {@link DEFAULT_QUESTS_MODULE_URL}: the sha384 of
  * quests-embed's `dist/qaid-quests.js` at {@link QUESTS_VERSION}. Change the
  * two together.
  */
-export declare const DEFAULT_QUESTS_MODULE_INTEGRITY = "sha384-oM2IICRGTBJ5EmRM+mZIB0Pe8vlwoYOch6taqlZ3+k+1Zptxqwigi+5mwLOQprtj";
+export declare const DEFAULT_QUESTS_MODULE_INTEGRITY = "sha384-ulTEyFqoUl1HNdNL8rFOB/mSItoy12PPegqJJIspDm0WtPK4/2jl3bRVrHoEtrm1";
 /**
  * The module URL to use for a configured `moduleUrl`. A custom URL is kept
  * only when it is same-origin with the page (self-hosting) or one exact

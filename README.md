@@ -241,7 +241,7 @@ new QaidFeedback({
 
 `base` is the only required field — omit a button's id to keep the normal message box for that button. The embed derives the quest definition URL (`{base}/{questId}/definition`) and the response endpoint (`{base}/responses`) from it, and passes the created feedback record's id to the quest so its answers are joined back to that feedback on the server.
 
-By default the quests embed loads from one exact release, `https://unpkg.com/@qaiddev/quests-embed@1.12.0/dist/qaid-quests.js`, and its sha384 is checked before it runs. A custom `moduleUrl` is used only when it is on your page's own origin (self-hosting) or `https://unpkg.com/@qaiddev/quests-embed@<exact version>/…`; anything else, a floating `@1` included, is refused with a console warning and the default is used.
+By default the quests embed loads from one exact release, `https://unpkg.com/@qaiddev/quests-embed@1.12.1/dist/qaid-quests.js`, and its sha384 is checked before it runs. A custom `moduleUrl` is used only when it is on your page's own origin (self-hosting) or `https://unpkg.com/@qaiddev/quests-embed@<exact version>/…`; anything else, a floating `@1` included, is refused with a console warning and the default is used.
 
 ## Security: pinning, integrity and CSP
 
@@ -251,8 +251,8 @@ The embed runs on your page with your page's rights, so treat it like any other 
 
 ```html
 <script
-  src="https://unpkg.com/@qaiddev/thumbs-embed@1.14.0/dist/embed.js"
-  integrity="sha384-1c4N028o6f0/52B7qANdh/hk3UYUia4Sw3DMEZw78EQgy3ikh9urXQyq1mgdGs8s"
+  src="https://unpkg.com/@qaiddev/thumbs-embed@1.14.1/dist/embed.js"
+  integrity="sha384-67tCE9csiampTZ3ATAT/bsTA/jg+3EQtS1vaw34Jpce0Sy1hKg/LhchwYwURHpQM"
   crossorigin="anonymous"
   defer
   data-endpoint="https://qaid.dev/api/feedback"
@@ -260,22 +260,22 @@ The embed runs on your page with your page's rights, so treat it like any other 
 ></script>
 ```
 
-- The `@1.14.0` pins the release. Without it unpkg serves the newest release, and a hash can never match for long.
-- `integrity` is the sha384 of `dist/embed.js` for that release. It is in each release's notes; to work it out yourself: `curl -s https://unpkg.com/@qaiddev/thumbs-embed@1.14.0/dist/embed.js | openssl dgst -sha384 -binary | openssl base64 -A`.
+- The `@1.14.1` pins the release. Without it unpkg serves the newest release, and a hash can never match for long.
+- `integrity` is the sha384 of `dist/embed.js` for that release. It is in each release's notes; to work it out yourself: `curl -s https://unpkg.com/@qaiddev/thumbs-embed@1.14.1/dist/embed.js | openssl dgst -sha384 -binary | openssl base64 -A`.
 - `crossorigin="anonymous"` is required for the browser to check a hash on a file from another origin.
 - **What the one hash covers.** When the tag carries `integrity`, every file `embed.js` loads after itself is checked too, with hashes baked in when the release was built:
   - Browsers that enforce import-map `integrity` (Chrome 127+, Safari 18+, Firefox 138+) get the small code-split build (about 14 KB gzipped at start-up). `embed.js` adds an import map listing the sha384 of `loader.js` and every lazy chunk, and the browser refuses any chunk whose bytes differ.
   - Every other browser gets the single-file bundle `qaid.umd.cjs` (about 79 KB gzipped) with its own hash.
   - No browser says whether it enforces the map, so `embed.js` asks: the map also lists `integrity-probe.js` under a hash it can never have, and `embed.js` loads it first. A refusal means the check works; if it runs, the bundle is used instead. You will see one console line about the probe's digest. That line is expected.
   - The import map is an inline script. Under a CSP without `'unsafe-inline'` for scripts the map is blocked, the probe runs, and the single-file bundle is used: still fully checked, just larger.
-  - A linked quest loads quests-embed 1.12.0, whose hash is also checked before it runs.
+  - A linked quest loads quests-embed 1.12.1, whose hash is also checked before it runs.
 
 ### Content Security Policy
 
 A policy that lets the embed work and nothing else from its side:
 
 ```
-script-src 'self' https://unpkg.com/@qaiddev/thumbs-embed@1.14.0/ https://unpkg.com/@qaiddev/quests-embed@1.12.0/;
+script-src 'self' https://unpkg.com/@qaiddev/thumbs-embed@1.14.1/ https://unpkg.com/@qaiddev/quests-embed@1.12.1/;
 style-src 'self' 'unsafe-inline';
 connect-src 'self' https://qaid.dev;
 img-src 'self' data: blob:;

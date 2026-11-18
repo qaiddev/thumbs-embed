@@ -458,7 +458,7 @@ function zr(e, A = 0) {
     height: t.height + A * 2
   };
 }
-const Aa = "1.12.0", jA = `https://unpkg.com/@qaiddev/quests-embed@${Aa}/dist/qaid-quests.js`, ea = "sha384-oM2IICRGTBJ5EmRM+mZIB0Pe8vlwoYOch6taqlZ3+k+1Zptxqwigi+5mwLOQprtj", ta = /^https:\/\/unpkg\.com\/@qaiddev\/quests-embed@\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?\//;
+const Aa = "1.12.1", jA = `https://unpkg.com/@qaiddev/quests-embed@${Aa}/dist/qaid-quests.js`, ea = "sha384-ulTEyFqoUl1HNdNL8rFOB/mSItoy12PPegqJJIspDm0WtPK4/2jl3bRVrHoEtrm1", ta = /^https:\/\/unpkg\.com\/@qaiddev\/quests-embed@\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?\//;
 let jr = !1;
 function ra(e) {
   if (!e) return jA;
