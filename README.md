@@ -119,6 +119,9 @@ We offer a Free Plan for a compatible endpoint and a dashboard to manage your si
 | `endpoint` | `string` | **(required)** | API endpoint URL for submitting feedback data |
 | `apiKey` | `string` | `""` | API key for authenticating with the feedback service |
 | `skipTargeting` | `boolean` | `false` | Skip element targeting and go directly to the feedback modal |
+| `remoteConfig` | `boolean` | `false` | Fetch the project's saved settings from `{endpoint}/config?apiKey=…` (see [Load settings instead of pasting them](#load-settings-instead-of-pasting-them)) |
+| `themeUrl` | `string` | `""` | Fetch a theme document (icons, CSS, button class, colours, size, text) from this URL |
+| `remoteTimeoutMs` | `number` | `3000` | How long to wait for `remoteConfig` / `themeUrl` before drawing without them |
 
 ### Positioning
 
@@ -367,6 +370,9 @@ Boolean attributes turn on with `"true"`; any other value leaves the default. `d
 | `data-quest-api-key` | `quests.apiKey` |
 | `data-quest-module-url` | `quests.moduleUrl` |
 | `data-config-id` | (the `id` of this tag's JSON config block) |
+| `data-remote-config` | `remoteConfig` (`"true"` turns it on) |
+| `data-theme-url` | `themeUrl` |
+| `data-remote-timeout` | `remoteTimeoutMs` |
 
 A value the embed can't use is ignored with one `console.warn` naming the attribute, and the default stays. That covers a malformed `data-annotation-palette` and an empty screen-reader label (`data-positive-label=""` would leave the button with no accessible name).
 
@@ -416,6 +422,35 @@ When `buttonClass` is provided, default button colors, sizing, and shadows are n
 }
 ```
 
+## Load settings instead of pasting them
+
+Since 1.15.0 the snippet can be just the endpoint and the key. The embed
+fetches the rest when it starts.
+
+```html
+<script src="https://unpkg.com/@qaiddev/thumbs-embed@1.15.0/dist/embed.js" defer
+  data-api-key="YOUR_KEY"
+  data-endpoint="https://qaid.dev/api/feedback"
+  data-remote-config="true"></script>
+```
+
+1. `remoteConfig` fetches `GET {endpoint}/config?apiKey=…`. On qaid.dev that
+   is the project's saved Customize settings, so pressing **Save** there
+   updates every site on this snippet within about a minute.
+2. `themeUrl` fetches one theme: `https://qaid.dev/api/themes/<id>/embed`,
+   where `<id>` is a built-in theme (`neon`, `lcars`, `minimal`, …) or a saved
+   theme. A private saved theme needs `?key=<embed key>` on the URL.
+3. Order, lowest first: defaults, then `remoteConfig`, then `themeUrl`, then
+   anything in the snippet itself. So you can still pin one setting by hand.
+4. The buttons wait for the answers, at most `remoteTimeoutMs` (3000 ms),
+   so the default look never flashes first. A failure or a timeout logs one
+   `console.warn` and draws with what the snippet has.
+5. A fetched answer can never change `endpoint`, `apiKey`, `container` or
+   `quests.moduleUrl`. A fetched `quests.base` is used only on the
+   endpoint's own origin. Icons and CSS go through the same sanitizer and
+   shadow root as pasted ones.
+6. `feedback.ready` is a promise that resolves once the buttons are drawn.
+
 ## API
 
 ### Constructor
@@ -428,7 +463,8 @@ const feedback = new QaidFeedback(config: FeedbackConfig);
 
 | Method | Description |
 |--------|-------------|
-| `destroy()` | Remove all DOM elements, event listeners, and injected styles. Safe to call multiple times. |
+| `destroy()` | Remove all DOM elements, event listeners, and injected styles. Safe to call multiple times, and before fetched settings arrive. |
+| `ready` (property) | `Promise<void>` that resolves once the buttons are drawn. Immediate unless `remoteConfig` or `themeUrl` is set; never rejects. |
 
 ### Payload
 
