@@ -349,6 +349,9 @@ export class QaidFeedback {
    * reach it only after loadDialogA11y() has resolved.
    */
   private openDialogA11y(container: HTMLElement, opts: DialogOptions): void {
+    // One dialog at a time. Opening over one that is still open used to drop
+    // its close, and that close is what lifts `inert` off the page.
+    this.closeDialogA11y();
     this.dialogClose = this.dialogModule!.openDialog(container, opts);
   }
 

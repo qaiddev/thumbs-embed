@@ -1994,16 +1994,10 @@ describe("QaidFeedback", () => {
         expect(overlayShadow.querySelector(".qaid-video-preview")).not.toBeNull();
       });
 
-      // The mock creates a race condition where both the stopCallback (onStop handler)
-      // and the stopRecording() continuation both call showRecordingPreview(), resulting
-      // in two preview elements. Remove the orphaned first one so tests see a clean state.
-      const allPreviews = overlayShadow.querySelectorAll(".qaid-video-preview");
-      if (allPreviews.length > 1) {
-        // Remove all but the last one (which is this.videoPreview in the embed)
-        for (let i = 0; i < allPreviews.length - 1; i++) {
-          allPreviews[i].remove();
-        }
-      }
+      // Stop draws exactly one review box. (It used to draw two — the
+      // recorder's onStop callback and stopRecording() both did — and the
+      // tests removed the extra one here, which hid the frozen-page bug.)
+      expect(overlayShadow.querySelectorAll(".qaid-video-preview")).toHaveLength(1);
 
       return overlayShadow;
     }
@@ -2027,6 +2021,119 @@ describe("QaidFeedback", () => {
       const shadow = getShadowRoot();
       const upBtn = shadow.querySelector<HTMLButtonElement>(".qaid-btn-up");
       expect(upBtn?.disabled).toBe(false);
+    });
+
+    describe("the page after Send (the frozen-page bug)", () => {
+      it("leaves no review box behind and nothing inert after a successful Send", async () => {
+        // A page sibling, like a framework root, that the open dialog inerts.
+        const appRoot = document.createElement("div");
+        appRoot.id = "app-root";
+        document.body.prepend(appRoot);
+        global.fetch = vi.fn().mockResolvedValue({ ok: true, json: () => Promise.resolve({ id: "fb_1" }) });
+
+        const overlayShadow = await openVideoPreview({ apiKey: "k" });
+        expect(appRoot.inert).toBe(true);
+
+        overlayShadow.querySelector<HTMLButtonElement>(".qaid-video-btn-send")!.click();
+        await vi.waitFor(() => {
+          expect(overlayShadow.querySelector(".qaid-video-preview")).toBeNull();
+        });
+
+        expect(appRoot.inert).toBe(false);
+        expect(appRoot.hasAttribute("aria-hidden")).toBe(false);
+        const overlayHost = document.querySelector<HTMLElement>("[data-qaid-embed-overlay]")!;
+        expect(overlayHost.style.pointerEvents).toBe("none");
+      });
+
+      it("a second Stop click does not draw a second review box", async () => {
+        embed = new QaidFeedback({ endpoint: "/api/feedback", captureVideo: true });
+        getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-record")!.click();
+        await vi.waitFor(() => {
+          expect(getOverlayShadowRoot().querySelector(".qaid-recording-indicator")).not.toBeNull();
+        });
+        const overlayShadow = getOverlayShadowRoot();
+        const stop = overlayShadow.querySelector<HTMLButtonElement>(".qaid-recording-stop")!;
+        stop.click();
+        stop.click();
+        document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+        await vi.waitFor(() => {
+          expect(overlayShadow.querySelector(".qaid-video-preview")).not.toBeNull();
+        });
+        await new Promise((r) => setTimeout(r, 40));
+        expect(overlayShadow.querySelectorAll(".qaid-video-preview")).toHaveLength(1);
+      });
+
+      it("the browser's Stop sharing draws one review box", async () => {
+        embed = new QaidFeedback({ endpoint: "/api/feedback", captureVideo: true });
+        getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-record")!.click();
+        await vi.waitFor(() => {
+          expect(getOverlayShadowRoot().querySelector(".qaid-recording-indicator")).not.toBeNull();
+        });
+        await new Promise((r) => setTimeout(r, 20)); // let a data chunk arrive
+        const track = mockStream.getVideoTracks()[0];
+        const ended = track.addEventListener.mock.calls.find((c: unknown[]) => c[0] === "ended")![1] as () => void;
+        ended();
+        const overlayShadow = getOverlayShadowRoot();
+        await vi.waitFor(() => {
+          expect(overlayShadow.querySelector(".qaid-video-preview")).not.toBeNull();
+        });
+        expect(overlayShadow.querySelector(".qaid-recording-indicator")).toBeNull();
+        expect(overlayShadow.querySelectorAll(".qaid-video-preview")).toHaveLength(1);
+      });
+
+      it("the browser's Stop sharing before any data cleans up without a review box", async () => {
+        // A recorder that never emits a chunk: the blob is empty.
+        (globalThis as Record<string, unknown>).MediaRecorder = class {
+          static isTypeSupported = () => true;
+          state = "inactive";
+          ondataavailable: ((e: { data: Blob }) => void) | null = null;
+          onstop: (() => void) | null = null;
+          onerror: (() => void) | null = null;
+          start() {
+            this.state = "recording";
+          }
+          stop() {
+            this.state = "inactive";
+            setTimeout(() => this.onstop?.(), 5);
+          }
+        };
+        embed = new QaidFeedback({ endpoint: "/api/feedback", captureVideo: true });
+        getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-record")!.click();
+        await vi.waitFor(() => {
+          expect(getOverlayShadowRoot().querySelector(".qaid-recording-indicator")).not.toBeNull();
+        });
+        const track = mockStream.getVideoTracks()[0];
+        const ended = track.addEventListener.mock.calls.find((c: unknown[]) => c[0] === "ended")![1] as () => void;
+        ended();
+        const overlayShadow = getOverlayShadowRoot();
+        await vi.waitFor(() => {
+          expect(overlayShadow.querySelector(".qaid-recording-indicator")).toBeNull();
+        });
+        expect(overlayShadow.querySelector(".qaid-video-preview")).toBeNull();
+        expect(getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-up")?.disabled).toBe(false);
+      });
+
+      it("opening a dialog over an open one still frees the page on close", async () => {
+        const appRoot = document.createElement("div");
+        document.body.prepend(appRoot);
+        embed = new QaidFeedback({ endpoint: "/api/feedback", captureVideo: true });
+        const e = embed as unknown as {
+          loadDialogA11y(): Promise<void>;
+          ensureOverlayHost(): ShadowRoot;
+          openDialogA11y(c: HTMLElement, o: object): void;
+          closeDialogA11y(): void;
+        };
+        await e.loadDialogA11y();
+        const root = e.ensureOverlayHost();
+        const first = document.createElement("div");
+        const second = document.createElement("div");
+        root.append(first, second);
+        e.openDialogA11y(first, { label: "first" });
+        e.openDialogA11y(second, { label: "second" });
+        e.closeDialogA11y();
+        expect(appRoot.inert).toBe(false);
+        expect(appRoot.hasAttribute("aria-hidden")).toBe(false);
+      });
     });
 
     it("should remove video preview when Escape is pressed", async () => {
@@ -3656,9 +3763,7 @@ describe("QaidFeedback", () => {
         expect(overlayShadow.querySelector(".qaid-video-preview")).not.toBeNull();
       });
 
-      // Remove orphan preview elements caused by the recorder mock race
-      const orphans = overlayShadow.querySelectorAll(".qaid-video-preview");
-      for (let i = 0; i < orphans.length - 1; i++) orphans[i].remove();
+      expect(overlayShadow.querySelectorAll(".qaid-video-preview")).toHaveLength(1);
 
       const getDisplayMediaMock =
         navigator.mediaDevices.getDisplayMedia as ReturnType<typeof vi.fn>;
@@ -3707,11 +3812,7 @@ describe("QaidFeedback", () => {
         expect(overlayShadow.querySelector(".qaid-video-preview")).not.toBeNull();
       });
 
-      // Clean up duplicate preview elements caused by the recorder mock race
-      const allPreviews = overlayShadow.querySelectorAll(".qaid-video-preview");
-      for (let i = 0; i < allPreviews.length - 1; i++) {
-        allPreviews[i].remove();
-      }
+      expect(overlayShadow.querySelectorAll(".qaid-video-preview")).toHaveLength(1);
 
       const sendBtn = overlayShadow.querySelector<HTMLButtonElement>(
         ".qaid-video-btn-send"

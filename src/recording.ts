@@ -145,13 +145,23 @@ export class RecordingController {
   }
 
   private async stopRecording(): Promise<void> {
+    // One stop only. Claim it before awaiting the recorder: its onstop also
+    // runs the onStop callback above, and while isRecording was still true
+    // that callback drew the review box too. Then this method drew a second
+    // one over it and opened a second dialog, so the first dialog's close
+    // (which lifts `inert` off the page) was lost. After Send only the top box
+    // went away: the first stayed on screen with dead buttons and the whole
+    // page stayed inert — a frozen page. A second Stop click or Escape now
+    // returns here too.
+    if (!this.isRecording || !this.videoRecorder) return;
+    this.isRecording = false;
+
     try {
-      this.recordedBlob = await this.videoRecorder!.stop();
+      this.recordedBlob = await this.videoRecorder.stop();
     } catch {
       this.recordedBlob = null;
     }
 
-    this.isRecording = false;
     this.host.announceMsg("Recording stopped");
     this.removeRecordingIndicator();
     document.removeEventListener("keydown", this.host.boundKeyDown);
