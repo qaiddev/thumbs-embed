@@ -1,4 +1,4 @@
-import type { FeedbackConfig } from "./types";
+import type { FeedbackConfig, ResolvedFeedbackConfig } from "./types";
 export declare function isHiddenByUser(apiKey?: string): boolean;
 export declare function setHiddenByUser(apiKey?: string, hidden?: boolean): void;
 /**
@@ -16,6 +16,8 @@ export declare function randomId(): string;
  * Get or create a visitor ID stored in localStorage
  */
 export declare function getOrCreateVisitorId(): string;
+/** Fill every setting the host left out with its default. */
+export declare function resolveConfig(config: FeedbackConfig): ResolvedFeedbackConfig;
 export declare class QaidFeedback {
     private config;
     private state;
@@ -57,6 +59,13 @@ export declare class QaidFeedback {
     private boundResize;
     private _startDismissed;
     private destroyed;
+    /**
+     * Resolves once the buttons are drawn. Immediate unless the config asks for
+     * fetched settings (`remoteConfig`, `themeUrl`); never rejects.
+     */
+    ready: Promise<void>;
+    /** False while fetched settings are pending: nothing is drawn yet. */
+    private initialized;
     private domObserver;
     private boundBeforeSwap;
     constructor(config: FeedbackConfig);

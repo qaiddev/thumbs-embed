@@ -254,8 +254,8 @@ The embed runs on your page with your page's rights, so treat it like any other 
 
 ```html
 <script
-  src="https://unpkg.com/@qaiddev/thumbs-embed@1.14.1/dist/embed.js"
-  integrity="sha384-67tCE9csiampTZ3ATAT/bsTA/jg+3EQtS1vaw34Jpce0Sy1hKg/LhchwYwURHpQM"
+  src="https://unpkg.com/@qaiddev/thumbs-embed@1.15.0/dist/embed.js"
+  integrity="sha384-kCAon2t7xSRyDSI59280ii029y4GJvaY8cCHYaRqi/eWZNBOSKEenkKll8Z3d82O"
   crossorigin="anonymous"
   defer
   data-endpoint="https://qaid.dev/api/feedback"
@@ -263,8 +263,8 @@ The embed runs on your page with your page's rights, so treat it like any other 
 ></script>
 ```
 
-- The `@1.14.1` pins the release. Without it unpkg serves the newest release, and a hash can never match for long.
-- `integrity` is the sha384 of `dist/embed.js` for that release. It is in each release's notes; to work it out yourself: `curl -s https://unpkg.com/@qaiddev/thumbs-embed@1.14.1/dist/embed.js | openssl dgst -sha384 -binary | openssl base64 -A`.
+- The `@1.15.0` pins the release. Without it unpkg serves the newest release, and a hash can never match for long.
+- `integrity` is the sha384 of `dist/embed.js` for that release. It is in each release's notes; to work it out yourself: `curl -s https://unpkg.com/@qaiddev/thumbs-embed@1.15.0/dist/embed.js | openssl dgst -sha384 -binary | openssl base64 -A`.
 - `crossorigin="anonymous"` is required for the browser to check a hash on a file from another origin.
 - **What the one hash covers.** When the tag carries `integrity`, every file `embed.js` loads after itself is checked too, with hashes baked in when the release was built:
   - Browsers that enforce import-map `integrity` (Chrome 127+, Safari 18+, Firefox 138+) get the small code-split build (about 14 KB gzipped at start-up). `embed.js` adds an import map listing the sha384 of `loader.js` and every lazy chunk, and the browser refuses any chunk whose bytes differ.
@@ -278,7 +278,7 @@ The embed runs on your page with your page's rights, so treat it like any other 
 A policy that lets the embed work and nothing else from its side:
 
 ```
-script-src 'self' https://unpkg.com/@qaiddev/thumbs-embed@1.14.1/ https://unpkg.com/@qaiddev/quests-embed@1.12.1/;
+script-src 'self' https://unpkg.com/@qaiddev/thumbs-embed@1.15.0/ https://unpkg.com/@qaiddev/quests-embed@1.12.1/;
 style-src 'self' 'unsafe-inline';
 connect-src 'self' https://qaid.dev;
 img-src 'self' data: blob:;

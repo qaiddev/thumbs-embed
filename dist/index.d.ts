@@ -27,7 +27,7 @@
  */
 import { QaidFeedback } from "./embed";
 export { QaidFeedback };
-export type { FeedbackConfig, QuestsLaunchConfig, ResolvedFeedbackConfig, ConsoleError, NetworkError, FeedbackData, SelectedBounds, FeedbackPayload, FeedbackResponse, FeedbackMessagePayload, } from "./types";
+export type { FeedbackConfig, QuestsLaunchConfig, ThumbsThemeDocument, ResolvedFeedbackConfig, ConsoleError, NetworkError, FeedbackData, SelectedBounds, FeedbackPayload, FeedbackResponse, FeedbackMessagePayload, } from "./types";
 export { captureNetworkErrors } from "./network-capture";
 export type { NetworkCapture } from "./network-capture";
 export { createVideoRecorder, isVideoRecordingSupported, getSupportedMimeType } from "./video-capture";

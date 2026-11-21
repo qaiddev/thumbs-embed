@@ -174,6 +174,41 @@ export interface FeedbackConfig {
      * classic message-box behaviour for every button.
      */
     quests?: QuestsLaunchConfig;
+    /**
+     * Load the project's saved settings (the dashboard's Customize page) from
+     * `GET {endpoint}/config?apiKey=…`, so the snippet only needs the endpoint
+     * and key. Anything set here in the config still wins. The buttons wait
+     * for the answer (at most `remoteTimeoutMs`), then draw. Default: false.
+     */
+    remoteConfig?: boolean;
+    /**
+     * URL of a theme document (`ThumbsThemeDocument` JSON) to fetch and apply:
+     * icons, CSS, button class, colours, size and text. It sits above
+     * `remoteConfig` and below anything set here in the config.
+     */
+    themeUrl?: string;
+    /**
+     * How long to wait for `remoteConfig` / `themeUrl` before drawing with
+     * what is here. Default: 3000.
+     */
+    remoteTimeoutMs?: number;
+}
+/**
+ * A thumbs theme as served by `themeUrl`: the look, nothing that changes
+ * where feedback goes. Unknown keys are ignored.
+ */
+export interface ThumbsThemeDocument {
+    positiveIcon?: string;
+    negativeIcon?: string;
+    css?: string;
+    buttonClass?: string;
+    colors?: {
+        positive?: string;
+        negative?: string;
+        marker?: string;
+    };
+    buttonSize?: "small" | "medium" | "large";
+    text?: FeedbackConfig["text"];
 }
 /**
  * Per-button quest links plus how to reach the quest service.

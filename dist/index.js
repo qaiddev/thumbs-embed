@@ -1,28 +1,28 @@
-const zt = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+const jt = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/>
-</svg>`, jt = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, $t = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.737 3h4.018a2 2 0 01.485.06l3.76.94m-7 10v5a2 2 0 002 2h.095c.5 0 .905-.405.905-.905 0-.714.211-1.412.608-2.006L17 13V4m-7 10h2m5-10h2a2 2 0 012 2v6a2 2 0 01-2 2h-2.5"/>
-</svg>`, ho = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, vo = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/>
-</svg>`, hi = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, Qi = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5m-9 6l3.5-3.5H18a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v14z"/>
-</svg>`, go = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>', fo = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, mo = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>', bo = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <rect x="4" y="6" width="16" height="12" rx="1" stroke-linejoin="round"/>
-</svg>`, wo = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, yo = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M5 19L19 5m0 0h-8m8 0v8"/>
-</svg>`, Qo = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, Eo = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
-</svg>`, Co = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, Ho = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M12 3s6 6.4 6 10a6 6 0 01-12 0c0-3.6 6-10 6-10z"/>
-</svg>`, po = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, Io = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M9 14L4 9l5-5M4 9h11a5 5 0 010 10h-4"/>
-</svg>`, gi = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, Ci = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M20 6L9 17l-5-5"/>
-</svg>`, Uo = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, xo = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v8m0 4h.01"/>
-</svg>`, Fo = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+</svg>`, Lo = `<svg xmlns="http://www.w3.org/2000/svg" class="qaid-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6L6 18"/>
-</svg>`, vo = "http://www.w3.org/2000/svg", fi = {};
+</svg>`, Ko = "http://www.w3.org/2000/svg", pi = {};
 for (const e of [
   "svg",
   "g",
@@ -41,8 +41,8 @@ for (const e of [
   "stop",
   "clipPath"
 ])
-  fi[e.toLowerCase()] = e;
-const wi = {};
+  pi[e.toLowerCase()] = e;
+const Ui = {};
 for (const e of [
   "viewBox",
   "width",
@@ -95,8 +95,8 @@ for (const e of [
   "focusable",
   "role"
 ])
-  wi[e.toLowerCase()] = e;
-const mo = /* @__PURE__ */ new Set(["title", "desc"]), Rr = 5e4, bo = 1e3, yo = {
+  Ui[e.toLowerCase()] = e;
+const So = /* @__PURE__ */ new Set(["title", "desc"]), Vr = 5e4, To = 1e3, Do = {
   lt: "<",
   gt: ">",
   amp: "&",
@@ -104,26 +104,26 @@ const mo = /* @__PURE__ */ new Set(["title", "desc"]), Rr = 5e4, bo = 1e3, yo = 
   apos: "'",
   nbsp: " "
 };
-function qr(e) {
+function Nr(e) {
   return e.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (A, t) => {
     if (t[0] === "#") {
       const r = t[1] === "x" || t[1] === "X" ? parseInt(t.slice(2), 16) : parseInt(t.slice(1), 10);
       return r > 0 && r <= 1114111 ? String.fromCodePoint(r) : "";
     }
-    return yo[t.toLowerCase()] ?? A;
+    return Do[t.toLowerCase()] ?? A;
   });
 }
-const Vr = /url\(\s*(['"]?)#[A-Za-z_][\w.:-]*\1\s*\)/gi;
-function Eo(e, A) {
+const Gr = /url\(\s*(['"]?)#[A-Za-z_][\w.:-]*\1\s*\)/gi;
+function ko(e, A) {
   const t = A.replace(/[\u0000- \u007f-\u009f]+/g, "").toLowerCase();
   if (/(java|vb)script:|data:|expression\(/.test(t)) return !1;
-  const r = A.replace(Vr, "");
-  return /url\(/.test(r.replace(/[\u0000- \u007f-\u009f]+/g, "").toLowerCase()) ? !1 : e === "clip-path" ? /^\s*none\s*$/i.test(A) || new RegExp(`^\\s*${Vr.source}\\s*$`, "i").test(A) : !0;
+  const r = A.replace(Gr, "");
+  return /url\(/.test(r.replace(/[\u0000- \u007f-\u009f]+/g, "").toLowerCase()) ? !1 : e === "clip-path" ? /^\s*none\s*$/i.test(A) || new RegExp(`^\\s*${Gr.source}\\s*$`, "i").test(A) : !0;
 }
-function Nr(e) {
+function Pr(e) {
   if (typeof e != "string" || typeof document > "u") return null;
   const A = e.trim();
-  if (!A || A.length > Rr) return null;
+  if (!A || A.length > Vr) return null;
   let t = null, r = !1, n = 0;
   const i = [];
   let s = 0;
@@ -132,8 +132,8 @@ function Nr(e) {
     const a = A.indexOf("<", s), c = a === -1 ? A.length : a;
     if (c > s) {
       const v = A.slice(s, c), U = o();
-      if (U?.node && mo.has(U.name))
-        U.node.appendChild(document.createTextNode(qr(v)));
+      if (U?.node && So.has(U.name))
+        U.node.appendChild(document.createTextNode(Nr(v)));
       else if (!U && v.trim())
         return null;
     }
@@ -191,14 +191,14 @@ function Nr(e) {
           if (b === -1) return null;
           w = A.slice(s + 1, b), s = b + 1;
         } else {
-          const b = /^[^\s>]+/.exec(A.slice(s, s + Rr));
+          const b = /^[^\s>]+/.exec(A.slice(s, s + Vr));
           if (!b) return null;
           w = b[0], w.endsWith("/") && A[s + w.length] === ">" && (w = w.slice(0, -1)), s += w.length;
         }
       }
-      g.push([F, qr(w)]);
+      g.push([F, Nr(w)]);
     }
-    if (!f || ++n > bo) return null;
+    if (!f || ++n > To) return null;
     const m = o();
     if (m) {
       if (!m.node) {
@@ -206,42 +206,42 @@ function Nr(e) {
         continue;
       }
     } else if (t || d !== "svg") return null;
-    const Q = fi[d];
+    const Q = pi[d];
     if (!Q) {
       u || i.push({ name: d, node: null });
       continue;
     }
-    const h = document.createElementNS(vo, Q);
+    const h = document.createElementNS(Ko, Q);
     for (const [v, U] of g) {
-      const F = wi[v.toLowerCase()];
-      F && Eo(F, U) && h.setAttribute(F, U);
+      const F = Ui[v.toLowerCase()];
+      F && ko(F, U) && h.setAttribute(F, U);
     }
     m ? m.node.appendChild(h) : t = h, u ? m || (r = !0) : i.push({ name: d, node: h });
   }
   return t;
 }
 function MA(e, A) {
-  return (e ? Nr(e) : null) ?? Nr(A);
+  return (e ? Pr(e) : null) ?? Pr(A);
 }
 function DA(e, A, t) {
   e.textContent = "", e.appendChild(MA(A, t));
 }
-const Ho = "button{cursor:pointer}.qaid-buttons{display:flex;gap:.5rem}.qaid-buttons.qaid-vertical{flex-direction:column}.qaid-buttons.qaid-auto-container{position:fixed;z-index:50}.qaid-buttons.qaid-auto-container.qaid-bottom-right{bottom:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-bottom-left{bottom:1rem;left:1rem}.qaid-buttons.qaid-auto-container.qaid-top-right{top:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-top-left{top:1rem;left:1rem}.qaid-buttons.qaid-incognito{opacity:0;transition:opacity .2s ease-in-out}.qaid-buttons.qaid-incognito:hover{opacity:1}.qaid-buttons.qaid-dismissed{display:none!important}.qaid-dismiss-btn{width:20px;height:20px;padding:0;border:none;border-radius:50%;background:#0006;color:#fff;display:flex;align-items:center;justify-content:center;align-self:center;opacity:0;transition:opacity .15s,background .15s;cursor:pointer;pointer-events:auto;-webkit-appearance:none;appearance:none}.qaid-dismiss-btn:hover{background:#0009}.qaid-buttons:hover .qaid-dismiss-btn{opacity:1}button.qaid-btn-structural{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;appearance:none}.qaid-icon{width:24px;height:24px}:where(button.qaid-btn-structural)>svg:where(:not(.qaid-icon):not([width])){width:var(--qaid-icon-size, 24px);height:var(--qaid-icon-size, 24px)}.qaid-btn-structural:not(:has(svg)),.qaid-btn:not(:has(svg)){font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-emoji-icon{font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-buttons,.qaid-buttons *,.qaid-modal-container,.qaid-modal-container *{cursor:pointer!important}.qaid-tooltip-wrapper{position:relative}.qaid-tooltip-text{position:fixed;padding:.5rem .75rem;background:#1f2937;color:#fff;font-size:var(--qaid-font-size, 16px);font-weight:600;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:99999}.qaid-tooltip-text.qaid-tooltip-visible{opacity:1}button.qaid-btn-record:hover{background:#dc2626;color:#fff}button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible{outline:2px solid var(--qaid-marker, #6365f1);outline-offset:2px}.qaid-buttons.qaid-incognito:focus-within{opacity:1}.qaid-buttons:focus-within .qaid-dismiss-btn,.qaid-dismiss-btn:focus-visible{opacity:1}.qaid-dismiss-btn{min-width:24px;min-height:24px}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}@media(forced-colors:active){button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible{outline:2px solid CanvasText;outline-offset:2px}}", Io = "body.qaid-targeting,body.qaid-targeting *{cursor:none!important}";
+const Mo = "button{cursor:pointer}.qaid-buttons{display:flex;gap:.5rem}.qaid-buttons.qaid-vertical{flex-direction:column}.qaid-buttons.qaid-auto-container{position:fixed;z-index:50}.qaid-buttons.qaid-auto-container.qaid-bottom-right{bottom:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-bottom-left{bottom:1rem;left:1rem}.qaid-buttons.qaid-auto-container.qaid-top-right{top:1rem;right:1rem}.qaid-buttons.qaid-auto-container.qaid-top-left{top:1rem;left:1rem}.qaid-buttons.qaid-incognito{opacity:0;transition:opacity .2s ease-in-out}.qaid-buttons.qaid-incognito:hover{opacity:1}.qaid-buttons.qaid-dismissed{display:none!important}.qaid-dismiss-btn{width:20px;height:20px;padding:0;border:none;border-radius:50%;background:#0006;color:#fff;display:flex;align-items:center;justify-content:center;align-self:center;opacity:0;transition:opacity .15s,background .15s;cursor:pointer;pointer-events:auto;-webkit-appearance:none;appearance:none}.qaid-dismiss-btn:hover{background:#0009}.qaid-buttons:hover .qaid-dismiss-btn{opacity:1}button.qaid-btn-structural{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;appearance:none}.qaid-icon{width:24px;height:24px}:where(button.qaid-btn-structural)>svg:where(:not(.qaid-icon):not([width])){width:var(--qaid-icon-size, 24px);height:var(--qaid-icon-size, 24px)}.qaid-btn-structural:not(:has(svg)),.qaid-btn:not(:has(svg)){font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-emoji-icon{font-size:var(--qaid-icon-size, 24px);line-height:1}.qaid-buttons,.qaid-buttons *,.qaid-modal-container,.qaid-modal-container *{cursor:pointer!important}.qaid-tooltip-wrapper{position:relative}.qaid-tooltip-text{position:fixed;padding:.5rem .75rem;background:#1f2937;color:#fff;font-size:var(--qaid-font-size, 16px);font-weight:600;border-radius:.5rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:99999}.qaid-tooltip-text.qaid-tooltip-visible{opacity:1}button.qaid-btn-record:hover{background:#dc2626;color:#fff}button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible{outline:2px solid var(--qaid-marker, #6365f1);outline-offset:2px}.qaid-buttons.qaid-incognito:focus-within{opacity:1}.qaid-buttons:focus-within .qaid-dismiss-btn,.qaid-dismiss-btn:focus-visible{opacity:1}.qaid-dismiss-btn{min-width:24px;min-height:24px}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}@media(forced-colors:active){button:focus-visible,textarea:focus-visible,a:focus-visible,[tabindex]:focus-visible,[role=button]:focus-visible{outline:2px solid CanvasText;outline-offset:2px}}", Oo = "body.qaid-targeting,body.qaid-targeting *{cursor:none!important}";
 let he = 0;
-const xo = "button.qaid-btn{width:var(--qaid-btn-size);height:var(--qaid-btn-size);border-radius:50%;border:none;background:#f3f4f6;color:#374151;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);transition:background-color .2s,color .2s,transform .2s;-webkit-appearance:none;appearance:none;--qaid-hover-up-bg:var(--qaid-positive);--qaid-hover-up-color:#fff;--qaid-hover-down-bg:var(--qaid-negative);--qaid-hover-down-color:#fff}button.qaid-btn:hover{transform:scale(1.05)}button.qaid-btn-up:hover{background:var(--qaid-hover-up-bg);color:var(--qaid-hover-up-color)}button.qaid-btn-down:hover{background:var(--qaid-hover-down-bg);color:var(--qaid-hover-down-color)}button.qaid-btn-feedback:hover{background:var(--qaid-marker,#6365f1);color:var(--qaid-marker-text,#fff)}button.qaid-btn svg{width:var(--qaid-icon-size);height:var(--qaid-icon-size)}", Lo = {
+const Ro = "button.qaid-btn{width:var(--qaid-btn-size);height:var(--qaid-btn-size);border-radius:50%;border:none;background:#f3f4f6;color:#374151;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);transition:background-color .2s,color .2s,transform .2s;-webkit-appearance:none;appearance:none;--qaid-hover-up-bg:var(--qaid-positive);--qaid-hover-up-color:#fff;--qaid-hover-down-bg:var(--qaid-negative);--qaid-hover-down-color:#fff}button.qaid-btn:hover{transform:scale(1.05)}button.qaid-btn-up:hover{background:var(--qaid-hover-up-bg);color:var(--qaid-hover-up-color)}button.qaid-btn-down:hover{background:var(--qaid-hover-down-bg);color:var(--qaid-hover-down-color)}button.qaid-btn-feedback:hover{background:var(--qaid-marker,#6365f1);color:var(--qaid-marker-text,#fff)}button.qaid-btn svg{width:var(--qaid-icon-size);height:var(--qaid-icon-size)}", qo = {
   small: 36,
   medium: 48,
   large: 64
-}, Ko = {
+}, Vo = {
   small: 18,
   medium: 24,
   large: 32
 };
-function So(e, A, t) {
+function No(e, A, t) {
   const [r, n, i] = [e, A, t].map((s) => (s = s / 255, s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4)));
   return 0.2126 * r + 0.7152 * n + 0.0722 * i;
 }
-function To(e) {
+function Go(e) {
   if (e.startsWith("#")) {
     const t = e.slice(1), r = t.length === 3 ? t.split("").map((i) => i + i).join("") : t, n = parseInt(r, 16);
     return {
@@ -257,11 +257,11 @@ function To(e) {
     b: parseInt(A[3])
   } : null;
 }
-function Do(e) {
-  const A = To(e);
-  return A && So(A.r, A.g, A.b) > 0.4 ? "black" : "white";
+function Po(e) {
+  const A = Go(e);
+  return A && No(A.r, A.g, A.b) > 0.4 ? "black" : "white";
 }
-function ko(e = {}) {
+function _o(e = {}) {
   const {
     positiveColor: A = "rgb(0, 200, 83)",
     negativeColor: t = "rgb(255, 0, 0)",
@@ -271,7 +271,7 @@ function ko(e = {}) {
     backdropOpacity: s = 0.3,
     fontFamily: o = "system-ui, -apple-system, sans-serif",
     fontSize: a = 16
-  } = e, c = Lo[n], l = Ko[n], B = Do(r);
+  } = e, c = qo[n], l = Vo[n], B = Po(r);
   return {
     "--qaid-positive": A,
     "--qaid-negative": t,
@@ -285,64 +285,64 @@ function ko(e = {}) {
     "--qaid-font-size": `${a}px`
   };
 }
-function Mo(e, A) {
+function Xo(e, A) {
   for (const [t, r] of Object.entries(A))
     e.style.setProperty(t, r);
 }
-function Gr() {
-  return Ho + xo;
+function _r() {
+  return Mo + Ro;
 }
-function Oo() {
+function Jo() {
   if (he++, he > 1) return;
   const e = document.createElement("style");
-  e.id = "qaid-styles", e.textContent = Io, document.head.appendChild(e);
+  e.id = "qaid-styles", e.textContent = Oo, document.head.appendChild(e);
 }
-function Ro() {
+function Wo() {
   he <= 0 || (he--, he === 0 && document.getElementById("qaid-styles")?.remove());
 }
-const Pr = "data-qaid-a11y-live", qo = "position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;";
-function Vo(e) {
+const Xr = "data-qaid-a11y-live", Yo = "position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;";
+function Zo(e) {
   return e.ownerDocument || document;
 }
-function No(e, A) {
+function zo(e, A) {
   const t = A ? "assertive" : "polite", r = e.querySelector(
-    `[${Pr}="${t}"]`
+    `[${Xr}="${t}"]`
   );
   if (r) return r;
-  const i = Vo(e).createElement("div");
-  return i.setAttribute(Pr, t), i.setAttribute("role", A ? "alert" : "status"), i.setAttribute("aria-live", A ? "assertive" : "polite"), i.setAttribute("aria-atomic", "true"), i.style.cssText = qo, e.appendChild(i), i;
+  const i = Zo(e).createElement("div");
+  return i.setAttribute(Xr, t), i.setAttribute("role", A ? "alert" : "status"), i.setAttribute("aria-live", A ? "assertive" : "polite"), i.setAttribute("aria-atomic", "true"), i.style.cssText = Yo, e.appendChild(i), i;
 }
-function Go(e, A, t = {}) {
-  const r = No(e, !!t.assertive);
+function jo(e, A, t = {}) {
+  const r = zo(e, !!t.assertive);
   r.textContent = "", r.textContent = A;
 }
-function Po(e, A, t, r = {}) {
+function $o(e, A, t, r = {}) {
   const n = r.gap ?? 8;
   let i = e.bottom + n;
   i + A.height > t.height - n && (i = e.top - A.height - n);
   let s = e.left;
   return s < n ? s = n : s + A.width > t.width - n && (s = t.width - A.width - n), i < n ? i = n : i + A.height > t.height - n && (i = t.height - A.height - n), { top: i, left: s };
 }
-const lA = "[redacted]", _r = 1e3, Et = /login|log-in|signin|sign-in|signup|sign-up|auth|token|password|passwd|session|oauth|2fa|mfa|credential/i, _o = /token|key|secret|pass(word|wd)?|pwd|code|sess|auth|sig|otp|jwt|credential|ticket|nonce|state/i, Xr = "(?:password|passwd|pwd|pass|secret|token|access_token|refresh_token|id_token|api[_-]?key|apikey|client_secret|private[_-]?key|session(?:id)?|auth(?:orization)?|cookie|set-cookie|otp|pin|cvv|cvc|ssn)", Xo = [
+const lA = "[redacted]", Jr = 1e3, Ht = /login|log-in|signin|sign-in|signup|sign-up|auth|token|password|passwd|session|oauth|2fa|mfa|credential/i, Aa = /token|key|secret|pass(word|wd)?|pwd|code|sess|auth|sig|otp|jwt|credential|ticket|nonce|state/i, Wr = "(?:password|passwd|pwd|pass|secret|token|access_token|refresh_token|id_token|api[_-]?key|apikey|client_secret|private[_-]?key|session(?:id)?|auth(?:orization)?|cookie|set-cookie|otp|pin|cvv|cvc|ssn)", ea = [
   // Authorization header values.
   [/\b(Bearer|Basic|Token|Digest)\s+[A-Za-z0-9._~+/=-]{8,}/gi, (e, A) => `${A} ${lA}`],
   // JWTs (header.payload[.signature]).
   [/\beyJ[A-Za-z0-9_-]{5,}\.[A-Za-z0-9_-]{5,}(?:\.[A-Za-z0-9_-]*)?/g, lA],
   // "password": "x"  /  'token': 'x'  (JSON and JS object text).
   [
-    new RegExp(`(["']?${Xr}["']?\\s*:\\s*)(["'])(?:\\\\.|(?!\\2).)*\\2`, "gi"),
+    new RegExp(`(["']?${Wr}["']?\\s*:\\s*)(["'])(?:\\\\.|(?!\\2).)*\\2`, "gi"),
     (e, A, t) => `${A}${t}${lA}${t}`
   ],
   // password=x  /  token: x  (query strings, form bodies, log lines).
   [
     // The value is not a quote (the rule above) and not an auth scheme
     // (the Bearer rule already kept the scheme and cut the credential).
-    new RegExp(`(\\b${Xr}\\s*[=:]\\s*)(?!["'\\s]|(?:Bearer|Basic|Token|Digest)\\s|\\[redacted\\])[^\\s&;,"'}]+`, "gi"),
+    new RegExp(`(\\b${Wr}\\s*[=:]\\s*)(?!["'\\s]|(?:Bearer|Basic|Token|Digest)\\s|\\[redacted\\])[^\\s&;,"'}]+`, "gi"),
     (e, A) => `${A}${lA}`
   ],
   // Card-number-like runs: 13 to 19 digits, optionally grouped by spaces or
   // dashes, that pass the Luhn check (so a Date.now() stays readable).
-  [/\b\d(?:[ -]?\d){12,18}\b/g, (e) => Jo(e.replace(/\D/g, "")) ? lA : e],
+  [/\b\d(?:[ -]?\d){12,18}\b/g, (e) => ta(e.replace(/\D/g, "")) ? lA : e],
   // Long hex strings (API keys, hashes, session ids).
   [/\b[A-Fa-f0-9]{32,}\b/g, lA],
   // Long base64 / base64url / prefixed keys (sk_live_…, ghp_…): 32+
@@ -350,7 +350,7 @@ const lA = "[redacted]", _r = 1e3, Et = /login|log-in|signin|sign-in|signup|sign
   // a script path in a stack trace stays readable.
   [/[A-Za-z0-9_+-]{32,}={0,2}/g, (e) => /\d/.test(e) && /[a-z]/.test(e) && /[A-Z]/.test(e) ? lA : e]
 ];
-function Jo(e) {
+function ta(e) {
   let A = 0;
   for (let t = 0; t < e.length; t++) {
     let r = Number(e[e.length - 1 - t]);
@@ -358,61 +358,61 @@ function Jo(e) {
   }
   return A % 10 === 0;
 }
-function mr(e) {
+function br(e) {
   let A = e;
-  for (const [t, r] of Xo)
+  for (const [t, r] of ea)
     A = A.replace(t, r);
   return A;
 }
-function Wo(e, A) {
+function ra(e, A) {
   return e.length > A ? `${e.slice(0, A)}…[truncated]` : e;
 }
-function Yo(e) {
-  return Wo(mr(e.slice(0, _r * 2)), _r);
+function na(e) {
+  return ra(br(e.slice(0, Jr * 2)), Jr);
 }
-function Jr(e) {
+function Yr(e) {
   let A = !1;
   for (const t of Array.from(new Set(e.keys())))
-    _o.test(t) && (e.set(t, lA), A = !0);
+    Aa.test(t) && (e.set(t, lA), A = !0);
   return A;
 }
-function Wr(e) {
+function Zr(e) {
   let A;
   const t = "https://qaid.invalid";
   try {
     A = new URL(e, t);
   } catch {
-    return mr(e);
+    return br(e);
   }
-  if (A.username = "", A.password = "", Jr(A.searchParams) && (A.search = A.search.replace(/%5Bredacted%5D/g, lA)), A.hash.includes("=")) {
+  if (A.username = "", A.password = "", Yr(A.searchParams) && (A.search = A.search.replace(/%5Bredacted%5D/g, lA)), A.hash.includes("=")) {
     const i = new URLSearchParams(A.hash.slice(1));
-    Jr(i) && (A.hash = i.toString().replace(/%5Bredacted%5D/g, lA));
+    Yr(i) && (A.hash = i.toString().replace(/%5Bredacted%5D/g, lA));
   }
   const r = A.href;
   return !/^[a-z][a-z0-9+.-]*:/i.test(e) && !e.startsWith("//") && r.startsWith(t) ? r.slice(t.length) : r;
 }
-function Zo(e) {
+function ia(e) {
   try {
     const A = new URL(e, "https://qaid.invalid");
-    return Et.test(A.hostname) || Et.test(A.pathname);
+    return Ht.test(A.hostname) || Ht.test(A.pathname);
   } catch {
-    return Et.test(e);
+    return Ht.test(e);
   }
 }
-function Yr(e, A, t) {
+function zr(e, A, t) {
   if (t !== void 0)
-    return A === 401 || A === 403 || Zo(e) ? lA : mr(t);
+    return A === 401 || A === 403 || ia(e) ? lA : br(t);
 }
-const zo = 20;
-function jo(e) {
+const sa = 20;
+function oa(e) {
   const A = [], t = console.error, r = console.warn, n = console.log, i = (s, o) => {
     const a = {
       // Sent with the report: secrets replaced, length capped (see redact.ts).
-      message: Yo(o.map((c) => String(c)).join(" ")),
+      message: na(o.map((c) => String(c)).join(" ")),
       timestamp: Date.now(),
       level: s
     };
-    A.length >= zo && A.shift(), A.push(a), e && e(a);
+    A.length >= sa && A.shift(), A.push(a), e && e(a);
   };
   return console.error = function(...s) {
     i("error", s), t.apply(console, s);
@@ -437,10 +437,10 @@ function AA(e, A, t) {
       typeof n == "string" ? r.appendChild(document.createTextNode(n)) : r.appendChild(n);
   return r;
 }
-function $o(e = 640) {
+function aa(e = 640) {
   return typeof window < "u" && window.innerWidth < e;
 }
-function Zr(e, A, t) {
+function jr(e, A, t) {
   const r = t.map((i) => i.style.visibility);
   t.forEach((i) => i.style.visibility = "hidden");
   const n = document.elementFromPoint(e, A);
@@ -449,7 +449,7 @@ function Zr(e, A, t) {
 function Ye(e) {
   return e ? e.hasAttribute("data-qaid-embed") || e.hasAttribute("data-qaid-embed-overlay") ? !0 : !!e.closest("[data-qaid-embed], [data-qaid-embed-overlay]") : !1;
 }
-function zr(e, A = 0) {
+function $r(e, A = 0) {
   const t = e.getBoundingClientRect();
   return {
     x: t.left - A,
@@ -458,22 +458,160 @@ function zr(e, A = 0) {
     height: t.height + A * 2
   };
 }
-const Aa = "1.12.1", jA = `https://unpkg.com/@qaiddev/quests-embed@${Aa}/dist/qaid-quests.js`, ea = "sha384-ulTEyFqoUl1HNdNL8rFOB/mSItoy12PPegqJJIspDm0WtPK4/2jl3bRVrHoEtrm1", ta = /^https:\/\/unpkg\.com\/@qaiddev\/quests-embed@\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?\//;
-let jr = !1;
-function ra(e) {
+const ca = "1.12.1", jA = `https://unpkg.com/@qaiddev/quests-embed@${ca}/dist/qaid-quests.js`, la = "sha384-ulTEyFqoUl1HNdNL8rFOB/mSItoy12PPegqJJIspDm0WtPK4/2jl3bRVrHoEtrm1", Ba = /^https:\/\/unpkg\.com\/@qaiddev\/quests-embed@\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?\//;
+let An = !1;
+function da(e) {
   if (!e) return jA;
   if (e === jA) return e;
   try {
     const A = typeof location < "u" ? location.href : void 0, t = new URL(e, A);
-    if (ta.test(t.href) && !/%2e|%2f|%5c/i.test(t.pathname) || A && t.origin === new URL(A).origin && (t.protocol === "https:" || t.protocol === "http:"))
+    if (Ba.test(t.href) && !/%2e|%2f|%5c/i.test(t.pathname) || A && t.origin === new URL(A).origin && (t.protocol === "https:" || t.protocol === "http:"))
       return t.href;
   } catch {
   }
-  return jr || (jr = !0, console.warn(
+  return An || (An = !0, console.warn(
     `[thumbs-embed] Ignoring quests moduleUrl "${e}": use a same-origin URL or https://unpkg.com/@qaiddev/quests-embed@<exact version>/…. Using ${jA}.`
   )), jA;
 }
-const $r = "qaid_visitor_id", An = "qaid_hide_feedback", na = [
+const ua = 3e3, ha = {
+  buttonClass: "string",
+  direction: ["horizontal", "vertical"],
+  position: ["bottom-right", "bottom-left", "top-right", "top-left"],
+  zIndex: "number",
+  skipTargeting: "boolean",
+  singleButton: "boolean",
+  feedbackMode: ["target", "annotate"],
+  buttonSize: ["small", "medium", "large"],
+  hideConfirmation: "boolean",
+  modalWidth: "number",
+  backdropOpacity: "number",
+  fontFamily: "string",
+  fontSize: "number",
+  captureScreenshot: "boolean",
+  annotate: "boolean",
+  annotationColor: "string",
+  captureVideo: "boolean",
+  recordIcon: "string",
+  incognito: "boolean",
+  hideDismiss: "boolean",
+  positiveIcon: "string",
+  negativeIcon: "string",
+  feedbackIcon: "string",
+  hideThumbs: "boolean",
+  css: "string",
+  screenshotMethod: ["dom", "permission"]
+}, Fi = {
+  offset: { x: "number", y: "number" },
+  colors: { positive: "string", negative: "string", marker: "string" },
+  text: "strings",
+  videoOptions: { maxDuration: "number", redaction: "boolean" },
+  screenshotOptions: { quality: "number", maxWidth: "number", maxHeight: "number" },
+  quests: { base: "string", up: "string", down: "string", video: "string" }
+}, ga = /* @__PURE__ */ new Set([
+  "positiveIcon",
+  "negativeIcon",
+  "css",
+  "buttonClass",
+  "colors",
+  "buttonSize",
+  "text"
+]), rt = (e) => typeof e == "object" && e !== null && !Array.isArray(e);
+function vi(e, A) {
+  return Array.isArray(A) ? typeof e == "string" && A.includes(e) : A === "number" ? typeof e == "number" && Number.isFinite(e) : typeof e === A;
+}
+function fa(e, A) {
+  if (!rt(e)) return;
+  const t = {};
+  for (const [r, n] of Object.entries(e))
+    (A === "strings" ? typeof n == "string" : r in A && vi(n, A[r])) && (t[r] = n);
+  return Object.keys(t).length > 0 ? t : void 0;
+}
+function wa(e, A) {
+  try {
+    const t = typeof location < "u" ? location.href : void 0;
+    return new URL(e, t).origin === new URL(A, t).origin;
+  } catch {
+    return !1;
+  }
+}
+function mi(e, A) {
+  if (!rt(e)) return {};
+  const t = {};
+  for (const [i, s] of Object.entries(ha))
+    vi(e[i], s) && (t[i] = e[i]);
+  for (const [i, s] of Object.entries(Fi)) {
+    const o = fa(e[i], s);
+    o && (t[i] = o);
+  }
+  const r = e.annotationPalette;
+  Array.isArray(r) && r.length > 0 && r.every((i) => typeof i == "string" && i.trim()) && (t.annotationPalette = r);
+  const n = t.quests;
+  return n?.base && !wa(n.base, A) && (console.warn("[thumbs-embed] Ignoring a fetched quest base on another origin than the endpoint."), delete t.quests), t;
+}
+function Qa(e, A) {
+  const t = mi(e, A);
+  return Object.fromEntries(Object.entries(t).filter(([r]) => ga.has(r)));
+}
+function Ca(...e) {
+  const A = {};
+  for (const t of e)
+    if (t) {
+      for (const [r, n] of Object.entries(t))
+        if (n !== void 0)
+          if (r in Fi && rt(n)) {
+            const s = { ...rt(A[r]) ? A[r] : {} };
+            for (const [o, a] of Object.entries(n)) a !== void 0 && (s[o] = a);
+            A[r] = s;
+          } else
+            A[r] = n;
+    }
+  return A;
+}
+function pa(e, A) {
+  return `${e.replace(/\/+$/, "")}/config?apiKey=${encodeURIComponent(A)}`;
+}
+async function en(e, A, t) {
+  const r = typeof AbortController < "u" ? new AbortController() : null;
+  let n;
+  const i = new Promise((s, o) => {
+    n = setTimeout(() => {
+      r?.abort(), o(new Error(`timed out after ${A} ms`));
+    }, A);
+  });
+  try {
+    const s = await Promise.race([
+      fetch(e, {
+        headers: { Accept: "application/json" },
+        credentials: "omit",
+        signal: r?.signal
+      }),
+      i
+    ]);
+    return s.ok ? await s.json() : (console.warn(`[thumbs-embed] ${t} fetch failed (${s.status}); drawing without it.`), null);
+  } catch (s) {
+    return console.warn(`[thumbs-embed] ${t} fetch error; drawing without it.`, s), null;
+  } finally {
+    clearTimeout(n);
+  }
+}
+function Ua(e) {
+  return e.remoteConfig === !0 || !!e.themeUrl;
+}
+async function Fa(e) {
+  const A = e.remoteTimeoutMs ?? ua;
+  let t = null;
+  e.remoteConfig && (e.apiKey ? t = pa(e.endpoint, e.apiKey) : console.warn("[thumbs-embed] remoteConfig needs an apiKey; drawing without it."));
+  const [r, n] = await Promise.all([
+    t ? en(t, A, "Project config") : null,
+    e.themeUrl ? en(e.themeUrl, A, "Theme") : null
+  ]);
+  return Ca(
+    r ? mi(r, e.endpoint) : null,
+    n ? Qa(n, e.endpoint) : null,
+    e
+  );
+}
+const tn = "qaid_visitor_id", rn = "qaid_hide_feedback", va = [
   "#ef4444",
   "#f59e0b",
   "#22c55e",
@@ -481,26 +619,26 @@ const $r = "qaid_visitor_id", An = "qaid_hide_feedback", na = [
   "#111827",
   "#ffffff"
 ];
-function ia() {
+function ma() {
   return typeof window.matchMedia == "function" && window.matchMedia("(pointer: coarse)").matches;
 }
-function $t(e) {
-  return e ? `${An}_${e}` : An;
+function Ar(e) {
+  return e ? `${rn}_${e}` : rn;
 }
-function sa(e) {
+function ba(e) {
   try {
-    return localStorage.getItem($t(e)) === "1";
+    return localStorage.getItem(Ar(e)) === "1";
   } catch {
     return !1;
   }
 }
-function en(e, A = !0) {
+function nn(e, A = !0) {
   try {
-    A ? localStorage.setItem($t(e), "1") : localStorage.removeItem($t(e));
+    A ? localStorage.setItem(Ar(e), "1") : localStorage.removeItem(Ar(e));
   } catch {
   }
 }
-function tn() {
+function sn() {
   const e = typeof crypto < "u" ? crypto : void 0;
   if (e && typeof e.randomUUID == "function") return e.randomUUID();
   const A = new Uint8Array(16);
@@ -512,21 +650,100 @@ function tn() {
   const t = Array.from(A, (r) => r.toString(16).padStart(2, "0")).join("");
   return `${t.slice(0, 8)}-${t.slice(8, 12)}-${t.slice(12, 16)}-${t.slice(16, 20)}-${t.slice(20)}`;
 }
-function oa() {
+function ya() {
   try {
-    let e = localStorage.getItem($r);
-    return e || (e = tn(), localStorage.setItem($r, e)), e;
+    let e = localStorage.getItem(tn);
+    return e || (e = sn(), localStorage.setItem(tn, e)), e;
   } catch {
-    return tn();
+    return sn();
   }
 }
-function rn(e, A) {
+function on(e, A) {
   const t = document.createElement("style");
   t.setAttribute("data-qaid-feature", ""), t.textContent = A;
   const r = e.querySelectorAll("style[data-qaid-base], style[data-qaid-feature]"), n = r[r.length - 1];
   e.insertBefore(t, n ? n.nextSibling : e.firstChild);
 }
-class aa {
+function an(e) {
+  return {
+    endpoint: e.endpoint,
+    apiKey: e.apiKey ?? "",
+    container: e.container ?? "",
+    buttonClass: e.buttonClass ?? "",
+    direction: e.direction ?? "horizontal",
+    position: e.position ?? "bottom-right",
+    offset: {
+      x: e.offset?.x ?? 16,
+      y: e.offset?.y ?? 16
+    },
+    zIndex: e.zIndex ?? 50,
+    skipTargeting: e.skipTargeting ?? !1,
+    singleButton: e.singleButton ?? !1,
+    feedbackMode: e.feedbackMode ?? "target",
+    colors: {
+      positive: e.colors?.positive ?? "rgb(0, 200, 83)",
+      negative: e.colors?.negative ?? "rgb(255, 0, 0)",
+      marker: e.colors?.marker ?? "#6365f1"
+    },
+    buttonSize: e.buttonSize ?? "medium",
+    text: {
+      tooltip: e.text?.tooltip ?? "",
+      modalTitle: e.text?.modalTitle ?? "Thank you for your feedback!",
+      modalSubtitle: e.text?.modalSubtitle ?? "Would you like to add a message to help us understand your feedback better?",
+      placeholder: e.text?.placeholder ?? "Optional: Tell us more about your experience...",
+      submitButton: e.text?.submitButton ?? "Submit",
+      skipButton: e.text?.skipButton ?? "Skip",
+      positiveLabel: e.text?.positiveLabel ?? "Send positive feedback",
+      negativeLabel: e.text?.negativeLabel ?? "Send negative feedback",
+      recordLabel: e.text?.recordLabel ?? "Record a screen recording",
+      dismissLabel: e.text?.dismissLabel ?? "Hide Feedback",
+      feedbackLabel: e.text?.feedbackLabel ?? "Send feedback",
+      confirmationTitle: e.text?.confirmationTitle ?? "Thank you!",
+      confirmationMessage: e.text?.confirmationMessage ?? "Your feedback has been received.",
+      confirmationClose: e.text?.confirmationClose ?? "Close",
+      errorTitle: e.text?.errorTitle ?? "Message not sent",
+      errorMessage: e.text?.errorMessage ?? "Something went wrong, so we did not get your message. Please try again later."
+    },
+    hideConfirmation: e.hideConfirmation ?? !1,
+    modalWidth: e.modalWidth ?? 400,
+    backdropOpacity: e.backdropOpacity ?? 0.3,
+    fontFamily: e.fontFamily ?? "system-ui, -apple-system, sans-serif",
+    fontSize: e.fontSize ?? 16,
+    captureScreenshot: e.captureScreenshot ?? !1,
+    annotate: e.annotate ?? !0,
+    annotationColor: e.annotationColor ?? e.colors?.marker ?? "#6365f1",
+    annotationPalette: e.annotationPalette ?? va,
+    screenshotMethod: e.screenshotMethod ?? "permission",
+    screenshotOptions: {
+      quality: e.screenshotOptions?.quality ?? 0.8,
+      maxWidth: e.screenshotOptions?.maxWidth ?? 1280,
+      maxHeight: e.screenshotOptions?.maxHeight ?? 800
+    },
+    incognito: e.incognito ?? !1,
+    hideDismiss: e.hideDismiss ?? !1,
+    positiveIcon: e.positiveIcon ?? "",
+    negativeIcon: e.negativeIcon ?? "",
+    feedbackIcon: e.feedbackIcon ?? "",
+    hideThumbs: e.hideThumbs ?? !1,
+    css: e.css ?? "",
+    captureVideo: e.captureVideo ?? !1,
+    videoOptions: {
+      maxDuration: e.videoOptions?.maxDuration ?? 15,
+      redaction: e.videoOptions?.redaction ?? !1
+    },
+    recordIcon: e.recordIcon ?? "",
+    quests: {
+      base: e.quests?.base ?? "",
+      up: e.quests?.up ?? "",
+      down: e.quests?.down ?? "",
+      video: e.quests?.video ?? "",
+      // Quest service reuses the feedback API key unless overridden.
+      apiKey: e.quests?.apiKey ?? e.apiKey ?? "",
+      moduleUrl: da(e.quests?.moduleUrl)
+    }
+  };
+}
+class Ea {
   config;
   state = "IDLE";
   feedbackData = {
@@ -601,89 +818,22 @@ class aa {
   _startDismissed = !1;
   // DOM persistence (survives framework client-side navigation)
   destroyed = !1;
+  /**
+   * Resolves once the buttons are drawn. Immediate unless the config asks for
+   * fetched settings (`remoteConfig`, `themeUrl`); never rejects.
+   */
+  ready = Promise.resolve();
+  /** False while fetched settings are pending: nothing is drawn yet. */
+  initialized = !1;
   domObserver = null;
   boundBeforeSwap = null;
   constructor(A) {
-    this.config = {
-      endpoint: A.endpoint,
-      apiKey: A.apiKey ?? "",
-      container: A.container ?? "",
-      buttonClass: A.buttonClass ?? "",
-      direction: A.direction ?? "horizontal",
-      position: A.position ?? "bottom-right",
-      offset: {
-        x: A.offset?.x ?? 16,
-        y: A.offset?.y ?? 16
-      },
-      zIndex: A.zIndex ?? 50,
-      skipTargeting: A.skipTargeting ?? !1,
-      singleButton: A.singleButton ?? !1,
-      feedbackMode: A.feedbackMode ?? "target",
-      colors: {
-        positive: A.colors?.positive ?? "rgb(0, 200, 83)",
-        negative: A.colors?.negative ?? "rgb(255, 0, 0)",
-        marker: A.colors?.marker ?? "#6365f1"
-      },
-      buttonSize: A.buttonSize ?? "medium",
-      text: {
-        tooltip: A.text?.tooltip ?? "",
-        modalTitle: A.text?.modalTitle ?? "Thank you for your feedback!",
-        modalSubtitle: A.text?.modalSubtitle ?? "Would you like to add a message to help us understand your feedback better?",
-        placeholder: A.text?.placeholder ?? "Optional: Tell us more about your experience...",
-        submitButton: A.text?.submitButton ?? "Submit",
-        skipButton: A.text?.skipButton ?? "Skip",
-        positiveLabel: A.text?.positiveLabel ?? "Send positive feedback",
-        negativeLabel: A.text?.negativeLabel ?? "Send negative feedback",
-        recordLabel: A.text?.recordLabel ?? "Record a screen recording",
-        dismissLabel: A.text?.dismissLabel ?? "Hide Feedback",
-        feedbackLabel: A.text?.feedbackLabel ?? "Send feedback",
-        confirmationTitle: A.text?.confirmationTitle ?? "Thank you!",
-        confirmationMessage: A.text?.confirmationMessage ?? "Your feedback has been received.",
-        confirmationClose: A.text?.confirmationClose ?? "Close",
-        errorTitle: A.text?.errorTitle ?? "Message not sent",
-        errorMessage: A.text?.errorMessage ?? "Something went wrong, so we did not get your message. Please try again later."
-      },
-      hideConfirmation: A.hideConfirmation ?? !1,
-      modalWidth: A.modalWidth ?? 400,
-      backdropOpacity: A.backdropOpacity ?? 0.3,
-      fontFamily: A.fontFamily ?? "system-ui, -apple-system, sans-serif",
-      fontSize: A.fontSize ?? 16,
-      captureScreenshot: A.captureScreenshot ?? !1,
-      annotate: A.annotate ?? !0,
-      annotationColor: A.annotationColor ?? A.colors?.marker ?? "#6365f1",
-      annotationPalette: A.annotationPalette ?? na,
-      screenshotMethod: A.screenshotMethod ?? "permission",
-      screenshotOptions: {
-        quality: A.screenshotOptions?.quality ?? 0.8,
-        maxWidth: A.screenshotOptions?.maxWidth ?? 1280,
-        maxHeight: A.screenshotOptions?.maxHeight ?? 800
-      },
-      incognito: A.incognito ?? !1,
-      hideDismiss: A.hideDismiss ?? !1,
-      positiveIcon: A.positiveIcon ?? "",
-      negativeIcon: A.negativeIcon ?? "",
-      feedbackIcon: A.feedbackIcon ?? "",
-      hideThumbs: A.hideThumbs ?? !1,
-      css: A.css ?? "",
-      captureVideo: A.captureVideo ?? !1,
-      videoOptions: {
-        maxDuration: A.videoOptions?.maxDuration ?? 15,
-        redaction: A.videoOptions?.redaction ?? !1
-      },
-      recordIcon: A.recordIcon ?? "",
-      quests: {
-        base: A.quests?.base ?? "",
-        up: A.quests?.up ?? "",
-        down: A.quests?.down ?? "",
-        video: A.quests?.video ?? "",
-        // Quest service reuses the feedback API key unless overridden.
-        apiKey: A.quests?.apiKey ?? A.apiKey ?? "",
-        moduleUrl: ra(A.quests?.moduleUrl)
-      }
-    }, this.boundKeyDown = this.handleKeyDown.bind(this), this.boundResize = this.handleResize.bind(this), this.visitorId = oa(), this.init();
+    this.config = an(A), this.boundKeyDown = this.handleKeyDown.bind(this), this.boundResize = this.handleResize.bind(this), this.visitorId = ya(), Ua(A) ? this.ready = Fa(A).then((t) => {
+      this.destroyed || (this.config = an(t), this.init());
+    }) : this.init();
   }
   applyVars(A) {
-    Mo(A, this.cssVars);
+    Xo(A, this.cssVars);
   }
   /**
    * Announce a message via the shared visually-hidden live regions.
@@ -693,11 +843,11 @@ class aa {
    */
   announceMsg(A, t = !1) {
     const r = this.overlayShadowRoot ?? this.shadowRoot;
-    r && Go(r, A, { assertive: t });
+    r && jo(r, A, { assertive: t });
   }
   /** Load the dialog a11y helpers; every surface that opens a dialog awaits this first. */
   async loadDialogA11y() {
-    this.dialogModule ??= await Promise.resolve().then(() => ln);
+    this.dialogModule ??= await Promise.resolve().then(() => hn);
   }
   /**
    * Turn a transient surface into an accessible modal dialog: save the
@@ -706,7 +856,7 @@ class aa {
    * reach it only after loadDialogA11y() has resolved.
    */
   openDialogA11y(A, t) {
-    this.dialogClose = this.dialogModule.openDialog(A, t);
+    this.closeDialogA11y(), this.dialogClose = this.dialogModule.openDialog(A, t);
   }
   closeDialogA11y() {
     const A = this.dialogClose;
@@ -716,7 +866,7 @@ class aa {
     this.activeThumbBtn && (this.activeThumbBtn.setAttribute("aria-pressed", "false"), this.activeThumbBtn = null);
   }
   init() {
-    Oo(), this.cssVars = ko({
+    this.initialized = !0, Jo(), this.cssVars = _o({
       positiveColor: this.config.colors.positive,
       negativeColor: this.config.colors.negative,
       markerColor: this.config.colors.marker,
@@ -725,7 +875,7 @@ class aa {
       backdropOpacity: this.config.backdropOpacity,
       fontFamily: this.config.fontFamily,
       fontSize: this.config.fontSize
-    }), !this.config.hideDismiss && sa(this.config.apiKey) && (this._startDismissed = !0), this.checkMobile(), window.addEventListener("resize", this.boundResize), this.createEmbed(), this.consoleCapture = jo((A) => {
+    }), !this.config.hideDismiss && ba(this.config.apiKey) && (this._startDismissed = !0), this.checkMobile(), window.addEventListener("resize", this.boundResize), this.createEmbed(), this.consoleCapture = oa((A) => {
       this.feedbackData.consoleErrors = this.consoleCapture?.errors ?? [];
     }), this.feedbackData.consoleErrors = this.consoleCapture.errors, this.observeDom(), this.schedulePrewarm(() => {
       this.prewarmClickPath(), this.config.captureVideo && this.videoSupported() && this.prewarmVideo(), this.config.captureScreenshot && this.prewarmScreenshot(), this.prewarmQuests();
@@ -737,10 +887,10 @@ class aa {
    * first of: pointer or focus entering the buttons, or the idle callback.
    */
   prewarmClickPath() {
-    this.clickPathPrewarmed || (this.clickPathPrewarmed = !0, Promise.resolve().then(() => Ht).catch(() => {
-    }), Promise.resolve().then(() => ln).catch(() => {
-    }), Promise.resolve().then(() => dn).catch(() => {
-    }), this.skipsTargeting() || Promise.resolve().then(() => un).catch(() => {
+    this.clickPathPrewarmed || (this.clickPathPrewarmed = !0, Promise.resolve().then(() => It).catch(() => {
+    }), Promise.resolve().then(() => hn).catch(() => {
+    }), Promise.resolve().then(() => fn).catch(() => {
+    }), this.skipsTargeting() || Promise.resolve().then(() => wn).catch(() => {
     }));
   }
   /** "annotate" mode and skipTargeting both go straight to the send flow. */
@@ -754,13 +904,13 @@ class aa {
    * swallowed — a failed preload just falls back to an on-demand load.
    */
   prewarmVideo() {
-    this.videoPrewarmed || (this.videoPrewarmed = !0, Promise.resolve().then(() => hn).catch(() => {
-    }), Promise.resolve().then(() => yi).catch(() => {
+    this.videoPrewarmed || (this.videoPrewarmed = !0, Promise.resolve().then(() => Qn).catch(() => {
+    }), Promise.resolve().then(() => Si).catch(() => {
     }));
   }
   prewarmScreenshot() {
-    this.screenshotPrewarmed || (this.screenshotPrewarmed = !0, (this.shouldCaptureViaDom() ? Promise.resolve().then(() => Ii) : Promise.resolve().then(() => zi)).catch(() => {
-    }), this.config.annotate && Promise.resolve().then(() => Si).catch(() => {
+    this.screenshotPrewarmed || (this.screenshotPrewarmed = !0, (this.shouldCaptureViaDom() ? Promise.resolve().then(() => ki) : Promise.resolve().then(() => ns)).catch(() => {
+    }), this.config.annotate && Promise.resolve().then(() => qi).catch(() => {
     }));
   }
   /** Quest ids linked to any button, when quest launching is on. */
@@ -779,7 +929,7 @@ class aa {
     if (A.length === 0) return;
     this.questsPrewarmed = !0;
     const { base: t, moduleUrl: r } = this.config.quests;
-    Promise.resolve().then(() => ic).then((n) => {
+    Promise.resolve().then(() => mc).then((n) => {
       n.loadQuestsModule(r).catch(() => {
       });
       for (const i of A) n.prefetchQuestDefinition(n.questDefinitionUrl(t, i));
@@ -812,7 +962,7 @@ class aa {
     }), this.domObserver.observe(document.body, { childList: !0 });
   }
   checkMobile() {
-    this.isMobile = $o();
+    this.isMobile = aa();
   }
   handleResize() {
     this.checkMobile();
@@ -822,7 +972,7 @@ class aa {
     let A = null;
     this.config.container && (A = document.querySelector(this.config.container)), A ? (A.appendChild(this.shadowHost), this.isUserProvidedContainer = !0, this.config.hideDismiss = !0) : (this.shadowHost.style.position = "fixed", this.shadowHost.style.display = "block", this.shadowHost.style.inset = "0", this.shadowHost.style.pointerEvents = "none", this.shadowHost.style.zIndex = String(this.config.zIndex), document.body.appendChild(this.shadowHost)), this.shadowRoot = this.shadowHost.attachShadow({ mode: "open" });
     const t = document.createElement("style");
-    if (t.setAttribute("data-qaid-base", ""), t.textContent = Gr(), this.shadowRoot.appendChild(t), this.config.css) {
+    if (t.setAttribute("data-qaid-base", ""), t.textContent = _r(), this.shadowRoot.appendChild(t), this.config.css) {
       const l = document.createElement("style");
       l.textContent = this.config.css, this.shadowRoot.appendChild(l);
     }
@@ -848,18 +998,18 @@ class aa {
       const l = document.createElement("div");
       l.className = "qaid-tooltip-wrapper";
       const B = document.createElement("button");
-      B.type = "button", B.className = i ? `${s} qaid-btn-feedback` : "qaid-btn qaid-btn-feedback", B.setAttribute("aria-label", this.config.text.feedbackLabel), DA(B, this.config.feedbackIcon, hi), B.addEventListener("click", (d) => this.handleThumbClick("neutral", d.currentTarget, d)), B.addEventListener("mouseenter", () => this.showTooltip(B)), B.addEventListener("mouseleave", () => this.hideTooltip()), l.appendChild(B), this.buttonsContainer.appendChild(l);
+      B.type = "button", B.className = i ? `${s} qaid-btn-feedback` : "qaid-btn qaid-btn-feedback", B.setAttribute("aria-label", this.config.text.feedbackLabel), DA(B, this.config.feedbackIcon, Qi), B.addEventListener("click", (d) => this.handleThumbClick("neutral", d.currentTarget, d)), B.addEventListener("mouseenter", () => this.showTooltip(B)), B.addEventListener("mouseleave", () => this.hideTooltip()), l.appendChild(B), this.buttonsContainer.appendChild(l);
     } else if (!this.config.hideThumbs) {
       const l = document.createElement("div");
       l.className = "qaid-tooltip-wrapper";
       const B = document.createElement("button");
-      B.type = "button", B.className = i ? `${s} qaid-btn-up` : "qaid-btn qaid-btn-up", B.setAttribute("aria-label", this.config.text.positiveLabel), DA(B, this.config.positiveIcon, zt), B.addEventListener("click", (u) => this.handleThumbClick("up", u.currentTarget, u)), B.addEventListener("mouseenter", () => {
+      B.type = "button", B.className = i ? `${s} qaid-btn-up` : "qaid-btn qaid-btn-up", B.setAttribute("aria-label", this.config.text.positiveLabel), DA(B, this.config.positiveIcon, jt), B.addEventListener("click", (u) => this.handleThumbClick("up", u.currentTarget, u)), B.addEventListener("mouseenter", () => {
         this.prewarmQuests(), this.showTooltip(B);
       }), B.addEventListener("mouseleave", () => this.hideTooltip()), l.appendChild(B);
       const d = document.createElement("div");
       d.className = "qaid-tooltip-wrapper";
       const g = document.createElement("button");
-      g.type = "button", g.className = i ? `${s} qaid-btn-down` : "qaid-btn qaid-btn-down", g.setAttribute("aria-label", this.config.text.negativeLabel), DA(g, this.config.negativeIcon, jt), g.addEventListener("click", (u) => this.handleThumbClick("down", u.currentTarget, u)), g.addEventListener("mouseenter", () => {
+      g.type = "button", g.className = i ? `${s} qaid-btn-down` : "qaid-btn qaid-btn-down", g.setAttribute("aria-label", this.config.text.negativeLabel), DA(g, this.config.negativeIcon, $t), g.addEventListener("click", (u) => this.handleThumbClick("down", u.currentTarget, u)), g.addEventListener("mouseenter", () => {
         this.prewarmQuests(), this.showTooltip(g);
       }), g.addEventListener("mouseleave", () => this.hideTooltip()), d.appendChild(g), this.buttonsContainer.appendChild(l), this.buttonsContainer.appendChild(d);
     }
@@ -867,7 +1017,7 @@ class aa {
       const l = document.createElement("div");
       l.className = "qaid-tooltip-wrapper";
       const B = document.createElement("button");
-      B.type = "button", B.className = i ? `${s} qaid-btn-record` : "qaid-btn qaid-btn-record", B.setAttribute("aria-label", this.config.text.recordLabel), DA(B, this.config.recordIcon, ho), B.addEventListener("click", () => {
+      B.type = "button", B.className = i ? `${s} qaid-btn-record` : "qaid-btn qaid-btn-record", B.setAttribute("aria-label", this.config.text.recordLabel), DA(B, this.config.recordIcon, vo), B.addEventListener("click", () => {
         this.ensureRecording().then(
           (g) => this.config.videoOptions.redaction ? g.startPicking() : g.startRecording()
         );
@@ -877,7 +1027,7 @@ class aa {
         d(), this.showTooltip(B);
       }), B.addEventListener("focus", d), B.addEventListener("touchstart", d, { passive: !0 }), B.addEventListener("mouseleave", () => this.hideTooltip()), l.appendChild(B), this.buttonsContainer.appendChild(l);
     }
-    this.config.hideDismiss || (this.dismissBtn = document.createElement("button"), this.dismissBtn.type = "button", this.dismissBtn.className = "qaid-dismiss-btn", this.dismissBtn.setAttribute("aria-label", this.config.text.dismissLabel), this.dismissBtn.title = this.config.text.dismissLabel, DA(this.dismissBtn, null, go), this.dismissBtn.addEventListener("click", (l) => {
+    this.config.hideDismiss || (this.dismissBtn = document.createElement("button"), this.dismissBtn.type = "button", this.dismissBtn.className = "qaid-dismiss-btn", this.dismissBtn.setAttribute("aria-label", this.config.text.dismissLabel), this.dismissBtn.title = this.config.text.dismissLabel, DA(this.dismissBtn, null, mo), this.dismissBtn.addEventListener("click", (l) => {
       l.stopPropagation(), this.handleDismiss();
     }), this.buttonsContainer.insertBefore(this.dismissBtn, this.buttonsContainer.firstChild), this._startDismissed && this.buttonsContainer.classList.add("qaid-dismissed"));
   }
@@ -891,8 +1041,8 @@ class aa {
     if (this.overlayShadowRoot) return this.overlayShadowRoot;
     this.overlayShadowHost = document.createElement("div"), this.overlayShadowHost.setAttribute("data-qaid-embed-overlay", ""), this.overlayShadowHost.style.position = "fixed", this.overlayShadowHost.style.inset = "0", this.overlayShadowHost.style.pointerEvents = "none", this.overlayShadowHost.style.zIndex = String(this.config.zIndex), document.body.appendChild(this.overlayShadowHost), this.overlayShadowRoot = this.overlayShadowHost.attachShadow({ mode: "open" });
     const A = document.createElement("style");
-    A.setAttribute("data-qaid-base", ""), A.textContent = Gr(), this.overlayShadowRoot.appendChild(A);
-    for (const t of this.featureStyles) rn(this.overlayShadowRoot, t);
+    A.setAttribute("data-qaid-base", ""), A.textContent = _r(), this.overlayShadowRoot.appendChild(A);
+    for (const t of this.featureStyles) on(this.overlayShadowRoot, t);
     if (this.config.css) {
       const t = document.createElement("style");
       t.textContent = this.config.css, this.overlayShadowRoot.appendChild(t);
@@ -911,14 +1061,14 @@ class aa {
     if (!this.featureStyles.includes(A)) {
       this.featureStyles.push(A);
       for (const t of [this.shadowRoot, this.overlayShadowRoot])
-        t && rn(t, A);
+        t && on(t, A);
     }
   }
   tooltipElement = null;
   showTooltip(A) {
     const t = this.tooltipElement;
     t.style.visibility = "hidden", t.classList.add("qaid-tooltip-visible");
-    const r = A.getBoundingClientRect(), n = t.getBoundingClientRect(), { top: i, left: s } = Po(
+    const r = A.getBoundingClientRect(), n = t.getBoundingClientRect(), { top: i, left: s } = $o(
       r,
       n,
       { width: window.innerWidth, height: window.innerHeight }
@@ -929,10 +1079,10 @@ class aa {
     this.tooltipElement.classList.remove("qaid-tooltip-visible");
   }
   handleDismiss() {
-    this.buttonsContainer.classList.add("qaid-dismissed"), en(this.config.apiKey, !0);
+    this.buttonsContainer.classList.add("qaid-dismissed"), nn(this.config.apiKey, !0);
   }
   handleThumbClick(A, t, r) {
-    if (this.buttonsContainer?.classList.contains("qaid-incognito") && (this.buttonsContainer.classList.remove("qaid-incognito"), en(this.config.apiKey, !1)), this.prewarmClickPath(), this.skipsTargeting())
+    if (this.buttonsContainer?.classList.contains("qaid-incognito") && (this.buttonsContainer.classList.remove("qaid-incognito"), nn(this.config.apiKey, !1)), this.prewarmClickPath(), this.skipsTargeting())
       this.submitDirectFeedback(A, t);
     else {
       this.activeThumbBtn = t, t.setAttribute("aria-pressed", "true");
@@ -965,7 +1115,7 @@ class aa {
    *  instead of the permission-based Screen Capture API. Explicit "dom" wins;
    *  otherwise DOM is used on touch devices to avoid the getDisplayMedia prompt. */
   shouldCaptureViaDom() {
-    return this.config.screenshotMethod === "dom" || ia();
+    return this.config.screenshotMethod === "dom" || ma();
   }
   /**
    * Run the send flow (send.ts, loaded on demand and pre-warmed before the
@@ -975,7 +1125,7 @@ class aa {
    */
   async submitFeedback() {
     try {
-      const [A] = await Promise.all([Promise.resolve().then(() => Ht), this.loadDialogA11y()]);
+      const [A] = await Promise.all([Promise.resolve().then(() => It), this.loadDialogA11y()]);
       await A.submitFeedback(this.makeSendHost());
     } catch (A) {
       console.error("Failed to send feedback:", A), this.announceMsg("Failed to send feedback", !0), this.resetFeedbackUi();
@@ -987,7 +1137,7 @@ class aa {
    */
   async tryLaunchQuest(A, t) {
     try {
-      return await (await Promise.resolve().then(() => Ht)).tryLaunchQuest(this.makeSendHost(), A, t);
+      return await (await Promise.resolve().then(() => It)).tryLaunchQuest(this.makeSendHost(), A, t);
     } catch (r) {
       return console.error("Failed to launch quest:", r), !1;
     }
@@ -1053,7 +1203,7 @@ class aa {
   async ensureModal() {
     if (!this.modal) {
       const [{ ModalController: A, styles: t }] = await Promise.all([
-        Promise.resolve().then(() => dn),
+        Promise.resolve().then(() => fn),
         this.loadDialogA11y()
       ]);
       this.addFeatureStyles(t), this.modal = new A(this.makeModalHost());
@@ -1101,7 +1251,7 @@ class aa {
    */
   async ensureTargeting() {
     if (!this.targeting) {
-      const { TargetingController: A, styles: t } = await Promise.resolve().then(() => un);
+      const { TargetingController: A, styles: t } = await Promise.resolve().then(() => wn);
       this.addFeatureStyles(t), this.targeting = new A(this.makeTargetingHost());
     }
     return this.targeting;
@@ -1161,7 +1311,7 @@ class aa {
   async ensureRecording() {
     if (!this.recording) {
       const [{ RecordingController: A, styles: t }] = await Promise.all([
-        Promise.resolve().then(() => hn),
+        Promise.resolve().then(() => Qn),
         this.loadDialogA11y()
       ]);
       this.addFeatureStyles(t), this.recording = new A(this.makeRecordingHost());
@@ -1215,69 +1365,71 @@ class aa {
    * Destroy the embed and clean up all resources
    */
   destroy() {
-    if (this.destroyed = !0, this.domObserver && (this.domObserver.disconnect(), this.domObserver = null), this.boundBeforeSwap && (document.removeEventListener("astro:before-swap", this.boundBeforeSwap), this.boundBeforeSwap = null), this.targeting?.destroy(), this.targeting = null, this.clearActiveThumb(), this.closeDialogA11y(), this.prewarmHandle !== null) {
-      const A = window;
-      this.prewarmIsTimeout ? clearTimeout(this.prewarmHandle) : A.cancelIdleCallback?.(this.prewarmHandle), this.prewarmHandle = null;
+    if (this.destroyed = !0, !!this.initialized) {
+      if (this.domObserver && (this.domObserver.disconnect(), this.domObserver = null), this.boundBeforeSwap && (document.removeEventListener("astro:before-swap", this.boundBeforeSwap), this.boundBeforeSwap = null), this.targeting?.destroy(), this.targeting = null, this.clearActiveThumb(), this.closeDialogA11y(), this.prewarmHandle !== null) {
+        const A = window;
+        this.prewarmIsTimeout ? clearTimeout(this.prewarmHandle) : A.cancelIdleCallback?.(this.prewarmHandle), this.prewarmHandle = null;
+      }
+      this.recording?.destroy(), this.recording = null, this.modal?.destroy(), this.modal = null, this.activeQuest?.destroy(), this.activeQuest = null, this.consoleCapture && (this.consoleCapture.restore(), this.consoleCapture = null), window.removeEventListener("resize", this.boundResize), document.removeEventListener("keydown", this.boundKeyDown), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.shadowHost && (this.shadowHost.remove(), this.shadowHost = null, this.shadowRoot = null), this.overlayShadowHost && (this.overlayShadowHost.remove(), this.overlayShadowHost = null, this.overlayShadowRoot = null), this.buttonsContainer = null, this.dismissBtn = null, this.tooltipElement = null, Wo();
     }
-    this.recording?.destroy(), this.recording = null, this.modal?.destroy(), this.modal = null, this.activeQuest?.destroy(), this.activeQuest = null, this.consoleCapture && (this.consoleCapture.restore(), this.consoleCapture = null), window.removeEventListener("resize", this.boundResize), document.removeEventListener("keydown", this.boundKeyDown), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.shadowHost && (this.shadowHost.remove(), this.shadowHost = null, this.shadowRoot = null), this.overlayShadowHost && (this.overlayShadowHost.remove(), this.overlayShadowHost = null, this.overlayShadowRoot = null), this.buttonsContainer = null, this.dismissBtn = null, this.tooltipElement = null, Ro();
   }
 }
-var ca = "__qaidThumbsOrigin";
-function Qi(e) {
+var Ha = "__qaidThumbsOrigin";
+function bi(e) {
   return document.querySelector(e)?.textContent?.trim() ?? "";
 }
-const Ci = ca;
-function nn(e) {
+const yi = Ha;
+function cn(e) {
   const A = e.split(/[?#]/)[0];
   return A.substring(A.lastIndexOf("/") + 1);
 }
-function la(e) {
+function Ia(e) {
   const A = document.currentScript;
   if (A && A.tagName === "SCRIPT") return A;
   if (!e) return null;
   const t = Array.from(document.getElementsByTagName("script")).filter((o) => o.src), r = t.find((o) => o.src === e);
   if (r) return r;
-  const n = t.filter((o) => o[Ci]);
+  const n = t.filter((o) => o[yi]);
   if (n.length === 1) return n[0];
-  const i = nn(e), s = t.filter((o) => nn(o.src) === i);
+  const i = cn(e), s = t.filter((o) => cn(o.src) === i);
   return s.length === 1 ? s[0] : null;
 }
-function sn(e) {
+function ln(e) {
   return !!e && e.tagName === "SCRIPT" && (e.getAttribute("type") || "").trim().toLowerCase() === "application/json";
 }
-function Ba(e) {
-  const A = e[Ci], t = A && A.tagName === "SCRIPT" ? A : e, r = t.getAttribute("data-config-id") || e.getAttribute("data-config-id");
+function xa(e) {
+  const A = e[yi], t = A && A.tagName === "SCRIPT" ? A : e, r = t.getAttribute("data-config-id") || e.getAttribute("data-config-id");
   if (r) {
     const n = document.getElementById(r);
-    return sn(n) ? n : null;
+    return ln(n) ? n : null;
   }
   for (const n of [t.previousElementSibling, t.nextElementSibling])
-    if (sn(n) && n.hasAttribute("data-feedback-config")) return n;
+    if (ln(n) && n.hasAttribute("data-feedback-config")) return n;
   return null;
 }
-function da(e) {
-  const A = Ba(e);
+function La(e) {
+  const A = xa(e);
   if (!A) return null;
   const t = A.textContent?.trim();
   if (!t) return null;
   try {
     const r = JSON.parse(t);
-    return r.cssSelector && !r.css && (r.css = Qi(r.cssSelector), delete r.cssSelector), r;
+    return r.cssSelector && !r.css && (r.css = bi(r.cssSelector), delete r.cssSelector), r;
   } catch {
     return null;
   }
 }
-function pi(e, A, t) {
+function Ei(e, A, t) {
   console.warn(`[thumbs-embed] Ignoring ${e}="${A}": expected ${t}.`);
 }
-function ua(e) {
+function Ka(e) {
   const A = [];
   let t = 0, r = "";
   for (const n of e)
     n === "(" && t++, n === ")" && (t = Math.max(0, t - 1)), n === "," && t === 0 ? (A.push(r.trim()), r = "") : r += n;
   return A.push(r.trim()), A;
 }
-function ha(e, A) {
+function Sa(e, A) {
   if (A === null) return;
   const t = A.trim();
   let r = null;
@@ -1288,38 +1440,41 @@ function ha(e, A) {
       r = null;
     }
   else
-    r = ua(t);
+    r = Ka(t);
   if (Array.isArray(r) && r.length > 0 && r.every((n) => typeof n == "string" && n.trim() !== ""))
     return r.map((n) => n.trim());
-  pi(e, A, "a JSON array of colours or a comma-separated list");
+  Ei(e, A, "a JSON array of colours or a comma-separated list");
 }
 function be(e, A) {
   if (A !== null) {
     if (A.trim() === "") {
-      pi(e, A, "a non-empty label");
+      Ei(e, A, "a non-empty label");
       return;
     }
     return A;
   }
 }
-function ga(e) {
+function Ta(e) {
   const A = e.getAttribute("data-endpoint");
   if (!A) return null;
-  const t = e.getAttribute("data-position"), r = e.getAttribute("data-zindex"), n = e.getAttribute("data-positive-color"), i = e.getAttribute("data-negative-color"), s = e.getAttribute("data-marker-color"), o = e.getAttribute("data-container"), a = e.getAttribute("data-button-class"), c = e.getAttribute("data-skip-targeting"), l = e.getAttribute("data-hide-confirmation"), B = e.getAttribute("data-single-button"), d = e.getAttribute("data-feedback-mode"), g = e.getAttribute("data-incognito"), u = e.getAttribute("data-button-size"), f = e.getAttribute("data-offset-x"), m = e.getAttribute("data-offset-y"), Q = e.getAttribute("data-modal-width"), h = e.getAttribute("data-backdrop-opacity"), v = e.getAttribute("data-font-family"), U = e.getAttribute("data-font-size"), F = e.getAttribute("data-tooltip"), w = e.getAttribute("data-modal-title"), E = e.getAttribute("data-confirmation-title"), y = e.getAttribute("data-confirmation-message"), b = e.getAttribute("data-confirmation-close"), D = e.getAttribute("data-error-title"), N = e.getAttribute("data-error-message"), _ = e.getAttribute("data-modal-subtitle"), x = e.getAttribute("data-placeholder"), O = e.getAttribute("data-submit-button"), sA = e.getAttribute("data-skip-button"), X = e.getAttribute("data-positive-icon"), J = e.getAttribute("data-negative-icon"), wA = e.getAttribute("data-feedback-icon"), j = e.getAttribute("data-feedback-label"), dA = e.getAttribute("data-api-key"), QA = e.getAttribute("data-capture-screenshot"), CA = e.getAttribute("data-annotate"), oA = e.getAttribute("data-annotation-color"), aA = e.getAttribute("data-screenshot-quality"), $ = e.getAttribute("data-screenshot-max-width"), uA = e.getAttribute("data-screenshot-max-height"), SA = e.getAttribute("data-capture-video"), Kr = e.getAttribute("data-video-redaction"), eo = e.getAttribute("data-hide-thumbs"), to = e.getAttribute("data-hide-dismiss"), yt = e.getAttribute("data-video-max-duration"), ro = e.getAttribute("data-screenshot-method"), no = e.getAttribute("data-direction"), Sr = e.getAttribute("data-css-selector"), io = e.getAttribute("data-css"), Tr = be("data-positive-label", e.getAttribute("data-positive-label")), Dr = be("data-negative-label", e.getAttribute("data-negative-label")), kr = be("data-record-label", e.getAttribute("data-record-label")), Mr = be("data-dismiss-label", e.getAttribute("data-dismiss-label")), so = ha(
+  const t = e.getAttribute("data-position"), r = e.getAttribute("data-zindex"), n = e.getAttribute("data-positive-color"), i = e.getAttribute("data-negative-color"), s = e.getAttribute("data-marker-color"), o = e.getAttribute("data-container"), a = e.getAttribute("data-button-class"), c = e.getAttribute("data-skip-targeting"), l = e.getAttribute("data-hide-confirmation"), B = e.getAttribute("data-single-button"), d = e.getAttribute("data-feedback-mode"), g = e.getAttribute("data-incognito"), u = e.getAttribute("data-button-size"), f = e.getAttribute("data-offset-x"), m = e.getAttribute("data-offset-y"), Q = e.getAttribute("data-modal-width"), h = e.getAttribute("data-backdrop-opacity"), v = e.getAttribute("data-font-family"), U = e.getAttribute("data-font-size"), F = e.getAttribute("data-tooltip"), w = e.getAttribute("data-modal-title"), E = e.getAttribute("data-confirmation-title"), y = e.getAttribute("data-confirmation-message"), b = e.getAttribute("data-confirmation-close"), D = e.getAttribute("data-error-title"), N = e.getAttribute("data-error-message"), _ = e.getAttribute("data-modal-subtitle"), x = e.getAttribute("data-placeholder"), O = e.getAttribute("data-submit-button"), sA = e.getAttribute("data-skip-button"), X = e.getAttribute("data-positive-icon"), J = e.getAttribute("data-negative-icon"), wA = e.getAttribute("data-feedback-icon"), j = e.getAttribute("data-feedback-label"), dA = e.getAttribute("data-api-key"), QA = e.getAttribute("data-capture-screenshot"), CA = e.getAttribute("data-annotate"), oA = e.getAttribute("data-annotation-color"), aA = e.getAttribute("data-screenshot-quality"), $ = e.getAttribute("data-screenshot-max-width"), uA = e.getAttribute("data-screenshot-max-height"), SA = e.getAttribute("data-capture-video"), Sr = e.getAttribute("data-video-redaction"), ao = e.getAttribute("data-hide-thumbs"), co = e.getAttribute("data-hide-dismiss"), Et = e.getAttribute("data-video-max-duration"), lo = e.getAttribute("data-screenshot-method"), Bo = e.getAttribute("data-direction"), Tr = e.getAttribute("data-css-selector"), uo = e.getAttribute("data-css"), Dr = be("data-positive-label", e.getAttribute("data-positive-label")), kr = be("data-negative-label", e.getAttribute("data-negative-label")), Mr = be("data-record-label", e.getAttribute("data-record-label")), Or = be("data-dismiss-label", e.getAttribute("data-dismiss-label")), ho = Sa(
     "data-annotation-palette",
     e.getAttribute("data-annotation-palette")
-  ), oo = e.getAttribute("data-record-icon"), Or = e.getAttribute("data-quest-base"), ao = e.getAttribute("data-quest-up"), co = e.getAttribute("data-quest-down"), lo = e.getAttribute("data-quest-video"), Bo = e.getAttribute("data-quest-api-key"), uo = e.getAttribute("data-quest-module-url");
+  ), go = e.getAttribute("data-record-icon"), Rr = e.getAttribute("data-quest-base"), fo = e.getAttribute("data-quest-up"), wo = e.getAttribute("data-quest-down"), Qo = e.getAttribute("data-quest-video"), Co = e.getAttribute("data-quest-api-key"), po = e.getAttribute("data-quest-module-url"), Uo = e.getAttribute("data-remote-config"), Fo = e.getAttribute("data-theme-url"), qr = e.getAttribute("data-remote-timeout");
   return {
     endpoint: A,
+    remoteConfig: Uo === "true" ? !0 : void 0,
+    themeUrl: Fo || void 0,
+    remoteTimeoutMs: qr ? parseInt(qr, 10) : void 0,
     // Inline CSS wins over a selector, as `css` wins over `cssSelector` in
     // the JSON block.
-    css: io || (Sr ? Qi(Sr) : void 0),
+    css: uo || (Tr ? bi(Tr) : void 0),
     apiKey: dA ?? void 0,
     captureScreenshot: QA === "true" ? !0 : void 0,
     // Annotation is on by default; only an explicit "false" disables it.
     annotate: CA === "false" ? !1 : void 0,
     annotationColor: oA ?? void 0,
-    annotationPalette: so,
+    annotationPalette: ho,
     screenshotOptions: aA || $ || uA ? {
       quality: aA ? parseFloat(aA) : void 0,
       maxWidth: $ ? parseInt($, 10) : void 0,
@@ -1327,7 +1482,7 @@ function ga(e) {
     } : void 0,
     container: o ?? void 0,
     buttonClass: a ?? void 0,
-    direction: no ?? void 0,
+    direction: Bo ?? void 0,
     position: t ?? void 0,
     zIndex: r ? parseInt(r, 10) : void 0,
     skipTargeting: c === "true" ? !0 : void 0,
@@ -1349,7 +1504,7 @@ function ga(e) {
       negative: i ?? void 0,
       marker: s ?? void 0
     },
-    text: F || w || _ || x || O || sA || j || E || y || b || D || N || Tr || Dr || kr || Mr ? {
+    text: F || w || _ || x || O || sA || j || E || y || b || D || N || Dr || kr || Mr || Or ? {
       tooltip: F ?? void 0,
       modalTitle: w ?? void 0,
       modalSubtitle: _ ?? void 0,
@@ -1362,67 +1517,67 @@ function ga(e) {
       confirmationClose: b ?? void 0,
       errorTitle: D ?? void 0,
       errorMessage: N ?? void 0,
-      positiveLabel: Tr,
-      negativeLabel: Dr,
-      recordLabel: kr,
-      dismissLabel: Mr
+      positiveLabel: Dr,
+      negativeLabel: kr,
+      recordLabel: Mr,
+      dismissLabel: Or
     } : void 0,
     positiveIcon: X ?? void 0,
-    recordIcon: oo ?? void 0,
+    recordIcon: go ?? void 0,
     negativeIcon: J ?? void 0,
     feedbackIcon: wA ?? void 0,
-    screenshotMethod: ro ?? void 0,
+    screenshotMethod: lo ?? void 0,
     captureVideo: SA === "true" ? !0 : void 0,
-    hideThumbs: eo === "true" ? !0 : void 0,
-    hideDismiss: to === "true" ? !0 : void 0,
-    videoOptions: yt || Kr ? {
-      maxDuration: yt ? parseInt(yt, 10) : void 0,
-      redaction: Kr === "true" ? !0 : void 0
+    hideThumbs: ao === "true" ? !0 : void 0,
+    hideDismiss: co === "true" ? !0 : void 0,
+    videoOptions: Et || Sr ? {
+      maxDuration: Et ? parseInt(Et, 10) : void 0,
+      redaction: Sr === "true" ? !0 : void 0
     } : void 0,
-    quests: Or ? {
-      base: Or,
-      up: ao ?? void 0,
-      down: co ?? void 0,
-      video: lo ?? void 0,
-      apiKey: Bo ?? void 0,
-      moduleUrl: uo ?? void 0
+    quests: Rr ? {
+      base: Rr,
+      up: fo ?? void 0,
+      down: wo ?? void 0,
+      video: Qo ?? void 0,
+      apiKey: Co ?? void 0,
+      moduleUrl: po ?? void 0
     } : void 0
   };
 }
-function fa(e) {
+function Da(e) {
   if (typeof document > "u") return;
-  const A = la(e);
+  const A = Ia(e);
   if (!A) return;
   const t = () => {
-    const r = da(A) ?? ga(A);
-    r?.endpoint && new aa(r);
+    const r = La(A) ?? Ta(A);
+    r?.endpoint && new Ea(r);
   };
   document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", t) : t();
 }
-const wa = 20, on = 4096;
-function Ui(e) {
+const ka = 20, Bn = 4096;
+function Hi(e) {
   const A = typeof e == "string" ? e : JSON.stringify(e);
-  return A.length > on ? A.slice(0, on) + "…[truncated]" : A;
+  return A.length > Bn ? A.slice(0, Bn) + "…[truncated]" : A;
 }
-function an(e, A) {
-  e.length >= wa && e.shift(), e.push(A);
+function dn(e, A) {
+  e.length >= ka && e.shift(), e.push(A);
 }
-async function Qa(e) {
+async function Ma(e) {
   try {
     const A = await e.clone().text();
-    return Ui(A);
+    return Hi(A);
   } catch {
     return;
   }
 }
-function Ca() {
+function Oa() {
   const e = [], A = window.fetch;
   window.fetch = async function(n, i) {
     const s = typeof n == "string" ? n : n instanceof URL ? n.toString() : n.url, o = i?.method ?? (typeof n == "object" && "method" in n ? n.method : "GET"), a = await A.apply(window, [n, i]);
     if (a.status >= 400) {
-      const c = Yr(s, a.status, await Qa(a));
-      an(e, {
-        url: Wr(s),
+      const c = zr(s, a.status, await Ma(a));
+      dn(e, {
+        url: Zr(s),
         method: o.toUpperCase(),
         status: a.status,
         statusText: a.statusText,
@@ -1438,12 +1593,12 @@ function Ca() {
   }, XMLHttpRequest.prototype.send = function(n) {
     const i = this;
     return i.addEventListener("load", function() {
-      i.status >= 400 && an(e, {
-        url: Wr(i._qaid_url),
+      i.status >= 400 && dn(e, {
+        url: Zr(i._qaid_url),
         method: i._qaid_method.toUpperCase(),
         status: i.status,
         statusText: i.statusText,
-        responseBody: Yr(i._qaid_url, i.status, Ui(i.responseText)),
+        responseBody: zr(i._qaid_url, i.status, Hi(i.responseText)),
         timestamp: Date.now()
       });
     }), r.apply(this, [n]);
@@ -1454,27 +1609,27 @@ function Ca() {
     }
   };
 }
-function pa() {
+function Ra() {
   const e = navigator.userAgent || "";
   return /iP(hone|ad|od)/.test(e) || // iPadOS 13+ masquerades as "MacIntel" but is a multi-touch device.
   navigator.platform === "MacIntel" && (navigator.maxTouchPoints || 0) > 1;
 }
-function Ua(e, A, t, r, n) {
+function qa(e, A, t, r, n) {
   const i = e >= A, s = t >= r;
   return i === s ? { width: e, height: A, rotate: 0 } : { width: A, height: e, rotate: n === 270 ? -90 : 90 };
 }
-function Fa(e, A, t) {
+function Va(e, A, t) {
   if (t.rotate === 0) {
     e.drawImage(A, 0, 0, t.width, t.height);
     return;
   }
   e.save(), t.rotate === 90 ? (e.translate(t.width, 0), e.rotate(Math.PI / 2)) : (e.translate(0, t.height), e.rotate(-Math.PI / 2)), e.drawImage(A, 0, 0, t.height, t.width), e.restore();
 }
-function va() {
+function Na() {
   const e = typeof screen < "u" ? screen.orientation : void 0;
   return e && typeof e.angle == "number" ? e.angle : 0;
 }
-function Fi(e) {
+function Ii(e) {
   return new Promise((A) => {
     if (e.videoWidth > 0) {
       A();
@@ -1483,30 +1638,30 @@ function Fi(e) {
     e.addEventListener("loadedmetadata", () => A(), { once: !0 });
   });
 }
-async function vi(e) {
+async function xi(e) {
   try {
     await e.play();
   } catch {
   }
 }
-async function ma(e, A = 15) {
+async function Ga(e, A = 15) {
   const t = document.createElement("canvas");
   if (typeof t.captureStream != "function") return null;
   const r = t.getContext("2d");
   if (!r) return null;
   const n = document.createElement("video");
-  n.muted = !0, n.playsInline = !0, n.srcObject = e, await Fi(n);
-  const i = Ua(
+  n.muted = !0, n.playsInline = !0, n.srcObject = e, await Ii(n);
+  const i = qa(
     n.videoWidth,
     n.videoHeight,
     window.innerWidth,
     window.innerHeight,
-    va()
+    Na()
   );
-  t.width = i.width, t.height = i.height, await vi(n);
+  t.width = i.width, t.height = i.height, await xi(n);
   let s = 0;
   const o = () => {
-    Fa(r, n, i), s = requestAnimationFrame(o);
+    Va(r, n, i), s = requestAnimationFrame(o);
   };
   o();
   const a = t.captureStream(A);
@@ -1517,15 +1672,15 @@ async function ma(e, A = 15) {
     }
   };
 }
-function ba(e, A, t, r, n) {
+function Pa(e, A, t, r, n) {
   const i = Math.max(0, Math.min(r, e.left * A)), s = Math.max(0, Math.min(n, e.top * t)), o = Math.max(0, Math.min(r, (e.left + e.width) * A)), a = Math.max(0, Math.min(n, (e.top + e.height) * t)), c = o - i, l = a - s;
   return c <= 0 || l <= 0 ? null : { x: i, y: s, w: c, h: l };
 }
-function ya(e, A, t, r, n, i, s) {
+function _a(e, A, t, r, n, i, s) {
   e.drawImage(A, 0, 0, r, n);
   const o = r / Math.max(1, window.innerWidth), a = n / Math.max(1, window.innerHeight);
   for (const c of t) {
-    const l = ba(
+    const l = Pa(
       c.getBoundingClientRect(),
       o,
       a,
@@ -1535,16 +1690,16 @@ function ya(e, A, t, r, n, i, s) {
     l && (e.save(), s ? (e.filter = `blur(${i}px)`, e.drawImage(A, l.x, l.y, l.w, l.h, l.x, l.y, l.w, l.h)) : (e.fillStyle = "#0b0b0b", e.fillRect(l.x, l.y, l.w, l.h)), e.restore());
   }
 }
-async function Ea(e, A, t = {}) {
+async function Xa(e, A, t = {}) {
   const r = t.frameRate ?? 15, n = t.blurRadius ?? 12, i = document.createElement("canvas");
   if (typeof i.captureStream != "function") return null;
   const s = i.getContext("2d");
   if (!s) return null;
   const o = "filter" in s, a = document.createElement("video");
-  a.muted = !0, a.playsInline = !0, a.srcObject = e, await Fi(a), i.width = a.videoWidth, i.height = a.videoHeight, await vi(a);
+  a.muted = !0, a.playsInline = !0, a.srcObject = e, await Ii(a), i.width = a.videoWidth, i.height = a.videoHeight, await xi(a);
   let c = 0;
   const l = () => {
-    ya(
+    _a(
       s,
       a,
       A,
@@ -1563,11 +1718,11 @@ async function Ea(e, A, t = {}) {
     }
   };
 }
-const mi = "This browser cannot blur the areas you picked, so the recording was not started.";
-function Ha() {
+const Li = "This browser cannot blur the areas you picked, so the recording was not started.";
+function Ja() {
   return typeof navigator < "u" && !!navigator.mediaDevices && typeof navigator.mediaDevices.getDisplayMedia == "function" && typeof MediaRecorder < "u";
 }
-function bi() {
+function Ki() {
   if (typeof MediaRecorder > "u") return "";
   const e = [
     "video/webm;codecs=vp9",
@@ -1580,7 +1735,7 @@ function bi() {
       return A;
   return "";
 }
-function Ia(e = {}) {
+function Wa(e = {}) {
   const A = e.maxDuration ?? 15, t = e.videoBitsPerSecond ?? 8e5, r = e.redactionElements ?? [], n = e.redactionBlurRadius;
   let i = null, s = null, o = null, a = null, c = [], l = null, B = null, d = null, g = 0, u = null, f = null, m = !1, Q = null;
   function h() {
@@ -1592,7 +1747,7 @@ function Ia(e = {}) {
   return {
     async start() {
       m = !1, c = [];
-      const U = bi();
+      const U = Ki();
       if (!U)
         throw new Error("No supported video MIME type found");
       i = await navigator.mediaDevices.getDisplayMedia({
@@ -1616,16 +1771,16 @@ function Ia(e = {}) {
         v();
       });
       let E = i;
-      if (pa()) {
-        const y = await ma(i);
+      if (Ra()) {
+        const y = await Ga(i);
         y && (s = y, E = y.stream);
       }
       if (r.length > 0) {
-        const y = await Ea(E, r, {
+        const y = await Xa(E, r, {
           blurRadius: n
         });
         if (!y)
-          throw s && (s.stop(), s = null), i.getTracks().forEach((b) => b.stop()), i = null, new Error(mi);
+          throw s && (s.stop(), s = null), i.getTracks().forEach((b) => b.stop()), i = null, new Error(Li);
         o = y, E = y.stream;
       }
       a = new MediaRecorder(E, {
@@ -1661,35 +1816,35 @@ function Ia(e = {}) {
     }
   };
 }
-const yi = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const Si = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  REDACTION_UNAVAILABLE: mi,
-  createVideoRecorder: Ia,
-  getSupportedMimeType: bi,
-  isVideoRecordingSupported: Ha
+  REDACTION_UNAVAILABLE: Li,
+  createVideoRecorder: Wa,
+  getSupportedMimeType: Ki,
+  isVideoRecordingSupported: Ja
 }, Symbol.toStringTag, { value: "Module" }));
 let WA = null;
-const Ei = () => Promise.resolve().then(() => sg);
-let Hi = Ei;
-function xa(e) {
-  Hi = e ?? Ei, WA = null;
+const Ti = () => Promise.resolve().then(() => bg);
+let Di = Ti;
+function Ya(e) {
+  Di = e ?? Ti, WA = null;
 }
-function La() {
+function Za() {
   if (typeof document > "u" || typeof window > "u")
     return !1;
   const e = document.createElement("canvas");
   return typeof e.getContext == "function" && !!e.getContext("2d");
 }
-function Ka() {
-  return WA || (WA = Hi().then(
+function za() {
+  return WA || (WA = Di().then(
     (e) => e.default,
     () => (WA = null, null)
   ), WA);
 }
-async function Sa(e = {}) {
+async function ja(e = {}) {
   const { quality: A = 0.8, maxWidth: t = 1280, maxHeight: r = 800 } = e;
   try {
-    const n = await Ka();
+    const n = await za();
     if (!n)
       return console.warn("html2canvas failed to load"), null;
     const i = await n(document.body, {
@@ -1715,12 +1870,12 @@ async function Sa(e = {}) {
     return console.warn("DOM screenshot capture failed:", n), null;
   }
 }
-const Ii = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const ki = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  _setHtml2CanvasImporter: xa,
-  captureDomScreenshot: Sa,
-  isDomScreenshotSupported: La
-}, Symbol.toStringTag, { value: "Module" })), Ta = ".qaid-annotate{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;gap:.75rem;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#000000d9;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px);animation:qaid-fadeIn .2s ease-out}.qaid-annotate-title{margin:0;font-size:var(--qaid-font-size, 16px);font-weight:700;text-align:center;color:#f9fafb}.qaid-annotate-desc{margin:0;font-size:calc(var(--qaid-font-size, 16px) * .8125);line-height:1.4;text-align:center;color:#f9fafbbf}.qaid-annotate-stage{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;overflow:auto}.qaid-annotate-canvas{max-width:100%;max-height:100%;object-fit:contain;background:light-dark(#ffffff,#111827);border-radius:.5rem;box-shadow:0 10px 30px #00000080;touch-action:none;cursor:crosshair}.qaid-annotate-toolbar{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;justify-content:center;padding:.5rem .75rem;background:light-dark(#ffffff,#1f2937);border-radius:.75rem;box-shadow:0 10px 30px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5))}.qaid-annotate-tools,.qaid-annotate-actions{display:flex;gap:.375rem;align-items:center}button.qaid-annotate-tool,button.qaid-annotate-action{display:inline-flex;align-items:center;justify-content:center;gap:.375rem;min-width:44px;min-height:44px;padding:0 .75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;background:light-dark(#f9fafb,#111827);color:light-dark(#1f2937,#f9fafb);font-family:inherit;font-size:calc(var(--qaid-font-size, 16px) * .8125);font-weight:600;cursor:pointer;-webkit-appearance:none;appearance:none;transition:background-color .15s,color .15s,border-color .15s,filter .15s}button.qaid-annotate-tool svg,button.qaid-annotate-action svg{width:20px;height:20px}.qaid-annotate-colors{display:flex;gap:.25rem;align-items:center}button.qaid-annotate-swatch{width:28px;height:28px;min-width:28px;padding:0;border-radius:9999px;border:2px solid light-dark(#d1d5db,#4b5563);background:var(--qaid-swatch, #000);cursor:pointer;-webkit-appearance:none;appearance:none;transition:transform .1s,box-shadow .15s,border-color .15s}button.qaid-annotate-swatch:hover{transform:scale(1.12)}button.qaid-annotate-swatch[aria-pressed=true]{border-color:light-dark(#111827,#f9fafb);box-shadow:0 0 0 2px var(--qaid-swatch)}@media(forced-colors:active){button.qaid-annotate-swatch[aria-pressed=true]{outline:2px solid Highlight;outline-offset:1px}}button.qaid-annotate-tool:hover,button.qaid-annotate-action:hover{background:light-dark(#eef2ff,#312e81)}button.qaid-annotate-tool[aria-pressed=true],button.qaid-annotate-done{background:var(--qaid-marker, #6365f1);color:var(--qaid-marker-text, #fff);border-color:var(--qaid-marker, #6365f1)}button.qaid-annotate-done:hover{filter:brightness(.9);background:var(--qaid-marker, #6365f1)}button.qaid-annotate-action:disabled{opacity:.45;cursor:not-allowed}@media(forced-colors:active){button.qaid-annotate-tool[aria-pressed=true],button.qaid-annotate-done{border:2px solid Highlight}.qaid-annotate-canvas{border:1px solid CanvasText}}@keyframes qaid-fadeIn{0%{opacity:0}to{opacity:1}}", VA = 12, Da = "#ef4444", ka = ["#ef4444", "#f59e0b", "#22c55e", "#3b82f6", "#111827", "#ffffff"], Ma = {
+  _setHtml2CanvasImporter: Ya,
+  captureDomScreenshot: ja,
+  isDomScreenshotSupported: Za
+}, Symbol.toStringTag, { value: "Module" })), $a = ".qaid-annotate{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;gap:.75rem;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#000000d9;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px);animation:qaid-fadeIn .2s ease-out}.qaid-annotate-title{margin:0;font-size:var(--qaid-font-size, 16px);font-weight:700;text-align:center;color:#f9fafb}.qaid-annotate-desc{margin:0;font-size:calc(var(--qaid-font-size, 16px) * .8125);line-height:1.4;text-align:center;color:#f9fafbbf}.qaid-annotate-stage{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;overflow:auto}.qaid-annotate-canvas{max-width:100%;max-height:100%;object-fit:contain;background:light-dark(#ffffff,#111827);border-radius:.5rem;box-shadow:0 10px 30px #00000080;touch-action:none;cursor:crosshair}.qaid-annotate-toolbar{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;justify-content:center;padding:.5rem .75rem;background:light-dark(#ffffff,#1f2937);border-radius:.75rem;box-shadow:0 10px 30px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5))}.qaid-annotate-tools,.qaid-annotate-actions{display:flex;gap:.375rem;align-items:center}button.qaid-annotate-tool,button.qaid-annotate-action{display:inline-flex;align-items:center;justify-content:center;gap:.375rem;min-width:44px;min-height:44px;padding:0 .75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;background:light-dark(#f9fafb,#111827);color:light-dark(#1f2937,#f9fafb);font-family:inherit;font-size:calc(var(--qaid-font-size, 16px) * .8125);font-weight:600;cursor:pointer;-webkit-appearance:none;appearance:none;transition:background-color .15s,color .15s,border-color .15s,filter .15s}button.qaid-annotate-tool svg,button.qaid-annotate-action svg{width:20px;height:20px}.qaid-annotate-colors{display:flex;gap:.25rem;align-items:center}button.qaid-annotate-swatch{width:28px;height:28px;min-width:28px;padding:0;border-radius:9999px;border:2px solid light-dark(#d1d5db,#4b5563);background:var(--qaid-swatch, #000);cursor:pointer;-webkit-appearance:none;appearance:none;transition:transform .1s,box-shadow .15s,border-color .15s}button.qaid-annotate-swatch:hover{transform:scale(1.12)}button.qaid-annotate-swatch[aria-pressed=true]{border-color:light-dark(#111827,#f9fafb);box-shadow:0 0 0 2px var(--qaid-swatch)}@media(forced-colors:active){button.qaid-annotate-swatch[aria-pressed=true]{outline:2px solid Highlight;outline-offset:1px}}button.qaid-annotate-tool:hover,button.qaid-annotate-action:hover{background:light-dark(#eef2ff,#312e81)}button.qaid-annotate-tool[aria-pressed=true],button.qaid-annotate-done{background:var(--qaid-marker, #6365f1);color:var(--qaid-marker-text, #fff);border-color:var(--qaid-marker, #6365f1)}button.qaid-annotate-done:hover{filter:brightness(.9);background:var(--qaid-marker, #6365f1)}button.qaid-annotate-action:disabled{opacity:.45;cursor:not-allowed}@media(forced-colors:active){button.qaid-annotate-tool[aria-pressed=true],button.qaid-annotate-done{border:2px solid Highlight}.qaid-annotate-canvas{border:1px solid CanvasText}}@keyframes qaid-fadeIn{0%{opacity:0}to{opacity:1}}", VA = 12, Ac = "#ef4444", ec = ["#ef4444", "#f59e0b", "#22c55e", "#3b82f6", "#111827", "#ffffff"], tc = {
   "#ef4444": "red",
   "#f59e0b": "amber",
   "#22c55e": "green",
@@ -1732,10 +1887,10 @@ const Ii = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   "#6365f1": "indigo",
   "#6366f1": "indigo"
 };
-function cn(e) {
-  return Ma[e.toLowerCase()] ?? e;
+function un(e) {
+  return tc[e.toLowerCase()] ?? e;
 }
-const Oa = 4, Ra = 0.8, qa = {
+const rc = 4, nc = 0.8, ic = {
   title: "Annotate screenshot",
   instructions: "Draw on the screenshot to highlight or hide details, then choose Done to attach it or Skip to send the original.",
   rectangle: "Rectangle",
@@ -1747,7 +1902,7 @@ const Oa = 4, Ra = 0.8, qa = {
   done: "Done",
   colors: "Drawing colour"
 };
-function rt(e, A) {
+function nt(e, A) {
   return {
     x: Math.min(e.x, A.x),
     y: Math.min(e.y, A.y),
@@ -1755,12 +1910,12 @@ function rt(e, A) {
     h: Math.abs(e.y - A.y)
   };
 }
-function Va(e) {
+function sc(e) {
   if (e.type === "pen") return e.points.length < 2;
-  const A = rt(e.points[0], e.points[1]);
+  const A = nt(e.points[0], e.points[1]);
   return A.w < 3 && A.h < 3;
 }
-function Na(e, A, t, r) {
+function oc(e, A, t, r) {
   e.beginPath(), e.moveTo(A.x, A.y), e.lineTo(t.x, t.y), e.stroke();
   const n = Math.atan2(t.y - A.y, t.x - A.x), i = Math.max(10, r * 3);
   e.beginPath(), e.moveTo(t.x, t.y), e.lineTo(
@@ -1771,7 +1926,7 @@ function Na(e, A, t, r) {
     t.y - i * Math.sin(n + Math.PI / 6)
   ), e.stroke();
 }
-function Ga(e, A) {
+function ac(e, A) {
   if (A.length !== 0) {
     e.beginPath(), e.moveTo(A[0].x, A[0].y);
     for (let t = 1; t < A.length; t++)
@@ -1779,7 +1934,7 @@ function Ga(e, A) {
     e.stroke();
   }
 }
-function Pa(e, A, t, r, n) {
+function cc(e, A, t, r, n) {
   e.fillStyle = "rgb(15, 23, 42)", e.fillRect(A, t, r, n), e.fillStyle = "rgb(37, 47, 63)";
   for (let i = t; i < t + n; i += VA)
     for (let s = A; s < A + r; s += VA)
@@ -1790,38 +1945,38 @@ function Pa(e, A, t, r, n) {
         Math.min(VA, t + n - i)
       );
 }
-function nt(e, A) {
+function it(e, A) {
   switch (e.save(), e.strokeStyle = A.color, e.fillStyle = A.color, e.lineWidth = A.strokeWidth, e.lineJoin = "round", e.lineCap = "round", A.type) {
     case "rect": {
-      const t = rt(A.points[0], A.points[1]);
+      const t = nt(A.points[0], A.points[1]);
       e.strokeRect(t.x, t.y, t.w, t.h);
       break;
     }
     case "arrow":
-      Na(e, A.points[0], A.points[1], A.strokeWidth);
+      oc(e, A.points[0], A.points[1], A.strokeWidth);
       break;
     case "pen":
-      Ga(e, A.points);
+      ac(e, A.points);
       break;
     case "blur": {
-      const t = rt(A.points[0], A.points[1]);
-      Pa(e, t.x, t.y, t.w, t.h);
+      const t = nt(A.points[0], A.points[1]);
+      cc(e, t.x, t.y, t.w, t.h);
       break;
     }
   }
   e.restore();
 }
-function xi(e) {
+function Mi(e) {
   return new Promise((A, t) => {
     const r = new Image();
     r.onload = () => A(r), r.onerror = () => t(new Error("Failed to load screenshot")), r.src = e;
   });
 }
-async function Li(e, A, t = {}) {
-  const r = t.quality ?? Ra;
+async function Oi(e, A, t = {}) {
+  const r = t.quality ?? nc;
   let n;
   try {
-    n = await xi(e);
+    n = await Mi(e);
   } catch {
     return e;
   }
@@ -1831,11 +1986,11 @@ async function Li(e, A, t = {}) {
   if (!s) return e;
   s.drawImage(n, 0, 0, i.width, i.height);
   for (const o of A)
-    nt(s, o);
+    it(s, o);
   return i.toDataURL("image/webp", r);
 }
-let _a = 0;
-class Ki {
+let lc = 0;
+class Ri {
   shapes = [];
   tool = "rect";
   opts;
@@ -1843,7 +1998,7 @@ class Ki {
   color;
   palette;
   strokeWidth;
-  uid = `qaid-annotate-${++_a}`;
+  uid = `qaid-annotate-${++lc}`;
   container;
   canvas;
   ctx = null;
@@ -1857,7 +2012,7 @@ class Ki {
   // after the editor is mounted).
   resolveResult;
   constructor(A) {
-    this.opts = A, this.labels = { ...qa, ...A.labels ?? {} }, this.color = A.color ?? Da, this.palette = (A.palette && A.palette.length ? A.palette : ka).slice(), this.palette.some((t) => t.toLowerCase() === this.color.toLowerCase()) || this.palette.unshift(this.color), this.strokeWidth = A.strokeWidth ?? Oa;
+    this.opts = A, this.labels = { ...ic, ...A.labels ?? {} }, this.color = A.color ?? Ac, this.palette = (A.palette && A.palette.length ? A.palette : ec).slice(), this.palette.some((t) => t.toLowerCase() === this.color.toLowerCase()) || this.palette.unshift(this.color), this.strokeWidth = A.strokeWidth ?? rc;
   }
   /** Mount the editor and resolve when the user commits (Done) or skips. */
   open() {
@@ -1882,7 +2037,7 @@ class Ki {
   }
   /** A round colour swatch button for the toolbar's colour group. */
   swatchButton(A) {
-    const t = cn(A), r = AA("button", {
+    const t = un(A), r = AA("button", {
       type: "button",
       class: "qaid-annotate-swatch",
       "data-qaid-color": A,
@@ -1925,19 +2080,19 @@ class Ki {
       "aria-label": this.labels.title
     });
     const s = AA("div", { class: "qaid-annotate-tools" });
-    s.appendChild(this.toolButton("rect", fo, this.labels.rectangle)), s.appendChild(this.toolButton("arrow", wo, this.labels.arrow)), s.appendChild(this.toolButton("pen", Qo, this.labels.pen)), s.appendChild(this.toolButton("blur", Co, this.labels.blur));
+    s.appendChild(this.toolButton("rect", bo, this.labels.rectangle)), s.appendChild(this.toolButton("arrow", yo, this.labels.arrow)), s.appendChild(this.toolButton("pen", Eo, this.labels.pen)), s.appendChild(this.toolButton("blur", Ho, this.labels.blur));
     const o = AA("div", {
       class: "qaid-annotate-colors",
       role: "group",
       "aria-label": this.labels.colors
     });
     for (const B of this.palette) o.appendChild(this.swatchButton(B));
-    this.undoBtn = this.actionButton("undo", po, this.labels.undo, "qaid-annotate-undo"), this.undoBtn.disabled = !0;
-    const a = this.actionButton("skip", Fo, this.labels.skip, "qaid-annotate-skip"), c = this.actionButton("done", gi, this.labels.done, "qaid-annotate-done"), l = AA("div", { class: "qaid-annotate-actions" });
+    this.undoBtn = this.actionButton("undo", Io, this.labels.undo, "qaid-annotate-undo"), this.undoBtn.disabled = !0;
+    const a = this.actionButton("skip", Lo, this.labels.skip, "qaid-annotate-skip"), c = this.actionButton("done", Ci, this.labels.done, "qaid-annotate-done"), l = AA("div", { class: "qaid-annotate-actions" });
     l.appendChild(this.undoBtn), l.appendChild(a), l.appendChild(c), this.toolbar.appendChild(s), this.toolbar.appendChild(o), this.toolbar.appendChild(l), this.container.appendChild(r), this.container.appendChild(n), this.container.appendChild(i), this.container.appendChild(this.toolbar), this.opts.root.appendChild(this.container), this.toolbar.addEventListener("click", this.onToolbarClick), this.canvas.addEventListener("pointerdown", this.onPointerDown), this.container.addEventListener("pointermove", this.onPointerMove), this.container.addEventListener("pointerup", this.onPointerUp), this.container.addEventListener("keydown", this.onKeyDown), this.opts.openDialog?.(this.container, {
       labelledbyId: A,
       describedbyId: t
-    }), this.opts.announce?.(this.labels.instructions), xi(this.opts.dataUrl).then((B) => {
+    }), this.opts.announce?.(this.labels.instructions), Mi(this.opts.dataUrl).then((B) => {
       this.img = B, this.canvas.width = B.naturalWidth || B.width || 1, this.canvas.height = B.naturalHeight || B.height || 1, this.redraw();
     }).catch(() => {
       this.img = null, this.redraw();
@@ -1957,8 +2112,8 @@ class Ki {
     if (A) {
       A.clearRect(0, 0, this.canvas.width, this.canvas.height), this.img && A.drawImage(this.img, 0, 0, this.canvas.width, this.canvas.height);
       for (const t of this.shapes)
-        nt(A, t);
-      this.current && nt(A, this.current);
+        it(A, t);
+      this.current && it(A, this.current);
     }
   }
   /** Select the active drawing tool and reflect it on the toolbar. */
@@ -1969,7 +2124,7 @@ class Ki {
         n.getAttribute("data-qaid-tool") === A ? "true" : "false"
       );
     });
-    const r = this.labels[Xa[A]];
+    const r = this.labels[Bc[A]];
     this.opts.announce?.(`${r} tool selected`);
   }
   /** Set the active drawing colour; subsequent shapes use it. */
@@ -1979,7 +2134,7 @@ class Ki {
         "aria-pressed",
         (r.getAttribute("data-qaid-color") ?? "").toLowerCase() === A.toLowerCase() ? "true" : "false"
       );
-    }), this.opts.announce?.(`${cn(A)} colour selected`);
+    }), this.opts.announce?.(`${un(A)} colour selected`);
   }
   onToolbarClick = (A) => {
     const r = A.target?.closest(
@@ -2018,7 +2173,7 @@ class Ki {
     if (!this.drawing || !this.current) return;
     this.drawing = !1;
     const A = this.current;
-    if (this.current = null, Va(A)) {
+    if (this.current = null, sc(A)) {
       this.redraw();
       return;
     }
@@ -2047,7 +2202,7 @@ class Ki {
   /** Composite the annotations and resolve with the new WebP data URL. */
   async done() {
     if (this.settled) return;
-    const A = await Li(this.opts.dataUrl, this.shapes, {
+    const A = await Oi(this.opts.dataUrl, this.shapes, {
       quality: this.opts.quality
     });
     this.opts.announce?.("Annotated screenshot attached"), this.settle(A);
@@ -2063,26 +2218,26 @@ class Ki {
     this.toolbar.removeEventListener("click", this.onToolbarClick), this.canvas.removeEventListener("pointerdown", this.onPointerDown), this.container.removeEventListener("pointermove", this.onPointerMove), this.container.removeEventListener("pointerup", this.onPointerUp), this.container.removeEventListener("keydown", this.onKeyDown), this.opts.closeDialog?.(), this.container.remove();
   }
 }
-const Xa = {
+const Bc = {
   rect: "rectangle",
   arrow: "arrow",
   pen: "pen",
   blur: "blur"
 };
-function Ja(e) {
-  return new Ki(e).open();
+function dc(e) {
+  return new Ri(e).open();
 }
-const Wa = Ta, Si = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const uc = $a, qi = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  AnnotationEditor: Ki,
-  compositeAnnotations: Li,
-  drawShape: nt,
-  openAnnotationEditor: Ja,
-  rectFromPoints: rt,
-  styles: Wa
+  AnnotationEditor: Ri,
+  compositeAnnotations: Oi,
+  drawShape: it,
+  openAnnotationEditor: dc,
+  rectFromPoints: nt,
+  styles: uc
 }, Symbol.toStringTag, { value: "Module" }));
-fa(import.meta.url);
-const Ya = [
+Da(import.meta.url);
+const hc = [
   "a[href]",
   "button",
   "input",
@@ -2090,10 +2245,10 @@ const Ya = [
   "select",
   "[tabindex]"
 ].join(",");
-function Za(e) {
+function gc(e) {
   return e.hasAttribute("disabled") ? !0 : e.disabled === !0;
 }
-function za(e) {
+function fc(e) {
   let A = e;
   for (; A; ) {
     if (A.hasAttribute("hidden")) return !0;
@@ -2104,52 +2259,52 @@ function za(e) {
   }
   return !1;
 }
-function Ar(e) {
+function er(e) {
   return Array.from(
-    e.querySelectorAll(Ya)
-  ).filter((t) => !(t.getAttribute("tabindex") === "-1" || t instanceof HTMLInputElement && t.type === "hidden" || t instanceof HTMLAnchorElement && !t.getAttribute("href") || Za(t) || za(t)));
+    e.querySelectorAll(hc)
+  ).filter((t) => !(t.getAttribute("tabindex") === "-1" || t instanceof HTMLInputElement && t.type === "hidden" || t instanceof HTMLAnchorElement && !t.getAttribute("href") || gc(t) || fc(t)));
 }
-function Ti(e) {
+function Vi(e) {
   let A = e.activeElement;
   for (; A && A.shadowRoot && A.shadowRoot.activeElement; )
     A = A.shadowRoot.activeElement;
   return A instanceof HTMLElement ? A : null;
 }
-function Di(e) {
+function Ni(e) {
   const A = e.ownerDocument || document;
   let t = !1;
   const r = (i) => {
     if (i.key !== "Tab") return;
-    const s = Ar(e);
+    const s = er(e);
     if (s.length === 0) {
       i.preventDefault(), e.focus();
       return;
     }
-    const o = s[0], a = s[s.length - 1], c = Ti(A), l = c ? s.indexOf(c) !== -1 : !1;
+    const o = s[0], a = s[s.length - 1], c = Vi(A), l = c ? s.indexOf(c) !== -1 : !1;
     i.shiftKey ? (!l || c === o) && (i.preventDefault(), a.focus()) : (!l || c === a) && (i.preventDefault(), o.focus());
   };
   e.addEventListener("keydown", r);
-  const n = Ar(e);
+  const n = er(e);
   return n.length > 0 ? n[0].focus() : (e.hasAttribute("tabindex") || (e.setAttribute("tabindex", "-1"), t = !0), e.focus()), {
     release() {
       e.removeEventListener("keydown", r), t && (e.removeAttribute("tabindex"), t = !1);
     }
   };
 }
-function ki() {
-  return Ti(document);
+function Gi() {
+  return Vi(document);
 }
-function Mi(e) {
+function Pi(e) {
   if (!(!e || typeof e.focus != "function"))
     try {
       e.focus();
     } catch {
     }
 }
-function Oi(e, A = {}) {
+function _i(e, A = {}) {
   e.setAttribute("role", "dialog"), e.setAttribute("aria-modal", "true"), A.labelledbyId && e.setAttribute("aria-labelledby", A.labelledbyId), A.describedbyId && e.setAttribute("aria-describedby", A.describedbyId), A.label && e.setAttribute("aria-label", A.label);
 }
-function ja(e, A) {
+function wc(e, A) {
   let t = e;
   for (; t && t !== A; ) {
     const r = t.parentNode;
@@ -2163,11 +2318,11 @@ function ja(e, A) {
   }
   return null;
 }
-function Ri(e) {
+function Xi(e) {
   const t = (e.ownerDocument || document).body;
   if (!t) return () => {
   };
-  const r = ja(e, t), n = [];
+  const r = wc(e, t), n = [];
   return Array.from(t.children).forEach((i) => {
     if (!(i instanceof HTMLElement) || r && i === r) return;
     const s = i.inert === !0, o = i.getAttribute("aria-hidden");
@@ -2179,34 +2334,34 @@ function Ri(e) {
     }
   };
 }
-function $a(e, A) {
-  const t = ki();
-  Oi(e, A);
-  const r = Di(e), n = Ri(e);
+function Qc(e, A) {
+  const t = Gi();
+  _i(e, A);
+  const r = Ni(e), n = Xi(e);
   return () => {
-    r.release(), n(), Mi(t);
+    r.release(), n(), Pi(t);
   };
 }
-const ln = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const hn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  applyDialog: Oi,
-  createFocusTrap: Di,
-  getFocusable: Ar,
-  openDialog: $a,
-  restoreFocus: Mi,
-  saveFocus: ki,
-  setBackgroundInert: Ri
+  applyDialog: _i,
+  createFocusTrap: Ni,
+  getFocusable: er,
+  openDialog: Qc,
+  restoreFocus: Pi,
+  saveFocus: Gi,
+  setBackgroundInert: Xi
 }, Symbol.toStringTag, { value: "Module" }));
-var Ac = "qaid-embed", Bn = "__qaidEmbedTrustedTypes";
-function ec() {
+var Cc = "qaid-embed", gn = "__qaidEmbedTrustedTypes";
+function pc() {
   if (typeof window > "u") return null;
   var e = window, A = e.trustedTypes;
   if (!A || typeof A.createPolicy != "function") return null;
-  var t = e[Bn];
+  var t = e[gn];
   if (t) return t;
   var r = /* @__PURE__ */ Object.create(null), n = /* @__PURE__ */ Object.create(null), i = null;
   try {
-    i = A.createPolicy(Ac, {
+    i = A.createPolicy(Cc, {
       createScriptURL: function(o) {
         if (r[o] === !0) return o;
         throw new TypeError("qaid-embed: refused script URL " + o);
@@ -2221,21 +2376,21 @@ function ec() {
   }
   var s = { policy: i, allowed: r, allowedScripts: n };
   try {
-    Object.defineProperty(e, Bn, { value: s, configurable: !0 });
+    Object.defineProperty(e, gn, { value: s, configurable: !0 });
   } catch {
   }
   return s;
 }
-function tc(e) {
-  var A = ec();
+function Uc(e) {
+  var A = pc();
   return !A || !A.policy ? e : (A.allowed[e] = !0, A.policy.createScriptURL(e));
 }
-function qi(e, A) {
+function Ji(e, A) {
   return new Promise((t, r) => {
     const n = document.createElement("script");
     n.type = "module", n.integrity = A, n.crossOrigin = "anonymous";
     try {
-      n.src = tc(e);
+      n.src = Uc(e);
     } catch {
       console.warn("[thumbs-embed] Trusted Types refused the quests module; add `trusted-types qaid-embed` to the page's CSP to check its hash."), t(!1);
       return;
@@ -2247,32 +2402,32 @@ function qi(e, A) {
     }), (document.head || document.documentElement).appendChild(n);
   });
 }
-const Vi = async (e) => (e === jA && await qi(e, ea), import(
+const Wi = async (e) => (e === jA && await Ji(e, la), import(
   /* @vite-ignore */
   e
 ));
-let Ni = Vi, YA = null, Ze = null;
-const it = /* @__PURE__ */ new Map(), ze = /* @__PURE__ */ new Map();
-function rc(e) {
-  Ni = e ?? Vi, YA = null, Ze = null, it.clear(), ze.clear();
+let Yi = Wi, YA = null, Ze = null;
+const st = /* @__PURE__ */ new Map(), ze = /* @__PURE__ */ new Map();
+function Fc(e) {
+  Yi = e ?? Wi, YA = null, Ze = null, st.clear(), ze.clear();
 }
-function Gi(e, A) {
+function Zi(e, A) {
   return `${e.replace(/\/+$/, "")}/${encodeURIComponent(A)}/definition`;
 }
-function nc(e) {
-  if (it.has(e)) return Promise.resolve();
+function vc(e) {
+  if (st.has(e)) return Promise.resolve();
   const A = ze.get(e);
   if (A) return A;
   const t = fetch(e, { headers: { Accept: "application/json" } }).then((r) => r.ok ? r.json() : null).then((r) => {
-    r && it.set(e, r);
+    r && st.set(e, r);
   }).catch(() => {
   }).finally(() => {
     ze.delete(e);
   });
   return ze.set(e, t), t;
 }
-function Pi(e) {
-  return YA && Ze === e || (Ze = e, YA = Promise.resolve(Ni(e)).then((A) => {
+function zi(e) {
+  return YA && Ze === e || (Ze = e, YA = Promise.resolve(Yi(e)).then((A) => {
     const t = A;
     if (!t || typeof t.QaidQuests != "function")
       throw new Error("quests module has no QaidQuests export");
@@ -2281,8 +2436,8 @@ function Pi(e) {
     throw YA = null, Ze = null, A;
   })), YA;
 }
-async function _i(e) {
-  const A = await Pi(e.moduleUrl), t = e.base.replace(/\/+$/, ""), r = Gi(t, e.questId), n = (o) => o != null ? { feedbackId: o } : void 0;
+async function ji(e) {
+  const A = await zi(e.moduleUrl), t = e.base.replace(/\/+$/, ""), r = Zi(t, e.questId), n = (o) => o != null ? { feedbackId: o } : void 0;
   let i;
   const s = e.feedbackId;
   return s instanceof Promise ? i = A.QaidQuests.supports?.asyncMetadata ? s.then(n, () => {
@@ -2291,27 +2446,27 @@ async function _i(e) {
     configUrl: r,
     // Only a definition already in hand. One still loading is left to the
     // widget, which shows its own loading state instead of nothing.
-    questionnaire: it.get(r),
+    questionnaire: st.get(r),
     apiKey: e.apiKey || void 0,
     metadata: i,
     onClose: e.onClose
   });
 }
-const ic = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const mc = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   DEFAULT_QUESTS_MODULE_URL: jA,
-  _setQuestsImporter: rc,
-  launchQuest: _i,
-  loadQuestsModule: Pi,
-  prefetchQuestDefinition: nc,
-  preloadVerifiedModule: qi,
-  questDefinitionUrl: Gi
+  _setQuestsImporter: Fc,
+  launchQuest: ji,
+  loadQuestsModule: zi,
+  prefetchQuestDefinition: vc,
+  preloadVerifiedModule: Ji,
+  questDefinitionUrl: Zi
 }, Symbol.toStringTag, { value: "Module" }));
-async function Xi(e, A) {
+async function $i(e, A) {
   const t = e.ensureOverlayHost(), r = e.overlayShadowHost, n = r.style.pointerEvents;
   r.style.pointerEvents = "auto";
   try {
-    const { openAnnotationEditor: i, styles: s } = await Promise.resolve().then(() => Si);
+    const { openAnnotationEditor: i, styles: s } = await Promise.resolve().then(() => qi);
     return e.addFeatureStyles(s), await i({
       dataUrl: A,
       root: t,
@@ -2329,23 +2484,23 @@ async function Xi(e, A) {
     r.style.pointerEvents = n;
   }
 }
-async function sc(e) {
+async function bc(e) {
   const { config: A, feedbackData: t, selectedBounds: r } = e;
   let n = null;
   if (A.captureScreenshot || A.feedbackMode === "annotate")
     try {
       if (e.shouldCaptureViaDom()) {
-        const { captureDomScreenshot: B } = await Promise.resolve().then(() => Ii);
+        const { captureDomScreenshot: B } = await Promise.resolve().then(() => ki);
         n = await B(A.screenshotOptions);
       } else {
-        const { captureScreenshot: B } = await Promise.resolve().then(() => zi);
+        const { captureScreenshot: B } = await Promise.resolve().then(() => ns);
         n = await B(A.screenshotOptions);
       }
       n && e.announceMsg("Screenshot captured");
     } catch (B) {
       console.error("Screenshot capture failed:", B), n = null;
     }
-  n && A.annotate && (n = await Xi(e, n) ?? n);
+  n && A.annotate && (n = await $i(e, n) ?? n);
   const s = t.elementSelector ? {
     x: r.x,
     y: r.y,
@@ -2369,10 +2524,10 @@ async function sc(e) {
     // Include element bounds and user agent for server-side screenshot fallback
     elementBounds: s,
     userAgent: navigator.userAgent
-  }, a = oc(e, o);
+  }, a = yc(e, o);
   e.setFeedbackRecord(a);
   const c = a.then((B) => B?.id ?? null), l = t.feedbackType;
-  if (l && l !== "neutral" && await Ji(e, l, c)) {
+  if (l && l !== "neutral" && await As(e, l, c)) {
     e.resetFeedbackUi();
     return;
   }
@@ -2385,7 +2540,7 @@ async function sc(e) {
     console.error("Failed to open the feedback modal:", B), e.announceMsg("Thank you for your feedback!", !0), e.resetFeedbackUi();
   }
 }
-async function oc(e, A) {
+async function yc(e, A) {
   try {
     const t = await fetch(e.config.endpoint, {
       method: "POST",
@@ -2401,11 +2556,11 @@ async function oc(e, A) {
   }
   return null;
 }
-async function Ji(e, A, t) {
+async function As(e, A, t) {
   const r = e.config.quests, n = r.base && r[A] || "";
   if (!n) return !1;
   try {
-    return e.activeQuest?.destroy(), e.activeQuest = await _i({
+    return e.activeQuest?.destroy(), e.activeQuest = await ji({
       questId: n,
       base: r.base,
       apiKey: r.apiKey || void 0,
@@ -2419,19 +2574,19 @@ async function Ji(e, A, t) {
     return console.error("Failed to launch quest:", i), e.activeQuest = null, !1;
   }
 }
-const Ht = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const It = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  openAnnotationEditor: Xi,
-  submitFeedback: sc,
-  tryLaunchQuest: Ji
-}, Symbol.toStringTag, { value: "Module" })), Wi = {
+  openAnnotationEditor: $i,
+  submitFeedback: bc,
+  tryLaunchQuest: As
+}, Symbol.toStringTag, { value: "Module" })), es = {
   width: 400,
   height: 280,
   arrowHeight: 12,
   gap: 8,
   viewportPadding: 16
 };
-function ac(e, A, t, r, n) {
+function Ec(e, A, t, r, n) {
   const i = e.y, s = A - (e.y + e.height);
   if (s >= t + r)
     return {
@@ -2450,22 +2605,22 @@ function ac(e, A, t, r, n) {
     A - t - n
   ) : a = Math.max(n, e.y - t - r), { top: a, position: o };
 }
-function cc(e, A, t, r) {
+function Hc(e, A, t, r) {
   let i = e.x + e.width / 2 - t / 2;
   return i = Math.max(r, Math.min(i, A - t - r)), i;
 }
-function lc(e, A, t, r = 24, n = 24) {
+function Ic(e, A, t, r = 24, n = 24) {
   const s = e.clickX - A - n / 2;
   return Math.max(r, Math.min(s, t - r - n / 2));
 }
-function Bc(e, A, t, r = Wi) {
-  const n = r.height + r.arrowHeight, i = ac(
+function xc(e, A, t, r = es) {
+  const n = r.height + r.arrowHeight, i = Ec(
     e,
     t,
     n,
     r.gap,
     r.viewportPadding
-  ), s = cc(
+  ), s = Hc(
     e,
     A,
     r.width,
@@ -2477,8 +2632,8 @@ function Bc(e, A, t, r = Wi) {
     position: i.position
   };
 }
-function dc(e, A, t, r = Wi) {
-  const n = Bc(e, A, t, r), i = lc(
+function Lc(e, A, t, r = es) {
+  const n = xc(e, A, t, r), i = Ic(
     e,
     n.left,
     r.width
@@ -2488,9 +2643,9 @@ function dc(e, A, t, r = Wi) {
     arrow: { left: i }
   };
 }
-const uc = document;
+const Kc = document;
 function H(e, A, ...t) {
-  const r = uc.createElement(e);
+  const r = Kc.createElement(e);
   if (A) {
     if (A.class && (r.className = A.class), A.style && (r.style.cssText = A.style), A.text != null && (r.textContent = A.text), A.attrs)
       for (const n in A.attrs) r.setAttribute(n, A.attrs[n]);
@@ -2501,11 +2656,11 @@ function H(e, A, ...t) {
     n != null && n !== !1 && r.append(n);
   return r;
 }
-const hc = ".qaid-backdrop{position:fixed;inset:0;z-index:45;background:#0000004d}.qaid-modal-container{position:fixed;z-index:50;display:flex;flex-direction:column;align-items:flex-start;max-height:calc(100vh - 32px);font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-modal-container.qaid-above{flex-direction:column-reverse}.qaid-modal-arrow{width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;position:relative;align-self:flex-start}.qaid-modal-container.qaid-below .qaid-modal-arrow{border-bottom:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-container.qaid-above .qaid-modal-arrow{border-top:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5));width:var(--qaid-modal-width, 400px);max-width:calc(100vw - 32px);max-height:calc(100vh - 60px);overflow-y:auto}.qaid-modal-header{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1rem}button.qaid-type-toggle{border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;-webkit-appearance:none;appearance:none}button.qaid-type-toggle:hover{transform:scale(1.1)}button.qaid-type-toggle:not(.qaid-type-toggle-custom){width:2.5rem;height:2.5rem;border-radius:50%}button.qaid-type-toggle:not(.qaid-type-toggle-custom) svg{width:1.25rem;height:1.25rem}button.qaid-type-toggle.qaid-type-up{background:var(--qaid-positive);color:#fff}button.qaid-type-toggle.qaid-type-down{background:var(--qaid-negative);color:#fff}.qaid-type-static{width:2.5rem;height:2.5rem;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--qaid-marker, #6365f1);color:var(--qaid-marker-text, white)}.qaid-type-static svg{width:1.25rem;height:1.25rem}.qaid-modal-header-text{flex:1;min-width:0}.qaid-modal-title{font-size:calc(var(--qaid-font-size, 16px) * 1.125);font-weight:700;margin:0 0 .25rem;color:light-dark(#1f2937,#f9fafb)}.qaid-modal-subtitle{color:light-dark(#6b7280,#9ca3af);margin:0;font-size:calc(var(--qaid-font-size, 16px) * .875)}.qaid-textarea{width:100%;height:6rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:var(--qaid-font-size, 16px);resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-btn-row{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-btn-submit{padding:.5rem 1rem;background:var(--qaid-marker);color:var(--qaid-marker-text, white);border:none;border-radius:.5rem;font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-btn-submit:hover{filter:brightness(.85)}button.qaid-btn-submit:focus{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 30%,transparent)}.qaid-bottom-sheet{position:fixed;bottom:0;left:0;right:0;z-index:50;animation:qaid-slideUpSheet .3s ease-out;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-bottom-sheet-content{background:light-dark(#ffffff,#1f2937);border-radius:1rem 1rem 0 0;padding:1.5rem;padding-bottom:max(1.5rem,env(safe-area-inset-bottom))}.qaid-bottom-sheet-handle{width:36px;height:4px;background:light-dark(rgba(0,0,0,.2),rgba(255,255,255,.2));border-radius:2px;margin:0 auto 1rem}@keyframes qaid-slideUpSheet{0%{transform:translateY(100%)}to{transform:translateY(0)}}.qaid-confirm{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;padding:.5rem 0}.qaid-confirm-icon{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:9999px;color:#fff;background:var(--qaid-success, #22c55e);margin-bottom:.25rem;animation:qaid-confirm-pop .28s cubic-bezier(.34,1.56,.64,1)}.qaid-confirm-icon .qaid-icon{width:24px;height:24px}.qaid-confirm-error .qaid-confirm-icon{background:var(--qaid-error, #dc2626)}.qaid-confirm-title{margin:0;font-size:var(--qaid-font-size, 16px);font-weight:600;color:var(--qaid-text, light-dark(#111827, #f9fafb))}.qaid-confirm-title:focus-visible{outline:2px solid var(--qaid-primary, #6365f1);outline-offset:3px;border-radius:4px}.qaid-confirm-message{margin:0;font-size:calc(var(--qaid-font-size, 16px) * .875);color:var(--qaid-text-muted, light-dark(#6b7280, #9ca3af))}.qaid-confirm .qaid-confirm-close{margin-top:.5rem;min-width:96px}@keyframes qaid-confirm-pop{0%{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}@media(prefers-reduced-motion:reduce){.qaid-confirm-icon{animation:none}}.qaid-textarea:focus-visible,button.qaid-btn-submit:focus-visible{outline:2px solid var(--qaid-marker, #6365f1);outline-offset:2px}@media(forced-colors:active){.qaid-textarea:focus,button.qaid-btn-submit:focus{outline:2px solid CanvasText;outline-offset:2px}}";
+const Sc = ".qaid-backdrop{position:fixed;inset:0;z-index:45;background:#0000004d}.qaid-modal-container{position:fixed;z-index:50;display:flex;flex-direction:column;align-items:flex-start;max-height:calc(100vh - 32px);font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-modal-container.qaid-above{flex-direction:column-reverse}.qaid-modal-arrow{width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;position:relative;align-self:flex-start}.qaid-modal-container.qaid-below .qaid-modal-arrow{border-bottom:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-container.qaid-above .qaid-modal-arrow{border-top:12px solid light-dark(#ffffff,#1f2937)}.qaid-modal-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px light-dark(rgba(0,0,0,.25),rgba(0,0,0,.5));width:var(--qaid-modal-width, 400px);max-width:calc(100vw - 32px);max-height:calc(100vh - 60px);overflow-y:auto}.qaid-modal-header{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1rem}button.qaid-type-toggle{border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;-webkit-appearance:none;appearance:none}button.qaid-type-toggle:hover{transform:scale(1.1)}button.qaid-type-toggle:not(.qaid-type-toggle-custom){width:2.5rem;height:2.5rem;border-radius:50%}button.qaid-type-toggle:not(.qaid-type-toggle-custom) svg{width:1.25rem;height:1.25rem}button.qaid-type-toggle.qaid-type-up{background:var(--qaid-positive);color:#fff}button.qaid-type-toggle.qaid-type-down{background:var(--qaid-negative);color:#fff}.qaid-type-static{width:2.5rem;height:2.5rem;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--qaid-marker, #6365f1);color:var(--qaid-marker-text, white)}.qaid-type-static svg{width:1.25rem;height:1.25rem}.qaid-modal-header-text{flex:1;min-width:0}.qaid-modal-title{font-size:calc(var(--qaid-font-size, 16px) * 1.125);font-weight:700;margin:0 0 .25rem;color:light-dark(#1f2937,#f9fafb)}.qaid-modal-subtitle{color:light-dark(#6b7280,#9ca3af);margin:0;font-size:calc(var(--qaid-font-size, 16px) * .875)}.qaid-textarea{width:100%;height:6rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:var(--qaid-font-size, 16px);resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-btn-row{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-btn-submit{padding:.5rem 1rem;background:var(--qaid-marker);color:var(--qaid-marker-text, white);border:none;border-radius:.5rem;font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-btn-submit:hover{filter:brightness(.85)}button.qaid-btn-submit:focus{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 30%,transparent)}.qaid-bottom-sheet{position:fixed;bottom:0;left:0;right:0;z-index:50;animation:qaid-slideUpSheet .3s ease-out;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-bottom-sheet-content{background:light-dark(#ffffff,#1f2937);border-radius:1rem 1rem 0 0;padding:1.5rem;padding-bottom:max(1.5rem,env(safe-area-inset-bottom))}.qaid-bottom-sheet-handle{width:36px;height:4px;background:light-dark(rgba(0,0,0,.2),rgba(255,255,255,.2));border-radius:2px;margin:0 auto 1rem}@keyframes qaid-slideUpSheet{0%{transform:translateY(100%)}to{transform:translateY(0)}}.qaid-confirm{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;padding:.5rem 0}.qaid-confirm-icon{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:9999px;color:#fff;background:var(--qaid-success, #22c55e);margin-bottom:.25rem;animation:qaid-confirm-pop .28s cubic-bezier(.34,1.56,.64,1)}.qaid-confirm-icon .qaid-icon{width:24px;height:24px}.qaid-confirm-error .qaid-confirm-icon{background:var(--qaid-error, #dc2626)}.qaid-confirm-title{margin:0;font-size:var(--qaid-font-size, 16px);font-weight:600;color:var(--qaid-text, light-dark(#111827, #f9fafb))}.qaid-confirm-title:focus-visible{outline:2px solid var(--qaid-primary, #6365f1);outline-offset:3px;border-radius:4px}.qaid-confirm-message{margin:0;font-size:calc(var(--qaid-font-size, 16px) * .875);color:var(--qaid-text-muted, light-dark(#6b7280, #9ca3af))}.qaid-confirm .qaid-confirm-close{margin-top:.5rem;min-width:96px}@keyframes qaid-confirm-pop{0%{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}@media(prefers-reduced-motion:reduce){.qaid-confirm-icon{animation:none}}.qaid-textarea:focus-visible,button.qaid-btn-submit:focus-visible{outline:2px solid var(--qaid-marker, #6365f1);outline-offset:2px}@media(forced-colors:active){.qaid-textarea:focus,button.qaid-btn-submit:focus{outline:2px solid CanvasText;outline-offset:2px}}";
 function je(e, A) {
   return JSON.stringify(e.editToken ? { ...A, editToken: e.editToken } : A);
 }
-class gc {
+class Tc {
   constructor(A) {
     this.host = A;
   }
@@ -2548,7 +2703,7 @@ class gc {
     ), this.host.applyVars(t), A.appendChild(t), this.modalContainer = t, this.setupModalInteractions();
   }
   showPositionedModal() {
-    const A = this.host.ensureOverlayHost(), { modal: t, arrow: r } = dc(
+    const A = this.host.ensureOverlayHost(), { modal: t, arrow: r } = Lc(
       this.host.selectedBounds,
       window.innerWidth,
       window.innerHeight,
@@ -2578,7 +2733,7 @@ class gc {
     const { config: A, uid: t } = this.host, r = A.text, n = this.host.feedbackData.feedbackType, i = n === "up", s = A.buttonClass ? `qaid-type-toggle qaid-type-toggle-custom ${A.buttonClass} ${i ? "qaid-btn-up" : "qaid-btn-down"}` : `qaid-type-toggle ${i ? "qaid-type-up" : "qaid-type-down"}`, o = i ? "Feedback type: positive" : "Feedback type: negative", a = n === "neutral" ? H(
       "span",
       { class: "qaid-type-static", attrs: { "aria-hidden": "true" } },
-      MA(A.feedbackIcon, hi)
+      MA(A.feedbackIcon, Qi)
     ) : H(
       "button",
       {
@@ -2590,7 +2745,7 @@ class gc {
           "aria-label": o
         }
       },
-      i ? MA(A.positiveIcon, zt) : MA(A.negativeIcon, jt)
+      i ? MA(A.positiveIcon, jt) : MA(A.negativeIcon, $t)
     ), c = document.createDocumentFragment();
     return c.append(
       H(
@@ -2642,7 +2797,7 @@ class gc {
     const r = this.modalContainer.querySelector(".qaid-type-toggle");
     r && r.addEventListener("click", () => {
       const n = this.host.feedbackData.feedbackType === "up" ? "down" : "up";
-      this.host.feedbackData.feedbackType = n, this.host.config.buttonClass ? (r.classList.toggle("qaid-btn-up", n === "up"), r.classList.toggle("qaid-btn-down", n === "down")) : (r.classList.toggle("qaid-type-up", n === "up"), r.classList.toggle("qaid-type-down", n === "down")), n === "up" ? DA(r, this.host.config.positiveIcon, zt) : DA(r, this.host.config.negativeIcon, jt);
+      this.host.feedbackData.feedbackType = n, this.host.config.buttonClass ? (r.classList.toggle("qaid-btn-up", n === "up"), r.classList.toggle("qaid-btn-down", n === "down")) : (r.classList.toggle("qaid-type-up", n === "up"), r.classList.toggle("qaid-type-down", n === "down")), n === "up" ? DA(r, this.host.config.positiveIcon, jt) : DA(r, this.host.config.negativeIcon, $t);
       const i = n === "up" ? "Feedback type: positive" : "Feedback type: negative";
       r.setAttribute("aria-pressed", String(n === "up")), r.setAttribute("aria-label", i), this.host.announceMsg(i), this.host.whenFeedbackRecord().then((s) => {
         s?.id && fetch(`${this.host.config.endpoint}/${s.id}`, {
@@ -2705,7 +2860,7 @@ class gc {
         H(
           "span",
           { class: "qaid-confirm-icon", attrs: { "aria-hidden": "true" } },
-          MA(null, A ? gi : Uo)
+          MA(null, A ? Ci : xo)
         ),
         s,
         H("p", { class: "qaid-confirm-message", text: i }),
@@ -2719,16 +2874,16 @@ class gc {
     ), requestAnimationFrame(() => s.focus()), this.host.announceMsg(`${n} ${i}`, !0);
   }
 }
-const fc = hc, dn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const Dc = Sc, fn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  ModalController: gc,
+  ModalController: Tc,
   patchBody: je,
-  styles: fc
-}, Symbol.toStringTag, { value: "Module" })), Yi = ["data-comp", "data-qa", "data-testid", "data-id"];
-function Zi(e, A = document.body) {
+  styles: Dc
+}, Symbol.toStringTag, { value: "Module" })), ts = ["data-comp", "data-qa", "data-testid", "data-id"];
+function rs(e, A = document.body) {
   let t = e;
   for (; t && t !== A; ) {
-    for (const r of Yi) {
+    for (const r of ts) {
       const n = t.getAttribute(r);
       if (n)
         return `${r}="${n}"`;
@@ -2737,37 +2892,37 @@ function Zi(e, A = document.body) {
   }
   return null;
 }
-function wc(e, A = 100) {
+function kc(e, A = 100) {
   const t = e.textContent?.trim().slice(0, A) || "";
   return t.length === A ? t + "..." : t;
 }
-function Qc(e) {
+function Mc(e) {
   let A = 1, t = e.previousElementSibling;
   for (; t; )
     A++, t = t.previousElementSibling;
   return A;
 }
-function Cc(e) {
+function Oc(e) {
   const A = [];
   let t = e;
   for (; t && t !== document.body && t !== document.documentElement; ) {
-    const r = t.tagName.toLowerCase(), n = Qc(t);
+    const r = t.tagName.toLowerCase(), n = Mc(t);
     A.unshift(`${r}:nth-child(${n})`), t = t.parentElement;
   }
   return A.length > 0 ? `body > ${A.join(" > ")}` : "body";
 }
-function pc(e) {
+function Rc(e) {
   return e.replace(/([!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, "\\$1");
 }
-function Uc(e) {
-  const A = Zi(e);
-  return A ? `[${A}]` : e.id ? `#${pc(e.id)}` : Cc(e);
+function qc(e) {
+  const A = rs(e);
+  return A ? `[${A}]` : e.id ? `#${Rc(e.id)}` : Oc(e);
 }
-function It(e) {
-  const A = wc(e), t = Zi(e);
-  return { selector: Uc(e), text: A, dataAttr: t };
+function xt(e) {
+  const A = kc(e), t = rs(e);
+  return { selector: qc(e), text: A, dataAttr: t };
 }
-const Fc = [
+const Vc = [
   "a[href]",
   "button",
   "input:not([type=hidden])",
@@ -2786,9 +2941,9 @@ const Fc = [
   "p",
   "li",
   "label",
-  ...Yi.map((e) => `[${e}]`)
-].join(","), vc = /^(?:A|BUTTON|INPUT|SELECT|TEXTAREA|SUMMARY)$/;
-function mc(e) {
+  ...ts.map((e) => `[${e}]`)
+].join(","), Nc = /^(?:A|BUTTON|INPUT|SELECT|TEXTAREA|SUMMARY)$/;
+function Gc(e) {
   if (e.hasAttribute("hidden") || e.getAttribute("aria-hidden") === "true") return !1;
   const A = e.ownerDocument?.defaultView;
   if (A && typeof A.getComputedStyle == "function") {
@@ -2797,14 +2952,14 @@ function mc(e) {
   }
   return !0;
 }
-function bc(e = {}) {
-  const A = e.root ?? document.body, t = e.selector ?? Fc, r = e.isExcluded ?? (() => !1), n = e.isVisible ?? mc;
+function Pc(e = {}) {
+  const A = e.root ?? document.body, t = e.selector ?? Vc, r = e.isExcluded ?? (() => !1), n = e.isVisible ?? Gc;
   return Array.from(A.querySelectorAll(t)).filter(
     (i) => !r(i) && n(i)
   );
 }
-function yc(e) {
-  const A = e.candidates ?? bc({
+function _c(e) {
+  const A = e.candidates ?? Pc({
     root: e.root,
     selector: e.selector,
     isExcluded: e.isExcluded,
@@ -2821,7 +2976,7 @@ function yc(e) {
     if (!t) return;
     const v = h;
     if (typeof v.focus == "function") {
-      h.getAttribute("tabindex") === null && !vc.test(h.tagName) && (h.setAttribute("tabindex", "-1"), n.add(h));
+      h.getAttribute("tabindex") === null && !Nc.test(h.tagName) && (h.setAttribute("tabindex", "-1"), n.add(h));
       try {
         v.focus();
       } catch {
@@ -2895,8 +3050,8 @@ function yc(e) {
     stop: u
   };
 }
-const Ec = ".qaid-targeting-overlay{position:fixed;inset:0;z-index:40;pointer-events:none}.qaid-capture-layer{position:fixed;inset:0;pointer-events:none;z-index:9999}.qaid-vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.3) 70%,rgba(0,0,0,.6) 100%);z-index:41}.qaid-crosshair-h,.qaid-crosshair-v{position:fixed;pointer-events:none;z-index:42}.qaid-crosshair-h{left:0;right:0;height:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-crosshair-v{top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-type-up .qaid-crosshair-h,.qaid-type-up .qaid-crosshair-v{background:color-mix(in srgb,var(--qaid-positive) 60%,transparent)}.qaid-highlight-box{position:fixed;top:0;left:0;pointer-events:none;z-index:41;display:none;border:3px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:2px;background:color-mix(in srgb,var(--qaid-negative) 8%,transparent);will-change:transform,width,height}.qaid-type-up .qaid-highlight-box{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent);background:color-mix(in srgb,var(--qaid-positive) 8%,transparent)}.qaid-scope{position:fixed;width:80px;height:80px;pointer-events:none;z-index:43;transform:translate(-50%,-50%)}.qaid-scope-ring{position:absolute;inset:10px;border:2px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent)}.qaid-scope-ring-inner{position:absolute;inset:20px;border:1px solid color-mix(in srgb,var(--qaid-negative) 50%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring-inner{border-color:color-mix(in srgb,var(--qaid-positive) 50%,transparent)}.qaid-scope-dot{position:absolute;top:50%;left:50%;width:4px;height:4px;background:var(--qaid-negative);border-radius:50%;transform:translate(-50%,-50%)}.qaid-type-up .qaid-scope-dot{background:var(--qaid-positive)}.qaid-selected-marker{position:fixed;border:3px solid var(--qaid-marker, #6365f1);border-radius:50%;pointer-events:none;z-index:44;animation:qaid-markerPulse 1.5s ease-in-out infinite}@keyframes qaid-markerPulse{0%,to{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}@media(forced-colors:active){.qaid-selected-marker,.qaid-highlight-box{border-color:Highlight}}", Hc = 12;
-class Ic {
+const Xc = ".qaid-targeting-overlay{position:fixed;inset:0;z-index:40;pointer-events:none}.qaid-capture-layer{position:fixed;inset:0;pointer-events:none;z-index:9999}.qaid-vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.3) 70%,rgba(0,0,0,.6) 100%);z-index:41}.qaid-crosshair-h,.qaid-crosshair-v{position:fixed;pointer-events:none;z-index:42}.qaid-crosshair-h{left:0;right:0;height:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-crosshair-v{top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--qaid-negative) 60%,transparent)}.qaid-type-up .qaid-crosshair-h,.qaid-type-up .qaid-crosshair-v{background:color-mix(in srgb,var(--qaid-positive) 60%,transparent)}.qaid-highlight-box{position:fixed;top:0;left:0;pointer-events:none;z-index:41;display:none;border:3px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:2px;background:color-mix(in srgb,var(--qaid-negative) 8%,transparent);will-change:transform,width,height}.qaid-type-up .qaid-highlight-box{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent);background:color-mix(in srgb,var(--qaid-positive) 8%,transparent)}.qaid-scope{position:fixed;width:80px;height:80px;pointer-events:none;z-index:43;transform:translate(-50%,-50%)}.qaid-scope-ring{position:absolute;inset:10px;border:2px solid color-mix(in srgb,var(--qaid-negative) 80%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring{border-color:color-mix(in srgb,var(--qaid-positive) 80%,transparent)}.qaid-scope-ring-inner{position:absolute;inset:20px;border:1px solid color-mix(in srgb,var(--qaid-negative) 50%,transparent);border-radius:50%}.qaid-type-up .qaid-scope-ring-inner{border-color:color-mix(in srgb,var(--qaid-positive) 50%,transparent)}.qaid-scope-dot{position:absolute;top:50%;left:50%;width:4px;height:4px;background:var(--qaid-negative);border-radius:50%;transform:translate(-50%,-50%)}.qaid-type-up .qaid-scope-dot{background:var(--qaid-positive)}.qaid-selected-marker{position:fixed;border:3px solid var(--qaid-marker, #6365f1);border-radius:50%;pointer-events:none;z-index:44;animation:qaid-markerPulse 1.5s ease-in-out infinite}@keyframes qaid-markerPulse{0%,to{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}@media(forced-colors:active){.qaid-selected-marker,.qaid-highlight-box{border-color:Highlight}}", Jc = 12;
+class Wc {
   constructor(A) {
     this.host = A;
   }
@@ -2925,12 +3080,12 @@ class Ic {
    * KeyboardTargetingController owns Tab/Arrow/Enter/Space/Escape.
    */
   startKeyboard(A) {
-    this.host.setState("TARGETING"), this.host.feedbackData.feedbackType = A, this.host.feedbackData.elementSelector = null, this.host.feedbackData.elementText = null, this.host.selectedBounds.visible = !1, document.body.style.setProperty("--qaid-positive", this.host.cssVars["--qaid-positive"]), document.body.style.setProperty("--qaid-negative", this.host.cssVars["--qaid-negative"]), this.createTargetingOverlay(), this.crosshairH && (this.crosshairH.style.display = "none"), this.crosshairV && (this.crosshairV.style.display = "none"), this.scope && (this.scope.style.display = "none"), this.keyboardController = yc({
+    this.host.setState("TARGETING"), this.host.feedbackData.feedbackType = A, this.host.feedbackData.elementSelector = null, this.host.feedbackData.elementText = null, this.host.selectedBounds.visible = !1, document.body.style.setProperty("--qaid-positive", this.host.cssVars["--qaid-positive"]), document.body.style.setProperty("--qaid-negative", this.host.cssVars["--qaid-negative"]), this.createTargetingOverlay(), this.crosshairH && (this.crosshairH.style.display = "none"), this.crosshairV && (this.crosshairV.style.display = "none"), this.scope && (this.scope.style.display = "none"), this.keyboardController = _c({
       isExcluded: (t) => Ye(t),
       onHighlight: (t) => {
         const r = t.getBoundingClientRect(), n = this.highlightBox;
         n && (n.style.transform = `translate(${r.left}px, ${r.top}px)`, n.style.width = `${r.width}px`, n.style.height = `${r.height}px`, n.style.display = "block");
-        const { text: i } = It(t);
+        const { text: i } = xt(t);
         this.host.announceMsg(`Targeting ${i || t.tagName.toLowerCase()}`);
       },
       onSelect: (t) => this.selectKeyboardTarget(t),
@@ -2938,13 +3093,13 @@ class Ic {
     });
   }
   selectKeyboardTarget(A) {
-    const t = zr(A, 8);
+    const t = $r(A, 8);
     Object.assign(this.host.selectedBounds, t, {
       clickX: t.x + t.width / 2,
       clickY: t.y + t.height / 2,
       visible: !0
     });
-    const { selector: r, text: n } = It(A);
+    const { selector: r, text: n } = xt(A);
     this.host.feedbackData.elementSelector = r, this.host.feedbackData.elementText = n, this.removeTargetingOverlay(), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.keyboardController = null, this.host.clearActiveThumb(), this.host.setState("SELECTED"), this.showSelectedMarker(), this.host.submitFeedback();
   }
   createTargetingOverlay() {
@@ -2964,7 +3119,7 @@ class Ic {
   /** Move the crosshair/scope reticle and highlight the element under (x, y). */
   updateReticleAt(A, t) {
     if (this.mousePos.x = A, this.mousePos.y = t, this.crosshairH && (this.crosshairH.style.top = `${t}px`), this.crosshairV && (this.crosshairV.style.left = `${A}px`), this.scope && (this.scope.style.left = `${A}px`, this.scope.style.top = `${t}px`), this.captureLayer && this.host.shadowHost) {
-      const r = [this.host.shadowHost, this.host.overlayShadowHost].filter(Boolean), n = Zr(A, t, r);
+      const r = [this.host.shadowHost, this.host.overlayShadowHost].filter(Boolean), n = jr(A, t, r);
       if (n && !Ye(n)) {
         if (this.highlightBox) {
           const i = n.getBoundingClientRect();
@@ -2983,16 +3138,16 @@ class Ic {
   }
   handleTouchEnd(A) {
     const t = A.changedTouches[0], r = this.touchStartPos;
-    this.touchStartPos = null, !(!t || !r || Math.hypot(t.clientX - r.x, t.clientY - r.y) > Hc) && (A.preventDefault(), this.selectAt(t.clientX, t.clientY));
+    this.touchStartPos = null, !(!t || !r || Math.hypot(t.clientX - r.x, t.clientY - r.y) > Jc) && (A.preventDefault(), this.selectAt(t.clientX, t.clientY));
   }
   /** Select the element under (x, y) and tear down targeting. */
   selectAt(A, t) {
-    const r = [this.host.shadowHost, this.host.overlayShadowHost].filter(Boolean), n = Zr(A, t, r);
+    const r = [this.host.shadowHost, this.host.overlayShadowHost].filter(Boolean), n = jr(A, t, r);
     if (!n || Ye(n))
       return;
-    const i = zr(n, 8);
+    const i = $r(n, 8);
     Object.assign(this.host.selectedBounds, i, { clickX: A, clickY: t, visible: !0 });
-    const { selector: s, text: o } = It(n);
+    const { selector: s, text: o } = xt(n);
     this.host.feedbackData.elementSelector = s, this.host.feedbackData.elementText = o, this.stopTargetingListeners(), document.body.classList.remove("qaid-targeting", "qaid-type-up"), document.body.style.removeProperty("--qaid-positive"), document.body.style.removeProperty("--qaid-negative"), this.host.setState("SELECTED"), this.host.clearActiveThumb(), this.showSelectedMarker(), this.host.submitFeedback();
   }
   stopTargetingListeners() {
@@ -3016,12 +3171,12 @@ class Ic {
     this.keyboardController?.stop(), this.keyboardController = null, this.stopTargetingListeners(), this.hideMarker();
   }
 }
-const xc = Ec, un = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const Yc = Xc, wn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  TargetingController: Ic,
-  styles: xc
-}, Symbol.toStringTag, { value: "Module" })), Lc = ".qaid-recording-indicator{position:fixed;pointer-events:auto;top:12px;left:50%;transform:translate(-50%);display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:light-dark(#1f2937,#374151);color:#fff;border-radius:9999px;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;box-shadow:0 4px 12px #0000004d;z-index:99999;animation:qaid-slideDown .2s ease-out}.qaid-recording-dot{width:10px;height:10px;background:#dc2626;border-radius:50%;animation:qaid-dotPulse 1.5s ease-in-out infinite}@keyframes qaid-dotPulse{0%,to{opacity:1}50%{opacity:.3}}.qaid-recording-time{font-variant-numeric:tabular-nums;min-width:2.5rem;text-align:center}button.qaid-recording-stop{padding:.25rem .75rem;background:#dc2626;color:#fff;border:none;border-radius:9999px;font-size:calc(var(--qaid-font-size, 16px) * .75);font-weight:600;cursor:pointer;transition:background-color .2s;-webkit-appearance:none;appearance:none}button.qaid-recording-stop:hover{background:#b91c1c}.qaid-video-preview{position:fixed;inset:0 0 auto;height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#0009;z-index:99998;animation:qaid-fadeIn .2s ease-out}@keyframes qaid-fadeIn{0%{opacity:0}to{opacity:1}}.qaid-video-preview-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px #00000080;width:560px;max-width:100%;max-height:100%;overflow-y:auto;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-video-preview-box h3{font-size:calc(var(--qaid-font-size, 16px) * 1.125);font-weight:700;margin:0 0 1rem;color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box video{width:100%;max-height:50vh;max-height:50dvh;object-fit:contain;border-radius:.5rem;background:#000;margin-bottom:1rem}.qaid-video-preview-box textarea{width:100%;height:4rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:calc(var(--qaid-font-size, 16px) * .875);resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-video-error{margin:0 0 .75rem;font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;color:light-dark(#b91c1c,#fca5a5)}.qaid-video-preview-actions{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-video-btn{padding:.5rem 1rem;border:none;border-radius:.5rem;font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-video-btn-cancel{background:light-dark(#f3f4f6,#374151);color:light-dark(#374151,#d1d5db)}button.qaid-video-btn-cancel:hover{background:light-dark(#e5e7eb,#4b5563)}button.qaid-video-btn-rerecord{background:light-dark(#fef3c7,#78350f);color:light-dark(#92400e,#fde68a)}button.qaid-video-btn-rerecord:hover{filter:brightness(.9)}button.qaid-video-btn-send{background:var(--qaid-marker);color:var(--qaid-marker-text, white)}button.qaid-video-btn-send:hover{filter:brightness(.85)}button.qaid-video-btn-send:disabled{opacity:.5;cursor:not-allowed}.qaid-video-sending{display:flex;align-items:center;gap:.5rem;font-size:calc(var(--qaid-font-size, 16px) * .875);color:light-dark(#6b7280,#9ca3af)}@keyframes qaid-slideDown{0%{transform:translateY(-100%)}to{transform:translateY(0)}}button.qaid-recording-stop{min-height:24px}.qaid-video-preview-box textarea:focus-visible{outline:2px solid var(--qaid-marker, #6365f1);outline-offset:2px}@media(forced-colors:active){.qaid-video-preview-box textarea:focus{outline:2px solid CanvasText;outline-offset:2px}}";
-class Kc {
+  TargetingController: Wc,
+  styles: Yc
+}, Symbol.toStringTag, { value: "Module" })), Zc = ".qaid-recording-indicator{position:fixed;pointer-events:auto;top:12px;left:50%;transform:translate(-50%);display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:light-dark(#1f2937,#374151);color:#fff;border-radius:9999px;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;box-shadow:0 4px 12px #0000004d;z-index:99999;animation:qaid-slideDown .2s ease-out}.qaid-recording-dot{width:10px;height:10px;background:#dc2626;border-radius:50%;animation:qaid-dotPulse 1.5s ease-in-out infinite}@keyframes qaid-dotPulse{0%,to{opacity:1}50%{opacity:.3}}.qaid-recording-time{font-variant-numeric:tabular-nums;min-width:2.5rem;text-align:center}button.qaid-recording-stop{padding:.25rem .75rem;background:#dc2626;color:#fff;border:none;border-radius:9999px;font-size:calc(var(--qaid-font-size, 16px) * .75);font-weight:600;cursor:pointer;transition:background-color .2s;-webkit-appearance:none;appearance:none}button.qaid-recording-stop:hover{background:#b91c1c}.qaid-video-preview{position:fixed;inset:0 0 auto;height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom));box-sizing:border-box;background:#0009;z-index:99998;animation:qaid-fadeIn .2s ease-out}@keyframes qaid-fadeIn{0%{opacity:0}to{opacity:1}}.qaid-video-preview-box{color-scheme:inherit;background:light-dark(#ffffff,#1f2937);border-radius:1rem;padding:1.5rem;box-shadow:0 25px 50px -12px #00000080;width:560px;max-width:100%;max-height:100%;overflow-y:auto;font-family:var(--qaid-font-family, system-ui, -apple-system, sans-serif);font-size:var(--qaid-font-size, 16px)}.qaid-video-preview-box h3{font-size:calc(var(--qaid-font-size, 16px) * 1.125);font-weight:700;margin:0 0 1rem;color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box video{width:100%;max-height:50vh;max-height:50dvh;object-fit:contain;border-radius:.5rem;background:#000;margin-bottom:1rem}.qaid-video-preview-box textarea{width:100%;height:4rem;padding:.75rem;border:1px solid light-dark(#d1d5db,#374151);border-radius:.5rem;font-family:inherit;font-size:calc(var(--qaid-font-size, 16px) * .875);resize:vertical;margin-bottom:1rem;box-sizing:border-box;background:light-dark(#ffffff,#111827);color:light-dark(#1f2937,#f9fafb)}.qaid-video-preview-box textarea:focus{outline:none;border-color:var(--qaid-marker);box-shadow:0 0 0 3px color-mix(in srgb,var(--qaid-marker) 20%,transparent)}.qaid-video-error{margin:0 0 .75rem;font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;color:light-dark(#b91c1c,#fca5a5)}.qaid-video-preview-actions{display:flex;gap:.5rem;justify-content:flex-end}button.qaid-video-btn{padding:.5rem 1rem;border:none;border-radius:.5rem;font-size:calc(var(--qaid-font-size, 16px) * .875);font-weight:500;cursor:pointer;transition:background-color .2s,filter .2s;-webkit-appearance:none;appearance:none}button.qaid-video-btn-cancel{background:light-dark(#f3f4f6,#374151);color:light-dark(#374151,#d1d5db)}button.qaid-video-btn-cancel:hover{background:light-dark(#e5e7eb,#4b5563)}button.qaid-video-btn-rerecord{background:light-dark(#fef3c7,#78350f);color:light-dark(#92400e,#fde68a)}button.qaid-video-btn-rerecord:hover{filter:brightness(.9)}button.qaid-video-btn-send{background:var(--qaid-marker);color:var(--qaid-marker-text, white)}button.qaid-video-btn-send:hover{filter:brightness(.85)}button.qaid-video-btn-send:disabled{opacity:.5;cursor:not-allowed}.qaid-video-sending{display:flex;align-items:center;gap:.5rem;font-size:calc(var(--qaid-font-size, 16px) * .875);color:light-dark(#6b7280,#9ca3af)}@keyframes qaid-slideDown{0%{transform:translateY(-100%)}to{transform:translateY(0)}}button.qaid-recording-stop{min-height:24px}.qaid-video-preview-box textarea:focus-visible{outline:2px solid var(--qaid-marker, #6365f1);outline-offset:2px}@media(forced-colors:active){.qaid-video-preview-box textarea:focus{outline:2px solid CanvasText;outline-offset:2px}}";
+class zc {
   constructor(A) {
     this.host = A;
   }
@@ -3048,8 +3203,8 @@ class Kc {
   async startRecording(A = []) {
     if (!(this.isRecording || this.host.state !== "IDLE"))
       try {
-        this.networkCapture = Ca();
-        const { createVideoRecorder: t } = await Promise.resolve().then(() => yi);
+        this.networkCapture = Oa();
+        const { createVideoRecorder: t } = await Promise.resolve().then(() => Si);
         this.videoRecorder = t({
           maxDuration: this.host.config.videoOptions.maxDuration,
           redactionElements: A
@@ -3063,12 +3218,15 @@ class Kc {
       }
   }
   async stopRecording() {
-    try {
-      this.recordedBlob = await this.videoRecorder.stop();
-    } catch {
-      this.recordedBlob = null;
+    if (!(!this.isRecording || !this.videoRecorder)) {
+      this.isRecording = !1;
+      try {
+        this.recordedBlob = await this.videoRecorder.stop();
+      } catch {
+        this.recordedBlob = null;
+      }
+      this.host.announceMsg("Recording stopped"), this.removeRecordingIndicator(), document.removeEventListener("keydown", this.host.boundKeyDown), this.recordedBlob && this.recordedBlob.size > 0 ? this.showRecordingPreview() : this.cleanupRecording();
     }
-    this.isRecording = !1, this.host.announceMsg("Recording stopped"), this.removeRecordingIndicator(), document.removeEventListener("keydown", this.host.boundKeyDown), this.recordedBlob && this.recordedBlob.size > 0 ? this.showRecordingPreview() : this.cleanupRecording();
   }
   /**
    * Pre-recording redaction picker. The user clicks page areas to blur; each
@@ -3276,12 +3434,12 @@ class Kc {
     this.isRecording = !1, this.removeRecordingIndicator(), this.videoRecorder && (this.videoRecorder.destroy(), this.videoRecorder = null), this.networkCapture && (this.networkCapture.restore(), this.networkCapture = null), this.recordedBlob && (this.recordedBlob = null), this.host.setButtonsDisabled(!1), this.host.overlayShadowHost && this.host.state === "IDLE" && (this.host.overlayShadowHost.style.pointerEvents = "none");
   }
 }
-const Sc = Lc, hn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const jc = Zc, Qn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  RecordingController: Kc,
-  styles: Sc
+  RecordingController: zc,
+  styles: jc
 }, Symbol.toStringTag, { value: "Module" }));
-async function Tc(e = {}) {
+async function $c(e = {}) {
   const { quality: A = 0.8, maxWidth: t = 1280, maxHeight: r = 800 } = e;
   try {
     if (!navigator.mediaDevices?.getDisplayMedia)
@@ -3310,34 +3468,34 @@ async function Tc(e = {}) {
     return console.warn("Screenshot capture failed:", n), null;
   }
 }
-const zi = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const ns = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  captureScreenshot: Tc
+  captureScreenshot: $c
 }, Symbol.toStringTag, { value: "Module" }));
-var er = function(e, A) {
-  return er = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(t, r) {
+var tr = function(e, A) {
+  return tr = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(t, r) {
     t.__proto__ = r;
   } || function(t, r) {
     for (var n in r) Object.prototype.hasOwnProperty.call(r, n) && (t[n] = r[n]);
-  }, er(e, A);
+  }, tr(e, A);
 };
 function BA(e, A) {
   if (typeof A != "function" && A !== null)
     throw new TypeError("Class extends value " + String(A) + " is not a constructor or null");
-  er(e, A);
+  tr(e, A);
   function t() {
     this.constructor = e;
   }
   e.prototype = A === null ? Object.create(A) : (t.prototype = A.prototype, new t());
 }
-var tr = function() {
-  return tr = Object.assign || function(A) {
+var rr = function() {
+  return rr = Object.assign || function(A) {
     for (var t, r = 1, n = arguments.length; r < n; r++) {
       t = arguments[r];
       for (var i in t) Object.prototype.hasOwnProperty.call(t, i) && (A[i] = t[i]);
     }
     return A;
-  }, tr.apply(this, arguments);
+  }, rr.apply(this, arguments);
 };
 function Z(e, A, t, r) {
   function n(i) {
@@ -3448,15 +3606,15 @@ var vA = (
       return r ? new e(r.left + A.windowBounds.left, r.top + A.windowBounds.top, r.width, r.height) : e.EMPTY;
     }, e.EMPTY = new e(0, 0, 0, 0), e;
   })()
-), ft = function(e, A) {
+), wt = function(e, A) {
   return vA.fromClientRect(e, A.getBoundingClientRect());
-}, Dc = function(e) {
+}, Al = function(e) {
   var A = e.body, t = e.documentElement;
   if (!A || !t)
     throw new Error("Unable to get document size");
   var r = Math.max(Math.max(A.scrollWidth, t.scrollWidth), Math.max(A.offsetWidth, t.offsetWidth), Math.max(A.clientWidth, t.clientWidth)), n = Math.max(Math.max(A.scrollHeight, t.scrollHeight), Math.max(A.offsetHeight, t.offsetHeight), Math.max(A.clientHeight, t.clientHeight));
   return new vA(0, 0, r, n);
-}, wt = function(e) {
+}, Qt = function(e) {
   for (var A = [], t = 0, r = e.length; t < r; ) {
     var n = e.charCodeAt(t++);
     if (n >= 55296 && n <= 56319 && t < r) {
@@ -3479,35 +3637,35 @@ var vA = (
     s <= 65535 ? r.push(s) : (s -= 65536, r.push((s >> 10) + 55296, s % 1024 + 56320)), (n + 1 === t || r.length > 16384) && (i += String.fromCharCode.apply(String, r), r.length = 0);
   }
   return i;
-}, gn = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", kc = typeof Uint8Array > "u" ? [] : new Uint8Array(256);
-for (var Ee = 0; Ee < gn.length; Ee++)
-  kc[gn.charCodeAt(Ee)] = Ee;
-var fn = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", oe = typeof Uint8Array > "u" ? [] : new Uint8Array(256);
-for (var He = 0; He < fn.length; He++)
-  oe[fn.charCodeAt(He)] = He;
-var Mc = function(e) {
+}, Cn = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", el = typeof Uint8Array > "u" ? [] : new Uint8Array(256);
+for (var Ee = 0; Ee < Cn.length; Ee++)
+  el[Cn.charCodeAt(Ee)] = Ee;
+var pn = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", oe = typeof Uint8Array > "u" ? [] : new Uint8Array(256);
+for (var He = 0; He < pn.length; He++)
+  oe[pn.charCodeAt(He)] = He;
+var tl = function(e) {
   var A = e.length * 0.75, t = e.length, r, n = 0, i, s, o, a;
   e[e.length - 1] === "=" && (A--, e[e.length - 2] === "=" && A--);
   var c = typeof ArrayBuffer < "u" && typeof Uint8Array < "u" && typeof Uint8Array.prototype.slice < "u" ? new ArrayBuffer(A) : new Array(A), l = Array.isArray(c) ? c : new Uint8Array(c);
   for (r = 0; r < t; r += 4)
     i = oe[e.charCodeAt(r)], s = oe[e.charCodeAt(r + 1)], o = oe[e.charCodeAt(r + 2)], a = oe[e.charCodeAt(r + 3)], l[n++] = i << 2 | s >> 4, l[n++] = (s & 15) << 4 | o >> 2, l[n++] = (o & 3) << 6 | a & 63;
   return c;
-}, Oc = function(e) {
+}, rl = function(e) {
   for (var A = e.length, t = [], r = 0; r < A; r += 2)
     t.push(e[r + 1] << 8 | e[r]);
   return t;
-}, Rc = function(e) {
+}, nl = function(e) {
   for (var A = e.length, t = [], r = 0; r < A; r += 4)
     t.push(e[r + 3] << 24 | e[r + 2] << 16 | e[r + 1] << 8 | e[r]);
   return t;
-}, RA = 5, br = 11, xt = 2, qc = br - RA, ji = 65536 >> RA, Vc = 1 << RA, Lt = Vc - 1, Nc = 1024 >> RA, Gc = ji + Nc, Pc = Gc, _c = 32, Xc = Pc + _c, Jc = 65536 >> br, Wc = 1 << qc, Yc = Wc - 1, wn = function(e, A, t) {
+}, RA = 5, yr = 11, Lt = 2, il = yr - RA, is = 65536 >> RA, sl = 1 << RA, Kt = sl - 1, ol = 1024 >> RA, al = is + ol, cl = al, ll = 32, Bl = cl + ll, dl = 65536 >> yr, ul = 1 << il, hl = ul - 1, Un = function(e, A, t) {
   return e.slice ? e.slice(A, t) : new Uint16Array(Array.prototype.slice.call(e, A, t));
-}, Zc = function(e, A, t) {
+}, gl = function(e, A, t) {
   return e.slice ? e.slice(A, t) : new Uint32Array(Array.prototype.slice.call(e, A, t));
-}, zc = function(e, A) {
-  var t = Mc(e), r = Array.isArray(t) ? Rc(t) : new Uint32Array(t), n = Array.isArray(t) ? Oc(t) : new Uint16Array(t), i = 24, s = wn(n, i / 2, r[4] / 2), o = r[5] === 2 ? wn(n, (i + r[4]) / 2) : Zc(r, Math.ceil((i + r[4]) / 4));
-  return new jc(r[0], r[1], r[2], r[3], s, o);
-}, jc = (
+}, fl = function(e, A) {
+  var t = tl(e), r = Array.isArray(t) ? nl(t) : new Uint32Array(t), n = Array.isArray(t) ? rl(t) : new Uint16Array(t), i = 24, s = Un(n, i / 2, r[4] / 2), o = r[5] === 2 ? Un(n, (i + r[4]) / 2) : gl(r, Math.ceil((i + r[4]) / 4));
+  return new wl(r[0], r[1], r[2], r[3], s, o);
+}, wl = (
   /** @class */
   (function() {
     function e(A, t, r, n, i, s) {
@@ -3517,42 +3675,42 @@ var Mc = function(e) {
       var t;
       if (A >= 0) {
         if (A < 55296 || A > 56319 && A <= 65535)
-          return t = this.index[A >> RA], t = (t << xt) + (A & Lt), this.data[t];
+          return t = this.index[A >> RA], t = (t << Lt) + (A & Kt), this.data[t];
         if (A <= 65535)
-          return t = this.index[ji + (A - 55296 >> RA)], t = (t << xt) + (A & Lt), this.data[t];
+          return t = this.index[is + (A - 55296 >> RA)], t = (t << Lt) + (A & Kt), this.data[t];
         if (A < this.highStart)
-          return t = Xc - Jc + (A >> br), t = this.index[t], t += A >> RA & Yc, t = this.index[t], t = (t << xt) + (A & Lt), this.data[t];
+          return t = Bl - dl + (A >> yr), t = this.index[t], t += A >> RA & hl, t = this.index[t], t = (t << Lt) + (A & Kt), this.data[t];
         if (A <= 1114111)
           return this.data[this.highValueIndex];
       }
       return this.errorValue;
     }, e;
   })()
-), Qn = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", $c = typeof Uint8Array > "u" ? [] : new Uint8Array(256);
-for (var Ie = 0; Ie < Qn.length; Ie++)
-  $c[Qn.charCodeAt(Ie)] = Ie;
-var Al = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF8AZwBgAGgAcQB5AHUAfQCFAI0AlQCdAKIAqgCyALoAYABoAGAAaABgAGgAwgDKAGAAaADGAM4A0wDbAOEA6QDxAPkAAQEJAQ8BFwF1AH0AHAEkASwBNAE6AUIBQQFJAVEBWQFhAWgBcAF4ATAAgAGGAY4BlQGXAZ8BpwGvAbUBvQHFAc0B0wHbAeMB6wHxAfkBAQIJAvEBEQIZAiECKQIxAjgCQAJGAk4CVgJeAmQCbAJ0AnwCgQKJApECmQKgAqgCsAK4ArwCxAIwAMwC0wLbAjAA4wLrAvMC+AIAAwcDDwMwABcDHQMlAy0DNQN1AD0DQQNJA0kDSQNRA1EDVwNZA1kDdQB1AGEDdQBpA20DdQN1AHsDdQCBA4kDkQN1AHUAmQOhA3UAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AKYDrgN1AHUAtgO+A8YDzgPWAxcD3gPjA+sD8wN1AHUA+wMDBAkEdQANBBUEHQQlBCoEFwMyBDgEYABABBcDSARQBFgEYARoBDAAcAQzAXgEgASIBJAEdQCXBHUAnwSnBK4EtgS6BMIEyAR1AHUAdQB1AHUAdQCVANAEYABgAGAAYABgAGAAYABgANgEYADcBOQEYADsBPQE/AQEBQwFFAUcBSQFLAU0BWQEPAVEBUsFUwVbBWAAYgVgAGoFcgV6BYIFigWRBWAAmQWfBaYFYABgAGAAYABgAKoFYACxBbAFuQW6BcEFwQXHBcEFwQXPBdMF2wXjBeoF8gX6BQIGCgYSBhoGIgYqBjIGOgZgAD4GRgZMBmAAUwZaBmAAYABgAGAAYABgAGAAYABgAGAAYABgAGIGYABpBnAGYABgAGAAYABgAGAAYABgAGAAYAB4Bn8GhQZgAGAAYAB1AHcDFQSLBmAAYABgAJMGdQA9A3UAmwajBqsGqwaVALMGuwbDBjAAywbSBtIG1QbSBtIG0gbSBtIG0gbdBuMG6wbzBvsGAwcLBxMHAwcbByMHJwcsBywHMQcsB9IGOAdAB0gHTgfSBkgHVgfSBtIG0gbSBtIG0gbSBtIG0gbSBiwHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAdgAGAALAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAdbB2MHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsB2kH0gZwB64EdQB1AHUAdQB1AHUAdQB1AHUHfQdgAIUHjQd1AHUAlQedB2AAYAClB6sHYACzB7YHvgfGB3UAzgfWBzMB3gfmB1EB7gf1B/0HlQENAQUIDQh1ABUIHQglCBcDLQg1CD0IRQhNCEEDUwh1AHUAdQBbCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIcAh3CHoIMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwAIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIgggwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAALAcsBywHLAcsBywHLAcsBywHLAcsB4oILAcsB44I0gaWCJ4Ipgh1AHUAqgiyCHUAdQB1AHUAdQB1AHUAdQB1AHUAtwh8AXUAvwh1AMUIyQjRCNkI4AjoCHUAdQB1AO4I9gj+CAYJDgkTCS0HGwkjCYIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiAAIAAAAFAAYABgAGIAXwBgAHEAdQBFAJUAogCyAKAAYABgAEIA4ABGANMA4QDxAMEBDwE1AFwBLAE6AQEBUQF4QkhCmEKoQrhCgAHIQsAB0MLAAcABwAHAAeDC6ABoAHDCwMMAAcABwAHAAdDDGMMAAcAB6MM4wwjDWMNow3jDaABoAGgAaABoAGgAaABoAGgAaABoAGgAaABoAGgAaABoAGgAaABoAEjDqABWw6bDqABpg6gAaABoAHcDvwOPA+gAaABfA/8DvwO/A78DvwO/A78DvwO/A78DvwO/A78DvwO/A78DvwO/A78DvwO/A78DvwO/A78DvwO/A78DpcPAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcAB9cPKwkyCToJMAB1AHUAdQBCCUoJTQl1AFUJXAljCWcJawkwADAAMAAwAHMJdQB2CX4JdQCECYoJjgmWCXUAngkwAGAAYABxAHUApgn3A64JtAl1ALkJdQDACTAAMAAwADAAdQB1AHUAdQB1AHUAdQB1AHUAowYNBMUIMAAwADAAMADICcsJ0wnZCRUE4QkwAOkJ8An4CTAAMAB1AAAKvwh1AAgKDwoXCh8KdQAwACcKLgp1ADYKqAmICT4KRgowADAAdQB1AE4KMAB1AFYKdQBeCnUAZQowADAAMAAwADAAMAAwADAAMAAVBHUAbQowADAAdQC5CXUKMAAwAHwBxAijBogEMgF9CoQKiASMCpQKmgqIBKIKqgquCogEDQG2Cr4KxgrLCjAAMADTCtsKCgHjCusK8Qr5CgELMAAwADAAMAB1AIsECQsRC3UANAEZCzAAMAAwADAAMAB1ACELKQswAHUANAExCzkLdQBBC0kLMABRC1kLMAAwADAAMAAwADAAdQBhCzAAMAAwAGAAYABpC3ELdwt/CzAAMACHC4sLkwubC58Lpwt1AK4Ltgt1APsDMAAwADAAMAAwADAAMAAwAL4LwwvLC9IL1wvdCzAAMADlC+kL8Qv5C/8LSQswADAAMAAwADAAMAAwADAAMAAHDDAAMAAwADAAMAAODBYMHgx1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1ACYMMAAwADAAdQB1AHUALgx1AHUAdQB1AHUAdQA2DDAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwAHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AD4MdQBGDHUAdQB1AHUAdQB1AEkMdQB1AHUAdQB1AFAMMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwAHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQBYDHUAdQB1AF8MMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUA+wMVBGcMMAAwAHwBbwx1AHcMfwyHDI8MMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAYABgAJcMMAAwADAAdQB1AJ8MlQClDDAAMACtDCwHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsB7UMLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AA0EMAC9DDAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAsBywHLAcsBywHLAcsBywHLQcwAMEMyAwsBywHLAcsBywHLAcsBywHLAcsBywHzAwwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwAHUAdQB1ANQM2QzhDDAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMABgAGAAYABgAGAAYABgAOkMYADxDGAA+AwADQYNYABhCWAAYAAODTAAMAAwADAAFg1gAGAAHg37AzAAMAAwADAAYABgACYNYAAsDTQNPA1gAEMNPg1LDWAAYABgAGAAYABgAGAAYABgAGAAUg1aDYsGVglhDV0NcQBnDW0NdQ15DWAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAlQCBDZUAiA2PDZcNMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAnw2nDTAAMAAwADAAMAAwAHUArw23DTAAMAAwADAAMAAwADAAMAAwADAAMAB1AL8NMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAB1AHUAdQB1AHUAdQDHDTAAYABgAM8NMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAA1w11ANwNMAAwAD0B5A0wADAAMAAwADAAMADsDfQN/A0EDgwOFA4wABsOMAAwADAAMAAwADAAMAAwANIG0gbSBtIG0gbSBtIG0gYjDigOwQUuDsEFMw7SBjoO0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIGQg5KDlIOVg7SBtIGXg5lDm0OdQ7SBtIGfQ6EDooOjQ6UDtIGmg6hDtIG0gaoDqwO0ga0DrwO0gZgAGAAYADEDmAAYAAkBtIGzA5gANIOYADaDokO0gbSBt8O5w7SBu8O0gb1DvwO0gZgAGAAxA7SBtIG0gbSBtIGYABgAGAAYAAED2AAsAUMD9IG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIGFA8sBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAccD9IGLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHJA8sBywHLAcsBywHLAccDywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywPLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAc0D9IG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIGLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAccD9IG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIGFA8sBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHPA/SBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gYUD0QPlQCVAJUAMAAwADAAMACVAJUAlQCVAJUAlQCVAEwPMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAA//8EAAQABAAEAAQABAAEAAQABAANAAMAAQABAAIABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQACgATABcAHgAbABoAHgAXABYAEgAeABsAGAAPABgAHABLAEsASwBLAEsASwBLAEsASwBLABgAGAAeAB4AHgATAB4AUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQABYAGwASAB4AHgAeAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAWAA0AEQAeAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAAQABAAEAAQABAAFAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAJABYAGgAbABsAGwAeAB0AHQAeAE8AFwAeAA0AHgAeABoAGwBPAE8ADgBQAB0AHQAdAE8ATwAXAE8ATwBPABYAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAdAFAAUABQAFAAUABQAFAAUAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAFAAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAeAB4AHgAeAFAATwBAAE8ATwBPAEAATwBQAFAATwBQAB4AHgAeAB4AHgAeAB0AHQAdAB0AHgAdAB4ADgBQAFAAUABQAFAAHgAeAB4AHgAeAB4AHgBQAB4AUAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4ABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAJAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAkACQAJAAkACQAJAAkABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAeAB4AHgAeAFAAHgAeAB4AKwArAFAAUABQAFAAGABQACsAKwArACsAHgAeAFAAHgBQAFAAUAArAFAAKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4ABAAEAAQABAAEAAQABAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAUAAeAB4AHgAeAB4AHgBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAYAA0AKwArAB4AHgAbACsABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQADQAEAB4ABAAEAB4ABAAEABMABAArACsAKwArACsAKwArACsAVgBWAFYAVgBWAFYAVgBWAFYAVgBWAFYAVgBWAFYAVgBWAFYAVgBWAFYAVgBWAFYAVgBWAFYAKwArACsAKwBWAFYAVgBWAB4AHgArACsAKwArACsAKwArACsAKwArACsAHgAeAB4AHgAeAB4AHgAeAB4AGgAaABoAGAAYAB4AHgAEAAQABAAEAAQABAAEAAQABAAEAAQAEwAEACsAEwATAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABABLAEsASwBLAEsASwBLAEsASwBLABoAGQAZAB4AUABQAAQAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQABMAUAAEAAQABAAEAAQABAAEAB4AHgAEAAQABAAEAAQABABQAFAABAAEAB4ABAAEAAQABABQAFAASwBLAEsASwBLAEsASwBLAEsASwBQAFAAUAAeAB4AUAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwAeAFAABABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEAAQABAAEAFAAKwArACsAKwArACsAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEAAQAUABQAB4AHgAYABMAUAArACsABAAbABsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAFAABAAEAAQABAAEAFAABAAEAAQAUAAEAAQABAAEAAQAKwArAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAArACsAHgArAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwArACsAKwArACsAKwArAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAB4ABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAFAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAUAAEAAQABAAEAAQABAAEAFAAUABQAFAAUABQAFAAUABQAFAABAAEAA0ADQBLAEsASwBLAEsASwBLAEsASwBLAB4AUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAArAFAAUABQAFAAUABQAFAAUAArACsAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAUAArACsAKwBQAFAAUABQACsAKwAEAFAABAAEAAQABAAEAAQABAArACsABAAEACsAKwAEAAQABABQACsAKwArACsAKwArACsAKwAEACsAKwArACsAUABQACsAUABQAFAABAAEACsAKwBLAEsASwBLAEsASwBLAEsASwBLAFAAUAAaABoAUABQAFAAUABQAEwAHgAbAFAAHgAEACsAKwAEAAQABAArAFAAUABQAFAAUABQACsAKwArACsAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAUABQACsAUABQACsAUABQACsAKwAEACsABAAEAAQABAAEACsAKwArACsABAAEACsAKwAEAAQABAArACsAKwAEACsAKwArACsAKwArACsAUABQAFAAUAArAFAAKwArACsAKwArACsAKwBLAEsASwBLAEsASwBLAEsASwBLAAQABABQAFAAUAAEAB4AKwArACsAKwArACsAKwArACsAKwAEAAQABAArAFAAUABQAFAAUABQAFAAUABQACsAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAUABQACsAUABQAFAAUABQACsAKwAEAFAABAAEAAQABAAEAAQABAAEACsABAAEAAQAKwAEAAQABAArACsAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQAFAABAAEACsAKwBLAEsASwBLAEsASwBLAEsASwBLAB4AGwArACsAKwArACsAKwArAFAABAAEAAQABAAEAAQAKwAEAAQABAArAFAAUABQAFAAUABQAFAAUAArACsAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAAQABAArACsABAAEACsAKwAEAAQABAArACsAKwArACsAKwArAAQABAAEACsAKwArACsAUABQACsAUABQAFAABAAEACsAKwBLAEsASwBLAEsASwBLAEsASwBLAB4AUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArAAQAUAArAFAAUABQAFAAUABQACsAKwArAFAAUABQACsAUABQAFAAUAArACsAKwBQAFAAKwBQACsAUABQACsAKwArAFAAUAArACsAKwBQAFAAUAArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArAAQABAAEAAQABAArACsAKwAEAAQABAArAAQABAAEAAQAKwArAFAAKwArACsAKwArACsABAArACsAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAUABQAFAAHgAeAB4AHgAeAB4AGwAeACsAKwArACsAKwAEAAQABAAEAAQAUABQAFAAUABQAFAAUABQACsAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAUAAEAAQABAAEAAQABAAEACsABAAEAAQAKwAEAAQABAAEACsAKwArACsAKwArACsABAAEACsAUABQAFAAKwArACsAKwArAFAAUAAEAAQAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAKwAOAFAAUABQAFAAUABQAFAAHgBQAAQABAAEAA4AUABQAFAAUABQAFAAUABQACsAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAKwArAAQAUAAEAAQABAAEAAQABAAEACsABAAEAAQAKwAEAAQABAAEACsAKwArACsAKwArACsABAAEACsAKwArACsAKwArACsAUAArAFAAUAAEAAQAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwBQAFAAKwArACsAKwArACsAKwArACsAKwArACsAKwAEAAQABAAEAFAAUABQAFAAUABQAFAAUABQACsAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAFAABAAEAAQABAAEAAQABAArAAQABAAEACsABAAEAAQABABQAB4AKwArACsAKwBQAFAAUAAEAFAAUABQAFAAUABQAFAAUABQAFAABAAEACsAKwBLAEsASwBLAEsASwBLAEsASwBLAFAAUABQAFAAUABQAFAAUABQABoAUABQAFAAUABQAFAAKwAEAAQABAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQACsAUAArACsAUABQAFAAUABQAFAAUAArACsAKwAEACsAKwArACsABAAEAAQABAAEAAQAKwAEACsABAAEAAQABAAEAAQABAAEACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArAAQABAAeACsAKwArACsAKwArACsAKwArACsAKwArAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXAAqAFwAXAAqACoAKgAqACoAKgAqACsAKwArACsAGwBcAFwAXABcAFwAXABcACoAKgAqACoAKgAqACoAKgAeAEsASwBLAEsASwBLAEsASwBLAEsADQANACsAKwArACsAKwBcAFwAKwBcACsAXABcAFwAXABcACsAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcACsAXAArAFwAXABcAFwAXABcAFwAXABcAFwAKgBcAFwAKgAqACoAKgAqACoAKgAqACoAXAArACsAXABcAFwAXABcACsAXAArACoAKgAqACoAKgAqACsAKwBLAEsASwBLAEsASwBLAEsASwBLACsAKwBcAFwAXABcAFAADgAOAA4ADgAeAA4ADgAJAA4ADgANAAkAEwATABMAEwATAAkAHgATAB4AHgAeAAQABAAeAB4AHgAeAB4AHgBLAEsASwBLAEsASwBLAEsASwBLAFAAUABQAFAAUABQAFAAUABQAFAADQAEAB4ABAAeAAQAFgARABYAEQAEAAQAUABQAFAAUABQAFAAUABQACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQADQAEAAQABAAEAAQADQAEAAQAUABQAFAAUABQAAQABAAEAAQABAAEAAQABAAEAAQABAArAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAArAA0ADQAeAB4AHgAeAB4AHgAEAB4AHgAeAB4AHgAeACsAHgAeAA4ADgANAA4AHgAeAB4AHgAeAAkACQArACsAKwArACsAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgBcAEsASwBLAEsASwBLAEsASwBLAEsADQANAB4AHgAeAB4AXABcAFwAXABcAFwAKgAqACoAKgBcAFwAXABcACoAKgAqAFwAKgAqACoAXABcACoAKgAqACoAKgAqACoAXABcAFwAKgAqACoAKgBcAFwAXABcAFwAXABcAFwAXABcAFwAXABcACoAKgAqACoAKgAqACoAKgAqACoAKgAqAFwAKgBLAEsASwBLAEsASwBLAEsASwBLACoAKgAqACoAKgAqAFAAUABQAFAAUABQACsAUAArACsAKwArACsAUAArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAHgBQAFAAUABQAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFAAUABQAFAAUABQAFAAUABQACsAUABQAFAAUAArACsAUABQAFAAUABQAFAAUAArAFAAKwBQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAKwArAFAAUABQAFAAUABQAFAAKwBQACsAUABQAFAAUAArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsABAAEAAQAHgANAB4AHgAeAB4AHgAeAB4AUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwBQAFAAUABQAFAAUAArACsADQBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAHgAeAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAANAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAWABEAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAA0ADQANAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAAQABAAEACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAANAA0AKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEACsAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUAArAAQABAArACsAKwArACsAKwArACsAKwArACsAKwBcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqAA0ADQAVAFwADQAeAA0AGwBcACoAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwAeAB4AEwATAA0ADQAOAB4AEwATAB4ABAAEAAQACQArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArAFAAUABQAFAAUAAEAAQAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQAUAArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwAEAAQABAAEAAQABAAEAAQABAAEAAQABAArACsAKwArAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsAKwArACsAHgArACsAKwATABMASwBLAEsASwBLAEsASwBLAEsASwBcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXAArACsAXABcAFwAXABcACsAKwArACsAKwArACsAKwArACsAKwBcAFwAXABcAFwAXABcAFwAXABcAFwAXAArACsAKwArAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAXAArACsAKwAqACoAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAAQABAArACsAHgAeAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcACoAKgAqACoAKgAqACoAKgAqACoAKwAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKwArAAQASwBLAEsASwBLAEsASwBLAEsASwArACsAKwArACsAKwBLAEsASwBLAEsASwBLAEsASwBLACsAKwArACsAKwArACoAKgAqACoAKgAqACoAXAAqACoAKgAqACoAKgArACsABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsABAAEAAQABAAEAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAAQABABQAFAAUABQAFAAUABQACsAKwArACsASwBLAEsASwBLAEsASwBLAEsASwANAA0AHgANAA0ADQANAB4AHgAeAB4AHgAeAB4AHgAeAB4ABAAEAAQABAAEAAQABAAEAAQAHgAeAB4AHgAeAB4AHgAeAB4AKwArACsABAAEAAQAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABABQAFAASwBLAEsASwBLAEsASwBLAEsASwBQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsAKwArACsAKwArACsAKwAeAB4AHgAeAFAAUABQAFAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsAKwArAA0ADQANAA0ADQBLAEsASwBLAEsASwBLAEsASwBLACsAKwArAFAAUABQAEsASwBLAEsASwBLAEsASwBLAEsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAA0ADQBQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwBQAFAAUAAeAB4AHgAeAB4AHgAeAB4AKwArACsAKwArACsAKwArAAQABAAEAB4ABAAEAAQABAAEAAQABAAEAAQABAAEAAQABABQAFAAUABQAAQAUABQAFAAUABQAFAABABQAFAABAAEAAQAUAArACsAKwArACsABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsABAAEAAQABAAEAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwArAFAAUABQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAKwBQACsAUAArAFAAKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeACsAKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArAB4AHgAeAB4AHgAeAB4AHgBQAB4AHgAeAFAAUABQACsAHgAeAB4AHgAeAB4AHgAeAB4AHgBQAFAAUABQACsAKwAeAB4AHgAeAB4AHgArAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwArAFAAUABQACsAHgAeAB4AHgAeAB4AHgAOAB4AKwANAA0ADQANAA0ADQANAAkADQANAA0ACAAEAAsABAAEAA0ACQANAA0ADAAdAB0AHgAXABcAFgAXABcAFwAWABcAHQAdAB4AHgAUABQAFAANAAEAAQAEAAQABAAEAAQACQAaABoAGgAaABoAGgAaABoAHgAXABcAHQAVABUAHgAeAB4AHgAeAB4AGAAWABEAFQAVABUAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4ADQAeAA0ADQANAA0AHgANAA0ADQAHAB4AHgAeAB4AKwAEAAQABAAEAAQABAAEAAQABAAEAFAAUAArACsATwBQAFAAUABQAFAAHgAeAB4AFgARAE8AUABPAE8ATwBPAFAAUABQAFAAUAAeAB4AHgAWABEAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArABsAGwAbABsAGwAbABsAGgAbABsAGwAbABsAGwAbABsAGwAbABsAGwAbABsAGgAbABsAGwAbABoAGwAbABoAGwAbABsAGwAbABsAGwAbABsAGwAbABsAGwAbABsAGwAbAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAHgAeAFAAGgAeAB0AHgBQAB4AGgAeAB4AHgAeAB4AHgAeAB4AHgBPAB4AUAAbAB4AHgBQAFAAUABQAFAAHgAeAB4AHQAdAB4AUAAeAFAAHgBQAB4AUABPAFAAUAAeAB4AHgAeAB4AHgAeAFAAUABQAFAAUAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAFAAHgBQAFAAUABQAE8ATwBQAFAAUABQAFAATwBQAFAATwBQAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAFAAUABQAFAATwBPAE8ATwBPAE8ATwBPAE8ATwBQAFAAUABQAFAAUABQAFAAUAAeAB4AUABQAFAAUABPAB4AHgArACsAKwArAB0AHQAdAB0AHQAdAB0AHQAdAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB0AHgAdAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAdAB4AHQAdAB4AHgAeAB0AHQAeAB4AHQAeAB4AHgAdAB4AHQAbABsAHgAdAB4AHgAeAB4AHQAeAB4AHQAdAB0AHQAeAB4AHQAeAB0AHgAdAB0AHQAdAB0AHQAeAB0AHgAeAB4AHgAeAB0AHQAdAB0AHgAeAB4AHgAdAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAdAB4AHgAeAB0AHgAeAB4AHgAeAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAdAB0AHgAeAB0AHQAdAB0AHgAeAB0AHQAeAB4AHQAdAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB0AHQAeAB4AHQAdAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHQAeAB4AHgAdAB4AHgAeAB4AHgAeAB4AHQAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AFAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeABYAEQAWABEAHgAeAB4AHgAeAB4AHQAeAB4AHgAeAB4AHgAeACUAJQAeAB4AHgAeAB4AHgAeAB4AHgAWABEAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AJQAlACUAJQAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAFAAHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHgAeAB4AHgAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAeAB4AHQAdAB0AHQAeAB4AHgAeAB4AHgAeAB4AHgAeAB0AHQAeAB0AHQAdAB0AHQAdAB0AHgAeAB4AHgAeAB4AHgAeAB0AHQAeAB4AHQAdAB4AHgAeAB4AHQAdAB4AHgAeAB4AHQAdAB0AHgAeAB0AHgAeAB0AHQAdAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAdAB0AHQAdAB4AHgAeAB4AHgAeAB4AHgAeAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAlACUAJQAlAB4AHQAdAB4AHgAdAB4AHgAeAB4AHQAdAB4AHgAeAB4AJQAlAB0AHQAlAB4AJQAlACUAIAAlACUAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAlACUAJQAeAB4AHgAeAB0AHgAdAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAdAB0AHgAdAB0AHQAeAB0AJQAdAB0AHgAdAB0AHgAdAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeACUAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHQAdAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAlACUAJQAlACUAJQAlACUAJQAlACUAJQAdAB0AHQAdACUAHgAlACUAJQAdACUAJQAdAB0AHQAlACUAHQAdACUAHQAdACUAJQAlAB4AHQAeAB4AHgAeAB0AHQAlAB0AHQAdAB0AHQAdACUAJQAlACUAJQAdACUAJQAgACUAHQAdACUAJQAlACUAJQAlACUAJQAeAB4AHgAlACUAIAAgACAAIAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB0AHgAeAB4AFwAXABcAFwAXABcAHgATABMAJQAeAB4AHgAWABEAFgARABYAEQAWABEAFgARABYAEQAWABEATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeABYAEQAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAWABEAFgARABYAEQAWABEAFgARAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AFgARABYAEQAWABEAFgARABYAEQAWABEAFgARABYAEQAWABEAFgARABYAEQAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAWABEAFgARAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AFgARAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAdAB0AHQAdAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AUABQAFAAUAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAEAAQABAAeAB4AKwArACsAKwArABMADQANAA0AUAATAA0AUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAUAANACsAKwArACsAKwArACsAKwArACsAKwArACsAKwAEAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQACsAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXAA0ADQANAA0ADQANAA0ADQAeAA0AFgANAB4AHgAXABcAHgAeABcAFwAWABEAFgARABYAEQAWABEADQANAA0ADQATAFAADQANAB4ADQANAB4AHgAeAB4AHgAMAAwADQANAA0AHgANAA0AFgANAA0ADQANAA0ADQANAA0AHgANAB4ADQANAB4AHgAeACsAKwArACsAKwArACsAKwArACsAKwArACsAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACsAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAKwArACsAKwArACsAKwArACsAKwArACsAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwAlACUAJQAlACUAJQAlACUAJQAlACUAJQArACsAKwArAA0AEQARACUAJQBHAFcAVwAWABEAFgARABYAEQAWABEAFgARACUAJQAWABEAFgARABYAEQAWABEAFQAWABEAEQAlAFcAVwBXAFcAVwBXAFcAVwBXAAQABAAEAAQABAAEACUAVwBXAFcAVwA2ACUAJQBXAFcAVwBHAEcAJQAlACUAKwBRAFcAUQBXAFEAVwBRAFcAUQBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFEAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBRAFcAUQBXAFEAVwBXAFcAVwBXAFcAUQBXAFcAVwBXAFcAVwBRAFEAKwArAAQABAAVABUARwBHAFcAFQBRAFcAUQBXAFEAVwBRAFcAUQBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFEAVwBRAFcAUQBXAFcAVwBXAFcAVwBRAFcAVwBXAFcAVwBXAFEAUQBXAFcAVwBXABUAUQBHAEcAVwArACsAKwArACsAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAKwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAKwAlACUAVwBXAFcAVwAlACUAJQAlACUAJQAlACUAJQAlACsAKwArACsAKwArACsAKwArACsAKwArAFEAUQBRAFEAUQBRAFEAUQBRAFEAUQBRAFEAUQBRAFEAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQArAFcAVwBXAFcAVwBXAFcAVwBXAFcAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQBPAE8ATwBPAE8ATwBPAE8AJQBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXACUAJQAlAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAEcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAKwArACsAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAADQATAA0AUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABLAEsASwBLAEsASwBLAEsASwBLAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAFAABAAEAAQABAAeAAQABAAEAAQABAAEAAQABAAEAAQAHgBQAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AUABQAAQABABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAeAA0ADQANAA0ADQArACsAKwArACsAKwArACsAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAFAAUABQAFAAUABQAFAAUABQAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AUAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgBQAB4AHgAeAB4AHgAeAFAAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAHgAeAB4AHgAeAB4AHgAeAB4AKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwAeAB4AUABQAFAAUABQAFAAUABQAFAAUABQAAQAUABQAFAABABQAFAAUABQAAQAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAAQABAAeAB4AHgAeAAQAKwArACsAUABQAFAAUABQAFAAHgAeABoAHgArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAADgAOABMAEwArACsAKwArACsAKwArACsABAAEAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAAQABAAEACsAKwArACsAKwArACsAKwANAA0ASwBLAEsASwBLAEsASwBLAEsASwArACsAKwArACsAKwAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABABQAFAAUABQAFAAUAAeAB4AHgBQAA4AUABQAAQAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEAA0ADQBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAKwArACsAKwArACsAKwArACsAKwArAB4AWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYACsAKwArAAQAHgAeAB4AHgAeAB4ADQANAA0AHgAeAB4AHgArAFAASwBLAEsASwBLAEsASwBLAEsASwArACsAKwArAB4AHgBcAFwAXABcAFwAKgBcAFwAXABcAFwAXABcAFwAXABcAEsASwBLAEsASwBLAEsASwBLAEsAXABcAFwAXABcACsAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsAKwArACsAKwArACsAKwArAFAAUABQAAQAUABQAFAAUABQAFAAUABQAAQABAArACsASwBLAEsASwBLAEsASwBLAEsASwArACsAHgANAA0ADQBcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAKgAqACoAXAAqACoAKgBcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXAAqAFwAKgAqACoAXABcACoAKgBcAFwAXABcAFwAKgAqAFwAKgBcACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFwAXABcACoAKgBQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAA0ADQBQAFAAUAAEAAQAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUAArACsAUABQAFAAUABQAFAAKwArAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAHgAeACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQADQAEAAQAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAVABVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBUAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVACsAKwArACsAKwArACsAKwArACsAKwArAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAKwArACsAKwBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAKwArACsAKwAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXACUAJQBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAJQAlACUAJQAlACUAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAKwArACsAKwArAFYABABWAFYAVgBWAFYAVgBWAFYAVgBWAB4AVgBWAFYAVgBWAFYAVgBWAFYAVgBWAFYAVgArAFYAVgBWAFYAVgArAFYAKwBWAFYAKwBWAFYAKwBWAFYAVgBWAFYAVgBWAFYAVgBWAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAEQAWAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUAAaAB4AKwArAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAGAARABEAGAAYABMAEwAWABEAFAArACsAKwArACsAKwAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACUAJQAlACUAJQAWABEAFgARABYAEQAWABEAFgARABYAEQAlACUAFgARACUAJQAlACUAJQAlACUAEQAlABEAKwAVABUAEwATACUAFgARABYAEQAWABEAJQAlACUAJQAlACUAJQAlACsAJQAbABoAJQArACsAKwArAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArAAcAKwATACUAJQAbABoAJQAlABYAEQAlACUAEQAlABEAJQBXAFcAVwBXAFcAVwBXAFcAVwBXABUAFQAlACUAJQATACUAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXABYAJQARACUAJQAlAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwAWACUAEQAlABYAEQARABYAEQARABUAVwBRAFEAUQBRAFEAUQBRAFEAUQBRAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAEcARwArACsAVwBXAFcAVwBXAFcAKwArAFcAVwBXAFcAVwBXACsAKwBXAFcAVwBXAFcAVwArACsAVwBXAFcAKwArACsAGgAbACUAJQAlABsAGwArAB4AHgAeAB4AHgAeAB4AKwArACsAKwArACsAKwArACsAKwAEAAQABAAQAB0AKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsADQANAA0AKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArAB4AHgAeAB4AHgAeAB4AHgAeAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgBQAFAAHgAeAB4AKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAAQAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwAEAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAA0AUABQAFAAUAArACsAKwArAFAAUABQAFAAUABQAFAAUAANAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwArACsAKwAeACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAKwArAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUAArACsAKwBQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwANAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAeAB4AUABQAFAAUABQAFAAUAArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUAArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArAA0AUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwAeAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAUABQAFAAUABQAAQABAAEACsABAAEACsAKwArACsAKwAEAAQABAAEAFAAUABQAFAAKwBQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArAAQABAAEACsAKwArACsABABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArAA0ADQANAA0ADQANAA0ADQAeACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAeAFAAUABQAFAAUABQAFAAUAAeAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAArACsAKwArAFAAUABQAFAAUAANAA0ADQANAA0ADQAUACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsADQANAA0ADQANAA0ADQBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArAB4AHgAeAB4AKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArAFAAUABQAFAAUABQAAQABAAEAAQAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUAArAAQABAANACsAKwBQAFAAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAAQABAAEAAQABAAEAAQABAAEAAQABABQAFAAUABQAB4AHgAeAB4AHgArACsAKwArACsAKwAEAAQABAAEAAQABAAEAA0ADQAeAB4AHgAeAB4AKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsABABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAAQABAAEAAQABAAEAAQABAAeAB4AHgANAA0ADQANACsAKwArACsAKwArACsAKwArACsAKwAeACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwArACsAKwBLAEsASwBLAEsASwBLAEsASwBLACsAKwArACsAKwArAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsASwBLAEsASwBLAEsASwBLAEsASwANAA0ADQANAFAABAAEAFAAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAeAA4AUAArACsAKwArACsAKwArACsAKwAEAFAAUABQAFAADQANAB4ADQAEAAQABAAEAB4ABAAEAEsASwBLAEsASwBLAEsASwBLAEsAUAAOAFAADQANAA0AKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQABAAEAAQABAANAA0AHgANAA0AHgAEACsAUABQAFAAUABQAFAAUAArAFAAKwBQAFAAUABQACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAA0AKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQABAAEAAQAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsABAAEAAQABAArAFAAUABQAFAAUABQAFAAUAArACsAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAUABQACsAUABQAFAAUABQACsABAAEAFAABAAEAAQABAAEAAQABAArACsABAAEACsAKwAEAAQABAArACsAUAArACsAKwArACsAKwAEACsAKwArACsAKwBQAFAAUABQAFAABAAEACsAKwAEAAQABAAEAAQABAAEACsAKwArAAQABAAEAAQABAArACsAKwArACsAKwArACsAKwArACsABAAEAAQABAAEAAQABABQAFAAUABQAA0ADQANAA0AHgBLAEsASwBLAEsASwBLAEsASwBLAA0ADQArAB4ABABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwAEAAQABAAEAFAAUAAeAFAAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAArACsABAAEAAQABAAEAAQABAAEAAQADgANAA0AEwATAB4AHgAeAA0ADQANAA0ADQANAA0ADQANAA0ADQANAA0ADQANAFAAUABQAFAABAAEACsAKwAEAA0ADQAeAFAAKwArACsAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAFAAKwArACsAKwArACsAKwBLAEsASwBLAEsASwBLAEsASwBLACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAKwArACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACsAKwArACsASwBLAEsASwBLAEsASwBLAEsASwBcAFwADQANAA0AKgBQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAeACsAKwArACsASwBLAEsASwBLAEsASwBLAEsASwBQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAKwArAFAAKwArAFAAUABQAFAAUABQAFAAUAArAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQAKwAEAAQAKwArAAQABAAEAAQAUAAEAFAABAAEAA0ADQANACsAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAArACsABAAEAAQABAAEAAQABABQAA4AUAAEACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFAABAAEAAQABAAEAAQABAAEAAQABABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAFAABAAEAAQABAAOAB4ADQANAA0ADQAOAB4ABAArACsAKwArACsAKwArACsAUAAEAAQABAAEAAQABAAEAAQABAAEAAQAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAA0ADQANAFAADgAOAA4ADQANACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEACsABAAEAAQABAAEAAQABAAEAFAADQANAA0ADQANACsAKwArACsAKwArACsAKwArACsASwBLAEsASwBLAEsASwBLAEsASwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwAOABMAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAArAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQACsAUABQACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAArACsAKwAEACsABAAEACsABAAEAAQABAAEAAQABABQAAQAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAUABQAFAAUABQAFAAKwBQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQAKwAEAAQAKwAEAAQABAAEAAQAUAArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAeAB4AKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAB4AHgAeAB4AHgAeAB4AHgAaABoAGgAaAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAKwArACsAKwArACsAKwArACsAKwArAA0AUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsADQANAA0ADQANACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAASABIAEgAQwBDAEMAUABQAFAAUABDAFAAUABQAEgAQwBIAEMAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAASABDAEMAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwAJAAkACQAJAAkACQAJABYAEQArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABIAEMAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwANAA0AKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArAAQABAAEAAQABAANACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAA0ADQANAB4AHgAeAB4AHgAeAFAAUABQAFAADQAeACsAKwArACsAKwArACsAKwArACsASwBLAEsASwBLAEsASwBLAEsASwArAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAANAA0AHgAeACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwAEAFAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAKwArACsAKwArACsAKwAEAAQABAAEAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAARwBHABUARwAJACsAKwArACsAKwArACsAKwArACsAKwAEAAQAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXACsAKwArACsAKwArACsAKwBXAFcAVwBXAFcAVwBXAFcAVwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAUQBRAFEAKwArACsAKwArACsAKwArACsAKwArACsAKwBRAFEAUQBRACsAKwArACsAKwArACsAKwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUAArACsAHgAEAAQADQAEAAQABAAEACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAKwArACsAKwArACsAKwArAB4AHgAeAB4AHgAeAB4AKwArAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAAQABAAEAAQABAAeAB4AHgAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAB4AHgAEAAQABAAEAAQABAAEAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4ABAAEAAQABAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4ABAAEAAQAHgArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwArACsAKwArAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAKwArACsAKwArACsAKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwBQAFAAKwArAFAAKwArAFAAUAArACsAUABQAFAAUAArAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeACsAUAArAFAAUABQAFAAUABQAFAAKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwBQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAHgAeAFAAUABQAFAAUAArAFAAKwArACsAUABQAFAAUABQAFAAUAArAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAHgBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgBQAFAAUABQAFAAUABQAFAAUABQAFAAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAB4AHgAeAB4AHgAeAB4AHgAeACsAKwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAeAB4AHgAeAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAeAB4AHgAeAB4AHgAeAB4ABAAeAB4AHgAeAB4AHgAeAB4AHgAeAAQAHgAeAA0ADQANAA0AHgArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwAEAAQABAAEAAQAKwAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAAQABAAEAAQABAAEAAQAKwAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAKwArAAQABAAEAAQABAAEAAQAKwAEAAQAKwAEAAQABAAEAAQAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwAEAAQABAAEAAQABAAEAFAAUABQAFAAUABQAFAAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwBQAB4AKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArABsAUABQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEACsAKwArACsAKwArACsAKwArAB4AHgAeAB4ABAAEAAQABAAEAAQABABQACsAKwArACsASwBLAEsASwBLAEsASwBLAEsASwArACsAKwArABYAFgArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAGgBQAFAAUAAaAFAAUABQAFAAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAeAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwBQAFAAUABQACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAKwBQACsAKwBQACsAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAKwBQACsAUAArACsAKwArACsAKwBQACsAKwArACsAUAArAFAAKwBQACsAUABQAFAAKwBQAFAAKwBQACsAKwBQACsAUAArAFAAKwBQACsAUAArAFAAUAArAFAAKwArAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAUABQAFAAUAArAFAAUABQAFAAKwBQACsAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAUABQAFAAKwBQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwAeAB4AKwArACsAKwArACsAKwArACsAKwArACsAKwArAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8AJQAlACUAHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHgAeAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB4AHgAeACUAJQAlAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQApACkAKQApACkAKQApACkAKQApACkAKQApACkAKQApACkAKQApACkAKQApACkAKQApACkAJQAlACUAJQAlACAAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAeAB4AJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlAB4AHgAlACUAJQAlACUAHgAlACUAJQAlACUAIAAgACAAJQAlACAAJQAlACAAIAAgACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACEAIQAhACEAIQAlACUAIAAgACUAJQAgACAAIAAgACAAIAAgACAAIAAgACAAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAJQAlACUAIAAlACUAJQAlACAAIAAgACUAIAAgACAAJQAlACUAJQAlACUAJQAgACUAIAAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAHgAlAB4AJQAeACUAJQAlACUAJQAgACUAJQAlACUAHgAlAB4AHgAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlAB4AHgAeAB4AHgAeAB4AJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAeAB4AHgAeAB4AHgAeAB4AHgAeACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACAAIAAlACUAJQAlACAAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACAAJQAlACUAJQAgACAAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAHgAeAB4AHgAeAB4AHgAeACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAeAB4AHgAeAB4AHgAlACUAJQAlACUAJQAlACAAIAAgACUAJQAlACAAIAAgACAAIAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeABcAFwAXABUAFQAVAB4AHgAeAB4AJQAlACUAIAAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACAAIAAgACUAJQAlACUAJQAlACUAJQAlACAAJQAlACUAJQAlACUAJQAlACUAJQAlACAAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AJQAlACUAJQAlACUAJQAlACUAJQAlACUAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AJQAlACUAJQAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeACUAJQAlACUAJQAlACUAJQAeAB4AHgAeAB4AHgAeAB4AHgAeACUAJQAlACUAJQAlAB4AHgAeAB4AHgAeAB4AHgAlACUAJQAlACUAJQAlACUAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAgACUAJQAgACUAJQAlACUAJQAlACUAJQAgACAAIAAgACAAIAAgACAAJQAlACUAJQAlACUAIAAlACUAJQAlACUAJQAlACUAJQAgACAAIAAgACAAIAAgACAAIAAgACUAJQAgACAAIAAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAgACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACAAIAAlACAAIAAlACAAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAgACAAIAAlACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAJQAlAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAKwArAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXACUAJQBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwAlACUAJQAlACUAJQAlACUAJQAlACUAVwBXACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAKwAEACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAA==", Cn = 50, el = 1, $i = 2, As = 3, tl = 4, rl = 5, pn = 7, es = 8, Un = 9, EA = 10, rr = 11, Fn = 12, nr = 13, nl = 14, ae = 15, ir = 16, xe = 17, re = 18, il = 19, vn = 20, sr = 21, ne = 22, Kt = 23, NA = 24, eA = 25, ce = 26, le = 27, GA = 28, sl = 29, kA = 30, ol = 31, Le = 32, Ke = 33, or = 34, ar = 35, cr = 36, pe = 37, lr = 38, $e = 39, At = 40, St = 41, ts = 42, al = 43, cl = [9001, 65288], rs = "!", I = "×", Se = "÷", Br = zc(Al), pA = [kA, cr], dr = [el, $i, As, rl], ns = [EA, es], mn = [le, ce], ll = dr.concat(ns), bn = [lr, $e, At, or, ar], Bl = [ae, nr], dl = function(e, A) {
+), Fn = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", Ql = typeof Uint8Array > "u" ? [] : new Uint8Array(256);
+for (var Ie = 0; Ie < Fn.length; Ie++)
+  Ql[Fn.charCodeAt(Ie)] = Ie;
+var Cl = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF8AZwBgAGgAcQB5AHUAfQCFAI0AlQCdAKIAqgCyALoAYABoAGAAaABgAGgAwgDKAGAAaADGAM4A0wDbAOEA6QDxAPkAAQEJAQ8BFwF1AH0AHAEkASwBNAE6AUIBQQFJAVEBWQFhAWgBcAF4ATAAgAGGAY4BlQGXAZ8BpwGvAbUBvQHFAc0B0wHbAeMB6wHxAfkBAQIJAvEBEQIZAiECKQIxAjgCQAJGAk4CVgJeAmQCbAJ0AnwCgQKJApECmQKgAqgCsAK4ArwCxAIwAMwC0wLbAjAA4wLrAvMC+AIAAwcDDwMwABcDHQMlAy0DNQN1AD0DQQNJA0kDSQNRA1EDVwNZA1kDdQB1AGEDdQBpA20DdQN1AHsDdQCBA4kDkQN1AHUAmQOhA3UAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AKYDrgN1AHUAtgO+A8YDzgPWAxcD3gPjA+sD8wN1AHUA+wMDBAkEdQANBBUEHQQlBCoEFwMyBDgEYABABBcDSARQBFgEYARoBDAAcAQzAXgEgASIBJAEdQCXBHUAnwSnBK4EtgS6BMIEyAR1AHUAdQB1AHUAdQCVANAEYABgAGAAYABgAGAAYABgANgEYADcBOQEYADsBPQE/AQEBQwFFAUcBSQFLAU0BWQEPAVEBUsFUwVbBWAAYgVgAGoFcgV6BYIFigWRBWAAmQWfBaYFYABgAGAAYABgAKoFYACxBbAFuQW6BcEFwQXHBcEFwQXPBdMF2wXjBeoF8gX6BQIGCgYSBhoGIgYqBjIGOgZgAD4GRgZMBmAAUwZaBmAAYABgAGAAYABgAGAAYABgAGAAYABgAGIGYABpBnAGYABgAGAAYABgAGAAYABgAGAAYAB4Bn8GhQZgAGAAYAB1AHcDFQSLBmAAYABgAJMGdQA9A3UAmwajBqsGqwaVALMGuwbDBjAAywbSBtIG1QbSBtIG0gbSBtIG0gbdBuMG6wbzBvsGAwcLBxMHAwcbByMHJwcsBywHMQcsB9IGOAdAB0gHTgfSBkgHVgfSBtIG0gbSBtIG0gbSBtIG0gbSBiwHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAdgAGAALAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAdbB2MHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsB2kH0gZwB64EdQB1AHUAdQB1AHUAdQB1AHUHfQdgAIUHjQd1AHUAlQedB2AAYAClB6sHYACzB7YHvgfGB3UAzgfWBzMB3gfmB1EB7gf1B/0HlQENAQUIDQh1ABUIHQglCBcDLQg1CD0IRQhNCEEDUwh1AHUAdQBbCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIaQhjCGQIZQhmCGcIaAhpCGMIZAhlCGYIZwhoCGkIYwhkCGUIZghnCGgIcAh3CHoIMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwAIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIgggwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAALAcsBywHLAcsBywHLAcsBywHLAcsB4oILAcsB44I0gaWCJ4Ipgh1AHUAqgiyCHUAdQB1AHUAdQB1AHUAdQB1AHUAtwh8AXUAvwh1AMUIyQjRCNkI4AjoCHUAdQB1AO4I9gj+CAYJDgkTCS0HGwkjCYIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiCCIIIggiAAIAAAAFAAYABgAGIAXwBgAHEAdQBFAJUAogCyAKAAYABgAEIA4ABGANMA4QDxAMEBDwE1AFwBLAE6AQEBUQF4QkhCmEKoQrhCgAHIQsAB0MLAAcABwAHAAeDC6ABoAHDCwMMAAcABwAHAAdDDGMMAAcAB6MM4wwjDWMNow3jDaABoAGgAaABoAGgAaABoAGgAaABoAGgAaABoAGgAaABoAGgAaABoAEjDqABWw6bDqABpg6gAaABoAHcDvwOPA+gAaABfA/8DvwO/A78DvwO/A78DvwO/A78DvwO/A78DvwO/A78DvwO/A78DvwO/A78DvwO/A78DvwO/A78DpcPAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcAB9cPKwkyCToJMAB1AHUAdQBCCUoJTQl1AFUJXAljCWcJawkwADAAMAAwAHMJdQB2CX4JdQCECYoJjgmWCXUAngkwAGAAYABxAHUApgn3A64JtAl1ALkJdQDACTAAMAAwADAAdQB1AHUAdQB1AHUAdQB1AHUAowYNBMUIMAAwADAAMADICcsJ0wnZCRUE4QkwAOkJ8An4CTAAMAB1AAAKvwh1AAgKDwoXCh8KdQAwACcKLgp1ADYKqAmICT4KRgowADAAdQB1AE4KMAB1AFYKdQBeCnUAZQowADAAMAAwADAAMAAwADAAMAAVBHUAbQowADAAdQC5CXUKMAAwAHwBxAijBogEMgF9CoQKiASMCpQKmgqIBKIKqgquCogEDQG2Cr4KxgrLCjAAMADTCtsKCgHjCusK8Qr5CgELMAAwADAAMAB1AIsECQsRC3UANAEZCzAAMAAwADAAMAB1ACELKQswAHUANAExCzkLdQBBC0kLMABRC1kLMAAwADAAMAAwADAAdQBhCzAAMAAwAGAAYABpC3ELdwt/CzAAMACHC4sLkwubC58Lpwt1AK4Ltgt1APsDMAAwADAAMAAwADAAMAAwAL4LwwvLC9IL1wvdCzAAMADlC+kL8Qv5C/8LSQswADAAMAAwADAAMAAwADAAMAAHDDAAMAAwADAAMAAODBYMHgx1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1ACYMMAAwADAAdQB1AHUALgx1AHUAdQB1AHUAdQA2DDAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwAHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AD4MdQBGDHUAdQB1AHUAdQB1AEkMdQB1AHUAdQB1AFAMMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwAHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQBYDHUAdQB1AF8MMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUA+wMVBGcMMAAwAHwBbwx1AHcMfwyHDI8MMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAYABgAJcMMAAwADAAdQB1AJ8MlQClDDAAMACtDCwHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsB7UMLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHdQB1AHUAdQB1AHUAdQB1AHUAdQB1AHUAdQB1AA0EMAC9DDAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAsBywHLAcsBywHLAcsBywHLQcwAMEMyAwsBywHLAcsBywHLAcsBywHLAcsBywHzAwwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwAHUAdQB1ANQM2QzhDDAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMABgAGAAYABgAGAAYABgAOkMYADxDGAA+AwADQYNYABhCWAAYAAODTAAMAAwADAAFg1gAGAAHg37AzAAMAAwADAAYABgACYNYAAsDTQNPA1gAEMNPg1LDWAAYABgAGAAYABgAGAAYABgAGAAUg1aDYsGVglhDV0NcQBnDW0NdQ15DWAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAlQCBDZUAiA2PDZcNMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAnw2nDTAAMAAwADAAMAAwAHUArw23DTAAMAAwADAAMAAwADAAMAAwADAAMAB1AL8NMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAB1AHUAdQB1AHUAdQDHDTAAYABgAM8NMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAA1w11ANwNMAAwAD0B5A0wADAAMAAwADAAMADsDfQN/A0EDgwOFA4wABsOMAAwADAAMAAwADAAMAAwANIG0gbSBtIG0gbSBtIG0gYjDigOwQUuDsEFMw7SBjoO0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIGQg5KDlIOVg7SBtIGXg5lDm0OdQ7SBtIGfQ6EDooOjQ6UDtIGmg6hDtIG0gaoDqwO0ga0DrwO0gZgAGAAYADEDmAAYAAkBtIGzA5gANIOYADaDokO0gbSBt8O5w7SBu8O0gb1DvwO0gZgAGAAxA7SBtIG0gbSBtIGYABgAGAAYAAED2AAsAUMD9IG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIGFA8sBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAccD9IGLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHJA8sBywHLAcsBywHLAccDywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywPLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAc0D9IG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIGLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAccD9IG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIGFA8sBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHLAcsBywHPA/SBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gbSBtIG0gYUD0QPlQCVAJUAMAAwADAAMACVAJUAlQCVAJUAlQCVAEwPMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAA//8EAAQABAAEAAQABAAEAAQABAANAAMAAQABAAIABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQACgATABcAHgAbABoAHgAXABYAEgAeABsAGAAPABgAHABLAEsASwBLAEsASwBLAEsASwBLABgAGAAeAB4AHgATAB4AUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQABYAGwASAB4AHgAeAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAWAA0AEQAeAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAAQABAAEAAQABAAFAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAJABYAGgAbABsAGwAeAB0AHQAeAE8AFwAeAA0AHgAeABoAGwBPAE8ADgBQAB0AHQAdAE8ATwAXAE8ATwBPABYAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAdAFAAUABQAFAAUABQAFAAUAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAFAAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAeAB4AHgAeAFAATwBAAE8ATwBPAEAATwBQAFAATwBQAB4AHgAeAB4AHgAeAB0AHQAdAB0AHgAdAB4ADgBQAFAAUABQAFAAHgAeAB4AHgAeAB4AHgBQAB4AUAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4ABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAJAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAkACQAJAAkACQAJAAkABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAeAB4AHgAeAFAAHgAeAB4AKwArAFAAUABQAFAAGABQACsAKwArACsAHgAeAFAAHgBQAFAAUAArAFAAKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4ABAAEAAQABAAEAAQABAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAUAAeAB4AHgAeAB4AHgBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAYAA0AKwArAB4AHgAbACsABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQADQAEAB4ABAAEAB4ABAAEABMABAArACsAKwArACsAKwArACsAVgBWAFYAVgBWAFYAVgBWAFYAVgBWAFYAVgBWAFYAVgBWAFYAVgBWAFYAVgBWAFYAVgBWAFYAKwArACsAKwBWAFYAVgBWAB4AHgArACsAKwArACsAKwArACsAKwArACsAHgAeAB4AHgAeAB4AHgAeAB4AGgAaABoAGAAYAB4AHgAEAAQABAAEAAQABAAEAAQABAAEAAQAEwAEACsAEwATAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABABLAEsASwBLAEsASwBLAEsASwBLABoAGQAZAB4AUABQAAQAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQABMAUAAEAAQABAAEAAQABAAEAB4AHgAEAAQABAAEAAQABABQAFAABAAEAB4ABAAEAAQABABQAFAASwBLAEsASwBLAEsASwBLAEsASwBQAFAAUAAeAB4AUAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwAeAFAABABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEAAQABAAEAFAAKwArACsAKwArACsAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEAAQAUABQAB4AHgAYABMAUAArACsABAAbABsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAFAABAAEAAQABAAEAFAABAAEAAQAUAAEAAQABAAEAAQAKwArAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAArACsAHgArAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwArACsAKwArACsAKwArAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAB4ABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAFAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAUAAEAAQABAAEAAQABAAEAFAAUABQAFAAUABQAFAAUABQAFAABAAEAA0ADQBLAEsASwBLAEsASwBLAEsASwBLAB4AUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAArAFAAUABQAFAAUABQAFAAUAArACsAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAUAArACsAKwBQAFAAUABQACsAKwAEAFAABAAEAAQABAAEAAQABAArACsABAAEACsAKwAEAAQABABQACsAKwArACsAKwArACsAKwAEACsAKwArACsAUABQACsAUABQAFAABAAEACsAKwBLAEsASwBLAEsASwBLAEsASwBLAFAAUAAaABoAUABQAFAAUABQAEwAHgAbAFAAHgAEACsAKwAEAAQABAArAFAAUABQAFAAUABQACsAKwArACsAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAUABQACsAUABQACsAUABQACsAKwAEACsABAAEAAQABAAEACsAKwArACsABAAEACsAKwAEAAQABAArACsAKwAEACsAKwArACsAKwArACsAUABQAFAAUAArAFAAKwArACsAKwArACsAKwBLAEsASwBLAEsASwBLAEsASwBLAAQABABQAFAAUAAEAB4AKwArACsAKwArACsAKwArACsAKwAEAAQABAArAFAAUABQAFAAUABQAFAAUABQACsAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAUABQACsAUABQAFAAUABQACsAKwAEAFAABAAEAAQABAAEAAQABAAEACsABAAEAAQAKwAEAAQABAArACsAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQAFAABAAEACsAKwBLAEsASwBLAEsASwBLAEsASwBLAB4AGwArACsAKwArACsAKwArAFAABAAEAAQABAAEAAQAKwAEAAQABAArAFAAUABQAFAAUABQAFAAUAArACsAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAAQABAArACsABAAEACsAKwAEAAQABAArACsAKwArACsAKwArAAQABAAEACsAKwArACsAUABQACsAUABQAFAABAAEACsAKwBLAEsASwBLAEsASwBLAEsASwBLAB4AUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArAAQAUAArAFAAUABQAFAAUABQACsAKwArAFAAUABQACsAUABQAFAAUAArACsAKwBQAFAAKwBQACsAUABQACsAKwArAFAAUAArACsAKwBQAFAAUAArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArAAQABAAEAAQABAArACsAKwAEAAQABAArAAQABAAEAAQAKwArAFAAKwArACsAKwArACsABAArACsAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAUABQAFAAHgAeAB4AHgAeAB4AGwAeACsAKwArACsAKwAEAAQABAAEAAQAUABQAFAAUABQAFAAUABQACsAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAUAAEAAQABAAEAAQABAAEACsABAAEAAQAKwAEAAQABAAEACsAKwArACsAKwArACsABAAEACsAUABQAFAAKwArACsAKwArAFAAUAAEAAQAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAKwAOAFAAUABQAFAAUABQAFAAHgBQAAQABAAEAA4AUABQAFAAUABQAFAAUABQACsAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAKwArAAQAUAAEAAQABAAEAAQABAAEACsABAAEAAQAKwAEAAQABAAEACsAKwArACsAKwArACsABAAEACsAKwArACsAKwArACsAUAArAFAAUAAEAAQAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwBQAFAAKwArACsAKwArACsAKwArACsAKwArACsAKwAEAAQABAAEAFAAUABQAFAAUABQAFAAUABQACsAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAFAABAAEAAQABAAEAAQABAArAAQABAAEACsABAAEAAQABABQAB4AKwArACsAKwBQAFAAUAAEAFAAUABQAFAAUABQAFAAUABQAFAABAAEACsAKwBLAEsASwBLAEsASwBLAEsASwBLAFAAUABQAFAAUABQAFAAUABQABoAUABQAFAAUABQAFAAKwAEAAQABAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQACsAUAArACsAUABQAFAAUABQAFAAUAArACsAKwAEACsAKwArACsABAAEAAQABAAEAAQAKwAEACsABAAEAAQABAAEAAQABAAEACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArAAQABAAeACsAKwArACsAKwArACsAKwArACsAKwArAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXAAqAFwAXAAqACoAKgAqACoAKgAqACsAKwArACsAGwBcAFwAXABcAFwAXABcACoAKgAqACoAKgAqACoAKgAeAEsASwBLAEsASwBLAEsASwBLAEsADQANACsAKwArACsAKwBcAFwAKwBcACsAXABcAFwAXABcACsAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcACsAXAArAFwAXABcAFwAXABcAFwAXABcAFwAKgBcAFwAKgAqACoAKgAqACoAKgAqACoAXAArACsAXABcAFwAXABcACsAXAArACoAKgAqACoAKgAqACsAKwBLAEsASwBLAEsASwBLAEsASwBLACsAKwBcAFwAXABcAFAADgAOAA4ADgAeAA4ADgAJAA4ADgANAAkAEwATABMAEwATAAkAHgATAB4AHgAeAAQABAAeAB4AHgAeAB4AHgBLAEsASwBLAEsASwBLAEsASwBLAFAAUABQAFAAUABQAFAAUABQAFAADQAEAB4ABAAeAAQAFgARABYAEQAEAAQAUABQAFAAUABQAFAAUABQACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQADQAEAAQABAAEAAQADQAEAAQAUABQAFAAUABQAAQABAAEAAQABAAEAAQABAAEAAQABAArAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAArAA0ADQAeAB4AHgAeAB4AHgAEAB4AHgAeAB4AHgAeACsAHgAeAA4ADgANAA4AHgAeAB4AHgAeAAkACQArACsAKwArACsAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgBcAEsASwBLAEsASwBLAEsASwBLAEsADQANAB4AHgAeAB4AXABcAFwAXABcAFwAKgAqACoAKgBcAFwAXABcACoAKgAqAFwAKgAqACoAXABcACoAKgAqACoAKgAqACoAXABcAFwAKgAqACoAKgBcAFwAXABcAFwAXABcAFwAXABcAFwAXABcACoAKgAqACoAKgAqACoAKgAqACoAKgAqAFwAKgBLAEsASwBLAEsASwBLAEsASwBLACoAKgAqACoAKgAqAFAAUABQAFAAUABQACsAUAArACsAKwArACsAUAArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAHgBQAFAAUABQAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFAAUABQAFAAUABQAFAAUABQACsAUABQAFAAUAArACsAUABQAFAAUABQAFAAUAArAFAAKwBQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAKwArAFAAUABQAFAAUABQAFAAKwBQACsAUABQAFAAUAArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsABAAEAAQAHgANAB4AHgAeAB4AHgAeAB4AUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwBQAFAAUABQAFAAUAArACsADQBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAHgAeAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAANAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAWABEAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAA0ADQANAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAAQABAAEACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAANAA0AKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEACsAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUAArAAQABAArACsAKwArACsAKwArACsAKwArACsAKwBcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqAA0ADQAVAFwADQAeAA0AGwBcACoAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwAeAB4AEwATAA0ADQAOAB4AEwATAB4ABAAEAAQACQArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArAFAAUABQAFAAUAAEAAQAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQAUAArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwAEAAQABAAEAAQABAAEAAQABAAEAAQABAArACsAKwArAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsAKwArACsAHgArACsAKwATABMASwBLAEsASwBLAEsASwBLAEsASwBcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXAArACsAXABcAFwAXABcACsAKwArACsAKwArACsAKwArACsAKwBcAFwAXABcAFwAXABcAFwAXABcAFwAXAArACsAKwArAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAXAArACsAKwAqACoAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAAQABAArACsAHgAeAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcACoAKgAqACoAKgAqACoAKgAqACoAKwAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKwArAAQASwBLAEsASwBLAEsASwBLAEsASwArACsAKwArACsAKwBLAEsASwBLAEsASwBLAEsASwBLACsAKwArACsAKwArACoAKgAqACoAKgAqACoAXAAqACoAKgAqACoAKgArACsABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsABAAEAAQABAAEAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAAQABABQAFAAUABQAFAAUABQACsAKwArACsASwBLAEsASwBLAEsASwBLAEsASwANAA0AHgANAA0ADQANAB4AHgAeAB4AHgAeAB4AHgAeAB4ABAAEAAQABAAEAAQABAAEAAQAHgAeAB4AHgAeAB4AHgAeAB4AKwArACsABAAEAAQAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABABQAFAASwBLAEsASwBLAEsASwBLAEsASwBQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsAKwArACsAKwArACsAKwAeAB4AHgAeAFAAUABQAFAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsAKwArAA0ADQANAA0ADQBLAEsASwBLAEsASwBLAEsASwBLACsAKwArAFAAUABQAEsASwBLAEsASwBLAEsASwBLAEsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAA0ADQBQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwBQAFAAUAAeAB4AHgAeAB4AHgAeAB4AKwArACsAKwArACsAKwArAAQABAAEAB4ABAAEAAQABAAEAAQABAAEAAQABAAEAAQABABQAFAAUABQAAQAUABQAFAAUABQAFAABABQAFAABAAEAAQAUAArACsAKwArACsABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsABAAEAAQABAAEAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwArAFAAUABQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAKwBQACsAUAArAFAAKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeACsAKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArAB4AHgAeAB4AHgAeAB4AHgBQAB4AHgAeAFAAUABQACsAHgAeAB4AHgAeAB4AHgAeAB4AHgBQAFAAUABQACsAKwAeAB4AHgAeAB4AHgArAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwArAFAAUABQACsAHgAeAB4AHgAeAB4AHgAOAB4AKwANAA0ADQANAA0ADQANAAkADQANAA0ACAAEAAsABAAEAA0ACQANAA0ADAAdAB0AHgAXABcAFgAXABcAFwAWABcAHQAdAB4AHgAUABQAFAANAAEAAQAEAAQABAAEAAQACQAaABoAGgAaABoAGgAaABoAHgAXABcAHQAVABUAHgAeAB4AHgAeAB4AGAAWABEAFQAVABUAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4ADQAeAA0ADQANAA0AHgANAA0ADQAHAB4AHgAeAB4AKwAEAAQABAAEAAQABAAEAAQABAAEAFAAUAArACsATwBQAFAAUABQAFAAHgAeAB4AFgARAE8AUABPAE8ATwBPAFAAUABQAFAAUAAeAB4AHgAWABEAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArABsAGwAbABsAGwAbABsAGgAbABsAGwAbABsAGwAbABsAGwAbABsAGwAbABsAGgAbABsAGwAbABoAGwAbABoAGwAbABsAGwAbABsAGwAbABsAGwAbABsAGwAbABsAGwAbAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAHgAeAFAAGgAeAB0AHgBQAB4AGgAeAB4AHgAeAB4AHgAeAB4AHgBPAB4AUAAbAB4AHgBQAFAAUABQAFAAHgAeAB4AHQAdAB4AUAAeAFAAHgBQAB4AUABPAFAAUAAeAB4AHgAeAB4AHgAeAFAAUABQAFAAUAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAFAAHgBQAFAAUABQAE8ATwBQAFAAUABQAFAATwBQAFAATwBQAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAFAAUABQAFAATwBPAE8ATwBPAE8ATwBPAE8ATwBQAFAAUABQAFAAUABQAFAAUAAeAB4AUABQAFAAUABPAB4AHgArACsAKwArAB0AHQAdAB0AHQAdAB0AHQAdAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB0AHgAdAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAdAB4AHQAdAB4AHgAeAB0AHQAeAB4AHQAeAB4AHgAdAB4AHQAbABsAHgAdAB4AHgAeAB4AHQAeAB4AHQAdAB0AHQAeAB4AHQAeAB0AHgAdAB0AHQAdAB0AHQAeAB0AHgAeAB4AHgAeAB0AHQAdAB0AHgAeAB4AHgAdAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAdAB4AHgAeAB0AHgAeAB4AHgAeAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAdAB0AHgAeAB0AHQAdAB0AHgAeAB0AHQAeAB4AHQAdAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB0AHQAeAB4AHQAdAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHQAeAB4AHgAdAB4AHgAeAB4AHgAeAB4AHQAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AFAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeABYAEQAWABEAHgAeAB4AHgAeAB4AHQAeAB4AHgAeAB4AHgAeACUAJQAeAB4AHgAeAB4AHgAeAB4AHgAWABEAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AJQAlACUAJQAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAFAAHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHgAeAB4AHgAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAeAB4AHQAdAB0AHQAeAB4AHgAeAB4AHgAeAB4AHgAeAB0AHQAeAB0AHQAdAB0AHQAdAB0AHgAeAB4AHgAeAB4AHgAeAB0AHQAeAB4AHQAdAB4AHgAeAB4AHQAdAB4AHgAeAB4AHQAdAB0AHgAeAB0AHgAeAB0AHQAdAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAdAB0AHQAdAB4AHgAeAB4AHgAeAB4AHgAeAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAlACUAJQAlAB4AHQAdAB4AHgAdAB4AHgAeAB4AHQAdAB4AHgAeAB4AJQAlAB0AHQAlAB4AJQAlACUAIAAlACUAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAlACUAJQAeAB4AHgAeAB0AHgAdAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAdAB0AHgAdAB0AHQAeAB0AJQAdAB0AHgAdAB0AHgAdAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeACUAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHQAdAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAlACUAJQAlACUAJQAlACUAJQAlACUAJQAdAB0AHQAdACUAHgAlACUAJQAdACUAJQAdAB0AHQAlACUAHQAdACUAHQAdACUAJQAlAB4AHQAeAB4AHgAeAB0AHQAlAB0AHQAdAB0AHQAdACUAJQAlACUAJQAdACUAJQAgACUAHQAdACUAJQAlACUAJQAlACUAJQAeAB4AHgAlACUAIAAgACAAIAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB0AHgAeAB4AFwAXABcAFwAXABcAHgATABMAJQAeAB4AHgAWABEAFgARABYAEQAWABEAFgARABYAEQAWABEATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeABYAEQAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAWABEAFgARABYAEQAWABEAFgARAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AFgARABYAEQAWABEAFgARABYAEQAWABEAFgARABYAEQAWABEAFgARABYAEQAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAWABEAFgARAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AFgARAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAdAB0AHQAdAB0AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AUABQAFAAUAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAEAAQABAAeAB4AKwArACsAKwArABMADQANAA0AUAATAA0AUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAUAANACsAKwArACsAKwArACsAKwArACsAKwArACsAKwAEAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQACsAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXAA0ADQANAA0ADQANAA0ADQAeAA0AFgANAB4AHgAXABcAHgAeABcAFwAWABEAFgARABYAEQAWABEADQANAA0ADQATAFAADQANAB4ADQANAB4AHgAeAB4AHgAMAAwADQANAA0AHgANAA0AFgANAA0ADQANAA0ADQANAA0AHgANAB4ADQANAB4AHgAeACsAKwArACsAKwArACsAKwArACsAKwArACsAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACsAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAKwArACsAKwArACsAKwArACsAKwArACsAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwAlACUAJQAlACUAJQAlACUAJQAlACUAJQArACsAKwArAA0AEQARACUAJQBHAFcAVwAWABEAFgARABYAEQAWABEAFgARACUAJQAWABEAFgARABYAEQAWABEAFQAWABEAEQAlAFcAVwBXAFcAVwBXAFcAVwBXAAQABAAEAAQABAAEACUAVwBXAFcAVwA2ACUAJQBXAFcAVwBHAEcAJQAlACUAKwBRAFcAUQBXAFEAVwBRAFcAUQBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFEAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBRAFcAUQBXAFEAVwBXAFcAVwBXAFcAUQBXAFcAVwBXAFcAVwBRAFEAKwArAAQABAAVABUARwBHAFcAFQBRAFcAUQBXAFEAVwBRAFcAUQBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFEAVwBRAFcAUQBXAFcAVwBXAFcAVwBRAFcAVwBXAFcAVwBXAFEAUQBXAFcAVwBXABUAUQBHAEcAVwArACsAKwArACsAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAKwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAKwAlACUAVwBXAFcAVwAlACUAJQAlACUAJQAlACUAJQAlACsAKwArACsAKwArACsAKwArACsAKwArAFEAUQBRAFEAUQBRAFEAUQBRAFEAUQBRAFEAUQBRAFEAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQArAFcAVwBXAFcAVwBXAFcAVwBXAFcAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQBPAE8ATwBPAE8ATwBPAE8AJQBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXACUAJQAlAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAEcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAKwArACsAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAADQATAA0AUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABLAEsASwBLAEsASwBLAEsASwBLAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAFAABAAEAAQABAAeAAQABAAEAAQABAAEAAQABAAEAAQAHgBQAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AUABQAAQABABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAeAA0ADQANAA0ADQArACsAKwArACsAKwArACsAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAFAAUABQAFAAUABQAFAAUABQAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AUAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgBQAB4AHgAeAB4AHgAeAFAAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAHgAeAB4AHgAeAB4AHgAeAB4AKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwAeAB4AUABQAFAAUABQAFAAUABQAFAAUABQAAQAUABQAFAABABQAFAAUABQAAQAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAAQABAAeAB4AHgAeAAQAKwArACsAUABQAFAAUABQAFAAHgAeABoAHgArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAADgAOABMAEwArACsAKwArACsAKwArACsABAAEAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAAQABAAEACsAKwArACsAKwArACsAKwANAA0ASwBLAEsASwBLAEsASwBLAEsASwArACsAKwArACsAKwAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABABQAFAAUABQAFAAUAAeAB4AHgBQAA4AUABQAAQAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEAA0ADQBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAKwArACsAKwArACsAKwArACsAKwArAB4AWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYAFgAWABYACsAKwArAAQAHgAeAB4AHgAeAB4ADQANAA0AHgAeAB4AHgArAFAASwBLAEsASwBLAEsASwBLAEsASwArACsAKwArAB4AHgBcAFwAXABcAFwAKgBcAFwAXABcAFwAXABcAFwAXABcAEsASwBLAEsASwBLAEsASwBLAEsAXABcAFwAXABcACsAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsAKwArACsAKwArACsAKwArAFAAUABQAAQAUABQAFAAUABQAFAAUABQAAQABAArACsASwBLAEsASwBLAEsASwBLAEsASwArACsAHgANAA0ADQBcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAKgAqACoAXAAqACoAKgBcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXAAqAFwAKgAqACoAXABcACoAKgBcAFwAXABcAFwAKgAqAFwAKgBcACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFwAXABcACoAKgBQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAA0ADQBQAFAAUAAEAAQAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUAArACsAUABQAFAAUABQAFAAKwArAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAHgAeACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQADQAEAAQAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAVABVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBUAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVAFUAVQBVACsAKwArACsAKwArACsAKwArACsAKwArAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAWQBZAFkAKwArACsAKwBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAWgBaAFoAKwArACsAKwAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYABgAGAAYAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXACUAJQBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAJQAlACUAJQAlACUAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAKwArACsAKwArAFYABABWAFYAVgBWAFYAVgBWAFYAVgBWAB4AVgBWAFYAVgBWAFYAVgBWAFYAVgBWAFYAVgArAFYAVgBWAFYAVgArAFYAKwBWAFYAKwBWAFYAKwBWAFYAVgBWAFYAVgBWAFYAVgBWAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAEQAWAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUAAaAB4AKwArAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAGAARABEAGAAYABMAEwAWABEAFAArACsAKwArACsAKwAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACUAJQAlACUAJQAWABEAFgARABYAEQAWABEAFgARABYAEQAlACUAFgARACUAJQAlACUAJQAlACUAEQAlABEAKwAVABUAEwATACUAFgARABYAEQAWABEAJQAlACUAJQAlACUAJQAlACsAJQAbABoAJQArACsAKwArAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArAAcAKwATACUAJQAbABoAJQAlABYAEQAlACUAEQAlABEAJQBXAFcAVwBXAFcAVwBXAFcAVwBXABUAFQAlACUAJQATACUAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXABYAJQARACUAJQAlAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwAWACUAEQAlABYAEQARABYAEQARABUAVwBRAFEAUQBRAFEAUQBRAFEAUQBRAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAEcARwArACsAVwBXAFcAVwBXAFcAKwArAFcAVwBXAFcAVwBXACsAKwBXAFcAVwBXAFcAVwArACsAVwBXAFcAKwArACsAGgAbACUAJQAlABsAGwArAB4AHgAeAB4AHgAeAB4AKwArACsAKwArACsAKwArACsAKwAEAAQABAAQAB0AKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsADQANAA0AKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArAB4AHgAeAB4AHgAeAB4AHgAeAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgBQAFAAHgAeAB4AKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAAQAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwAEAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAA0AUABQAFAAUAArACsAKwArAFAAUABQAFAAUABQAFAAUAANAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwArACsAKwAeACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAKwArAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUAArACsAKwBQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwANAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAeAB4AUABQAFAAUABQAFAAUAArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUAArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArAA0AUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwAeAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAUABQAFAAUABQAAQABAAEACsABAAEACsAKwArACsAKwAEAAQABAAEAFAAUABQAFAAKwBQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArAAQABAAEACsAKwArACsABABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArAA0ADQANAA0ADQANAA0ADQAeACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAeAFAAUABQAFAAUABQAFAAUAAeAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAArACsAKwArAFAAUABQAFAAUAANAA0ADQANAA0ADQAUACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsADQANAA0ADQANAA0ADQBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArAB4AHgAeAB4AKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArAFAAUABQAFAAUABQAAQABAAEAAQAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUAArAAQABAANACsAKwBQAFAAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAAQABAAEAAQABAAEAAQABAAEAAQABABQAFAAUABQAB4AHgAeAB4AHgArACsAKwArACsAKwAEAAQABAAEAAQABAAEAA0ADQAeAB4AHgAeAB4AKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsABABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAQABAAEAAQABAAEAAQABAAEAAQABAAeAB4AHgANAA0ADQANACsAKwArACsAKwArACsAKwArACsAKwAeACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwArACsAKwBLAEsASwBLAEsASwBLAEsASwBLACsAKwArACsAKwArAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEACsASwBLAEsASwBLAEsASwBLAEsASwANAA0ADQANAFAABAAEAFAAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAeAA4AUAArACsAKwArACsAKwArACsAKwAEAFAAUABQAFAADQANAB4ADQAEAAQABAAEAB4ABAAEAEsASwBLAEsASwBLAEsASwBLAEsAUAAOAFAADQANAA0AKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQABAAEAAQABAANAA0AHgANAA0AHgAEACsAUABQAFAAUABQAFAAUAArAFAAKwBQAFAAUABQACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAA0AKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQABAAEAAQAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsABAAEAAQABAArAFAAUABQAFAAUABQAFAAUAArACsAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAUABQACsAUABQAFAAUABQACsABAAEAFAABAAEAAQABAAEAAQABAArACsABAAEACsAKwAEAAQABAArACsAUAArACsAKwArACsAKwAEACsAKwArACsAKwBQAFAAUABQAFAABAAEACsAKwAEAAQABAAEAAQABAAEACsAKwArAAQABAAEAAQABAArACsAKwArACsAKwArACsAKwArACsABAAEAAQABAAEAAQABABQAFAAUABQAA0ADQANAA0AHgBLAEsASwBLAEsASwBLAEsASwBLAA0ADQArAB4ABABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwAEAAQABAAEAFAAUAAeAFAAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAArACsABAAEAAQABAAEAAQABAAEAAQADgANAA0AEwATAB4AHgAeAA0ADQANAA0ADQANAA0ADQANAA0ADQANAA0ADQANAFAAUABQAFAABAAEACsAKwAEAA0ADQAeAFAAKwArACsAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAFAAKwArACsAKwArACsAKwBLAEsASwBLAEsASwBLAEsASwBLACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAXABcAFwAKwArACoAKgAqACoAKgAqACoAKgAqACoAKgAqACoAKgAqACsAKwArACsASwBLAEsASwBLAEsASwBLAEsASwBcAFwADQANAA0AKgBQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAeACsAKwArACsASwBLAEsASwBLAEsASwBLAEsASwBQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAKwArAFAAKwArAFAAUABQAFAAUABQAFAAUAArAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQAKwAEAAQAKwArAAQABAAEAAQAUAAEAFAABAAEAA0ADQANACsAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAArACsABAAEAAQABAAEAAQABABQAA4AUAAEACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFAABAAEAAQABAAEAAQABAAEAAQABABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAFAABAAEAAQABAAOAB4ADQANAA0ADQAOAB4ABAArACsAKwArACsAKwArACsAUAAEAAQABAAEAAQABAAEAAQABAAEAAQAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAA0ADQANAFAADgAOAA4ADQANACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAEAAQABAAEACsABAAEAAQABAAEAAQABAAEAFAADQANAA0ADQANACsAKwArACsAKwArACsAKwArACsASwBLAEsASwBLAEsASwBLAEsASwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwAOABMAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAArAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQACsAUABQACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAArACsAKwAEACsABAAEACsABAAEAAQABAAEAAQABABQAAQAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAUABQAFAAUABQAFAAKwBQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQAKwAEAAQAKwAEAAQABAAEAAQAUAArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAABAAEAAQABAAeAB4AKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAB4AHgAeAB4AHgAeAB4AHgAaABoAGgAaAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAKwArACsAKwArACsAKwArACsAKwArAA0AUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsADQANAA0ADQANACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAASABIAEgAQwBDAEMAUABQAFAAUABDAFAAUABQAEgAQwBIAEMAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAASABDAEMAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwAJAAkACQAJAAkACQAJABYAEQArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABIAEMAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwANAA0AKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArAAQABAAEAAQABAANACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEAA0ADQANAB4AHgAeAB4AHgAeAFAAUABQAFAADQAeACsAKwArACsAKwArACsAKwArACsASwBLAEsASwBLAEsASwBLAEsASwArAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAANAA0AHgAeACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwAEAFAABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAKwArACsAKwArACsAKwAEAAQABAAEAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAARwBHABUARwAJACsAKwArACsAKwArACsAKwArACsAKwAEAAQAKwArACsAKwArACsAKwArACsAKwArACsAKwArAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXACsAKwArACsAKwArACsAKwBXAFcAVwBXAFcAVwBXAFcAVwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAUQBRAFEAKwArACsAKwArACsAKwArACsAKwArACsAKwBRAFEAUQBRACsAKwArACsAKwArACsAKwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUAArACsAHgAEAAQADQAEAAQABAAEACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAKwArACsAKwArACsAKwArAB4AHgAeAB4AHgAeAB4AKwArAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAAQABAAEAAQABAAeAB4AHgAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAB4AHgAEAAQABAAEAAQABAAEAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4ABAAEAAQABAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4ABAAEAAQAHgArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwArACsAKwArACsAKwArACsAKwArAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAKwArACsAKwArACsAKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwBQAFAAKwArAFAAKwArAFAAUAArACsAUABQAFAAUAArAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeACsAUAArAFAAUABQAFAAUABQAFAAKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwBQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAHgAeAFAAUABQAFAAUAArAFAAKwArACsAUABQAFAAUABQAFAAUAArAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAHgBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgBQAFAAUABQAFAAUABQAFAAUABQAFAAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAB4AHgAeAB4AHgAeAB4AHgAeACsAKwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAEsASwBLAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAeAB4AHgAeAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAeAB4AHgAeAB4AHgAeAB4ABAAeAB4AHgAeAB4AHgAeAB4AHgAeAAQAHgAeAA0ADQANAA0AHgArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwAEAAQABAAEAAQAKwAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAAQABAAEAAQABAAEAAQAKwAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAKwArAAQABAAEAAQABAAEAAQAKwAEAAQAKwAEAAQABAAEAAQAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwAEAAQABAAEAAQABAAEAFAAUABQAFAAUABQAFAAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwBQAB4AKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArABsAUABQAFAAUABQACsAKwBQAFAAUABQAFAAUABQAFAAUAAEAAQABAAEAAQABAAEACsAKwArACsAKwArACsAKwArAB4AHgAeAB4ABAAEAAQABAAEAAQABABQACsAKwArACsASwBLAEsASwBLAEsASwBLAEsASwArACsAKwArABYAFgArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAGgBQAFAAUAAaAFAAUABQAFAAKwArACsAKwArACsAKwArACsAKwArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAeAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQACsAKwBQAFAAUABQACsAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwBQAFAAKwBQACsAKwBQACsAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAKwBQACsAUAArACsAKwArACsAKwBQACsAKwArACsAUAArAFAAKwBQACsAUABQAFAAKwBQAFAAKwBQACsAKwBQACsAUAArAFAAKwBQACsAUAArAFAAUAArAFAAKwArAFAAUABQAFAAKwBQAFAAUABQAFAAUABQACsAUABQAFAAUAArAFAAUABQAFAAKwBQACsAUABQAFAAUABQAFAAUABQAFAAUAArAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAArACsAKwArACsAUABQAFAAKwBQAFAAUABQAFAAKwBQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwAeAB4AKwArACsAKwArACsAKwArACsAKwArACsAKwArAE8ATwBPAE8ATwBPAE8ATwBPAE8ATwBPAE8AJQAlACUAHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHgAeAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB4AHgAeACUAJQAlAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAdAB0AHQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQApACkAKQApACkAKQApACkAKQApACkAKQApACkAKQApACkAKQApACkAKQApACkAKQApACkAJQAlACUAJQAlACAAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAeAB4AJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlAB4AHgAlACUAJQAlACUAHgAlACUAJQAlACUAIAAgACAAJQAlACAAJQAlACAAIAAgACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACEAIQAhACEAIQAlACUAIAAgACUAJQAgACAAIAAgACAAIAAgACAAIAAgACAAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAJQAlACUAIAAlACUAJQAlACAAIAAgACUAIAAgACAAJQAlACUAJQAlACUAJQAgACUAIAAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAHgAlAB4AJQAeACUAJQAlACUAJQAgACUAJQAlACUAHgAlAB4AHgAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlAB4AHgAeAB4AHgAeAB4AJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAeAB4AHgAeAB4AHgAeAB4AHgAeACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACAAIAAlACUAJQAlACAAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACAAJQAlACUAJQAgACAAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAHgAeAB4AHgAeAB4AHgAeACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAeAB4AHgAeAB4AHgAlACUAJQAlACUAJQAlACAAIAAgACUAJQAlACAAIAAgACAAIAAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeABcAFwAXABUAFQAVAB4AHgAeAB4AJQAlACUAIAAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACAAIAAgACUAJQAlACUAJQAlACUAJQAlACAAJQAlACUAJQAlACUAJQAlACUAJQAlACAAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AJQAlACUAJQAlACUAJQAlACUAJQAlACUAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AJQAlACUAJQAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeACUAJQAlACUAJQAlACUAJQAeAB4AHgAeAB4AHgAeAB4AHgAeACUAJQAlACUAJQAlAB4AHgAeAB4AHgAeAB4AHgAlACUAJQAlACUAJQAlACUAHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAgACUAJQAgACUAJQAlACUAJQAlACUAJQAgACAAIAAgACAAIAAgACAAJQAlACUAJQAlACUAIAAlACUAJQAlACUAJQAlACUAJQAgACAAIAAgACAAIAAgACAAIAAgACUAJQAgACAAIAAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAgACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACAAIAAlACAAIAAlACAAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAgACAAIAAlACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAJQAlAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AKwAeAB4AHgAeAB4AHgAeAB4AHgAeAB4AHgArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAEsASwBLAEsASwBLAEsASwBLAEsAKwArACsAKwArACsAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAKwArAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXACUAJQBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwAlACUAJQAlACUAJQAlACUAJQAlACUAVwBXACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQBXAFcAVwBXAFcAVwBXAFcAVwBXAFcAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAJQAlACUAKwAEACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArACsAKwArAA==", vn = 50, pl = 1, ss = 2, os = 3, Ul = 4, Fl = 5, mn = 7, as = 8, bn = 9, EA = 10, nr = 11, yn = 12, ir = 13, vl = 14, ae = 15, sr = 16, xe = 17, re = 18, ml = 19, En = 20, or = 21, ne = 22, St = 23, NA = 24, eA = 25, ce = 26, le = 27, GA = 28, bl = 29, kA = 30, yl = 31, Le = 32, Ke = 33, ar = 34, cr = 35, lr = 36, pe = 37, Br = 38, $e = 39, At = 40, Tt = 41, cs = 42, El = 43, Hl = [9001, 65288], ls = "!", I = "×", Se = "÷", dr = fl(Cl), pA = [kA, lr], ur = [pl, ss, os, Fl], Bs = [EA, as], Hn = [le, ce], Il = ur.concat(Bs), In = [Br, $e, At, ar, cr], xl = [ae, ir], Ll = function(e, A) {
   A === void 0 && (A = "strict");
   var t = [], r = [], n = [];
   return e.forEach(function(i, s) {
-    var o = Br.get(i);
-    if (o > Cn ? (n.push(!0), o -= Cn) : n.push(!1), ["normal", "auto", "loose"].indexOf(A) !== -1 && [8208, 8211, 12316, 12448].indexOf(i) !== -1)
-      return r.push(s), t.push(ir);
-    if (o === tl || o === rr) {
+    var o = dr.get(i);
+    if (o > vn ? (n.push(!0), o -= vn) : n.push(!1), ["normal", "auto", "loose"].indexOf(A) !== -1 && [8208, 8211, 12316, 12448].indexOf(i) !== -1)
+      return r.push(s), t.push(sr);
+    if (o === Ul || o === nr) {
       if (s === 0)
         return r.push(s), t.push(kA);
       var a = t[s - 1];
-      return ll.indexOf(a) === -1 ? (r.push(r[s - 1]), t.push(a)) : (r.push(s), t.push(kA));
+      return Il.indexOf(a) === -1 ? (r.push(r[s - 1]), t.push(a)) : (r.push(s), t.push(kA));
     }
-    if (r.push(s), o === ol)
-      return t.push(A === "strict" ? sr : pe);
-    if (o === ts || o === sl)
+    if (r.push(s), o === yl)
+      return t.push(A === "strict" ? or : pe);
+    if (o === cs || o === bl)
       return t.push(kA);
-    if (o === al)
+    if (o === El)
       return i >= 131072 && i <= 196605 || i >= 196608 && i <= 262141 ? t.push(pe) : t.push(kA);
     t.push(o);
   }), [r, t, n];
-}, Tt = function(e, A, t, r) {
+}, Dt = function(e, A, t, r) {
   var n = r[t];
   if (Array.isArray(e) ? e.indexOf(n) !== -1 : e === n)
     for (var i = t; i <= r.length; ) {
@@ -3580,7 +3738,7 @@ var Al = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF
         break;
     }
   return !1;
-}, yn = function(e, A) {
+}, xn = function(e, A) {
   for (var t = e; t >= 0; ) {
     var r = A[t];
     if (r === EA)
@@ -3589,30 +3747,30 @@ var Al = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF
       return r;
   }
   return 0;
-}, ul = function(e, A, t, r, n) {
+}, Kl = function(e, A, t, r, n) {
   if (t[r] === 0)
     return I;
   var i = r - 1;
   if (Array.isArray(n) && n[i] === !0)
     return I;
   var s = i - 1, o = i + 1, a = A[i], c = s >= 0 ? A[s] : 0, l = A[o];
-  if (a === $i && l === As)
+  if (a === ss && l === os)
     return I;
-  if (dr.indexOf(a) !== -1)
-    return rs;
-  if (dr.indexOf(l) !== -1 || ns.indexOf(l) !== -1)
+  if (ur.indexOf(a) !== -1)
+    return ls;
+  if (ur.indexOf(l) !== -1 || Bs.indexOf(l) !== -1)
     return I;
-  if (yn(i, A) === es)
+  if (xn(i, A) === as)
     return Se;
-  if (Br.get(e[i]) === rr || (a === Le || a === Ke) && Br.get(e[o]) === rr || a === pn || l === pn || a === Un || [EA, nr, ae].indexOf(a) === -1 && l === Un || [xe, re, il, NA, GA].indexOf(l) !== -1 || yn(i, A) === ne || Tt(Kt, ne, i, A) || Tt([xe, re], sr, i, A) || Tt(Fn, Fn, i, A))
+  if (dr.get(e[i]) === nr || (a === Le || a === Ke) && dr.get(e[o]) === nr || a === mn || l === mn || a === bn || [EA, ir, ae].indexOf(a) === -1 && l === bn || [xe, re, ml, NA, GA].indexOf(l) !== -1 || xn(i, A) === ne || Dt(St, ne, i, A) || Dt([xe, re], or, i, A) || Dt(yn, yn, i, A))
     return I;
   if (a === EA)
     return Se;
-  if (a === Kt || l === Kt)
+  if (a === St || l === St)
     return I;
-  if (l === ir || a === ir)
+  if (l === sr || a === sr)
     return Se;
-  if ([nr, ae, sr].indexOf(l) !== -1 || a === nl || c === cr && Bl.indexOf(a) !== -1 || a === GA && l === cr || l === vn || pA.indexOf(l) !== -1 && a === eA || pA.indexOf(a) !== -1 && l === eA || a === le && [pe, Le, Ke].indexOf(l) !== -1 || [pe, Le, Ke].indexOf(a) !== -1 && l === ce || pA.indexOf(a) !== -1 && mn.indexOf(l) !== -1 || mn.indexOf(a) !== -1 && pA.indexOf(l) !== -1 || // (PR | PO) × ( OP | HY )? NU
+  if ([ir, ae, or].indexOf(l) !== -1 || a === vl || c === lr && xl.indexOf(a) !== -1 || a === GA && l === lr || l === En || pA.indexOf(l) !== -1 && a === eA || pA.indexOf(a) !== -1 && l === eA || a === le && [pe, Le, Ke].indexOf(l) !== -1 || [pe, Le, Ke].indexOf(a) !== -1 && l === ce || pA.indexOf(a) !== -1 && Hn.indexOf(l) !== -1 || Hn.indexOf(a) !== -1 && pA.indexOf(l) !== -1 || // (PR | PO) × ( OP | HY )? NU
   [le, ce].indexOf(a) !== -1 && (l === eA || [ne, ae].indexOf(l) !== -1 && A[o + 1] === eA) || // ( OP | HY ) × NU
   [ne, ae].indexOf(a) !== -1 && l === eA || // NU ×	(NU | SY | IS)
   a === eA && [eA, GA, NA].indexOf(l) !== -1)
@@ -3637,79 +3795,79 @@ var Al = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF
       else
         break;
     }
-  if (lr === a && [lr, $e, or, ar].indexOf(l) !== -1 || [$e, or].indexOf(a) !== -1 && [$e, At].indexOf(l) !== -1 || [At, ar].indexOf(a) !== -1 && l === At || bn.indexOf(a) !== -1 && [vn, ce].indexOf(l) !== -1 || bn.indexOf(l) !== -1 && a === le || pA.indexOf(a) !== -1 && pA.indexOf(l) !== -1 || a === NA && pA.indexOf(l) !== -1 || pA.concat(eA).indexOf(a) !== -1 && l === ne && cl.indexOf(e[o]) === -1 || pA.concat(eA).indexOf(l) !== -1 && a === re)
+  if (Br === a && [Br, $e, ar, cr].indexOf(l) !== -1 || [$e, ar].indexOf(a) !== -1 && [$e, At].indexOf(l) !== -1 || [At, cr].indexOf(a) !== -1 && l === At || In.indexOf(a) !== -1 && [En, ce].indexOf(l) !== -1 || In.indexOf(l) !== -1 && a === le || pA.indexOf(a) !== -1 && pA.indexOf(l) !== -1 || a === NA && pA.indexOf(l) !== -1 || pA.concat(eA).indexOf(a) !== -1 && l === ne && Hl.indexOf(e[o]) === -1 || pA.concat(eA).indexOf(l) !== -1 && a === re)
     return I;
-  if (a === St && l === St) {
-    for (var g = t[i], u = 1; g > 0 && (g--, A[g] === St); )
+  if (a === Tt && l === Tt) {
+    for (var g = t[i], u = 1; g > 0 && (g--, A[g] === Tt); )
       u++;
     if (u % 2 !== 0)
       return I;
   }
   return a === Le && l === Ke ? I : Se;
-}, hl = function(e, A) {
+}, Sl = function(e, A) {
   A || (A = { lineBreak: "normal", wordBreak: "normal" });
-  var t = dl(e, A.lineBreak), r = t[0], n = t[1], i = t[2];
+  var t = Ll(e, A.lineBreak), r = t[0], n = t[1], i = t[2];
   (A.wordBreak === "break-all" || A.wordBreak === "break-word") && (n = n.map(function(o) {
-    return [eA, kA, ts].indexOf(o) !== -1 ? pe : o;
+    return [eA, kA, cs].indexOf(o) !== -1 ? pe : o;
   }));
   var s = A.wordBreak === "keep-all" ? i.map(function(o, a) {
     return o && e[a] >= 19968 && e[a] <= 40959;
   }) : void 0;
   return [r, n, s];
-}, gl = (
+}, Tl = (
   /** @class */
   (function() {
     function e(A, t, r, n) {
-      this.codePoints = A, this.required = t === rs, this.start = r, this.end = n;
+      this.codePoints = A, this.required = t === ls, this.start = r, this.end = n;
     }
     return e.prototype.slice = function() {
       return M.apply(void 0, this.codePoints.slice(this.start, this.end));
     }, e;
   })()
-), fl = function(e, A) {
-  var t = wt(e), r = hl(t, A), n = r[0], i = r[1], s = r[2], o = t.length, a = 0, c = 0;
+), Dl = function(e, A) {
+  var t = Qt(e), r = Sl(t, A), n = r[0], i = r[1], s = r[2], o = t.length, a = 0, c = 0;
   return {
     next: function() {
       if (c >= o)
         return { done: !0, value: null };
-      for (var l = I; c < o && (l = ul(t, i, n, ++c, s)) === I; )
+      for (var l = I; c < o && (l = Kl(t, i, n, ++c, s)) === I; )
         ;
       if (l !== I || c === o) {
-        var B = new gl(t, l, a, c);
+        var B = new Tl(t, l, a, c);
         return a = c, { value: B, done: !1 };
       }
       return { done: !0, value: null };
     }
   };
-}, wl = 1, Ql = 2, ve = 4, En = 8, st = 10, Hn = 47, ge = 92, Cl = 9, pl = 32, Te = 34, ie = 61, Ul = 35, Fl = 36, vl = 37, De = 39, ke = 40, se = 41, ml = 95, z = 45, bl = 33, yl = 60, El = 62, Hl = 64, Il = 91, xl = 93, Ll = 61, Kl = 123, Me = 63, Sl = 125, In = 124, Tl = 126, Dl = 128, xn = 65533, Dt = 42, OA = 43, kl = 44, Ml = 58, Ol = 59, Ue = 46, Rl = 0, ql = 8, Vl = 11, Nl = 14, Gl = 31, Pl = 127, hA = -1, is = 48, ss = 97, os = 101, _l = 102, Xl = 117, Jl = 122, as = 65, cs = 69, ls = 70, Wl = 85, Yl = 90, Y = function(e) {
-  return e >= is && e <= 57;
-}, Zl = function(e) {
+}, kl = 1, Ml = 2, ve = 4, Ln = 8, ot = 10, Kn = 47, ge = 92, Ol = 9, Rl = 32, Te = 34, ie = 61, ql = 35, Vl = 36, Nl = 37, De = 39, ke = 40, se = 41, Gl = 95, z = 45, Pl = 33, _l = 60, Xl = 62, Jl = 64, Wl = 91, Yl = 93, Zl = 61, zl = 123, Me = 63, jl = 125, Sn = 124, $l = 126, AB = 128, Tn = 65533, kt = 42, OA = 43, eB = 44, tB = 58, rB = 59, Ue = 46, nB = 0, iB = 8, sB = 11, oB = 14, aB = 31, cB = 127, hA = -1, ds = 48, us = 97, hs = 101, lB = 102, BB = 117, dB = 122, gs = 65, fs = 69, ws = 70, uB = 85, hB = 90, Y = function(e) {
+  return e >= ds && e <= 57;
+}, gB = function(e) {
   return e >= 55296 && e <= 57343;
 }, PA = function(e) {
-  return Y(e) || e >= as && e <= ls || e >= ss && e <= _l;
-}, zl = function(e) {
-  return e >= ss && e <= Jl;
-}, jl = function(e) {
-  return e >= as && e <= Yl;
-}, $l = function(e) {
-  return zl(e) || jl(e);
-}, AB = function(e) {
-  return e >= Dl;
+  return Y(e) || e >= gs && e <= ws || e >= us && e <= lB;
+}, fB = function(e) {
+  return e >= us && e <= dB;
+}, wB = function(e) {
+  return e >= gs && e <= hB;
+}, QB = function(e) {
+  return fB(e) || wB(e);
+}, CB = function(e) {
+  return e >= AB;
 }, Oe = function(e) {
-  return e === st || e === Cl || e === pl;
-}, ot = function(e) {
-  return $l(e) || AB(e) || e === ml;
-}, Ln = function(e) {
-  return ot(e) || Y(e) || e === z;
-}, eB = function(e) {
-  return e >= Rl && e <= ql || e === Vl || e >= Nl && e <= Gl || e === Pl;
+  return e === ot || e === Ol || e === Rl;
+}, at = function(e) {
+  return QB(e) || CB(e) || e === Gl;
+}, Dn = function(e) {
+  return at(e) || Y(e) || e === z;
+}, pB = function(e) {
+  return e >= nB && e <= iB || e === sB || e >= oB && e <= aB || e === cB;
 }, yA = function(e, A) {
-  return e !== ge ? !1 : A !== st;
+  return e !== ge ? !1 : A !== ot;
 }, Re = function(e, A, t) {
-  return e === z ? ot(A) || yA(A, t) : ot(e) ? !0 : !!(e === ge && yA(e, A));
-}, kt = function(e, A, t) {
+  return e === z ? at(A) || yA(A, t) : at(e) ? !0 : !!(e === ge && yA(e, A));
+}, Mt = function(e, A, t) {
   return e === OA || e === z ? Y(A) ? !0 : A === Ue && Y(t) : Y(e === Ue ? A : e);
-}, tB = function(e) {
+}, UB = function(e) {
   var A = 0, t = 1;
   (e[A] === OA || e[A] === z) && (e[A] === z && (t = -1), A++);
   for (var r = []; Y(e[A]); )
@@ -3719,86 +3877,86 @@ var Al = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF
   for (var i = []; Y(e[A]); )
     i.push(e[A++]);
   var s = i.length, o = s ? parseInt(M.apply(void 0, i), 10) : 0;
-  (e[A] === cs || e[A] === os) && A++;
+  (e[A] === fs || e[A] === hs) && A++;
   var a = 1;
   (e[A] === OA || e[A] === z) && (e[A] === z && (a = -1), A++);
   for (var c = []; Y(e[A]); )
     c.push(e[A++]);
   var l = c.length ? parseInt(M.apply(void 0, c), 10) : 0;
   return t * (n + o * Math.pow(10, -s)) * Math.pow(10, a * l);
-}, rB = {
+}, FB = {
   type: 2
   /* LEFT_PARENTHESIS_TOKEN */
-}, nB = {
+}, vB = {
   type: 3
   /* RIGHT_PARENTHESIS_TOKEN */
-}, iB = {
+}, mB = {
   type: 4
   /* COMMA_TOKEN */
-}, sB = {
+}, bB = {
   type: 13
   /* SUFFIX_MATCH_TOKEN */
-}, oB = {
+}, yB = {
   type: 8
   /* PREFIX_MATCH_TOKEN */
-}, aB = {
+}, EB = {
   type: 21
   /* COLUMN_TOKEN */
-}, cB = {
+}, HB = {
   type: 9
   /* DASH_MATCH_TOKEN */
-}, lB = {
+}, IB = {
   type: 10
   /* INCLUDE_MATCH_TOKEN */
-}, BB = {
+}, xB = {
   type: 11
   /* LEFT_CURLY_BRACKET_TOKEN */
-}, dB = {
+}, LB = {
   type: 12
   /* RIGHT_CURLY_BRACKET_TOKEN */
-}, uB = {
+}, KB = {
   type: 14
   /* SUBSTRING_MATCH_TOKEN */
 }, qe = {
   type: 23
   /* BAD_URL_TOKEN */
-}, hB = {
+}, SB = {
   type: 1
   /* BAD_STRING_TOKEN */
-}, gB = {
+}, TB = {
   type: 25
   /* CDO_TOKEN */
-}, fB = {
+}, DB = {
   type: 24
   /* CDC_TOKEN */
-}, wB = {
+}, kB = {
   type: 26
   /* COLON_TOKEN */
-}, QB = {
+}, MB = {
   type: 27
   /* SEMICOLON_TOKEN */
-}, CB = {
+}, OB = {
   type: 28
   /* LEFT_SQUARE_BRACKET_TOKEN */
-}, pB = {
+}, RB = {
   type: 29
   /* RIGHT_SQUARE_BRACKET_TOKEN */
-}, UB = {
+}, qB = {
   type: 31
   /* WHITESPACE_TOKEN */
-}, ur = {
+}, hr = {
   type: 32
   /* EOF_TOKEN */
-}, Bs = (
+}, Qs = (
   /** @class */
   (function() {
     function e() {
       this._value = [];
     }
     return e.prototype.write = function(A) {
-      this._value = this._value.concat(wt(A));
+      this._value = this._value.concat(Qt(A));
     }, e.prototype.read = function() {
-      for (var A = [], t = this.consumeToken(); t !== ur; )
+      for (var A = [], t = this.consumeToken(); t !== hr; )
         A.push(t), t = this.consumeToken();
       return A;
     }, e.prototype.consumeToken = function() {
@@ -3806,105 +3964,105 @@ var Al = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF
       switch (A) {
         case Te:
           return this.consumeStringToken(Te);
-        case Ul:
+        case ql:
           var t = this.peekCodePoint(0), r = this.peekCodePoint(1), n = this.peekCodePoint(2);
-          if (Ln(t) || yA(r, n)) {
-            var i = Re(t, r, n) ? Ql : wl, s = this.consumeName();
+          if (Dn(t) || yA(r, n)) {
+            var i = Re(t, r, n) ? Ml : kl, s = this.consumeName();
             return { type: 5, value: s, flags: i };
           }
           break;
-        case Fl:
+        case Vl:
           if (this.peekCodePoint(0) === ie)
-            return this.consumeCodePoint(), sB;
+            return this.consumeCodePoint(), bB;
           break;
         case De:
           return this.consumeStringToken(De);
         case ke:
-          return rB;
+          return FB;
         case se:
-          return nB;
-        case Dt:
+          return vB;
+        case kt:
           if (this.peekCodePoint(0) === ie)
-            return this.consumeCodePoint(), uB;
+            return this.consumeCodePoint(), KB;
           break;
         case OA:
-          if (kt(A, this.peekCodePoint(0), this.peekCodePoint(1)))
+          if (Mt(A, this.peekCodePoint(0), this.peekCodePoint(1)))
             return this.reconsumeCodePoint(A), this.consumeNumericToken();
           break;
-        case kl:
-          return iB;
+        case eB:
+          return mB;
         case z:
           var o = A, a = this.peekCodePoint(0), c = this.peekCodePoint(1);
-          if (kt(o, a, c))
+          if (Mt(o, a, c))
             return this.reconsumeCodePoint(A), this.consumeNumericToken();
           if (Re(o, a, c))
             return this.reconsumeCodePoint(A), this.consumeIdentLikeToken();
-          if (a === z && c === El)
-            return this.consumeCodePoint(), this.consumeCodePoint(), fB;
+          if (a === z && c === Xl)
+            return this.consumeCodePoint(), this.consumeCodePoint(), DB;
           break;
         case Ue:
-          if (kt(A, this.peekCodePoint(0), this.peekCodePoint(1)))
+          if (Mt(A, this.peekCodePoint(0), this.peekCodePoint(1)))
             return this.reconsumeCodePoint(A), this.consumeNumericToken();
           break;
-        case Hn:
-          if (this.peekCodePoint(0) === Dt)
+        case Kn:
+          if (this.peekCodePoint(0) === kt)
             for (this.consumeCodePoint(); ; ) {
               var l = this.consumeCodePoint();
-              if (l === Dt && (l = this.consumeCodePoint(), l === Hn))
+              if (l === kt && (l = this.consumeCodePoint(), l === Kn))
                 return this.consumeToken();
               if (l === hA)
                 return this.consumeToken();
             }
           break;
-        case Ml:
-          return wB;
-        case Ol:
-          return QB;
-        case yl:
-          if (this.peekCodePoint(0) === bl && this.peekCodePoint(1) === z && this.peekCodePoint(2) === z)
-            return this.consumeCodePoint(), this.consumeCodePoint(), gB;
+        case tB:
+          return kB;
+        case rB:
+          return MB;
+        case _l:
+          if (this.peekCodePoint(0) === Pl && this.peekCodePoint(1) === z && this.peekCodePoint(2) === z)
+            return this.consumeCodePoint(), this.consumeCodePoint(), TB;
           break;
-        case Hl:
+        case Jl:
           var B = this.peekCodePoint(0), d = this.peekCodePoint(1), g = this.peekCodePoint(2);
           if (Re(B, d, g)) {
             var s = this.consumeName();
             return { type: 7, value: s };
           }
           break;
-        case Il:
-          return CB;
+        case Wl:
+          return OB;
         case ge:
           if (yA(A, this.peekCodePoint(0)))
             return this.reconsumeCodePoint(A), this.consumeIdentLikeToken();
           break;
-        case xl:
-          return pB;
-        case Ll:
+        case Yl:
+          return RB;
+        case Zl:
           if (this.peekCodePoint(0) === ie)
-            return this.consumeCodePoint(), oB;
+            return this.consumeCodePoint(), yB;
           break;
-        case Kl:
-          return BB;
-        case Sl:
-          return dB;
-        case Xl:
-        case Wl:
+        case zl:
+          return xB;
+        case jl:
+          return LB;
+        case BB:
+        case uB:
           var u = this.peekCodePoint(0), f = this.peekCodePoint(1);
           return u === OA && (PA(f) || f === Me) && (this.consumeCodePoint(), this.consumeUnicodeRangeToken()), this.reconsumeCodePoint(A), this.consumeIdentLikeToken();
-        case In:
+        case Sn:
           if (this.peekCodePoint(0) === ie)
-            return this.consumeCodePoint(), cB;
-          if (this.peekCodePoint(0) === In)
-            return this.consumeCodePoint(), aB;
+            return this.consumeCodePoint(), HB;
+          if (this.peekCodePoint(0) === Sn)
+            return this.consumeCodePoint(), EB;
           break;
-        case Tl:
+        case $l:
           if (this.peekCodePoint(0) === ie)
-            return this.consumeCodePoint(), lB;
+            return this.consumeCodePoint(), IB;
           break;
         case hA:
-          return ur;
+          return hr;
       }
-      return Oe(A) ? (this.consumeWhiteSpace(), UB) : Y(A) ? (this.reconsumeCodePoint(A), this.consumeNumericToken()) : ot(A) ? (this.reconsumeCodePoint(A), this.consumeIdentLikeToken()) : { type: 6, value: M(A) };
+      return Oe(A) ? (this.consumeWhiteSpace(), qB) : Y(A) ? (this.reconsumeCodePoint(A), this.consumeNumericToken()) : at(A) ? (this.reconsumeCodePoint(A), this.consumeIdentLikeToken()) : { type: 6, value: M(A) };
     }, e.prototype.consumeCodePoint = function() {
       var A = this._value.shift();
       return typeof A > "u" ? -1 : A;
@@ -3919,9 +4077,9 @@ var Al = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF
         A.push(t), t = this.consumeCodePoint(), r = !0;
       if (r) {
         var n = parseInt(M.apply(void 0, A.map(function(a) {
-          return a === Me ? is : a;
+          return a === Me ? ds : a;
         })), 16), i = parseInt(M.apply(void 0, A.map(function(a) {
-          return a === Me ? ls : a;
+          return a === Me ? ws : a;
         })), 16);
         return { type: 30, start: n, end: i };
       }
@@ -3952,7 +4110,7 @@ var Al = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF
           return { type: 22, value: M.apply(void 0, A) };
         if (Oe(n))
           return this.consumeWhiteSpace(), this.peekCodePoint(0) === hA || this.peekCodePoint(0) === se ? (this.consumeCodePoint(), { type: 22, value: M.apply(void 0, A) }) : (this.consumeBadUrlRemnants(), qe);
-        if (n === Te || n === De || n === ke || eB(n))
+        if (n === Te || n === De || n === ke || pB(n))
           return this.consumeBadUrlRemnants(), qe;
         if (n === ge)
           if (yA(n, this.peekCodePoint(0)))
@@ -3984,11 +4142,11 @@ var Al = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF
         var n = this._value[r];
         if (n === hA || n === void 0 || n === A)
           return t += this.consumeStringSlice(r), { type: 0, value: t };
-        if (n === st)
-          return this._value.splice(0, r), hB;
+        if (n === ot)
+          return this._value.splice(0, r), SB;
         if (n === ge) {
           var i = this._value[r + 1];
-          i !== hA && i !== void 0 && (i === st ? (t += this.consumeStringSlice(r), r = -1, this._value.shift()) : yA(n, i) && (t += this.consumeStringSlice(r), t += M(this.consumeEscapedCodePoint()), r = -1));
+          i !== hA && i !== void 0 && (i === ot ? (t += this.consumeStringSlice(r), r = -1, this._value.shift()) : yA(n, i) && (t += this.consumeStringSlice(r), t += M(this.consumeEscapedCodePoint()), r = -1));
         }
         r++;
       } while (!0);
@@ -3999,21 +4157,21 @@ var Al = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF
       r = this.peekCodePoint(0);
       var n = this.peekCodePoint(1);
       if (r === Ue && Y(n))
-        for (A.push(this.consumeCodePoint(), this.consumeCodePoint()), t = En; Y(this.peekCodePoint(0)); )
+        for (A.push(this.consumeCodePoint(), this.consumeCodePoint()), t = Ln; Y(this.peekCodePoint(0)); )
           A.push(this.consumeCodePoint());
       r = this.peekCodePoint(0), n = this.peekCodePoint(1);
       var i = this.peekCodePoint(2);
-      if ((r === cs || r === os) && ((n === OA || n === z) && Y(i) || Y(n)))
-        for (A.push(this.consumeCodePoint(), this.consumeCodePoint()), t = En; Y(this.peekCodePoint(0)); )
+      if ((r === fs || r === hs) && ((n === OA || n === z) && Y(i) || Y(n)))
+        for (A.push(this.consumeCodePoint(), this.consumeCodePoint()), t = Ln; Y(this.peekCodePoint(0)); )
           A.push(this.consumeCodePoint());
-      return [tB(A), t];
+      return [UB(A), t];
     }, e.prototype.consumeNumericToken = function() {
       var A = this.consumeNumber(), t = A[0], r = A[1], n = this.peekCodePoint(0), i = this.peekCodePoint(1), s = this.peekCodePoint(2);
       if (Re(n, i, s)) {
         var o = this.consumeName();
         return { type: 15, number: t, flags: r, unit: o };
       }
-      return n === vl ? (this.consumeCodePoint(), { type: 16, number: t, flags: r }) : { type: 17, number: t, flags: r };
+      return n === Nl ? (this.consumeCodePoint(), { type: 16, number: t, flags: r }) : { type: 17, number: t, flags: r };
     }, e.prototype.consumeEscapedCodePoint = function() {
       var A = this.consumeCodePoint();
       if (PA(A)) {
@@ -4021,13 +4179,13 @@ var Al = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF
           t += M(this.consumeCodePoint());
         Oe(this.peekCodePoint(0)) && this.consumeCodePoint();
         var r = parseInt(t, 16);
-        return r === 0 || Zl(r) || r > 1114111 ? xn : r;
+        return r === 0 || gB(r) || r > 1114111 ? Tn : r;
       }
-      return A === hA ? xn : A;
+      return A === hA ? Tn : A;
     }, e.prototype.consumeName = function() {
       for (var A = ""; ; ) {
         var t = this.consumeCodePoint();
-        if (Ln(t))
+        if (Dn(t))
           A += M(t);
         else if (yA(t, this.peekCodePoint(0)))
           A += M(this.consumeEscapedCodePoint());
@@ -4036,14 +4194,14 @@ var Al = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF
       }
     }, e;
   })()
-), ds = (
+), Cs = (
   /** @class */
   (function() {
     function e(A) {
       this._tokens = A;
     }
     return e.create = function(A) {
-      var t = new Bs();
+      var t = new Qs();
       return t.write(A), new e(t.read());
     }, e.parseValue = function(A) {
       return e.create(A).parseComponentValue();
@@ -4082,7 +4240,7 @@ var Al = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF
       return A;
     }, e.prototype.consumeSimpleBlock = function(A) {
       for (var t = { type: A, values: [] }, r = this.consumeToken(); ; ) {
-        if (r.type === 32 || vB(r, A))
+        if (r.type === 32 || NB(r, A))
           return t;
         this.reconsumeToken(r), t.values.push(this.consumeComponentValue()), r = this.consumeToken();
       }
@@ -4100,7 +4258,7 @@ var Al = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF
       }
     }, e.prototype.consumeToken = function() {
       var A = this._tokens.shift();
-      return typeof A > "u" ? ur : A;
+      return typeof A > "u" ? hr : A;
     }, e.prototype.reconsumeToken = function(A) {
       this._tokens.unshift(A);
     }, e;
@@ -4111,11 +4269,11 @@ var Al = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF
   return e.type === 17;
 }, K = function(e) {
   return e.type === 20;
-}, FB = function(e) {
+}, VB = function(e) {
   return e.type === 0;
-}, hr = function(e, A) {
+}, gr = function(e, A) {
   return K(e) && e.value === A;
-}, us = function(e) {
+}, ps = function(e) {
   return e.type !== 31;
 }, ee = function(e) {
   return e.type !== 31 && e.type !== 4;
@@ -4130,19 +4288,19 @@ var Al = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF
     }
     r.type !== 31 && t.push(r);
   }), t.length && A.push(t), A;
-}, vB = function(e, A) {
+}, NB = function(e, A) {
   return A === 11 && e.type === 12 || A === 28 && e.type === 29 ? !0 : A === 2 && e.type === 3;
 }, KA = function(e) {
   return e.type === 17 || e.type === 15;
 }, R = function(e) {
   return e.type === 16 || KA(e);
-}, hs = function(e) {
+}, Us = function(e) {
   return e.length > 1 ? [e[0], e[1]] : [e[0]];
 }, P = {
   type: 17,
   number: 0,
   flags: ve
-}, yr = {
+}, Er = {
   type: 16,
   number: 50,
   flags: ve
@@ -4165,25 +4323,25 @@ var Al = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF
         return e.number;
     }
   return e.number;
-}, gs = "deg", fs = "grad", ws = "rad", Qs = "turn", Qt = {
+}, Fs = "deg", vs = "grad", ms = "rad", bs = "turn", Ct = {
   name: "angle",
   parse: function(e, A) {
     if (A.type === 15)
       switch (A.unit) {
-        case gs:
+        case Fs:
           return Math.PI * A.number / 180;
-        case fs:
+        case vs:
           return Math.PI / 200 * A.number;
-        case ws:
+        case ms:
           return A.number;
-        case Qs:
+        case bs:
           return Math.PI * 2 * A.number;
       }
     throw new Error("Unsupported angle type");
   }
-}, Cs = function(e) {
-  return e.type === 15 && (e.unit === gs || e.unit === fs || e.unit === ws || e.unit === Qs);
-}, ps = function(e) {
+}, ys = function(e) {
+  return e.type === 15 && (e.unit === Fs || e.unit === vs || e.unit === ms || e.unit === bs);
+}, Es = function(e) {
   var A = e.filter(K).map(function(t) {
     return t.value;
   }).join(" ");
@@ -4228,7 +4386,7 @@ var Al = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF
   name: "color",
   parse: function(e, A) {
     if (A.type === 18) {
-      var t = mB[A.name];
+      var t = GB[A.name];
       if (typeof t > "u")
         throw new Error('Attempting to parse an unsupported color function "' + A.name + '"');
       return t(e, A.values);
@@ -4265,7 +4423,7 @@ var Al = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF
   return A < 255 ? "rgba(" + n + "," + r + "," + t + "," + A / 255 + ")" : "rgb(" + n + "," + r + "," + t + ")";
 }, IA = function(e, A, t, r) {
   return (e << 24 | A << 16 | t << 8 | Math.round(r * 255) << 0) >>> 0;
-}, Kn = function(e, A) {
+}, kn = function(e, A) {
   if (e.type === 17)
     return e.number;
   if (e.type === 16) {
@@ -4273,34 +4431,34 @@ var Al = "KwAAAAAAAAAACA4AUD0AADAgAAACAAAAAAAIABAAGABAAEgAUABYAGAAaABgAGgAYgBqAF
     return A === 3 ? e.number / 100 * t : Math.round(e.number / 100 * t);
   }
   return 0;
-}, Sn = function(e, A) {
+}, Mn = function(e, A) {
   var t = A.filter(ee);
   if (t.length === 3) {
-    var r = t.map(Kn), n = r[0], i = r[1], s = r[2];
+    var r = t.map(kn), n = r[0], i = r[1], s = r[2];
     return IA(n, i, s, 1);
   }
   if (t.length === 4) {
-    var o = t.map(Kn), n = o[0], i = o[1], s = o[2], a = o[3];
+    var o = t.map(kn), n = o[0], i = o[1], s = o[2], a = o[3];
     return IA(n, i, s, a);
   }
   return 0;
 };
-function Mt(e, A, t) {
+function Ot(e, A, t) {
   return t < 0 && (t += 1), t >= 1 && (t -= 1), t < 1 / 6 ? (A - e) * t * 6 + e : t < 1 / 2 ? A : t < 2 / 3 ? (A - e) * 6 * (2 / 3 - t) + e : e;
 }
-var Tn = function(e, A) {
-  var t = A.filter(ee), r = t[0], n = t[1], i = t[2], s = t[3], o = (r.type === 17 ? nA(r.number) : Qt.parse(e, r)) / (Math.PI * 2), a = R(n) ? n.number / 100 : 0, c = R(i) ? i.number / 100 : 0, l = typeof s < "u" && R(s) ? S(s, 1) : 1;
+var On = function(e, A) {
+  var t = A.filter(ee), r = t[0], n = t[1], i = t[2], s = t[3], o = (r.type === 17 ? nA(r.number) : Ct.parse(e, r)) / (Math.PI * 2), a = R(n) ? n.number / 100 : 0, c = R(i) ? i.number / 100 : 0, l = typeof s < "u" && R(s) ? S(s, 1) : 1;
   if (a === 0)
     return IA(c * 255, c * 255, c * 255, 1);
-  var B = c <= 0.5 ? c * (a + 1) : c + a - c * a, d = c * 2 - B, g = Mt(d, B, o + 1 / 3), u = Mt(d, B, o), f = Mt(d, B, o - 1 / 3);
+  var B = c <= 0.5 ? c * (a + 1) : c + a - c * a, d = c * 2 - B, g = Ot(d, B, o + 1 / 3), u = Ot(d, B, o), f = Ot(d, B, o - 1 / 3);
   return IA(g * 255, u * 255, f * 255, l);
-}, mB = {
-  hsl: Tn,
-  hsla: Tn,
-  rgb: Sn,
-  rgba: Sn
+}, GB = {
+  hsl: On,
+  hsla: On,
+  rgb: Mn,
+  rgba: Mn
 }, fe = function(e, A) {
-  return xA.parse(e, ds.create(A).parseComponentValue());
+  return xA.parse(e, Cs.create(A).parseComponentValue());
 }, FA = {
   ALICEBLUE: 4042850303,
   ANTIQUEWHITE: 4209760255,
@@ -4451,7 +4609,7 @@ var Tn = function(e, A) {
   WHITESMOKE: 4126537215,
   YELLOW: 4294902015,
   YELLOWGREEN: 2597139199
-}, bB = {
+}, PB = {
   name: "background-clip",
   initialValue: "border-box",
   prefix: !1,
@@ -4468,16 +4626,16 @@ var Tn = function(e, A) {
       return 0;
     });
   }
-}, yB = {
+}, _B = {
   name: "background-color",
   initialValue: "transparent",
   prefix: !1,
   type: 3,
   format: "color"
-}, Ct = function(e, A) {
+}, pt = function(e, A) {
   var t = xA.parse(e, A[0]), r = A[1];
   return r && R(r) ? { color: t, stop: r } : { color: t, stop: null };
-}, Dn = function(e, A) {
+}, Rn = function(e, A) {
   var t = e[0], r = e[e.length - 1];
   t.stop === null && (t.stop = P), r.stop === null && (r.stop = HA);
   for (var n = [], i = 0, s = 0; s < e.length; s++) {
@@ -4502,15 +4660,15 @@ var Tn = function(e, A) {
     var Q = f.color;
     return { color: Q, stop: Math.max(Math.min(1, n[m] / A), 0) };
   });
-}, EB = function(e, A, t) {
+}, XB = function(e, A, t) {
   var r = A / 2, n = t / 2, i = S(e[0], A) - r, s = n - S(e[1], t);
   return (Math.atan2(s, i) + Math.PI * 2) % (Math.PI * 2);
-}, HB = function(e, A, t) {
-  var r = typeof e == "number" ? e : EB(e, A, t), n = Math.abs(A * Math.sin(r)) + Math.abs(t * Math.cos(r)), i = A / 2, s = t / 2, o = n / 2, a = Math.sin(r - Math.PI / 2) * o, c = Math.cos(r - Math.PI / 2) * o;
+}, JB = function(e, A, t) {
+  var r = typeof e == "number" ? e : XB(e, A, t), n = Math.abs(A * Math.sin(r)) + Math.abs(t * Math.cos(r)), i = A / 2, s = t / 2, o = n / 2, a = Math.sin(r - Math.PI / 2) * o, c = Math.cos(r - Math.PI / 2) * o;
   return [n, i - c, i + c, s - a, s + a];
 }, cA = function(e, A) {
   return Math.sqrt(e * e + A * A);
-}, kn = function(e, A, t, r, n) {
+}, qn = function(e, A, t, r, n) {
   var i = [
     [0, 0],
     [0, A],
@@ -4527,7 +4685,7 @@ var Tn = function(e, A) {
     optimumDistance: n ? 1 / 0 : -1 / 0,
     optimumCorner: null
   }).optimumCorner;
-}, IB = function(e, A, t, r, n) {
+}, WB = function(e, A, t, r, n) {
   var i = 0, s = 0;
   switch (e.size) {
     case 0:
@@ -4537,7 +4695,7 @@ var Tn = function(e, A) {
       if (e.shape === 0)
         i = s = Math.min(cA(A, t), cA(A, t - n), cA(A - r, t), cA(A - r, t - n));
       else if (e.shape === 1) {
-        var o = Math.min(Math.abs(t), Math.abs(t - n)) / Math.min(Math.abs(A), Math.abs(A - r)), a = kn(r, n, A, t, !0), c = a[0], l = a[1];
+        var o = Math.min(Math.abs(t), Math.abs(t - n)) / Math.min(Math.abs(A), Math.abs(A - r)), a = qn(r, n, A, t, !0), c = a[0], l = a[1];
         i = cA(c - A, (l - t) / o), s = o * i;
       }
       break;
@@ -4548,26 +4706,26 @@ var Tn = function(e, A) {
       if (e.shape === 0)
         i = s = Math.max(cA(A, t), cA(A, t - n), cA(A - r, t), cA(A - r, t - n));
       else if (e.shape === 1) {
-        var o = Math.max(Math.abs(t), Math.abs(t - n)) / Math.max(Math.abs(A), Math.abs(A - r)), B = kn(r, n, A, t, !1), c = B[0], l = B[1];
+        var o = Math.max(Math.abs(t), Math.abs(t - n)) / Math.max(Math.abs(A), Math.abs(A - r)), B = qn(r, n, A, t, !1), c = B[0], l = B[1];
         i = cA(c - A, (l - t) / o), s = o * i;
       }
       break;
   }
   return Array.isArray(e.size) && (i = S(e.size[0], r), s = e.size.length === 2 ? S(e.size[1], n) : i), [i, s];
-}, xB = function(e, A) {
+}, YB = function(e, A) {
   var t = nA(180), r = [];
   return gA(A).forEach(function(n, i) {
     if (i === 0) {
       var s = n[0];
       if (s.type === 20 && s.value === "to") {
-        t = ps(n);
+        t = Es(n);
         return;
-      } else if (Cs(s)) {
-        t = Qt.parse(e, s);
+      } else if (ys(s)) {
+        t = Ct.parse(e, s);
         return;
       }
     }
-    var o = Ct(e, n);
+    var o = pt(e, n);
     r.push(o);
   }), {
     angle: t,
@@ -4581,14 +4739,14 @@ var Tn = function(e, A) {
     if (i === 0) {
       var s = n[0];
       if (s.type === 20 && ["top", "left", "right", "bottom"].indexOf(s.value) !== -1) {
-        t = ps(n);
+        t = Es(n);
         return;
-      } else if (Cs(s)) {
-        t = (Qt.parse(e, s) + nA(270)) % nA(360);
+      } else if (ys(s)) {
+        t = (Ct.parse(e, s) + nA(270)) % nA(360);
         return;
       }
     }
-    var o = Ct(e, n);
+    var o = pt(e, n);
     r.push(o);
   }), {
     angle: t,
@@ -4596,7 +4754,7 @@ var Tn = function(e, A) {
     type: 1
     /* LINEAR_GRADIENT */
   };
-}, LB = function(e, A) {
+}, ZB = function(e, A) {
   var t = nA(180), r = [], n = 1, i = 0, s = 3, o = [];
   return gA(A).forEach(function(a, c) {
     var l = a[0];
@@ -4632,7 +4790,7 @@ var Tn = function(e, A) {
     stops: r,
     type: n
   } : { size: s, shape: i, stops: r, position: o, type: n };
-}, Us = "closest-side", Fs = "farthest-side", vs = "closest-corner", ms = "farthest-corner", bs = "circle", ys = "ellipse", Es = "cover", Hs = "contain", KB = function(e, A) {
+}, Hs = "closest-side", Is = "farthest-side", xs = "closest-corner", Ls = "farthest-corner", Ks = "circle", Ss = "ellipse", Ts = "cover", Ds = "contain", zB = function(e, A) {
   var t = 0, r = 3, n = [], i = [];
   return gA(A).forEach(function(s, o) {
     var a = !0;
@@ -4643,7 +4801,7 @@ var Tn = function(e, A) {
           if (K(d))
             switch (d.value) {
               case "center":
-                return i.push(yr), B;
+                return i.push(Er), B;
               case "top":
               case "left":
                 return i.push(P), B;
@@ -4654,21 +4812,21 @@ var Tn = function(e, A) {
           else (R(d) || KA(d)) && i.push(d);
         else if (K(d))
           switch (d.value) {
-            case bs:
+            case Ks:
               return t = 0, !1;
-            case ys:
+            case Ss:
               return t = 1, !1;
             case "at":
               return c = !0, !1;
-            case Us:
-              return r = 0, !1;
-            case Es:
-            case Fs:
-              return r = 1, !1;
             case Hs:
-            case vs:
+              return r = 0, !1;
+            case Ts:
+            case Is:
+              return r = 1, !1;
+            case Ds:
+            case xs:
               return r = 2, !1;
-            case ms:
+            case Ls:
               return r = 3, !1;
           }
         else if (KA(d) || R(d))
@@ -4677,7 +4835,7 @@ var Tn = function(e, A) {
       }, a);
     }
     if (a) {
-      var l = Ct(e, s);
+      var l = pt(e, s);
       n.push(l);
     }
   }), {
@@ -4696,7 +4854,7 @@ var Tn = function(e, A) {
       if (K(B))
         switch (B.value) {
           case "center":
-            return i.push(yr), !1;
+            return i.push(Er), !1;
           case "top":
           case "left":
             return i.push(P), !1;
@@ -4710,26 +4868,26 @@ var Tn = function(e, A) {
     }, a) : o === 1 && (a = s.reduce(function(l, B) {
       if (K(B))
         switch (B.value) {
-          case bs:
+          case Ks:
             return t = 0, !1;
-          case ys:
+          case Ss:
             return t = 1, !1;
+          case Ds:
           case Hs:
-          case Us:
             return r = 0, !1;
-          case Fs:
+          case Is:
             return r = 1, !1;
-          case vs:
+          case xs:
             return r = 2, !1;
-          case Es:
-          case ms:
+          case Ts:
+          case Ls:
             return r = 3, !1;
         }
       else if (KA(B) || R(B))
         return Array.isArray(r) || (r = []), r.push(B), !1;
       return l;
     }, a)), a) {
-      var c = Ct(e, s);
+      var c = pt(e, s);
       n.push(c);
     }
   }), {
@@ -4740,11 +4898,11 @@ var Tn = function(e, A) {
     type: 2
     /* RADIAL_GRADIENT */
   };
-}, SB = function(e) {
+}, jB = function(e) {
   return e.type === 1;
-}, TB = function(e) {
+}, $B = function(e) {
   return e.type === 2;
-}, Er = {
+}, Hr = {
   name: "image",
   parse: function(e, A) {
     if (A.type === 22) {
@@ -4756,7 +4914,7 @@ var Tn = function(e, A) {
       return e.cache.addImage(A.value), t;
     }
     if (A.type === 18) {
-      var r = Is[A.name];
+      var r = ks[A.name];
       if (typeof r > "u")
         throw new Error('Attempting to parse an unsupported image function "' + A.name + '"');
       return r(e, A.values);
@@ -4764,22 +4922,22 @@ var Tn = function(e, A) {
     throw new Error("Unsupported image type " + A.type);
   }
 };
-function DB(e) {
-  return !(e.type === 20 && e.value === "none") && (e.type !== 18 || !!Is[e.name]);
+function Ad(e) {
+  return !(e.type === 20 && e.value === "none") && (e.type !== 18 || !!ks[e.name]);
 }
-var Is = {
-  "linear-gradient": xB,
+var ks = {
+  "linear-gradient": YB,
   "-moz-linear-gradient": Ve,
   "-ms-linear-gradient": Ve,
   "-o-linear-gradient": Ve,
   "-webkit-linear-gradient": Ve,
-  "radial-gradient": KB,
+  "radial-gradient": zB,
   "-moz-radial-gradient": Ne,
   "-ms-radial-gradient": Ne,
   "-o-radial-gradient": Ne,
   "-webkit-radial-gradient": Ne,
-  "-webkit-gradient": LB
-}, kB = {
+  "-webkit-gradient": ZB
+}, ed = {
   name: "background-image",
   initialValue: "none",
   type: 1,
@@ -4789,12 +4947,12 @@ var Is = {
       return [];
     var t = A[0];
     return t.type === 20 && t.value === "none" ? [] : A.filter(function(r) {
-      return ee(r) && DB(r);
+      return ee(r) && Ad(r);
     }).map(function(r) {
-      return Er.parse(e, r);
+      return Hr.parse(e, r);
     });
   }
-}, MB = {
+}, td = {
   name: "background-origin",
   initialValue: "border-box",
   prefix: !1,
@@ -4811,7 +4969,7 @@ var Is = {
       return 0;
     });
   }
-}, OB = {
+}, rd = {
   name: "background-position",
   initialValue: "0% 0%",
   type: 1,
@@ -4819,9 +4977,9 @@ var Is = {
   parse: function(e, A) {
     return gA(A).map(function(t) {
       return t.filter(R);
-    }).map(hs);
+    }).map(Us);
   }
-}, RB = {
+}, nd = {
   name: "background-repeat",
   initialValue: "repeat",
   prefix: !1,
@@ -4831,9 +4989,9 @@ var Is = {
       return t.filter(K).map(function(r) {
         return r.value;
       }).join(" ");
-    }).map(qB);
+    }).map(id);
   }
-}, qB = function(e) {
+}, id = function(e) {
   switch (e) {
     case "no-repeat":
       return 1;
@@ -4850,19 +5008,19 @@ var Is = {
 (function(e) {
   e.AUTO = "auto", e.CONTAIN = "contain", e.COVER = "cover";
 })(Ae || (Ae = {}));
-var VB = {
+var sd = {
   name: "background-size",
   initialValue: "0",
   prefix: !1,
   type: 1,
   parse: function(e, A) {
     return gA(A).map(function(t) {
-      return t.filter(NB);
+      return t.filter(od);
     });
   }
-}, NB = function(e) {
+}, od = function(e) {
   return K(e) || R(e);
-}, pt = function(e) {
+}, Ut = function(e) {
   return {
     name: "border-" + e + "-color",
     initialValue: "transparent",
@@ -4870,17 +5028,17 @@ var VB = {
     type: 3,
     format: "color"
   };
-}, GB = pt("top"), PB = pt("right"), _B = pt("bottom"), XB = pt("left"), Ut = function(e) {
+}, ad = Ut("top"), cd = Ut("right"), ld = Ut("bottom"), Bd = Ut("left"), Ft = function(e) {
   return {
     name: "border-radius-" + e,
     initialValue: "0 0",
     prefix: !1,
     type: 1,
     parse: function(A, t) {
-      return hs(t.filter(R));
+      return Us(t.filter(R));
     }
   };
-}, JB = Ut("top-left"), WB = Ut("top-right"), YB = Ut("bottom-right"), ZB = Ut("bottom-left"), Ft = function(e) {
+}, dd = Ft("top-left"), ud = Ft("top-right"), hd = Ft("bottom-right"), gd = Ft("bottom-left"), vt = function(e) {
   return {
     name: "border-" + e + "-style",
     initialValue: "solid",
@@ -4900,7 +5058,7 @@ var VB = {
       return 1;
     }
   };
-}, zB = Ft("top"), jB = Ft("right"), $B = Ft("bottom"), Ad = Ft("left"), vt = function(e) {
+}, fd = vt("top"), wd = vt("right"), Qd = vt("bottom"), Cd = vt("left"), mt = function(e) {
   return {
     name: "border-" + e + "-width",
     initialValue: "0",
@@ -4910,13 +5068,13 @@ var VB = {
       return me(t) ? t.number : 0;
     }
   };
-}, ed = vt("top"), td = vt("right"), rd = vt("bottom"), nd = vt("left"), id = {
+}, pd = mt("top"), Ud = mt("right"), Fd = mt("bottom"), vd = mt("left"), md = {
   name: "color",
   initialValue: "transparent",
   prefix: !1,
   type: 3,
   format: "color"
-}, sd = {
+}, bd = {
   name: "direction",
   initialValue: "ltr",
   prefix: !1,
@@ -4924,7 +5082,7 @@ var VB = {
   parse: function(e, A) {
     return A === "rtl" ? 1 : 0;
   }
-}, od = {
+}, yd = {
   name: "display",
   initialValue: "inline-block",
   prefix: !1,
@@ -4932,13 +5090,13 @@ var VB = {
   parse: function(e, A) {
     return A.filter(K).reduce(
       function(t, r) {
-        return t | ad(r.value);
+        return t | Ed(r.value);
       },
       0
       /* NONE */
     );
   }
-}, ad = function(e) {
+}, Ed = function(e) {
   switch (e) {
     case "block":
     case "-webkit-box":
@@ -5003,7 +5161,7 @@ var VB = {
       return 536870912;
   }
   return 0;
-}, cd = {
+}, Hd = {
   name: "float",
   initialValue: "none",
   prefix: !1,
@@ -5021,7 +5179,7 @@ var VB = {
     }
     return 0;
   }
-}, ld = {
+}, Id = {
   name: "letter-spacing",
   initialValue: "0",
   prefix: !1,
@@ -5029,35 +5187,35 @@ var VB = {
   parse: function(e, A) {
     return A.type === 20 && A.value === "normal" ? 0 : A.type === 17 || A.type === 15 ? A.number : 0;
   }
-}, at;
+}, ct;
 (function(e) {
   e.NORMAL = "normal", e.STRICT = "strict";
-})(at || (at = {}));
-var Bd = {
+})(ct || (ct = {}));
+var xd = {
   name: "line-break",
   initialValue: "normal",
   prefix: !1,
   type: 2,
   parse: function(e, A) {
-    return A === "strict" ? at.STRICT : at.NORMAL;
+    return A === "strict" ? ct.STRICT : ct.NORMAL;
   }
-}, dd = {
+}, Ld = {
   name: "line-height",
   initialValue: "normal",
   prefix: !1,
   type: 4
   /* TOKEN_VALUE */
-}, Mn = function(e, A) {
+}, Vn = function(e, A) {
   return K(e) && e.value === "normal" ? 1.2 * A : e.type === 17 ? A * e.number : R(e) ? S(e, A) : A;
-}, ud = {
+}, Kd = {
   name: "list-style-image",
   initialValue: "none",
   type: 0,
   prefix: !1,
   parse: function(e, A) {
-    return A.type === 20 && A.value === "none" ? null : Er.parse(e, A);
+    return A.type === 20 && A.value === "none" ? null : Hr.parse(e, A);
   }
-}, hd = {
+}, Sd = {
   name: "list-style-position",
   initialValue: "outside",
   prefix: !1,
@@ -5065,7 +5223,7 @@ var Bd = {
   parse: function(e, A) {
     return A === "inside" ? 0 : 1;
   }
-}, gr = {
+}, fr = {
   name: "list-style-type",
   initialValue: "none",
   prefix: !1,
@@ -5182,7 +5340,7 @@ var Bd = {
         return -1;
     }
   }
-}, mt = function(e) {
+}, bt = function(e) {
   return {
     name: "margin-" + e,
     initialValue: "0",
@@ -5190,7 +5348,7 @@ var Bd = {
     type: 4
     /* TOKEN_VALUE */
   };
-}, gd = mt("top"), fd = mt("right"), wd = mt("bottom"), Qd = mt("left"), Cd = {
+}, Td = bt("top"), Dd = bt("right"), kd = bt("bottom"), Md = bt("left"), Od = {
   name: "overflow",
   initialValue: "visible",
   prefix: !1,
@@ -5211,7 +5369,7 @@ var Bd = {
       }
     });
   }
-}, pd = {
+}, Rd = {
   name: "overflow-wrap",
   initialValue: "normal",
   prefix: !1,
@@ -5219,7 +5377,7 @@ var Bd = {
   parse: function(e, A) {
     return A === "break-word" ? "break-word" : "normal";
   }
-}, bt = function(e) {
+}, yt = function(e) {
   return {
     name: "padding-" + e,
     initialValue: "0",
@@ -5227,7 +5385,7 @@ var Bd = {
     type: 3,
     format: "length-percentage"
   };
-}, Ud = bt("top"), Fd = bt("right"), vd = bt("bottom"), md = bt("left"), bd = {
+}, qd = yt("top"), Vd = yt("right"), Nd = yt("bottom"), Gd = yt("left"), Pd = {
   name: "text-align",
   initialValue: "left",
   prefix: !1,
@@ -5243,7 +5401,7 @@ var Bd = {
         return 0;
     }
   }
-}, yd = {
+}, _d = {
   name: "position",
   initialValue: "static",
   prefix: !1,
@@ -5261,13 +5419,13 @@ var Bd = {
     }
     return 0;
   }
-}, Ed = {
+}, Xd = {
   name: "text-shadow",
   initialValue: "none",
   type: 1,
   prefix: !1,
   parse: function(e, A) {
-    return A.length === 1 && hr(A[0], "none") ? [] : gA(A).map(function(t) {
+    return A.length === 1 && gr(A[0], "none") ? [] : gA(A).map(function(t) {
       for (var r = {
         color: FA.TRANSPARENT,
         offsetX: P,
@@ -5280,7 +5438,7 @@ var Bd = {
       return r;
     });
   }
-}, Hd = {
+}, Jd = {
   name: "text-transform",
   initialValue: "none",
   prefix: !1,
@@ -5296,7 +5454,7 @@ var Bd = {
     }
     return 0;
   }
-}, Id = {
+}, Wd = {
   name: "transform",
   initialValue: "none",
   prefix: !0,
@@ -5305,21 +5463,21 @@ var Bd = {
     if (A.type === 20 && A.value === "none")
       return null;
     if (A.type === 18) {
-      var t = Kd[A.name];
+      var t = zd[A.name];
       if (typeof t > "u")
         throw new Error('Attempting to parse an unsupported transform function "' + A.name + '"');
       return t(A.values);
     }
     return null;
   }
-}, xd = function(e) {
+}, Yd = function(e) {
   var A = e.filter(function(t) {
     return t.type === 17;
   }).map(function(t) {
     return t.number;
   });
   return A.length === 6 ? A : null;
-}, Ld = function(e) {
+}, Zd = function(e) {
   var A = e.filter(function(a) {
     return a.type === 17;
   }).map(function(a) {
@@ -5330,23 +5488,23 @@ var Bd = {
   A[6], A[7], A[8], A[9], A[10], A[11];
   var s = A[12], o = A[13];
   return A[14], A[15], A.length === 16 ? [t, r, n, i, s, o] : null;
-}, Kd = {
-  matrix: xd,
-  matrix3d: Ld
-}, On = {
+}, zd = {
+  matrix: Yd,
+  matrix3d: Zd
+}, Nn = {
   type: 16,
   number: 50,
   flags: ve
-}, Sd = [On, On], Td = {
+}, jd = [Nn, Nn], $d = {
   name: "transform-origin",
   initialValue: "50% 50%",
   prefix: !0,
   type: 1,
   parse: function(e, A) {
     var t = A.filter(R);
-    return t.length !== 2 ? Sd : [t[0], t[1]];
+    return t.length !== 2 ? jd : [t[0], t[1]];
   }
-}, Dd = {
+}, Au = {
   name: "visible",
   initialValue: "none",
   prefix: !1,
@@ -5365,7 +5523,7 @@ var Bd = {
 (function(e) {
   e.NORMAL = "normal", e.BREAK_ALL = "break-all", e.KEEP_ALL = "keep-all";
 })(we || (we = {}));
-var kd = {
+var eu = {
   name: "word-break",
   initialValue: "normal",
   prefix: !1,
@@ -5380,7 +5538,7 @@ var kd = {
         return we.NORMAL;
     }
   }
-}, Md = {
+}, tu = {
   name: "z-index",
   initialValue: "auto",
   prefix: !1,
@@ -5392,7 +5550,7 @@ var kd = {
       return { auto: !1, order: A.number };
     throw new Error("Invalid z-index number parsed");
   }
-}, xs = {
+}, Ms = {
   name: "time",
   parse: function(e, A) {
     if (A.type === 15)
@@ -5404,7 +5562,7 @@ var kd = {
       }
     throw new Error("Unsupported time type");
   }
-}, Od = {
+}, ru = {
   name: "opacity",
   initialValue: "1",
   type: 0,
@@ -5412,13 +5570,13 @@ var kd = {
   parse: function(e, A) {
     return te(A) ? A.number : 1;
   }
-}, Rd = {
+}, nu = {
   name: "text-decoration-color",
   initialValue: "transparent",
   prefix: !1,
   type: 3,
   format: "color"
-}, qd = {
+}, iu = {
   name: "text-decoration-line",
   initialValue: "none",
   prefix: !1,
@@ -5440,7 +5598,7 @@ var kd = {
       return t !== 0;
     });
   }
-}, Vd = {
+}, su = {
   name: "font-family",
   initialValue: "",
   prefix: !1,
@@ -5464,13 +5622,13 @@ var kd = {
       return n.indexOf(" ") === -1 ? n : "'" + n + "'";
     });
   }
-}, Nd = {
+}, ou = {
   name: "font-size",
   initialValue: "0",
   prefix: !1,
   type: 3,
   format: "length"
-}, Gd = {
+}, au = {
   name: "font-weight",
   initialValue: "normal",
   type: 0,
@@ -5478,7 +5636,7 @@ var kd = {
   parse: function(e, A) {
     return te(A) ? A.number : K(A) && A.value === "bold" ? 700 : 400;
   }
-}, Pd = {
+}, cu = {
   name: "font-variant",
   initialValue: "none",
   type: 1,
@@ -5488,7 +5646,7 @@ var kd = {
       return t.value;
     });
   }
-}, _d = {
+}, lu = {
   name: "font-style",
   initialValue: "normal",
   prefix: !1,
@@ -5505,7 +5663,7 @@ var kd = {
   }
 }, q = function(e, A) {
   return (e & A) !== 0;
-}, Xd = {
+}, Bu = {
   name: "content",
   initialValue: "none",
   type: 1,
@@ -5516,7 +5674,7 @@ var kd = {
     var t = A[0];
     return t.type === 20 && t.value === "none" ? [] : A;
   }
-}, Jd = {
+}, du = {
   name: "counter-increment",
   initialValue: "none",
   prefix: !0,
@@ -5527,7 +5685,7 @@ var kd = {
     var t = A[0];
     if (t.type === 20 && t.value === "none")
       return null;
-    for (var r = [], n = A.filter(us), i = 0; i < n.length; i++) {
+    for (var r = [], n = A.filter(ps), i = 0; i < n.length; i++) {
       var s = n[i], o = n[i + 1];
       if (s.type === 20) {
         var a = o && te(o) ? o.number : 1;
@@ -5536,7 +5694,7 @@ var kd = {
     }
     return r;
   }
-}, Wd = {
+}, uu = {
   name: "counter-reset",
   initialValue: "none",
   prefix: !0,
@@ -5544,7 +5702,7 @@ var kd = {
   parse: function(e, A) {
     if (A.length === 0)
       return [];
-    for (var t = [], r = A.filter(us), n = 0; n < r.length; n++) {
+    for (var t = [], r = A.filter(ps), n = 0; n < r.length; n++) {
       var i = r[n], s = r[n + 1];
       if (K(i) && i.value !== "none") {
         var o = s && te(s) ? s.number : 0;
@@ -5553,17 +5711,17 @@ var kd = {
     }
     return t;
   }
-}, Yd = {
+}, hu = {
   name: "duration",
   initialValue: "0s",
   prefix: !1,
   type: 1,
   parse: function(e, A) {
     return A.filter(me).map(function(t) {
-      return xs.parse(e, t);
+      return Ms.parse(e, t);
     });
   }
-}, Zd = {
+}, gu = {
   name: "quotes",
   initialValue: "none",
   prefix: !0,
@@ -5574,7 +5732,7 @@ var kd = {
     var t = A[0];
     if (t.type === 20 && t.value === "none")
       return null;
-    var r = [], n = A.filter(FB);
+    var r = [], n = A.filter(VB);
     if (n.length % 2 !== 0)
       return null;
     for (var i = 0; i < n.length; i += 2) {
@@ -5583,18 +5741,18 @@ var kd = {
     }
     return r;
   }
-}, Rn = function(e, A, t) {
+}, Gn = function(e, A, t) {
   if (!e)
     return "";
   var r = e[Math.min(A, e.length - 1)];
   return r ? t ? r.open : r.close : "";
-}, zd = {
+}, fu = {
   name: "box-shadow",
   initialValue: "none",
   type: 1,
   prefix: !1,
   parse: function(e, A) {
-    return A.length === 1 && hr(A[0], "none") ? [] : gA(A).map(function(t) {
+    return A.length === 1 && gr(A[0], "none") ? [] : gA(A).map(function(t) {
       for (var r = {
         color: 255,
         offsetX: P,
@@ -5604,12 +5762,12 @@ var kd = {
         inset: !1
       }, n = 0, i = 0; i < t.length; i++) {
         var s = t[i];
-        hr(s, "inset") ? r.inset = !0 : KA(s) ? (n === 0 ? r.offsetX = s : n === 1 ? r.offsetY = s : n === 2 ? r.blur = s : r.spread = s, n++) : r.color = xA.parse(e, s);
+        gr(s, "inset") ? r.inset = !0 : KA(s) ? (n === 0 ? r.offsetX = s : n === 1 ? r.offsetY = s : n === 2 ? r.blur = s : r.spread = s, n++) : r.color = xA.parse(e, s);
       }
       return r;
     });
   }
-}, jd = {
+}, wu = {
   name: "paint-order",
   initialValue: "normal",
   prefix: !1,
@@ -5646,13 +5804,13 @@ var kd = {
       r.indexOf(n) === -1 && r.push(n);
     }), r;
   }
-}, $d = {
+}, Qu = {
   name: "-webkit-text-stroke-color",
   initialValue: "currentcolor",
   prefix: !1,
   type: 3,
   format: "color"
-}, Au = {
+}, Cu = {
   name: "-webkit-text-stroke-width",
   initialValue: "0",
   type: 0,
@@ -5660,14 +5818,14 @@ var kd = {
   parse: function(e, A) {
     return me(A) ? A.number : 0;
   }
-}, eu = (
+}, pu = (
   /** @class */
   (function() {
     function e(A, t) {
       var r, n;
-      this.animationDuration = p(A, Yd, t.animationDuration), this.backgroundClip = p(A, bB, t.backgroundClip), this.backgroundColor = p(A, yB, t.backgroundColor), this.backgroundImage = p(A, kB, t.backgroundImage), this.backgroundOrigin = p(A, MB, t.backgroundOrigin), this.backgroundPosition = p(A, OB, t.backgroundPosition), this.backgroundRepeat = p(A, RB, t.backgroundRepeat), this.backgroundSize = p(A, VB, t.backgroundSize), this.borderTopColor = p(A, GB, t.borderTopColor), this.borderRightColor = p(A, PB, t.borderRightColor), this.borderBottomColor = p(A, _B, t.borderBottomColor), this.borderLeftColor = p(A, XB, t.borderLeftColor), this.borderTopLeftRadius = p(A, JB, t.borderTopLeftRadius), this.borderTopRightRadius = p(A, WB, t.borderTopRightRadius), this.borderBottomRightRadius = p(A, YB, t.borderBottomRightRadius), this.borderBottomLeftRadius = p(A, ZB, t.borderBottomLeftRadius), this.borderTopStyle = p(A, zB, t.borderTopStyle), this.borderRightStyle = p(A, jB, t.borderRightStyle), this.borderBottomStyle = p(A, $B, t.borderBottomStyle), this.borderLeftStyle = p(A, Ad, t.borderLeftStyle), this.borderTopWidth = p(A, ed, t.borderTopWidth), this.borderRightWidth = p(A, td, t.borderRightWidth), this.borderBottomWidth = p(A, rd, t.borderBottomWidth), this.borderLeftWidth = p(A, nd, t.borderLeftWidth), this.boxShadow = p(A, zd, t.boxShadow), this.color = p(A, id, t.color), this.direction = p(A, sd, t.direction), this.display = p(A, od, t.display), this.float = p(A, cd, t.cssFloat), this.fontFamily = p(A, Vd, t.fontFamily), this.fontSize = p(A, Nd, t.fontSize), this.fontStyle = p(A, _d, t.fontStyle), this.fontVariant = p(A, Pd, t.fontVariant), this.fontWeight = p(A, Gd, t.fontWeight), this.letterSpacing = p(A, ld, t.letterSpacing), this.lineBreak = p(A, Bd, t.lineBreak), this.lineHeight = p(A, dd, t.lineHeight), this.listStyleImage = p(A, ud, t.listStyleImage), this.listStylePosition = p(A, hd, t.listStylePosition), this.listStyleType = p(A, gr, t.listStyleType), this.marginTop = p(A, gd, t.marginTop), this.marginRight = p(A, fd, t.marginRight), this.marginBottom = p(A, wd, t.marginBottom), this.marginLeft = p(A, Qd, t.marginLeft), this.opacity = p(A, Od, t.opacity);
-      var i = p(A, Cd, t.overflow);
-      this.overflowX = i[0], this.overflowY = i[i.length > 1 ? 1 : 0], this.overflowWrap = p(A, pd, t.overflowWrap), this.paddingTop = p(A, Ud, t.paddingTop), this.paddingRight = p(A, Fd, t.paddingRight), this.paddingBottom = p(A, vd, t.paddingBottom), this.paddingLeft = p(A, md, t.paddingLeft), this.paintOrder = p(A, jd, t.paintOrder), this.position = p(A, yd, t.position), this.textAlign = p(A, bd, t.textAlign), this.textDecorationColor = p(A, Rd, (r = t.textDecorationColor) !== null && r !== void 0 ? r : t.color), this.textDecorationLine = p(A, qd, (n = t.textDecorationLine) !== null && n !== void 0 ? n : t.textDecoration), this.textShadow = p(A, Ed, t.textShadow), this.textTransform = p(A, Hd, t.textTransform), this.transform = p(A, Id, t.transform), this.transformOrigin = p(A, Td, t.transformOrigin), this.visibility = p(A, Dd, t.visibility), this.webkitTextStrokeColor = p(A, $d, t.webkitTextStrokeColor), this.webkitTextStrokeWidth = p(A, Au, t.webkitTextStrokeWidth), this.wordBreak = p(A, kd, t.wordBreak), this.zIndex = p(A, Md, t.zIndex);
+      this.animationDuration = p(A, hu, t.animationDuration), this.backgroundClip = p(A, PB, t.backgroundClip), this.backgroundColor = p(A, _B, t.backgroundColor), this.backgroundImage = p(A, ed, t.backgroundImage), this.backgroundOrigin = p(A, td, t.backgroundOrigin), this.backgroundPosition = p(A, rd, t.backgroundPosition), this.backgroundRepeat = p(A, nd, t.backgroundRepeat), this.backgroundSize = p(A, sd, t.backgroundSize), this.borderTopColor = p(A, ad, t.borderTopColor), this.borderRightColor = p(A, cd, t.borderRightColor), this.borderBottomColor = p(A, ld, t.borderBottomColor), this.borderLeftColor = p(A, Bd, t.borderLeftColor), this.borderTopLeftRadius = p(A, dd, t.borderTopLeftRadius), this.borderTopRightRadius = p(A, ud, t.borderTopRightRadius), this.borderBottomRightRadius = p(A, hd, t.borderBottomRightRadius), this.borderBottomLeftRadius = p(A, gd, t.borderBottomLeftRadius), this.borderTopStyle = p(A, fd, t.borderTopStyle), this.borderRightStyle = p(A, wd, t.borderRightStyle), this.borderBottomStyle = p(A, Qd, t.borderBottomStyle), this.borderLeftStyle = p(A, Cd, t.borderLeftStyle), this.borderTopWidth = p(A, pd, t.borderTopWidth), this.borderRightWidth = p(A, Ud, t.borderRightWidth), this.borderBottomWidth = p(A, Fd, t.borderBottomWidth), this.borderLeftWidth = p(A, vd, t.borderLeftWidth), this.boxShadow = p(A, fu, t.boxShadow), this.color = p(A, md, t.color), this.direction = p(A, bd, t.direction), this.display = p(A, yd, t.display), this.float = p(A, Hd, t.cssFloat), this.fontFamily = p(A, su, t.fontFamily), this.fontSize = p(A, ou, t.fontSize), this.fontStyle = p(A, lu, t.fontStyle), this.fontVariant = p(A, cu, t.fontVariant), this.fontWeight = p(A, au, t.fontWeight), this.letterSpacing = p(A, Id, t.letterSpacing), this.lineBreak = p(A, xd, t.lineBreak), this.lineHeight = p(A, Ld, t.lineHeight), this.listStyleImage = p(A, Kd, t.listStyleImage), this.listStylePosition = p(A, Sd, t.listStylePosition), this.listStyleType = p(A, fr, t.listStyleType), this.marginTop = p(A, Td, t.marginTop), this.marginRight = p(A, Dd, t.marginRight), this.marginBottom = p(A, kd, t.marginBottom), this.marginLeft = p(A, Md, t.marginLeft), this.opacity = p(A, ru, t.opacity);
+      var i = p(A, Od, t.overflow);
+      this.overflowX = i[0], this.overflowY = i[i.length > 1 ? 1 : 0], this.overflowWrap = p(A, Rd, t.overflowWrap), this.paddingTop = p(A, qd, t.paddingTop), this.paddingRight = p(A, Vd, t.paddingRight), this.paddingBottom = p(A, Nd, t.paddingBottom), this.paddingLeft = p(A, Gd, t.paddingLeft), this.paintOrder = p(A, wu, t.paintOrder), this.position = p(A, _d, t.position), this.textAlign = p(A, Pd, t.textAlign), this.textDecorationColor = p(A, nu, (r = t.textDecorationColor) !== null && r !== void 0 ? r : t.color), this.textDecorationLine = p(A, iu, (n = t.textDecorationLine) !== null && n !== void 0 ? n : t.textDecoration), this.textShadow = p(A, Xd, t.textShadow), this.textTransform = p(A, Jd, t.textTransform), this.transform = p(A, Wd, t.transform), this.transformOrigin = p(A, $d, t.transformOrigin), this.visibility = p(A, Au, t.visibility), this.webkitTextStrokeColor = p(A, Qu, t.webkitTextStrokeColor), this.webkitTextStrokeWidth = p(A, Cu, t.webkitTextStrokeWidth), this.wordBreak = p(A, eu, t.wordBreak), this.zIndex = p(A, tu, t.zIndex);
     }
     return e.prototype.isVisible = function() {
       return this.display > 0 && this.opacity > 0 && this.visibility === 0;
@@ -5709,26 +5867,26 @@ var kd = {
       );
     }, e;
   })()
-), tu = (
+), Uu = (
   /** @class */
   /* @__PURE__ */ (function() {
     function e(A, t) {
-      this.content = p(A, Xd, t.content), this.quotes = p(A, Zd, t.quotes);
+      this.content = p(A, Bu, t.content), this.quotes = p(A, gu, t.quotes);
     }
     return e;
   })()
-), qn = (
+), Pn = (
   /** @class */
   /* @__PURE__ */ (function() {
     function e(A, t) {
-      this.counterIncrement = p(A, Jd, t.counterIncrement), this.counterReset = p(A, Wd, t.counterReset);
+      this.counterIncrement = p(A, du, t.counterIncrement), this.counterReset = p(A, uu, t.counterReset);
     }
     return e;
   })()
 ), p = function(e, A, t) {
-  var r = new Bs(), n = t !== null && typeof t < "u" ? t.toString() : A.initialValue;
+  var r = new Qs(), n = t !== null && typeof t < "u" ? t.toString() : A.initialValue;
   r.write(n);
-  var i = new ds(r.read());
+  var i = new Cs(r.read());
   switch (A.type) {
     case 2:
       var s = i.parseComponentValue();
@@ -5742,11 +5900,11 @@ var kd = {
     case 3:
       switch (A.format) {
         case "angle":
-          return Qt.parse(e, i.parseComponentValue());
+          return Ct.parse(e, i.parseComponentValue());
         case "color":
           return xA.parse(e, i.parseComponentValue());
         case "image":
-          return Er.parse(e, i.parseComponentValue());
+          return Hr.parse(e, i.parseComponentValue());
         case "length":
           var o = i.parseComponentValue();
           return KA(o) ? o : P;
@@ -5754,12 +5912,12 @@ var kd = {
           var a = i.parseComponentValue();
           return R(a) ? a : P;
         case "time":
-          return xs.parse(e, i.parseComponentValue());
+          return Ms.parse(e, i.parseComponentValue());
       }
       break;
   }
-}, ru = "data-html2canvas-debug", nu = function(e) {
-  var A = e.getAttribute(ru);
+}, Fu = "data-html2canvas-debug", vu = function(e) {
+  var A = e.getAttribute(Fu);
   switch (A) {
     case "all":
       return 1;
@@ -5772,22 +5930,22 @@ var kd = {
     default:
       return 0;
   }
-}, fr = function(e, A) {
-  var t = nu(e);
+}, wr = function(e, A) {
+  var t = vu(e);
   return t === 1 || A === t;
 }, fA = (
   /** @class */
   /* @__PURE__ */ (function() {
     function e(A, t) {
-      if (this.context = A, this.textNodes = [], this.elements = [], this.flags = 0, fr(
+      if (this.context = A, this.textNodes = [], this.elements = [], this.flags = 0, wr(
         t,
         3
         /* PARSE */
       ))
         debugger;
-      this.styles = new eu(A, window.getComputedStyle(t, null)), Cr(t) && (this.styles.animationDuration.some(function(r) {
+      this.styles = new pu(A, window.getComputedStyle(t, null)), pr(t) && (this.styles.animationDuration.some(function(r) {
         return r > 0;
-      }) && (t.style.animationDuration = "0s"), this.styles.transform !== null && (t.style.transform = "none")), this.bounds = ft(this.context, t), fr(
+      }) && (t.style.animationDuration = "0s"), this.styles.transform !== null && (t.style.transform = "none")), this.bounds = wt(this.context, t), wr(
         t,
         4
         /* RENDER */
@@ -5795,32 +5953,32 @@ var kd = {
     }
     return e;
   })()
-), iu = "AAAAAAAAAAAAEA4AGBkAAFAaAAACAAAAAAAIABAAGAAwADgACAAQAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIABAAQABIAEQATAAIABAACAAQAAgAEAAIABAAVABcAAgAEAAIABAACAAQAGAAaABwAHgAgACIAI4AlgAIABAAmwCjAKgAsAC2AL4AvQDFAMoA0gBPAVYBWgEIAAgACACMANoAYgFkAWwBdAF8AX0BhQGNAZUBlgGeAaMBlQGWAasBswF8AbsBwwF0AcsBYwHTAQgA2wG/AOMBdAF8AekB8QF0AfkB+wHiAHQBfAEIAAMC5gQIAAsCEgIIAAgAFgIeAggAIgIpAggAMQI5AkACygEIAAgASAJQAlgCYAIIAAgACAAKBQoFCgUTBRMFGQUrBSsFCAAIAAgACAAIAAgACAAIAAgACABdAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACABoAmgCrwGvAQgAbgJ2AggAHgEIAAgACADnAXsCCAAIAAgAgwIIAAgACAAIAAgACACKAggAkQKZAggAPADJAAgAoQKkAqwCsgK6AsICCADJAggA0AIIAAgACAAIANYC3gIIAAgACAAIAAgACABAAOYCCAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAkASoB+QIEAAgACAA8AEMCCABCBQgACABJBVAFCAAIAAgACAAIAAgACAAIAAgACABTBVoFCAAIAFoFCABfBWUFCAAIAAgACAAIAAgAbQUIAAgACAAIAAgACABzBXsFfQWFBYoFigWKBZEFigWKBYoFmAWfBaYFrgWxBbkFCAAIAAgACAAIAAgACAAIAAgACAAIAMEFCAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAMgFCADQBQgACAAIAAgACAAIAAgACAAIAAgACAAIAO4CCAAIAAgAiQAIAAgACABAAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAD0AggACAD8AggACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIANYFCAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAMDvwAIAAgAJAIIAAgACAAIAAgACAAIAAgACwMTAwgACAB9BOsEGwMjAwgAKwMyAwsFYgE3A/MEPwMIAEUDTQNRAwgAWQOsAGEDCAAIAAgACAAIAAgACABpAzQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFIQUoBSwFCAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACABtAwgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACABMAEwACAAIAAgACAAIABgACAAIAAgACAC/AAgACAAyAQgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACACAAIAAwAAgACAAIAAgACAAIAAgACAAIAAAARABIAAgACAAIABQASAAIAAgAIABwAEAAjgCIABsAqAC2AL0AigDQAtwC+IJIQqVAZUBWQqVAZUBlQGVAZUBlQGrC5UBlQGVAZUBlQGVAZUBlQGVAXsKlQGVAbAK6wsrDGUMpQzlDJUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAfAKAAuZA64AtwCJALoC6ADwAAgAuACgA/oEpgO6AqsD+AAIAAgAswMIAAgACAAIAIkAuwP5AfsBwwPLAwgACAAIAAgACADRA9kDCAAIAOED6QMIAAgACAAIAAgACADuA/YDCAAIAP4DyQAIAAgABgQIAAgAXQAOBAgACAAIAAgACAAIABMECAAIAAgACAAIAAgACAD8AAQBCAAIAAgAGgQiBCoECAExBAgAEAEIAAgACAAIAAgACAAIAAgACAAIAAgACAA4BAgACABABEYECAAIAAgATAQYAQgAVAQIAAgACAAIAAgACAAIAAgACAAIAFoECAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgAOQEIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAB+BAcACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAEABhgSMBAgACAAIAAgAlAQIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAwAEAAQABAADAAMAAwADAAQABAAEAAQABAAEAAQABHATAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgAdQMIAAgACAAIAAgACAAIAMkACAAIAAgAfQMIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACACFA4kDCAAIAAgACAAIAOcBCAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAIcDCAAIAAgACAAIAAgACAAIAAgACAAIAJEDCAAIAAgACADFAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACABgBAgAZgQIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgAbAQCBXIECAAIAHkECAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACABAAJwEQACjBKoEsgQIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAC6BMIECAAIAAgACAAIAAgACABmBAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgAxwQIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAGYECAAIAAgAzgQIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgAigWKBYoFigWKBYoFigWKBd0FXwUIAOIF6gXxBYoF3gT5BQAGCAaKBYoFigWKBYoFigWKBYoFigWKBYoFigXWBIoFigWKBYoFigWKBYoFigWKBYsFEAaKBYoFigWKBYoFigWKBRQGCACKBYoFigWKBQgACAAIANEECAAIABgGigUgBggAJgYIAC4GMwaKBYoF0wQ3Bj4GigWKBYoFigWKBYoFigWKBYoFigWKBYoFigUIAAgACAAIAAgACAAIAAgAigWKBYoFigWKBYoFigWKBYoFigWKBYoFigWKBYoFigWKBYoFigWKBYoFigWKBYoFigWKBYoFigWKBYoFigWLBf///////wQABAAEAAQABAAEAAQABAAEAAQAAwAEAAQAAgAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAQADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAUAAAAFAAUAAAAFAAUAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAEAAQABAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUAAQAAAAUABQAFAAUABQAFAAAAAAAFAAUAAAAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAFAAUAAQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABwAFAAUABQAFAAAABwAHAAcAAAAHAAcABwAFAAEAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAcABwAFAAUABQAFAAcABwAFAAUAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAAQABAAAAAAAAAAAAAAAFAAUABQAFAAAABwAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAHAAcABwAHAAcAAAAHAAcAAAAAAAUABQAHAAUAAQAHAAEABwAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABwABAAUABQAFAAUAAAAAAAAAAAAAAAEAAQABAAEAAQABAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABwAFAAUAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUAAQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQABQANAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQABAAEAAQABAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAEAAQABAAEAAQABAAEAAQABAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAQABAAEAAQABAAEAAQABAAAAAAAAAAAAAAAAAAAAAAABQAHAAUABQAFAAAAAAAAAAcABQAFAAUABQAFAAQABAAEAAQABAAEAAQABAAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUAAAAFAAUABQAFAAUAAAAFAAUABQAAAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAAAAAAAAAAAAUABQAFAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAHAAUAAAAHAAcABwAFAAUABQAFAAUABQAFAAUABwAHAAcABwAFAAcABwAAAAUABQAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABwAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAUABwAHAAUABQAFAAUAAAAAAAcABwAAAAAABwAHAAUAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAABQAFAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAABwAHAAcABQAFAAAAAAAAAAAABQAFAAAAAAAFAAUABQAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAFAAUABQAFAAUAAAAFAAUABwAAAAcABwAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAFAAUABwAFAAUABQAFAAAAAAAHAAcAAAAAAAcABwAFAAAAAAAAAAAAAAAAAAAABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAcABwAAAAAAAAAHAAcABwAAAAcABwAHAAUAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAABQAHAAcABwAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABwAHAAcABwAAAAUABQAFAAAABQAFAAUABQAAAAAAAAAAAAAAAAAAAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAcABQAHAAcABQAHAAcAAAAFAAcABwAAAAcABwAFAAUAAAAAAAAAAAAAAAAAAAAFAAUAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAcABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAAAAUABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAFAAcABwAFAAUABQAAAAUAAAAHAAcABwAHAAcABwAHAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAHAAUABQAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAABwAFAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAUAAAAFAAAAAAAAAAAABwAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABwAFAAUABQAFAAUAAAAFAAUAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABwAFAAUABQAFAAUABQAAAAUABQAHAAcABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAcABQAFAAAAAAAAAAAABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAcABQAFAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAHAAUABQAFAAUABQAFAAUABwAHAAcABwAHAAcABwAHAAUABwAHAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABwAHAAcABwAFAAUABwAHAAcAAAAAAAAAAAAHAAcABQAHAAcABwAHAAcABwAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAcABwAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABQAHAAUABQAFAAUABQAFAAUAAAAFAAAABQAAAAAABQAFAAUABQAFAAUABQAFAAcABwAHAAcABwAHAAUABQAFAAUABQAFAAUABQAFAAUAAAAAAAUABQAFAAUABQAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUABwAFAAcABwAHAAcABwAFAAcABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAUABQAFAAUABwAHAAUABQAHAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAcABQAFAAcABwAHAAUABwAFAAUABQAHAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAHAAcABwAHAAcABwAHAAUABQAFAAUABQAFAAUABQAHAAcABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUAAAAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAcABQAFAAUABQAFAAUABQAAAAAAAAAAAAUAAAAAAAAAAAAAAAAABQAAAAAABwAFAAUAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAAABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUAAAAFAAUABQAFAAUABQAFAAUABQAFAAAAAAAAAAAABQAAAAAAAAAFAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAHAAUABQAHAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABwAHAAcABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUABQAFAAUABQAHAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAcABwAFAAUABQAFAAcABwAFAAUABwAHAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAcABwAFAAUABwAHAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAFAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAFAAUABQAAAAAABQAFAAAAAAAAAAAAAAAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABQAFAAcABwAAAAAAAAAAAAAABwAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABwAFAAcABwAFAAcABwAAAAcABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAAAAAAAAAAAAAAAAAFAAUABQAAAAUABQAAAAAAAAAAAAAABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABQAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABwAFAAUABQAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAHAAcABQAFAAUABQAFAAUABQAFAAUABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAcABwAFAAUABQAHAAcABQAHAAUABQAAAAAAAAAAAAAAAAAFAAAABwAHAAcABQAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABwAHAAcABwAAAAAABwAHAAAAAAAHAAcABwAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAHAAAAAAAFAAUABQAFAAUABQAFAAAAAAAAAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAcABwAFAAUABQAFAAUABQAFAAUABwAHAAUABQAFAAcABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAHAAcABQAFAAUABQAFAAUABwAFAAcABwAFAAcABQAFAAcABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAHAAcABQAFAAUABQAAAAAABwAHAAcABwAFAAUABwAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABwAHAAUABQAFAAUABQAFAAUABQAHAAcABQAHAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABwAFAAcABwAFAAUABQAFAAUABQAHAAUAAAAAAAAAAAAAAAAAAAAAAAcABwAFAAUABQAFAAcABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAcABwAFAAUABQAFAAUABQAFAAUABQAHAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAcABwAFAAUABQAFAAAAAAAFAAUABwAHAAcABwAFAAAAAAAAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABwAHAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABQAFAAUABQAFAAUABQAAAAUABQAFAAUABQAFAAcABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAAAHAAUABQAFAAUABQAFAAUABwAFAAUABwAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUAAAAAAAAABQAAAAUABQAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAcABwAHAAcAAAAFAAUAAAAHAAcABQAHAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABwAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAAAAAAAAAAAAAAAAAAABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAAAAUABQAFAAAAAAAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAAAAAAAAAAABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAAAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABQAAAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAAABQAFAAUABQAFAAUABQAAAAUABQAAAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAFAAUABQAFAAUADgAOAA4ADgAOAA4ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAAAAAAAAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAMAAwADAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkAAAAAAAAAAAAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAAAAAAAAAAAAsADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwACwAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAOAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ADgAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAA4ADgAOAA4ADgAOAA4ADgAOAAAAAAAAAAAADgAOAA4AAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAA4ADgAAAA4ADgAOAA4ADgAOAAAADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4AAAAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4AAAAAAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAAAA4AAAAOAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAADgAAAAAAAAAAAA4AAAAOAAAAAAAAAAAADgAOAA4AAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAOAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ADgAOAA4ADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAADgAOAA4ADgAOAA4ADgAOAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAAAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAA4ADgAOAA4ADgAOAA4ADgAOAAAADgAOAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4AAAAAAAAAAAAAAAAADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAA4ADgAOAA4ADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAA4ADgAOAA4AAAAAAAAAAAAAAAAAAAAAAA4ADgAOAA4ADgAOAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4AAAAOAA4ADgAOAA4ADgAAAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4AAAAAAAAAAAA=", Vn = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", de = typeof Uint8Array > "u" ? [] : new Uint8Array(256);
-for (var Ge = 0; Ge < Vn.length; Ge++)
-  de[Vn.charCodeAt(Ge)] = Ge;
-var su = function(e) {
+), mu = "AAAAAAAAAAAAEA4AGBkAAFAaAAACAAAAAAAIABAAGAAwADgACAAQAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIABAAQABIAEQATAAIABAACAAQAAgAEAAIABAAVABcAAgAEAAIABAACAAQAGAAaABwAHgAgACIAI4AlgAIABAAmwCjAKgAsAC2AL4AvQDFAMoA0gBPAVYBWgEIAAgACACMANoAYgFkAWwBdAF8AX0BhQGNAZUBlgGeAaMBlQGWAasBswF8AbsBwwF0AcsBYwHTAQgA2wG/AOMBdAF8AekB8QF0AfkB+wHiAHQBfAEIAAMC5gQIAAsCEgIIAAgAFgIeAggAIgIpAggAMQI5AkACygEIAAgASAJQAlgCYAIIAAgACAAKBQoFCgUTBRMFGQUrBSsFCAAIAAgACAAIAAgACAAIAAgACABdAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACABoAmgCrwGvAQgAbgJ2AggAHgEIAAgACADnAXsCCAAIAAgAgwIIAAgACAAIAAgACACKAggAkQKZAggAPADJAAgAoQKkAqwCsgK6AsICCADJAggA0AIIAAgACAAIANYC3gIIAAgACAAIAAgACABAAOYCCAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAkASoB+QIEAAgACAA8AEMCCABCBQgACABJBVAFCAAIAAgACAAIAAgACAAIAAgACABTBVoFCAAIAFoFCABfBWUFCAAIAAgACAAIAAgAbQUIAAgACAAIAAgACABzBXsFfQWFBYoFigWKBZEFigWKBYoFmAWfBaYFrgWxBbkFCAAIAAgACAAIAAgACAAIAAgACAAIAMEFCAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAMgFCADQBQgACAAIAAgACAAIAAgACAAIAAgACAAIAO4CCAAIAAgAiQAIAAgACABAAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAD0AggACAD8AggACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIANYFCAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAMDvwAIAAgAJAIIAAgACAAIAAgACAAIAAgACwMTAwgACAB9BOsEGwMjAwgAKwMyAwsFYgE3A/MEPwMIAEUDTQNRAwgAWQOsAGEDCAAIAAgACAAIAAgACABpAzQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFOgU0BTUFNgU3BTgFOQU6BTQFNQU2BTcFOAU5BToFNAU1BTYFNwU4BTkFIQUoBSwFCAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACABtAwgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACABMAEwACAAIAAgACAAIABgACAAIAAgACAC/AAgACAAyAQgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACACAAIAAwAAgACAAIAAgACAAIAAgACAAIAAAARABIAAgACAAIABQASAAIAAgAIABwAEAAjgCIABsAqAC2AL0AigDQAtwC+IJIQqVAZUBWQqVAZUBlQGVAZUBlQGrC5UBlQGVAZUBlQGVAZUBlQGVAXsKlQGVAbAK6wsrDGUMpQzlDJUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAZUBlQGVAfAKAAuZA64AtwCJALoC6ADwAAgAuACgA/oEpgO6AqsD+AAIAAgAswMIAAgACAAIAIkAuwP5AfsBwwPLAwgACAAIAAgACADRA9kDCAAIAOED6QMIAAgACAAIAAgACADuA/YDCAAIAP4DyQAIAAgABgQIAAgAXQAOBAgACAAIAAgACAAIABMECAAIAAgACAAIAAgACAD8AAQBCAAIAAgAGgQiBCoECAExBAgAEAEIAAgACAAIAAgACAAIAAgACAAIAAgACAA4BAgACABABEYECAAIAAgATAQYAQgAVAQIAAgACAAIAAgACAAIAAgACAAIAFoECAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgAOQEIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAB+BAcACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAEABhgSMBAgACAAIAAgAlAQIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAwAEAAQABAADAAMAAwADAAQABAAEAAQABAAEAAQABHATAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgAdQMIAAgACAAIAAgACAAIAMkACAAIAAgAfQMIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACACFA4kDCAAIAAgACAAIAOcBCAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAIcDCAAIAAgACAAIAAgACAAIAAgACAAIAJEDCAAIAAgACADFAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACABgBAgAZgQIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgAbAQCBXIECAAIAHkECAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACABAAJwEQACjBKoEsgQIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAC6BMIECAAIAAgACAAIAAgACABmBAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgAxwQIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAGYECAAIAAgAzgQIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgAigWKBYoFigWKBYoFigWKBd0FXwUIAOIF6gXxBYoF3gT5BQAGCAaKBYoFigWKBYoFigWKBYoFigWKBYoFigXWBIoFigWKBYoFigWKBYoFigWKBYsFEAaKBYoFigWKBYoFigWKBRQGCACKBYoFigWKBQgACAAIANEECAAIABgGigUgBggAJgYIAC4GMwaKBYoF0wQ3Bj4GigWKBYoFigWKBYoFigWKBYoFigWKBYoFigUIAAgACAAIAAgACAAIAAgAigWKBYoFigWKBYoFigWKBYoFigWKBYoFigWKBYoFigWKBYoFigWKBYoFigWKBYoFigWKBYoFigWKBYoFigWLBf///////wQABAAEAAQABAAEAAQABAAEAAQAAwAEAAQAAgAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAQADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAUAAAAFAAUAAAAFAAUAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAEAAQABAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUAAQAAAAUABQAFAAUABQAFAAAAAAAFAAUAAAAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAFAAUAAQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABwAFAAUABQAFAAAABwAHAAcAAAAHAAcABwAFAAEAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAcABwAFAAUABQAFAAcABwAFAAUAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAAQABAAAAAAAAAAAAAAAFAAUABQAFAAAABwAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAHAAcABwAHAAcAAAAHAAcAAAAAAAUABQAHAAUAAQAHAAEABwAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABwABAAUABQAFAAUAAAAAAAAAAAAAAAEAAQABAAEAAQABAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABwAFAAUAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUAAQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQABQANAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQABAAEAAQABAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAEAAQABAAEAAQABAAEAAQABAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAQABAAEAAQABAAEAAQABAAAAAAAAAAAAAAAAAAAAAAABQAHAAUABQAFAAAAAAAAAAcABQAFAAUABQAFAAQABAAEAAQABAAEAAQABAAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUAAAAFAAUABQAFAAUAAAAFAAUABQAAAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAAAAAAAAAAAAUABQAFAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAHAAUAAAAHAAcABwAFAAUABQAFAAUABQAFAAUABwAHAAcABwAFAAcABwAAAAUABQAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABwAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAUABwAHAAUABQAFAAUAAAAAAAcABwAAAAAABwAHAAUAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAABQAFAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAABwAHAAcABQAFAAAAAAAAAAAABQAFAAAAAAAFAAUABQAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAFAAUABQAFAAUAAAAFAAUABwAAAAcABwAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAFAAUABwAFAAUABQAFAAAAAAAHAAcAAAAAAAcABwAFAAAAAAAAAAAAAAAAAAAABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAcABwAAAAAAAAAHAAcABwAAAAcABwAHAAUAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAABQAHAAcABwAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABwAHAAcABwAAAAUABQAFAAAABQAFAAUABQAAAAAAAAAAAAAAAAAAAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAcABQAHAAcABQAHAAcAAAAFAAcABwAAAAcABwAFAAUAAAAAAAAAAAAAAAAAAAAFAAUAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAcABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAAAAUABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAFAAcABwAFAAUABQAAAAUAAAAHAAcABwAHAAcABwAHAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAHAAUABQAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAABwAFAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAUAAAAFAAAAAAAAAAAABwAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABwAFAAUABQAFAAUAAAAFAAUAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABwAFAAUABQAFAAUABQAAAAUABQAHAAcABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAcABQAFAAAAAAAAAAAABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAcABQAFAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAHAAUABQAFAAUABQAFAAUABwAHAAcABwAHAAcABwAHAAUABwAHAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABwAHAAcABwAFAAUABwAHAAcAAAAAAAAAAAAHAAcABQAHAAcABwAHAAcABwAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAcABwAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABQAHAAUABQAFAAUABQAFAAUAAAAFAAAABQAAAAAABQAFAAUABQAFAAUABQAFAAcABwAHAAcABwAHAAUABQAFAAUABQAFAAUABQAFAAUAAAAAAAUABQAFAAUABQAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUABwAFAAcABwAHAAcABwAFAAcABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAUABQAFAAUABwAHAAUABQAHAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAcABQAFAAcABwAHAAUABwAFAAUABQAHAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAHAAcABwAHAAcABwAHAAUABQAFAAUABQAFAAUABQAHAAcABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUAAAAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAcABQAFAAUABQAFAAUABQAAAAAAAAAAAAUAAAAAAAAAAAAAAAAABQAAAAAABwAFAAUAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAAABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUAAAAFAAUABQAFAAUABQAFAAUABQAFAAAAAAAAAAAABQAAAAAAAAAFAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAHAAUABQAHAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABwAHAAcABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAUABQAFAAUABQAHAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAcABwAFAAUABQAFAAcABwAFAAUABwAHAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAFAAcABwAFAAUABwAHAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAFAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAFAAUABQAAAAAABQAFAAAAAAAAAAAAAAAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABQAFAAcABwAAAAAAAAAAAAAABwAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABwAFAAcABwAFAAcABwAAAAcABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAAAAAAAAAAAAAAAAAFAAUABQAAAAUABQAAAAAAAAAAAAAABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABQAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABwAFAAUABQAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAHAAcABQAFAAUABQAFAAUABQAFAAUABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAcABwAFAAUABQAHAAcABQAHAAUABQAAAAAAAAAAAAAAAAAFAAAABwAHAAcABQAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABwAHAAcABwAAAAAABwAHAAAAAAAHAAcABwAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAHAAAAAAAFAAUABQAFAAUABQAFAAAAAAAAAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAcABwAFAAUABQAFAAUABQAFAAUABwAHAAUABQAFAAcABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAHAAcABQAFAAUABQAFAAUABwAFAAcABwAFAAcABQAFAAcABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAHAAcABQAFAAUABQAAAAAABwAHAAcABwAFAAUABwAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABwAHAAUABQAFAAUABQAFAAUABQAHAAcABQAHAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABwAFAAcABwAFAAUABQAFAAUABQAHAAUAAAAAAAAAAAAAAAAAAAAAAAcABwAFAAUABQAFAAcABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAcABwAFAAUABQAFAAUABQAFAAUABQAHAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAcABwAFAAUABQAFAAAAAAAFAAUABwAHAAcABwAFAAAAAAAAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABwAHAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABQAFAAUABQAFAAUABQAAAAUABQAFAAUABQAFAAcABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUAAAAHAAUABQAFAAUABQAFAAUABwAFAAUABwAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUAAAAAAAAABQAAAAUABQAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAcABwAHAAcAAAAFAAUAAAAHAAcABQAHAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABwAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAAAAAAAAAAAAAAAAAAABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAAAAUABQAFAAAAAAAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAAAAAAAAAAABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUABQAFAAUABQAAAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABQAAAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAFAAUABQAAAAAABQAFAAUABQAFAAUABQAAAAUABQAAAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAUABQAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAFAAUABQAFAAUABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAFAAUABQAFAAUADgAOAA4ADgAOAA4ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAcABwAHAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAAAAAAAAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAMAAwADAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkACQAJAAkAAAAAAAAAAAAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAKAAoACgAAAAAAAAAAAAsADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwACwAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAOAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ADgAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAA4ADgAOAA4ADgAOAA4ADgAOAAAAAAAAAAAADgAOAA4AAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAA4ADgAAAA4ADgAOAA4ADgAOAAAADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4AAAAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4AAAAAAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAAAA4AAAAOAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAADgAAAAAAAAAAAA4AAAAOAAAAAAAAAAAADgAOAA4AAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAOAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ADgAOAA4ADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAADgAOAA4ADgAOAA4ADgAOAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAAAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAA4ADgAOAA4ADgAOAA4ADgAOAAAADgAOAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4AAAAAAAAAAAAAAAAADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAA4ADgAOAA4ADgAOAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAOAA4ADgAOAA4AAAAAAAAAAAAAAAAAAAAAAA4ADgAOAA4ADgAOAA4ADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4AAAAOAA4ADgAOAA4ADgAAAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4ADgAOAA4AAAAAAAAAAAA=", _n = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", de = typeof Uint8Array > "u" ? [] : new Uint8Array(256);
+for (var Ge = 0; Ge < _n.length; Ge++)
+  de[_n.charCodeAt(Ge)] = Ge;
+var bu = function(e) {
   var A = e.length * 0.75, t = e.length, r, n = 0, i, s, o, a;
   e[e.length - 1] === "=" && (A--, e[e.length - 2] === "=" && A--);
   var c = typeof ArrayBuffer < "u" && typeof Uint8Array < "u" && typeof Uint8Array.prototype.slice < "u" ? new ArrayBuffer(A) : new Array(A), l = Array.isArray(c) ? c : new Uint8Array(c);
   for (r = 0; r < t; r += 4)
     i = de[e.charCodeAt(r)], s = de[e.charCodeAt(r + 1)], o = de[e.charCodeAt(r + 2)], a = de[e.charCodeAt(r + 3)], l[n++] = i << 2 | s >> 4, l[n++] = (s & 15) << 4 | o >> 2, l[n++] = (o & 3) << 6 | a & 63;
   return c;
-}, ou = function(e) {
+}, yu = function(e) {
   for (var A = e.length, t = [], r = 0; r < A; r += 2)
     t.push(e[r + 1] << 8 | e[r]);
   return t;
-}, au = function(e) {
+}, Eu = function(e) {
   for (var A = e.length, t = [], r = 0; r < A; r += 4)
     t.push(e[r + 3] << 24 | e[r + 2] << 16 | e[r + 1] << 8 | e[r]);
   return t;
-}, qA = 5, Hr = 11, Ot = 2, cu = Hr - qA, Ls = 65536 >> qA, lu = 1 << qA, Rt = lu - 1, Bu = 1024 >> qA, du = Ls + Bu, uu = du, hu = 32, gu = uu + hu, fu = 65536 >> Hr, wu = 1 << cu, Qu = wu - 1, Nn = function(e, A, t) {
+}, qA = 5, Ir = 11, Rt = 2, Hu = Ir - qA, Os = 65536 >> qA, Iu = 1 << qA, qt = Iu - 1, xu = 1024 >> qA, Lu = Os + xu, Ku = Lu, Su = 32, Tu = Ku + Su, Du = 65536 >> Ir, ku = 1 << Hu, Mu = ku - 1, Xn = function(e, A, t) {
   return e.slice ? e.slice(A, t) : new Uint16Array(Array.prototype.slice.call(e, A, t));
-}, Cu = function(e, A, t) {
+}, Ou = function(e, A, t) {
   return e.slice ? e.slice(A, t) : new Uint32Array(Array.prototype.slice.call(e, A, t));
-}, pu = function(e, A) {
-  var t = su(e), r = Array.isArray(t) ? au(t) : new Uint32Array(t), n = Array.isArray(t) ? ou(t) : new Uint16Array(t), i = 24, s = Nn(n, i / 2, r[4] / 2), o = r[5] === 2 ? Nn(n, (i + r[4]) / 2) : Cu(r, Math.ceil((i + r[4]) / 4));
-  return new Uu(r[0], r[1], r[2], r[3], s, o);
-}, Uu = (
+}, Ru = function(e, A) {
+  var t = bu(e), r = Array.isArray(t) ? Eu(t) : new Uint32Array(t), n = Array.isArray(t) ? yu(t) : new Uint16Array(t), i = 24, s = Xn(n, i / 2, r[4] / 2), o = r[5] === 2 ? Xn(n, (i + r[4]) / 2) : Ou(r, Math.ceil((i + r[4]) / 4));
+  return new qu(r[0], r[1], r[2], r[3], s, o);
+}, qu = (
   /** @class */
   (function() {
     function e(A, t, r, n, i, s) {
@@ -5830,21 +5988,21 @@ var su = function(e) {
       var t;
       if (A >= 0) {
         if (A < 55296 || A > 56319 && A <= 65535)
-          return t = this.index[A >> qA], t = (t << Ot) + (A & Rt), this.data[t];
+          return t = this.index[A >> qA], t = (t << Rt) + (A & qt), this.data[t];
         if (A <= 65535)
-          return t = this.index[Ls + (A - 55296 >> qA)], t = (t << Ot) + (A & Rt), this.data[t];
+          return t = this.index[Os + (A - 55296 >> qA)], t = (t << Rt) + (A & qt), this.data[t];
         if (A < this.highStart)
-          return t = gu - fu + (A >> Hr), t = this.index[t], t += A >> qA & Qu, t = this.index[t], t = (t << Ot) + (A & Rt), this.data[t];
+          return t = Tu - Du + (A >> Ir), t = this.index[t], t += A >> qA & Mu, t = this.index[t], t = (t << Rt) + (A & qt), this.data[t];
         if (A <= 1114111)
           return this.data[this.highValueIndex];
       }
       return this.errorValue;
     }, e;
   })()
-), Gn = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", Fu = typeof Uint8Array > "u" ? [] : new Uint8Array(256);
-for (var Pe = 0; Pe < Gn.length; Pe++)
-  Fu[Gn.charCodeAt(Pe)] = Pe;
-var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn = 11, Wn = 12, Yn = 13, Zn = 14, Pt = 15, bu = function(e) {
+), Jn = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", Vu = typeof Uint8Array > "u" ? [] : new Uint8Array(256);
+for (var Pe = 0; Pe < Jn.length; Pe++)
+  Vu[Jn.charCodeAt(Pe)] = Pe;
+var Nu = 1, Vt = 2, Nt = 3, Wn = 4, Yn = 5, Gu = 7, Zn = 8, Gt = 9, Pt = 10, zn = 11, jn = 12, $n = 13, Ai = 14, _t = 15, Pu = function(e) {
   for (var A = [], t = 0, r = e.length; t < r; ) {
     var n = e.charCodeAt(t++);
     if (n >= 55296 && n <= 56319 && t < r) {
@@ -5854,7 +6012,7 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
       A.push(n);
   }
   return A;
-}, yu = function() {
+}, _u = function() {
   for (var e = [], A = 0; A < arguments.length; A++)
     e[A] = arguments[A];
   if (String.fromCodePoint)
@@ -5867,49 +6025,49 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
     s <= 65535 ? r.push(s) : (s -= 65536, r.push((s >> 10) + 55296, s % 1024 + 56320)), (n + 1 === t || r.length > 16384) && (i += String.fromCharCode.apply(String, r), r.length = 0);
   }
   return i;
-}, Eu = pu(iu), tA = "×", _t = "÷", Hu = function(e) {
-  return Eu.get(e);
-}, Iu = function(e, A, t) {
+}, Xu = Ru(mu), tA = "×", Xt = "÷", Ju = function(e) {
+  return Xu.get(e);
+}, Wu = function(e, A, t) {
   var r = t - 2, n = A[r], i = A[t - 1], s = A[t];
-  if (i === qt && s === Vt)
+  if (i === Vt && s === Nt)
     return tA;
-  if (i === qt || i === Vt || i === Pn || s === qt || s === Vt || s === Pn)
-    return _t;
-  if (i === Xn && [Xn, Nt, Jn, Wn].indexOf(s) !== -1 || (i === Jn || i === Nt) && (s === Nt || s === Gt) || (i === Wn || i === Gt) && s === Gt || s === Yn || s === _n || s === mu || i === vu)
+  if (i === Vt || i === Nt || i === Wn || s === Vt || s === Nt || s === Wn)
+    return Xt;
+  if (i === Zn && [Zn, Gt, zn, jn].indexOf(s) !== -1 || (i === zn || i === Gt) && (s === Gt || s === Pt) || (i === jn || i === Pt) && s === Pt || s === $n || s === Yn || s === Gu || i === Nu)
     return tA;
-  if (i === Yn && s === Zn) {
-    for (; n === _n; )
+  if (i === $n && s === Ai) {
+    for (; n === Yn; )
       n = A[--r];
-    if (n === Zn)
+    if (n === Ai)
       return tA;
   }
-  if (i === Pt && s === Pt) {
-    for (var o = 0; n === Pt; )
+  if (i === _t && s === _t) {
+    for (var o = 0; n === _t; )
       o++, n = A[--r];
     if (o % 2 === 0)
       return tA;
   }
-  return _t;
-}, xu = function(e) {
-  var A = bu(e), t = A.length, r = 0, n = 0, i = A.map(Hu);
+  return Xt;
+}, Yu = function(e) {
+  var A = Pu(e), t = A.length, r = 0, n = 0, i = A.map(Ju);
   return {
     next: function() {
       if (r >= t)
         return { done: !0, value: null };
-      for (var s = tA; r < t && (s = Iu(A, i, ++r)) === tA; )
+      for (var s = tA; r < t && (s = Wu(A, i, ++r)) === tA; )
         ;
       if (s !== tA || r === t) {
-        var o = yu.apply(null, A.slice(n, r));
+        var o = _u.apply(null, A.slice(n, r));
         return n = r, { value: o, done: !1 };
       }
       return { done: !0, value: null };
     }
   };
-}, Lu = function(e) {
-  for (var A = xu(e), t = [], r; !(r = A.next()).done; )
+}, Zu = function(e) {
+  for (var A = Yu(e), t = [], r; !(r = A.next()).done; )
     r.value && t.push(r.value.slice());
   return t;
-}, Ku = function(e) {
+}, zu = function(e) {
   var A = 123;
   if (e.createRange) {
     var t = e.createRange();
@@ -5922,12 +6080,12 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
     }
   }
   return !1;
-}, Su = function(e) {
+}, ju = function(e) {
   var A = e.createElement("boundtest");
   A.style.width = "50px", A.style.display = "block", A.style.fontSize = "12px", A.style.letterSpacing = "0px", A.style.wordSpacing = "0px", e.body.appendChild(A);
   var t = e.createRange();
   A.innerHTML = typeof "".repeat == "function" ? "&#128104;".repeat(10) : "";
-  var r = A.firstChild, n = wt(r.data).map(function(a) {
+  var r = A.firstChild, n = Qt(r.data).map(function(a) {
     return M(a);
   }), i = 0, s = {}, o = n.every(function(a, c) {
     t.setStart(r, i), t.setEnd(r, i + a.length);
@@ -5937,11 +6095,11 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
     return s = l, c === 0 ? !0 : B;
   });
   return e.body.removeChild(A), o;
-}, Tu = function() {
+}, $u = function() {
   return typeof new Image().crossOrigin < "u";
-}, Du = function() {
+}, Ah = function() {
   return typeof new XMLHttpRequest().responseType == "string";
-}, ku = function(e) {
+}, eh = function(e) {
   var A = new Image(), t = e.createElement("canvas"), r = t.getContext("2d");
   if (!r)
     return !1;
@@ -5952,9 +6110,9 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
     return !1;
   }
   return !0;
-}, zn = function(e) {
+}, ei = function(e) {
   return e[0] === 0 && e[1] === 255 && e[2] === 0 && e[3] === 255;
-}, Mu = function(e) {
+}, th = function(e) {
   var A = e.createElement("canvas"), t = 100;
   A.width = t, A.height = t;
   var r = A.getContext("2d");
@@ -5963,22 +6121,22 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
   r.fillStyle = "rgb(0, 255, 0)", r.fillRect(0, 0, t, t);
   var n = new Image(), i = A.toDataURL();
   n.src = i;
-  var s = wr(t, t, 0, 0, n);
-  return r.fillStyle = "red", r.fillRect(0, 0, t, t), jn(s).then(function(o) {
+  var s = Qr(t, t, 0, 0, n);
+  return r.fillStyle = "red", r.fillRect(0, 0, t, t), ti(s).then(function(o) {
     r.drawImage(o, 0, 0);
     var a = r.getImageData(0, 0, t, t).data;
     r.fillStyle = "red", r.fillRect(0, 0, t, t);
     var c = e.createElement("div");
-    return c.style.backgroundImage = "url(" + i + ")", c.style.height = t + "px", zn(a) ? jn(wr(t, t, 0, 0, c)) : Promise.reject(!1);
+    return c.style.backgroundImage = "url(" + i + ")", c.style.height = t + "px", ei(a) ? ti(Qr(t, t, 0, 0, c)) : Promise.reject(!1);
   }).then(function(o) {
-    return r.drawImage(o, 0, 0), zn(r.getImageData(0, 0, t, t).data);
+    return r.drawImage(o, 0, 0), ei(r.getImageData(0, 0, t, t).data);
   }).catch(function() {
     return !1;
   });
-}, wr = function(e, A, t, r, n) {
+}, Qr = function(e, A, t, r, n) {
   var i = "http://www.w3.org/2000/svg", s = document.createElementNS(i, "svg"), o = document.createElementNS(i, "foreignObject");
   return s.setAttributeNS(null, "width", e.toString()), s.setAttributeNS(null, "height", A.toString()), o.setAttributeNS(null, "width", "100%"), o.setAttributeNS(null, "height", "100%"), o.setAttributeNS(null, "x", t.toString()), o.setAttributeNS(null, "y", r.toString()), o.setAttributeNS(null, "externalResourcesRequired", "true"), s.appendChild(o), o.appendChild(n), s;
-}, jn = function(e) {
+}, ti = function(e) {
   return new Promise(function(A, t) {
     var r = new Image();
     r.onload = function() {
@@ -5987,27 +6145,27 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
   });
 }, G = {
   get SUPPORT_RANGE_BOUNDS() {
-    var e = Ku(document);
+    var e = zu(document);
     return Object.defineProperty(G, "SUPPORT_RANGE_BOUNDS", { value: e }), e;
   },
   get SUPPORT_WORD_BREAKING() {
-    var e = G.SUPPORT_RANGE_BOUNDS && Su(document);
+    var e = G.SUPPORT_RANGE_BOUNDS && ju(document);
     return Object.defineProperty(G, "SUPPORT_WORD_BREAKING", { value: e }), e;
   },
   get SUPPORT_SVG_DRAWING() {
-    var e = ku(document);
+    var e = eh(document);
     return Object.defineProperty(G, "SUPPORT_SVG_DRAWING", { value: e }), e;
   },
   get SUPPORT_FOREIGNOBJECT_DRAWING() {
-    var e = typeof Array.from == "function" && typeof window.fetch == "function" ? Mu(document) : Promise.resolve(!1);
+    var e = typeof Array.from == "function" && typeof window.fetch == "function" ? th(document) : Promise.resolve(!1);
     return Object.defineProperty(G, "SUPPORT_FOREIGNOBJECT_DRAWING", { value: e }), e;
   },
   get SUPPORT_CORS_IMAGES() {
-    var e = Tu();
+    var e = $u();
     return Object.defineProperty(G, "SUPPORT_CORS_IMAGES", { value: e }), e;
   },
   get SUPPORT_RESPONSE_TYPE() {
-    var e = Du();
+    var e = Ah();
     return Object.defineProperty(G, "SUPPORT_RESPONSE_TYPE", { value: e }), e;
   },
   get SUPPORT_CORS_XHR() {
@@ -6026,27 +6184,27 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
     }
     return e;
   })()
-), Ou = function(e, A, t, r) {
-  var n = Vu(A, t), i = [], s = 0;
+), rh = function(e, A, t, r) {
+  var n = sh(A, t), i = [], s = 0;
   return n.forEach(function(o) {
     if (t.textDecorationLine.length || o.trim().length > 0)
       if (G.SUPPORT_RANGE_BOUNDS) {
-        var a = $n(r, s, o.length).getClientRects();
+        var a = ri(r, s, o.length).getClientRects();
         if (a.length > 1) {
-          var c = Ir(o), l = 0;
+          var c = xr(o), l = 0;
           c.forEach(function(d) {
-            i.push(new Qe(d, vA.fromDOMRectList(e, $n(r, l + s, d.length).getClientRects()))), l += d.length;
+            i.push(new Qe(d, vA.fromDOMRectList(e, ri(r, l + s, d.length).getClientRects()))), l += d.length;
           });
         } else
           i.push(new Qe(o, vA.fromDOMRectList(e, a)));
       } else {
         var B = r.splitText(o.length);
-        i.push(new Qe(o, Ru(e, r))), r = B;
+        i.push(new Qe(o, nh(e, r))), r = B;
       }
     else G.SUPPORT_RANGE_BOUNDS || (r = r.splitText(o.length));
     s += o.length;
   }), i;
-}, Ru = function(e, A) {
+}, nh = function(e, A) {
   var t = A.ownerDocument;
   if (t) {
     var r = t.createElement("html2canvaswrapper");
@@ -6054,26 +6212,26 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
     var n = A.parentNode;
     if (n) {
       n.replaceChild(r, A);
-      var i = ft(e, r);
+      var i = wt(e, r);
       return r.firstChild && n.replaceChild(r.firstChild, r), i;
     }
   }
   return vA.EMPTY;
-}, $n = function(e, A, t) {
+}, ri = function(e, A, t) {
   var r = e.ownerDocument;
   if (!r)
     throw new Error("Node has no owner document");
   var n = r.createRange();
   return n.setStart(e, A), n.setEnd(e, A + t), n;
-}, Ir = function(e) {
+}, xr = function(e) {
   if (G.SUPPORT_NATIVE_TEXT_SEGMENTATION) {
     var A = new Intl.Segmenter(void 0, { granularity: "grapheme" });
     return Array.from(A.segment(e)).map(function(t) {
       return t.segment;
     });
   }
-  return Lu(e);
-}, qu = function(e, A) {
+  return Zu(e);
+}, ih = function(e, A) {
   if (G.SUPPORT_NATIVE_TEXT_SEGMENTATION) {
     var t = new Intl.Segmenter(void 0, {
       granularity: "word"
@@ -6082,45 +6240,45 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
       return r.segment;
     });
   }
-  return Gu(e, A);
-}, Vu = function(e, A) {
-  return A.letterSpacing !== 0 ? Ir(e) : qu(e, A);
-}, Nu = [32, 160, 4961, 65792, 65793, 4153, 4241], Gu = function(e, A) {
-  for (var t = fl(e, {
+  return ah(e, A);
+}, sh = function(e, A) {
+  return A.letterSpacing !== 0 ? xr(e) : ih(e, A);
+}, oh = [32, 160, 4961, 65792, 65793, 4153, 4241], ah = function(e, A) {
+  for (var t = Dl(e, {
     lineBreak: A.lineBreak,
     wordBreak: A.overflowWrap === "break-word" ? "break-word" : A.wordBreak
   }), r = [], n, i = function() {
     if (n.value) {
-      var s = n.value.slice(), o = wt(s), a = "";
+      var s = n.value.slice(), o = Qt(s), a = "";
       o.forEach(function(c) {
-        Nu.indexOf(c) === -1 ? a += M(c) : (a.length && r.push(a), r.push(M(c)), a = "");
+        oh.indexOf(c) === -1 ? a += M(c) : (a.length && r.push(a), r.push(M(c)), a = "");
       }), a.length && r.push(a);
     }
   }; !(n = t.next()).done; )
     i();
   return r;
-}, Pu = (
+}, ch = (
   /** @class */
   /* @__PURE__ */ (function() {
     function e(A, t, r) {
-      this.text = _u(t.data, r.textTransform), this.textBounds = Ou(A, this.text, r, t);
+      this.text = lh(t.data, r.textTransform), this.textBounds = rh(A, this.text, r, t);
     }
     return e;
   })()
-), _u = function(e, A) {
+), lh = function(e, A) {
   switch (A) {
     case 1:
       return e.toLowerCase();
     case 3:
-      return e.replace(Xu, Ju);
+      return e.replace(Bh, dh);
     case 2:
       return e.toUpperCase();
     default:
       return e;
   }
-}, Xu = /(^|\s|:|-|\(|\))([a-z])/g, Ju = function(e, A, t) {
+}, Bh = /(^|\s|:|-|\(|\))([a-z])/g, dh = function(e, A, t) {
   return e.length > 0 ? A + t.toUpperCase() : e;
-}, Ks = (
+}, Rs = (
   /** @class */
   (function(e) {
     BA(A, e);
@@ -6130,7 +6288,7 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
     }
     return A;
   })(fA)
-), Ss = (
+), qs = (
   /** @class */
   (function(e) {
     BA(A, e);
@@ -6140,17 +6298,17 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
     }
     return A;
   })(fA)
-), Ts = (
+), Vs = (
   /** @class */
   (function(e) {
     BA(A, e);
     function A(t, r) {
-      var n = e.call(this, t, r) || this, i = new XMLSerializer(), s = ft(t, r);
+      var n = e.call(this, t, r) || this, i = new XMLSerializer(), s = wt(t, r);
       return r.setAttribute("width", s.width + "px"), r.setAttribute("height", s.height + "px"), n.svg = "data:image/svg+xml," + encodeURIComponent(i.serializeToString(r)), n.intrinsicWidth = r.width.baseVal.value, n.intrinsicHeight = r.height.baseVal.value, n.context.cache.addImage(n.svg), n;
     }
     return A;
   })(fA)
-), Ds = (
+), Ns = (
   /** @class */
   (function(e) {
     BA(A, e);
@@ -6160,7 +6318,7 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
     }
     return A;
   })(fA)
-), Qr = (
+), Cr = (
   /** @class */
   (function(e) {
     BA(A, e);
@@ -6170,49 +6328,49 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
     }
     return A;
   })(fA)
-), Wu = [
+), uh = [
   {
     type: 15,
     flags: 0,
     unit: "px",
     number: 3
   }
-], Yu = [
+], hh = [
   {
     type: 16,
     flags: 0,
     number: 50
   }
-], Zu = function(e) {
+], gh = function(e) {
   return e.width > e.height ? new vA(e.left + (e.width - e.height) / 2, e.top, e.height, e.height) : e.width < e.height ? new vA(e.left, e.top + (e.height - e.width) / 2, e.width, e.width) : e;
-}, zu = function(e) {
-  var A = e.type === ju ? new Array(e.value.length + 1).join("•") : e.value;
+}, fh = function(e) {
+  var A = e.type === wh ? new Array(e.value.length + 1).join("•") : e.value;
   return A.length === 0 ? e.placeholder || "" : A;
-}, ct = "checkbox", lt = "radio", ju = "password", Ai = 707406591, xr = (
+}, lt = "checkbox", Bt = "radio", wh = "password", ni = 707406591, Lr = (
   /** @class */
   (function(e) {
     BA(A, e);
     function A(t, r) {
       var n = e.call(this, t, r) || this;
-      switch (n.type = r.type.toLowerCase(), n.checked = r.checked, n.value = zu(r), (n.type === ct || n.type === lt) && (n.styles.backgroundColor = 3739148031, n.styles.borderTopColor = n.styles.borderRightColor = n.styles.borderBottomColor = n.styles.borderLeftColor = 2779096575, n.styles.borderTopWidth = n.styles.borderRightWidth = n.styles.borderBottomWidth = n.styles.borderLeftWidth = 1, n.styles.borderTopStyle = n.styles.borderRightStyle = n.styles.borderBottomStyle = n.styles.borderLeftStyle = 1, n.styles.backgroundClip = [
+      switch (n.type = r.type.toLowerCase(), n.checked = r.checked, n.value = fh(r), (n.type === lt || n.type === Bt) && (n.styles.backgroundColor = 3739148031, n.styles.borderTopColor = n.styles.borderRightColor = n.styles.borderBottomColor = n.styles.borderLeftColor = 2779096575, n.styles.borderTopWidth = n.styles.borderRightWidth = n.styles.borderBottomWidth = n.styles.borderLeftWidth = 1, n.styles.borderTopStyle = n.styles.borderRightStyle = n.styles.borderBottomStyle = n.styles.borderLeftStyle = 1, n.styles.backgroundClip = [
         0
         /* BORDER_BOX */
       ], n.styles.backgroundOrigin = [
         0
         /* BORDER_BOX */
-      ], n.bounds = Zu(n.bounds)), n.type) {
-        case ct:
-          n.styles.borderTopRightRadius = n.styles.borderTopLeftRadius = n.styles.borderBottomRightRadius = n.styles.borderBottomLeftRadius = Wu;
-          break;
+      ], n.bounds = gh(n.bounds)), n.type) {
         case lt:
-          n.styles.borderTopRightRadius = n.styles.borderTopLeftRadius = n.styles.borderBottomRightRadius = n.styles.borderBottomLeftRadius = Yu;
+          n.styles.borderTopRightRadius = n.styles.borderTopLeftRadius = n.styles.borderBottomRightRadius = n.styles.borderBottomLeftRadius = uh;
+          break;
+        case Bt:
+          n.styles.borderTopRightRadius = n.styles.borderTopLeftRadius = n.styles.borderBottomRightRadius = n.styles.borderBottomLeftRadius = hh;
           break;
       }
       return n;
     }
     return A;
   })(fA)
-), ks = (
+), Gs = (
   /** @class */
   (function(e) {
     BA(A, e);
@@ -6222,7 +6380,7 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
     }
     return A;
   })(fA)
-), Ms = (
+), Ps = (
   /** @class */
   (function(e) {
     BA(A, e);
@@ -6232,7 +6390,7 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
     }
     return A;
   })(fA)
-), Os = (
+), _s = (
   /** @class */
   (function(e) {
     BA(A, e);
@@ -6241,7 +6399,7 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
       n.src = r.src, n.width = parseInt(r.width, 10) || 0, n.height = parseInt(r.height, 10) || 0, n.backgroundColor = n.styles.backgroundColor;
       try {
         if (r.contentWindow && r.contentWindow.document && r.contentWindow.document.documentElement) {
-          n.tree = qs(t, r.contentWindow.document.documentElement);
+          n.tree = Js(t, r.contentWindow.document.documentElement);
           var i = r.contentWindow.document.documentElement ? fe(t, getComputedStyle(r.contentWindow.document.documentElement).backgroundColor) : FA.TRANSPARENT, s = r.contentWindow.document.body ? fe(t, getComputedStyle(r.contentWindow.document.body).backgroundColor) : FA.TRANSPARENT;
           n.backgroundColor = LA(i) ? LA(s) ? n.styles.backgroundColor : s : i;
         }
@@ -6251,69 +6409,69 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
     }
     return A;
   })(fA)
-), $u = ["OL", "UL", "MENU"], et = function(e, A, t, r) {
+), Qh = ["OL", "UL", "MENU"], et = function(e, A, t, r) {
   for (var n = A.firstChild, i = void 0; n; n = i)
-    if (i = n.nextSibling, Vs(n) && n.data.trim().length > 0)
-      t.textNodes.push(new Pu(e, n, t.styles));
+    if (i = n.nextSibling, Ws(n) && n.data.trim().length > 0)
+      t.textNodes.push(new ch(e, n, t.styles));
     else if ($A(n))
-      if (_s(n) && n.assignedNodes)
+      if (js(n) && n.assignedNodes)
         n.assignedNodes().forEach(function(o) {
           return et(e, o, t, r);
         });
       else {
-        var s = Rs(e, n);
-        s.styles.isVisible() && (Ah(n, s, r) ? s.flags |= 4 : eh(s.styles) && (s.flags |= 2), $u.indexOf(n.tagName) !== -1 && (s.flags |= 8), t.elements.push(s), n.slot, n.shadowRoot ? et(e, n.shadowRoot, s, r) : !Bt(n) && !Ns(n) && !dt(n) && et(e, n, s, r));
+        var s = Xs(e, n);
+        s.styles.isVisible() && (Ch(n, s, r) ? s.flags |= 4 : ph(s.styles) && (s.flags |= 2), Qh.indexOf(n.tagName) !== -1 && (s.flags |= 8), t.elements.push(s), n.slot, n.shadowRoot ? et(e, n.shadowRoot, s, r) : !dt(n) && !Ys(n) && !ut(n) && et(e, n, s, r));
       }
-}, Rs = function(e, A) {
-  return pr(A) ? new Ks(e, A) : Gs(A) ? new Ss(e, A) : Ns(A) ? new Ts(e, A) : th(A) ? new Ds(e, A) : rh(A) ? new Qr(e, A) : nh(A) ? new xr(e, A) : dt(A) ? new ks(e, A) : Bt(A) ? new Ms(e, A) : Ps(A) ? new Os(e, A) : new fA(e, A);
-}, qs = function(e, A) {
-  var t = Rs(e, A);
+}, Xs = function(e, A) {
+  return Ur(A) ? new Rs(e, A) : Zs(A) ? new qs(e, A) : Ys(A) ? new Vs(e, A) : Uh(A) ? new Ns(e, A) : Fh(A) ? new Cr(e, A) : vh(A) ? new Lr(e, A) : ut(A) ? new Gs(e, A) : dt(A) ? new Ps(e, A) : zs(A) ? new _s(e, A) : new fA(e, A);
+}, Js = function(e, A) {
+  var t = Xs(e, A);
   return t.flags |= 4, et(e, A, t, t), t;
-}, Ah = function(e, A, t) {
-  return A.styles.isPositionedWithZIndex() || A.styles.opacity < 1 || A.styles.isTransformed() || Lr(e) && t.styles.isTransparent();
-}, eh = function(e) {
+}, Ch = function(e, A, t) {
+  return A.styles.isPositionedWithZIndex() || A.styles.opacity < 1 || A.styles.isTransformed() || Kr(e) && t.styles.isTransparent();
+}, ph = function(e) {
   return e.isPositioned() || e.isFloating();
-}, Vs = function(e) {
+}, Ws = function(e) {
   return e.nodeType === Node.TEXT_NODE;
 }, $A = function(e) {
   return e.nodeType === Node.ELEMENT_NODE;
-}, Cr = function(e) {
+}, pr = function(e) {
   return $A(e) && typeof e.style < "u" && !tt(e);
 }, tt = function(e) {
   return typeof e.className == "object";
-}, th = function(e) {
+}, Uh = function(e) {
   return e.tagName === "LI";
-}, rh = function(e) {
+}, Fh = function(e) {
   return e.tagName === "OL";
-}, nh = function(e) {
+}, vh = function(e) {
   return e.tagName === "INPUT";
-}, ih = function(e) {
+}, mh = function(e) {
   return e.tagName === "HTML";
-}, Ns = function(e) {
+}, Ys = function(e) {
   return e.tagName === "svg";
-}, Lr = function(e) {
+}, Kr = function(e) {
   return e.tagName === "BODY";
-}, Gs = function(e) {
+}, Zs = function(e) {
   return e.tagName === "CANVAS";
-}, ei = function(e) {
+}, ii = function(e) {
   return e.tagName === "VIDEO";
-}, pr = function(e) {
+}, Ur = function(e) {
   return e.tagName === "IMG";
-}, Ps = function(e) {
+}, zs = function(e) {
   return e.tagName === "IFRAME";
-}, ti = function(e) {
+}, si = function(e) {
   return e.tagName === "STYLE";
-}, sh = function(e) {
+}, bh = function(e) {
   return e.tagName === "SCRIPT";
-}, Bt = function(e) {
-  return e.tagName === "TEXTAREA";
 }, dt = function(e) {
+  return e.tagName === "TEXTAREA";
+}, ut = function(e) {
   return e.tagName === "SELECT";
-}, _s = function(e) {
+}, js = function(e) {
   return e.tagName === "SLOT";
-}, ri = function(e) {
+}, oi = function(e) {
   return e.tagName.indexOf("-") > 0;
-}, oh = (
+}, yh = (
   /** @class */
   (function() {
     function e() {
@@ -6343,10 +6501,10 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
       }), s;
     }, e;
   })()
-), ni = {
+), ai = {
   integers: [1e3, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1],
   values: ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"]
-}, ii = {
+}, ci = {
   integers: [
     9e3,
     8e3,
@@ -6423,7 +6581,7 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
     "Բ",
     "Ա"
   ]
-}, ah = {
+}, Eh = {
   integers: [
     1e4,
     9e3,
@@ -6502,7 +6660,7 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
     "ב",
     "א"
   ]
-}, ch = {
+}, Hh = {
   integers: [
     1e4,
     9e3,
@@ -6587,7 +6745,7 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
       e -= o, s += r.values[a];
     return s;
   }, "") + i;
-}, Xs = function(e, A, t, r) {
+}, $s = function(e, A, t, r) {
   var n = "";
   do
     t || e--, n = r(e) + n, e /= A;
@@ -6595,13 +6753,13 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
   return n;
 }, k = function(e, A, t, r, n) {
   var i = t - A + 1;
-  return (e < 0 ? "-" : "") + (Xs(Math.abs(e), i, r, function(s) {
+  return (e < 0 ? "-" : "") + ($s(Math.abs(e), i, r, function(s) {
     return M(Math.floor(s % i) + A);
   }) + n);
 }, TA = function(e, A, t) {
   t === void 0 && (t = ". ");
   var r = A.length;
-  return Xs(Math.abs(e), r, !1, function(n) {
+  return $s(Math.abs(e), r, !1, function(n) {
     return A[Math.floor(n % r)];
   }) + t;
 }, ZA = 1, mA = 2, bA = 4, ue = 8, UA = function(e, A, t, r, n, i) {
@@ -6615,7 +6773,7 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
     c === 0 && q(i, ZA) && o !== "" ? o = A[c] + o : c > 1 || c === 1 && a === 0 || c === 1 && a === 1 && q(i, mA) || c === 1 && a === 1 && q(i, bA) && e > 100 || c === 1 && a > 1 && q(i, ue) ? o = A[c] + (a > 0 ? t[a - 1] : "") + o : c === 1 && a > 0 && (o = t[a - 1] + o), s = Math.floor(s / 10);
   }
   return (e < 0 ? r : "") + o;
-}, si = "十百千萬", oi = "拾佰仟萬", ai = "マイナス", Xt = "마이너스", Fe = function(e, A, t) {
+}, li = "十百千萬", Bi = "拾佰仟萬", di = "マイナス", Jt = "마이너스", Fe = function(e, A, t) {
   var r = t ? ". " : "", n = t ? "、" : "", i = t ? ", " : "", s = t ? " " : "";
   switch (A) {
     case 0:
@@ -6630,9 +6788,9 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
     case 4:
       return TA(e, "〇一二三四五六七八九", n);
     case 6:
-      return _A(e, 1, 3999, ni, 3, r).toLowerCase();
+      return _A(e, 1, 3999, ai, 3, r).toLowerCase();
     case 7:
-      return _A(e, 1, 3999, ni, 3, r);
+      return _A(e, 1, 3999, ai, 3, r);
     case 8:
       return k(e, 945, 969, !1, r);
     case 9:
@@ -6643,9 +6801,9 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
       return k(e, 1632, 1641, !0, r);
     case 12:
     case 49:
-      return _A(e, 1, 9999, ii, 3, r);
+      return _A(e, 1, 9999, ci, 3, r);
     case 35:
-      return _A(e, 1, 9999, ii, 3, r).toLowerCase();
+      return _A(e, 1, 9999, ci, 3, r).toLowerCase();
     case 13:
       return k(e, 2534, 2543, !0, r);
     case 14:
@@ -6657,33 +6815,33 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
       return TA(e, "甲乙丙丁戊己庚辛壬癸", n);
     case 17:
     case 48:
-      return UA(e, "零一二三四五六七八九", si, "負", n, mA | bA | ue);
+      return UA(e, "零一二三四五六七八九", li, "負", n, mA | bA | ue);
     case 47:
-      return UA(e, "零壹貳參肆伍陸柒捌玖", oi, "負", n, ZA | mA | bA | ue);
+      return UA(e, "零壹貳參肆伍陸柒捌玖", Bi, "負", n, ZA | mA | bA | ue);
     case 42:
-      return UA(e, "零一二三四五六七八九", si, "负", n, mA | bA | ue);
+      return UA(e, "零一二三四五六七八九", li, "负", n, mA | bA | ue);
     case 41:
-      return UA(e, "零壹贰叁肆伍陆柒捌玖", oi, "负", n, ZA | mA | bA | ue);
+      return UA(e, "零壹贰叁肆伍陆柒捌玖", Bi, "负", n, ZA | mA | bA | ue);
     case 26:
-      return UA(e, "〇一二三四五六七八九", "十百千万", ai, n, 0);
+      return UA(e, "〇一二三四五六七八九", "十百千万", di, n, 0);
     case 25:
-      return UA(e, "零壱弐参四伍六七八九", "拾百千万", ai, n, ZA | mA | bA);
+      return UA(e, "零壱弐参四伍六七八九", "拾百千万", di, n, ZA | mA | bA);
     case 31:
-      return UA(e, "영일이삼사오육칠팔구", "십백천만", Xt, i, ZA | mA | bA);
+      return UA(e, "영일이삼사오육칠팔구", "십백천만", Jt, i, ZA | mA | bA);
     case 33:
-      return UA(e, "零一二三四五六七八九", "十百千萬", Xt, i, 0);
+      return UA(e, "零一二三四五六七八九", "十百千萬", Jt, i, 0);
     case 32:
-      return UA(e, "零壹貳參四五六七八九", "拾百千", Xt, i, ZA | mA | bA);
+      return UA(e, "零壹貳參四五六七八九", "拾百千", Jt, i, ZA | mA | bA);
     case 18:
       return k(e, 2406, 2415, !0, r);
     case 20:
-      return _A(e, 1, 19999, ch, 3, r);
+      return _A(e, 1, 19999, Hh, 3, r);
     case 21:
       return k(e, 2790, 2799, !0, r);
     case 22:
       return k(e, 2662, 2671, !0, r);
     case 22:
-      return _A(e, 1, 10999, ah, 3, r);
+      return _A(e, 1, 10999, Eh, 3, r);
     case 23:
       return TA(e, "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわゐゑをん");
     case 24:
@@ -6715,29 +6873,29 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
     default:
       return k(e, 48, 57, !0, r);
   }
-}, Js = "data-html2canvas-ignore", ci = (
+}, Ao = "data-html2canvas-ignore", ui = (
   /** @class */
   (function() {
     function e(A, t, r) {
-      if (this.context = A, this.options = r, this.scrolledElements = [], this.referenceElement = t, this.counters = new oh(), this.quoteDepth = 0, !t.ownerDocument)
+      if (this.context = A, this.options = r, this.scrolledElements = [], this.referenceElement = t, this.counters = new yh(), this.quoteDepth = 0, !t.ownerDocument)
         throw new Error("Cloned element does not have an owner document");
       this.documentElement = this.cloneNode(t.ownerDocument.documentElement, !1);
     }
     return e.prototype.toIFrame = function(A, t) {
-      var r = this, n = lh(A, t);
+      var r = this, n = Ih(A, t);
       if (!n.contentWindow)
         return Promise.reject("Unable to find iframe window");
-      var i = A.defaultView.pageXOffset, s = A.defaultView.pageYOffset, o = n.contentWindow, a = o.document, c = uh(n).then(function() {
+      var i = A.defaultView.pageXOffset, s = A.defaultView.pageYOffset, o = n.contentWindow, a = o.document, c = Kh(n).then(function() {
         return Z(r, void 0, void 0, function() {
           var l, B;
           return W(this, function(d) {
             switch (d.label) {
               case 0:
-                return this.scrolledElements.forEach(wh), o && (o.scrollTo(t.left, t.top), /(iPad|iPhone|iPod)/g.test(navigator.userAgent) && (o.scrollY !== t.top || o.scrollX !== t.left) && (this.context.logger.warn("Unable to restore scroll position for cloned document"), this.context.windowBounds = this.context.windowBounds.add(o.scrollX - t.left, o.scrollY - t.top, 0, 0))), l = this.options.onclone, B = this.clonedReferenceElement, typeof B > "u" ? [2, Promise.reject("Error finding the " + this.referenceElement.nodeName + " in the cloned document")] : a.fonts && a.fonts.ready ? [4, a.fonts.ready] : [3, 2];
+                return this.scrolledElements.forEach(kh), o && (o.scrollTo(t.left, t.top), /(iPad|iPhone|iPod)/g.test(navigator.userAgent) && (o.scrollY !== t.top || o.scrollX !== t.left) && (this.context.logger.warn("Unable to restore scroll position for cloned document"), this.context.windowBounds = this.context.windowBounds.add(o.scrollX - t.left, o.scrollY - t.top, 0, 0))), l = this.options.onclone, B = this.clonedReferenceElement, typeof B > "u" ? [2, Promise.reject("Error finding the " + this.referenceElement.nodeName + " in the cloned document")] : a.fonts && a.fonts.ready ? [4, a.fonts.ready] : [3, 2];
               case 1:
                 d.sent(), d.label = 2;
               case 2:
-                return /(AppleWebKit)/g.test(navigator.userAgent) ? [4, dh(a)] : [3, 4];
+                return /(AppleWebKit)/g.test(navigator.userAgent) ? [4, Lh(a)] : [3, 4];
               case 3:
                 d.sent(), d.label = 4;
               case 4:
@@ -6750,25 +6908,25 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
           });
         });
       });
-      return a.open(), a.write(gh(document.doctype) + "<html></html>"), fh(this.referenceElement.ownerDocument, i, s), a.replaceChild(a.adoptNode(this.documentElement), a.documentElement), a.close(), c;
+      return a.open(), a.write(Th(document.doctype) + "<html></html>"), Dh(this.referenceElement.ownerDocument, i, s), a.replaceChild(a.adoptNode(this.documentElement), a.documentElement), a.close(), c;
     }, e.prototype.createElementClone = function(A) {
-      if (fr(
+      if (wr(
         A,
         2
         /* CLONE */
       ))
         debugger;
-      if (Gs(A))
+      if (Zs(A))
         return this.createCanvasClone(A);
-      if (ei(A))
+      if (ii(A))
         return this.createVideoClone(A);
-      if (ti(A))
+      if (si(A))
         return this.createStyleClone(A);
       var t = A.cloneNode(!1);
-      return pr(t) && (pr(A) && A.currentSrc && A.currentSrc !== A.src && (t.src = A.currentSrc, t.srcset = ""), t.loading === "lazy" && (t.loading = "eager")), ri(t) ? this.createCustomElementClone(t) : t;
+      return Ur(t) && (Ur(A) && A.currentSrc && A.currentSrc !== A.src && (t.src = A.currentSrc, t.srcset = ""), t.loading === "lazy" && (t.loading = "eager")), oi(t) ? this.createCustomElementClone(t) : t;
     }, e.prototype.createCustomElementClone = function(A) {
       var t = document.createElement("html2canvascustomelement");
-      return Jt(A.style, t), t;
+      return Wt(A.style, t), t;
     }, e.prototype.createStyleClone = function(A) {
       try {
         var t = A.sheet;
@@ -6825,10 +6983,10 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
       var n = A.ownerDocument.createElement("canvas");
       return n.width = A.offsetWidth, n.height = A.offsetHeight, n;
     }, e.prototype.appendChildNode = function(A, t, r) {
-      (!$A(t) || !sh(t) && !t.hasAttribute(Js) && (typeof this.options.ignoreElements != "function" || !this.options.ignoreElements(t))) && (!this.options.copyStyles || !$A(t) || !ti(t)) && A.appendChild(this.cloneNode(t, r));
+      (!$A(t) || !bh(t) && !t.hasAttribute(Ao) && (typeof this.options.ignoreElements != "function" || !this.options.ignoreElements(t))) && (!this.options.copyStyles || !$A(t) || !si(t)) && A.appendChild(this.cloneNode(t, r));
     }, e.prototype.cloneChildNodes = function(A, t, r) {
       for (var n = this, i = A.shadowRoot ? A.shadowRoot.firstChild : A.firstChild; i; i = i.nextSibling)
-        if ($A(i) && _s(i) && typeof i.assignedNodes == "function") {
+        if ($A(i) && js(i) && typeof i.assignedNodes == "function") {
           var s = i.assignedNodes();
           s.length && s.forEach(function(o) {
             return n.appendChildNode(t, o, r);
@@ -6836,20 +6994,20 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
         } else
           this.appendChildNode(t, i, r);
     }, e.prototype.cloneNode = function(A, t) {
-      if (Vs(A))
+      if (Ws(A))
         return document.createTextNode(A.data);
       if (!A.ownerDocument)
         return A.cloneNode(!1);
       var r = A.ownerDocument.defaultView;
-      if (r && $A(A) && (Cr(A) || tt(A))) {
+      if (r && $A(A) && (pr(A) || tt(A))) {
         var n = this.createElementClone(A);
         n.style.transitionProperty = "none";
         var i = r.getComputedStyle(A), s = r.getComputedStyle(A, ":before"), o = r.getComputedStyle(A, ":after");
-        this.referenceElement === A && Cr(n) && (this.clonedReferenceElement = n), Lr(n) && ph(n);
-        var a = this.counters.parse(new qn(this.context, i)), c = this.resolvePseudoContent(A, n, s, Ce.BEFORE);
-        ri(A) && (t = !0), ei(A) || this.cloneChildNodes(A, n, t), c && n.insertBefore(c, n.firstChild);
+        this.referenceElement === A && pr(n) && (this.clonedReferenceElement = n), Kr(n) && Rh(n);
+        var a = this.counters.parse(new Pn(this.context, i)), c = this.resolvePseudoContent(A, n, s, Ce.BEFORE);
+        oi(A) && (t = !0), ii(A) || this.cloneChildNodes(A, n, t), c && n.insertBefore(c, n.firstChild);
         var l = this.resolvePseudoContent(A, n, o, Ce.AFTER);
-        return l && n.appendChild(l), this.counters.pop(a), (i && (this.options.copyStyles || tt(A)) && !Ps(A) || t) && Jt(i, n), (A.scrollTop !== 0 || A.scrollLeft !== 0) && this.scrolledElements.push([n, A.scrollLeft, A.scrollTop]), (Bt(A) || dt(A)) && (Bt(n) || dt(n)) && (n.value = A.value), n;
+        return l && n.appendChild(l), this.counters.pop(a), (i && (this.options.copyStyles || tt(A)) && !zs(A) || t) && Wt(i, n), (A.scrollTop !== 0 || A.scrollLeft !== 0) && this.scrolledElements.push([n, A.scrollLeft, A.scrollTop]), (dt(A) || ut(A)) && (dt(n) || ut(n)) && (n.value = A.value), n;
       }
       return A.cloneNode(!1);
     }, e.prototype.resolvePseudoContent = function(A, t, r, n) {
@@ -6857,9 +7015,9 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
       if (r) {
         var s = r.content, o = t.ownerDocument;
         if (!(!o || !s || s === "none" || s === "-moz-alt-content" || r.display === "none")) {
-          this.counters.parse(new qn(this.context, r));
-          var a = new tu(this.context, r), c = o.createElement("html2canvaspseudoelement");
-          Jt(r, c), a.content.forEach(function(B) {
+          this.counters.parse(new Pn(this.context, r));
+          var a = new Uu(this.context, r), c = o.createElement("html2canvaspseudoelement");
+          Wt(r, c), a.content.forEach(function(B) {
             if (B.type === 0)
               c.appendChild(o.createTextNode(B.value));
             else if (B.type === 22) {
@@ -6872,13 +7030,13 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
               } else if (B.name === "counter") {
                 var u = B.values.filter(ee), f = u[0], m = u[1];
                 if (f && K(f)) {
-                  var Q = i.counters.getCounterValue(f.value), h = m && K(m) ? gr.parse(i.context, m.value) : 3;
+                  var Q = i.counters.getCounterValue(f.value), h = m && K(m) ? fr.parse(i.context, m.value) : 3;
                   c.appendChild(o.createTextNode(Fe(Q, h, !1)));
                 }
               } else if (B.name === "counters") {
                 var v = B.values.filter(ee), f = v[0], U = v[1], m = v[2];
                 if (f && K(f)) {
-                  var F = i.counters.getCounterValues(f.value), w = m && K(m) ? gr.parse(i.context, m.value) : 3, E = U && U.type === 0 ? U.value : "", y = F.map(function(N) {
+                  var F = i.counters.getCounterValues(f.value), w = m && K(m) ? fr.parse(i.context, m.value) : 3, E = U && U.type === 0 ? U.value : "", y = F.map(function(N) {
                     return Fe(N, w, !1);
                   }).join(E);
                   c.appendChild(o.createTextNode(y));
@@ -6887,16 +7045,16 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
             } else if (B.type === 20)
               switch (B.value) {
                 case "open-quote":
-                  c.appendChild(o.createTextNode(Rn(a.quotes, i.quoteDepth++, !0)));
+                  c.appendChild(o.createTextNode(Gn(a.quotes, i.quoteDepth++, !0)));
                   break;
                 case "close-quote":
-                  c.appendChild(o.createTextNode(Rn(a.quotes, --i.quoteDepth, !1)));
+                  c.appendChild(o.createTextNode(Gn(a.quotes, --i.quoteDepth, !1)));
                   break;
                 default:
                   c.appendChild(o.createTextNode(B.value));
               }
-          }), c.className = Ur + " " + Fr;
-          var l = n === Ce.BEFORE ? " " + Ur : " " + Fr;
+          }), c.className = Fr + " " + vr;
+          var l = n === Ce.BEFORE ? " " + Fr : " " + vr;
           return tt(t) ? t.className.baseValue += l : t.className += l, c;
         }
       }
@@ -6908,10 +7066,10 @@ var vu = 1, qt = 2, Vt = 3, Pn = 4, _n = 5, mu = 7, Xn = 8, Nt = 9, Gt = 10, Jn 
 (function(e) {
   e[e.BEFORE = 0] = "BEFORE", e[e.AFTER = 1] = "AFTER";
 })(Ce || (Ce = {}));
-var lh = function(e, A) {
+var Ih = function(e, A) {
   var t = e.createElement("iframe");
-  return t.className = "html2canvas-container", t.style.visibility = "hidden", t.style.position = "fixed", t.style.left = "-10000px", t.style.top = "0px", t.style.border = "0", t.width = A.width.toString(), t.height = A.height.toString(), t.scrolling = "no", t.setAttribute(Js, "true"), e.body.appendChild(t), t;
-}, Bh = function(e) {
+  return t.className = "html2canvas-container", t.style.visibility = "hidden", t.style.position = "fixed", t.style.left = "-10000px", t.style.top = "0px", t.style.border = "0", t.width = A.width.toString(), t.height = A.height.toString(), t.scrolling = "no", t.setAttribute(Ao, "true"), e.body.appendChild(t), t;
+}, xh = function(e) {
   return new Promise(function(A) {
     if (e.complete) {
       A();
@@ -6923,9 +7081,9 @@ var lh = function(e, A) {
     }
     e.onload = A, e.onerror = A;
   });
-}, dh = function(e) {
-  return Promise.all([].slice.call(e.images, 0).map(Bh));
-}, uh = function(e) {
+}, Lh = function(e) {
+  return Promise.all([].slice.call(e.images, 0).map(xh));
+}, Kh = function(e) {
   return new Promise(function(A, t) {
     var r = e.contentWindow;
     if (!r)
@@ -6938,38 +7096,38 @@ var lh = function(e, A) {
       }, 50);
     };
   });
-}, hh = [
+}, Sh = [
   "all",
   "d",
   "content"
   // Safari shows pseudoelements if content is set
-], Jt = function(e, A) {
+], Wt = function(e, A) {
   for (var t = e.length - 1; t >= 0; t--) {
     var r = e.item(t);
-    hh.indexOf(r) === -1 && A.style.setProperty(r, e.getPropertyValue(r));
+    Sh.indexOf(r) === -1 && A.style.setProperty(r, e.getPropertyValue(r));
   }
   return A;
-}, gh = function(e) {
+}, Th = function(e) {
   var A = "";
   return e && (A += "<!DOCTYPE ", e.name && (A += e.name), e.internalSubset && (A += e.internalSubset), e.publicId && (A += '"' + e.publicId + '"'), e.systemId && (A += '"' + e.systemId + '"'), A += ">"), A;
-}, fh = function(e, A, t) {
+}, Dh = function(e, A, t) {
   e && e.defaultView && (A !== e.defaultView.pageXOffset || t !== e.defaultView.pageYOffset) && e.defaultView.scrollTo(A, t);
-}, wh = function(e) {
+}, kh = function(e) {
   var A = e[0], t = e[1], r = e[2];
   A.scrollLeft = t, A.scrollTop = r;
-}, Qh = ":before", Ch = ":after", Ur = "___html2canvas___pseudoelement_before", Fr = "___html2canvas___pseudoelement_after", li = `{
+}, Mh = ":before", Oh = ":after", Fr = "___html2canvas___pseudoelement_before", vr = "___html2canvas___pseudoelement_after", hi = `{
     content: "" !important;
     display: none !important;
-}`, ph = function(e) {
-  Uh(e, "." + Ur + Qh + li + `
-         .` + Fr + Ch + li);
-}, Uh = function(e, A) {
+}`, Rh = function(e) {
+  qh(e, "." + Fr + Mh + hi + `
+         .` + vr + Oh + hi);
+}, qh = function(e, A) {
   var t = e.ownerDocument;
   if (t) {
     var r = t.createElement("style");
     r.textContent = A, e.appendChild(r);
   }
-}, Ws = (
+}, eo = (
   /** @class */
   (function() {
     function e() {
@@ -6983,7 +7141,7 @@ var lh = function(e, A) {
       e._link = A.document.createElement("a"), e._origin = e.getOrigin(A.location.href);
     }, e._origin = "about:blank", e;
   })()
-), Fh = (
+), Vh = (
   /** @class */
   (function() {
     function e(A, t) {
@@ -6991,7 +7149,7 @@ var lh = function(e, A) {
     }
     return e.prototype.addImage = function(A) {
       var t = Promise.resolve();
-      return this.has(A) || (Yt(A) || yh(A)) && (this._cache[A] = this.loadImage(A)).catch(function() {
+      return this.has(A) || (Zt(A) || _h(A)) && (this._cache[A] = this.loadImage(A)).catch(function() {
       }), t;
     }, e.prototype.match = function(A) {
       return this._cache[A];
@@ -7001,7 +7159,7 @@ var lh = function(e, A) {
         return W(this, function(o) {
           switch (o.label) {
             case 0:
-              return t = Ws.isSameOrigin(A), r = !Wt(A) && this._options.useCORS === !0 && G.SUPPORT_CORS_IMAGES && !t, n = !Wt(A) && !t && !Yt(A) && typeof this._options.proxy == "string" && G.SUPPORT_CORS_XHR && !r, !t && this._options.allowTaint === !1 && !Wt(A) && !Yt(A) && !n && !r ? [
+              return t = eo.isSameOrigin(A), r = !Yt(A) && this._options.useCORS === !0 && G.SUPPORT_CORS_IMAGES && !t, n = !Yt(A) && !t && !Zt(A) && typeof this._options.proxy == "string" && G.SUPPORT_CORS_XHR && !r, !t && this._options.allowTaint === !1 && !Yt(A) && !Zt(A) && !n && !r ? [
                 2
                 /*return*/
               ] : (i = A, n ? [4, this.proxy(i)] : [3, 2]);
@@ -7012,7 +7170,7 @@ var lh = function(e, A) {
                 var l = new Image();
                 l.onload = function() {
                   return a(l);
-                }, l.onerror = c, (Eh(i) || r) && (l.crossOrigin = "anonymous"), l.src = i, l.complete === !0 && setTimeout(function() {
+                }, l.onerror = c, (Xh(i) || r) && (l.crossOrigin = "anonymous"), l.src = i, l.complete === !0 && setTimeout(function() {
                   return a(l);
                 }, 500), s._options.imageTimeout > 0 && setTimeout(function() {
                   return c("Timed out (" + s._options.imageTimeout + "ms) loading image");
@@ -7060,16 +7218,16 @@ var lh = function(e, A) {
       });
     }, e;
   })()
-), vh = /^data:image\/svg\+xml/i, mh = /^data:image\/.*;base64,/i, bh = /^data:image\/.*/i, yh = function(e) {
-  return G.SUPPORT_SVG_DRAWING || !Hh(e);
-}, Wt = function(e) {
-  return bh.test(e);
-}, Eh = function(e) {
-  return mh.test(e);
+), Nh = /^data:image\/svg\+xml/i, Gh = /^data:image\/.*;base64,/i, Ph = /^data:image\/.*/i, _h = function(e) {
+  return G.SUPPORT_SVG_DRAWING || !Jh(e);
 }, Yt = function(e) {
+  return Ph.test(e);
+}, Xh = function(e) {
+  return Gh.test(e);
+}, Zt = function(e) {
   return e.substr(0, 4) === "blob";
-}, Hh = function(e) {
-  return e.substr(-3).toLowerCase() === "svg" || vh.test(e);
+}, Jh = function(e) {
+  return e.substr(-3).toLowerCase() === "svg" || Nh.test(e);
 }, C = (
   /** @class */
   (function() {
@@ -7099,7 +7257,7 @@ var lh = function(e, A) {
   })()
 ), rA = function(e) {
   return e.type === 1;
-}, Ih = (
+}, Wh = (
   /** @class */
   /* @__PURE__ */ (function() {
     function e(A) {
@@ -7129,23 +7287,23 @@ var T = function(e, A, t, r, n) {
     default:
       return new _e(new C(a, c), new C(a - s, c), new C(e, A + o), new C(e, A));
   }
-}, ut = function(e) {
+}, ht = function(e) {
   return [e.topLeftBorderBox, e.topRightBorderBox, e.bottomRightBorderBox, e.bottomLeftBorderBox];
-}, xh = function(e) {
+}, Yh = function(e) {
   return [
     e.topLeftContentBox,
     e.topRightContentBox,
     e.bottomRightContentBox,
     e.bottomLeftContentBox
   ];
-}, ht = function(e) {
+}, gt = function(e) {
   return [
     e.topLeftPaddingBox,
     e.topRightPaddingBox,
     e.bottomRightPaddingBox,
     e.bottomLeftPaddingBox
   ];
-}, Lh = (
+}, Zh = (
   /** @class */
   /* @__PURE__ */ (function() {
     function e(A, t, r) {
@@ -7161,7 +7319,7 @@ var T = function(e, A, t, r, n) {
     }
     return e;
   })()
-), Kh = (
+), zh = (
   /** @class */
   /* @__PURE__ */ (function() {
     function e(A) {
@@ -7169,17 +7327,17 @@ var T = function(e, A, t, r, n) {
     }
     return e;
   })()
-), Sh = function(e) {
+), jh = function(e) {
   return e.type === 0;
-}, Ys = function(e) {
+}, to = function(e) {
   return e.type === 1;
-}, Th = function(e) {
+}, $h = function(e) {
   return e.type === 2;
-}, Bi = function(e, A) {
+}, gi = function(e, A) {
   return e.length === A.length ? e.some(function(t, r) {
     return t === A[r];
   }) : !1;
-}, Dh = function(e, A, t, r, n) {
+}, Ag = function(e, A, t, r, n) {
   return e.map(function(i, s) {
     switch (s) {
       case 0:
@@ -7193,7 +7351,7 @@ var T = function(e, A, t, r, n) {
     }
     return i;
   });
-}, Zs = (
+}, ro = (
   /** @class */
   /* @__PURE__ */ (function() {
     function e(A) {
@@ -7201,17 +7359,17 @@ var T = function(e, A, t, r, n) {
     }
     return e;
   })()
-), zs = (
+), no = (
   /** @class */
   (function() {
     function e(A, t) {
-      if (this.container = A, this.parent = t, this.effects = [], this.curves = new Ih(this.container), this.container.styles.opacity < 1 && this.effects.push(new Kh(this.container.styles.opacity)), this.container.styles.transform !== null) {
+      if (this.container = A, this.parent = t, this.effects = [], this.curves = new Wh(this.container), this.container.styles.opacity < 1 && this.effects.push(new zh(this.container.styles.opacity)), this.container.styles.transform !== null) {
         var r = this.container.bounds.left + this.container.styles.transformOrigin[0].number, n = this.container.bounds.top + this.container.styles.transformOrigin[1].number, i = this.container.styles.transform;
-        this.effects.push(new Lh(r, n, i));
+        this.effects.push(new Zh(r, n, i));
       }
       if (this.container.styles.overflowX !== 0) {
-        var s = ut(this.curves), o = ht(this.curves);
-        Bi(s, o) ? this.effects.push(new Xe(
+        var s = ht(this.curves), o = gt(this.curves);
+        gi(s, o) ? this.effects.push(new Xe(
           s,
           6
           /* CONTENT */
@@ -7233,7 +7391,7 @@ var T = function(e, A, t, r, n) {
         /* FIXED */
       ].indexOf(this.container.styles.position) === -1, r = this.parent, n = this.effects.slice(0); r; ) {
         var i = r.effects.filter(function(a) {
-          return !Ys(a);
+          return !to(a);
         });
         if (t || r.container.styles.position !== 0 || !r.parent) {
           if (n.unshift.apply(n, i), t = [
@@ -7241,8 +7399,8 @@ var T = function(e, A, t, r, n) {
             3
             /* FIXED */
           ].indexOf(r.container.styles.position) === -1, r.container.styles.overflowX !== 0) {
-            var s = ut(r.curves), o = ht(r.curves);
-            Bi(s, o) || n.unshift(new Xe(
+            var s = ht(r.curves), o = gt(r.curves);
+            gi(s, o) || n.unshift(new Xe(
               o,
               6
               /* CONTENT */
@@ -7257,7 +7415,7 @@ var T = function(e, A, t, r, n) {
       });
     }, e;
   })()
-), vr = function(e, A, t, r) {
+), mr = function(e, A, t, r) {
   e.container.elements.forEach(function(n) {
     var i = q(
       n.flags,
@@ -7267,7 +7425,7 @@ var T = function(e, A, t, r, n) {
       n.flags,
       2
       /* CREATES_STACKING_CONTEXT */
-    ), o = new zs(n, e);
+    ), o = new no(n, e);
     q(
       n.styles.display,
       2048
@@ -7279,7 +7437,7 @@ var T = function(e, A, t, r, n) {
       /* IS_LIST_OWNER */
     ) ? [] : r;
     if (i || s) {
-      var c = i || n.styles.isPositioned() ? t : A, l = new Zs(o);
+      var c = i || n.styles.isPositioned() ? t : A, l = new ro(o);
       if (n.styles.isPositioned() || n.styles.opacity < 1 || n.styles.isTransformed()) {
         var B = n.styles.zIndex.order;
         if (B < 0) {
@@ -7296,24 +7454,24 @@ var T = function(e, A, t, r, n) {
           c.zeroOrAutoZIndexOrTransformedOrOpacity.push(l);
       } else
         n.styles.isFloating() ? c.nonPositionedFloats.push(l) : c.nonPositionedInlineLevel.push(l);
-      vr(o, l, i ? l : t, a);
+      mr(o, l, i ? l : t, a);
     } else
-      n.styles.isInlineLevel() ? A.inlineLevel.push(o) : A.nonInlineLevel.push(o), vr(o, A, t, a);
+      n.styles.isInlineLevel() ? A.inlineLevel.push(o) : A.nonInlineLevel.push(o), mr(o, A, t, a);
     q(
       n.flags,
       8
       /* IS_LIST_OWNER */
-    ) && js(n, a);
+    ) && io(n, a);
   });
-}, js = function(e, A) {
-  for (var t = e instanceof Qr ? e.start : 1, r = e instanceof Qr ? e.reversed : !1, n = 0; n < A.length; n++) {
+}, io = function(e, A) {
+  for (var t = e instanceof Cr ? e.start : 1, r = e instanceof Cr ? e.reversed : !1, n = 0; n < A.length; n++) {
     var i = A[n];
-    i.container instanceof Ds && typeof i.container.value == "number" && i.container.value !== 0 && (t = i.container.value), i.listValue = Fe(t, i.container.styles.listStyleType, !0), t += r ? -1 : 1;
+    i.container instanceof Ns && typeof i.container.value == "number" && i.container.value !== 0 && (t = i.container.value), i.listValue = Fe(t, i.container.styles.listStyleType, !0), t += r ? -1 : 1;
   }
-}, kh = function(e) {
-  var A = new zs(e, null), t = new Zs(A), r = [];
-  return vr(A, t, t, r), js(A.container, r), t;
-}, di = function(e, A) {
+}, eg = function(e) {
+  var A = new no(e, null), t = new ro(A), r = [];
+  return mr(A, t, t, r), io(A.container, r), t;
+}, fi = function(e, A) {
   switch (A) {
     case 0:
       return iA(e.topLeftBorderBox, e.topLeftPaddingBox, e.topRightBorderBox, e.topRightPaddingBox);
@@ -7324,7 +7482,7 @@ var T = function(e, A, t, r, n) {
     default:
       return iA(e.bottomLeftBorderBox, e.bottomLeftPaddingBox, e.topLeftBorderBox, e.topLeftPaddingBox);
   }
-}, Mh = function(e, A) {
+}, tg = function(e, A) {
   switch (A) {
     case 0:
       return iA(e.topLeftBorderBox, e.topLeftBorderDoubleOuterBox, e.topRightBorderBox, e.topRightBorderDoubleOuterBox);
@@ -7335,7 +7493,7 @@ var T = function(e, A, t, r, n) {
     default:
       return iA(e.bottomLeftBorderBox, e.bottomLeftBorderDoubleOuterBox, e.topLeftBorderBox, e.topLeftBorderDoubleOuterBox);
   }
-}, Oh = function(e, A) {
+}, rg = function(e, A) {
   switch (A) {
     case 0:
       return iA(e.topLeftBorderDoubleInnerBox, e.topLeftPaddingBox, e.topRightBorderDoubleInnerBox, e.topRightPaddingBox);
@@ -7346,7 +7504,7 @@ var T = function(e, A, t, r, n) {
     default:
       return iA(e.bottomLeftBorderDoubleInnerBox, e.bottomLeftPaddingBox, e.topLeftBorderDoubleInnerBox, e.topLeftPaddingBox);
   }
-}, Rh = function(e, A) {
+}, ng = function(e, A) {
   switch (A) {
     case 0:
       return Je(e.topLeftBorderStroke, e.topRightBorderStroke);
@@ -7363,24 +7521,24 @@ var T = function(e, A, t, r, n) {
 }, iA = function(e, A, t, r) {
   var n = [];
   return rA(e) ? n.push(e.subdivide(0.5, !1)) : n.push(e), rA(t) ? n.push(t.subdivide(0.5, !0)) : n.push(t), rA(r) ? n.push(r.subdivide(0.5, !0).reverse()) : n.push(r), rA(A) ? n.push(A.subdivide(0.5, !1).reverse()) : n.push(A), n;
-}, $s = function(e) {
+}, so = function(e) {
   var A = e.bounds, t = e.styles;
   return A.add(t.borderLeftWidth, t.borderTopWidth, -(t.borderRightWidth + t.borderLeftWidth), -(t.borderTopWidth + t.borderBottomWidth));
-}, gt = function(e) {
+}, ft = function(e) {
   var A = e.styles, t = e.bounds, r = S(A.paddingLeft, t.width), n = S(A.paddingRight, t.width), i = S(A.paddingTop, t.width), s = S(A.paddingBottom, t.width);
   return t.add(r + A.borderLeftWidth, i + A.borderTopWidth, -(A.borderRightWidth + A.borderLeftWidth + r + n), -(A.borderTopWidth + A.borderBottomWidth + i + s));
-}, qh = function(e, A) {
-  return e === 0 ? A.bounds : e === 2 ? gt(A) : $s(A);
-}, Vh = function(e, A) {
-  return e === 0 ? A.bounds : e === 2 ? gt(A) : $s(A);
-}, Zt = function(e, A, t) {
-  var r = qh(zA(e.styles.backgroundOrigin, A), e), n = Vh(zA(e.styles.backgroundClip, A), e), i = Nh(zA(e.styles.backgroundSize, A), t, r), s = i[0], o = i[1], a = Be(zA(e.styles.backgroundPosition, A), r.width - s, r.height - o), c = Gh(zA(e.styles.backgroundRepeat, A), a, i, r, n), l = Math.round(r.left + a[0]), B = Math.round(r.top + a[1]);
+}, ig = function(e, A) {
+  return e === 0 ? A.bounds : e === 2 ? ft(A) : so(A);
+}, sg = function(e, A) {
+  return e === 0 ? A.bounds : e === 2 ? ft(A) : so(A);
+}, zt = function(e, A, t) {
+  var r = ig(zA(e.styles.backgroundOrigin, A), e), n = sg(zA(e.styles.backgroundClip, A), e), i = og(zA(e.styles.backgroundSize, A), t, r), s = i[0], o = i[1], a = Be(zA(e.styles.backgroundPosition, A), r.width - s, r.height - o), c = ag(zA(e.styles.backgroundRepeat, A), a, i, r, n), l = Math.round(r.left + a[0]), B = Math.round(r.top + a[1]);
   return [c, l, B, s, o];
 }, JA = function(e) {
   return K(e) && e.value === Ae.AUTO;
 }, We = function(e) {
   return typeof e == "number";
-}, Nh = function(e, A, t) {
+}, og = function(e, A, t) {
   var r = A[0], n = A[1], i = A[2], s = e[0], o = e[1];
   if (!s)
     return [0, 0];
@@ -7418,7 +7576,7 @@ var T = function(e, A, t, r, n) {
 }, zA = function(e, A) {
   var t = e[A];
   return typeof t > "u" ? e[0] : t;
-}, Gh = function(e, A, t, r, n) {
+}, ag = function(e, A, t, r, n) {
   var i = A[0], s = A[1], o = t[0], a = t[1];
   switch (e) {
     case 2:
@@ -7450,7 +7608,7 @@ var T = function(e, A, t, r, n) {
         new C(Math.round(n.left), Math.round(n.height + n.top))
       ];
   }
-}, Ph = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7", ui = "Hidden Text", _h = (
+}, cg = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7", wi = "Hidden Text", lg = (
   /** @class */
   (function() {
     function e(A) {
@@ -7458,9 +7616,9 @@ var T = function(e, A, t, r, n) {
     }
     return e.prototype.parseMetrics = function(A, t) {
       var r = this._document.createElement("div"), n = this._document.createElement("img"), i = this._document.createElement("span"), s = this._document.body;
-      r.style.visibility = "hidden", r.style.fontFamily = A, r.style.fontSize = t, r.style.margin = "0", r.style.padding = "0", r.style.whiteSpace = "nowrap", s.appendChild(r), n.src = Ph, n.width = 1, n.height = 1, n.style.margin = "0", n.style.padding = "0", n.style.verticalAlign = "baseline", i.style.fontFamily = A, i.style.fontSize = t, i.style.margin = "0", i.style.padding = "0", i.appendChild(this._document.createTextNode(ui)), r.appendChild(i), r.appendChild(n);
+      r.style.visibility = "hidden", r.style.fontFamily = A, r.style.fontSize = t, r.style.margin = "0", r.style.padding = "0", r.style.whiteSpace = "nowrap", s.appendChild(r), n.src = cg, n.width = 1, n.height = 1, n.style.margin = "0", n.style.padding = "0", n.style.verticalAlign = "baseline", i.style.fontFamily = A, i.style.fontSize = t, i.style.margin = "0", i.style.padding = "0", i.appendChild(this._document.createTextNode(wi)), r.appendChild(i), r.appendChild(n);
       var o = n.offsetTop - i.offsetTop + 2;
-      r.removeChild(i), r.appendChild(this._document.createTextNode(ui)), r.style.lineHeight = "normal", n.style.verticalAlign = "super";
+      r.removeChild(i), r.appendChild(this._document.createTextNode(wi)), r.style.lineHeight = "normal", n.style.verticalAlign = "super";
       var a = n.offsetTop - r.offsetTop + 2;
       return s.removeChild(r), { baseline: o, middle: a };
     }, e.prototype.getMetrics = function(A, t) {
@@ -7468,7 +7626,7 @@ var T = function(e, A, t, r, n) {
       return typeof this._data[r] > "u" && (this._data[r] = this.parseMetrics(A, t)), this._data[r];
     }, e;
   })()
-), Ao = (
+), oo = (
   /** @class */
   /* @__PURE__ */ (function() {
     function e(A, t) {
@@ -7476,13 +7634,13 @@ var T = function(e, A, t, r, n) {
     }
     return e;
   })()
-), Xh = 1e4, Jh = (
+), Bg = 1e4, dg = (
   /** @class */
   (function(e) {
     BA(A, e);
     function A(t, r) {
       var n = e.call(this, t, r) || this;
-      return n._activeEffects = [], n.canvas = r.canvas ? r.canvas : document.createElement("canvas"), n.ctx = n.canvas.getContext("2d"), r.canvas || (n.canvas.width = Math.floor(r.width * r.scale), n.canvas.height = Math.floor(r.height * r.scale), n.canvas.style.width = r.width + "px", n.canvas.style.height = r.height + "px"), n.fontMetrics = new _h(document), n.ctx.scale(n.options.scale, n.options.scale), n.ctx.translate(-r.x, -r.y), n.ctx.textBaseline = "bottom", n._activeEffects = [], n.context.logger.debug("Canvas renderer initialized (" + r.width + "x" + r.height + ") with scale " + r.scale), n;
+      return n._activeEffects = [], n.canvas = r.canvas ? r.canvas : document.createElement("canvas"), n.ctx = n.canvas.getContext("2d"), r.canvas || (n.canvas.width = Math.floor(r.width * r.scale), n.canvas.height = Math.floor(r.height * r.scale), n.canvas.style.width = r.width + "px", n.canvas.style.height = r.height + "px"), n.fontMetrics = new lg(document), n.ctx.scale(n.options.scale, n.options.scale), n.ctx.translate(-r.x, -r.y), n.ctx.textBaseline = "bottom", n._activeEffects = [], n.context.logger.debug("Canvas renderer initialized (" + r.width + "x" + r.height + ") with scale " + r.scale), n;
     }
     return A.prototype.applyEffects = function(t) {
       for (var r = this; this._activeEffects.length; )
@@ -7491,7 +7649,7 @@ var T = function(e, A, t, r, n) {
         return r.applyEffect(n);
       });
     }, A.prototype.applyEffect = function(t) {
-      this.ctx.save(), Th(t) && (this.ctx.globalAlpha = t.opacity), Sh(t) && (this.ctx.translate(t.offsetX, t.offsetY), this.ctx.transform(t.matrix[0], t.matrix[1], t.matrix[2], t.matrix[3], t.matrix[4], t.matrix[5]), this.ctx.translate(-t.offsetX, -t.offsetY)), Ys(t) && (this.path(t.path), this.ctx.clip()), this._activeEffects.push(t);
+      this.ctx.save(), $h(t) && (this.ctx.globalAlpha = t.opacity), jh(t) && (this.ctx.translate(t.offsetX, t.offsetY), this.ctx.transform(t.matrix[0], t.matrix[1], t.matrix[2], t.matrix[3], t.matrix[4], t.matrix[5]), this.ctx.translate(-t.offsetX, -t.offsetY)), to(t) && (this.path(t.path), this.ctx.clip()), this._activeEffects.push(t);
     }, A.prototype.popEffect = function() {
       this._activeEffects.pop(), this.ctx.restore();
     }, A.prototype.renderStack = function(t) {
@@ -7540,7 +7698,7 @@ var T = function(e, A, t, r, n) {
       if (r === 0)
         this.ctx.fillText(t.text, t.bounds.left, t.bounds.top + n);
       else {
-        var s = Ir(t.text);
+        var s = xr(t.text);
         s.reduce(function(o, a) {
           return i.ctx.fillText(a, o, t.bounds.top + n), o + i.ctx.measureText(a).width;
         }, t.bounds.left);
@@ -7548,7 +7706,7 @@ var T = function(e, A, t, r, n) {
     }, A.prototype.createFontStyle = function(t) {
       var r = t.fontVariant.filter(function(s) {
         return s === "normal" || s === "small-caps";
-      }).join(""), n = jh(t.fontFamily).join(", "), i = me(t.fontSize) ? "" + t.fontSize.number + t.fontSize.unit : t.fontSize.number + "px";
+      }).join(""), n = wg(t.fontFamily).join(", "), i = me(t.fontSize) ? "" + t.fontSize.number + t.fontSize.unit : t.fontSize.number + "px";
       return [
         [t.fontStyle, r, t.fontWeight, i, n].join(" "),
         n,
@@ -7593,7 +7751,7 @@ var T = function(e, A, t, r, n) {
       });
     }, A.prototype.renderReplacedElement = function(t, r, n) {
       if (n && t.intrinsicWidth > 0 && t.intrinsicHeight > 0) {
-        var i = gt(t), s = ht(r);
+        var i = ft(t), s = gt(r);
         this.path(s), this.ctx.save(), this.ctx.clip(), this.ctx.drawImage(n, 0, 0, t.intrinsicWidth, t.intrinsicHeight, i.left, i.top, i.width, i.height), this.ctx.restore();
       }
     }, A.prototype.renderNodeContent = function(t) {
@@ -7613,7 +7771,7 @@ var T = function(e, A, t, r, n) {
             case 3:
               return s++, [3, 1];
             case 4:
-              if (!(r instanceof Ks)) return [3, 8];
+              if (!(r instanceof Rs)) return [3, 8];
               w.label = 5;
             case 5:
               return w.trys.push([5, 7, , 8]), [4, this.context.cache.match(r.src)];
@@ -7622,7 +7780,7 @@ var T = function(e, A, t, r, n) {
             case 7:
               return w.sent(), this.context.logger.error("Error loading image " + r.src), [3, 8];
             case 8:
-              if (r instanceof Ss && this.renderReplacedElement(r, n, r.canvas), !(r instanceof Ts)) return [3, 12];
+              if (r instanceof qs && this.renderReplacedElement(r, n, r.canvas), !(r instanceof Vs)) return [3, 12];
               w.label = 9;
             case 9:
               return w.trys.push([9, 11, , 12]), [4, this.context.cache.match(r.svg)];
@@ -7631,7 +7789,7 @@ var T = function(e, A, t, r, n) {
             case 11:
               return w.sent(), this.context.logger.error("Error loading svg " + r.svg.substring(0, 255)), [3, 12];
             case 12:
-              return r instanceof Os && r.tree ? (c = new A(this.context, {
+              return r instanceof _s && r.tree ? (c = new A(this.context, {
                 scale: this.options.scale,
                 backgroundColor: r.backgroundColor,
                 x: 0,
@@ -7642,7 +7800,7 @@ var T = function(e, A, t, r, n) {
             case 13:
               l = w.sent(), r.width && r.height && this.ctx.drawImage(l, 0, 0, r.width, r.height, r.bounds.left, r.bounds.top, r.bounds.width, r.bounds.height), w.label = 14;
             case 14:
-              if (r instanceof xr && (B = Math.min(r.bounds.width, r.bounds.height), r.type === ct ? r.checked && (this.ctx.save(), this.path([
+              if (r instanceof Lr && (B = Math.min(r.bounds.width, r.bounds.height), r.type === lt ? r.checked && (this.ctx.save(), this.path([
                 new C(r.bounds.left + B * 0.39363, r.bounds.top + B * 0.79),
                 new C(r.bounds.left + B * 0.16, r.bounds.top + B * 0.5549),
                 new C(r.bounds.left + B * 0.27347, r.bounds.top + B * 0.44071),
@@ -7650,8 +7808,8 @@ var T = function(e, A, t, r, n) {
                 new C(r.bounds.left + B * 0.72983, r.bounds.top + B * 0.23),
                 new C(r.bounds.left + B * 0.84, r.bounds.top + B * 0.34085),
                 new C(r.bounds.left + B * 0.39363, r.bounds.top + B * 0.79)
-              ]), this.ctx.fillStyle = V(Ai), this.ctx.fill(), this.ctx.restore()) : r.type === lt && r.checked && (this.ctx.save(), this.ctx.beginPath(), this.ctx.arc(r.bounds.left + B / 2, r.bounds.top + B / 2, B / 4, 0, Math.PI * 2, !0), this.ctx.fillStyle = V(Ai), this.ctx.fill(), this.ctx.restore())), Wh(r) && r.value.length) {
-                switch (d = this.createFontStyle(i), U = d[0], g = d[1], u = this.fontMetrics.getMetrics(U, g).baseline, this.ctx.font = U, this.ctx.fillStyle = V(i.color), this.ctx.textBaseline = "alphabetic", this.ctx.textAlign = Zh(r.styles.textAlign), F = gt(r), f = 0, r.styles.textAlign) {
+              ]), this.ctx.fillStyle = V(ni), this.ctx.fill(), this.ctx.restore()) : r.type === Bt && r.checked && (this.ctx.save(), this.ctx.beginPath(), this.ctx.arc(r.bounds.left + B / 2, r.bounds.top + B / 2, B / 4, 0, Math.PI * 2, !0), this.ctx.fillStyle = V(ni), this.ctx.fill(), this.ctx.restore())), ug(r) && r.value.length) {
+                switch (d = this.createFontStyle(i), U = d[0], g = d[1], u = this.fontMetrics.getMetrics(U, g).baseline, this.ctx.font = U, this.ctx.fillStyle = V(i.color), this.ctx.textBaseline = "alphabetic", this.ctx.textAlign = gg(r.styles.textAlign), F = ft(r), f = 0, r.styles.textAlign) {
                   case 1:
                     f += F.width / 2;
                     break;
@@ -7683,7 +7841,7 @@ var T = function(e, A, t, r, n) {
             case 18:
               return [3, 20];
             case 19:
-              t.listValue && r.styles.listStyleType !== -1 && (U = this.createFontStyle(i)[0], this.ctx.font = U, this.ctx.fillStyle = V(i.color), this.ctx.textBaseline = "middle", this.ctx.textAlign = "right", F = new vA(r.bounds.left, r.bounds.top + S(r.styles.paddingTop, r.bounds.width), r.bounds.width, Mn(i.lineHeight, i.fontSize.number) / 2 + 1), this.renderTextWithLetterSpacing(new Qe(t.listValue, F), i.letterSpacing, Mn(i.lineHeight, i.fontSize.number) / 2 + 2), this.ctx.textBaseline = "bottom", this.ctx.textAlign = "left"), w.label = 20;
+              t.listValue && r.styles.listStyleType !== -1 && (U = this.createFontStyle(i)[0], this.ctx.font = U, this.ctx.fillStyle = V(i.color), this.ctx.textBaseline = "middle", this.ctx.textAlign = "right", F = new vA(r.bounds.left, r.bounds.top + S(r.styles.paddingTop, r.bounds.width), r.bounds.width, Vn(i.lineHeight, i.fontSize.number) / 2 + 1), this.renderTextWithLetterSpacing(new Qe(t.listValue, F), i.letterSpacing, Vn(i.lineHeight, i.fontSize.number) / 2 + 2), this.ctx.textBaseline = "bottom", this.ctx.textAlign = "left"), w.label = 20;
             case 20:
               return [
                 2
@@ -7811,19 +7969,19 @@ var T = function(e, A, t, r, n) {
                     case 3:
                       return uA.sent(), i.context.logger.error("Error loading background-image " + d), [3, 4];
                     case 4:
-                      return B && (g = Zt(t, r, [
+                      return B && (g = zt(t, r, [
                         B.width,
                         B.height,
                         B.width / B.height
                       ]), D = g[0], X = g[1], J = g[2], x = g[3], O = g[4], y = i.ctx.createPattern(i.resizeImage(B, x, O), "repeat"), i.renderRepeat(D, y, X, J)), [3, 6];
                     case 5:
-                      SB(l) ? (u = Zt(t, r, [null, null, null]), D = u[0], X = u[1], J = u[2], x = u[3], O = u[4], f = HB(l.angle, x, O), m = f[0], Q = f[1], h = f[2], v = f[3], U = f[4], F = document.createElement("canvas"), F.width = x, F.height = O, w = F.getContext("2d"), E = w.createLinearGradient(Q, v, h, U), Dn(l.stops, m).forEach(function(SA) {
+                      jB(l) ? (u = zt(t, r, [null, null, null]), D = u[0], X = u[1], J = u[2], x = u[3], O = u[4], f = JB(l.angle, x, O), m = f[0], Q = f[1], h = f[2], v = f[3], U = f[4], F = document.createElement("canvas"), F.width = x, F.height = O, w = F.getContext("2d"), E = w.createLinearGradient(Q, v, h, U), Rn(l.stops, m).forEach(function(SA) {
                         return E.addColorStop(SA.stop, V(SA.color));
-                      }), w.fillStyle = E, w.fillRect(0, 0, x, O), x > 0 && O > 0 && (y = i.ctx.createPattern(F, "repeat"), i.renderRepeat(D, y, X, J))) : TB(l) && (b = Zt(t, r, [
+                      }), w.fillStyle = E, w.fillRect(0, 0, x, O), x > 0 && O > 0 && (y = i.ctx.createPattern(F, "repeat"), i.renderRepeat(D, y, X, J))) : $B(l) && (b = zt(t, r, [
                         null,
                         null,
                         null
-                      ]), D = b[0], N = b[1], _ = b[2], x = b[3], O = b[4], sA = l.position.length === 0 ? [yr] : l.position, X = S(sA[0], x), J = S(sA[sA.length - 1], O), wA = IB(l, X, J, x, O), j = wA[0], dA = wA[1], j > 0 && dA > 0 && (QA = i.ctx.createRadialGradient(N + X, _ + J, 0, N + X, _ + J, j), Dn(l.stops, j * 2).forEach(function(SA) {
+                      ]), D = b[0], N = b[1], _ = b[2], x = b[3], O = b[4], sA = l.position.length === 0 ? [Er] : l.position, X = S(sA[0], x), J = S(sA[sA.length - 1], O), wA = WB(l, X, J, x, O), j = wA[0], dA = wA[1], j > 0 && dA > 0 && (QA = i.ctx.createRadialGradient(N + X, _ + J, 0, N + X, _ + J, j), Rn(l.stops, j * 2).forEach(function(SA) {
                         return QA.addColorStop(SA.stop, V(SA.color));
                       }), i.path(D), i.ctx.fillStyle = QA, j !== dA ? (CA = t.bounds.left + 0.5 * t.bounds.width, oA = t.bounds.top + 0.5 * t.bounds.height, aA = dA / j, $ = 1 / aA, i.ctx.save(), i.ctx.translate(CA, oA), i.ctx.transform(1, 0, 0, aA, 0, 0), i.ctx.translate(-CA, -oA), i.ctx.fillRect(N, $ * (_ - oA) + oA, x, O * $), i.ctx.restore()) : i.ctx.fill())), uA.label = 6;
                     case 6:
@@ -7851,7 +8009,7 @@ var T = function(e, A, t, r, n) {
     }, A.prototype.renderSolidBorder = function(t, r, n) {
       return Z(this, void 0, void 0, function() {
         return W(this, function(i) {
-          return this.path(di(n, r)), this.ctx.fillStyle = V(t), this.ctx.fill(), [
+          return this.path(fi(n, r)), this.ctx.fillStyle = V(t), this.ctx.fill(), [
             2
             /*return*/
           ];
@@ -7870,7 +8028,7 @@ var T = function(e, A, t, r, n) {
                 /*return*/
               ];
             case 2:
-              return s = Mh(i, n), this.path(s), this.ctx.fillStyle = V(t), this.ctx.fill(), o = Oh(i, n), this.path(o), this.ctx.fill(), [
+              return s = tg(i, n), this.path(s), this.ctx.fillStyle = V(t), this.ctx.fill(), o = rg(i, n), this.path(o), this.ctx.fill(), [
                 2
                 /*return*/
               ];
@@ -7891,11 +8049,11 @@ var T = function(e, A, t, r, n) {
                 { style: r.borderRightStyle, color: r.borderRightColor, width: r.borderRightWidth },
                 { style: r.borderBottomStyle, color: r.borderBottomColor, width: r.borderBottomWidth },
                 { style: r.borderLeftStyle, color: r.borderLeftColor, width: r.borderLeftWidth }
-              ], s = Yh(zA(r.backgroundClip, 0), t.curves), n || r.boxShadow.length ? (this.ctx.save(), this.path(s), this.ctx.clip(), LA(r.backgroundColor) || (this.ctx.fillStyle = V(r.backgroundColor), this.ctx.fill()), [4, this.renderBackgroundImage(t.container)]) : [3, 2];
+              ], s = hg(zA(r.backgroundClip, 0), t.curves), n || r.boxShadow.length ? (this.ctx.save(), this.path(s), this.ctx.clip(), LA(r.backgroundColor) || (this.ctx.fillStyle = V(r.backgroundColor), this.ctx.fill()), [4, this.renderBackgroundImage(t.container)]) : [3, 2];
             case 1:
               d.sent(), this.ctx.restore(), r.boxShadow.slice(0).reverse().forEach(function(g) {
                 B.ctx.save();
-                var u = ut(t.curves), f = g.inset ? 0 : Xh, m = Dh(u, -f + (g.inset ? 1 : -1) * g.spread.number, (g.inset ? 1 : -1) * g.spread.number, g.spread.number * (g.inset ? -2 : 2), g.spread.number * (g.inset ? -2 : 2));
+                var u = ht(t.curves), f = g.inset ? 0 : Bg, m = Ag(u, -f + (g.inset ? 1 : -1) * g.spread.number, (g.inset ? 1 : -1) * g.spread.number, g.spread.number * (g.inset ? -2 : 2), g.spread.number * (g.inset ? -2 : 2));
                 g.inset ? (B.path(u), B.ctx.clip(), B.mask(m)) : (B.mask(u), B.ctx.clip(), B.path(m)), B.ctx.shadowOffsetX = g.offsetX.number + f, B.ctx.shadowOffsetY = g.offsetY.number, B.ctx.shadowColor = V(g.color), B.ctx.shadowBlur = g.blur.number, B.ctx.fillStyle = g.inset ? V(g.color) : "rgba(0,0,0,1)", B.ctx.fill(), B.ctx.restore();
               }), d.label = 2;
             case 2:
@@ -7946,7 +8104,7 @@ var T = function(e, A, t, r, n) {
       return Z(this, void 0, void 0, function() {
         var o, a, c, l, B, d, g, u, f, m, Q, h, v, U, F, w, F, w;
         return W(this, function(E) {
-          return this.ctx.save(), o = Rh(i, n), a = di(i, n), s === 2 && (this.path(a), this.ctx.clip()), rA(a[0]) ? (c = a[0].start.x, l = a[0].start.y) : (c = a[0].x, l = a[0].y), rA(a[1]) ? (B = a[1].end.x, d = a[1].end.y) : (B = a[1].x, d = a[1].y), n === 0 || n === 2 ? g = Math.abs(c - B) : g = Math.abs(l - d), this.ctx.beginPath(), s === 3 ? this.formatPath(o) : this.formatPath(a.slice(0, 2)), u = r < 3 ? r * 3 : r * 2, f = r < 3 ? r * 2 : r, s === 3 && (u = r, f = r), m = !0, g <= u * 2 ? m = !1 : g <= u * 2 + f ? (Q = g / (2 * u + f), u *= Q, f *= Q) : (h = Math.floor((g + f) / (u + f)), v = (g - h * u) / (h - 1), U = (g - (h + 1) * u) / h, f = U <= 0 || Math.abs(f - v) < Math.abs(f - U) ? v : U), m && (s === 3 ? this.ctx.setLineDash([0, u + f]) : this.ctx.setLineDash([u, f])), s === 3 ? (this.ctx.lineCap = "round", this.ctx.lineWidth = r) : this.ctx.lineWidth = r * 2 + 1.1, this.ctx.strokeStyle = V(t), this.ctx.stroke(), this.ctx.setLineDash([]), s === 2 && (rA(a[0]) && (F = a[3], w = a[0], this.ctx.beginPath(), this.formatPath([new C(F.end.x, F.end.y), new C(w.start.x, w.start.y)]), this.ctx.stroke()), rA(a[1]) && (F = a[1], w = a[2], this.ctx.beginPath(), this.formatPath([new C(F.end.x, F.end.y), new C(w.start.x, w.start.y)]), this.ctx.stroke())), this.ctx.restore(), [
+          return this.ctx.save(), o = ng(i, n), a = fi(i, n), s === 2 && (this.path(a), this.ctx.clip()), rA(a[0]) ? (c = a[0].start.x, l = a[0].start.y) : (c = a[0].x, l = a[0].y), rA(a[1]) ? (B = a[1].end.x, d = a[1].end.y) : (B = a[1].x, d = a[1].y), n === 0 || n === 2 ? g = Math.abs(c - B) : g = Math.abs(l - d), this.ctx.beginPath(), s === 3 ? this.formatPath(o) : this.formatPath(a.slice(0, 2)), u = r < 3 ? r * 3 : r * 2, f = r < 3 ? r * 2 : r, s === 3 && (u = r, f = r), m = !0, g <= u * 2 ? m = !1 : g <= u * 2 + f ? (Q = g / (2 * u + f), u *= Q, f *= Q) : (h = Math.floor((g + f) / (u + f)), v = (g - h * u) / (h - 1), U = (g - (h + 1) * u) / h, f = U <= 0 || Math.abs(f - v) < Math.abs(f - U) ? v : U), m && (s === 3 ? this.ctx.setLineDash([0, u + f]) : this.ctx.setLineDash([u, f])), s === 3 ? (this.ctx.lineCap = "round", this.ctx.lineWidth = r) : this.ctx.lineWidth = r * 2 + 1.1, this.ctx.strokeStyle = V(t), this.ctx.stroke(), this.ctx.setLineDash([]), s === 2 && (rA(a[0]) && (F = a[3], w = a[0], this.ctx.beginPath(), this.formatPath([new C(F.end.x, F.end.y), new C(w.start.x, w.start.y)]), this.ctx.stroke()), rA(a[1]) && (F = a[1], w = a[2], this.ctx.beginPath(), this.formatPath([new C(F.end.x, F.end.y), new C(w.start.x, w.start.y)]), this.ctx.stroke())), this.ctx.restore(), [
             2
             /*return*/
           ];
@@ -7958,26 +8116,26 @@ var T = function(e, A, t, r, n) {
         return W(this, function(n) {
           switch (n.label) {
             case 0:
-              return this.options.backgroundColor && (this.ctx.fillStyle = V(this.options.backgroundColor), this.ctx.fillRect(this.options.x, this.options.y, this.options.width, this.options.height)), r = kh(t), [4, this.renderStack(r)];
+              return this.options.backgroundColor && (this.ctx.fillStyle = V(this.options.backgroundColor), this.ctx.fillRect(this.options.x, this.options.y, this.options.width, this.options.height)), r = eg(t), [4, this.renderStack(r)];
             case 1:
               return n.sent(), this.applyEffects([]), [2, this.canvas];
           }
         });
       });
     }, A;
-  })(Ao)
-), Wh = function(e) {
-  return e instanceof Ms || e instanceof ks ? !0 : e instanceof xr && e.type !== lt && e.type !== ct;
-}, Yh = function(e, A) {
+  })(oo)
+), ug = function(e) {
+  return e instanceof Ps || e instanceof Gs ? !0 : e instanceof Lr && e.type !== Bt && e.type !== lt;
+}, hg = function(e, A) {
   switch (e) {
     case 0:
-      return ut(A);
-    case 2:
-      return xh(A);
-    default:
       return ht(A);
+    case 2:
+      return Yh(A);
+    default:
+      return gt(A);
   }
-}, Zh = function(e) {
+}, gg = function(e) {
   switch (e) {
     case 1:
       return "center";
@@ -7986,11 +8144,11 @@ var T = function(e, A, t, r, n) {
     default:
       return "left";
   }
-}, zh = ["-apple-system", "system-ui"], jh = function(e) {
+}, fg = ["-apple-system", "system-ui"], wg = function(e) {
   return /iPhone OS 15_(0|1)/.test(window.navigator.userAgent) ? e.filter(function(A) {
-    return zh.indexOf(A) === -1;
+    return fg.indexOf(A) === -1;
   }) : e;
-}, $h = (
+}, Qg = (
   /** @class */
   (function(e) {
     BA(A, e);
@@ -8004,22 +8162,22 @@ var T = function(e, A, t, r, n) {
         return W(this, function(i) {
           switch (i.label) {
             case 0:
-              return r = wr(this.options.width * this.options.scale, this.options.height * this.options.scale, this.options.scale, this.options.scale, t), [4, Ag(r)];
+              return r = Qr(this.options.width * this.options.scale, this.options.height * this.options.scale, this.options.scale, this.options.scale, t), [4, Cg(r)];
             case 1:
               return n = i.sent(), this.options.backgroundColor && (this.ctx.fillStyle = V(this.options.backgroundColor), this.ctx.fillRect(0, 0, this.options.width * this.options.scale, this.options.height * this.options.scale)), this.ctx.drawImage(n, -this.options.x * this.options.scale, -this.options.y * this.options.scale), [2, this.canvas];
           }
         });
       });
     }, A;
-  })(Ao)
-), Ag = function(e) {
+  })(oo)
+), Cg = function(e) {
   return new Promise(function(A, t) {
     var r = new Image();
     r.onload = function() {
       A(r);
     }, r.onerror = t, r.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(new XMLSerializer().serializeToString(e));
   });
-}, eg = (
+}, pg = (
   /** @class */
   (function() {
     function e(A) {
@@ -8046,20 +8204,20 @@ var T = function(e, A, t, r, n) {
       this.enabled && (typeof window < "u" && window.console && typeof console.error == "function" ? console.error.apply(console, ye([this.id, this.getTime() + "ms"], A)) : this.info.apply(this, A));
     }, e.instances = {}, e;
   })()
-), tg = (
+), Ug = (
   /** @class */
   (function() {
     function e(A, t) {
       var r;
-      this.windowBounds = t, this.instanceName = "#" + e.instanceCount++, this.logger = new eg({ id: this.instanceName, enabled: A.logging }), this.cache = (r = A.cache) !== null && r !== void 0 ? r : new Fh(this, A);
+      this.windowBounds = t, this.instanceName = "#" + e.instanceCount++, this.logger = new pg({ id: this.instanceName, enabled: A.logging }), this.cache = (r = A.cache) !== null && r !== void 0 ? r : new Vh(this, A);
     }
     return e.instanceCount = 1, e;
   })()
-), rg = function(e, A) {
-  return A === void 0 && (A = {}), ng(e, A);
+), Fg = function(e, A) {
+  return A === void 0 && (A = {}), vg(e, A);
 };
-typeof window < "u" && Ws.setContext(window);
-var ng = function(e, A) {
+typeof window < "u" && eo.setContext(window);
+var vg = function(e, A) {
   return Z(void 0, void 0, void 0, function() {
     var t, r, n, i, s, o, a, c, l, B, d, g, u, f, m, Q, h, v, U, F, E, w, E, y, b, D, N, _, x, O, sA, X, J, wA, j, dA, QA, CA, oA, aA;
     return W(this, function($) {
@@ -8076,20 +8234,20 @@ var ng = function(e, A) {
             imageTimeout: (b = A.imageTimeout) !== null && b !== void 0 ? b : 15e3,
             proxy: A.proxy,
             useCORS: (D = A.useCORS) !== null && D !== void 0 ? D : !1
-          }, i = tr({ logging: (N = A.logging) !== null && N !== void 0 ? N : !0, cache: A.cache }, n), s = {
+          }, i = rr({ logging: (N = A.logging) !== null && N !== void 0 ? N : !0, cache: A.cache }, n), s = {
             windowWidth: (_ = A.windowWidth) !== null && _ !== void 0 ? _ : r.innerWidth,
             windowHeight: (x = A.windowHeight) !== null && x !== void 0 ? x : r.innerHeight,
             scrollX: (O = A.scrollX) !== null && O !== void 0 ? O : r.pageXOffset,
             scrollY: (sA = A.scrollY) !== null && sA !== void 0 ? sA : r.pageYOffset
-          }, o = new vA(s.scrollX, s.scrollY, s.windowWidth, s.windowHeight), a = new tg(i, o), c = (X = A.foreignObjectRendering) !== null && X !== void 0 ? X : !1, l = {
+          }, o = new vA(s.scrollX, s.scrollY, s.windowWidth, s.windowHeight), a = new Ug(i, o), c = (X = A.foreignObjectRendering) !== null && X !== void 0 ? X : !1, l = {
             allowTaint: (J = A.allowTaint) !== null && J !== void 0 ? J : !1,
             onclone: A.onclone,
             ignoreElements: A.ignoreElements,
             inlineImages: c,
             copyStyles: c
-          }, a.logger.debug("Starting document clone with size " + o.width + "x" + o.height + " scrolled to " + -o.left + "," + -o.top), B = new ci(a, e, l), d = B.clonedReferenceElement, d ? [4, B.toIFrame(t, o)] : [2, Promise.reject("Unable to find element in cloned iframe")];
+          }, a.logger.debug("Starting document clone with size " + o.width + "x" + o.height + " scrolled to " + -o.left + "," + -o.top), B = new ui(a, e, l), d = B.clonedReferenceElement, d ? [4, B.toIFrame(t, o)] : [2, Promise.reject("Unable to find element in cloned iframe")];
         case 1:
-          return g = $.sent(), u = Lr(d) || ih(d) ? Dc(d.ownerDocument) : ft(a, d), f = u.width, m = u.height, Q = u.left, h = u.top, v = ig(a, d, A.backgroundColor), U = {
+          return g = $.sent(), u = Kr(d) || mh(d) ? Al(d.ownerDocument) : wt(a, d), f = u.width, m = u.height, Q = u.left, h = u.top, v = mg(a, d, A.backgroundColor), U = {
             canvas: A.canvas,
             backgroundColor: v,
             scale: (j = (wA = A.scale) !== null && wA !== void 0 ? wA : r.devicePixelRatio) !== null && j !== void 0 ? j : 1,
@@ -8097,38 +8255,38 @@ var ng = function(e, A) {
             y: ((QA = A.y) !== null && QA !== void 0 ? QA : 0) + h,
             width: (CA = A.width) !== null && CA !== void 0 ? CA : Math.ceil(f),
             height: (oA = A.height) !== null && oA !== void 0 ? oA : Math.ceil(m)
-          }, c ? (a.logger.debug("Document cloned, using foreign object rendering"), E = new $h(a, U), [4, E.render(d)]) : [3, 3];
+          }, c ? (a.logger.debug("Document cloned, using foreign object rendering"), E = new Qg(a, U), [4, E.render(d)]) : [3, 3];
         case 2:
           return F = $.sent(), [3, 5];
         case 3:
-          return a.logger.debug("Document cloned, element located at " + Q + "," + h + " with size " + f + "x" + m + " using computed rendering"), a.logger.debug("Starting DOM parsing"), w = qs(a, d), v === w.styles.backgroundColor && (w.styles.backgroundColor = FA.TRANSPARENT), a.logger.debug("Starting renderer for element at " + U.x + "," + U.y + " with size " + U.width + "x" + U.height), E = new Jh(a, U), [4, E.render(w)];
+          return a.logger.debug("Document cloned, element located at " + Q + "," + h + " with size " + f + "x" + m + " using computed rendering"), a.logger.debug("Starting DOM parsing"), w = Js(a, d), v === w.styles.backgroundColor && (w.styles.backgroundColor = FA.TRANSPARENT), a.logger.debug("Starting renderer for element at " + U.x + "," + U.y + " with size " + U.width + "x" + U.height), E = new dg(a, U), [4, E.render(w)];
         case 4:
           F = $.sent(), $.label = 5;
         case 5:
-          return (!((aA = A.removeContainer) !== null && aA !== void 0) || aA) && (ci.destroy(g) || a.logger.error("Cannot detach cloned iframe as it is not in the DOM anymore")), a.logger.debug("Finished rendering"), [2, F];
+          return (!((aA = A.removeContainer) !== null && aA !== void 0) || aA) && (ui.destroy(g) || a.logger.error("Cannot detach cloned iframe as it is not in the DOM anymore")), a.logger.debug("Finished rendering"), [2, F];
       }
     });
   });
-}, ig = function(e, A, t) {
+}, mg = function(e, A, t) {
   var r = A.ownerDocument, n = r.documentElement ? fe(e, getComputedStyle(r.documentElement).backgroundColor) : FA.TRANSPARENT, i = r.body ? fe(e, getComputedStyle(r.body).backgroundColor) : FA.TRANSPARENT, s = typeof t == "string" ? fe(e, t) : t === null ? FA.TRANSPARENT : 4294967295;
   return A === r.documentElement ? LA(n) ? LA(i) ? s : i : n : s;
 };
-const sg = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const bg = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: rg
+  default: Fg
 }, Symbol.toStringTag, { value: "Module" }));
 export {
-  Ki as AnnotationEditor,
-  aa as QaidFeedback,
-  Sa as captureDomScreenshot,
-  Ca as captureNetworkErrors,
-  Li as compositeAnnotations,
-  Ia as createVideoRecorder,
-  nt as drawShape,
-  bi as getSupportedMimeType,
-  La as isDomScreenshotSupported,
-  Ha as isVideoRecordingSupported,
-  Ja as openAnnotationEditor,
-  rt as rectFromPoints
+  Ri as AnnotationEditor,
+  Ea as QaidFeedback,
+  ja as captureDomScreenshot,
+  Oa as captureNetworkErrors,
+  Oi as compositeAnnotations,
+  Wa as createVideoRecorder,
+  it as drawShape,
+  Ki as getSupportedMimeType,
+  Za as isDomScreenshotSupported,
+  Ja as isVideoRecordingSupported,
+  dc as openAnnotationEditor,
+  nt as rectFromPoints
 };
 //# sourceMappingURL=index.js.map
