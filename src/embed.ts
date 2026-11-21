@@ -31,6 +31,7 @@ import { isMobileViewport } from "./dom-utils";
 import type { SendHost } from "./send";
 import type { QuestInstance } from "./quest-launcher";
 import { resolveQuestsModuleUrl } from "./quest-config";
+import { resolveRemoteConfig, wantsRemote } from "./remote-config";
 
 const VISITOR_ID_KEY = "qaid_visitor_id";
 const HIDE_FEEDBACK_KEY = "qaid_hide_feedback";
@@ -140,6 +141,90 @@ function insertFeatureStyle(root: ShadowRoot, css: string): void {
   root.insertBefore(style, after ? after.nextSibling : root.firstChild);
 }
 
+/** Fill every setting the host left out with its default. */
+export function resolveConfig(config: FeedbackConfig): ResolvedFeedbackConfig {
+  return {
+    endpoint: config.endpoint,
+    apiKey: config.apiKey ?? "",
+    container: config.container ?? "",
+    buttonClass: config.buttonClass ?? "",
+    direction: config.direction ?? "horizontal",
+    position: config.position ?? "bottom-right",
+    offset: {
+      x: config.offset?.x ?? 16,
+      y: config.offset?.y ?? 16,
+    },
+    zIndex: config.zIndex ?? 50,
+    skipTargeting: config.skipTargeting ?? false,
+    singleButton: config.singleButton ?? false,
+    feedbackMode: config.feedbackMode ?? "target",
+    colors: {
+      positive: config.colors?.positive ?? "rgb(0, 200, 83)",
+      negative: config.colors?.negative ?? "rgb(255, 0, 0)",
+      marker: config.colors?.marker ?? "#6365f1",
+    },
+    buttonSize: config.buttonSize ?? "medium",
+    text: {
+      tooltip: config.text?.tooltip ?? "",
+      modalTitle: config.text?.modalTitle ?? "Thank you for your feedback!",
+      modalSubtitle: config.text?.modalSubtitle ?? "Would you like to add a message to help us understand your feedback better?",
+      placeholder: config.text?.placeholder ?? "Optional: Tell us more about your experience...",
+      submitButton: config.text?.submitButton ?? "Submit",
+      skipButton: config.text?.skipButton ?? "Skip",
+      positiveLabel: config.text?.positiveLabel ?? "Send positive feedback",
+      negativeLabel: config.text?.negativeLabel ?? "Send negative feedback",
+      recordLabel: config.text?.recordLabel ?? "Record a screen recording",
+      dismissLabel: config.text?.dismissLabel ?? "Hide Feedback",
+      feedbackLabel: config.text?.feedbackLabel ?? "Send feedback",
+      confirmationTitle: config.text?.confirmationTitle ?? "Thank you!",
+      confirmationMessage:
+        config.text?.confirmationMessage ?? "Your feedback has been received.",
+      confirmationClose: config.text?.confirmationClose ?? "Close",
+      errorTitle: config.text?.errorTitle ?? "Message not sent",
+      errorMessage:
+        config.text?.errorMessage ??
+        "Something went wrong, so we did not get your message. Please try again later.",
+    },
+    hideConfirmation: config.hideConfirmation ?? false,
+    modalWidth: config.modalWidth ?? 400,
+    backdropOpacity: config.backdropOpacity ?? 0.3,
+    fontFamily: config.fontFamily ?? "system-ui, -apple-system, sans-serif",
+    fontSize: config.fontSize ?? 16,
+    captureScreenshot: config.captureScreenshot ?? false,
+    annotate: config.annotate ?? true,
+    annotationColor: config.annotationColor ?? config.colors?.marker ?? "#6365f1",
+    annotationPalette: config.annotationPalette ?? DEFAULT_ANNOTATION_PALETTE,
+    screenshotMethod: config.screenshotMethod ?? "permission",
+    screenshotOptions: {
+      quality: config.screenshotOptions?.quality ?? 0.8,
+      maxWidth: config.screenshotOptions?.maxWidth ?? 1280,
+      maxHeight: config.screenshotOptions?.maxHeight ?? 800,
+    },
+    incognito: config.incognito ?? false,
+    hideDismiss: config.hideDismiss ?? false,
+    positiveIcon: config.positiveIcon ?? "",
+    negativeIcon: config.negativeIcon ?? "",
+    feedbackIcon: config.feedbackIcon ?? "",
+    hideThumbs: config.hideThumbs ?? false,
+    css: config.css ?? "",
+    captureVideo: config.captureVideo ?? false,
+    videoOptions: {
+      maxDuration: config.videoOptions?.maxDuration ?? 15,
+      redaction: config.videoOptions?.redaction ?? false,
+    },
+    recordIcon: config.recordIcon ?? "",
+    quests: {
+      base: config.quests?.base ?? "",
+      up: config.quests?.up ?? "",
+      down: config.quests?.down ?? "",
+      video: config.quests?.video ?? "",
+      // Quest service reuses the feedback API key unless overridden.
+      apiKey: config.quests?.apiKey ?? config.apiKey ?? "",
+      moduleUrl: resolveQuestsModuleUrl(config.quests?.moduleUrl),
+    },
+  };
+}
+
 export class QaidFeedback {
   private config: ResolvedFeedbackConfig;
   private state: EmbedState = "IDLE";
@@ -227,90 +312,19 @@ export class QaidFeedback {
 
   // DOM persistence (survives framework client-side navigation)
   private destroyed = false;
+
+  /**
+   * Resolves once the buttons are drawn. Immediate unless the config asks for
+   * fetched settings (`remoteConfig`, `themeUrl`); never rejects.
+   */
+  public ready: Promise<void> = Promise.resolve();
+  /** False while fetched settings are pending: nothing is drawn yet. */
+  private initialized = false;
   private domObserver: MutationObserver | null = null;
   private boundBeforeSwap: ((e: Event) => void) | null = null;
 
   constructor(config: FeedbackConfig) {
-    this.config = {
-      endpoint: config.endpoint,
-      apiKey: config.apiKey ?? "",
-      container: config.container ?? "",
-      buttonClass: config.buttonClass ?? "",
-      direction: config.direction ?? "horizontal",
-      position: config.position ?? "bottom-right",
-      offset: {
-        x: config.offset?.x ?? 16,
-        y: config.offset?.y ?? 16,
-      },
-      zIndex: config.zIndex ?? 50,
-      skipTargeting: config.skipTargeting ?? false,
-      singleButton: config.singleButton ?? false,
-      feedbackMode: config.feedbackMode ?? "target",
-      colors: {
-        positive: config.colors?.positive ?? "rgb(0, 200, 83)",
-        negative: config.colors?.negative ?? "rgb(255, 0, 0)",
-        marker: config.colors?.marker ?? "#6365f1",
-      },
-      buttonSize: config.buttonSize ?? "medium",
-      text: {
-        tooltip: config.text?.tooltip ?? "",
-        modalTitle: config.text?.modalTitle ?? "Thank you for your feedback!",
-        modalSubtitle: config.text?.modalSubtitle ?? "Would you like to add a message to help us understand your feedback better?",
-        placeholder: config.text?.placeholder ?? "Optional: Tell us more about your experience...",
-        submitButton: config.text?.submitButton ?? "Submit",
-        skipButton: config.text?.skipButton ?? "Skip",
-        positiveLabel: config.text?.positiveLabel ?? "Send positive feedback",
-        negativeLabel: config.text?.negativeLabel ?? "Send negative feedback",
-        recordLabel: config.text?.recordLabel ?? "Record a screen recording",
-        dismissLabel: config.text?.dismissLabel ?? "Hide Feedback",
-        feedbackLabel: config.text?.feedbackLabel ?? "Send feedback",
-        confirmationTitle: config.text?.confirmationTitle ?? "Thank you!",
-        confirmationMessage:
-          config.text?.confirmationMessage ?? "Your feedback has been received.",
-        confirmationClose: config.text?.confirmationClose ?? "Close",
-        errorTitle: config.text?.errorTitle ?? "Message not sent",
-        errorMessage:
-          config.text?.errorMessage ??
-          "Something went wrong, so we did not get your message. Please try again later.",
-      },
-      hideConfirmation: config.hideConfirmation ?? false,
-      modalWidth: config.modalWidth ?? 400,
-      backdropOpacity: config.backdropOpacity ?? 0.3,
-      fontFamily: config.fontFamily ?? "system-ui, -apple-system, sans-serif",
-      fontSize: config.fontSize ?? 16,
-      captureScreenshot: config.captureScreenshot ?? false,
-      annotate: config.annotate ?? true,
-      annotationColor: config.annotationColor ?? config.colors?.marker ?? "#6365f1",
-      annotationPalette: config.annotationPalette ?? DEFAULT_ANNOTATION_PALETTE,
-      screenshotMethod: config.screenshotMethod ?? "permission",
-      screenshotOptions: {
-        quality: config.screenshotOptions?.quality ?? 0.8,
-        maxWidth: config.screenshotOptions?.maxWidth ?? 1280,
-        maxHeight: config.screenshotOptions?.maxHeight ?? 800,
-      },
-      incognito: config.incognito ?? false,
-      hideDismiss: config.hideDismiss ?? false,
-      positiveIcon: config.positiveIcon ?? "",
-      negativeIcon: config.negativeIcon ?? "",
-      feedbackIcon: config.feedbackIcon ?? "",
-      hideThumbs: config.hideThumbs ?? false,
-      css: config.css ?? "",
-      captureVideo: config.captureVideo ?? false,
-      videoOptions: {
-        maxDuration: config.videoOptions?.maxDuration ?? 15,
-        redaction: config.videoOptions?.redaction ?? false,
-      },
-      recordIcon: config.recordIcon ?? "",
-      quests: {
-        base: config.quests?.base ?? "",
-        up: config.quests?.up ?? "",
-        down: config.quests?.down ?? "",
-        video: config.quests?.video ?? "",
-        // Quest service reuses the feedback API key unless overridden.
-        apiKey: config.quests?.apiKey ?? config.apiKey ?? "",
-        moduleUrl: resolveQuestsModuleUrl(config.quests?.moduleUrl),
-      },
-    };
+    this.config = resolveConfig(config);
 
     // Bind event handlers
     this.boundKeyDown = this.handleKeyDown.bind(this);
@@ -319,7 +333,18 @@ export class QaidFeedback {
     // Get or create visitor ID for anonymous feedback tracking
     this.visitorId = getOrCreateVisitorId();
 
-    this.init();
+    // Fetched settings (project config, theme document) draw first: the
+    // buttons wait for them, at most `remoteTimeoutMs`, so a visitor never
+    // sees the default look flash into the real one.
+    if (wantsRemote(config)) {
+      this.ready = resolveRemoteConfig(config).then((merged) => {
+        if (this.destroyed) return;
+        this.config = resolveConfig(merged);
+        this.init();
+      });
+    } else {
+      this.init();
+    }
   }
 
   private applyVars(el: HTMLElement): void {
@@ -366,6 +391,7 @@ export class QaidFeedback {
   }
 
   private init(): void {
+    this.initialized = true;
     // Inject shared light DOM styles (cursor + highlight, reference counted)
     injectStyles();
 
@@ -1225,6 +1251,9 @@ export class QaidFeedback {
   public destroy(): void {
     // Flag as destroyed so the DOM observer doesn't re-attach hosts
     this.destroyed = true;
+    // Destroyed while fetched settings were pending: nothing was drawn, and
+    // removeStyles() would release another instance's shared styles.
+    if (!this.initialized) return;
 
     // Disconnect DOM persistence observers
     if (this.domObserver) {

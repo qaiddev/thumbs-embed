@@ -33,6 +33,7 @@ export { QaidFeedback };
 export type {
   FeedbackConfig,
   QuestsLaunchConfig,
+  ThumbsThemeDocument,
   ResolvedFeedbackConfig,
   ConsoleError,
   NetworkError,

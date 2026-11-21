@@ -268,9 +268,15 @@ export function parseDataAttributes(script: HTMLScriptElement): Partial<Feedback
   const questVideo = script.getAttribute("data-quest-video");
   const questApiKey = script.getAttribute("data-quest-api-key");
   const questModuleUrl = script.getAttribute("data-quest-module-url");
+  const remoteConfig = script.getAttribute("data-remote-config");
+  const themeUrl = script.getAttribute("data-theme-url");
+  const remoteTimeout = script.getAttribute("data-remote-timeout");
 
   return {
     endpoint,
+    remoteConfig: remoteConfig === "true" ? true : undefined,
+    themeUrl: themeUrl || undefined,
+    remoteTimeoutMs: remoteTimeout ? parseInt(remoteTimeout, 10) : undefined,
     // Inline CSS wins over a selector, as `css` wins over `cssSelector` in
     // the JSON block.
     css: css || (cssSelector ? findCssFromSelector(cssSelector) : undefined),
