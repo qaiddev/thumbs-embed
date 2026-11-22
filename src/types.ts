@@ -190,6 +190,24 @@ export interface FeedbackConfig {
    * what is here. Default: 3000.
    */
   remoteTimeoutMs?: number;
+  /**
+   * Report this page's uncaught errors and unhandled promise rejections to
+   * qaid's error triage (an Enterprise feature), even when nobody leaves
+   * feedback. `true` sends them to `{endpoint origin}/api/errors`. Default: false.
+   */
+  captureErrors?: boolean | CaptureErrorsConfig;
+}
+
+/** Options for `captureErrors`. */
+export interface CaptureErrorsConfig {
+  /** Where errors go. Default: `/api/errors` beside `endpoint`. */
+  endpoint?: string;
+  /** Your build or commit id. */
+  release?: string;
+  /** e.g. `production` or `staging`. */
+  environment?: string;
+  /** 0–1: the share of pages that report. Default 1. */
+  sampleRate?: number;
 }
 
 /**
@@ -324,6 +342,8 @@ export interface FeedbackPayload {
   elementBounds?: ElementBounds | null;
   /** User agent string for server-side rendering consistency */
   userAgent?: string;
+  /** `sessionId` joins this report to the tab's reported errors. */
+  metadata?: Record<string, unknown>;
 }
 
 /**

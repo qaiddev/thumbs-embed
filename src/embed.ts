@@ -20,6 +20,7 @@ import type { DialogOptions } from "./a11y-dialog";
 import { calculateTooltipPosition } from "./tooltip-positioning";
 import type { ModalController, ModalHost } from "./modal";
 import { captureConsoleErrors, type ConsoleCapture } from "./console-capture";
+import { getOrCreateSessionId, startErrorReporting, type ErrorReporter } from "./error-reporting";
 // The whole video-recording subsystem lives in a lazily-loaded chunk
 // (recording.ts), pulled in the first time the record button is used. Only the
 // types are imported eagerly (erased at build time).
@@ -105,6 +106,21 @@ export function randomId(): string {
   bytes[8] = (bytes[8] & 0x3f) | 0x80;
   const hex = Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
   return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+}
+
+/**
+ * `/api/errors` beside the feedback endpoint: `https://qaid.dev/api/feedback`
+ * gives `https://qaid.dev/api/errors`. An endpoint that does not end in
+ * `/feedback` gets `/api/errors` on its origin.
+ */
+export function errorsEndpointFor(endpoint: string): string {
+  const trimmed = endpoint.replace(/\/+$/, "");
+  if (/\/feedback$/.test(trimmed)) return trimmed.replace(/\/feedback$/, "/errors");
+  try {
+    return new URL("/api/errors", endpoint).href;
+  } catch {
+    return "/api/errors";
+  }
 }
 
 /**
@@ -254,6 +270,8 @@ export class QaidFeedback {
   private activeQuest: QuestInstance | null = null;
   private isMobile = false;
   private visitorId: string;
+  private sessionId: string;
+  private errorReporter: ErrorReporter | null = null;
 
   // Console capture
   private consoleCapture: ConsoleCapture | null = null;
@@ -332,6 +350,22 @@ export class QaidFeedback {
 
     // Get or create visitor ID for anonymous feedback tracking
     this.visitorId = getOrCreateVisitorId();
+    this.sessionId = getOrCreateSessionId(randomId);
+
+    // Errors are reported from the start, before fetched settings land: the
+    // first seconds of a page are where most of them happen.
+    if (config.captureErrors && config.apiKey) {
+      const opts = typeof config.captureErrors === "object" ? config.captureErrors : {};
+      this.errorReporter = startErrorReporting({
+        endpoint: opts.endpoint ?? errorsEndpointFor(config.endpoint),
+        apiKey: config.apiKey,
+        sessionId: this.sessionId,
+        visitorId: this.visitorId,
+        release: opts.release,
+        environment: opts.environment,
+        sampleRate: opts.sampleRate,
+      });
+    }
 
     // Fetched settings (project config, theme document) draw first: the
     // buttons wait for them, at most `remoteTimeoutMs`, so a visitor never
@@ -999,6 +1033,9 @@ export class QaidFeedback {
       get visitorId() {
         return self.visitorId;
       },
+      get sessionId() {
+        return self.sessionId;
+      },
       get feedbackData() {
         return self.feedbackData;
       },
@@ -1254,6 +1291,8 @@ export class QaidFeedback {
   public destroy(): void {
     // Flag as destroyed so the DOM observer doesn't re-attach hosts
     this.destroyed = true;
+    this.errorReporter?.stop();
+    this.errorReporter = null;
     // Destroyed while fetched settings were pending: nothing was drawn, and
     // removeStyles() would release another instance's shared styles.
     if (!this.initialized) return;

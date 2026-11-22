@@ -25,6 +25,8 @@ import type {
 export interface SendHost {
   readonly config: ResolvedFeedbackConfig;
   readonly visitorId: string;
+  /** Per tab; the same id `captureErrors` sends. */
+  readonly sessionId: string;
   /** Live references, filled in by the click or the targeting controller. */
   readonly feedbackData: FeedbackData;
   readonly selectedBounds: SelectedBounds;
@@ -149,6 +151,7 @@ export async function submitFeedback(host: SendHost): Promise<void> {
     scrollY: window.scrollY,
     screenshot,
     visitorId: host.visitorId,
+    metadata: { sessionId: host.sessionId },
     // Include element bounds and user agent for server-side screenshot fallback
     elementBounds,
     userAgent: navigator.userAgent,

@@ -122,6 +122,7 @@ We offer a Free Plan for a compatible endpoint and a dashboard to manage your si
 | `remoteConfig` | `boolean` | `false` | Fetch the project's saved settings from `{endpoint}/config?apiKey=…` (see [Load settings instead of pasting them](#load-settings-instead-of-pasting-them)) |
 | `themeUrl` | `string` | `""` | Fetch a theme document (icons, CSS, button class, colours, size, text) from this URL |
 | `remoteTimeoutMs` | `number` | `3000` | How long to wait for `remoteConfig` / `themeUrl` before drawing without them |
+| `captureErrors` | `boolean \| { endpoint?, release?, environment?, sampleRate? }` | `false` | Send the page's uncaught errors and unhandled rejections to qaid's error triage (Enterprise). Needs `apiKey`. Goes to `/api/errors` beside `endpoint`; at most 50 per page, 3 of each, secrets redacted |
 
 ### Positioning
 
