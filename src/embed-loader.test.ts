@@ -330,6 +330,34 @@ describe("single-tag embed loader (embed-loader.ts)", () => {
       expect((document.querySelector('script[src*="qaid.umd.cjs"]') as HTMLScriptElement).integrity).toBe(UMD_HASH);
     });
 
+    it("takes the probe back out of the document once it answers", async () => {
+      mapsImports(true);
+      const probe = await boot();
+      document.head.appendChild(probe!);
+      probe!.dispatchEvent(new Event("error"));
+      expect(probe!.isConnected).toBe(false);
+    });
+
+    it("a policy that signs the map but refuses the probe URL: hashed UMD", async () => {
+      mapsImports(true);
+      vi.stubGlobal("trustedTypes", { createPolicy: vi.fn() });
+      (window as unknown as Record<string, unknown>).__qaidEmbedTrustedTypes = {
+        policy: {
+          createScript: (t: string) => t,
+          createScriptURL: (u: string) => {
+            if (/integrity-probe\.js$/.test(u)) throw new TypeError("refused");
+            return u;
+          },
+        },
+        allowed: {},
+        allowedScripts: {},
+      };
+      const probe = await boot();
+      expect(probe).toBeNull();
+      expect(document.querySelector('script[type="importmap"]')).not.toBeNull();
+      expect((document.querySelector('script[src*="qaid.umd.cjs"]') as HTMLScriptElement).integrity).toBe(UMD_HASH);
+    });
+
     it("signs the map through the qaid-embed policy", async () => {
       mapsImports(true);
       const createPolicy = vi.fn(

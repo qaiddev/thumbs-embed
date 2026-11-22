@@ -42,6 +42,13 @@ describe("trustedScriptUrl", () => {
     expect(() => made[0].rules.createScriptURL("https://evil/x.js")).toThrow(/refused/);
   });
 
+  it("the policy refuses any inline script the embed did not register", () => {
+    const { made } = fakeTrustedTypes();
+    trustedScriptUrl("https://a/x.js");
+    const rules = made[0].rules as unknown as { createScript: (t: string) => string };
+    expect(() => rules.createScript("alert(1)")).toThrow(/refused inline script/);
+  });
+
   it("falls back to the plain string when the page's CSP refuses the policy", () => {
     fakeTrustedTypes({ refuse: true });
     expect(trustedScriptUrl("https://a/x.js")).toBe("https://a/x.js");

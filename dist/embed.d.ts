@@ -13,6 +13,12 @@ export declare function setHiddenByUser(apiKey?: string, hidden?: boolean): void
  */
 export declare function randomId(): string;
 /**
+ * `/api/errors` beside the feedback endpoint: `https://qaid.dev/api/feedback`
+ * gives `https://qaid.dev/api/errors`. An endpoint that does not end in
+ * `/feedback` gets `/api/errors` on its origin.
+ */
+export declare function errorsEndpointFor(endpoint: string): string;
+/**
  * Get or create a visitor ID stored in localStorage
  */
 export declare function getOrCreateVisitorId(): string;
@@ -33,6 +39,8 @@ export declare class QaidFeedback {
     private activeQuest;
     private isMobile;
     private visitorId;
+    private sessionId;
+    private errorReporter;
     private consoleCapture;
     private recording;
     private targeting;

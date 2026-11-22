@@ -15,6 +15,8 @@ import type { ResolvedFeedbackConfig, EmbedState, FeedbackData, SelectedBounds, 
 export interface SendHost {
     readonly config: ResolvedFeedbackConfig;
     readonly visitorId: string;
+    /** Per tab; the same id `captureErrors` sends. */
+    readonly sessionId: string;
     /** Live references, filled in by the click or the targeting controller. */
     readonly feedbackData: FeedbackData;
     readonly selectedBounds: SelectedBounds;
