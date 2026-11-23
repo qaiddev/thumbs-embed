@@ -59,6 +59,13 @@ export declare class QaidFeedback {
     private dismissBtn;
     private cssVars;
     private activeThumbBtn;
+    /**
+     * The flow the last button click chose: the config's `feedbackMode`, or the
+     * tool button's own ("target" for the bullseye, "annotate" for the pencil).
+     */
+    private activeMode;
+    /** The shared tooltip's text when a button has none of its own. */
+    private tooltipText;
     private keyboardActivation;
     private dialogModule;
     private dialogClose;
@@ -103,7 +110,10 @@ export declare class QaidFeedback {
      * first of: pointer or focus entering the buttons, or the idle callback.
      */
     private prewarmClickPath;
-    /** "annotate" mode and skipTargeting both go straight to the send flow. */
+    /**
+     * "annotate" mode and skipTargeting both go straight to the send flow. A
+     * tool button names its own mode, and only "annotate" skips targeting then.
+     */
     private skipsTargeting;
     /**
      * Best-effort preload of a lazily-split feature chunk so its first use is

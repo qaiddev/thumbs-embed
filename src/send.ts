@@ -24,6 +24,8 @@ import type {
 /** The slice of the embed the send flow needs. */
 export interface SendHost {
   readonly config: ResolvedFeedbackConfig;
+  /** The flow the clicked button chose (a tool button overrides `feedbackMode`). */
+  readonly mode: "target" | "annotate";
   readonly visitorId: string;
   /** Per tab; the same id `captureErrors` sends. */
   readonly sessionId: string;
@@ -96,7 +98,7 @@ export async function submitFeedback(host: SendHost): Promise<void> {
   // Capture screenshot if enabled (server will gate by plan). "annotate" mode
   // always captures one to mark up, even without captureScreenshot set.
   let screenshot: string | null = null;
-  const wantScreenshot = config.captureScreenshot || config.feedbackMode === "annotate";
+  const wantScreenshot = config.captureScreenshot || host.mode === "annotate";
   if (wantScreenshot) {
     // Loaded on demand so visitors who never submit a screenshot never
     // download the capture + annotation code. A capture failure (denied

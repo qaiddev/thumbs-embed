@@ -4392,6 +4392,103 @@ describe("QaidFeedback", () => {
     });
   });
 
+  describe("tool buttons mode", () => {
+    const okFetch = () => {
+      const fetchMock = vi
+        .fn()
+        .mockResolvedValue({ ok: true, json: () => Promise.resolve({ id: 21 }) });
+      global.fetch = fetchMock;
+      return fetchMock;
+    };
+
+    it("renders a bullseye and a pencil instead of the thumbs pair", () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback", toolButtons: true });
+      const shadow = getShadowRoot();
+      const target = shadow.querySelector<HTMLButtonElement>(".qaid-btn-target")!;
+      const pencil = shadow.querySelector<HTMLButtonElement>(".qaid-btn-annotate")!;
+      expect(target.getAttribute("aria-label")).toBe("Point at something on the page");
+      expect(pencil.getAttribute("aria-label")).toBe("Draw on a screenshot");
+      expect(target.querySelectorAll("circle")).toHaveLength(3);
+      expect(shadow.querySelector(".qaid-btn-up")).toBeNull();
+      expect(shadow.querySelector(".qaid-btn-down")).toBeNull();
+      expect(shadow.querySelector(".qaid-btn-feedback")).toBeNull();
+    });
+
+    it("the pencil skips targeting, captures and opens the markup editor, and sends neutral", async () => {
+      const fetchMock = okFetch();
+      embed = new QaidFeedback({ endpoint: "/api/feedback", toolButtons: true });
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-annotate")!.click();
+      expect(document.body.classList.contains("qaid-targeting")).toBe(false);
+      await vi.waitFor(() => expect(fetchMock).toHaveBeenCalled());
+      expect(annotateMock.openAnnotationEditor).toHaveBeenCalled();
+      expect(JSON.parse(fetchMock.mock.calls[0][1].body).feedbackType).toBe("neutral");
+    });
+
+    it("the bullseye starts targeting even when the config says annotate or skipTargeting", async () => {
+      const fetchMock = okFetch();
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        toolButtons: true,
+        feedbackMode: "annotate",
+        skipTargeting: true,
+      });
+      getShadowRoot()
+        .querySelector<HTMLButtonElement>(".qaid-btn-target")!
+        .dispatchEvent(new MouseEvent("click", { bubbles: true, clientX: 5, clientY: 5 }));
+      await vi.waitFor(() =>
+        expect(document.body.classList.contains("qaid-targeting")).toBe(true)
+      );
+      expect(fetchMock).not.toHaveBeenCalled();
+      expect(annotateMock.openAnnotationEditor).not.toHaveBeenCalled();
+    });
+
+    it("each tool shows its own tooltip, unless a custom tooltip is set", () => {
+      embed = new QaidFeedback({ endpoint: "/api/feedback", toolButtons: true });
+      const shadow = getShadowRoot();
+      shadow.querySelector(".qaid-btn-annotate")!.dispatchEvent(new MouseEvent("mouseenter"));
+      expect(shadow.querySelector(".qaid-tooltip-text")!.textContent).toBe("Draw on a screenshot");
+      shadow.querySelector(".qaid-btn-target")!.dispatchEvent(new MouseEvent("mouseenter"));
+      expect(shadow.querySelector(".qaid-tooltip-text")!.textContent).toBe(
+        "Point at something on the page"
+      );
+      shadow.querySelector(".qaid-btn-target")!.dispatchEvent(new MouseEvent("mouseleave"));
+      expect(shadow.querySelector(".qaid-tooltip-text")!.classList.contains("qaid-tooltip-visible")).toBe(false);
+      embed.destroy();
+
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        toolButtons: true,
+        text: { tooltip: "Tell us" },
+      });
+      const shadow2 = getShadowRoot();
+      shadow2.querySelector(".qaid-btn-annotate")!.dispatchEvent(new MouseEvent("mouseenter"));
+      expect(shadow2.querySelector(".qaid-tooltip-text")!.textContent).toBe("Tell us");
+    });
+
+    it("takes custom icons and labels", () => {
+      embed = new QaidFeedback({
+        endpoint: "/api/feedback",
+        toolButtons: true,
+        targetIcon: '<svg class="mine-t"></svg>',
+        annotateIcon: '<svg class="mine-a"></svg>',
+        text: { targetLabel: "Aim", annotateLabel: "Sketch" },
+      });
+      const shadow = getShadowRoot();
+      expect(shadow.querySelector(".qaid-btn-target .mine-t")).not.toBeNull();
+      expect(shadow.querySelector(".qaid-btn-annotate .mine-a")).not.toBeNull();
+      expect(shadow.querySelector(".qaid-btn-target")!.getAttribute("aria-label")).toBe("Aim");
+      expect(shadow.querySelector(".qaid-btn-annotate")!.getAttribute("aria-label")).toBe("Sketch");
+    });
+
+    it("keeps the thumbs' own mode when the tools are off", async () => {
+      const fetchMock = okFetch();
+      embed = new QaidFeedback({ endpoint: "/api/feedback", skipTargeting: true });
+      getShadowRoot().querySelector<HTMLButtonElement>(".qaid-btn-up")!.click();
+      await vi.waitFor(() => expect(fetchMock).toHaveBeenCalled());
+      expect(annotateMock.openAnnotationEditor).not.toHaveBeenCalled();
+    });
+  });
+
   describe("feedbackMode: annotate", () => {
     it("opens the markup editor instead of targeting, then submits", async () => {
       const fetchMock = vi

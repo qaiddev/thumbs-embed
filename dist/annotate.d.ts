@@ -104,6 +104,7 @@ export interface AnnotationEditorOptions {
  */
 export declare class AnnotationEditor {
     readonly shapes: Shape[];
+    /** Starts on the pen: drawing freehand is what most people reach for first. */
     tool: ShapeType;
     private readonly opts;
     private readonly labels;

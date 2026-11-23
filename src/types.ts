@@ -38,6 +38,14 @@ export interface FeedbackConfig {
    *    editor so the user can draw on it. Implies screenshot capture.
    */
   feedbackMode?: "target" | "annotate";
+  /**
+   * Show two tool buttons instead of the thumbs up/down pair: a bullseye
+   * (point at an element, like `feedbackMode: "target"`) and a pencil (draw on
+   * a screenshot, like `feedbackMode: "annotate"`). Each button picks its own
+   * flow, so `feedbackMode` and `skipTargeting` are ignored for them. Their
+   * submissions record `feedbackType: "neutral"`. Default: false
+   */
+  toolButtons?: boolean;
   /** Custom colors for feedback types */
   colors?: {
     /** Color for positive feedback. Default: rgb(0, 200, 83) */
@@ -73,6 +81,10 @@ export interface FeedbackConfig {
     dismissLabel?: string;
     /** Accessible name / tooltip for the single "Feedback" button (singleButton mode) */
     feedbackLabel?: string;
+    /** Accessible name / tooltip for the bullseye button (toolButtons mode) */
+    targetLabel?: string;
+    /** Accessible name / tooltip for the pencil button (toolButtons mode) */
+    annotateLabel?: string;
     /** Heading on the success screen. Default: "Thank you!" */
     confirmationTitle?: string;
     /** Body copy on the success screen. Default: "Your feedback has been received." */
@@ -150,6 +162,10 @@ export interface FeedbackConfig {
   negativeIcon?: string;
   /** Custom SVG string for the single "Feedback" button icon (singleButton mode) */
   feedbackIcon?: string;
+  /** Custom SVG string for the bullseye button icon (toolButtons mode) */
+  targetIcon?: string;
+  /** Custom SVG string for the pencil button icon (toolButtons mode) */
+  annotateIcon?: string;
   /** When true, hide thumbs up/down buttons (only show video button if enabled). Default: false */
   hideThumbs?: boolean;
   /** Custom CSS to inject into the embed's shadow root for theming */
@@ -217,6 +233,8 @@ export interface CaptureErrorsConfig {
 export interface ThumbsThemeDocument {
   positiveIcon?: string;
   negativeIcon?: string;
+  targetIcon?: string;
+  annotateIcon?: string;
   css?: string;
   buttonClass?: string;
   colors?: { positive?: string; negative?: string; marker?: string };
@@ -388,6 +406,7 @@ export interface ResolvedFeedbackConfig {
   skipTargeting: boolean;
   singleButton: boolean;
   feedbackMode: "target" | "annotate";
+  toolButtons: boolean;
   colors: {
     positive: string;
     negative: string;
@@ -406,6 +425,8 @@ export interface ResolvedFeedbackConfig {
     recordLabel: string;
     dismissLabel: string;
     feedbackLabel: string;
+    targetLabel: string;
+    annotateLabel: string;
     confirmationTitle: string;
     confirmationMessage: string;
     confirmationClose: string;
@@ -433,6 +454,8 @@ export interface ResolvedFeedbackConfig {
   positiveIcon: string;
   negativeIcon: string;
   feedbackIcon: string;
+  targetIcon: string;
+  annotateIcon: string;
   hideThumbs: boolean;
   css: string;
   captureVideo: boolean;

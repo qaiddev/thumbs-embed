@@ -14,6 +14,8 @@ import type { ResolvedFeedbackConfig, EmbedState, FeedbackData, SelectedBounds, 
 /** The slice of the embed the send flow needs. */
 export interface SendHost {
     readonly config: ResolvedFeedbackConfig;
+    /** The flow the clicked button chose (a tool button overrides `feedbackMode`). */
+    readonly mode: "target" | "annotate";
     readonly visitorId: string;
     /** Per tab; the same id `captureErrors` sends. */
     readonly sessionId: string;

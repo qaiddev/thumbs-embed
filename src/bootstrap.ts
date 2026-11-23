@@ -237,6 +237,11 @@ export function parseDataAttributes(script: HTMLScriptElement): Partial<Feedback
   const negativeIcon = script.getAttribute("data-negative-icon");
   const feedbackIcon = script.getAttribute("data-feedback-icon");
   const feedbackLabel = script.getAttribute("data-feedback-label");
+  const toolButtons = script.getAttribute("data-tool-buttons");
+  const targetIcon = script.getAttribute("data-target-icon");
+  const annotateIcon = script.getAttribute("data-annotate-icon");
+  const targetLabel = script.getAttribute("data-target-label");
+  const annotateLabel = script.getAttribute("data-annotate-label");
   const apiKey = script.getAttribute("data-api-key");
   const captureScreenshot = script.getAttribute("data-capture-screenshot");
   const annotate = script.getAttribute("data-annotate");
@@ -299,6 +304,7 @@ export function parseDataAttributes(script: HTMLScriptElement): Partial<Feedback
     skipTargeting: skipTargeting === "true" ? true : undefined,
     hideConfirmation: hideConfirmation === "true" ? true : undefined,
     singleButton: singleButton === "true" ? true : undefined,
+    toolButtons: toolButtons === "true" ? true : undefined,
     feedbackMode: feedbackMode ?? undefined,
     incognito: incognito === "true" ? true : undefined,
     buttonSize: buttonSize ?? undefined,
@@ -315,7 +321,7 @@ export function parseDataAttributes(script: HTMLScriptElement): Partial<Feedback
       negative: negativeColor ?? undefined,
       marker: markerColor ?? undefined,
     },
-    text: (tooltip || modalTitle || modalSubtitle || placeholder || submitButton || skipButton || feedbackLabel || confirmationTitle || confirmationMessage || confirmationClose || errorTitle || errorMessage || positiveLabel || negativeLabel || recordLabel || dismissLabel) ? {
+    text: (tooltip || modalTitle || modalSubtitle || placeholder || submitButton || skipButton || feedbackLabel || targetLabel || annotateLabel || confirmationTitle || confirmationMessage || confirmationClose || errorTitle || errorMessage || positiveLabel || negativeLabel || recordLabel || dismissLabel) ? {
       tooltip: tooltip ?? undefined,
       modalTitle: modalTitle ?? undefined,
       modalSubtitle: modalSubtitle ?? undefined,
@@ -323,6 +329,8 @@ export function parseDataAttributes(script: HTMLScriptElement): Partial<Feedback
       submitButton: submitButton ?? undefined,
       skipButton: skipButton ?? undefined,
       feedbackLabel: feedbackLabel ?? undefined,
+      targetLabel: targetLabel ?? undefined,
+      annotateLabel: annotateLabel ?? undefined,
       confirmationTitle: confirmationTitle ?? undefined,
       confirmationMessage: confirmationMessage ?? undefined,
       confirmationClose: confirmationClose ?? undefined,
@@ -337,6 +345,8 @@ export function parseDataAttributes(script: HTMLScriptElement): Partial<Feedback
     recordIcon: recordIcon ?? undefined,
     negativeIcon: negativeIcon ?? undefined,
     feedbackIcon: feedbackIcon ?? undefined,
+    targetIcon: targetIcon ?? undefined,
+    annotateIcon: annotateIcon ?? undefined,
     screenshotMethod: screenshotMethod ?? undefined,
     captureVideo: captureVideo === "true" ? true : undefined,
     hideThumbs: hideThumbs === "true" ? true : undefined,

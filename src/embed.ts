@@ -7,7 +7,7 @@ import type {
   EmbedState,
   FeedbackRecord,
 } from "./types";
-import { THUMBS_UP_ICON, THUMBS_DOWN_ICON, RECORD_ICON, FEEDBACK_ICON, DISMISS_ICON } from "./icons";
+import { THUMBS_UP_ICON, THUMBS_DOWN_ICON, RECORD_ICON, FEEDBACK_ICON, DISMISS_ICON, TARGET_ICON, PENCIL_ICON } from "./icons";
 import { setIcon } from "./svg-sanitize";
 import { injectStyles, removeStyles, buildCssVars, applyCssVars, getEmbedStyles } from "./styles";
 // The element-targeting subsystem (with element-selector, ~14 KB) lives in a
@@ -174,6 +174,7 @@ export function resolveConfig(config: FeedbackConfig): ResolvedFeedbackConfig {
     skipTargeting: config.skipTargeting ?? false,
     singleButton: config.singleButton ?? false,
     feedbackMode: config.feedbackMode ?? "target",
+    toolButtons: config.toolButtons ?? false,
     colors: {
       positive: config.colors?.positive ?? "rgb(0, 200, 83)",
       negative: config.colors?.negative ?? "rgb(255, 0, 0)",
@@ -192,6 +193,8 @@ export function resolveConfig(config: FeedbackConfig): ResolvedFeedbackConfig {
       recordLabel: config.text?.recordLabel ?? "Record a screen recording",
       dismissLabel: config.text?.dismissLabel ?? "Hide Feedback",
       feedbackLabel: config.text?.feedbackLabel ?? "Send feedback",
+      targetLabel: config.text?.targetLabel ?? "Point at something on the page",
+      annotateLabel: config.text?.annotateLabel ?? "Draw on a screenshot",
       confirmationTitle: config.text?.confirmationTitle ?? "Thank you!",
       confirmationMessage:
         config.text?.confirmationMessage ?? "Your feedback has been received.",
@@ -221,6 +224,8 @@ export function resolveConfig(config: FeedbackConfig): ResolvedFeedbackConfig {
     positiveIcon: config.positiveIcon ?? "",
     negativeIcon: config.negativeIcon ?? "",
     feedbackIcon: config.feedbackIcon ?? "",
+    targetIcon: config.targetIcon ?? "",
+    annotateIcon: config.annotateIcon ?? "",
     hideThumbs: config.hideThumbs ?? false,
     css: config.css ?? "",
     captureVideo: config.captureVideo ?? false,
@@ -309,6 +314,13 @@ export class QaidFeedback {
   private cssVars: Record<string, string> = {};
 
   private activeThumbBtn: HTMLElement | null = null;
+  /**
+   * The flow the last button click chose: the config's `feedbackMode`, or the
+   * tool button's own ("target" for the bullseye, "annotate" for the pencil).
+   */
+  private activeMode: "target" | "annotate" = "target";
+  /** The shared tooltip's text when a button has none of its own. */
+  private tooltipText = "";
   // Tracks whether the pending activation came from the keyboard (Enter/Space)
   // rather than a pointer, so targeting can avoid elementFromPoint(0,0).
   private keyboardActivation = false;
@@ -491,12 +503,16 @@ export class QaidFeedback {
     import("./send").catch(() => {});
     import("./a11y-dialog").catch(() => {});
     import("./modal").catch(() => {});
-    if (!this.skipsTargeting()) import("./targeting").catch(() => {});
+    if (this.config.toolButtons || !this.skipsTargeting()) import("./targeting").catch(() => {});
   }
 
-  /** "annotate" mode and skipTargeting both go straight to the send flow. */
-  private skipsTargeting(): boolean {
-    return this.config.skipTargeting || this.config.feedbackMode === "annotate";
+  /**
+   * "annotate" mode and skipTargeting both go straight to the send flow. A
+   * tool button names its own mode, and only "annotate" skips targeting then.
+   */
+  private skipsTargeting(mode: "target" | "annotate" = this.config.feedbackMode, tool = false): boolean {
+    if (tool) return mode === "annotate";
+    return this.config.skipTargeting || mode === "annotate";
   }
 
   /**
@@ -710,6 +726,7 @@ export class QaidFeedback {
     // Determine tooltip text
     const defaultTooltip = "Feedback for us?";
     const tooltipText = this.config.text.tooltip || defaultTooltip;
+    this.tooltipText = tooltipText;
 
     // Create shared tooltip element (inside shadow root)
     const tooltip = document.createElement("div");
@@ -719,8 +736,33 @@ export class QaidFeedback {
     this.shadowRoot.appendChild(tooltip);
     this.tooltipElement = tooltip;
 
-    // Single sentiment-free "Feedback" button, or the thumbs up/down pair.
-    if (this.config.singleButton) {
+    // Two tool buttons, a single sentiment-free "Feedback" button, or the
+    // thumbs up/down pair.
+    if (this.config.toolButtons) {
+      // A custom tooltip names the embed; without one each tool says what it does.
+      const tool = (mode: "target" | "annotate", cls: string, label: string, icon: string, fallback: string): void => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "qaid-tooltip-wrapper";
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = useCustomClass ? `${btnBaseClass} ${cls}` : `qaid-btn ${cls}`;
+        btn.setAttribute("aria-label", label);
+        setIcon(btn, icon, fallback);
+        btn.addEventListener("click", (e) =>
+          this.handleThumbClick("neutral", e.currentTarget as HTMLElement, e, mode)
+        );
+        const tip = this.config.text.tooltip || label;
+        btn.addEventListener("mouseenter", () => {
+          if (mode === "annotate") this.prewarmScreenshot();
+          this.showTooltip(btn, tip);
+        });
+        btn.addEventListener("mouseleave", () => this.hideTooltip());
+        wrapper.appendChild(btn);
+        this.buttonsContainer!.appendChild(wrapper);
+      };
+      tool("target", "qaid-btn-target", this.config.text.targetLabel, this.config.targetIcon, TARGET_ICON);
+      tool("annotate", "qaid-btn-annotate", this.config.text.annotateLabel, this.config.annotateIcon, PENCIL_ICON);
+    } else if (this.config.singleButton) {
       const fbWrapper = document.createElement("div");
       fbWrapper.className = "qaid-tooltip-wrapper";
 
@@ -883,8 +925,9 @@ export class QaidFeedback {
 
   private tooltipElement: HTMLElement | null = null;
 
-  private showTooltip(anchor: HTMLElement): void {
+  private showTooltip(anchor: HTMLElement, text: string = this.tooltipText): void {
     const tooltip = this.tooltipElement!;
+    tooltip.textContent = text;
 
     // Make visible to measure
     tooltip.style.visibility = "hidden";
@@ -915,7 +958,14 @@ export class QaidFeedback {
     setHiddenByUser(this.config.apiKey, true);
   }
 
-  private handleThumbClick(type: FeedbackType, buttonEl: HTMLElement, e: MouseEvent): void {
+  private handleThumbClick(
+    type: FeedbackType,
+    buttonEl: HTMLElement,
+    e: MouseEvent,
+    toolMode?: "target" | "annotate",
+  ): void {
+    const mode = toolMode ?? this.config.feedbackMode;
+    this.activeMode = mode;
     // If user clicks a thumb while in incognito mode, they want it back.
     // (Dismissed widgets are `display:none`, so this can't fire for them.)
     if (this.buttonsContainer?.classList.contains("qaid-incognito")) {
@@ -927,7 +977,7 @@ export class QaidFeedback {
     this.prewarmClickPath();
     // "annotate" mode and skipTargeting both bypass element targeting and go
     // straight to the (screenshot →) modal flow.
-    if (this.skipsTargeting()) {
+    if (this.skipsTargeting(mode, toolMode !== undefined)) {
       this.submitDirectFeedback(type, buttonEl);
     } else {
       // Expose targeting on/off state on the trigger
@@ -1029,6 +1079,9 @@ export class QaidFeedback {
     return {
       get config() {
         return self.config;
+      },
+      get mode() {
+        return self.activeMode;
       },
       get visitorId() {
         return self.visitorId;

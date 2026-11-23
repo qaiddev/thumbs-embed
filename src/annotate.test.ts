@@ -353,12 +353,17 @@ describe("AnnotationEditor mounting & a11y", () => {
       container.querySelector<HTMLButtonElement>('[data-qaid-action="undo"]')!
         .disabled
     ).toBe(true);
-    // Rectangle is the default active tool.
+    // The pen is the default active tool, and the rectangle is not pressed.
+    expect(
+      container
+        .querySelector('[data-qaid-tool="pen"]')!
+        .getAttribute("aria-pressed")
+    ).toBe("true");
     expect(
       container
         .querySelector('[data-qaid-tool="rect"]')!
         .getAttribute("aria-pressed")
-    ).toBe("true");
+    ).toBe("false");
 
     editor.skip();
   });
@@ -444,15 +449,28 @@ describe("AnnotationEditor tool selection", () => {
     const toolbar = root.querySelector<HTMLDivElement>(".qaid-annotate-toolbar")!;
     // Clicking the toolbar background must not change the tool or throw.
     toolbar.click();
-    expect(editor.tool).toBe("rect");
+    expect(editor.tool).toBe("pen");
     editor.skip();
   });
 });
 
 describe("AnnotationEditor drawing", () => {
+  it("starts on the pen, so a first drag draws freehand", () => {
+    const { editor } = makeEditor();
+    editor.open();
+    editor.onPointerDown(fakePointer(10, 20));
+    editor.onPointerMove(fakePointer(30, 40));
+    editor.onPointerMove(fakePointer(60, 80));
+    editor.onPointerUp();
+    expect(editor.shapes).toHaveLength(1);
+    expect(editor.shapes[0].type).toBe("pen");
+    editor.skip();
+  });
+
   it("adds a rectangle after a pointer drag", () => {
     const { editor, announce } = makeEditor();
     editor.open();
+    editor.tool = "rect";
     editor.onPointerDown(fakePointer(10, 20));
     editor.onPointerMove(fakePointer(60, 80));
     editor.onPointerUp();

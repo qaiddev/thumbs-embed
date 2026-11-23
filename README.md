@@ -119,10 +119,26 @@ We offer a Free Plan for a compatible endpoint and a dashboard to manage your si
 | `endpoint` | `string` | **(required)** | API endpoint URL for submitting feedback data |
 | `apiKey` | `string` | `""` | API key for authenticating with the feedback service |
 | `skipTargeting` | `boolean` | `false` | Skip element targeting and go directly to the feedback modal |
+| `toolButtons` | `boolean` | `false` | Show a bullseye and a pencil instead of the thumbs (see [Tool buttons](#tool-buttons)) |
 | `remoteConfig` | `boolean` | `false` | Fetch the project's saved settings from `{endpoint}/config?apiKey=…` (see [Load settings instead of pasting them](#load-settings-instead-of-pasting-them)) |
 | `themeUrl` | `string` | `""` | Fetch a theme document (icons, CSS, button class, colours, size, text) from this URL |
 | `remoteTimeoutMs` | `number` | `3000` | How long to wait for `remoteConfig` / `themeUrl` before drawing without them |
 | `captureErrors` | `boolean \| { endpoint?, release?, environment?, sampleRate? }` | `false` | Send the page's uncaught errors and unhandled rejections to qaid's error triage (Enterprise). Needs `apiKey`. Goes to `/api/errors` beside `endpoint`; at most 50 per page, 3 of each, secrets redacted |
+
+### Tool buttons
+
+`toolButtons: true` swaps the thumbs up/down pair for two buttons that each pick their own flow:
+
+1. **Bullseye** (`.qaid-btn-target`): the visitor points at an element on the page, then writes a message.
+2. **Pencil** (`.qaid-btn-annotate`): the embed takes a screenshot and opens the markup editor, then the message box.
+
+Both send `feedbackType: "neutral"`. `feedbackMode` and `skipTargeting` still set what the thumbs do, but the tool buttons ignore them. Change the icons with `targetIcon` / `annotateIcon` and the names with `text.targetLabel` / `text.annotateLabel`. Each button's name is also its tooltip unless `text.tooltip` is set.
+
+```typescript
+new QaidFeedback({ endpoint: '/api/feedback', toolButtons: true, captureVideo: true });
+```
+
+The markup editor starts on the pen, in every mode.
 
 ### Positioning
 
@@ -201,7 +217,7 @@ new QaidFeedback({
 });
 ```
 
-Strings are inserted as plain text, so `<`, `&` and quotes show exactly as written. Only the icon options (`positiveIcon`, `negativeIcon`, `feedbackIcon`, `recordIcon`) take markup.
+Strings are inserted as plain text, so `<`, `&` and quotes show exactly as written. Only the icon options (`positiveIcon`, `negativeIcon`, `feedbackIcon`, `targetIcon`, `annotateIcon`, `recordIcon`) take markup.
 
 ### Screenshots
 
@@ -319,6 +335,7 @@ Boolean attributes turn on with `"true"`; any other value leaves the default. `d
 | `data-skip-targeting` | `skipTargeting` |
 | `data-single-button` | `singleButton` |
 | `data-feedback-mode` | `feedbackMode` |
+| `data-tool-buttons` | `toolButtons` |
 | `data-positive-color` | `colors.positive` |
 | `data-negative-color` | `colors.negative` |
 | `data-marker-color` | `colors.marker` |
@@ -334,6 +351,8 @@ Boolean attributes turn on with `"true"`; any other value leaves the default. `d
 | `data-record-label` | `text.recordLabel` |
 | `data-dismiss-label` | `text.dismissLabel` |
 | `data-feedback-label` | `text.feedbackLabel` |
+| `data-target-label` | `text.targetLabel` |
+| `data-annotate-label` | `text.annotateLabel` |
 | `data-confirmation-title` | `text.confirmationTitle` |
 | `data-confirmation-message` | `text.confirmationMessage` |
 | `data-confirmation-close` | `text.confirmationClose` |
@@ -357,6 +376,8 @@ Boolean attributes turn on with `"true"`; any other value leaves the default. `d
 | `data-positive-icon` | `positiveIcon` |
 | `data-negative-icon` | `negativeIcon` |
 | `data-feedback-icon` | `feedbackIcon` |
+| `data-target-icon` | `targetIcon` |
+| `data-annotate-icon` | `annotateIcon` |
 | `data-hide-thumbs` | `hideThumbs` |
 | `data-css` | `css` (wins over `data-css-selector`) |
 | `data-css-selector` | `css`, taken from the `textContent` of the element this selector matches |

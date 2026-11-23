@@ -319,7 +319,8 @@ let editorSeq = 0;
  */
 export class AnnotationEditor {
   readonly shapes: Shape[] = [];
-  tool: ShapeType = "rect";
+  /** Starts on the pen: drawing freehand is what most people reach for first. */
+  tool: ShapeType = "pen";
 
   private readonly opts: AnnotationEditorOptions;
   private readonly labels: AnnotationLabels;
