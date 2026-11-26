@@ -22,7 +22,7 @@ import { QaidFeedback } from '@qaiddev/thumbs-embed';
 
 const feedback = new QaidFeedback({
   endpoint: 'https://qaid.dev/api/feedback',
-  apiKey: 'YOUR_API_KEY',
+  apiKey: 'QAID_PUB_your_key',
 });
 ```
 
@@ -32,7 +32,7 @@ const feedback = new QaidFeedback({
 <script
   src="https://unpkg.com/@qaiddev/thumbs-embed/dist/embed.js"
   data-endpoint="https://qaid.dev/api/feedback"
-  data-api-key="YOUR_API_KEY"
+  data-api-key="QAID_PUB_your_key"
 ></script>
 ```
 
@@ -70,7 +70,7 @@ For complex configurations, use a separate JSON config element. Put it **right b
 <script type="application/json" data-feedback-config>
 {
   "endpoint": "https://qaid.dev/api/feedback",
-  "apiKey": "YOUR_API_KEY",
+  "apiKey": "QAID_PUB_your_key",
   "position": "bottom-left",
   "colors": {
     "positive": "#22c55e",
@@ -244,7 +244,7 @@ Instead of the optional message box, a button can open a **quest** — a short q
 ```typescript
 new QaidFeedback({
   endpoint: 'https://qaid.dev/api/feedback',
-  apiKey: 'YOUR_API_KEY',
+  apiKey: 'QAID_PUB_your_key',
   captureVideo: true,
   quests: {
     // Base URL of the quest service. Required to enable the feature.
@@ -271,17 +271,17 @@ The embed runs on your page with your page's rights, so treat it like any other 
 
 ```html
 <script
-  src="https://unpkg.com/@qaiddev/thumbs-embed@1.16.0/dist/embed.js"
-  integrity="sha384-kCAon2t7xSRyDSI59280ii029y4GJvaY8cCHYaRqi/eWZNBOSKEenkKll8Z3d82O"
+  src="https://unpkg.com/@qaiddev/thumbs-embed@1.18.0/dist/embed.js"
+  integrity="sha384-ecWKhJZBzijhGOPHy9cr5rczNWmAdl+Bo/rrRKYVR2rryfteaIj8t8xhGwoinm0t"
   crossorigin="anonymous"
   defer
   data-endpoint="https://qaid.dev/api/feedback"
-  data-api-key="YOUR_API_KEY"
+  data-api-key="QAID_PUB_your_key"
 ></script>
 ```
 
-- The `@1.16.0` pins the release. Without it unpkg serves the newest release, and a hash can never match for long.
-- `integrity` is the sha384 of `dist/embed.js` for that release. It is in each release's notes; to work it out yourself: `curl -s https://unpkg.com/@qaiddev/thumbs-embed@1.16.0/dist/embed.js | openssl dgst -sha384 -binary | openssl base64 -A`.
+- The `@1.18.0` pins the release. Without it unpkg serves the newest release, and a hash can never match for long.
+- `integrity` is the sha384 of `dist/embed.js` for that release. It is in each release's notes; to work it out yourself: `curl -s https://unpkg.com/@qaiddev/thumbs-embed@1.18.0/dist/embed.js | openssl dgst -sha384 -binary | openssl base64 -A`.
 - `crossorigin="anonymous"` is required for the browser to check a hash on a file from another origin.
 - **What the one hash covers.** When the tag carries `integrity`, every file `embed.js` loads after itself is checked too, with hashes baked in when the release was built:
   - Browsers that enforce import-map `integrity` (Chrome 127+, Safari 18+, Firefox 138+) get the small code-split build (about 14 KB gzipped at start-up). `embed.js` adds an import map listing the sha384 of `loader.js` and every lazy chunk, and the browser refuses any chunk whose bytes differ.
@@ -295,7 +295,7 @@ The embed runs on your page with your page's rights, so treat it like any other 
 A policy that lets the embed work and nothing else from its side:
 
 ```
-script-src 'self' https://unpkg.com/@qaiddev/thumbs-embed@1.16.0/ https://unpkg.com/@qaiddev/quests-embed@1.12.1/;
+script-src 'self' https://unpkg.com/@qaiddev/thumbs-embed@1.18.0/ https://unpkg.com/@qaiddev/quests-embed@1.12.1/;
 style-src 'self' 'unsafe-inline';
 connect-src 'self' https://qaid.dev;
 img-src 'self' data: blob:;
@@ -450,7 +450,7 @@ Since 1.15.0 the snippet can be just the endpoint and the key. The embed
 fetches the rest when it starts.
 
 ```html
-<script src="https://unpkg.com/@qaiddev/thumbs-embed@1.16.0/dist/embed.js" defer
+<script src="https://unpkg.com/@qaiddev/thumbs-embed@1.18.0/dist/embed.js" defer
   data-api-key="YOUR_KEY"
   data-endpoint="https://qaid.dev/api/feedback"
   data-remote-config="true"></script>
@@ -498,7 +498,7 @@ The embed submits feedback in two steps:
 {
   "feedbackType": "up",
   "pageUrl": "https://example.com/page",
-  "apiKey": "YOUR_API_KEY",
+  "apiKey": "QAID_PUB_your_key",
   "elementSelector": "body > main:nth-child(2) > button:nth-child(3)",
   "elementText": "Submit Order",
   "consoleErrors": [

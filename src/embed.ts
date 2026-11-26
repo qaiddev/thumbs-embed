@@ -7,6 +7,7 @@ import type {
   EmbedState,
   FeedbackRecord,
 } from "./types";
+import { guardSecretKeys } from "./secret-key-guard";
 import { THUMBS_UP_ICON, THUMBS_DOWN_ICON, RECORD_ICON, FEEDBACK_ICON, DISMISS_ICON, TARGET_ICON, PENCIL_ICON } from "./icons";
 import { setIcon } from "./svg-sanitize";
 import { injectStyles, removeStyles, buildCssVars, applyCssVars, getEmbedStyles } from "./styles";
@@ -354,6 +355,8 @@ export class QaidFeedback {
   private boundBeforeSwap: ((e: Event) => void) | null = null;
 
   constructor(config: FeedbackConfig) {
+    // A platform secret in a public config is dropped, logged and reported.
+    config = guardSecretKeys(config, "thumbs-embed");
     this.config = resolveConfig(config);
 
     // Bind event handlers
